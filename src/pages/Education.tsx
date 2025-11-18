@@ -24,8 +24,8 @@ const Education = () => {
               Des dispositifs clés en main pour sensibiliser, former et accompagner vos étudiants vers l'entrepreneuriat
             </p>
             <Button asChild size="lg" variant="secondary" className="text-lg">
-              <Link to="/contact">
-                Parler de votre projet pédagogique
+              <Link to="/livre-blanc-education">
+                📘 Télécharger le Livre Blanc : Pédagogie Entrepreneuriale 2025
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
@@ -291,26 +291,26 @@ const Education = () => {
             
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
               <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8">
-                <h3 className="text-xl font-bold text-primary-foreground mb-4">Responsable pédagogique ?</h3>
+                <h3 className="text-xl font-bold text-primary-foreground mb-4">Télécharger le Livre Blanc</h3>
                 <p className="text-primary-foreground/80 mb-6">
-                  Planifions un rendez-vous pour discuter de vos besoins
+                  Découvrez les clés de la pédagogie entrepreneuriale en 2025
                 </p>
                 <Button asChild variant="secondary" className="w-full">
-                  <Link to="/contact">
-                    Planifier un rendez-vous
+                  <Link to="/livre-blanc-education">
+                    📘 Télécharger maintenant
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </div>
 
               <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8">
-                <h3 className="text-xl font-bold text-primary-foreground mb-4">Appel d'offres en cours ?</h3>
+                <h3 className="text-xl font-bold text-primary-foreground mb-4">Besoin d'échanger ?</h3>
                 <p className="text-primary-foreground/80 mb-6">
-                  Envoyez-nous votre brief pour une réponse personnalisée
+                  Contactez-nous pour parler de votre projet pédagogique
                 </p>
                 <Button asChild variant="secondary" className="w-full">
                   <Link to="/contact">
-                    Nous envoyer un brief
+                    Nous contacter
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>

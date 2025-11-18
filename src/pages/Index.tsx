@@ -245,10 +245,16 @@ const Index = () => {
                 </div>
               ))}
             </div>
-            <div className="text-center mt-12">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+              <Button asChild size="lg" variant="secondary">
+                <Link to="/livre-blanc-education">
+                  📘 Télécharger le Livre Blanc
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
               <Button asChild size="lg">
-                <Link to="/contact">
-                  Planifier un appel découverte
+                <Link to="/rejoindre-groupe">
+                  🚀 Rejoindre le Groupe
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
@@ -266,12 +272,18 @@ const Index = () => {
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             Rejoignez les écoles et entrepreneurs qui transforment leurs ambitions en réalité
           </p>
-          <Button asChild size="lg" variant="secondary" className="text-lg">
-            <Link to="/contact">
-              Contactez-nous maintenant
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild size="lg" variant="secondary" className="text-lg">
+              <Link to="/livre-blanc-education">
+                📘 Livre Blanc Éducation
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="text-lg bg-white/10 border-white text-white hover:bg-white hover:text-primary">
+              <Link to="/rejoindre-groupe">
+                🚀 Rejoindre le Groupe (20 jours offerts)
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
