@@ -13,7 +13,7 @@ const Header = () => {
     { to: "/education", label: "Offre Éducation" },
     { to: "/croissance", label: "Offre Croissance" },
     { to: "/a-propos", label: "À propos" },
-    { to: "/contact", label: "Contact" },
+    { to: "/contact", label: "Contactez-nous" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -38,9 +38,6 @@ const Header = () => {
               {link.label}
             </Link>
           ))}
-          <Button asChild size="sm" className="ml-4">
-            <Link to="/contact">Prendre rendez-vous</Link>
-          </Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -69,11 +66,6 @@ const Header = () => {
                 {link.label}
               </Link>
             ))}
-            <Button asChild className="w-full" size="sm">
-              <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
-                Prendre rendez-vous
-              </Link>
-            </Button>
           </div>
         </div>
       )}
