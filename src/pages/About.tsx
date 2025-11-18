@@ -169,7 +169,7 @@ const About = () => {
               Un réseau d'experts au service de votre réussite
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
-              <strong className="text-foreground">212 experts</strong> mobilisables en France, au Maroc et dans toute la francophonie
+              <strong className="text-foreground">135+ experts</strong> mobilisables en France, au Maroc et dans toute la francophonie
             </p>
             <p className="text-lg text-muted-foreground mb-12">
               Consultants, formateurs, entrepreneurs expérimentés, investisseurs... Notre réseau pluridisciplinaire 

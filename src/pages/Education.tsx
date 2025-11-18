@@ -23,19 +23,12 @@ const Education = () => {
             <p className="text-xl md:text-2xl text-primary-foreground/90 mb-12">
               Des dispositifs clés en main pour sensibiliser, former et accompagner vos étudiants vers l'entrepreneuriat
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" variant="secondary" className="text-lg">
-                <Link to="/livre-blanc-education">
-                  Télécharger le Livre Blanc : Pédagogie Entrepreneuriale 2025
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="text-lg bg-white/10 border-white text-white hover:bg-white hover:text-primary">
-                <Link to="/contact">
-                  Parler de votre projet pédagogique
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-            </div>
+            <Button asChild size="lg" variant="secondary" className="text-lg">
+              <Link to="/contact">
+                Parler de votre projet pédagogique
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -296,20 +289,7 @@ const Education = () => {
               Choisissez la formule qui vous correspond
             </p>
             
-            <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8">
-                <h3 className="text-xl font-bold text-primary-foreground mb-4">Télécharger le Livre Blanc</h3>
-                <p className="text-primary-foreground/80 mb-6">
-                  Accédez à notre guide complet 2025
-                </p>
-                <Button asChild variant="secondary" className="w-full">
-                  <Link to="/livre-blanc-education">
-                    Télécharger le PDF
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
-
+            <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
               <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8">
                 <h3 className="text-xl font-bold text-primary-foreground mb-4">Responsable pédagogique ?</h3>
                 <p className="text-primary-foreground/80 mb-6">

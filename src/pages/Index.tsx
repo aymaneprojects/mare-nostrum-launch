@@ -25,15 +25,15 @@ const Index = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Button asChild size="lg" variant="secondary" className="text-lg">
-                <Link to="/livre-blanc-education">
+                <Link to="/education">
                   <GraduationCap className="mr-2 h-5 w-5" />
-                  Télécharger le Livre Blanc : Pédagogie Entrepreneuriale 2025
+                  Je suis une école
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="text-lg bg-white/10 border-white text-white hover:bg-white hover:text-primary">
                 <Link to="/croissance">
                   <TrendingUp className="mr-2 h-5 w-5" />
-                  Rejoindre un groupe d'entrepreneurs (20 jours offerts)
+                  Je suis entrepreneur
                 </Link>
               </Button>
             </div>
@@ -111,19 +111,12 @@ const Index = () => {
               <p className="text-muted-foreground mb-6">
                 <strong>Formats :</strong> Ateliers, fresques, cours, programmes premium, hackathons
               </p>
-              <div className="flex flex-col gap-3">
-                <Button asChild variant="default" className="w-full">
-                  <Link to="/education">
-                    Découvrir l'offre Éducation
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" className="w-full">
-                  <Link to="/livre-blanc-education">
-                    Télécharger le Livre Blanc
-                  </Link>
-                </Button>
-              </div>
+              <Button asChild variant="default" className="w-full">
+                <Link to="/education">
+                  Découvrir l'offre Éducation
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
 
             {/* Growth Card */}
@@ -141,19 +134,12 @@ const Index = () => {
               <p className="text-muted-foreground mb-6">
                 <strong>Offres :</strong> Communauté, Mastermind, Premium
               </p>
-              <div className="flex flex-col gap-3">
-                <Button asChild variant="default" className="w-full">
-                  <Link to="/croissance">
-                    Découvrir l'offre Croissance
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" className="w-full">
-                  <Link to="/croissance#communaute">
-                    Rejoindre un groupe d'entrepreneurs
-                  </Link>
-                </Button>
-              </div>
+              <Button asChild variant="default" className="w-full">
+                <Link to="/croissance">
+                  Découvrir l'offre Croissance
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -259,7 +245,7 @@ const Index = () => {
                 </div>
               ))}
             </div>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+            <div className="text-center mt-12">
               <Button asChild size="lg">
                 <Link to="/contact">
                   Planifier un appel découverte
