@@ -24,8 +24,8 @@ const Croissance = () => {
               Communauté, Mastermind & accompagnement Premium pour arrêter d'avancer seul
             </p>
             <Button asChild size="lg" variant="secondary" className="text-lg">
-              <Link to="/contact">
-                Rejoindre la communauté <span className="ml-2 text-sm">(20 jours offerts)</span>
+              <Link to="/rejoindre-groupe">
+                🚀 Rejoindre un groupe d'entrepreneurs <span className="ml-2 text-sm">(20 jours offerts)</span>
               </Link>
             </Button>
           </div>
@@ -276,15 +276,14 @@ const Croissance = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" variant="secondary" className="text-lg">
-              <Link to="/contact">
-                <Calendar className="mr-2 h-5 w-5" />
-                Réserver une session découverte
+              <Link to="/rejoindre-groupe">
+                🚀 Rejoindre le Groupe (20 jours offerts)
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="text-lg bg-white/10 border-white text-white hover:bg-white hover:text-primary">
               <Link to="/contact">
                 <MessageSquare className="mr-2 h-5 w-5" />
-                Essayer 20 jours gratuits
+                Nous contacter
               </Link>
             </Button>
           </div>

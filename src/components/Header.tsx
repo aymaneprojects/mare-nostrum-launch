@@ -26,7 +26,7 @@ const Header = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-6">
+        <div className="hidden md:flex items-center space-x-4">
           {navLinks.map((link) => (
             <Link
               key={link.to}
@@ -38,8 +38,11 @@ const Header = () => {
               {link.label}
             </Link>
           ))}
-          <Button asChild size="sm" className="ml-4">
-            <Link to="/contact">Prendre rendez-vous</Link>
+          <Button asChild size="sm" variant="outline" className="ml-4">
+            <Link to="/livre-blanc-education">📘 Livre Blanc</Link>
+          </Button>
+          <Button asChild size="sm" className="ml-2">
+            <Link to="/rejoindre-groupe">🚀 Rejoindre</Link>
           </Button>
         </div>
 
@@ -69,9 +72,14 @@ const Header = () => {
                 {link.label}
               </Link>
             ))}
-            <Button asChild className="w-full" size="sm">
-              <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
-                Prendre rendez-vous
+            <Button asChild variant="outline" className="w-full" size="sm">
+              <Link to="/livre-blanc-education" onClick={() => setIsMenuOpen(false)}>
+                📘 Livre Blanc Éducation
+              </Link>
+            </Button>
+            <Button asChild className="w-full mt-2" size="sm">
+              <Link to="/rejoindre-groupe" onClick={() => setIsMenuOpen(false)}>
+                🚀 Rejoindre le Groupe
               </Link>
             </Button>
           </div>
