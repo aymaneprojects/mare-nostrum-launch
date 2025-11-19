@@ -21,12 +21,12 @@ const Croissance = () => {
               Sécurisez la trajectoire de votre entreprise à impact
             </h1>
             <p className="text-xl md:text-2xl text-primary-foreground/90 mb-12">
-              Communauté, Mastermind & accompagnement Premium pour arrêter d'avancer seul
+              Club Entrepreneur International – Mare Nostrum
             </p>
             <Button asChild size="lg" variant="secondary" className="text-lg">
-              <Link to="/contact">
-                Rejoindre la communauté <span className="ml-2 text-sm">(20 jours offerts)</span>
-              </Link>
+              <a href="https://buy.stripe.com/dRmaEZ78e4aZ3E61su" target="_blank" rel="noopener noreferrer">
+                Rejoindre le Club <span className="ml-2 text-sm">(premier mois offert avec BIENVENUE)</span>
+              </a>
             </Button>
           </div>
         </div>
@@ -95,45 +95,37 @@ const Croissance = () => {
           </p>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Communauté */}
+            {/* Tremplin */}
             <div className="bg-card border-2 border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold mb-2 text-foreground">Communauté</h3>
+                <h3 className="text-2xl font-bold mb-2 text-foreground">Tremplin</h3>
                 <div className="text-4xl font-bold text-primary mb-2">24€<span className="text-lg font-normal text-muted-foreground">/mois</span></div>
-                <p className="text-sm text-accent font-medium">Essai de 20 jours offerts</p>
+                <p className="text-sm text-accent font-medium">Premier mois offert avec BIENVENUE</p>
               </div>
 
               <ul className="space-y-4 mb-8">
                 <li className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Groupe WhatsApp / Discord actif</span>
+                  <span className="text-sm text-muted-foreground">Accès au club international d'entrepreneurs francophones</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Veille hebdomadaire (appels d'offres, opportunités)</span>
+                  <span className="text-sm text-muted-foreground">Accès aux opportunités : détection d'opportunités de business et de financement</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Opportunités business et partenariats</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Invitations à nos événements</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">"Café Galère" – 30 min pour débloquer un problème</span>
+                  <span className="text-sm text-muted-foreground">Visio galère : 20 minutes pour résoudre un problème avec un membre de l'équipe</span>
                 </li>
               </ul>
 
               <Button asChild className="w-full">
-                <Link to="/contact">
-                  Rejoindre la Communauté
-                </Link>
+                <a href="https://buy.stripe.com/dRmaEZ78e4aZ3E61su" target="_blank" rel="noopener noreferrer">
+                  Rejoindre Tremplin
+                </a>
               </Button>
             </div>
 
-            {/* Mastermind - Highlighted */}
+            {/* Ascension - Highlighted */}
             <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground border-2 border-accent rounded-xl p-8 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 relative">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <span className="bg-accent text-accent-foreground px-4 py-1 rounded-full text-sm font-semibold">
@@ -142,84 +134,68 @@ const Croissance = () => {
               </div>
 
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold mb-2">Mastermind</h3>
-                <div className="text-4xl font-bold mb-2">150€<span className="text-lg font-normal opacity-80">/mois</span></div>
-                <p className="text-sm opacity-90">+ Communauté (24€)</p>
+                <h3 className="text-2xl font-bold mb-2">Ascension</h3>
+                <div className="text-4xl font-bold mb-2">174€<span className="text-lg font-normal opacity-80">/mois</span></div>
+                <p className="text-sm opacity-90">Tremplin inclus</p>
               </div>
 
               <ul className="space-y-4 mb-8">
                 <li className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
-                  <span className="text-sm opacity-95"><strong>Tout de Communauté</strong></span>
+                  <span className="text-sm opacity-95"><strong>Tout de Tremplin</strong></span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
-                  <span className="text-sm opacity-95">6 journées Mastermind / an</span>
+                  <span className="text-sm opacity-95">Visibilité de votre projet via nos réseaux, partenaires et événements</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
-                  <span className="text-sm opacity-95">6 visios thématiques collectives</span>
+                  <span className="text-sm opacity-95">Génération supervisée par IA d'un livrable</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
-                  <span className="text-sm opacity-95">Intelligence collective & entraide</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
-                  <span className="text-sm opacity-95">Retours d'expérience entre pairs</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
-                  <span className="text-sm opacity-95">Accélération de la prise de décision</span>
+                  <span className="text-sm opacity-95">Accès aux masterclass mensuelles</span>
                 </li>
               </ul>
 
-              <Button asChild variant="secondary" className="w-full">
-                <Link to="/contact">
-                  Rejoindre le Mastermind
-                </Link>
+              <Button asChild className="w-full bg-white text-primary hover:bg-white/90">
+                <a href="https://buy.stripe.com/28EbJ32RY4aZa2u6MO" target="_blank" rel="noopener noreferrer">
+                  Rejoindre Ascension
+                </a>
               </Button>
             </div>
 
-            {/* Premium */}
+            {/* ÉLITE */}
             <div className="bg-card border-2 border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold mb-2 text-foreground">Premium</h3>
-                <div className="text-4xl font-bold text-primary mb-2">250€<span className="text-lg font-normal text-muted-foreground">/mois</span></div>
-                <p className="text-sm text-muted-foreground">+ Mastermind (150€)</p>
+                <h3 className="text-2xl font-bold mb-2 text-foreground">ÉLITE</h3>
+                <div className="text-4xl font-bold text-primary mb-2">424€<span className="text-lg font-normal text-muted-foreground">/mois</span></div>
+                <p className="text-sm text-accent font-medium">Frais d'inscription offerts avec BIENVENUE2</p>
               </div>
 
               <ul className="space-y-4 mb-8">
                 <li className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground"><strong>Tout du Mastermind</strong></span>
+                  <span className="text-sm text-muted-foreground"><strong>Tout d'Ascension</strong></span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Startup manager dédié</span>
+                  <span className="text-sm text-muted-foreground">6 journées business développement et 6 webinaires/masterclasses par an</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Revue mensuelle de ta roadmap</span>
+                  <span className="text-sm text-muted-foreground">Accès à la plateforme de formation en ligne</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Production de livrables avec IA supervisée</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Pitch deck, plan d'action, stratégie</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Suivi personnalisé continu</span>
+                  <span className="text-sm text-muted-foreground">Priorité 1 sur toutes les demandes</span>
                 </li>
               </ul>
 
-              <Button asChild className="w-full">
-                <Link to="/contact">
-                  Passer en Premium
-                </Link>
+              <Button asChild variant="default" className="w-full">
+                <a href="https://buy.stripe.com/6oUaEZ8cidLzeiK9Z0" target="_blank" rel="noopener noreferrer">
+                  Rejoindre ÉLITE
+                </a>
               </Button>
             </div>
           </div>
@@ -256,7 +232,7 @@ const Croissance = () => {
               organization="Impact Social"
             />
             <TestimonialCard
-              text="La Communauté Mare Nostrum m'a ouvert des portes incroyables. J'ai trouvé mes premiers clients et des partenaires stratégiques."
+              text="Le Club Entrepreneur International Mare Nostrum m'a ouvert des portes incroyables. J'ai trouvé mes premiers clients et des partenaires stratégiques."
               author="Ahmed Ziani"
               role="Entrepreneur"
               organization="EdTech"
