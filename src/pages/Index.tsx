@@ -132,7 +132,7 @@ const Index = () => {
                 <strong>Public :</strong> Entrepreneurs, dirigeants à impact
               </p>
               <p className="text-muted-foreground mb-6">
-                <strong>Offres :</strong> Communauté, Mastermind, Premium
+                <strong>Offres :</strong> Tremplin, Ascension, ÉLITE
               </p>
               <Button asChild variant="default" className="w-full">
                 <Link to="/croissance">
