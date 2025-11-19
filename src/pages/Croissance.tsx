@@ -100,6 +100,7 @@ const Croissance = () => {
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Tremplin</h3>
                 <div className="text-4xl font-bold text-primary mb-2">24€<span className="text-lg font-normal text-muted-foreground">/mois</span></div>
+                <p className="text-sm text-muted-foreground">Frais d'inscription : 5€</p>
                 <p className="text-sm text-accent font-medium">Premier mois offert avec BIENVENUE</p>
               </div>
 
@@ -119,7 +120,7 @@ const Croissance = () => {
               </ul>
 
               <Button asChild className="w-full">
-                <a href="https://buy.stripe.com/dRmaEZ78e4aZ3E61su" target="_blank" rel="noopener noreferrer">
+                <a href="https://buy.stripe.com/dRmaEZ78e4aZ3E61su67S04" target="_blank" rel="noopener noreferrer">
                   Rejoindre Tremplin
                 </a>
               </Button>
@@ -135,8 +136,9 @@ const Croissance = () => {
 
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2">Ascension</h3>
-                <div className="text-4xl font-bold mb-2">174€<span className="text-lg font-normal opacity-80">/mois</span></div>
-                <p className="text-sm opacity-90">Tremplin inclus</p>
+                <div className="text-4xl font-bold mb-2">84€<span className="text-lg font-normal opacity-80">/mois</span></div>
+                <p className="text-sm opacity-90">Frais d'inscription : 50€</p>
+                <p className="text-sm opacity-80">Tremplin inclus</p>
               </div>
 
               <ul className="space-y-4 mb-8">
@@ -159,7 +161,7 @@ const Croissance = () => {
               </ul>
 
               <Button asChild className="w-full bg-white text-primary hover:bg-white/90">
-                <a href="https://buy.stripe.com/28EbJ32RY4aZa2u6MO" target="_blank" rel="noopener noreferrer">
+                <a href="https://buy.stripe.com/28EbJ32RY4aZa2u6MO67S06" target="_blank" rel="noopener noreferrer">
                   Rejoindre Ascension
                 </a>
               </Button>
@@ -169,7 +171,8 @@ const Croissance = () => {
             <div className="bg-card border-2 border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-foreground">ÉLITE</h3>
-                <div className="text-4xl font-bold text-primary mb-2">424€<span className="text-lg font-normal text-muted-foreground">/mois</span></div>
+                <div className="text-4xl font-bold text-primary mb-2">184€<span className="text-lg font-normal text-muted-foreground">/mois</span></div>
+                <p className="text-sm text-muted-foreground">Frais d'inscription : 50€</p>
                 <p className="text-sm text-accent font-medium">Frais d'inscription offerts avec BIENVENUE2</p>
               </div>
 
@@ -193,7 +196,7 @@ const Croissance = () => {
               </ul>
 
               <Button asChild variant="default" className="w-full">
-                <a href="https://buy.stripe.com/6oUaEZ8cidLzeiK9Z0" target="_blank" rel="noopener noreferrer">
+                <a href="https://buy.stripe.com/6oUaEZ8cidLzeiK9Z067S07" target="_blank" rel="noopener noreferrer">
                   Rejoindre ÉLITE
                 </a>
               </Button>
