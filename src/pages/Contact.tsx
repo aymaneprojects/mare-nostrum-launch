@@ -115,11 +115,21 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">Prendre rendez-vous</h3>
-                    <p className="text-muted-foreground mb-2">Réservez un créneau directement dans notre agenda</p>
-                    <Button variant="outline" size="sm">
-                      <Calendar className="mr-2 h-4 w-4" />
-                      Calendly
-                    </Button>
+                    <p className="text-muted-foreground mb-3">Réservez un créneau directement avec notre équipe</p>
+                    <div className="flex flex-col gap-2">
+                      <Button asChild variant="outline" size="sm">
+                        <a href="https://calendly.com/aymane-marenostrum/30min" target="_blank" rel="noopener noreferrer">
+                          <Calendar className="mr-2 h-4 w-4" />
+                          RDV avec Aymane
+                        </a>
+                      </Button>
+                      <Button asChild variant="outline" size="sm">
+                        <a href="https://calendly.com/marenostrumtech/rdv-alexis" target="_blank" rel="noopener noreferrer">
+                          <Calendar className="mr-2 h-4 w-4" />
+                          RDV avec Alexis
+                        </a>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
