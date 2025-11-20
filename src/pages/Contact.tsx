@@ -68,43 +68,59 @@ const Contact = () => {
           <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Contact Info */}
             <div>
-              <h2 className="text-3xl font-bold mb-8 text-foreground">Parlons de votre projet</h2>
+              <h2 className="text-3xl font-bold mb-8 text-foreground">Nous contacter</h2>
               <p className="text-lg text-muted-foreground mb-8">
                 Que vous soyez une école, une université, un entrepreneur ou un dirigeant d'entreprise à impact, 
                 nous sommes là pour vous accompagner.
               </p>
 
-              <div className="space-y-6 mb-8">
-                <div className="flex items-start space-x-4">
-                  <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Nos bureaux</h3>
-                    <p className="text-muted-foreground">Toulouse · Paris · Casablanca</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="bg-accent/10 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Mail className="h-6 w-6 text-accent" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Email</h3>
-                    <a href="mailto:contact@marenostrum.com" className="text-muted-foreground hover:text-primary transition-colors">
-                      contact@marenostrum.com
+              <div className="space-y-8 mb-8">
+                {/* Bureau de Toulouse */}
+                <div className="border-l-4 border-primary pl-6">
+                  <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                    <MapPin className="h-5 w-5 text-primary" />
+                    Bureau de Toulouse (France)
+                  </h3>
+                  <div className="space-y-2">
+                    <a href="mailto:contact@marenostrum.tech" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+                      <Mail className="h-4 w-4" />
+                      contact@marenostrum.tech
+                    </a>
+                    <a href="tel:+33617358167" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+                      <Phone className="h-4 w-4" />
+                      +33 6 17 35 81 67
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Phone className="h-6 w-6 text-primary" />
+                {/* Bureau de Casablanca */}
+                <div className="border-l-4 border-accent pl-6">
+                  <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                    <MapPin className="h-5 w-5 text-accent" />
+                    Bureau de Casablanca (Maroc)
+                  </h3>
+                  <div className="space-y-2">
+                    <a href="mailto:maroc@marenostrum.tech" className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors">
+                      <Mail className="h-4 w-4" />
+                      maroc@marenostrum.tech
+                    </a>
+                    <a href="tel:+212694995785" className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors">
+                      <Phone className="h-4 w-4" />
+                      +212 694 995 785
+                    </a>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Téléphone</h3>
-                    <a href="tel:+33000000000" className="text-muted-foreground hover:text-primary transition-colors">
-                      +33 (0)X XX XX XX XX
+                </div>
+
+                {/* Bureau de Tunis */}
+                <div className="border-l-4 border-primary pl-6">
+                  <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                    <MapPin className="h-5 w-5 text-primary" />
+                    Bureau de Tunis (Tunisie)
+                  </h3>
+                  <div className="space-y-2">
+                    <a href="mailto:tunisie@marenostrum.tech" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+                      <Mail className="h-4 w-4" />
+                      tunisie@marenostrum.tech
                     </a>
                   </div>
                 </div>
@@ -135,7 +151,7 @@ const Contact = () => {
               </div>
 
               <div className="bg-secondary/50 border border-border rounded-lg p-6">
-                <h3 className="font-semibold text-foreground mb-2">💬 On vous répond sous 48h</h3>
+                <h3 className="font-semibold text-foreground mb-2">On vous répond sous 48h</h3>
                 <p className="text-sm text-muted-foreground">
                   Nous nous engageons à répondre à toutes vos demandes dans un délai maximum de 48 heures ouvrées.
                 </p>
