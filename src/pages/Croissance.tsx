@@ -138,7 +138,7 @@ const Croissance = () => {
                 <h3 className="text-2xl font-bold mb-2">Ascension</h3>
                 <div className="text-4xl font-bold mb-2">84€<span className="text-lg font-normal opacity-80">/mois</span></div>
                 <p className="text-sm opacity-90">Frais d'inscription : 50€</p>
-                <p className="text-sm opacity-80">Tremplin inclus</p>
+                <p className="text-sm text-white font-medium">Frais d'inscription offerts avec BIENVENUE2</p>
               </div>
 
               <ul className="space-y-4 mb-8">
