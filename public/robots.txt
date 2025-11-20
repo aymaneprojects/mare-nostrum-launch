@@ -1,14 +1,58 @@
+# Mare Nostrum - Cabinet de conseil en entrepreneuriat
+# Robots.txt optimisé pour SEO
+
+# Googlebot (Google Search)
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
+# Bingbot (Microsoft Bing)
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 0
 
+# Google Images
+User-agent: Googlebot-Image
+Allow: /
+
+# Baiduspider (Baidu Search - important pour audiences internationales)
+User-agent: Baiduspider
+Allow: /
+
+# Yandex (moteur russe, présent en francophonie)
+User-agent: YandexBot
+Allow: /
+
+# Social Media Crawlers
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# Autres bots autorisés
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Tous les autres robots
 User-agent: *
 Allow: /
+Crawl-delay: 1
+
+# Fichiers à ne pas indexer
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://marenostrum.fr/sitemap.xml
