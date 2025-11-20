@@ -19,6 +19,7 @@ const formSchema = z.object({
   lastName: z.string().trim().min(2, { message: "Le nom doit contenir au moins 2 caractères" }).max(100),
   email: z.string().trim().email({ message: "Email invalide" }).max(255),
   phone: z.string().trim().min(10, { message: "Téléphone invalide" }).max(20),
+  country: z.string().min(1, { message: "Pays requis" }),
   organization: z.string().trim().min(2, { message: "Organisation requise" }).max(200),
   position: z.string().trim().min(2, { message: "Fonction requise" }).max(100),
   schoolType: z.string().min(1, { message: "Type d'établissement requis" }),
@@ -38,6 +39,7 @@ const LivreEntrepreneuriat = () => {
       lastName: "",
       email: "",
       phone: "",
+      country: "",
       organization: "",
       position: "",
       schoolType: "",
@@ -48,6 +50,22 @@ const LivreEntrepreneuriat = () => {
     setIsSubmitting(true);
     
     try {
+      // Save to database
+      const { error: dbError } = await supabase
+        .from('livre_blanc_submissions')
+        .insert([{
+          name: `${data.firstName} ${data.lastName}`,
+          email: data.email,
+          phone: data.phone,
+          country: data.country,
+          organization: data.organization,
+          position: data.position,
+          school_type: data.schoolType,
+        }]);
+
+      if (dbError) throw dbError;
+
+      // Send email with livre blanc
       const { error } = await supabase.functions.invoke('send-livre-blanc', {
         body: data,
       });
@@ -179,6 +197,30 @@ const LivreEntrepreneuriat = () => {
                                 <FormControl>
                                   <Input type="tel" placeholder="06 12 34 56 78" {...field} />
                                 </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <FormField
+                            control={form.control}
+                            name="country"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Pays *</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                    <SelectTrigger>
+                                      <SelectValue placeholder="Sélectionnez votre pays" />
+                                    </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                    <SelectItem value="France">France</SelectItem>
+                                    <SelectItem value="Maroc">Maroc</SelectItem>
+                                    <SelectItem value="Tunisie">Tunisie</SelectItem>
+                                    <SelectItem value="Autre">Autre</SelectItem>
+                                  </SelectContent>
+                                </Select>
                                 <FormMessage />
                               </FormItem>
                             )}

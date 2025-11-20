@@ -14,7 +14,75 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contact_submissions: {
+        Row: {
+          country: string
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+          phone: string | null
+          type: string
+        }
+        Insert: {
+          country: string
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+          phone?: string | null
+          type: string
+        }
+        Update: {
+          country?: string
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+          phone?: string | null
+          type?: string
+        }
+        Relationships: []
+      }
+      livre_blanc_submissions: {
+        Row: {
+          country: string
+          created_at: string
+          email: string
+          id: string
+          name: string
+          organization: string
+          phone: string | null
+          position: string
+          school_type: string
+        }
+        Insert: {
+          country: string
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          organization: string
+          phone?: string | null
+          position: string
+          school_type: string
+        }
+        Update: {
+          country?: string
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          organization?: string
+          phone?: string | null
+          position?: string
+          school_type?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
