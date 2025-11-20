@@ -23,10 +23,15 @@ const Croissance = () => {
             <p className="text-xl md:text-2xl text-primary-foreground/90 mb-12">
               Club Entrepreneur International – Mare Nostrum
             </p>
-            <Button asChild size="lg" variant="secondary" className="text-lg">
-              <a href="https://buy.stripe.com/dRmaEZ78e4aZ3E61su" target="_blank" rel="noopener noreferrer">
-                Rejoindre le Club 
-              </a>
+            <Button 
+              size="lg" 
+              variant="secondary" 
+              className="text-lg"
+              onClick={() => {
+                document.getElementById('offres')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Rejoindre le Club 
             </Button>
           </div>
         </div>
@@ -85,7 +90,7 @@ const Croissance = () => {
       </section>
 
       {/* Offers Section */}
-      <section className="py-16 md:py-24 bg-secondary/30">
+      <section id="offres" className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
             Nos 3 offres pour entrepreneurs
