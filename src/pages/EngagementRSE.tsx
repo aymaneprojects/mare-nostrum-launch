@@ -2,6 +2,7 @@ import { Leaf, Users, Recycle, Heart, TrendingUp, Shield, Award, Target } from "
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import certificationsImage from "@/assets/certifications-footer.png";
 
 const EngagementRSE = () => {
   return (
@@ -450,6 +451,19 @@ const EngagementRSE = () => {
                 de la SAS Mare Nostrum et le comité de mission, lorsqu'il sera installé.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications Section */}
+      <section className="py-12 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center">
+            <img 
+              src={certificationsImage} 
+              alt="Certifications Mare Nostrum" 
+              className="max-w-full h-auto"
+            />
           </div>
         </div>
       </section>
