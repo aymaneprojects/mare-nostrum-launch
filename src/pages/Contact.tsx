@@ -15,6 +15,7 @@ const Contact = () => {
     name: "",
     email: "",
     phone: "",
+    country: "",
     type: "",
     message: "",
   });
@@ -25,6 +26,22 @@ const Contact = () => {
     try {
       const { supabase } = await import("@/integrations/supabase/client");
       
+      // Save to database
+      const { error: dbError } = await supabase
+        .from('contact_submissions')
+        .insert([formData]);
+
+      if (dbError) {
+        console.error("Error saving to database:", dbError);
+        toast({
+          title: "Erreur",
+          description: "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.",
+          variant: "destructive",
+        });
+        return;
+      }
+      
+      // Send confirmation email
       const { error } = await supabase.functions.invoke('send-contact-confirmation', {
         body: formData
       });
@@ -49,6 +66,7 @@ const Contact = () => {
         name: "",
         email: "",
         phone: "",
+        country: "",
         type: "",
         message: "",
       });
@@ -219,6 +237,21 @@ const Contact = () => {
                     placeholder="+33 X XX XX XX XX"
                     className="mt-2"
                   />
+                </div>
+
+                <div>
+                  <Label htmlFor="country">Pays *</Label>
+                  <Select required value={formData.country} onValueChange={(value) => handleChange("country", value)}>
+                    <SelectTrigger className="mt-2">
+                      <SelectValue placeholder="Sélectionnez votre pays" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="France">France</SelectItem>
+                      <SelectItem value="Maroc">Maroc</SelectItem>
+                      <SelectItem value="Tunisie">Tunisie</SelectItem>
+                      <SelectItem value="Autre">Autre</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div>
