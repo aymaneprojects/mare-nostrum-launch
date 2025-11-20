@@ -48,128 +48,49 @@ const handler = async (req: Request): Promise<Response> => {
         to: [email],
         subject: "Votre Livre Blanc - Pédagogie Entrepreneuriale 2025 🎓",
         html: `
-          <!DOCTYPE html>
-          <html lang="fr">
-          <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Livre Blanc - Mare Nostrum</title>
-          </head>
-          <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f8fafc;">
-            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f8fafc;">
-              <tr>
-                <td style="padding: 40px 20px;">
-                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                    
-                    <!-- Header with gradient -->
-                    <tr>
-                      <td style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); padding: 40px 40px 60px; text-align: center;">
-                        <h1 style="margin: 0; color: #ffffff; font-size: 32px; font-weight: 700; line-height: 1.2;">
-                          Livre Blanc
-                        </h1>
-                        <p style="margin: 12px 0 0; color: #e0e7ff; font-size: 20px; font-weight: 600;">
-                          Pédagogie Entrepreneuriale 2025
-                        </p>
-                      </td>
-                    </tr>
-
-                    <!-- Main content -->
-                    <tr>
-                      <td style="padding: 40px;">
-                        <p style="margin: 0 0 24px; color: #1f2937; font-size: 18px; font-weight: 600;">
-                          Bonjour ${firstName} ${lastName},
-                        </p>
-                        
-                        <p style="margin: 0 0 16px; color: #4b5563; font-size: 16px; line-height: 1.6;">
-                          Nous vous remercions sincèrement d'avoir manifesté votre intérêt pour notre Livre Blanc sur la <strong>Pédagogie Entrepreneuriale 2025</strong>.
-                        </p>
-                        
-                        <p style="margin: 0 0 32px; color: #4b5563; font-size: 16px; line-height: 1.6;">
-                          Ce document exclusif vous accompagnera dans l'intégration de l'esprit entrepreneurial au sein de vos programmes éducatifs.
-                        </p>
-
-                        <!-- Info box -->
-                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: 12px; margin-bottom: 32px;">
-                          <tr>
-                            <td style="padding: 24px;">
-                              <h3 style="margin: 0 0 16px; color: #1e40af; font-size: 18px; font-weight: 700;">
-                                📋 Vos informations
-                              </h3>
-                              <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                <tr>
-                                  <td style="padding: 6px 0; color: #1f2937; font-size: 14px;">
-                                    <strong>Organisation:</strong>
-                                  </td>
-                                  <td style="padding: 6px 0; color: #4b5563; font-size: 14px; text-align: right;">
-                                    ${organization}
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td style="padding: 6px 0; color: #1f2937; font-size: 14px;">
-                                    <strong>Fonction:</strong>
-                                  </td>
-                                  <td style="padding: 6px 0; color: #4b5563; font-size: 14px; text-align: right;">
-                                    ${position}
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td style="padding: 6px 0; color: #1f2937; font-size: 14px;">
-                                    <strong>Type d'établissement:</strong>
-                                  </td>
-                                  <td style="padding: 6px 0; color: #4b5563; font-size: 14px; text-align: right;">
-                                    ${schoolType}
-                                  </td>
-                                </tr>
-                              </table>
-                            </td>
-                          </tr>
-                        </table>
-
-                        <!-- Download button -->
-                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom: 32px;">
-                          <tr>
-                            <td style="text-align: center;">
-                              <a href="https://drive.google.com/file/d/1yJqcf4v3Z63Mbr4EDJzj_keUcsvk9Ga4/view?usp=sharing" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 8px; font-weight: 700; font-size: 16px; box-shadow: 0 4px 6px rgba(30, 64, 175, 0.3);">
-                                📥 Télécharger le Livre Blanc
-                              </a>
-                            </td>
-                          </tr>
-                        </table>
-
-                        <!-- Note removed -->
-
-                        <p style="margin: 0 0 16px; color: #4b5563; font-size: 16px; line-height: 1.6;">
-                          Notre équipe reste à votre entière disposition pour tout complément d'information ou pour échanger sur vos projets pédagogiques.
-                        </p>
-
-                        <p style="margin: 32px 0 0; color: #1f2937; font-size: 16px; line-height: 1.6;">
-                          Cordialement,<br>
-                          <strong style="color: #1e40af;">L'équipe Mare Nostrum</strong>
-                        </p>
-                      </td>
-                    </tr>
-
-                    <!-- Footer -->
-                    <tr>
-                      <td style="background-color: #f8fafc; padding: 32px 40px; border-top: 1px solid #e5e7eb;">
-                        <p style="margin: 0 0 8px; color: #1e40af; font-size: 16px; font-weight: 700; text-align: center;">
-                          Mare Nostrum
-                        </p>
-                        <p style="margin: 0 0 4px; color: #6b7280; font-size: 14px; text-align: center;">
-                          Accélérateur de croissance entrepreneuriale
-                        </p>
-                        <p style="margin: 0; color: #9ca3af; font-size: 12px; text-align: center;">
-                          📞 ${phone}
-                        </p>
-                      </td>
-                    </tr>
-
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </body>
-          </html>
+          <h1>Mare Nostrum - Livre Blanc</h1>
+          
+          <h2>Pédagogie Entrepreneuriale 2025</h2>
+          
+          <p>Bonjour ${firstName} ${lastName},</p>
+          
+          <p>Nous vous remercions sincèrement d'avoir manifesté votre intérêt pour notre Livre Blanc sur la <strong>Pédagogie Entrepreneuriale 2025</strong>.</p>
+          
+          <p>Ce document exclusif vous accompagnera dans l'intégration de l'esprit entrepreneurial au sein de vos programmes éducatifs.</p>
+          
+          <p><strong>Vos informations :</strong></p>
+          <ul>
+            <li><strong>Organisation :</strong> ${organization}</li>
+            <li><strong>Poste :</strong> ${position}</li>
+            <li><strong>Type d'établissement :</strong> ${schoolType}</li>
+            <li><strong>Téléphone :</strong> ${phone}</li>
+          </ul>
+          
+          <p><strong>📥 Téléchargez votre Livre Blanc</strong></p>
+          <p><a href="https://marenostrum.tech/livre-blanc">Accéder au Livre Blanc</a></p>
+          
+          <hr>
+          
+          <p><strong>Prochaines étapes</strong></p>
+          <ol>
+            <li>Explorez le document à votre rythme</li>
+            <li>Identifiez les opportunités pour votre institution</li>
+            <li>Contactez notre équipe pour un accompagnement personnalisé</li>
+          </ol>
+          
+          <p><strong>Besoin d'échanger ?</strong></p>
+          <p>Prenez rendez-vous avec nos experts :</p>
+          <p><a href="https://calendly.com/aymane-marenostrum/30min">RDV avec Aymane</a></p>
+          <p><a href="https://calendly.com/marenostrumtech/rdv-alexis">RDV avec Alexis</a></p>
+          
+          <p>Cordialement,<br>
+          <strong>L'équipe Mare Nostrum</strong></p>
+          
+          <hr>
+          
+          <p>Mare Nostrum - Accélérateur d'entrepreneuriat éducatif<br>
+          Toulouse | Casablanca | Tunis<br>
+          <a href="mailto:contact@marenostrum.tech">contact@marenostrum.tech</a> | <a href="https://marenostrum.tech">marenostrum.tech</a></p>
         `,
       }),
     });
