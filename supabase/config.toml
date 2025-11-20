@@ -1,1 +1,4 @@
 project_id = "fpdxpvkgzrddemldvemg"
+
+[functions.healthz]
+verify_jwt = false
