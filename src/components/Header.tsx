@@ -12,6 +12,7 @@ const Header = () => {
     { to: "/", label: "Accueil" },
     { to: "/education", label: "Offre Éducation" },
     { to: "/croissance", label: "Offre Croissance" },
+    { to: "/engagement-rse", label: "Engagement RSE" },
     { to: "/a-propos", label: "À propos" },
     { to: "/contact", label: "Contact" },
   ];
