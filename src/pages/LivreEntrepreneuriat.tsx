@@ -119,10 +119,10 @@ const LivreEntrepreneuriat = () => {
                   ) : (
                     <div className="bg-card p-8 rounded-lg border border-border shadow-lg">
                       <h2 className="text-2xl font-bold mb-2 text-foreground text-center">
-                        Téléchargez le Livre Blanc
+                        Recevez le Livre Blanc par Email
                       </h2>
                       <p className="text-muted-foreground text-center mb-6">
-                        Remplissez le formulaire pour recevoir le document
+                        Remplissez le formulaire ci-dessous
                       </p>
 
                       <Form {...form}>
@@ -244,7 +244,7 @@ const LivreEntrepreneuriat = () => {
                             size="lg"
                             disabled={isSubmitting}
                           >
-                            {isSubmitting ? "Envoi en cours..." : "Télécharger le Livre Blanc"}
+                            {isSubmitting ? "Envoi en cours..." : "Recevoir le Livre Blanc par Email"}
                             <Download className="ml-2 h-5 w-5" />
                           </Button>
                         </form>
