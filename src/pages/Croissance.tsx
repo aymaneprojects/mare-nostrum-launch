@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { TrendingUp, Users, Award, Zap, MessageSquare, Calendar, FileText, CheckCircle2, ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
@@ -6,6 +7,16 @@ import Footer from "@/components/Footer";
 import TestimonialCard from "@/components/TestimonialCard";
 
 const Croissance = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === "#offres") {
+      const element = document.getElementById("offres");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
