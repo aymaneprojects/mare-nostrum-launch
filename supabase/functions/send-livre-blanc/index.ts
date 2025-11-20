@@ -125,13 +125,18 @@ const handler = async (req: Request): Promise<Response> => {
                           </tr>
                         </table>
 
-                        <!-- CTA note -->
-                        <div style="background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 16px; border-radius: 8px; margin-bottom: 32px;">
-                          <p style="margin: 0; color: #92400e; font-size: 14px; line-height: 1.6;">
-                            <strong>📎 Le PDF vous sera envoyé dans un prochain email.</strong><br>
-                            Si vous ne le recevez pas, vérifiez vos courriers indésirables.
-                          </p>
-                        </div>
+                        <!-- Download button -->
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin-bottom: 32px;">
+                          <tr>
+                            <td style="text-align: center;">
+                              <a href="https://drive.google.com/file/d/1yJqcf4v3Z63Mbr4EDJzj_keUcsvk9Ga4/view?usp=sharing" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: #ffffff; text-decoration: none; padding: 16px 32px; border-radius: 8px; font-weight: 700; font-size: 16px; box-shadow: 0 4px 6px rgba(30, 64, 175, 0.3);">
+                                📥 Télécharger le Livre Blanc
+                              </a>
+                            </td>
+                          </tr>
+                        </table>
+
+                        <!-- Note removed -->
 
                         <p style="margin: 0 0 16px; color: #4b5563; font-size: 16px; line-height: 1.6;">
                           Notre équipe reste à votre entière disposition pour tout complément d'information ou pour échanger sur vos projets pédagogiques.
