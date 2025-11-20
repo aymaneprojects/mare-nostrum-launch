@@ -3,7 +3,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import certificationsImage from "@/assets/certifications-footer.png";
 
 const MentionsLegales = () => {
   return (
@@ -123,13 +122,6 @@ const MentionsLegales = () => {
             </CardContent>
           </Card>
 
-          <div className="mt-16 flex justify-center">
-            <img 
-              src={certificationsImage} 
-              alt="Certifications Mare Nostrum" 
-              className="max-w-full h-auto"
-            />
-          </div>
         </div>
       </main>
 
