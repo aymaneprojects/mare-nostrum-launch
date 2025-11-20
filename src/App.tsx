@@ -11,6 +11,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import MentionsLegales from "./pages/MentionsLegales";
 import LivreEntrepreneuriat from "./pages/LivreEntrepreneuriat";
+import EngagementRSE from "./pages/EngagementRSE";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/education" element={<Education />} />
           <Route path="/croissance" element={<Croissance />} />
+          <Route path="/engagement-rse" element={<EngagementRSE />} />
           <Route path="/a-propos" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/livre-entrepreneuriat" element={<LivreEntrepreneuriat />} />
