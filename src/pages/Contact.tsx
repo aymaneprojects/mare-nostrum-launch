@@ -74,14 +74,14 @@ const Contact = () => {
                 nous sommes là pour vous accompagner.
               </p>
 
-              <div className="space-y-10 mb-8">
+              <div className="space-y-8 mb-8">
                 {/* Bureau de Toulouse */}
-                <div className="border-l-4 border-primary pl-6 py-2">
-                  <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+                <div className="border-l-4 border-primary pl-6">
+                  <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
                     <MapPin className="h-5 w-5 text-primary" />
                     Bureau de Toulouse (France)
                   </h3>
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     <a href="mailto:contact@marenostrum.tech" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
                       <Mail className="h-4 w-4" />
                       contact@marenostrum.tech
@@ -94,12 +94,12 @@ const Contact = () => {
                 </div>
 
                 {/* Bureau de Casablanca */}
-                <div className="border-l-4 border-accent pl-6 py-2">
-                  <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+                <div className="border-l-4 border-accent pl-6">
+                  <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
                     <MapPin className="h-5 w-5 text-accent" />
                     Bureau de Casablanca (Maroc)
                   </h3>
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     <a href="mailto:maroc@marenostrum.tech" className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors">
                       <Mail className="h-4 w-4" />
                       maroc@marenostrum.tech
@@ -112,12 +112,12 @@ const Contact = () => {
                 </div>
 
                 {/* Bureau de Tunis */}
-                <div className="border-l-4 border-primary pl-6 py-2">
-                  <h3 className="font-semibold text-foreground mb-4 flex items-center gap-2">
+                <div className="border-l-4 border-primary pl-6">
+                  <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
                     <MapPin className="h-5 w-5 text-primary" />
                     Bureau de Tunis (Tunisie)
                   </h3>
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     <a href="mailto:tunisie@marenostrum.tech" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
                       <Mail className="h-4 w-4" />
                       tunisie@marenostrum.tech
