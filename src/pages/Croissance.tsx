@@ -25,7 +25,7 @@ const Croissance = () => {
             </p>
             <Button asChild size="lg" variant="secondary" className="text-lg">
               <a href="https://buy.stripe.com/dRmaEZ78e4aZ3E61su" target="_blank" rel="noopener noreferrer">
-                Rejoindre le Club <span className="ml-2 text-sm">(premier mois offert avec BIENVENUE)</span>
+                Rejoindre le Club 
               </a>
             </Button>
           </div>
