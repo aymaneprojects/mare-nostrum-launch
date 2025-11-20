@@ -38,7 +38,10 @@ const Header = () => {
               {link.label}
             </Link>
           ))}
-          <Button asChild size="sm" className="ml-4">
+          <Button asChild size="sm" variant="secondary" className="ml-4">
+            <Link to="/croissance#offres">Rejoignez le Club</Link>
+          </Button>
+          <Button asChild size="sm" className="ml-2">
             <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
           </Button>
         </div>
@@ -69,7 +72,12 @@ const Header = () => {
                 {link.label}
               </Link>
             ))}
-            <Button asChild className="w-full" size="sm">
+            <Button asChild className="w-full" size="sm" variant="secondary">
+              <Link to="/croissance#offres" onClick={() => setIsMenuOpen(false)}>
+                Rejoignez le Club
+              </Link>
+            </Button>
+            <Button asChild className="w-full mt-2" size="sm">
               <Link to="/livre-entrepreneuriat" onClick={() => setIsMenuOpen(false)}>
                 Livre Entrepreneuriat
               </Link>
