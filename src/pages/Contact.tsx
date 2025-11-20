@@ -19,25 +19,47 @@ const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Here you would typically send the form data to your backend
-    console.log("Form submitted:", formData);
-    
-    toast({
-      title: "Message envoyé !",
-      description: "Nous vous répondrons sous 48h maximum.",
-    });
+    try {
+      const { supabase } = await import("@/integrations/supabase/client");
+      
+      const { error } = await supabase.functions.invoke('send-contact-confirmation', {
+        body: formData
+      });
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      type: "",
-      message: "",
-    });
+      if (error) {
+        console.error("Error sending confirmation:", error);
+        toast({
+          title: "Erreur",
+          description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      toast({
+        title: "Message envoyé !",
+        description: "Un email de confirmation vous a été envoyé. Nous vous répondrons sous 48h maximum.",
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        type: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error:", error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleChange = (field: string, value: string) => {
