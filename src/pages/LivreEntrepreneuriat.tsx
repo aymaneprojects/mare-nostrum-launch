@@ -82,20 +82,177 @@ const LivreEntrepreneuriat = () => {
       <Header />
       
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative py-20 md:py-32 bg-gradient-to-br from-primary/10 via-background to-background">
+        {/* Hero Section with Form */}
+        <section className="relative py-12 md:py-20 bg-gradient-to-br from-primary/10 via-background to-background">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
-                <BookOpen className="w-10 h-10 text-primary" />
+            <div className="max-w-7xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-12 items-start">
+                {/* Left Column - Text Content */}
+                <div className="flex flex-col justify-center">
+                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6 lg:mx-0 mx-auto">
+                    <BookOpen className="w-10 h-10 text-primary" />
+                  </div>
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground lg:text-left text-center">
+                    Livre Blanc
+                    <span className="block text-primary mt-2">Pédagogie Entrepreneuriale 2025</span>
+                  </h1>
+                  <p className="text-xl text-muted-foreground mb-8 lg:text-left text-center">
+                    Découvrez les clés pour intégrer l'esprit entrepreneurial dans vos programmes éducatifs
+                  </p>
+                </div>
+
+                {/* Right Column - Form */}
+                <div className="lg:mt-0">
+                  {isSuccess ? (
+                    <div className="text-center p-12 bg-card rounded-lg border border-border shadow-lg">
+                      <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
+                        <Download className="w-10 h-10 text-primary" />
+                      </div>
+                      <h2 className="text-3xl font-bold mb-4 text-foreground">Merci!</h2>
+                      <p className="text-lg text-muted-foreground mb-2">
+                        Le Livre Blanc a été envoyé à votre adresse email.
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        Consultez votre boîte de réception (et vos spams si besoin).
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="bg-card p-8 rounded-lg border border-border shadow-lg">
+                      <h2 className="text-2xl font-bold mb-2 text-foreground text-center">
+                        Téléchargez le Livre Blanc
+                      </h2>
+                      <p className="text-muted-foreground text-center mb-6">
+                        Remplissez le formulaire pour recevoir le document
+                      </p>
+
+                      <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <FormField
+                              control={form.control}
+                              name="firstName"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Prénom *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Jean" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            <FormField
+                              control={form.control}
+                              name="lastName"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Nom *</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Dupont" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
+
+                          <FormField
+                            control={form.control}
+                            name="email"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Email *</FormLabel>
+                                <FormControl>
+                                  <Input type="email" placeholder="jean.dupont@ecole.fr" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <FormField
+                            control={form.control}
+                            name="phone"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Téléphone *</FormLabel>
+                                <FormControl>
+                                  <Input type="tel" placeholder="06 12 34 56 78" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <FormField
+                            control={form.control}
+                            name="organization"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Établissement *</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="Nom de votre école/université" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <FormField
+                            control={form.control}
+                            name="position"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Fonction *</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="Directeur, Responsable pédagogique..." {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <FormField
+                            control={form.control}
+                            name="schoolType"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Type d'établissement *</FormLabel>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                    <SelectTrigger>
+                                      <SelectValue placeholder="Sélectionnez un type" />
+                                    </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                    <SelectItem value="ecole-publique">École publique</SelectItem>
+                                    <SelectItem value="ecole-privee">École privée</SelectItem>
+                                    <SelectItem value="universite">Université</SelectItem>
+                                    <SelectItem value="cfa">CFA</SelectItem>
+                                    <SelectItem value="business-school">Business School</SelectItem>
+                                    <SelectItem value="autre">Autre</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <Button
+                            type="submit"
+                            className="w-full"
+                            size="lg"
+                            disabled={isSubmitting}
+                          >
+                            {isSubmitting ? "Envoi en cours..." : "Télécharger le Livre Blanc"}
+                            <Download className="ml-2 h-5 w-5" />
+                          </Button>
+                        </form>
+                      </Form>
+                    </div>
+                  )}
+                </div>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
-                Livre Blanc
-                <span className="block text-primary mt-2">Pédagogie Entrepreneuriale 2025</span>
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Découvrez les clés pour intégrer l'esprit entrepreneurial dans vos programmes éducatifs
-              </p>
             </div>
           </div>
         </section>
@@ -140,161 +297,6 @@ const LivreEntrepreneuriat = () => {
           </div>
         </section>
 
-        {/* Form Section */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto">
-              {isSuccess ? (
-                <div className="text-center p-12 bg-card rounded-lg border border-border shadow-lg">
-                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
-                    <Download className="w-10 h-10 text-primary" />
-                  </div>
-                  <h2 className="text-3xl font-bold mb-4 text-foreground">Merci!</h2>
-                  <p className="text-lg text-muted-foreground mb-2">
-                    Le Livre Blanc a été envoyé à votre adresse email.
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Consultez votre boîte de réception (et vos spams si besoin).
-                  </p>
-                </div>
-              ) : (
-                <div className="bg-card p-8 rounded-lg border border-border shadow-lg">
-                  <h2 className="text-2xl font-bold mb-2 text-foreground text-center">
-                    Téléchargez le Livre Blanc
-                  </h2>
-                  <p className="text-muted-foreground text-center mb-8">
-                    Remplissez le formulaire pour recevoir le document par email
-                  </p>
-
-                  <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <FormField
-                          control={form.control}
-                          name="firstName"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Prénom *</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Jean" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="lastName"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Nom *</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Dupont" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Email *</FormLabel>
-                            <FormControl>
-                              <Input type="email" placeholder="jean.dupont@ecole.fr" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="phone"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Téléphone *</FormLabel>
-                            <FormControl>
-                              <Input type="tel" placeholder="06 12 34 56 78" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="organization"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Établissement *</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Nom de votre école/université" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="position"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Fonction *</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Directeur, Responsable pédagogique..." {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="schoolType"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Type d'établissement *</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                              <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Sélectionnez un type" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                <SelectItem value="ecole-publique">École publique</SelectItem>
-                                <SelectItem value="ecole-privee">École privée</SelectItem>
-                                <SelectItem value="universite">Université</SelectItem>
-                                <SelectItem value="cfa">CFA</SelectItem>
-                                <SelectItem value="business-school">Business School</SelectItem>
-                                <SelectItem value="autre">Autre</SelectItem>
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <Button
-                        type="submit"
-                        className="w-full"
-                        size="lg"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? "Envoi en cours..." : "Télécharger le Livre Blanc"}
-                        <Download className="ml-2 h-5 w-5" />
-                      </Button>
-                    </form>
-                  </Form>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
       </main>
 
       <Footer />
