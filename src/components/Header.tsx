@@ -39,7 +39,7 @@ const Header = () => {
             </Link>
           ))}
           <button 
-            className="ml-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-9 px-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:opacity-90 transition-opacity"
+            className="ml-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-9 px-3 bg-gradient-to-r from-[#5A9AA8] to-[#71B5C3] text-white hover:opacity-90 transition-opacity shadow-sm"
           >
             <Link to="/croissance#offres" className="flex items-center gap-2">
               Rejoignez le Club
@@ -77,7 +77,7 @@ const Header = () => {
               </Link>
             ))}
             <button 
-              className="w-full inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-9 px-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:opacity-90 transition-opacity"
+              className="w-full inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-9 px-3 bg-gradient-to-r from-[#5A9AA8] to-[#71B5C3] text-white hover:opacity-90 transition-opacity shadow-sm"
               onClick={() => setIsMenuOpen(false)}
             >
               <Link to="/croissance#offres" className="flex items-center gap-2 w-full justify-center">
