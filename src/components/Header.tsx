@@ -39,7 +39,7 @@ const Header = () => {
             </Link>
           ))}
           <Button asChild size="sm" className="ml-4">
-            <Link to="/contact">Livre d'entrepreneuriat</Link>
+            <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
           </Button>
         </div>
 
@@ -70,8 +70,8 @@ const Header = () => {
               </Link>
             ))}
             <Button asChild className="w-full" size="sm">
-              <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
-                Livre d'entrepreneuriat
+              <Link to="/livre-entrepreneuriat" onClick={() => setIsMenuOpen(false)}>
+                Livre Entrepreneuriat
               </Link>
             </Button>
           </div>
