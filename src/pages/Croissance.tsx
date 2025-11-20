@@ -5,20 +5,19 @@ import { TrendingUp, Users, Award, Zap, MessageSquare, Calendar, FileText, Check
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TestimonialCard from "@/components/TestimonialCard";
-
 const Croissance = () => {
   const location = useLocation();
-
   useEffect(() => {
     if (location.hash === "#offres") {
       const element = document.getElementById("offres");
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        element.scrollIntoView({
+          behavior: "smooth"
+        });
       }
     }
   }, [location]);
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Header />
 
       {/* Hero Section */}
@@ -32,16 +31,13 @@ const Croissance = () => {
               Sécurisez la trajectoire de votre entreprise à impact
             </h1>
             <p className="text-xl md:text-2xl text-primary-foreground/90 mb-12">
-              Club Entrepreneur International – Mare Nostrum
+              Club Entrepreneur Francophone International – Mare Nostrum
             </p>
-            <Button 
-              size="lg" 
-              variant="secondary" 
-              className="text-lg"
-              onClick={() => {
-                document.getElementById('offres')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
+            <Button size="lg" variant="secondary" className="text-lg" onClick={() => {
+            document.getElementById('offres')?.scrollIntoView({
+              behavior: 'smooth'
+            });
+          }}>
               Rejoindre le Club 
             </Button>
           </div>
@@ -238,24 +234,9 @@ const Croissance = () => {
             Témoignages d'entrepreneurs
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <TestimonialCard
-              text="Le Mastermind m'a permis de sortir de ma solitude d'entrepreneur et de prendre des décisions plus rapidement grâce aux retours du groupe."
-              author="Karim Benali"
-              role="Fondateur"
-              organization="GreenTech Startup"
-            />
-            <TestimonialCard
-              text="Avec l'offre Premium, j'ai structuré mon offre commerciale et multiplié mon CA par 3 en 6 mois. Un investissement qui vaut vraiment le coup !"
-              author="Claire Moreau"
-              role="CEO"
-              organization="Impact Social"
-            />
-            <TestimonialCard
-              text="Le Club Entrepreneur International Mare Nostrum m'a ouvert des portes incroyables. J'ai trouvé mes premiers clients et des partenaires stratégiques."
-              author="Ahmed Ziani"
-              role="Entrepreneur"
-              organization="EdTech"
-            />
+            <TestimonialCard text="Le Mastermind m'a permis de sortir de ma solitude d'entrepreneur et de prendre des décisions plus rapidement grâce aux retours du groupe." author="Karim Benali" role="Fondateur" organization="GreenTech Startup" />
+            <TestimonialCard text="Avec l'offre Premium, j'ai structuré mon offre commerciale et multiplié mon CA par 3 en 6 mois. Un investissement qui vaut vraiment le coup !" author="Claire Moreau" role="CEO" organization="Impact Social" />
+            <TestimonialCard text="Le Club Entrepreneur International Mare Nostrum m'a ouvert des portes incroyables. J'ai trouvé mes premiers clients et des partenaires stratégiques." author="Ahmed Ziani" role="Entrepreneur" organization="EdTech" />
           </div>
         </div>
       </section>
@@ -287,8 +268,6 @@ const Croissance = () => {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Croissance;
