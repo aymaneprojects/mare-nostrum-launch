@@ -38,9 +38,13 @@ const Header = () => {
               {link.label}
             </Link>
           ))}
-          <Button asChild size="sm" variant="secondary" className="ml-4">
-            <Link to="/croissance#offres">Rejoignez le Club</Link>
-          </Button>
+          <button 
+            className="ml-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-9 px-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:opacity-90 transition-opacity"
+          >
+            <Link to="/croissance#offres" className="flex items-center gap-2">
+              Rejoignez le Club
+            </Link>
+          </button>
           <Button asChild size="sm" className="ml-2">
             <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
           </Button>
@@ -72,11 +76,14 @@ const Header = () => {
                 {link.label}
               </Link>
             ))}
-            <Button asChild className="w-full" size="sm" variant="secondary">
-              <Link to="/croissance#offres" onClick={() => setIsMenuOpen(false)}>
+            <button 
+              className="w-full inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium h-9 px-3 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:opacity-90 transition-opacity"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <Link to="/croissance#offres" className="flex items-center gap-2 w-full justify-center">
                 Rejoignez le Club
               </Link>
-            </Button>
+            </button>
             <Button asChild className="w-full mt-2" size="sm">
               <Link to="/livre-entrepreneuriat" onClick={() => setIsMenuOpen(false)}>
                 Livre Entrepreneuriat
