@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, Linkedin, MapPin } from "lucide-react";
 import logo from "@/assets/logo.png";
-
 const Footer = () => {
-  return (
-    <footer className="bg-primary text-primary-foreground">
+  return <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo & Description */}
@@ -58,13 +56,16 @@ const Footer = () => {
               <li className="flex items-center space-x-2">
                 <Mail className="h-4 w-4" />
                 <a href="mailto:contact@marenostrum.com" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  contact@marenostrum.com
+                  contact@marenostrum.tech
+
+
+
                 </a>
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
-                <a href="tel:+33000000000" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                  +33 (0)X XX XX XX XX
+                <a className="text-primary-foreground/80 hover:text-primary-foreground transition-colors" href="">
+                  +212 6 94 99 57 85 
                 </a>
               </li>
               <li className="flex items-center space-x-2">
@@ -94,8 +95,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
