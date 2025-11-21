@@ -11,10 +11,8 @@ import toulouseWayLogo from "@/assets/partners/toulouse-way.png";
 import airbusLogo from "@/assets/partners/airbus.png";
 import roseLabLogo from "@/assets/partners/rose-lab.png";
 import cpme31Logo from "@/assets/partners/cpme31.png";
-
 const Index = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Header />
 
       {/* Hero Section */}
@@ -26,7 +24,8 @@ const Index = () => {
               Construisons la nouvelle histoire avec les entrepreneurs
             </h1>
             <p className="text-xl md:text-2xl text-primary-foreground/90 mb-12">
-              Mare Nostrum accompagne les écoles et les entrepreneurs à impact, de l'idée à la croissance.
+              Mare Nostrum accompagne les écoles et les entrepreneurs à impact.
+De l'idée à la croissance.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -158,26 +157,10 @@ const Index = () => {
             Pourquoi nous choisir ?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            <StatCard 
-              value="53%" 
-              label="Création d'entreprise"
-              description="vs 26% national"
-            />
-            <StatCard 
-              value=">95%" 
-              label="Satisfaction"
-              description="Clients satisfaits"
-            />
-            <StatCard 
-              value="93%" 
-              label="Prise de décision"
-              description="Clients accélérés"
-            />
-            <StatCard 
-              value="135+" 
-              label="Experts"
-              description="Dans notre réseau"
-            />
+            <StatCard value="53%" label="Création d'entreprise" description="vs 26% national" />
+            <StatCard value=">95%" label="Satisfaction" description="Clients satisfaits" />
+            <StatCard value="93%" label="Prise de décision" description="Clients accélérés" />
+            <StatCard value="135+" label="Experts" description="Dans notre réseau" />
           </div>
         </div>
       </section>
@@ -189,24 +172,9 @@ const Index = () => {
             Ils nous font confiance
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
-            <TestimonialCard
-              text="Mare Nostrum nous a permis de structurer notre programme d'entrepreneuriat avec des outils concrets et une vraie expertise pédagogique."
-              author="Sophie Martin"
-              role="Directrice Innovation"
-              organization="École de Commerce"
-            />
-            <TestimonialCard
-              text="Grâce au Mastermind, j'ai pu clarifier ma stratégie et passer des caps que je repoussais depuis des mois. Un vrai catalyseur pour mon entreprise."
-              author="Thomas Dubois"
-              role="Fondateur"
-              organization="Startup Impact"
-            />
-            <TestimonialCard
-              text="L'accompagnement Premium nous a fait gagner un temps précieux. L'équipe Mare Nostrum comprend vraiment les enjeux des entreprises à mission."
-              author="Leila Benali"
-              role="CEO"
-              organization="Social Business"
-            />
+            <TestimonialCard text="Mare Nostrum nous a permis de structurer notre programme d'entrepreneuriat avec des outils concrets et une vraie expertise pédagogique." author="Sophie Martin" role="Directrice Innovation" organization="École de Commerce" />
+            <TestimonialCard text="Grâce au Mastermind, j'ai pu clarifier ma stratégie et passer des caps que je repoussais depuis des mois. Un vrai catalyseur pour mon entreprise." author="Thomas Dubois" role="Fondateur" organization="Startup Impact" />
+            <TestimonialCard text="L'accompagnement Premium nous a fait gagner un temps précieux. L'équipe Mare Nostrum comprend vraiment les enjeux des entreprises à mission." author="Leila Benali" role="CEO" organization="Social Business" />
           </div>
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
@@ -248,14 +216,27 @@ const Index = () => {
           </h2>
           <div className="max-w-4xl mx-auto">
             <div className="space-y-6">
-              {[
-                { step: "1", title: "Rendez-vous de découverte", description: "Échangeons sur vos besoins et vos objectifs" },
-                { step: "2", title: "Diagnostic personnalisé", description: "École ou entreprise, nous analysons votre situation" },
-                { step: "3", title: "Proposition sur mesure", description: "Programme ou offre adaptée à vos enjeux" },
-                { step: "4", title: "Lancement & accompagnement", description: "Mise en œuvre avec notre équipe d'experts" },
-                { step: "5", title: "Évaluation d'impact", description: "Mesure des résultats et ajustements continus" },
-              ].map((item) => (
-                <div key={item.step} className="flex items-start space-x-4 p-6 bg-card border border-border rounded-lg hover:shadow-md transition-shadow">
+              {[{
+              step: "1",
+              title: "Rendez-vous de découverte",
+              description: "Échangeons sur vos besoins et vos objectifs"
+            }, {
+              step: "2",
+              title: "Diagnostic personnalisé",
+              description: "École ou entreprise, nous analysons votre situation"
+            }, {
+              step: "3",
+              title: "Proposition sur mesure",
+              description: "Programme ou offre adaptée à vos enjeux"
+            }, {
+              step: "4",
+              title: "Lancement & accompagnement",
+              description: "Mise en œuvre avec notre équipe d'experts"
+            }, {
+              step: "5",
+              title: "Évaluation d'impact",
+              description: "Mesure des résultats et ajustements continus"
+            }].map(item => <div key={item.step} className="flex items-start space-x-4 p-6 bg-card border border-border rounded-lg hover:shadow-md transition-shadow">
                   <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white font-bold text-lg">
                     {item.step}
                   </div>
@@ -263,8 +244,7 @@ const Index = () => {
                     <h3 className="text-xl font-semibold mb-2 text-foreground">{item.title}</h3>
                     <p className="text-muted-foreground">{item.description}</p>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
             <div className="text-center mt-12">
               <Button asChild size="lg">
@@ -297,8 +277,6 @@ const Index = () => {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
