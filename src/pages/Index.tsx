@@ -59,8 +59,7 @@ De l'idée à la croissance.
             </h2>
             <div className="prose prose-lg mx-auto text-center">
               <p className="text-lg text-muted-foreground mb-6">
-                Mare Nostrum est une entreprise de services aux dirigeants et aux établissements, 
-                fondée en 2023 à Toulouse, avec des bureaux à Paris et Casablanca.
+                Mare Nostrum est une entreprise de services aux entrepreneurs et aux établissements, fondée en 2023 à Toulouse, avec des bureaux à Paris et Casablanca.
               </p>
               <p className="text-lg text-muted-foreground mb-6">
                 Société à mission, familiale et interculturelle, notre raison d'être est de 
