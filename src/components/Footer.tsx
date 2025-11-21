@@ -70,7 +70,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-2">
                 <Linkedin className="h-4 w-4" />
-                <a href="#" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <a target="_blank" rel="noopener noreferrer" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors" href="https://www.linkedin.com/company/marenostrumtech">
                   LinkedIn
                 </a>
               </li>
