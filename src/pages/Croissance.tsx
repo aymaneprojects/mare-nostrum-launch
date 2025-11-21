@@ -260,7 +260,7 @@ const Croissance = () => {
             <Button asChild size="lg" variant="outline" className="text-lg bg-white/10 border-white text-white hover:bg-white hover:text-primary">
               <Link to="/contact">
                 <MessageSquare className="mr-2 h-5 w-5" />
-                Essayer 20 jours gratuits
+                Essayer 30 jours gratuits                        
               </Link>
             </Button>
           </div>
