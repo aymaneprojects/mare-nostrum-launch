@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo & Description */}
           <div className="md:col-span-2">
-            <img src={logo} alt="Mare Nostrum" className="h-12 w-auto mb-4 brightness-0 invert" />
+            <img src={logo} alt="Mare Nostrum" className="h-16 w-auto mb-4 brightness-0 invert" />
             <p className="text-sm text-primary-foreground/80 max-w-md">
               Cabinet de conseil en entrepreneuriat innovant, inclusif et durable, entre Toulouse, Paris et Casablanca.
             </p>
