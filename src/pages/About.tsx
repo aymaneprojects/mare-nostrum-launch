@@ -9,6 +9,7 @@ import toulouseWayLogo from "@/assets/partners/toulouse-way.png";
 import airbusLogo from "@/assets/partners/airbus.png";
 import roseLabLogo from "@/assets/partners/rose-lab.png";
 import cpme31Logo from "@/assets/partners/cpme31.png";
+import creditMutuelLogo from "@/assets/partners/credit-mutuel.png";
 
 const About = () => {
   return (
@@ -232,6 +233,9 @@ const About = () => {
               </div>
               <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <img src={cpme31Logo} alt="CPME 31 Haute-Garonne" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+              </div>
+              <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                <img src={creditMutuelLogo} alt="Crédit Mutuel" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
               </div>
             </div>
           </div>
