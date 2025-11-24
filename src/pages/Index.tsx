@@ -5,12 +5,15 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StatCard from "@/components/StatCard";
 import TestimonialCard from "@/components/TestimonialCard";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 import hufLogo from "@/assets/partners/huf.png";
 import bidayaLogo from "@/assets/partners/bidaya.png";
 import toulouseWayLogo from "@/assets/partners/toulouse-way.png";
 import airbusLogo from "@/assets/partners/airbus.png";
 import roseLabLogo from "@/assets/partners/rose-lab.png";
 import cpme31Logo from "@/assets/partners/cpme31.png";
+import creditMutuelLogo from "@/assets/partners/credit-mutuel.png";
 const Index = () => {
   return <div className="min-h-screen flex flex-col">
       <Header />
@@ -183,26 +186,56 @@ De l'idée à la croissance.
               Ils nous font confiance et contribuent à notre mission
             </p>
             
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
-              <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <img src={hufLogo} alt="HUF" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
-              </div>
-              <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <img src={bidayaLogo} alt="Bidaya" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
-              </div>
-              <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <img src={toulouseWayLogo} alt="Toulouse Way" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
-              </div>
-              <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <img src={airbusLogo} alt="Airbus Développement" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
-              </div>
-              <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <img src={roseLabLogo} alt="Rose Lab" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
-              </div>
-              <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <img src={cpme31Logo} alt="CPME 31 Haute-Garonne" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
-              </div>
-            </div>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              plugins={[
+                Autoplay({
+                  delay: 2000,
+                }),
+              ]}
+              className="w-full"
+            >
+              <CarouselContent>
+                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <img src={hufLogo} alt="HUF" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <img src={bidayaLogo} alt="Bidaya" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <img src={toulouseWayLogo} alt="Toulouse Way" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <img src={airbusLogo} alt="Airbus Développement" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <img src={roseLabLogo} alt="Rose Lab" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <img src={cpme31Logo} alt="CPME 31 Haute-Garonne" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <img src={creditMutuelLogo} alt="Crédit Mutuel" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                  </div>
+                </CarouselItem>
+              </CarouselContent>
+            </Carousel>
           </div>
         </div>
       </section>
