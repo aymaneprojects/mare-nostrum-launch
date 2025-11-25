@@ -64,14 +64,26 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
-                <a className="text-primary-foreground/80 hover:text-primary-foreground transition-colors" href="">
-                  +212 6 94 99 57 85 
+                <a href="tel:+33617358167" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  +33 6 17 35 81 67 (France)
+                </a>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Phone className="h-4 w-4" />
+                <a href="tel:+212694995785" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  +212 6 94 99 57 85 (Maroc)
+                </a>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Linkedin className="h-4 w-4" />
+                <a target="_blank" rel="noopener noreferrer" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors" href="https://www.linkedin.com/company/mare-nostrum-education">
+                  LinkedIn Éducation
                 </a>
               </li>
               <li className="flex items-center space-x-2">
                 <Linkedin className="h-4 w-4" />
                 <a target="_blank" rel="noopener noreferrer" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors" href="https://www.linkedin.com/company/marenostrumtech">
-                  LinkedIn
+                  LinkedIn Croissance
                 </a>
               </li>
             </ul>
