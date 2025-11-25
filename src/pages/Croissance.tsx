@@ -7,11 +7,11 @@ import Footer from "@/components/Footer";
 import TestimonialCard from "@/components/TestimonialCard";
 import SEOHead from "@/components/SEOHead";
 
-type LocationType = "france" | "toulouse" | "afrique";
+type LocationType = "toulouse" | "afrique";
 
 const Croissance = () => {
   const location = useLocation();
-  const [selectedLocation, setSelectedLocation] = useState<LocationType>("france");
+  const [selectedLocation, setSelectedLocation] = useState<LocationType>("toulouse");
   useEffect(() => {
     if (location.hash === "#offres") {
       const element = document.getElementById("offres");
@@ -119,13 +119,6 @@ const Croissance = () => {
           {/* Location Selector */}
           <div className="flex justify-center gap-4 mb-12">
             <Button
-              variant={selectedLocation === "france" ? "default" : "outline"}
-              onClick={() => setSelectedLocation("france")}
-              size="lg"
-            >
-              France
-            </Button>
-            <Button
               variant={selectedLocation === "toulouse" ? "default" : "outline"}
               onClick={() => setSelectedLocation("toulouse")}
               size="lg"
@@ -147,8 +140,7 @@ const Croissance = () => {
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Tremplin</h3>
                 <div className="text-4xl font-bold text-primary mb-2">
-                  {selectedLocation === "france" && "24€"}
-                  {selectedLocation === "toulouse" && "20€"}
+                  {selectedLocation === "toulouse" && "30€"}
                   {selectedLocation === "afrique" && "15€"}
                   <span className="text-lg font-normal text-muted-foreground">/mois</span>
                 </div>
@@ -170,7 +162,7 @@ const Croissance = () => {
               </ul>
 
               <Button asChild className="w-full">
-                <a href="https://buy.stripe.com/dRmaEZ78e4aZ3E61su67S04" target="_blank" rel="noopener noreferrer">
+                <a href={selectedLocation === "toulouse" ? "https://buy.stripe.com/00w3cx3W2bDr5Me6MO67S08" : "https://buy.stripe.com/dRmaEZ78e4aZ3E61su67S04"} target="_blank" rel="noopener noreferrer">
                   Rejoindre Tremplin
                 </a>
               </Button>
@@ -187,8 +179,7 @@ const Croissance = () => {
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2">Ascension</h3>
                 <div className="text-4xl font-bold mb-2">
-                  {selectedLocation === "france" && "84€"}
-                  {selectedLocation === "toulouse" && "70€"}
+                  {selectedLocation === "toulouse" && "100€"}
                   {selectedLocation === "afrique" && "50€"}
                   <span className="text-lg font-normal opacity-80">/mois</span>
                 </div>
@@ -214,7 +205,7 @@ const Croissance = () => {
               </ul>
 
               <Button asChild className="w-full bg-white text-primary hover:bg-white/90">
-                <a href="https://buy.stripe.com/28EbJ32RY4aZa2u6MO67S06" target="_blank" rel="noopener noreferrer">
+                <a href={selectedLocation === "toulouse" ? "https://buy.stripe.com/28E7sNakqcHvgqSdbc67S09" : "https://buy.stripe.com/28EbJ32RY4aZa2u6MO67S06"} target="_blank" rel="noopener noreferrer">
                   Rejoindre Ascension
                 </a>
               </Button>
@@ -225,8 +216,7 @@ const Croissance = () => {
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-foreground">ÉLITE</h3>
                 <div className="text-4xl font-bold text-primary mb-2">
-                  {selectedLocation === "france" && "184€"}
-                  {selectedLocation === "toulouse" && "150€"}
+                  {selectedLocation === "toulouse" && "190€"}
                   {selectedLocation === "afrique" && "100€"}
                   <span className="text-lg font-normal text-muted-foreground">/mois</span>
                 </div>
@@ -252,7 +242,7 @@ const Croissance = () => {
               </ul>
 
               <Button asChild variant="default" className="w-full">
-                <a href="https://buy.stripe.com/6oUaEZ8cidLzeiK9Z067S07" target="_blank" rel="noopener noreferrer">
+                <a href={selectedLocation === "toulouse" ? "https://buy.stripe.com/bJe5kF64a0YNgqS4EG67S0a" : "https://buy.stripe.com/6oUaEZ8cidLzeiK9Z067S07"} target="_blank" rel="noopener noreferrer">
                   Rejoindre ÉLITE
                 </a>
               </Button>
