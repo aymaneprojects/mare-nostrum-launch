@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Mail, Phone, MapPin, Calendar, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Calendar, Send, Loader2, CheckCircle2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
@@ -13,6 +13,8 @@ const Contact = () => {
   const {
     toast
   } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,6 +25,7 @@ const Contact = () => {
   });
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     try {
       const {
         supabase
@@ -62,6 +65,8 @@ const Contact = () => {
       await supabase.functions.invoke('send-contact-notification', {
         body: formData
       });
+      
+      setIsSuccess(true);
       toast({
         title: "Message envoyé !",
         description: "Un email de confirmation vous a été envoyé. Nous vous répondrons sous 48h maximum."
@@ -83,6 +88,8 @@ const Contact = () => {
         description: "Une erreur est survenue. Veuillez réessayer.",
         variant: "destructive"
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
   const handleChange = (field: string, value: string) => {
@@ -196,7 +203,24 @@ const Contact = () => {
 
             {/* Contact Form */}
             <div className="bg-card border border-border rounded-xl p-8 shadow-lg">
-              <form onSubmit={handleSubmit} className="space-y-6">
+              {isSuccess ? (
+                <div className="text-center py-12">
+                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
+                    <CheckCircle2 className="w-10 h-10 text-primary" />
+                  </div>
+                  <h2 className="text-3xl font-bold mb-4 text-foreground">Merci !</h2>
+                  <p className="text-lg text-muted-foreground mb-2">
+                    Votre message a bien été envoyé.
+                  </p>
+                  <p className="text-sm text-muted-foreground mb-6">
+                    Nous vous répondrons sous 48h maximum. Un email de confirmation vous a été envoyé.
+                  </p>
+                  <Button onClick={() => setIsSuccess(false)}>
+                    Envoyer un autre message
+                  </Button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <Label htmlFor="name">Nom complet *</Label>
                   <Input id="name" type="text" required value={formData.name} onChange={e => handleChange("name", e.target.value)} placeholder="Votre nom" className="mt-2" />
@@ -248,9 +272,18 @@ const Contact = () => {
                   <Textarea id="message" required value={formData.message} onChange={e => handleChange("message", e.target.value)} placeholder="Parlez-nous de votre projet, vos besoins, vos objectifs..." rows={6} className="mt-2" />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full">
-                  <Send className="mr-2 h-5 w-5" />
-                  Envoyer le message
+                <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Envoi en cours...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="mr-2 h-5 w-5" />
+                      Envoyer le message
+                    </>
+                  )}
                 </Button>
 
                 <p className="text-xs text-muted-foreground text-center">
@@ -258,6 +291,7 @@ const Contact = () => {
                   pour répondre à votre demande.
                 </p>
               </form>
+              )}
             </div>
           </div>
         </div>
