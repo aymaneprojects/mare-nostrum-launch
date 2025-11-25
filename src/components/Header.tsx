@@ -29,7 +29,14 @@ const Header = () => {
   return <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link to="/" className="flex items-center space-x-2">
-          <img src={logo} alt="Mare Nostrum" className="h-16 w-auto" />
+          <img 
+            src={logo} 
+            alt="Mare Nostrum" 
+            className="h-16 w-auto" 
+            loading="eager"
+            width="120"
+            height="64"
+          />
         </Link>
 
         {/* Desktop Navigation */}
