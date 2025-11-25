@@ -14,25 +14,39 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import livreBlancCover from "@/assets/livre-blanc-cover.png";
-
 const formSchema = z.object({
-  firstName: z.string().trim().min(2, { message: "Le prénom doit contenir au moins 2 caractères" }).max(100),
-  lastName: z.string().trim().min(2, { message: "Le nom doit contenir au moins 2 caractères" }).max(100),
-  email: z.string().trim().email({ message: "Email invalide" }).max(255),
-  phone: z.string().trim().min(10, { message: "Téléphone invalide" }).max(20),
-  country: z.string().min(1, { message: "Pays requis" }),
-  organization: z.string().trim().min(2, { message: "Organisation requise" }).max(200),
-  position: z.string().trim().min(2, { message: "Fonction requise" }).max(100),
-  schoolType: z.string().min(1, { message: "Type d'établissement requis" }),
+  firstName: z.string().trim().min(2, {
+    message: "Le prénom doit contenir au moins 2 caractères"
+  }).max(100),
+  lastName: z.string().trim().min(2, {
+    message: "Le nom doit contenir au moins 2 caractères"
+  }).max(100),
+  email: z.string().trim().email({
+    message: "Email invalide"
+  }).max(255),
+  phone: z.string().trim().min(10, {
+    message: "Téléphone invalide"
+  }).max(20),
+  country: z.string().min(1, {
+    message: "Pays requis"
+  }),
+  organization: z.string().trim().min(2, {
+    message: "Organisation requise"
+  }).max(200),
+  position: z.string().trim().min(2, {
+    message: "Fonction requise"
+  }).max(100),
+  schoolType: z.string().min(1, {
+    message: "Type d'établissement requis"
+  })
 });
-
 type FormData = z.infer<typeof formSchema>;
-
 const LivreEntrepreneuriat = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -43,45 +57,42 @@ const LivreEntrepreneuriat = () => {
       country: "",
       organization: "",
       position: "",
-      schoolType: "",
-    },
+      schoolType: ""
+    }
   });
-
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
-    
     try {
       // Save to database
-      const { error: dbError } = await supabase
-        .from('livre_blanc_submissions')
-        .insert([{
-          name: `${data.firstName} ${data.lastName}`,
-          email: data.email,
-          phone: data.phone,
-          country: data.country,
-          organization: data.organization,
-          position: data.position,
-          school_type: data.schoolType,
-        }]);
-
+      const {
+        error: dbError
+      } = await supabase.from('livre_blanc_submissions').insert([{
+        name: `${data.firstName} ${data.lastName}`,
+        email: data.email,
+        phone: data.phone,
+        country: data.country,
+        organization: data.organization,
+        position: data.position,
+        school_type: data.schoolType
+      }]);
       if (dbError) throw dbError;
 
       // Send email with livre blanc
-      const { error } = await supabase.functions.invoke('send-livre-blanc', {
-        body: data,
+      const {
+        error
+      } = await supabase.functions.invoke('send-livre-blanc', {
+        body: data
       });
-
       if (error) throw error;
 
       // Send notification to Mare Nostrum team
       await supabase.functions.invoke('send-livre-blanc-notification', {
-        body: data,
+        body: data
       });
-
       setIsSuccess(true);
       toast({
         title: "Livre Blanc envoyé!",
-        description: "Consultez votre boîte mail pour télécharger le Livre Blanc.",
+        description: "Consultez votre boîte mail pour télécharger le Livre Blanc."
       });
       form.reset();
     } catch (error: any) {
@@ -89,20 +100,14 @@ const LivreEntrepreneuriat = () => {
       toast({
         variant: "destructive",
         title: "Erreur",
-        description: "Une erreur est survenue. Veuillez réessayer.",
+        description: "Une erreur est survenue. Veuillez réessayer."
       });
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  return (
-    <div className="min-h-screen flex flex-col">
-      <SEOHead
-        title="Livre Blanc - Pédagogie Entrepreneuriale 2025"
-        description="Téléchargez notre Livre Blanc sur la Pédagogie Entrepreneuriale 2025. Découvrez les meilleures pratiques pour intégrer l'entrepreneuriat dans votre établissement."
-        keywords="livre blanc, pédagogie entrepreneuriale, éducation, innovation pédagogique, formation entrepreneuriat"
-      />
+  return <div className="min-h-screen flex flex-col">
+      <SEOHead title="Livre Blanc - Pédagogie Entrepreneuriale 2025" description="Téléchargez notre Livre Blanc sur la Pédagogie Entrepreneuriale 2025. Découvrez les meilleures pratiques pour intégrer l'entrepreneuriat dans votre établissement." keywords="livre blanc, pédagogie entrepreneuriale, éducation, innovation pédagogique, formation entrepreneuriat" />
       <Header />
       
       <main className="flex-1">
@@ -113,9 +118,7 @@ const LivreEntrepreneuriat = () => {
               <div className="grid lg:grid-cols-2 gap-12 items-start">
                 {/* Left Column - Text Content */}
                 <div className="flex flex-col justify-center">
-                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6 lg:mx-0 mx-auto">
-                    <BookOpen className="w-10 h-10 text-primary" />
-                  </div>
+                  
                   <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground lg:text-left text-center">
                     Livre Blanc
                     <span className="block text-primary mt-2">Pédagogie Entrepreneuriale 2025</span>
@@ -125,19 +128,14 @@ const LivreEntrepreneuriat = () => {
                   </p>
                   <div className="lg:text-left text-center mb-8">
                     <div className="inline-block">
-                      <img 
-                        src={livreBlancCover} 
-                        alt="Couverture du Livre Blanc - Former à l'entrepreneuriat responsable" 
-                        className="rounded-xl shadow-2xl w-full max-w-sm hover:scale-105 transition-transform duration-300"
-                      />
+                      <img src={livreBlancCover} alt="Couverture du Livre Blanc - Former à l'entrepreneuriat responsable" className="rounded-xl shadow-2xl w-full max-w-sm hover:scale-105 transition-transform duration-300" />
                     </div>
                   </div>
                 </div>
 
                 {/* Right Column - Form */}
                 <div className="lg:mt-0">
-                  {isSuccess ? (
-                    <div className="text-center p-12 bg-card rounded-lg border border-border shadow-lg">
+                  {isSuccess ? <div className="text-center p-12 bg-card rounded-lg border border-border shadow-lg">
                       <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
                         <Download className="w-10 h-10 text-primary" />
                       </div>
@@ -148,9 +146,7 @@ const LivreEntrepreneuriat = () => {
                       <p className="text-sm text-muted-foreground">
                         Consultez votre boîte de réception (et vos spams si besoin).
                       </p>
-                    </div>
-                  ) : (
-                    <div className="bg-card p-8 rounded-lg border border-border shadow-lg">
+                    </div> : <div className="bg-card p-8 rounded-lg border border-border shadow-lg">
                       <h2 className="text-2xl font-bold mb-2 text-foreground text-center">
                         Recevez le Livre Blanc par Email
                       </h2>
@@ -161,67 +157,49 @@ const LivreEntrepreneuriat = () => {
                       <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                           <div className="grid md:grid-cols-2 gap-4">
-                            <FormField
-                              control={form.control}
-                              name="firstName"
-                              render={({ field }) => (
-                                <FormItem>
+                            <FormField control={form.control} name="firstName" render={({
+                          field
+                        }) => <FormItem>
                                   <FormLabel>Prénom *</FormLabel>
                                   <FormControl>
                                     <Input placeholder="Jean" {...field} />
                                   </FormControl>
                                   <FormMessage />
-                                </FormItem>
-                              )}
-                            />
-                            <FormField
-                              control={form.control}
-                              name="lastName"
-                              render={({ field }) => (
-                                <FormItem>
+                                </FormItem>} />
+                            <FormField control={form.control} name="lastName" render={({
+                          field
+                        }) => <FormItem>
                                   <FormLabel>Nom *</FormLabel>
                                   <FormControl>
                                     <Input placeholder="Dupont" {...field} />
                                   </FormControl>
                                   <FormMessage />
-                                </FormItem>
-                              )}
-                            />
+                                </FormItem>} />
                           </div>
 
-                          <FormField
-                            control={form.control}
-                            name="email"
-                            render={({ field }) => (
-                              <FormItem>
+                          <FormField control={form.control} name="email" render={({
+                        field
+                      }) => <FormItem>
                                 <FormLabel>Email *</FormLabel>
                                 <FormControl>
                                   <Input type="email" placeholder="jean.dupont@ecole.fr" {...field} />
                                 </FormControl>
                                 <FormMessage />
-                              </FormItem>
-                            )}
-                          />
+                              </FormItem>} />
 
-                          <FormField
-                            control={form.control}
-                            name="phone"
-                            render={({ field }) => (
-                              <FormItem>
+                          <FormField control={form.control} name="phone" render={({
+                        field
+                      }) => <FormItem>
                                 <FormLabel>Téléphone *</FormLabel>
                                 <FormControl>
                                   <Input type="tel" placeholder="06 12 34 56 78" {...field} />
                                 </FormControl>
                                 <FormMessage />
-                              </FormItem>
-                            )}
-                          />
+                              </FormItem>} />
 
-                          <FormField
-                            control={form.control}
-                            name="country"
-                            render={({ field }) => (
-                              <FormItem>
+                          <FormField control={form.control} name="country" render={({
+                        field
+                      }) => <FormItem>
                                 <FormLabel>Pays *</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                                   <FormControl>
@@ -237,43 +215,31 @@ const LivreEntrepreneuriat = () => {
                                   </SelectContent>
                                 </Select>
                                 <FormMessage />
-                              </FormItem>
-                            )}
-                          />
+                              </FormItem>} />
 
-                          <FormField
-                            control={form.control}
-                            name="organization"
-                            render={({ field }) => (
-                              <FormItem>
+                          <FormField control={form.control} name="organization" render={({
+                        field
+                      }) => <FormItem>
                                 <FormLabel>Établissement *</FormLabel>
                                 <FormControl>
                                   <Input placeholder="Nom de votre école/université" {...field} />
                                 </FormControl>
                                 <FormMessage />
-                              </FormItem>
-                            )}
-                          />
+                              </FormItem>} />
 
-                          <FormField
-                            control={form.control}
-                            name="position"
-                            render={({ field }) => (
-                              <FormItem>
+                          <FormField control={form.control} name="position" render={({
+                        field
+                      }) => <FormItem>
                                 <FormLabel>Fonction *</FormLabel>
                                 <FormControl>
                                   <Input placeholder="Directeur, Responsable pédagogique..." {...field} />
                                 </FormControl>
                                 <FormMessage />
-                              </FormItem>
-                            )}
-                          />
+                              </FormItem>} />
 
-                          <FormField
-                            control={form.control}
-                            name="schoolType"
-                            render={({ field }) => (
-                              <FormItem>
+                          <FormField control={form.control} name="schoolType" render={({
+                        field
+                      }) => <FormItem>
                                 <FormLabel>Type d'établissement *</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                                   <FormControl>
@@ -291,32 +257,20 @@ const LivreEntrepreneuriat = () => {
                                   </SelectContent>
                                 </Select>
                                 <FormMessage />
-                              </FormItem>
-                            )}
-                          />
+                              </FormItem>} />
 
-                          <Button
-                            type="submit"
-                            className="w-full"
-                            size="lg"
-                            disabled={isSubmitting}
-                          >
-                            {isSubmitting ? (
-                              <>
+                          <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                            {isSubmitting ? <>
                                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                                 Envoi en cours...
-                              </>
-                            ) : (
-                              <>
+                              </> : <>
                                 Recevoir le Livre Blanc par Email
                                 <Download className="ml-2 h-5 w-5" />
-                              </>
-                            )}
+                              </>}
                           </Button>
                         </form>
                       </Form>
-                    </div>
-                  )}
+                    </div>}
                 </div>
               </div>
             </div>
@@ -366,8 +320,6 @@ const LivreEntrepreneuriat = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default LivreEntrepreneuriat;
