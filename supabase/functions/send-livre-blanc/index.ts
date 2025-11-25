@@ -54,13 +54,6 @@ const handler = async (req: Request): Promise<Response> => {
           
           <p>Ce document exclusif vous accompagnera dans l'intégration de l'esprit entrepreneurial au sein de vos programmes éducatifs.</p>
           
-          <p><strong>Vos informations :</strong></p>
-          <ul>
-            <li>Organisation : ${organization}</li>
-            <li>Fonction : ${position}</li>
-            <li>Type d'établissement : ${schoolType}</li>
-          </ul>
-          
           <p><a href="https://drive.google.com/file/d/1yJqcf4v3Z63Mbr4EDJzj_keUcsvk9Ga4/view?usp=sharing">Télécharger le Livre Blanc</a></p>
           
           <p>Notre équipe reste à votre entière disposition pour tout complément d'information ou pour échanger sur vos projets pédagogiques.</p>
@@ -70,8 +63,7 @@ const handler = async (req: Request): Promise<Response> => {
           <hr>
           
           <p>Mare Nostrum<br>
-          Accélérateur de croissance entrepreneuriale<br>
-          Téléphone : ${phone}</p>
+          Accélérateur de croissance entrepreneuriale</p>
         `,
       }),
     });
