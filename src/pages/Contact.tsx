@@ -9,57 +9,57 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
 import SEOHead from "@/components/SEOHead";
-
 const Contact = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     country: "",
     type: "",
-    message: "",
+    message: ""
   });
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     try {
-      const { supabase } = await import("@/integrations/supabase/client");
-      
-      // Save to database
-      const { error: dbError } = await supabase
-        .from('contact_submissions')
-        .insert([formData]);
+      const {
+        supabase
+      } = await import("@/integrations/supabase/client");
 
+      // Save to database
+      const {
+        error: dbError
+      } = await supabase.from('contact_submissions').insert([formData]);
       if (dbError) {
         console.error("Error saving to database:", dbError);
         toast({
           title: "Erreur",
           description: "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.",
-          variant: "destructive",
+          variant: "destructive"
         });
         return;
       }
-      
+
       // Send confirmation email
-      const { error } = await supabase.functions.invoke('send-contact-confirmation', {
+      const {
+        error
+      } = await supabase.functions.invoke('send-contact-confirmation', {
         body: formData
       });
-
       if (error) {
         console.error("Error sending confirmation:", error);
         toast({
           title: "Erreur",
           description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
-          variant: "destructive",
+          variant: "destructive"
         });
         return;
       }
-
       toast({
         title: "Message envoyé !",
-        description: "Un email de confirmation vous a été envoyé. Nous vous répondrons sous 48h maximum.",
+        description: "Un email de confirmation vous a été envoyé. Nous vous répondrons sous 48h maximum."
       });
 
       // Reset form
@@ -69,29 +69,25 @@ const Contact = () => {
         phone: "",
         country: "",
         type: "",
-        message: "",
+        message: ""
       });
     } catch (error) {
       console.error("Error:", error);
       toast({
         title: "Erreur",
         description: "Une erreur est survenue. Veuillez réessayer.",
-        variant: "destructive",
+        variant: "destructive"
       });
     }
   };
-
   const handleChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
   };
-
-  return (
-    <div className="min-h-screen flex flex-col">
-      <SEOHead 
-        title="Contact - Mare Nostrum"
-        description="Contactez Mare Nostrum pour votre projet entrepreneurial. Nos bureaux à Toulouse, Paris et Casablanca. Réponse sous 48h maximum."
-        keywords="contact, mare nostrum, toulouse, paris, casablanca, rendez-vous, conseil"
-      />
+  return <div className="min-h-screen flex flex-col">
+      <SEOHead title="Contact - Mare Nostrum" description="Contactez Mare Nostrum pour votre projet entrepreneurial. Nos bureaux à Toulouse, Paris et Casablanca. Réponse sous 48h maximum." keywords="contact, mare nostrum, toulouse, paris, casablanca, rendez-vous, conseil" />
       <Header />
 
       {/* Hero Section */}
@@ -158,18 +154,7 @@ const Contact = () => {
                 </div>
 
                 {/* Bureau de Tunis */}
-                <div className="border-l-4 border-primary pl-6">
-                  <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
-                    <MapPin className="h-5 w-5 text-primary" />
-                    Bureau de Tunis (Tunisie)
-                  </h3>
-                  <div className="space-y-2">
-                    <a href="mailto:tunisie@marenostrum.tech" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-                      <Mail className="h-4 w-4" />
-                      tunisie@marenostrum.tech
-                    </a>
-                  </div>
-                </div>
+                
 
                 <div className="flex items-start space-x-4">
                   <div className="bg-accent/10 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
@@ -209,45 +194,22 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <Label htmlFor="name">Nom complet *</Label>
-                  <Input
-                    id="name"
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) => handleChange("name", e.target.value)}
-                    placeholder="Votre nom"
-                    className="mt-2"
-                  />
+                  <Input id="name" type="text" required value={formData.name} onChange={e => handleChange("name", e.target.value)} placeholder="Votre nom" className="mt-2" />
                 </div>
 
                 <div>
                   <Label htmlFor="email">Email *</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => handleChange("email", e.target.value)}
-                    placeholder="votre@email.com"
-                    className="mt-2"
-                  />
+                  <Input id="email" type="email" required value={formData.email} onChange={e => handleChange("email", e.target.value)} placeholder="votre@email.com" className="mt-2" />
                 </div>
 
                 <div>
                   <Label htmlFor="phone">Téléphone</Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => handleChange("phone", e.target.value)}
-                    placeholder="+33 X XX XX XX XX"
-                    className="mt-2"
-                  />
+                  <Input id="phone" type="tel" value={formData.phone} onChange={e => handleChange("phone", e.target.value)} placeholder="+33 X XX XX XX XX" className="mt-2" />
                 </div>
 
                 <div>
                   <Label htmlFor="country">Pays *</Label>
-                  <Select required value={formData.country} onValueChange={(value) => handleChange("country", value)}>
+                  <Select required value={formData.country} onValueChange={value => handleChange("country", value)}>
                     <SelectTrigger className="mt-2">
                       <SelectValue placeholder="Sélectionnez votre pays" />
                     </SelectTrigger>
@@ -262,7 +224,7 @@ const Contact = () => {
 
                 <div>
                   <Label htmlFor="type">Vous êtes... *</Label>
-                  <Select required value={formData.type} onValueChange={(value) => handleChange("type", value)}>
+                  <Select required value={formData.type} onValueChange={value => handleChange("type", value)}>
                     <SelectTrigger className="mt-2">
                       <SelectValue placeholder="Sélectionnez votre profil" />
                     </SelectTrigger>
@@ -278,15 +240,7 @@ const Contact = () => {
 
                 <div>
                   <Label htmlFor="message">Votre message *</Label>
-                  <Textarea
-                    id="message"
-                    required
-                    value={formData.message}
-                    onChange={(e) => handleChange("message", e.target.value)}
-                    placeholder="Parlez-nous de votre projet, vos besoins, vos objectifs..."
-                    rows={6}
-                    className="mt-2"
-                  />
+                  <Textarea id="message" required value={formData.message} onChange={e => handleChange("message", e.target.value)} placeholder="Parlez-nous de votre projet, vos besoins, vos objectifs..." rows={6} className="mt-2" />
                 </div>
 
                 <Button type="submit" size="lg" className="w-full">
@@ -305,8 +259,6 @@ const Contact = () => {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Contact;
