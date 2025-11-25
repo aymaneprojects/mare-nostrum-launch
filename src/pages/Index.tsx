@@ -265,7 +265,7 @@ De l'idée à la croissance.
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
               <Link 
                 to="/education" 
-                className="bg-card border-2 border-primary/20 rounded-2xl p-8 md:p-10 shadow-lg transition-all duration-150 hover:shadow-xl hover:scale-[1.02] active:bg-primary/20 active:border-primary/50 active:scale-[0.98] cursor-pointer"
+                className="bg-card border-2 border-primary/20 rounded-2xl p-8 md:p-10 transition-all duration-150 active:bg-primary/30 active:border-primary cursor-pointer"
               >
                 <div>
                   <GraduationCap className="h-12 w-12 md:h-14 md:w-14 text-primary mx-auto mb-4" />
@@ -280,7 +280,7 @@ De l'idée à la croissance.
 
               <Link 
                 to="/croissance" 
-                className="bg-card border-2 border-accent/20 rounded-2xl p-8 md:p-10 shadow-lg transition-all duration-150 hover:shadow-xl hover:scale-[1.02] active:bg-accent/20 active:border-accent/50 active:scale-[0.98] cursor-pointer"
+                className="bg-card border-2 border-accent/20 rounded-2xl p-8 md:p-10 transition-all duration-150 active:bg-accent/30 active:border-accent cursor-pointer"
               >
                 <div>
                   <TrendingUp className="h-12 w-12 md:h-14 md:w-14 text-accent mx-auto mb-4" />
