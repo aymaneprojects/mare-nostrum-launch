@@ -127,8 +127,15 @@ const LivreEntrepreneuriat = () => {
                     Découvrez les clés pour intégrer l'esprit entrepreneurial dans vos programmes éducatifs
                   </p>
                   <div className="lg:text-left text-center mb-8">
-                    <div className="inline-block">
-                      <img src={livreBlancCover} alt="Couverture du Livre Blanc - Former à l'entrepreneuriat responsable" className="rounded-xl shadow-2xl w-full max-w-sm hover:scale-105 transition-transform duration-300" />
+                    <div className="inline-block perspective-1000">
+                      <img 
+                        src={livreBlancCover} 
+                        alt="Couverture du Livre Blanc - Former à l'entrepreneuriat responsable" 
+                        className="rounded-lg shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3),_8px_0_20px_-5px_rgba(0,0,0,0.2)] w-full max-w-[18rem] transform transition-transform duration-300"
+                        style={{
+                          boxShadow: '0 20px 60px -15px rgba(0,0,0,0.3), 8px 0 20px -5px rgba(0,0,0,0.2), -2px 0 10px -2px rgba(0,0,0,0.1)',
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
