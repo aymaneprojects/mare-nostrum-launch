@@ -120,15 +120,17 @@ const LivreEntrepreneuriat = () => {
                     Livre Blanc
                     <span className="block text-primary mt-2">Pédagogie Entrepreneuriale 2025</span>
                   </h1>
-                  <p className="text-xl text-muted-foreground mb-8 lg:text-left text-center">
+                  <p className="text-xl text-muted-foreground mb-12 lg:text-left text-center">
                     Découvrez les clés pour intégrer l'esprit entrepreneurial dans vos programmes éducatifs
                   </p>
-                  <div className="lg:text-left text-center">
-                    <img 
-                      src={livreBlancCover} 
-                      alt="Couverture du Livre Blanc - Former à l'entrepreneuriat responsable" 
-                      className="rounded-lg shadow-xl max-w-md mx-auto lg:mx-0"
-                    />
+                  <div className="lg:text-left text-center mb-8">
+                    <div className="inline-block">
+                      <img 
+                        src={livreBlancCover} 
+                        alt="Couverture du Livre Blanc - Former à l'entrepreneuriat responsable" 
+                        className="rounded-xl shadow-2xl w-full max-w-sm hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
                   </div>
                 </div>
 
