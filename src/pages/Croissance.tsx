@@ -141,7 +141,7 @@ const Croissance = () => {
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Tremplin</h3>
                 <div className="text-4xl font-bold text-primary mb-2">
                   {selectedLocation === "toulouse" && "30€"}
-                  {selectedLocation === "afrique" && "15€"}
+                  {selectedLocation === "afrique" && "24€"}
                   <span className="text-lg font-normal text-muted-foreground">/mois</span>
                 </div>
               </div>
@@ -180,7 +180,7 @@ const Croissance = () => {
                 <h3 className="text-2xl font-bold mb-2">Ascension</h3>
                 <div className="text-4xl font-bold mb-2">
                   {selectedLocation === "toulouse" && "100€"}
-                  {selectedLocation === "afrique" && "50€"}
+                  {selectedLocation === "afrique" && "84€"}
                   <span className="text-lg font-normal opacity-80">/mois</span>
                 </div>
               </div>
@@ -217,7 +217,7 @@ const Croissance = () => {
                 <h3 className="text-2xl font-bold mb-2 text-foreground">ÉLITE</h3>
                 <div className="text-4xl font-bold text-primary mb-2">
                   {selectedLocation === "toulouse" && "190€"}
-                  {selectedLocation === "afrique" && "100€"}
+                  {selectedLocation === "afrique" && "184€"}
                   <span className="text-lg font-normal text-muted-foreground">/mois</span>
                 </div>
               </div>
