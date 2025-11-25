@@ -17,6 +17,7 @@ import BlogArticle from "./pages/BlogArticle";
 import CGU from "./pages/CGU";
 import Confidentialite from "./pages/Confidentialite";
 import NotFound from "./pages/NotFound";
+import Healthz from "./pages/Healthz";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/mentions-legales" element={<MentionsLegales />} />
           <Route path="/cgu" element={<CGU />} />
           <Route path="/confidentialite" element={<Confidentialite />} />
+          <Route path="/healthz" element={<Healthz />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
