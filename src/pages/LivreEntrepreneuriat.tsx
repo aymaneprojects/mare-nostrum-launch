@@ -13,6 +13,7 @@ import { BookOpen, Download, GraduationCap, Target, Users, Loader2 } from "lucid
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import livreBlancCover from "@/assets/livre-blanc-cover.png";
 
 const formSchema = z.object({
   firstName: z.string().trim().min(2, { message: "Le prénom doit contenir au moins 2 caractères" }).max(100),
@@ -122,6 +123,13 @@ const LivreEntrepreneuriat = () => {
                   <p className="text-xl text-muted-foreground mb-8 lg:text-left text-center">
                     Découvrez les clés pour intégrer l'esprit entrepreneurial dans vos programmes éducatifs
                   </p>
+                  <div className="lg:text-left text-center">
+                    <img 
+                      src={livreBlancCover} 
+                      alt="Couverture du Livre Blanc - Former à l'entrepreneuriat responsable" 
+                      className="rounded-lg shadow-xl max-w-md mx-auto lg:mx-0"
+                    />
+                  </div>
                 </div>
 
                 {/* Right Column - Form */}
