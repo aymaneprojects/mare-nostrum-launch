@@ -2,7 +2,8 @@ import { Leaf, Users, Recycle, Heart, TrendingUp, Shield, Award, Target } from "
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
-import certificationsImage from "@/assets/certifications-footer.png";
+import impactScoreImage from "@/assets/impact-score-79.png";
+import entreprisesEngagentImage from "@/assets/entreprises-engagent.png";
 
 const EngagementRSE = () => {
   return (
@@ -458,11 +459,16 @@ const EngagementRSE = () => {
       {/* Certifications Section */}
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
-          <div className="flex justify-center">
+          <div className="flex justify-center gap-8 items-center flex-wrap">
             <img 
-              src={certificationsImage} 
-              alt="Certifications Mare Nostrum" 
-              className="max-w-full h-auto"
+              src={impactScoreImage} 
+              alt="Impact Score 79/100 - Mare Nostrum" 
+              className="max-w-xs h-auto"
+            />
+            <img 
+              src={entreprisesEngagentImage} 
+              alt="Les Entreprises s'Engagent" 
+              className="max-w-xs h-auto"
             />
           </div>
         </div>
