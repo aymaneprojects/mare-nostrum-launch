@@ -92,7 +92,6 @@ const Croissance = () => {
         structuredData={croissanceSchema}
       />
       <Header />
-      <Breadcrumbs items={[{ label: "Mare Nostrum Croissance", href: "/croissance" }]} />
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-accent via-primary to-primary py-20 md:py-32">
