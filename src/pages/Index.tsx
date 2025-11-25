@@ -265,14 +265,14 @@ De l'idée à la croissance.
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
               <Link 
                 to="/education" 
-                className="bg-card border-2 border-primary/20 rounded-2xl p-8 md:p-10 transition-all duration-150 active:bg-primary/30 active:border-primary cursor-pointer"
+                className="bg-primary/90 border-2 border-primary rounded-2xl p-8 md:p-10 transition-all duration-150 active:bg-primary/50 active:border-primary/70 cursor-pointer"
               >
                 <div>
-                  <GraduationCap className="h-12 w-12 md:h-14 md:w-14 text-primary mx-auto mb-4" />
-                  <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">
+                  <GraduationCap className="h-12 w-12 md:h-14 md:w-14 text-primary-foreground mx-auto mb-4" />
+                  <h3 className="text-xl md:text-2xl font-bold text-primary-foreground mb-3">
                     Éducation
                   </h3>
-                  <p className="text-sm md:text-base text-muted-foreground">
+                  <p className="text-sm md:text-base text-primary-foreground/90">
                     L'esprit d'entreprendre de demain au cœur de votre établissement aujourd'hui
                   </p>
                 </div>
@@ -280,14 +280,14 @@ De l'idée à la croissance.
 
               <Link 
                 to="/croissance" 
-                className="bg-card border-2 border-accent/20 rounded-2xl p-8 md:p-10 transition-all duration-150 active:bg-accent/30 active:border-accent cursor-pointer"
+                className="bg-accent/90 border-2 border-accent rounded-2xl p-8 md:p-10 transition-all duration-150 active:bg-accent/50 active:border-accent/70 cursor-pointer"
               >
                 <div>
-                  <TrendingUp className="h-12 w-12 md:h-14 md:w-14 text-accent mx-auto mb-4" />
-                  <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">
+                  <TrendingUp className="h-12 w-12 md:h-14 md:w-14 text-primary-foreground mx-auto mb-4" />
+                  <h3 className="text-xl md:text-2xl font-bold text-primary-foreground mb-3">
                     Croissance
                   </h3>
-                  <p className="text-sm md:text-base text-muted-foreground">
+                  <p className="text-sm md:text-base text-primary-foreground/90">
                     Sécurisez votre passage à l'échelle avec un accompagnement rigoureux et humain
                   </p>
                 </div>
