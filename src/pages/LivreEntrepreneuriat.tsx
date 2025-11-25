@@ -9,7 +9,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { BookOpen, Download, GraduationCap, Target, Users } from "lucide-react";
+import { BookOpen, Download, GraduationCap, Target, Users, Loader2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
@@ -291,8 +291,17 @@ const LivreEntrepreneuriat = () => {
                             size="lg"
                             disabled={isSubmitting}
                           >
-                            {isSubmitting ? "Envoi en cours..." : "Recevoir le Livre Blanc par Email"}
-                            <Download className="ml-2 h-5 w-5" />
+                            {isSubmitting ? (
+                              <>
+                                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                                Envoi en cours...
+                              </>
+                            ) : (
+                              <>
+                                Recevoir le Livre Blanc par Email
+                                <Download className="ml-2 h-5 w-5" />
+                              </>
+                            )}
                           </Button>
                         </form>
                       </Form>
