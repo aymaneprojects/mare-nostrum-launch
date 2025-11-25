@@ -103,13 +103,13 @@ const Contact = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-20 md:py-32">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-16 md:py-32">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
+            <h1 className="text-3xl md:text-6xl font-bold text-primary-foreground mb-4 md:mb-6">
               Contactez-nous
             </h1>
-            <p className="text-xl md:text-2xl text-primary-foreground/90">
+            <p className="text-lg md:text-2xl text-primary-foreground/90">
               Construisons ensemble votre projet entrepreneurial
             </p>
           </div>
@@ -117,49 +117,49 @@ const Contact = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
             {/* Contact Info */}
             <div>
-              <h2 className="text-3xl font-bold mb-8 text-foreground">Nous contacter</h2>
-              <p className="text-lg text-muted-foreground mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-foreground">Nous contacter</h2>
+              <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-8">
                 Que vous soyez une école, une université, un entrepreneur ou un dirigeant d'entreprise à impact, 
                 nous sommes là pour vous accompagner.
               </p>
 
-              <div className="space-y-8 mb-8">
+              <div className="space-y-6 md:space-y-8 mb-6 md:mb-8">
                 {/* Bureau de Toulouse */}
-                <div className="border-l-4 border-primary pl-6">
-                  <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                <div className="border-l-4 border-primary pl-4 md:pl-6">
+                  <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2 text-sm md:text-base">
                     <MapPin className="h-5 w-5 text-primary" />
                     Bureau de Toulouse (France)
                   </h3>
                   <div className="space-y-2">
-                    <a href="mailto:contact@marenostrum.tech" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-                      <Mail className="h-4 w-4" />
-                      contact@marenostrum.tech
+                    <a href="mailto:contact@marenostrum.tech" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm md:text-base">
+                      <Mail className="h-4 w-4 flex-shrink-0" />
+                      <span className="break-all">contact@marenostrum.tech</span>
                     </a>
-                    <a href="tel:+33617358167" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
-                      <Phone className="h-4 w-4" />
+                    <a href="tel:+33617358167" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm md:text-base">
+                      <Phone className="h-4 w-4 flex-shrink-0" />
                       +33 6 17 35 81 67
                     </a>
                   </div>
                 </div>
 
                 {/* Bureau de Casablanca */}
-                <div className="border-l-4 border-accent pl-6">
-                  <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                <div className="border-l-4 border-accent pl-4 md:pl-6">
+                  <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2 text-sm md:text-base">
                     <MapPin className="h-5 w-5 text-accent" />
                     Bureau de Casablanca (Maroc)
                   </h3>
                   <div className="space-y-2">
-                    <a href="mailto:maroc@marenostrum.tech" className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors">
-                      <Mail className="h-4 w-4" />
-                      maroc@marenostrum.tech
+                    <a href="mailto:maroc@marenostrum.tech" className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors text-sm md:text-base">
+                      <Mail className="h-4 w-4 flex-shrink-0" />
+                      <span className="break-all">maroc@marenostrum.tech</span>
                     </a>
-                    <a href="tel:+212694995785" className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors">
-                      <Phone className="h-4 w-4" />
+                    <a href="tel:+212694995785" className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors text-sm md:text-base">
+                      <Phone className="h-4 w-4 flex-shrink-0" />
                       +212 694 995 785
                     </a>
                   </div>
@@ -168,23 +168,23 @@ const Contact = () => {
                 {/* Bureau de Tunis */}
                 
 
-                <div className="flex items-start space-x-4">
-                  <div className="bg-accent/10 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Calendar className="h-6 w-6 text-accent" />
+                <div className="flex items-start space-x-3 md:space-x-4">
+                  <div className="bg-accent/10 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Calendar className="h-5 w-5 md:h-6 md:w-6 text-accent" />
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">Prendre rendez-vous</h3>
-                    <p className="text-muted-foreground mb-3">Réservez un créneau directement avec notre équipe</p>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-foreground mb-1 text-sm md:text-base">Prendre rendez-vous</h3>
+                    <p className="text-muted-foreground mb-3 text-xs md:text-sm">Réservez un créneau directement avec notre équipe</p>
                     <div className="flex flex-col gap-2">
-                      <Button asChild variant="outline" size="sm">
+                      <Button asChild variant="outline" size="sm" className="w-full text-xs md:text-sm">
                         <a href="https://calendly.com/aymane-marenostrum/30min" target="_blank" rel="noopener noreferrer">
-                          <Calendar className="mr-2 h-4 w-4" />
+                          <Calendar className="mr-2 h-3 w-3 md:h-4 md:w-4" />
                           RDV avec Aymane
                         </a>
                       </Button>
-                      <Button asChild variant="outline" size="sm">
+                      <Button asChild variant="outline" size="sm" className="w-full text-xs md:text-sm">
                         <a href="https://calendly.com/marenostrumtech/rdv-alexis" target="_blank" rel="noopener noreferrer">
-                          <Calendar className="mr-2 h-4 w-4" />
+                          <Calendar className="mr-2 h-3 w-3 md:h-4 md:w-4" />
                           RDV avec Alexis
                         </a>
                       </Button>
@@ -193,16 +193,16 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div className="bg-secondary/50 border border-border rounded-lg p-6">
-                <h3 className="font-semibold text-foreground mb-2">On vous répond sous 48h</h3>
-                <p className="text-sm text-muted-foreground">
+              <div className="bg-secondary/50 border border-border rounded-lg p-4 md:p-6">
+                <h3 className="font-semibold text-foreground mb-2 text-sm md:text-base">On vous répond sous 48h</h3>
+                <p className="text-xs md:text-sm text-muted-foreground">
                   Nous nous engageons à répondre à toutes vos demandes dans un délai maximum de 48 heures ouvrées.
                 </p>
               </div>
             </div>
 
             {/* Contact Form */}
-            <div className="bg-card border border-border rounded-xl p-8 shadow-lg">
+            <div className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-lg">
               {isSuccess ? (
                 <div className="text-center py-12">
                   <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
