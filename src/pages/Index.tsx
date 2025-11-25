@@ -255,56 +255,39 @@ De l'idée à la croissance.
       </section>
 
       {/* Two Poles */}
-      <section className="py-12 md:py-24 bg-secondary/30">
+      <section className="py-16 md:py-24 bg-gradient-to-br from-secondary/20 via-background to-primary/5">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
-            Nos deux pôles d'expertise
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
-            {/* Education Card */}
-            <div className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-              <div className="bg-primary/10 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-4 md:mb-6">
-                <GraduationCap className="h-6 w-6 md:h-8 md:w-8 text-primary" />
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-foreground">Mare Nostrum Éducation</h3>
-              <p className="text-base md:text-lg text-accent font-medium mb-3 md:mb-4">
-                L'esprit d'entreprendre de demain au cœur de votre établissement aujourd'hui
-              </p>
-              <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
-                <strong>Public :</strong> Écoles, universités, organismes de formation
-              </p>
-              <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
-                <strong>Formats :</strong> Ateliers, fresques, cours, programmes premium, hackathons
-              </p>
-              <Button asChild variant="default" className="w-full text-sm md:text-base">
-                <Link to="/education">
-                  Découvrir l'offre Éducation
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl font-bold mb-12 md:mb-16 text-foreground">
+              Nos deux pôles d'expertise
+            </h2>
+            
+            <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+              <Link 
+                to="/education" 
+                className="group relative overflow-hidden bg-card border-2 border-primary/20 rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-primary/40"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative">
+                  <GraduationCap className="h-12 w-12 md:h-14 md:w-14 text-primary mx-auto mb-4 transition-transform duration-300 group-hover:scale-110" />
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                    Éducation
+                  </h3>
+                </div>
+              </Link>
 
-            {/* Growth Card */}
-            <div className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-              <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                <TrendingUp className="h-8 w-8 text-accent" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4 text-foreground">Mare Nostrum Croissance</h3>
-              <p className="text-lg text-accent font-medium mb-4">
-                Sécurisez votre passage à l'échelle avec un accompagnement rigoureux et humain
-              </p>
-              <p className="text-muted-foreground mb-6">
-                <strong>Public :</strong> Entrepreneurs, dirigeants à impact
-              </p>
-              <p className="text-muted-foreground mb-6">
-                <strong>Offres :</strong> Tremplin, Ascension, ÉLITE
-              </p>
-              <Button asChild variant="default" className="w-full">
-                <Link to="/croissance">
-                  Découvrir l'offre Croissance
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <Link 
+                to="/croissance" 
+                className="group relative overflow-hidden bg-card border-2 border-accent/20 rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-accent/40"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative">
+                  <TrendingUp className="h-12 w-12 md:h-14 md:w-14 text-accent mx-auto mb-4 transition-transform duration-300 group-hover:scale-110" />
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-accent transition-colors duration-300">
+                    Croissance
+                  </h3>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
