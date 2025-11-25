@@ -141,15 +141,15 @@ const EngagementRSE = () => {
                 </li>
                 <li className="flex items-start gap-2 text-muted-foreground">
                   <span className="text-accent mt-1">•</span>
-                  <span>Compensation des émissions via la Fondation Good Planet</span>
+                  <span>Compensation des émissions via la <a href="https://www.goodplanet.org/fr/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Fondation Good Planet</a></span>
                 </li>
                 <li className="flex items-start gap-2 text-muted-foreground">
                   <span className="text-accent mt-1">•</span>
-                  <span>Installation dans un espace de coworking engagé RSE (Cité de la RSE et de l'impact)</span>
+                  <span>Installation dans un espace de coworking engagé RSE (<a href="https://citedelarse.fr/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Cité de la RSE et de l'impact</a>)</span>
                 </li>
                 <li className="flex items-start gap-2 text-muted-foreground">
                   <span className="text-accent mt-1">•</span>
-                  <span>Digitalisation des activités pédagogiques (Moodle)</span>
+                  <span>Digitalisation des activités pédagogiques (<a href="https://moodle.com/fr/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Moodle</a>)</span>
                 </li>
                 <li className="flex items-start gap-2 text-muted-foreground">
                   <span className="text-accent mt-1">•</span>
@@ -192,7 +192,7 @@ const EngagementRSE = () => {
                 </li>
                 <li className="flex items-start gap-2 text-muted-foreground">
                   <span className="text-accent mt-1">•</span>
-                  <span>Financement de projets écologiques via la Fondation Good Planet</span>
+                  <span>Financement de projets écologiques via la <a href="https://www.goodplanet.org/fr/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Fondation Good Planet</a></span>
                 </li>
               </ul>
               <div className="bg-accent/5 border-l-4 border-accent p-4">
@@ -224,11 +224,11 @@ const EngagementRSE = () => {
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start gap-2 text-muted-foreground">
                   <span className="text-accent mt-1">•</span>
-                  <span>Tri sélectif en partenariat avec Hector Le Collector via le coworking</span>
+                  <span>Tri sélectif en partenariat avec <a href="https://hectorlecollector.fr/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Hector Le Collector</a> via le coworking</span>
                 </li>
                 <li className="flex items-start gap-2 text-muted-foreground">
                   <span className="text-accent mt-1">•</span>
-                  <span>Démocratisation des méthodologies et outils via Scenari pour renforcer les compétences transversales engagées des entrepreneurs</span>
+                  <span>Démocratisation des méthodologies et outils via <a href="https://scenari.software/fr/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Scenari</a> pour renforcer les compétences transversales engagées des entrepreneurs</span>
                 </li>
                 <li className="flex items-start gap-2 text-muted-foreground">
                   <span className="text-accent mt-1">•</span>
@@ -291,7 +291,7 @@ const EngagementRSE = () => {
                 </li>
                 <li className="flex items-start gap-2 text-muted-foreground">
                   <span className="text-accent mt-1">•</span>
-                  <span>Mécénat depuis 2024 auprès de l'association locale Toulouse Way qui facilite l'accueil et l'intégration des professionnels internationaux</span>
+                  <span>Mécénat depuis 2024 auprès de l'association locale <a href="https://www.toulouseway.org/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Toulouse Way</a> qui facilite l'accueil et l'intégration des professionnels internationaux</span>
                 </li>
                 <li className="flex items-start gap-2 text-muted-foreground">
                   <span className="text-accent mt-1">•</span>
@@ -382,7 +382,7 @@ const EngagementRSE = () => {
                 </li>
                 <li className="flex items-start gap-2 text-muted-foreground">
                   <span className="text-accent mt-1">•</span>
-                  <span>Collaboration avec une banque à mission (le CIC)</span>
+                  <span>Collaboration avec une banque à mission (<a href="https://www.cic.fr/fr/entreprises.html" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">le CIC</a>)</span>
                 </li>
                 <li className="flex items-start gap-2 text-muted-foreground">
                   <span className="text-accent mt-1">•</span>
@@ -394,7 +394,7 @@ const EngagementRSE = () => {
                 </li>
                 <li className="flex items-start gap-2 text-muted-foreground">
                   <span className="text-accent mt-1">•</span>
-                  <span>Sociétaire de la SCIC (coopérative) Les Imaginations Fertiles</span>
+                  <span>Sociétaire de la SCIC (coopérative) <a href="https://www.imaginationsfertiles.fr/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Les Imaginations Fertiles</a></span>
                 </li>
               </ul>
               <div className="bg-primary/5 border-l-4 border-primary p-4 mb-4">
@@ -431,16 +431,16 @@ const EngagementRSE = () => {
                 sectoriels et d'amplifier notre impact.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                Chaque année, nous réalisons notre Impact Score, un indicateur solide qui mesure et suit notre performance 
+                Chaque année, nous réalisons notre <a href="https://www.impactscore.fr/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Impact Score</a>, un indicateur solide qui mesure et suit notre performance 
                 sociale et environnementale.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                Parallèlement, nous utilisons le logiciel 2050score pour identifier les meilleures pratiques dans notre 
+                Parallèlement, nous utilisons le logiciel <a href="https://2050analytics.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">2050score</a> pour identifier les meilleures pratiques dans notre 
                 écosystème et orienter nos décisions.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 En cohérence avec notre volonté d'excellence, nous avons aussi collaboré avec un groupe d'étudiants du 
-                Bachelor ACT de l'ESSEC, qui nous a accompagnés dans un diagnostic pour une future labellisation B Corp, 
+                <a href="https://www.essec.edu/fr/pages/bachelor-act/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Bachelor ACT de l'ESSEC</a>, qui nous a accompagnés dans un diagnostic pour une future labellisation B Corp, 
                 témoignant de notre engagement à intégrer les standards internationaux les plus exigeants.
               </p>
             </div>
