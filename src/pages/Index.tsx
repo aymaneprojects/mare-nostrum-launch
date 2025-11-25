@@ -255,7 +255,7 @@ De l'idée à la croissance.
       </section>
 
       {/* Two Poles */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary/20 via-primary/10 to-accent/20">
+      <section className="py-16 md:py-24 bg-gradient-to-br from-primary/10 via-background to-accent/10">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-12 md:mb-16 text-foreground">
@@ -265,10 +265,10 @@ De l'idée à la croissance.
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
               <Link 
                 to="/education" 
-                className="bg-primary border-2 border-primary rounded-2xl p-8 md:p-10 transition-colors duration-200 hover:bg-primary/80 active:bg-primary/30 active:border-primary/50 cursor-pointer"
+                className="group bg-gradient-to-br from-primary to-primary/80 border-2 border-primary/30 rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:shadow-md active:from-primary/60 active:to-primary/40 transition-all duration-200 cursor-pointer"
               >
                 <div>
-                  <GraduationCap className="h-12 w-12 md:h-14 md:w-14 text-primary-foreground mx-auto mb-4" />
+                  <GraduationCap className="h-12 w-12 md:h-14 md:w-14 text-primary-foreground mx-auto mb-4 group-hover:scale-110 transition-transform duration-200" />
                   <h3 className="text-xl md:text-2xl font-bold text-primary-foreground mb-3">
                     Éducation
                   </h3>
@@ -280,10 +280,10 @@ De l'idée à la croissance.
 
               <Link 
                 to="/croissance" 
-                className="bg-accent border-2 border-accent rounded-2xl p-8 md:p-10 transition-colors duration-200 hover:bg-accent/80 active:bg-accent/30 active:border-accent/50 cursor-pointer"
+                className="group bg-gradient-to-br from-accent to-accent/80 border-2 border-accent/30 rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:shadow-md active:from-accent/60 active:to-accent/40 transition-all duration-200 cursor-pointer"
               >
                 <div>
-                  <TrendingUp className="h-12 w-12 md:h-14 md:w-14 text-primary-foreground mx-auto mb-4" />
+                  <TrendingUp className="h-12 w-12 md:h-14 md:w-14 text-primary-foreground mx-auto mb-4 group-hover:scale-110 transition-transform duration-200" />
                   <h3 className="text-xl md:text-2xl font-bold text-primary-foreground mb-3">
                     Croissance
                   </h3>
