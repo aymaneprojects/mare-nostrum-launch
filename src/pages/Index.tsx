@@ -265,27 +265,31 @@ De l'idée à la croissance.
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
               <Link 
                 to="/education" 
-                className="group relative overflow-hidden bg-card border-2 border-primary/20 rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-primary/40"
+                className="bg-card border-2 border-primary/20 rounded-2xl p-8 md:p-10 shadow-lg transition-all duration-300"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative">
-                  <GraduationCap className="h-12 w-12 md:h-14 md:w-14 text-primary mx-auto mb-4 transition-transform duration-300 group-hover:scale-110" />
-                  <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                <div>
+                  <GraduationCap className="h-12 w-12 md:h-14 md:w-14 text-primary mx-auto mb-4" />
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">
                     Éducation
                   </h3>
+                  <p className="text-sm md:text-base text-muted-foreground">
+                    L'esprit d'entreprendre de demain au cœur de votre établissement aujourd'hui
+                  </p>
                 </div>
               </Link>
 
               <Link 
                 to="/croissance" 
-                className="group relative overflow-hidden bg-card border-2 border-accent/20 rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-accent/40"
+                className="bg-card border-2 border-accent/20 rounded-2xl p-8 md:p-10 shadow-lg transition-all duration-300"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative">
-                  <TrendingUp className="h-12 w-12 md:h-14 md:w-14 text-accent mx-auto mb-4 transition-transform duration-300 group-hover:scale-110" />
-                  <h3 className="text-xl md:text-2xl font-bold text-foreground group-hover:text-accent transition-colors duration-300">
+                <div>
+                  <TrendingUp className="h-12 w-12 md:h-14 md:w-14 text-accent mx-auto mb-4" />
+                  <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">
                     Croissance
                   </h3>
+                  <p className="text-sm md:text-base text-muted-foreground">
+                    Sécurisez votre passage à l'échelle avec un accompagnement rigoureux et humain
+                  </p>
                 </div>
               </Link>
             </div>
