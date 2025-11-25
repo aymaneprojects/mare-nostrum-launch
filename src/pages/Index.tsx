@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StatCard from "@/components/StatCard";
 import TestimonialCard from "@/components/TestimonialCard";
+import SEOHead from "@/components/SEOHead";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import hufLogo from "@/assets/partners/huf.png";
@@ -16,6 +17,11 @@ import cpme31Logo from "@/assets/partners/cpme31.png";
 import creditMutuelLogo from "@/assets/partners/credit-mutuel.png";
 const Index = () => {
   return <div className="min-h-screen flex flex-col">
+      <SEOHead 
+        title="Mare Nostrum - Conseil en Entrepreneuriat à Impact | Toulouse, Paris, Casablanca"
+        description="Mare Nostrum accompagne les écoles et entrepreneurs à impact. De l'idée à la croissance. Éducation entrepreneuriale et conseil en croissance à Toulouse, Paris et Casablanca."
+        keywords="entrepreneuriat à impact, conseil entrepreneurial, éducation entrepreneuriale, Toulouse, Paris, Casablanca, francophonie, entreprise à mission"
+      />
       <Header />
 
       {/* Hero Section */}
