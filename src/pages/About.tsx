@@ -13,6 +13,10 @@ import airbusLogo from "@/assets/partners/airbus.png";
 import roseLabLogo from "@/assets/partners/rose-lab.png";
 import cpme31Logo from "@/assets/partners/cpme31.png";
 import creditMutuelLogo from "@/assets/partners/credit-mutuel.png";
+import toulecoLogo from "@/assets/partners/touleco.png";
+import imaginationsFertilesLogo from "@/assets/partners/imaginations-fertiles.png";
+import emergingBusinessLogo from "@/assets/partners/emerging-business.png";
+import moovjeeLogo from "@/assets/partners/moovjee.png";
 
 const About = () => {
   return (
@@ -270,6 +274,34 @@ const About = () => {
                   <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300">
                     <img src={creditMutuelLogo} alt="Crédit Mutuel" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
+                </CarouselItem>
+                <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <a href="https://www.touleco.fr/" target="_blank" rel="noopener noreferrer" className="block">
+                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300">
+                      <img src={toulecoLogo} alt="Touleco" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    </div>
+                  </a>
+                </CarouselItem>
+                <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <a href="https://www.imaginationsfertiles.fr/" target="_blank" rel="noopener noreferrer" className="block">
+                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300">
+                      <img src={imaginationsFertilesLogo} alt="Imaginations Fertiles" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    </div>
+                  </a>
+                </CarouselItem>
+                <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <a href="https://emergingbusinessfactory.com/" target="_blank" rel="noopener noreferrer" className="block">
+                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300">
+                      <img src={emergingBusinessLogo} alt="Emerging Business Factory" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    </div>
+                  </a>
+                </CarouselItem>
+                <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <a href="https://www.moovjee.fr/" target="_blank" rel="noopener noreferrer" className="block">
+                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300">
+                      <img src={moovjeeLogo} alt="Moovjee" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    </div>
+                  </a>
                 </CarouselItem>
               </CarouselContent>
             </Carousel>
