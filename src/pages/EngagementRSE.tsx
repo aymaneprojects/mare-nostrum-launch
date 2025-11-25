@@ -4,15 +4,9 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import impactScoreImage from "@/assets/impact-score-79.png";
 import entreprisesEngagentImage from "@/assets/entreprises-engagent.png";
-
 const EngagementRSE = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
-      <SEOHead
-        title="Engagement RSE - Mare Nostrum"
-        description="Découvrez nos engagements RSE : environnement, social, gouvernance. Société à mission depuis 2025, nous contribuons au développement durable et solidaire."
-        keywords="RSE, développement durable, société à mission, impact social, environnement, gouvernance"
-      />
+  return <div className="min-h-screen flex flex-col">
+      <SEOHead title="Engagement RSE - Mare Nostrum" description="Découvrez nos engagements RSE : environnement, social, gouvernance. Société à mission depuis 2025, nous contribuons au développement durable et solidaire." keywords="RSE, développement durable, société à mission, impact social, environnement, gouvernance" />
       <Header />
 
       {/* Hero Section */}
@@ -439,9 +433,7 @@ const EngagementRSE = () => {
                 Parallèlement, nous utilisons le logiciel <a href="https://2050analytics.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">2050score</a> pour identifier les meilleures pratiques dans notre 
                 écosystème et orienter nos décisions.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
-                En cohérence avec notre volonté d'excellence, nous avons aussi collaboré avec un groupe d'étudiants du 
-                <a href="https://www.essec.edu/fr/pages/bachelor-act/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Bachelor ACT de l'ESSEC</a>, qui nous a accompagnés dans un diagnostic pour une future labellisation B Corp, 
+              <p className="text-muted-foreground leading-relaxed">En cohérence avec notre volonté d'excellence, nous avons aussi collaboré avec un groupe d'étudiants du Bachelor ACT de l'ESSEC, qui nous a accompagnés dans un diagnostic pour une future labellisation B Corp, témoignant de notre engagement à intégrer les standards internationaux les plus exigeants.<a href="https://www.essec.edu/fr/pages/bachelor-act/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Bachelor ACT de l'ESSEC</a>, qui nous a accompagnés dans un diagnostic pour une future labellisation B Corp, 
                 témoignant de notre engagement à intégrer les standards internationaux les plus exigeants.
               </p>
             </div>
@@ -460,23 +452,13 @@ const EngagementRSE = () => {
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
           <div className="flex justify-center gap-8 items-center flex-wrap">
-            <img 
-              src={impactScoreImage} 
-              alt="Impact Score 79/100 - Mare Nostrum" 
-              className="max-w-[160px] h-auto"
-            />
-            <img 
-              src={entreprisesEngagentImage} 
-              alt="Les Entreprises s'Engagent" 
-              className="max-w-[160px] h-auto"
-            />
+            <img src={impactScoreImage} alt="Impact Score 79/100 - Mare Nostrum" className="max-w-[160px] h-auto" />
+            <img src={entreprisesEngagentImage} alt="Les Entreprises s'Engagent" className="max-w-[160px] h-auto" />
           </div>
         </div>
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default EngagementRSE;
