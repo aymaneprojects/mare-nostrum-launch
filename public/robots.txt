@@ -55,4 +55,4 @@ Disallow: /admin/
 Disallow: /private/
 
 # Sitemap
-Sitemap: https://marenostrum.fr/sitemap.xml
+Sitemap: https://marenostrum.tech/sitemap.xml

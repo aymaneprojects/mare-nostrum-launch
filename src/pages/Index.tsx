@@ -23,8 +23,8 @@ const Index = () => {
       "@type": "Organization",
       "name": "Mare Nostrum",
       "alternateName": "Mare Nostrum - Conseil en Entrepreneuriat à Impact",
-      "url": "https://marenostrum.fr",
-      "logo": "https://marenostrum.fr/logo.png",
+      "url": "https://marenostrum.tech",
+      "logo": "https://marenostrum.tech/logo.png",
       "description": "Cabinet de conseil en entrepreneuriat à impact accompagnant les écoles et entrepreneurs à Toulouse, Paris et Casablanca",
       "foundingDate": "2023",
       "founders": [
@@ -133,10 +133,10 @@ const Index = () => {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Mare Nostrum",
-      "url": "https://marenostrum.fr",
+      "url": "https://marenostrum.tech",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://marenostrum.fr/search?q={search_term_string}",
+        "target": "https://marenostrum.tech/search?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     }
