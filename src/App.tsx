@@ -14,6 +14,8 @@ import LivreEntrepreneuriat from "./pages/LivreEntrepreneuriat";
 import EngagementRSE from "./pages/EngagementRSE";
 import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
+import CGU from "./pages/CGU";
+import Confidentialite from "./pages/Confidentialite";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +38,8 @@ const App = () => (
           <Route path="/blog/:slug" element={<BlogArticle />} />
           <Route path="/livre-entrepreneuriat" element={<LivreEntrepreneuriat />} />
           <Route path="/mentions-legales" element={<MentionsLegales />} />
+          <Route path="/cgu" element={<CGU />} />
+          <Route path="/confidentialite" element={<Confidentialite />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
