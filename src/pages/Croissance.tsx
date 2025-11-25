@@ -278,9 +278,9 @@ const Croissance = () => {
             Témoignages d'entrepreneurs
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <TestimonialCard text="Le Mastermind m'a permis de sortir de ma solitude d'entrepreneur et de prendre des décisions plus rapidement grâce aux retours du groupe." author="Karim Benali" role="Fondateur" organization="GreenTech Startup" />
-            <TestimonialCard text="Avec l'offre Premium, j'ai structuré mon offre commerciale et multiplié mon CA par 3 en 6 mois. Un investissement qui vaut vraiment le coup !" author="Claire Moreau" role="CEO" organization="Impact Social" />
-            <TestimonialCard text="Le Club Entrepreneur International Mare Nostrum m'a ouvert des portes incroyables. J'ai trouvé mes premiers clients et des partenaires stratégiques." author="Ahmed Ziani" role="Entrepreneur" organization="EdTech" />
+            <TestimonialCard text="Quelque chose qui était présent à chaque instant (du Programme) c'est l'échange d'expérience et d'opinion. Ce qui permettait un retour permanent, constructif et pointilleux tout ça dans la bienveillance et la bonne humeur" author="Annabel" role="Étudiante et néo-entrepreneure accompagnée" organization="2024" />
+            <TestimonialCard text="Un acteur efficace, engagé et authentique, qui accompagne réellement les établissements dans leur transformation." author="Géraldine Le Caer" role="Directrice d'établissement partenaire" />
+            <TestimonialCard text="Être ici aux côtés de l'ensemble des porteurs de projet, pour moi, c'était important. Parce que ce sont des jeunes audacieux, persévérants, et parce qu'on a besoin d'un entrepreneuriat qui est en capacité de pouvoir changer le monde. Ils mettent leurs convictions au service de solutions. Ce sont des solutions concrètes et performantes. Faites leur confiance, aidez-les, accompagnez-les !" author="Nadia Pellefigue" role="Vice-présidente de la Région Occitanie" />
           </div>
         </div>
       </section>
