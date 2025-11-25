@@ -285,8 +285,8 @@ const Education = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
             Résultats & preuve sociale
           </h2>
-          <div className="max-w-4xl mx-auto mb-12">
-            <div className="grid md:grid-cols-3 gap-8 text-center mb-12">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8 text-center">
               <div>
                 <div className="text-5xl font-bold text-primary mb-2">53%</div>
                 <div className="text-muted-foreground">de création d'entreprise</div>
@@ -304,10 +304,19 @@ const Education = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <TestimonialCard text="Mare Nostrum a transformé notre approche pédagogique. Les étudiants sont beaucoup plus engagés et concrets dans leurs projets." author="Dr. Marie Dupont" role="Responsable Entrepreneuriat" organization="Université de Toulouse" />
-            <TestimonialCard text="Un partenariat enrichissant qui a permis à nos étudiants de développer une vraie culture entrepreneuriale avec des outils professionnels." author="Jean-Pierre Laurent" role="Directeur Pédagogique" organization="Business School Paris" />
+      {/* Testimonials Section */}
+      <section className="py-16 md:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+            Ils nous font confiance
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <TestimonialCard text="Quelque chose qui était présent à chaque instant (du Programme) c'est l'échange d'expérience et d'opinion. Ce qui permettait un retour permanent, constructif et pointilleux tout ça dans la bienveillance et la bonne humeur" author="Annabel" role="Étudiante et néo-entrepreneure accompagnée" organization="2024" />
+            <TestimonialCard text="Un acteur efficace, engagé et authentique, qui accompagne réellement les établissements dans leur transformation." author="Géraldine Le Caer" role="Directrice d'établissement partenaire" />
+            <TestimonialCard text="Être ici aux côtés de l'ensemble des porteurs de projet, pour moi, c'était important. Parce que ce sont des jeunes audacieux, persévérants, et parce qu'on a besoin d'un entrepreneuriat qui est en capacité de pouvoir changer le monde. Ils mettent leurs convictions au service de solutions. Ce sont des solutions concrètes et performantes. Faites leur confiance, aidez-les, accompagnez-les !" author="Nadia Pellefigue" role="Vice-présidente de la Région Occitanie" />
           </div>
         </div>
       </section>
