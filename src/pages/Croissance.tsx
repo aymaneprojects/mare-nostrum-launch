@@ -1,12 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { TrendingUp, Users, Award, Zap, MessageSquare, Calendar, FileText, CheckCircle2, ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TestimonialCard from "@/components/TestimonialCard";
+
+type LocationType = "france" | "toulouse" | "afrique";
+
 const Croissance = () => {
   const location = useLocation();
+  const [selectedLocation, setSelectedLocation] = useState<LocationType>("france");
   useEffect(() => {
     if (location.hash === "#offres") {
       const element = document.getElementById("offres");
@@ -102,18 +106,46 @@ const Croissance = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
             Nos 3 offres pour entrepreneurs
           </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+          <p className="text-center text-muted-foreground mb-8 max-w-3xl mx-auto">
             Choisis le niveau d'accompagnement qui te correspond
           </p>
+
+          {/* Location Selector */}
+          <div className="flex justify-center gap-4 mb-12">
+            <Button
+              variant={selectedLocation === "france" ? "default" : "outline"}
+              onClick={() => setSelectedLocation("france")}
+              size="lg"
+            >
+              France
+            </Button>
+            <Button
+              variant={selectedLocation === "toulouse" ? "default" : "outline"}
+              onClick={() => setSelectedLocation("toulouse")}
+              size="lg"
+            >
+              Toulouse
+            </Button>
+            <Button
+              variant={selectedLocation === "afrique" ? "default" : "outline"}
+              onClick={() => setSelectedLocation("afrique")}
+              size="lg"
+            >
+              Afrique
+            </Button>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Tremplin */}
             <div className="bg-card border-2 border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Tremplin</h3>
-                <div className="text-4xl font-bold text-primary mb-2">24€<span className="text-lg font-normal text-muted-foreground">/mois</span></div>
-                <p className="text-sm text-muted-foreground">Frais d'inscription : 5€</p>
-                <p className="text-sm text-accent font-medium">Premier mois offert avec BIENVENUE</p>
+                <div className="text-4xl font-bold text-primary mb-2">
+                  {selectedLocation === "france" && "24€"}
+                  {selectedLocation === "toulouse" && "20€"}
+                  {selectedLocation === "afrique" && "15€"}
+                  <span className="text-lg font-normal text-muted-foreground">/mois</span>
+                </div>
               </div>
 
               <ul className="space-y-4 mb-8">
@@ -148,9 +180,12 @@ const Croissance = () => {
 
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2">Ascension</h3>
-                <div className="text-4xl font-bold mb-2">84€<span className="text-lg font-normal opacity-80">/mois</span></div>
-                <p className="text-sm opacity-90">Frais d'inscription : 50€</p>
-                <p className="text-sm text-white font-medium">Frais d'inscription offerts avec BIENVENUE2</p>
+                <div className="text-4xl font-bold mb-2">
+                  {selectedLocation === "france" && "84€"}
+                  {selectedLocation === "toulouse" && "70€"}
+                  {selectedLocation === "afrique" && "50€"}
+                  <span className="text-lg font-normal opacity-80">/mois</span>
+                </div>
               </div>
 
               <ul className="space-y-4 mb-8">
@@ -183,9 +218,12 @@ const Croissance = () => {
             <div className="bg-card border-2 border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-foreground">ÉLITE</h3>
-                <div className="text-4xl font-bold text-primary mb-2">184€<span className="text-lg font-normal text-muted-foreground">/mois</span></div>
-                <p className="text-sm text-muted-foreground">Frais d'inscription : 50€</p>
-                <p className="text-sm text-accent font-medium">Frais d'inscription offerts avec BIENVENUE2</p>
+                <div className="text-4xl font-bold text-primary mb-2">
+                  {selectedLocation === "france" && "184€"}
+                  {selectedLocation === "toulouse" && "150€"}
+                  {selectedLocation === "afrique" && "100€"}
+                  <span className="text-lg font-normal text-muted-foreground">/mois</span>
+                </div>
               </div>
 
               <ul className="space-y-4 mb-8">
