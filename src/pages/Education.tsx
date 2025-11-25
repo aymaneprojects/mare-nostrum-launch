@@ -5,16 +5,73 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TestimonialCard from "@/components/TestimonialCard";
 import SEOHead from "@/components/SEOHead";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import FAQSection from "@/components/FAQSection";
 
 const Education = () => {
+  const educationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Mare Nostrum Éducation",
+    "description": "Programmes d'éducation entrepreneuriale pour établissements : ateliers, fresques, cours, hackathons et programmes premium",
+    "provider": {
+      "@type": "Organization",
+      "name": "Mare Nostrum"
+    },
+    "serviceType": "Éducation Entrepreneuriale",
+    "areaServed": ["FR", "MA"],
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "La Fresque de l'esprit d'entreprendre",
+        "description": "Atelier collaboratif de 3h pour découvrir l'entrepreneuriat"
+      },
+      {
+        "@type": "Offer",
+        "name": "L'Atelier des Alliés",
+        "description": "Session d'intelligence collective pour développer la créativité entrepreneuriale"
+      },
+      {
+        "@type": "Offer",
+        "name": "Programme Premium Néo-Entrepreneurs",
+        "description": "Accompagnement complet sur plusieurs mois"
+      }
+    ]
+  };
+
+  const educationFaqs = [
+    {
+      question: "Quels types d'établissements accompagnez-vous ?",
+      answer: "Nous accompagnons tous types d'établissements : écoles de commerce, universités, écoles d'ingénieurs, lycées, organismes de formation et centres d'apprentissage. Nos programmes s'adaptent à votre public et vos objectifs pédagogiques."
+    },
+    {
+      question: "Combien de temps dure un programme ?",
+      answer: "La durée varie selon le format : de 3 heures pour la Fresque de l'esprit d'entreprendre à plusieurs mois pour le Programme Premium Néo-Entrepreneurs. Nous proposons aussi des formats sur-mesure adaptés à votre calendrier académique."
+    },
+    {
+      question: "Combien d'étudiants peuvent participer ?",
+      answer: "Cela dépend du format : 30-50 participants pour la Fresque, 15-25 pour l'Atelier des Alliés, et des cohortes plus petites pour les programmes premium. Nous pouvons organiser plusieurs sessions pour toucher l'ensemble de vos promotions."
+    },
+    {
+      question: "Quels résultats obtenez-vous auprès des étudiants ?",
+      answer: "Nos programmes affichent 53% de création d'entreprise après accompagnement (vs 26% national), plus de 95% de satisfaction étudiants, et un engagement significativement accru dans les projets entrepreneuriaux."
+    },
+    {
+      question: "Comment se déroule la mise en place d'un programme ?",
+      answer: "Nous commençons par un rendez-vous de découverte pour comprendre vos besoins, puis établissons un diagnostic personnalisé. Ensuite, nous vous proposons un programme sur-mesure que nous déployons avec votre équipe pédagogique."
+    }
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead 
         title="Mare Nostrum Éducation - Programmes Entrepreneuriat pour Écoles"
         description="Programmes clés en main pour sensibiliser, former et accompagner vos étudiants vers l'entrepreneuriat. Ateliers, cours, hackathons et programmes premium pour établissements."
         keywords="éducation entrepreneuriale, formation entrepreneuriat, programmes écoles, ateliers, hackathons, enseignement supérieur"
+        structuredData={educationSchema}
       />
       <Header />
+      <Breadcrumbs items={[{ label: "Mare Nostrum Éducation", href: "/education" }]} />
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-20 md:py-32">
@@ -283,6 +340,8 @@ const Education = () => {
           </div>
         </div>
       </section>
+
+      <FAQSection title="Questions fréquentes sur nos programmes" faqs={educationFaqs} />
 
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-primary to-accent">

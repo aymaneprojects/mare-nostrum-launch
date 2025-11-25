@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import StatCard from "@/components/StatCard";
 import TestimonialCard from "@/components/TestimonialCard";
 import SEOHead from "@/components/SEOHead";
+import FAQSection from "@/components/FAQSection";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import hufLogo from "@/assets/partners/huf.png";
@@ -16,11 +17,160 @@ import roseLabLogo from "@/assets/partners/rose-lab.png";
 import cpme31Logo from "@/assets/partners/cpme31.png";
 import creditMutuelLogo from "@/assets/partners/credit-mutuel.png";
 const Index = () => {
+  const homePageSchema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Mare Nostrum",
+      "alternateName": "Mare Nostrum - Conseil en Entrepreneuriat à Impact",
+      "url": "https://marenostrum.fr",
+      "logo": "https://marenostrum.fr/logo.png",
+      "description": "Cabinet de conseil en entrepreneuriat à impact accompagnant les écoles et entrepreneurs à Toulouse, Paris et Casablanca",
+      "foundingDate": "2023",
+      "founders": [
+        {
+          "@type": "Person",
+          "name": "Aymane"
+        },
+        {
+          "@type": "Person",
+          "name": "Alexis"
+        }
+      ],
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Toulouse",
+          "addressRegion": "Occitanie",
+          "postalCode": "31000",
+          "addressCountry": "FR",
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "43.604652",
+            "longitude": "1.444209"
+          }
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Paris",
+          "addressRegion": "Île-de-France",
+          "addressCountry": "FR"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Casablanca",
+          "addressCountry": "MA"
+        }
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+33-contact",
+          "contactType": "Customer Service",
+          "email": "contact@marenostrum.tech",
+          "areaServed": ["FR", "MA", "TN"],
+          "availableLanguage": ["French", "Arabic"]
+        }
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/company/marenostrum"
+      ],
+      "slogan": "Sécurisons la trajectoire et l'impact des néo-entrepreneurs",
+      "knowsAbout": [
+        "Entrepreneuriat à impact",
+        "Éducation entrepreneuriale",
+        "Conseil en croissance",
+        "Innovation sociale",
+        "Entreprise à mission"
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Conseil en Entrepreneuriat",
+      "provider": {
+        "@type": "Organization",
+        "name": "Mare Nostrum"
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Toulouse"
+        },
+        {
+          "@type": "City",
+          "name": "Paris"
+        },
+        {
+          "@type": "City",
+          "name": "Casablanca"
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Services Mare Nostrum",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Mare Nostrum Éducation",
+              "description": "Programmes d'éducation entrepreneuriale pour établissements"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Mare Nostrum Croissance",
+              "description": "Accompagnement des entrepreneurs à impact"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Mare Nostrum",
+      "url": "https://marenostrum.fr",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://marenostrum.fr/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ];
+
+  const faqs = [
+    {
+      question: "Qu'est-ce que Mare Nostrum ?",
+      answer: "Mare Nostrum est un cabinet de conseil en entrepreneuriat à impact, fondé en 2023 à Toulouse. Nous accompagnons les écoles et les entrepreneurs à travers deux pôles : Mare Nostrum Éducation pour les établissements et Mare Nostrum Croissance pour les entrepreneurs."
+    },
+    {
+      question: "Dans quelles villes êtes-vous présents ?",
+      answer: "Mare Nostrum est implanté à Toulouse, Paris et Casablanca, avec une expertise particulière dans la francophonie. Nous intervenons également dans toute la France et au Maghreb selon les besoins."
+    },
+    {
+      question: "Quels sont vos domaines d'expertise ?",
+      answer: "Nous sommes spécialisés dans l'entrepreneuriat à impact, l'éducation entrepreneuriale, l'accompagnement à la croissance, l'innovation sociale et les entreprises à mission. Nos valeurs sont le respect, l'enthousiasme, la fiabilité, l'impact et le co-apprentissage."
+    },
+    {
+      question: "Comment puis-je travailler avec Mare Nostrum ?",
+      answer: "Commencez par planifier un rendez-vous de découverte gratuit. Nous analyserons vos besoins (école ou entreprise), vous proposerons une solution sur mesure, puis lancerons l'accompagnement avec notre équipe d'experts."
+    },
+    {
+      question: "Quels résultats obtenez-vous avec vos clients ?",
+      answer: "Nos programmes affichent 53% de création d'entreprise (vs 26% national), plus de 95% de satisfaction clients, et 93% de nos clients accélèrent leur prise de décision. Nous mobilisons un réseau de plus de 135 experts."
+    }
+  ];
+
   return <div className="min-h-screen flex flex-col">
       <SEOHead 
         title="Mare Nostrum - Conseil en Entrepreneuriat à Impact | Toulouse, Paris, Casablanca"
         description="Mare Nostrum accompagne les écoles et entrepreneurs à impact. De l'idée à la croissance. Éducation entrepreneuriale et conseil en croissance à Toulouse, Paris et Casablanca."
         keywords="entrepreneuriat à impact, conseil entrepreneurial, éducation entrepreneuriale, Toulouse, Paris, Casablanca, francophonie, entreprise à mission"
+        structuredData={homePageSchema}
       />
       <Header />
 
@@ -287,6 +437,8 @@ De l'idée à la croissance.
           </div>
         </div>
       </section>
+
+      <FAQSection faqs={faqs} />
 
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-primary to-accent">

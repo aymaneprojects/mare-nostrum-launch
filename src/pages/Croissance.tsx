@@ -6,12 +6,74 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TestimonialCard from "@/components/TestimonialCard";
 import SEOHead from "@/components/SEOHead";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import FAQSection from "@/components/FAQSection";
 
 type LocationType = "toulouse" | "afrique";
 
 const Croissance = () => {
   const location = useLocation();
   const [selectedLocation, setSelectedLocation] = useState<LocationType>("toulouse");
+  
+  const croissanceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Mare Nostrum Croissance - Club Entrepreneur Francophone International",
+    "description": "Accompagnement d'entrepreneurs à impact pour sécuriser leur passage à l'échelle",
+    "provider": {
+      "@type": "Organization",
+      "name": "Mare Nostrum"
+    },
+    "serviceType": "Accompagnement Entrepreneurial",
+    "areaServed": ["FR", "MA", "TN"],
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Offre Tremplin",
+        "description": "Session individuelle pour clarifier votre trajectoire",
+        "price": "250",
+        "priceCurrency": "EUR"
+      },
+      {
+        "@type": "Offer",
+        "name": "Offre Ascension",
+        "description": "Accompagnement mensuel sur 6 mois",
+        "price": "1200",
+        "priceCurrency": "EUR"
+      },
+      {
+        "@type": "Offer",
+        "name": "Offre ÉLITE",
+        "description": "Accompagnement premium intensif sur 12 mois",
+        "price": "2500",
+        "priceCurrency": "EUR"
+      }
+    ]
+  };
+
+  const croissanceFaqs = [
+    {
+      question: "Qui peut rejoindre Mare Nostrum Croissance ?",
+      answer: "Mare Nostrum Croissance s'adresse aux entrepreneurs et dirigeants d'entreprises à impact, porteurs de projets innovants, inclusifs et durables. Que vous soyez en phase d'amorçage ou de développement, nos offres s'adaptent à votre stade de maturité."
+    },
+    {
+      question: "Quelle est la différence entre les offres Tremplin, Ascension et ÉLITE ?",
+      answer: "Tremplin est une session unique pour clarifier votre trajectoire. Ascension offre un accompagnement mensuel sur 6 mois avec accès au réseau et outils. ÉLITE propose un suivi premium intensif sur 12 mois avec des sessions individuelles bi-mensuelles et l'accès à tous nos experts."
+    },
+    {
+      question: "Peut-on essayer avant de s'engager ?",
+      answer: "Oui ! Nous proposons une session découverte gratuite de 30 minutes pour comprendre vos besoins et vous présenter nos méthodes. Vous pouvez également commencer par l'offre Tremplin avant de vous engager sur un accompagnement plus long."
+    },
+    {
+      question: "Où se déroulent les sessions ?",
+      answer: "Les sessions peuvent se dérouler en présentiel à Toulouse, Paris ou Casablanca, ou en distanciel selon vos préférences. Le Club organise également des événements réguliers dans nos trois villes."
+    },
+    {
+      question: "Quels résultats puis-je attendre ?",
+      answer: "Nos clients affichent 93% d'accélération dans leur prise de décision stratégique, plus de 95% de satisfaction, et un accès à un réseau de plus de 135 experts. Notre objectif est de sécuriser votre trajectoire de croissance."
+    }
+  ];
+
   useEffect(() => {
     if (location.hash === "#offres") {
       const element = document.getElementById("offres");
@@ -27,8 +89,10 @@ const Croissance = () => {
         title="Mare Nostrum Croissance - Club Entrepreneur Francophone International"
         description="Rejoignez le Club Entrepreneur Francophone International. Accompagnement rigoureux et humain pour sécuriser votre passage à l'échelle. Offres Tremplin, Ascension et ÉLITE."
         keywords="club entrepreneur, croissance entreprise, accompagnement startup, mastermind, entrepreneur à impact, développement business"
+        structuredData={croissanceSchema}
       />
       <Header />
+      <Breadcrumbs items={[{ label: "Mare Nostrum Croissance", href: "/croissance" }]} />
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-accent via-primary to-primary py-20 md:py-32">
@@ -274,6 +338,8 @@ const Croissance = () => {
           </div>
         </div>
       </section>
+
+      <FAQSection title="Questions fréquentes sur nos offres" faqs={croissanceFaqs} />
 
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-accent via-primary to-primary">
