@@ -22,7 +22,7 @@ const SEOHead = ({
   structuredData
 }: SEOHeadProps) => {
   const location = useLocation();
-  const currentUrl = `https://marenostrum.fr${location.pathname}`;
+  const currentUrl = `https://marenostrum.tech${location.pathname}`;
 
   useEffect(() => {
     // Update title
