@@ -1,1 +1,2 @@
+/api/healthz https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/healthz 200
 /*    /index.html   200
