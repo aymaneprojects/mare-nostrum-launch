@@ -13,6 +13,7 @@ import MentionsLegales from "./pages/MentionsLegales";
 import LivreEntrepreneuriat from "./pages/LivreEntrepreneuriat";
 import EngagementRSE from "./pages/EngagementRSE";
 import Blog from "./pages/Blog";
+import BlogArticle from "./pages/BlogArticle";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/a-propos" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogArticle />} />
           <Route path="/livre-entrepreneuriat" element={<LivreEntrepreneuriat />} />
           <Route path="/mentions-legales" element={<MentionsLegales />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
