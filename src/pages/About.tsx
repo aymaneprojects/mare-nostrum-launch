@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Globe, Heart, Users, Target, Lightbulb, ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import hufLogo from "@/assets/partners/huf.png";
@@ -16,6 +17,11 @@ import creditMutuelLogo from "@/assets/partners/credit-mutuel.png";
 const About = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead 
+        title="À propos - Mare Nostrum"
+        description="Découvrez Mare Nostrum, société à mission accompagnant les entrepreneurs et établissements. Notre histoire, nos valeurs et notre équipe à Toulouse, Paris et Casablanca."
+        keywords="mare nostrum, à propos, équipe, valeurs, société à mission, toulouse, paris, casablanca"
+      />
       <Header />
 
       {/* Hero Section */}

@@ -5,6 +5,7 @@ import { TrendingUp, Users, Award, Zap, MessageSquare, Calendar, FileText, Check
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TestimonialCard from "@/components/TestimonialCard";
+import SEOHead from "@/components/SEOHead";
 
 type LocationType = "france" | "toulouse" | "afrique";
 
@@ -22,6 +23,11 @@ const Croissance = () => {
     }
   }, [location]);
   return <div className="min-h-screen flex flex-col">
+      <SEOHead 
+        title="Mare Nostrum Croissance - Club Entrepreneur Francophone International"
+        description="Rejoignez le Club Entrepreneur Francophone International. Accompagnement rigoureux et humain pour sécuriser votre passage à l'échelle. Offres Tremplin, Ascension et ÉLITE."
+        keywords="club entrepreneur, croissance entreprise, accompagnement startup, mastermind, entrepreneur à impact, développement business"
+      />
       <Header />
 
       {/* Hero Section */}

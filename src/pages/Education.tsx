@@ -4,10 +4,16 @@ import { GraduationCap, Users, Lightbulb, Trophy, BookOpen, Network, ArrowRight,
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TestimonialCard from "@/components/TestimonialCard";
+import SEOHead from "@/components/SEOHead";
 
 const Education = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead 
+        title="Mare Nostrum Éducation - Programmes Entrepreneuriat pour Écoles"
+        description="Programmes clés en main pour sensibiliser, former et accompagner vos étudiants vers l'entrepreneuriat. Ateliers, cours, hackathons et programmes premium pour établissements."
+        keywords="éducation entrepreneuriale, formation entrepreneuriat, programmes écoles, ateliers, hackathons, enseignement supérieur"
+      />
       <Header />
 
       {/* Hero Section */}

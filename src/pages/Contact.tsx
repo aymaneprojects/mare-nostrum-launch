@@ -8,6 +8,7 @@ import { Mail, Phone, MapPin, Calendar, Send } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
+import SEOHead from "@/components/SEOHead";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -86,6 +87,11 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEOHead 
+        title="Contact - Mare Nostrum"
+        description="Contactez Mare Nostrum pour votre projet entrepreneurial. Nos bureaux à Toulouse, Paris et Casablanca. Réponse sous 48h maximum."
+        keywords="contact, mare nostrum, toulouse, paris, casablanca, rendez-vous, conseil"
+      />
       <Header />
 
       {/* Hero Section */}
