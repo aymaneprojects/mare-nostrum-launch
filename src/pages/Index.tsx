@@ -255,7 +255,7 @@ De l'idée à la croissance.
       </section>
 
       {/* Two Poles */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary/10 via-background to-accent/10">
+      <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-12 md:mb-16 text-foreground">
@@ -265,14 +265,14 @@ De l'idée à la croissance.
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
               <Link 
                 to="/education" 
-                className="group bg-gradient-to-br from-primary to-primary/80 border-2 border-primary/30 rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:shadow-md active:from-primary/60 active:to-primary/40 transition-all duration-200 cursor-pointer"
+                className="group bg-[hsl(210,50%,35%)] hover:bg-[hsl(210,50%,40%)] active:bg-[hsl(210,50%,50%)] border-2 border-transparent rounded-2xl p-8 md:p-10 shadow-lg transition-all duration-200 cursor-pointer"
               >
                 <div>
-                  <GraduationCap className="h-12 w-12 md:h-14 md:w-14 text-primary-foreground mx-auto mb-4 group-hover:scale-110 transition-transform duration-200" />
-                  <h3 className="text-xl md:text-2xl font-bold text-primary-foreground mb-3">
+                  <GraduationCap className="h-12 w-12 md:h-14 md:w-14 text-white mx-auto mb-4" />
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
                     Éducation
                   </h3>
-                  <p className="text-sm md:text-base text-primary-foreground/90">
+                  <p className="text-sm md:text-base text-white/90">
                     L'esprit d'entreprendre de demain au cœur de votre établissement aujourd'hui
                   </p>
                 </div>
@@ -280,14 +280,14 @@ De l'idée à la croissance.
 
               <Link 
                 to="/croissance" 
-                className="group bg-gradient-to-br from-accent to-accent/80 border-2 border-accent/30 rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:shadow-md active:from-accent/60 active:to-accent/40 transition-all duration-200 cursor-pointer"
+                className="group bg-[hsl(180,60%,60%)] hover:bg-[hsl(180,60%,65%)] active:bg-[hsl(180,60%,75%)] border-2 border-transparent rounded-2xl p-8 md:p-10 shadow-lg transition-all duration-200 cursor-pointer"
               >
                 <div>
-                  <TrendingUp className="h-12 w-12 md:h-14 md:w-14 text-primary-foreground mx-auto mb-4 group-hover:scale-110 transition-transform duration-200" />
-                  <h3 className="text-xl md:text-2xl font-bold text-primary-foreground mb-3">
+                  <TrendingUp className="h-12 w-12 md:h-14 md:w-14 text-white mx-auto mb-4" />
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
                     Croissance
                   </h3>
-                  <p className="text-sm md:text-base text-primary-foreground/90">
+                  <p className="text-sm md:text-base text-white/90">
                     Sécurisez votre passage à l'échelle avec un accompagnement rigoureux et humain
                   </p>
                 </div>
