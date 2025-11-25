@@ -136,7 +136,7 @@ const Croissance = () => {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Tremplin */}
-            <div className="bg-card border-2 border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+            <div className="bg-card border-2 border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col">
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Tremplin</h3>
                 <div className="text-4xl font-bold text-primary mb-2">
@@ -146,7 +146,7 @@ const Croissance = () => {
                 </div>
               </div>
 
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-4 mb-8 flex-grow">
                 <li className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
                   <span className="text-sm text-muted-foreground">Accès au club international d'entrepreneurs francophones</span>
@@ -169,7 +169,7 @@ const Croissance = () => {
             </div>
 
             {/* Ascension - Highlighted */}
-            <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground border-2 border-accent rounded-xl p-8 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 relative">
+            <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground border-2 border-accent rounded-xl p-8 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 relative flex flex-col">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <span className="bg-accent text-accent-foreground px-4 py-1 rounded-full text-sm font-semibold">
                   Recommandé
@@ -185,7 +185,7 @@ const Croissance = () => {
                 </div>
               </div>
 
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-4 mb-8 flex-grow">
                 <li className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
                   <span className="text-sm opacity-95"><strong>Tout de Tremplin</strong></span>
@@ -212,7 +212,7 @@ const Croissance = () => {
             </div>
 
             {/* ÉLITE */}
-            <div className="bg-card border-2 border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+            <div className="bg-card border-2 border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col">
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-foreground">ÉLITE</h3>
                 <div className="text-4xl font-bold text-primary mb-2">
@@ -222,7 +222,7 @@ const Croissance = () => {
                 </div>
               </div>
 
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-4 mb-8 flex-grow">
                 <li className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
                   <span className="text-sm text-muted-foreground"><strong>Tout d'Ascension</strong></span>
