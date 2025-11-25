@@ -463,12 +463,12 @@ const EngagementRSE = () => {
             <img 
               src={impactScoreImage} 
               alt="Impact Score 79/100 - Mare Nostrum" 
-              className="max-w-xs h-auto"
+              className="max-w-[160px] h-auto"
             />
             <img 
               src={entreprisesEngagentImage} 
               alt="Les Entreprises s'Engagent" 
-              className="max-w-xs h-auto"
+              className="max-w-[160px] h-auto"
             />
           </div>
         </div>
