@@ -136,7 +136,8 @@ De l'idée à la croissance.
               <p className="text-muted-foreground mb-6">
                 <strong>Public :</strong> Entrepreneurs, dirigeants à impact
               </p>
-              <p className="text-muted-foreground mb-6">Offres : Tremplin, Ascension, Élite<strong>Offres :</strong> Tremplin, Ascension, ÉLITE
+              <p className="text-muted-foreground mb-6">
+                <strong>Offres :</strong> Tremplin, Ascension, ÉLITE
               </p>
               <Button asChild variant="default" className="w-full">
                 <Link to="/croissance">
