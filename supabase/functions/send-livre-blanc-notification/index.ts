@@ -13,6 +13,7 @@ interface LivreBlancRequest {
   lastName: string;
   email: string;
   phone: string;
+  country: string;
   organization: string;
   position: string;
   schoolType: string;
@@ -29,14 +30,14 @@ const handler = async (req: Request): Promise<Response> => {
       lastName,
       email,
       phone,
+      country,
       organization,
       position,
       schoolType,
     }: LivreBlancRequest = await req.json();
 
-    console.log("Sending Livre Blanc to:", email);
+    console.log("Sending Livre Blanc notification to Mare Nostrum team");
 
-    // Send email using Resend API with professional design
     const emailResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -45,25 +46,22 @@ const handler = async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: "Mare Nostrum <no-reply@marenostrum.tech>",
-        to: [email],
-        subject: "Votre Livre Blanc - Pédagogie Entrepreneuriale 2025 🎓",
+        to: ["contact@marenostrum.tech"],
+        subject: `Nouveau téléchargement Livre Blanc - ${organization}`,
         html: `
-          <p>Bonjour ${firstName} ${lastName},</p>
+          <h2>Nouveau téléchargement du Livre Blanc</h2>
           
-          <p>Nous vous remercions sincèrement d'avoir manifesté votre intérêt pour notre Livre Blanc sur la Pédagogie Entrepreneuriale 2025.</p>
-          
-          <p>Ce document exclusif vous accompagnera dans l'intégration de l'esprit entrepreneurial au sein de vos programmes éducatifs.</p>
-          
-          <p><a href="https://drive.google.com/file/d/1yJqcf4v3Z63Mbr4EDJzj_keUcsvk9Ga4/view?usp=sharing">Télécharger le Livre Blanc</a></p>
-          
-          <p>Notre équipe reste à votre entière disposition pour tout complément d'information ou pour échanger sur vos projets pédagogiques.</p>
-          
-          <p>Cordialement,<br>L'équipe Mare Nostrum</p>
+          <p><strong>Nom :</strong> ${firstName} ${lastName}</p>
+          <p><strong>Email :</strong> ${email}</p>
+          <p><strong>Téléphone :</strong> ${phone}</p>
+          <p><strong>Pays :</strong> ${country}</p>
+          <p><strong>Organisation :</strong> ${organization}</p>
+          <p><strong>Fonction :</strong> ${position}</p>
+          <p><strong>Type d'établissement :</strong> ${schoolType}</p>
           
           <hr>
           
-          <p>Mare Nostrum<br>
-          Accélérateur de croissance entrepreneuriale</p>
+          <p><small>Ce lead a été généré depuis le formulaire de téléchargement du Livre Blanc sur marenostrum.tech</small></p>
         `,
       }),
     });
@@ -74,18 +72,7 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const emailData = await emailResponse.json();
-    console.log("Email sent successfully:", emailData);
-
-    // Log lead in console for tracking
-    console.log("New lead collected:", {
-      firstName,
-      lastName,
-      email,
-      organization,
-      position,
-      schoolType,
-      timestamp: new Date().toISOString(),
-    });
+    console.log("Notification sent successfully:", emailData);
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
@@ -95,7 +82,7 @@ const handler = async (req: Request): Promise<Response> => {
       },
     });
   } catch (error: any) {
-    console.error("Error in send-livre-blanc function:", error);
+    console.error("Error in send-livre-blanc-notification function:", error);
     return new Response(
       JSON.stringify({ error: error.message }),
       {

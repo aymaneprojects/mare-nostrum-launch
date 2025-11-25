@@ -8,3 +8,9 @@ verify_jwt = false
 
 [functions.send-contact-confirmation]
 verify_jwt = false
+
+[functions.send-contact-notification]
+verify_jwt = false
+
+[functions.send-livre-blanc-notification]
+verify_jwt = false

@@ -57,6 +57,11 @@ const Contact = () => {
         });
         return;
       }
+
+      // Send notification to Mare Nostrum team
+      await supabase.functions.invoke('send-contact-notification', {
+        body: formData
+      });
       toast({
         title: "Message envoyé !",
         description: "Un email de confirmation vous a été envoyé. Nous vous répondrons sous 48h maximum."

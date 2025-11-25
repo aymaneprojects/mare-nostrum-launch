@@ -13,6 +13,7 @@ interface ContactFormData {
   phone?: string;
   type: string;
   message: string;
+  country: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -21,9 +22,9 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { name, email, phone, type, message }: ContactFormData = await req.json();
+    const { name, email, phone, type, message, country }: ContactFormData = await req.json();
 
-    console.log("Sending confirmation email to:", email);
+    console.log("Sending notification to Mare Nostrum team");
 
     const emailResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -33,28 +34,24 @@ const handler = async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: "Mare Nostrum <no-reply@marenostrum.tech>",
-        to: [email],
-        subject: "Confirmation de votre message - Mare Nostrum",
-      html: `
-        <p>Bonjour ${name},</p>
-        
-        <p>Nous avons bien reçu votre message et nous vous en remercions.</p>
-        
-        <p><strong>Résumé de votre demande :</strong></p>
-        <p>Profil : ${type}</p>
-        ${phone ? `<p>Téléphone : ${phone}</p>` : ''}
-        <p>Message :<br>${message}</p>
-        
-        <p>Notre équipe vous répondra dans un délai maximum de 48 heures ouvrées.</p>
-        
-        <p>Cordialement,<br>L'équipe Mare Nostrum</p>
-        
-        <hr>
-        
-        <p>Mare Nostrum - Accompagnement entrepreneurial<br>
-        Toulouse | Casablanca | Tunis</p>
-        <p><a href="mailto:contact@marenostrum.tech">contact@marenostrum.tech</a></p>
-      `,
+        to: ["contact@marenostrum.tech"],
+        subject: `Nouveau message de ${name} - ${type}`,
+        html: `
+          <h2>Nouveau message de contact</h2>
+          
+          <p><strong>Nom :</strong> ${name}</p>
+          <p><strong>Email :</strong> ${email}</p>
+          ${phone ? `<p><strong>Téléphone :</strong> ${phone}</p>` : ''}
+          <p><strong>Pays :</strong> ${country}</p>
+          <p><strong>Profil :</strong> ${type}</p>
+          
+          <p><strong>Message :</strong></p>
+          <p>${message}</p>
+          
+          <hr>
+          
+          <p><small>Ce message a été envoyé depuis le formulaire de contact du site marenostrum.tech</small></p>
+        `,
       }),
     });
 
@@ -64,7 +61,7 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const emailData = await emailResponse.json();
-    console.log("Email sent successfully:", emailData);
+    console.log("Notification sent successfully:", emailData);
 
     return new Response(JSON.stringify({ success: true, data: emailData }), {
       status: 200,
@@ -74,7 +71,7 @@ const handler = async (req: Request): Promise<Response> => {
       },
     });
   } catch (error: any) {
-    console.error("Error sending confirmation email:", error);
+    console.error("Error sending notification:", error);
     return new Response(
       JSON.stringify({ error: error.message }),
       {
