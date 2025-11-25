@@ -35,32 +35,26 @@ const handler = async (req: Request): Promise<Response> => {
         from: "Mare Nostrum <onboarding@resend.dev>",
         to: [email],
         subject: "Confirmation de votre message - Mare Nostrum",
-        html: `
-          <p>Bonjour ${name},</p>
-          
-          <p>Nous avons bien reçu votre message et nous vous en remercions.</p>
-          
-          <p><strong>Résumé de votre demande :</strong></p>
-          <p>Profil : ${type}</p>
-          ${phone ? `<p>Téléphone : ${phone}</p>` : ''}
-          <p>Message :<br>${message}</p>
-          
-          <p>Notre équipe vous répondra dans un délai maximum de 48 heures ouvrées.</p>
-          
-          <p>En attendant, n'hésitez pas à prendre rendez-vous directement avec notre équipe :</p>
-          <p>
-            <a href="https://calendly.com/aymane-marenostrum/30min">Prendre RDV avec Aymane</a><br>
-            <a href="https://calendly.com/marenostrumtech/rdv-alexis">Prendre RDV avec Alexis</a>
-          </p>
-          
-          <p>Cordialement,<br>L'équipe Mare Nostrum</p>
-          
-          <hr>
-          
-          <p>Mare Nostrum - Accompagnement entrepreneurial<br>
-          Toulouse | Casablanca | Tunis</p>
-          <p><a href="mailto:contact@marenostrum.tech">contact@marenostrum.tech</a></p>
-        `,
+      html: `
+        <p>Bonjour ${name},</p>
+        
+        <p>Nous avons bien reçu votre message et nous vous en remercions.</p>
+        
+        <p><strong>Résumé de votre demande :</strong></p>
+        <p>Profil : ${type}</p>
+        ${phone ? `<p>Téléphone : ${phone}</p>` : ''}
+        <p>Message :<br>${message}</p>
+        
+        <p>Notre équipe vous répondra dans un délai maximum de 48 heures ouvrées.</p>
+        
+        <p>Cordialement,<br>L'équipe Mare Nostrum</p>
+        
+        <hr>
+        
+        <p>Mare Nostrum - Accompagnement entrepreneurial<br>
+        Toulouse | Casablanca | Tunis</p>
+        <p><a href="mailto:contact@marenostrum.tech">contact@marenostrum.tech</a></p>
+      `,
       }),
     });
 
