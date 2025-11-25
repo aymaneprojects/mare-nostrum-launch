@@ -172,9 +172,9 @@ De l'idée à la croissance.
             Ils nous font confiance
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
-            <TestimonialCard text="Mare Nostrum nous a permis de structurer notre programme d'entrepreneuriat avec des outils concrets et une vraie expertise pédagogique." author="Sophie Martin" role="Directrice Innovation" organization="École de Commerce" />
-            <TestimonialCard text="Grâce au Mastermind, j'ai pu clarifier ma stratégie et passer des caps que je repoussais depuis des mois. Un vrai catalyseur pour mon entreprise." author="Thomas Dubois" role="Fondateur" organization="Startup Impact" />
-            <TestimonialCard text="L'accompagnement Premium nous a fait gagner un temps précieux. L'équipe Mare Nostrum comprend vraiment les enjeux des entreprises à mission." author="Leila Benali" role="CEO" organization="Social Business" />
+            <TestimonialCard text="Quelque chose qui était présent à chaque instant (du Programme) c'est l'échange d'expérience et d'opinion. Ce qui permettait un retour permanent, constructif et pointilleux tout ça dans la bienveillance et la bonne humeur" author="Annabel" role="Étudiante et néo-entrepreneure accompagnée" organization="2024" />
+            <TestimonialCard text="Un acteur efficace, engagé et authentique, qui accompagne réellement les établissements dans leur transformation." author="Géraldine Le Caer" role="Directrice d'établissement partenaire" />
+            <TestimonialCard text="Être ici aux côtés de l'ensemble des porteurs de projet, pour moi, c'était important. Parce que ce sont des jeunes audacieux, persévérants, et parce qu'on a besoin d'un entrepreneuriat qui est en capacité de pouvoir changer le monde. Ils mettent leurs convictions au service de solutions. Ce sont des solutions concrètes et performantes. Faites leur confiance, aidez-les, accompagnez-les !" author="Nadia Pellefigue" role="Vice-présidente de la Région Occitanie" />
           </div>
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
