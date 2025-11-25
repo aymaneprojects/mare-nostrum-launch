@@ -84,11 +84,6 @@ const LivreEntrepreneuriat = () => {
         body: data
       });
       if (error) throw error;
-
-      // Send notification to Mare Nostrum team
-      await supabase.functions.invoke('send-livre-blanc-notification', {
-        body: data
-      });
       setIsSuccess(true);
       toast({
         title: "Livre Blanc envoyé!",
