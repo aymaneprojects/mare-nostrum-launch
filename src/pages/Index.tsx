@@ -23,9 +23,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6 animate-fade-in">
-              Construisons la nouvelle histoire avec les entrepreneurs
-            </h1>
+            <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6 animate-fade-in">Sécurisons la trajectoire et l'impact des néo-entrepreneurs.</h1>
             <p className="text-xl md:text-2xl text-primary-foreground/90 mb-12">
               Mare Nostrum accompagne les écoles et les entrepreneurs à impact.
 De l'idée à la croissance.
@@ -186,18 +184,12 @@ De l'idée à la croissance.
               Ils nous font confiance et contribuent à notre mission
             </p>
             
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              plugins={[
-                Autoplay({
-                  delay: 2000,
-                }),
-              ]}
-              className="w-full"
-            >
+            <Carousel opts={{
+            align: "start",
+            loop: true
+          }} plugins={[Autoplay({
+            delay: 2000
+          })]} className="w-full">
               <CarouselContent>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
