@@ -27,9 +27,9 @@ const Header = () => {
   }];
   const isActive = (path: string) => location.pathname === path;
   return <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="container mx-auto flex h-16 items-center justify-between px-4">
+      <nav className="container mx-auto flex h-14 md:h-16 items-center justify-between px-3 md:px-4">
         <Link to="/" className="flex items-center space-x-2">
-          <img src={logo} alt="Mare Nostrum" className="h-16 w-auto" />
+          <img src={logo} alt="Mare Nostrum" className="h-12 md:h-16 w-auto" />
         </Link>
 
         {/* Desktop Navigation */}
@@ -55,8 +55,8 @@ const Header = () => {
 
       {/* Mobile Navigation */}
       {isMenuOpen && <div className="md:hidden border-t border-border/40 bg-background">
-          <div className="container mx-auto px-4 py-4 space-y-3">
-            {navLinks.map(link => <Link key={link.to} to={link.to} onClick={() => setIsMenuOpen(false)} className={`block py-2 text-sm font-medium transition-colors hover:text-primary ${isActive(link.to) ? "text-primary" : "text-foreground/80"}`}>
+          <div className="container mx-auto px-4 py-4 space-y-2">
+            {navLinks.map(link => <Link key={link.to} to={link.to} onClick={() => setIsMenuOpen(false)} className={`block py-3 text-base font-medium transition-colors hover:text-primary ${isActive(link.to) ? "text-primary" : "text-foreground/80"}`}>
                 {link.label}
               </Link>)}
             <button className="w-full inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold h-9 px-4 bg-gradient-to-r from-[#6BB5C4] to-[#4A9BAC] text-white hover:from-[#7BC5D4] hover:to-[#5AABBC] transition-all duration-200 shadow-md hover:shadow-lg" onClick={() => setIsMenuOpen(false)}>

@@ -3,12 +3,12 @@ import { Mail, Phone, Linkedin, MapPin } from "lucide-react";
 import logo from "@/assets/logo.png";
 const Footer = () => {
   return <footer className="bg-primary text-primary-foreground">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 py-8 md:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
           {/* Logo & Description */}
           <div className="md:col-span-2">
-            <img src={logo} alt="Mare Nostrum" className="h-16 w-auto mb-4 brightness-0 invert" />
-            <p className="text-sm text-primary-foreground/80 max-w-md">
+            <img src={logo} alt="Mare Nostrum" className="h-12 md:h-16 w-auto mb-3 md:mb-4 brightness-0 invert" />
+            <p className="text-sm md:text-base text-primary-foreground/80 max-w-md">
               Cabinet de conseil en entrepreneuriat innovant, inclusif et durable, entre Toulouse, Paris et Casablanca.
             </p>
           </div>
@@ -90,10 +90,10 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-primary-foreground/20">
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-primary-foreground/60">
+        <div className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-primary-foreground/20">
+          <div className="flex flex-col md:flex-row justify-between items-center text-xs md:text-sm text-primary-foreground/60 gap-3 md:gap-0">
             <p>© {new Date().getFullYear()} Mare Nostrum. Tous droits réservés.</p>
-            <div className="flex space-x-4 mt-4 md:mt-0">
+            <div className="flex space-x-4">
               <Link to="/mentions-legales" className="hover:text-primary-foreground/80 transition-colors">
                 Mentions légales
               </Link>

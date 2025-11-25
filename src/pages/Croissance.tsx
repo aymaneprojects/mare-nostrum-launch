@@ -74,17 +74,17 @@ const Croissance = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-accent via-primary to-primary py-20 md:py-32">
+      <section className="relative overflow-hidden bg-gradient-to-br from-accent via-primary to-primary py-16 md:py-32">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
-              <span className="text-primary-foreground font-medium">Mare Nostrum Croissance</span>
+            <div className="inline-block bg-white/10 backdrop-blur-sm rounded-full px-4 md:px-6 py-2 mb-4 md:mb-6">
+              <span className="text-primary-foreground font-medium text-sm md:text-base">Mare Nostrum Croissance</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
+            <h1 className="text-3xl md:text-6xl font-bold text-primary-foreground mb-4 md:mb-6">
               Sécurisez la trajectoire de votre entreprise à impact
             </h1>
-            <p className="text-xl md:text-2xl text-primary-foreground/90 mb-12">Nous accompagnons les entrepreneurs francophones qui veulent rapidement doubler leur activité et leur impact</p>
-            <Button size="lg" variant="secondary" className="text-lg" onClick={() => {
+            <p className="text-lg md:text-2xl text-primary-foreground/90 mb-8 md:mb-12">Nous accompagnons les entrepreneurs francophones qui veulent rapidement doubler leur activité et leur impact</p>
+            <Button size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto" onClick={() => {
             document.getElementById('offres')?.scrollIntoView({
               behavior: 'smooth'
             });
@@ -96,16 +96,16 @@ const Croissance = () => {
       </section>
 
       {/* Problems Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <h2 className="text-2xl md:text-4xl font-bold text-center mb-3 md:mb-4 text-foreground">
             Tu te reconnais dans ça ?
           </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+          <p className="text-center text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto text-sm md:text-base">
             Les défis courants des entrepreneurs à impact
           </p>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
             <div className="bg-card border border-border rounded-lg p-6 hover:shadow-md transition-shadow">
               <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                 <Zap className="h-6 w-6 text-destructive" />

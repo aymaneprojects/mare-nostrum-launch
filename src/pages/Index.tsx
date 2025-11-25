@@ -179,32 +179,32 @@ const Index = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-accent py-20 md:py-32">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-accent py-16 md:py-32">
         <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6 animate-fade-in">Sécurisons la trajectoire et l'impact des néo-entrepreneurs.</h1>
-            <p className="text-xl md:text-2xl text-primary-foreground/90 mb-12">
+            <h1 className="text-3xl md:text-6xl font-bold text-primary-foreground mb-4 md:mb-6 animate-fade-in leading-tight">Sécurisons la trajectoire et l'impact des néo-entrepreneurs.</h1>
+            <p className="text-lg md:text-2xl text-primary-foreground/90 mb-8 md:mb-12">
               Mare Nostrum accompagne les écoles et les entrepreneurs à impact.
 De l'idée à la croissance.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button asChild size="lg" variant="secondary" className="text-lg">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-6 md:mb-8 px-4">
+              <Button asChild size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto">
                 <Link to="/education">
-                  <GraduationCap className="mr-2 h-5 w-5" />
+                  <GraduationCap className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                   Je suis une école
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="text-lg bg-white/10 border-white text-white hover:bg-white hover:text-primary">
+              <Button asChild size="lg" variant="outline" className="text-base md:text-lg bg-white/10 border-white text-white hover:bg-white hover:text-primary w-full sm:w-auto">
                 <Link to="/croissance">
-                  <TrendingUp className="mr-2 h-5 w-5" />
+                  <TrendingUp className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                   Je suis entrepreneur
                 </Link>
               </Button>
             </div>
 
-            <p className="text-sm text-primary-foreground/70">
+            <p className="text-xs md:text-sm text-primary-foreground/70">
               Implanté à Toulouse, Paris et Casablanca – francophonie, innovation et impact
             </p>
           </div>
@@ -212,23 +212,23 @@ De l'idée à la croissance.
       </section>
 
       {/* Who We Are */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-foreground">
+            <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 md:mb-6 text-foreground">
               Qui sommes-nous ?
             </h2>
             <div className="prose prose-lg mx-auto text-center">
-              <p className="text-lg text-muted-foreground mb-6">
+              <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6">
                 Mare Nostrum est une entreprise de services aux entrepreneurs et aux établissements, fondée en 2023 à Toulouse, avec des bureaux à Paris et Casablanca.
               </p>
-              <p className="text-lg text-muted-foreground mb-6">
+              <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6">
                 Société à mission, familiale et interculturelle, notre raison d'être est de 
                 <strong className="text-foreground"> sécuriser la trajectoire des entreprises à impact</strong> et 
                 renforcer leurs capacités à coopérer, protéger le vivant, et inclure les publics vulnérables.
               </p>
-              <div className="flex flex-wrap justify-center gap-4 mt-8">
-                <div className="flex items-center space-x-2 bg-secondary px-4 py-2 rounded-full">
+              <div className="flex flex-wrap justify-center gap-2 md:gap-4 mt-6 md:mt-8">
+                <div className="flex items-center space-x-2 bg-secondary px-3 py-2 md:px-4 md:py-2 rounded-full text-sm md:text-base">
                   <Target className="h-5 w-5 text-primary" />
                   <span className="font-medium">Respect</span>
                 </div>
@@ -255,28 +255,28 @@ De l'idée à la croissance.
       </section>
 
       {/* Two Poles */}
-      <section className="py-16 md:py-24 bg-secondary/30">
+      <section className="py-12 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
             Nos deux pôles d'expertise
           </h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
             {/* Education Card */}
-            <div className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
-                <GraduationCap className="h-8 w-8 text-primary" />
+            <div className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
+              <div className="bg-primary/10 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-4 md:mb-6">
+                <GraduationCap className="h-6 w-6 md:h-8 md:w-8 text-primary" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-foreground">Mare Nostrum Éducation</h3>
-              <p className="text-lg text-accent font-medium mb-4">
+              <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-foreground">Mare Nostrum Éducation</h3>
+              <p className="text-base md:text-lg text-accent font-medium mb-3 md:mb-4">
                 L'esprit d'entreprendre de demain au cœur de votre établissement aujourd'hui
               </p>
-              <p className="text-muted-foreground mb-6">
+              <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
                 <strong>Public :</strong> Écoles, universités, organismes de formation
               </p>
-              <p className="text-muted-foreground mb-6">
+              <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6">
                 <strong>Formats :</strong> Ateliers, fresques, cours, programmes premium, hackathons
               </p>
-              <Button asChild variant="default" className="w-full">
+              <Button asChild variant="default" className="w-full text-sm md:text-base">
                 <Link to="/education">
                   Découvrir l'offre Éducation
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -311,12 +311,12 @@ De l'idée à la croissance.
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
             Pourquoi nous choisir ?
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
             <StatCard value="53%" label="Création d'entreprise" description="vs 26% national" />
             <StatCard value=">95%" label="Satisfaction" description="Clients satisfaits" />
             <StatCard value="93%" label="Prise de décision" description="Clients accélérés" />
@@ -326,12 +326,12 @@ De l'idée à la croissance.
       </section>
 
       {/* Testimonials */}
-      <section className="py-16 md:py-24 bg-secondary/30">
+      <section className="py-12 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
             Ils nous font confiance
           </h2>
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-8 max-w-6xl mx-auto mb-8 md:mb-12">
             <TestimonialCard text="Quelque chose qui était présent à chaque instant (du Programme) c'est l'échange d'expérience et d'opinion. Ce qui permettait un retour permanent, constructif et pointilleux tout ça dans la bienveillance et la bonne humeur" author="Annabel" role="Étudiante et néo-entrepreneure accompagnée" organization="2024" />
             <TestimonialCard text="Un acteur efficace, engagé et authentique, qui accompagne réellement les établissements dans leur transformation." author="Géraldine Le Caer" role="Directrice d'établissement partenaire" />
             <TestimonialCard text="Être ici aux côtés de l'ensemble des porteurs de projet, pour moi, c'était important. Parce que ce sont des jeunes audacieux, persévérants, et parce qu'on a besoin d'un entrepreneuriat qui est en capacité de pouvoir changer le monde. Ils mettent leurs convictions au service de solutions. Ce sont des solutions concrètes et performantes. Faites leur confiance, aidez-les, accompagnez-les !" author="Nadia Pellefigue" role="Vice-présidente de la Région Occitanie" />
