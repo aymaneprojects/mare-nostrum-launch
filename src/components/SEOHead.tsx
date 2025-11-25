@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import StructuredData from './StructuredData';
 
 interface SEOHeadProps {
   title: string;
@@ -8,6 +9,7 @@ interface SEOHeadProps {
   image?: string;
   type?: string;
   noindex?: boolean;
+  structuredData?: object | object[];
 }
 
 const SEOHead = ({ 
@@ -16,7 +18,8 @@ const SEOHead = ({
   keywords = "entrepreneuriat, conseil, formation, impact, Toulouse, Paris, Casablanca",
   image = "https://lovable.dev/opengraph-image-p98pqg.png",
   type = "website",
-  noindex = false
+  noindex = false,
+  structuredData
 }: SEOHeadProps) => {
   const location = useLocation();
   const currentUrl = `https://marenostrum.fr${location.pathname}`;
@@ -71,7 +74,7 @@ const SEOHead = ({
     canonical.setAttribute('href', currentUrl);
   }, [title, description, keywords, image, type, currentUrl, noindex]);
 
-  return null;
+  return structuredData ? <StructuredData data={structuredData} /> : null;
 };
 
 export default SEOHead;
