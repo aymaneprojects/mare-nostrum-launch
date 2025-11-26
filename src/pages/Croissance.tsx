@@ -190,7 +190,7 @@ const Croissance = () => {
                 </li>
                 <li className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Visio galère : 20 minutes pour résoudre un problème avec un membre de l'équipe</span>
+                  <span className="text-sm text-muted-foreground">Café galère: 20 minutes pour résoudre un problème avec un membre de l'équipe</span>
                 </li>
               </ul>
 
