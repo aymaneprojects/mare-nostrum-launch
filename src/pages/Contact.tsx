@@ -99,7 +99,15 @@ const Contact = () => {
     }));
   };
   return <div className="min-h-screen flex flex-col">
-      <SEOHead title="Contact - Mare Nostrum" description="Contactez Mare Nostrum pour votre projet entrepreneurial. Nos bureaux à Toulouse, Paris et Casablanca. Réponse sous 48h maximum." keywords="contact, mare nostrum, toulouse, paris, casablanca, rendez-vous, conseil" />
+      <SEOHead 
+        title="Contact Mare Nostrum - Cabinet Conseil Entrepreneuriat | Toulouse Paris Casablanca" 
+        description="Contactez Mare Nostrum pour votre projet entrepreneurial. Bureaux Toulouse +33 6 17 35 81 67, Paris, Casablanca +212 694 995 785. Rendez-vous gratuit. Réponse sous 48h maximum." 
+        keywords="contact mare nostrum, rendez-vous conseil, toulouse, paris, casablanca, accompagnement entrepreneuriat, conseil gratuit"
+        breadcrumbSchema={[
+          { name: "Accueil", url: "https://marenostrum.tech/" },
+          { name: "Contact", url: "https://marenostrum.tech/contact" }
+        ]}
+      />
       <Header />
 
       {/* Hero Section */}
