@@ -92,8 +92,8 @@ const Index = () => {
           "telephone": "+33-contact",
           "contactType": "Customer Service",
           "email": "contact@marenostrum.tech",
-          "areaServed": ["FR", "MA", "TN"],
-          "availableLanguage": ["French", "Arabic"]
+          "areaServed": ["FR", "MA", "TN", "DZ", "SN", "CI", "BJ", "CM", "BF", "CD", "EG", "CA"],
+          "availableLanguage": ["French", "Arabic", "English"]
         }
       ],
       "sameAs": [
@@ -105,7 +105,10 @@ const Index = () => {
         "Éducation entrepreneuriale",
         "Conseil en croissance",
         "Innovation sociale",
-        "Entreprise à mission"
+        "Entreprise à mission",
+        "Accompagnement francophonie",
+        "Développement Afrique",
+        "Formation entrepreneurs"
       ]
     },
     {
@@ -173,7 +176,7 @@ const Index = () => {
     },
     {
       question: "Dans quelles villes êtes-vous présents ?",
-      answer: "Mare Nostrum est implanté à Toulouse, Paris et Casablanca, avec une expertise particulière dans la francophonie. Nous intervenons également dans toute la France et au Maghreb selon les besoins."
+      answer: "Mare Nostrum est implanté à Toulouse, Paris et Casablanca, avec un réseau de 135+ experts dans 12 pays : France, Maroc, Tunisie, Algérie, Sénégal, Côte d'Ivoire, Bénin, Cameroun, Burkina Faso, RD Congo, Égypte et Canada. Nous intervenons dans toute la francophonie."
     },
     {
       question: "Quels sont vos domaines d'expertise ?",
@@ -185,15 +188,15 @@ const Index = () => {
     },
     {
       question: "Quels résultats obtenez-vous avec vos clients ?",
-      answer: "Nous avons accompagné 17+ projets étudiants et 24 entreprises à impact. Plus de 80% de satisfaction clients, 210+ mises en relation professionnelles, 32 projets collaboratifs initiés. 358 heures de formation dispensées avec 135+ experts mobilisables."
+      answer: "Nous avons accompagné 24 entreprises (70% à impact) et 17+ projets étudiants. Plus de 80% de satisfaction clients, 210+ mises en relation professionnelles, 32 projets collaboratifs initiés. Notre réseau mobilise 135+ experts avec 2000 années d'expérience cumulées dans 12 pays."
     }
   ];
 
   return <div className="min-h-screen flex flex-col">
       <SEOHead 
-        title="Mare Nostrum - Conseil Entrepreneuriat à Impact | Toulouse, Paris, Casablanca"
-        description="Cabinet conseil en entrepreneuriat à impact à Toulouse, Paris et Casablanca. Accompagnement écoles et entrepreneurs : éducation entrepreneuriale, croissance business. +95% satisfaction. 53% création d'entreprise."
-        keywords="entrepreneuriat à impact, conseil entrepreneurial, éducation entrepreneuriale, Toulouse, Paris, Casablanca, francophonie, entreprise à mission, formation entrepreneuriat"
+        title="Mare Nostrum - Conseil Entrepreneuriat à Impact | 12 Pays - France, Afrique, Canada"
+        description="Cabinet conseil entrepreneuriat à impact dans 12 pays. 24 entreprises, 17+ projets étudiants accompagnés. 2000 ans expérience cumulée. 135+ experts. Toulouse, Paris, Casablanca, Dakar. +80% satisfaction."
+        keywords="entrepreneuriat à impact, conseil entrepreneurial, éducation entrepreneuriale, Toulouse, Paris, Casablanca, francophonie, Afrique, Maghreb, entreprise à mission, formation entrepreneuriat, Sénégal, Cameroun, Côte d'Ivoire"
         structuredData={homePageSchema}
         faqSchema={faqs}
       />
@@ -322,14 +325,107 @@ De l'idée à la croissance.
       <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
-            Pourquoi nous choisir ?
+            Nos chiffres clés
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
-            <StatCard value="24" label="Entreprises" description="Accompagnées" />
-            <StatCard value=">80%" label="Satisfaction" description="Clients satisfaits" />
-            <StatCard value="210+" label="Mises en relation" description="Professionnelles" />
-            <StatCard value="135+" label="Experts" description="Dans notre réseau" />
-          </div>
+          
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 3000,
+              }),
+            ]}
+            className="w-full max-w-6xl mx-auto"
+          >
+            <CarouselContent className="-ml-4">
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-card border-2 border-primary/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                  <div className="text-5xl font-bold text-primary mb-2">24</div>
+                  <div className="text-muted-foreground font-medium">Entreprises</div>
+                  <div className="text-sm text-muted-foreground">accompagnées</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-card border-2 border-accent/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                  <div className="text-5xl font-bold text-accent mb-2">17+</div>
+                  <div className="text-muted-foreground font-medium">Projets étudiants</div>
+                  <div className="text-sm text-muted-foreground">accompagnés</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-card border-2 border-primary/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                  <div className="text-5xl font-bold text-primary mb-2">70%</div>
+                  <div className="text-muted-foreground font-medium">Entreprises à impact</div>
+                  <div className="text-sm text-muted-foreground">17 organisations</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-card border-2 border-accent/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                  <div className="text-5xl font-bold text-accent mb-2">&gt;80%</div>
+                  <div className="text-muted-foreground font-medium">Satisfaction</div>
+                  <div className="text-sm text-muted-foreground">clients satisfaits</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-card border-2 border-primary/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                  <div className="text-5xl font-bold text-primary mb-2">210+</div>
+                  <div className="text-muted-foreground font-medium">Mises en relation</div>
+                  <div className="text-sm text-muted-foreground">professionnelles</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-card border-2 border-accent/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                  <div className="text-5xl font-bold text-accent mb-2">32</div>
+                  <div className="text-muted-foreground font-medium">Projets collaboratifs</div>
+                  <div className="text-sm text-muted-foreground">initiés</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-card border-2 border-primary/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                  <div className="text-5xl font-bold text-primary mb-2">135+</div>
+                  <div className="text-muted-foreground font-medium">Experts</div>
+                  <div className="text-sm text-muted-foreground">mobilisables</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-card border-2 border-accent/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                  <div className="text-5xl font-bold text-accent mb-2">2000</div>
+                  <div className="text-muted-foreground font-medium">Années d'expérience</div>
+                  <div className="text-sm text-muted-foreground">cumulées experts</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-card border-2 border-primary/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                  <div className="text-5xl font-bold text-primary mb-2">358h</div>
+                  <div className="text-muted-foreground font-medium">Formation</div>
+                  <div className="text-sm text-muted-foreground">dispensées</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-card border-2 border-accent/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                  <div className="text-5xl font-bold text-accent mb-2">12</div>
+                  <div className="text-muted-foreground font-medium">Pays</div>
+                  <div className="text-sm text-muted-foreground">d'intervention</div>
+                </div>
+              </CarouselItem>
+            </CarouselContent>
+          </Carousel>
+          
+          <p className="text-center text-sm text-muted-foreground mt-8">
+            France • Maroc • Tunisie • Algérie • Sénégal • Côte d'Ivoire • Bénin • Cameroun • Burkina Faso • RD Congo • Égypte • Canada
+          </p>
         </div>
       </section>
 

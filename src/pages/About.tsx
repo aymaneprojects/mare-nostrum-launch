@@ -22,9 +22,9 @@ const About = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead 
-        title="À propos Mare Nostrum - Cabinet Conseil Entrepreneuriat | Toulouse Paris Casablanca"
-        description="Société à mission fondée en 2023 accompagnant entrepreneurs et établissements. Nos valeurs : respect, enthousiasme, fiabilité, impact, co-apprentissage. Réseau de 135+ experts à Toulouse, Paris, Casablanca."
-        keywords="mare nostrum, à propos, équipe, valeurs, société à mission, toulouse, paris, casablanca, cabinet conseil, entrepreneuriat impact"
+        title="À propos Mare Nostrum - Cabinet Conseil Entrepreneuriat | 12 Pays Francophonie"
+        description="Société à mission fondée 2023. 24 entreprises, 17+ projets étudiants accompagnés. 135+ experts, 2000 ans expérience cumulée. Valeurs : respect, enthousiasme, fiabilité, impact. France, Afrique, Canada."
+        keywords="mare nostrum, à propos, équipe, valeurs, société à mission, toulouse, paris, casablanca, cabinet conseil, entrepreneuriat impact, francophonie, afrique, maghreb"
         breadcrumbSchema={[
           { name: "Accueil", url: "https://marenostrum.tech/" },
           { name: "À propos", url: "https://marenostrum.tech/a-propos" }
@@ -184,60 +184,131 @@ const About = () => {
       {/* Key Figures Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
             Nos chiffres clés
           </h2>
+          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+            Depuis 2023, Mare Nostrum accompagne entrepreneurs et établissements avec impact et excellence
+          </p>
           
-          {/* Éducation & Formation */}
-          <div className="max-w-6xl mx-auto mb-12">
-            <h3 className="text-2xl font-bold mb-8 text-center text-primary">Éducation & Formation</h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="text-5xl font-bold text-primary mb-2">17+</div>
-                <div className="text-muted-foreground font-medium">Projets étudiants</div>
-                <div className="text-sm text-muted-foreground">accompagnés</div>
-              </div>
-              <div className="text-center">
-                <div className="text-5xl font-bold text-accent mb-2">358h</div>
-                <div className="text-muted-foreground font-medium">Formation dispensées</div>
-                <div className="text-sm text-muted-foreground">par nos experts</div>
-              </div>
-              <div className="text-center">
-                <div className="text-5xl font-bold text-primary mb-2">36%</div>
-                <div className="text-muted-foreground font-medium">Néo-entrepreneurs</div>
-                <div className="text-sm text-muted-foreground">accompagnés</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Entrepreneuriat & Croissance */}
-          <div className="max-w-6xl mx-auto">
-            <h3 className="text-2xl font-bold mb-8 text-center text-accent">Entrepreneuriat & Croissance</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="text-center bg-card border border-border rounded-lg p-6">
-                <div className="text-4xl font-bold text-primary mb-2">24</div>
-                <div className="text-sm text-muted-foreground">Entreprises accompagnées</div>
-              </div>
-              <div className="text-center bg-card border border-border rounded-lg p-6">
-                <div className="text-4xl font-bold text-accent mb-2">70%</div>
-                <div className="text-sm text-muted-foreground">Entreprises à impact</div>
-              </div>
-              <div className="text-center bg-card border border-border rounded-lg p-6">
-                <div className="text-4xl font-bold text-primary mb-2">&gt;80%</div>
-                <div className="text-sm text-muted-foreground">Satisfaction clients</div>
-              </div>
-              <div className="text-center bg-card border border-border rounded-lg p-6">
-                <div className="text-4xl font-bold text-accent mb-2">210+</div>
-                <div className="text-sm text-muted-foreground">Mises en relation</div>
-              </div>
-              <div className="text-center bg-card border border-border rounded-lg p-6">
-                <div className="text-4xl font-bold text-primary mb-2">32</div>
-                <div className="text-sm text-muted-foreground">Projets collaboratifs</div>
-              </div>
-              <div className="text-center bg-card border border-border rounded-lg p-6">
-                <div className="text-4xl font-bold text-accent mb-2">135+</div>
-                <div className="text-sm text-muted-foreground">Experts mobilisables</div>
-              </div>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 3000,
+              }),
+            ]}
+            className="w-full max-w-6xl mx-auto mb-12"
+          >
+            <CarouselContent className="-ml-4">
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-xl p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                  <div className="text-5xl font-bold mb-2">24</div>
+                  <div className="font-medium mb-1">Entreprises</div>
+                  <div className="text-sm opacity-90">accompagnées</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-xl p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                  <div className="text-5xl font-bold mb-2">17+</div>
+                  <div className="font-medium mb-1">Projets étudiants</div>
+                  <div className="text-sm opacity-90">accompagnés</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-xl p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                  <div className="text-5xl font-bold mb-2">70%</div>
+                  <div className="font-medium mb-1">Entreprises à impact</div>
+                  <div className="text-sm opacity-90">17 organisations</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-xl p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                  <div className="text-5xl font-bold mb-2">&gt;80%</div>
+                  <div className="font-medium mb-1">Satisfaction</div>
+                  <div className="text-sm opacity-90">clients satisfaits</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-xl p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                  <div className="text-5xl font-bold mb-2">210+</div>
+                  <div className="font-medium mb-1">Mises en relation</div>
+                  <div className="text-sm opacity-90">professionnelles</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-xl p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                  <div className="text-5xl font-bold mb-2">32</div>
+                  <div className="font-medium mb-1">Projets collaboratifs</div>
+                  <div className="text-sm opacity-90">initiés</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-xl p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                  <div className="text-5xl font-bold mb-2">135+</div>
+                  <div className="font-medium mb-1">Experts</div>
+                  <div className="text-sm opacity-90">mobilisables</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-xl p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                  <div className="text-5xl font-bold mb-2">2000</div>
+                  <div className="font-medium mb-1">Années d'expérience</div>
+                  <div className="text-sm opacity-90">cumulées experts</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-xl p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                  <div className="text-5xl font-bold mb-2">358h</div>
+                  <div className="font-medium mb-1">Formation</div>
+                  <div className="text-sm opacity-90">dispensées</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-xl p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                  <div className="text-5xl font-bold mb-2">36%</div>
+                  <div className="font-medium mb-1">Néo-entrepreneurs</div>
+                  <div className="text-sm opacity-90">accompagnés</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-xl p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                  <div className="text-5xl font-bold mb-2">12</div>
+                  <div className="font-medium mb-1">Pays</div>
+                  <div className="text-sm opacity-90">d'intervention</div>
+                </div>
+              </CarouselItem>
+            </CarouselContent>
+          </Carousel>
+          
+          <div className="text-center">
+            <p className="text-sm text-muted-foreground mb-2 font-medium">Nos pays d'intervention</p>
+            <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇫🇷 France</span>
+              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇲🇦 Maroc</span>
+              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇹🇳 Tunisie</span>
+              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇩🇿 Algérie</span>
+              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇸🇳 Sénégal</span>
+              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇨🇮 Côte d'Ivoire</span>
+              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇧🇯 Bénin</span>
+              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇨🇲 Cameroun</span>
+              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇧🇫 Burkina Faso</span>
+              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇨🇩 RD Congo</span>
+              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇪🇬 Égypte</span>
+              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇨🇦 Canada</span>
             </div>
           </div>
         </div>
@@ -254,30 +325,112 @@ const About = () => {
               Un réseau d'experts au service de votre réussite
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
-              <strong className="text-foreground">135+ experts</strong> mobilisables en France, au Maroc et dans toute la francophonie
+              <strong className="text-foreground">135+ experts</strong> avec <strong className="text-foreground">2000 années d'expérience cumulées</strong> mobilisables en France, au Maghreb, en Afrique subsaharienne et au Canada
             </p>
             <p className="text-lg text-muted-foreground mb-12">
               Consultants, formateurs, entrepreneurs expérimentés, investisseurs... Notre réseau pluridisciplinaire 
-              et multiculturel est notre force pour vous accompagner avec excellence sur tous les sujets.
+              et multiculturel dans 12 pays est notre force pour vous accompagner avec excellence sur tous les sujets.
             </p>
 
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-card border border-border rounded-lg p-6">
-                <div className="text-4xl font-bold text-primary mb-2">🇫🇷</div>
-                <h3 className="font-semibold text-foreground mb-2">Toulouse · Paris</h3>
-                <p className="text-sm text-muted-foreground">Cœur de l'écosystème entrepreneurial français</p>
-              </div>
-              <div className="bg-card border border-border rounded-lg p-6">
-                <div className="text-4xl font-bold text-accent mb-2">🇲🇦</div>
-                <h3 className="font-semibold text-foreground mb-2">Casablanca</h3>
-                <p className="text-sm text-muted-foreground">Pont vers l'Afrique et le monde arabe</p>
-              </div>
-              <div className="bg-card border border-border rounded-lg p-6">
-                <div className="text-4xl font-bold text-primary mb-2">🌍</div>
-                <h3 className="font-semibold text-foreground mb-2">Francophonie</h3>
-                <p className="text-sm text-muted-foreground">Réseau international d'experts</p>
-              </div>
-            </div>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              plugins={[
+                Autoplay({
+                  delay: 2500,
+                }),
+              ]}
+              className="w-full max-w-5xl mx-auto"
+            >
+              <CarouselContent className="-ml-4">
+                <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="bg-card border-2 border-primary/20 rounded-lg p-6 hover:shadow-lg transition-all">
+                    <div className="text-4xl font-bold mb-2">🇫🇷</div>
+                    <h3 className="font-semibold text-foreground mb-1">France</h3>
+                    <p className="text-sm text-muted-foreground">Toulouse · Paris</p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="bg-card border-2 border-accent/20 rounded-lg p-6 hover:shadow-lg transition-all">
+                    <div className="text-4xl font-bold mb-2">🇲🇦</div>
+                    <h3 className="font-semibold text-foreground mb-1">Maroc</h3>
+                    <p className="text-sm text-muted-foreground">Casablanca</p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="bg-card border-2 border-primary/20 rounded-lg p-6 hover:shadow-lg transition-all">
+                    <div className="text-4xl font-bold mb-2">🇹🇳</div>
+                    <h3 className="font-semibold text-foreground mb-1">Tunisie</h3>
+                    <p className="text-sm text-muted-foreground">Réseau experts</p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="bg-card border-2 border-accent/20 rounded-lg p-6 hover:shadow-lg transition-all">
+                    <div className="text-4xl font-bold mb-2">🇩🇿</div>
+                    <h3 className="font-semibold text-foreground mb-1">Algérie</h3>
+                    <p className="text-sm text-muted-foreground">Réseau experts</p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="bg-card border-2 border-primary/20 rounded-lg p-6 hover:shadow-lg transition-all">
+                    <div className="text-4xl font-bold mb-2">🇸🇳</div>
+                    <h3 className="font-semibold text-foreground mb-1">Sénégal</h3>
+                    <p className="text-sm text-muted-foreground">Réseau experts</p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="bg-card border-2 border-accent/20 rounded-lg p-6 hover:shadow-lg transition-all">
+                    <div className="text-4xl font-bold mb-2">🇨🇮</div>
+                    <h3 className="font-semibold text-foreground mb-1">Côte d'Ivoire</h3>
+                    <p className="text-sm text-muted-foreground">Réseau experts</p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="bg-card border-2 border-primary/20 rounded-lg p-6 hover:shadow-lg transition-all">
+                    <div className="text-4xl font-bold mb-2">🇧🇯</div>
+                    <h3 className="font-semibold text-foreground mb-1">Bénin</h3>
+                    <p className="text-sm text-muted-foreground">Réseau experts</p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="bg-card border-2 border-accent/20 rounded-lg p-6 hover:shadow-lg transition-all">
+                    <div className="text-4xl font-bold mb-2">🇨🇲</div>
+                    <h3 className="font-semibold text-foreground mb-1">Cameroun</h3>
+                    <p className="text-sm text-muted-foreground">Réseau experts</p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="bg-card border-2 border-primary/20 rounded-lg p-6 hover:shadow-lg transition-all">
+                    <div className="text-4xl font-bold mb-2">🇧🇫</div>
+                    <h3 className="font-semibold text-foreground mb-1">Burkina Faso</h3>
+                    <p className="text-sm text-muted-foreground">Réseau experts</p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="bg-card border-2 border-accent/20 rounded-lg p-6 hover:shadow-lg transition-all">
+                    <div className="text-4xl font-bold mb-2">🇨🇩</div>
+                    <h3 className="font-semibold text-foreground mb-1">RD Congo</h3>
+                    <p className="text-sm text-muted-foreground">Réseau experts</p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="bg-card border-2 border-primary/20 rounded-lg p-6 hover:shadow-lg transition-all">
+                    <div className="text-4xl font-bold mb-2">🇪🇬</div>
+                    <h3 className="font-semibold text-foreground mb-1">Égypte</h3>
+                    <p className="text-sm text-muted-foreground">Réseau experts</p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                  <div className="bg-card border-2 border-accent/20 rounded-lg p-6 hover:shadow-lg transition-all">
+                    <div className="text-4xl font-bold mb-2">🇨🇦</div>
+                    <h3 className="font-semibold text-foreground mb-1">Canada</h3>
+                    <p className="text-sm text-muted-foreground">Réseau experts</p>
+                  </div>
+                </CarouselItem>
+              </CarouselContent>
+            </Carousel>
           </div>
         </div>
       </section>
