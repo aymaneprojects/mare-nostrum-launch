@@ -367,9 +367,33 @@ De l'idée à la croissance.
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <div className="bg-card border-2 border-accent/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
-                  <div className="text-5xl font-bold text-accent mb-2">&gt;80%</div>
+                  <div className="text-5xl font-bold text-accent mb-2">93%</div>
+                  <div className="text-muted-foreground font-medium">Prise de décision</div>
+                  <div className="text-sm text-muted-foreground">accélérée</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-card border-2 border-primary/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                  <div className="text-5xl font-bold text-primary mb-2">87%</div>
+                  <div className="text-muted-foreground font-medium">Meilleur équilibre</div>
+                  <div className="text-sm text-muted-foreground">dirigeants</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-card border-2 border-accent/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                  <div className="text-5xl font-bold text-accent mb-2">95%</div>
                   <div className="text-muted-foreground font-medium">Satisfaction</div>
-                  <div className="text-sm text-muted-foreground">clients satisfaits</div>
+                  <div className="text-sm text-muted-foreground">satisfaits/très satisfaits</div>
+                </div>
+              </CarouselItem>
+              
+              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <div className="bg-card border-2 border-primary/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                  <div className="text-5xl font-bold text-primary mb-2">55%</div>
+                  <div className="text-muted-foreground font-medium">Projet à temps plein</div>
+                  <div className="text-sm text-muted-foreground">avec satisfaction</div>
                 </div>
               </CarouselItem>
               
