@@ -294,14 +294,6 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-xl p-8 h-full hover:shadow-xl transition-all hover:scale-105">
-                  <div className="text-5xl font-bold mb-2">87%</div>
-                  <div className="font-medium mb-1">Meilleur équilibre</div>
-                  <div className="text-sm opacity-90">dirigeants</div>
-                </div>
-              </CarouselItem>
-              
-              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-xl p-8 h-full hover:shadow-xl transition-all hover:scale-105">
                   <div className="text-5xl font-bold mb-2">95%</div>
                   <div className="font-medium mb-1">Satisfaction</div>
