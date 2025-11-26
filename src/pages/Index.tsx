@@ -185,7 +185,7 @@ const Index = () => {
     },
     {
       question: "Quels résultats obtenez-vous avec vos clients ?",
-      answer: "Nos programmes affichent 53% de création d'entreprise (vs 26% national), plus de 95% de satisfaction clients, et 93% de nos clients accélèrent leur prise de décision. Nous mobilisons un réseau de plus de 135 experts."
+      answer: "Nous avons accompagné 17+ projets étudiants et 24 entreprises à impact. Plus de 80% de satisfaction clients, 210+ mises en relation professionnelles, 32 projets collaboratifs initiés. 358 heures de formation dispensées avec 135+ experts mobilisables."
     }
   ];
 
@@ -325,9 +325,9 @@ De l'idée à la croissance.
             Pourquoi nous choisir ?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
-            <StatCard value="53%" label="Création d'entreprise" description="vs 26% national" />
-            <StatCard value=">95%" label="Satisfaction" description="Clients satisfaits" />
-            <StatCard value="93%" label="Prise de décision" description="Clients accélérés" />
+            <StatCard value="24" label="Entreprises" description="Accompagnées" />
+            <StatCard value=">80%" label="Satisfaction" description="Clients satisfaits" />
+            <StatCard value="210+" label="Mises en relation" description="Professionnelles" />
             <StatCard value="135+" label="Experts" description="Dans notre réseau" />
           </div>
         </div>
