@@ -181,6 +181,68 @@ const About = () => {
         </div>
       </section>
 
+      {/* Key Figures Section */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+            Nos chiffres clés
+          </h2>
+          
+          {/* Éducation & Formation */}
+          <div className="max-w-6xl mx-auto mb-12">
+            <h3 className="text-2xl font-bold mb-8 text-center text-primary">Éducation & Formation</h3>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="text-5xl font-bold text-primary mb-2">17+</div>
+                <div className="text-muted-foreground font-medium">Projets étudiants</div>
+                <div className="text-sm text-muted-foreground">accompagnés</div>
+              </div>
+              <div className="text-center">
+                <div className="text-5xl font-bold text-accent mb-2">358h</div>
+                <div className="text-muted-foreground font-medium">Formation dispensées</div>
+                <div className="text-sm text-muted-foreground">par nos experts</div>
+              </div>
+              <div className="text-center">
+                <div className="text-5xl font-bold text-primary mb-2">36%</div>
+                <div className="text-muted-foreground font-medium">Néo-entrepreneurs</div>
+                <div className="text-sm text-muted-foreground">accompagnés</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Entrepreneuriat & Croissance */}
+          <div className="max-w-6xl mx-auto">
+            <h3 className="text-2xl font-bold mb-8 text-center text-accent">Entrepreneuriat & Croissance</h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="text-center bg-card border border-border rounded-lg p-6">
+                <div className="text-4xl font-bold text-primary mb-2">24</div>
+                <div className="text-sm text-muted-foreground">Entreprises accompagnées</div>
+              </div>
+              <div className="text-center bg-card border border-border rounded-lg p-6">
+                <div className="text-4xl font-bold text-accent mb-2">70%</div>
+                <div className="text-sm text-muted-foreground">Entreprises à impact</div>
+              </div>
+              <div className="text-center bg-card border border-border rounded-lg p-6">
+                <div className="text-4xl font-bold text-primary mb-2">&gt;80%</div>
+                <div className="text-sm text-muted-foreground">Satisfaction clients</div>
+              </div>
+              <div className="text-center bg-card border border-border rounded-lg p-6">
+                <div className="text-4xl font-bold text-accent mb-2">210+</div>
+                <div className="text-sm text-muted-foreground">Mises en relation</div>
+              </div>
+              <div className="text-center bg-card border border-border rounded-lg p-6">
+                <div className="text-4xl font-bold text-primary mb-2">32</div>
+                <div className="text-sm text-muted-foreground">Projets collaboratifs</div>
+              </div>
+              <div className="text-center bg-card border border-border rounded-lg p-6">
+                <div className="text-4xl font-bold text-accent mb-2">135+</div>
+                <div className="text-sm text-muted-foreground">Experts mobilisables</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Network Section */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">

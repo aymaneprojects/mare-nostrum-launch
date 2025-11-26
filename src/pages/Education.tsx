@@ -44,7 +44,7 @@ const Education = () => {
     answer: "Cela dépend du format : 30-50 participants pour la Fresque, 15-25 pour l'Atelier des Alliés, et des cohortes plus petites pour les programmes premium. Nous pouvons organiser plusieurs sessions pour toucher l'ensemble de vos promotions."
   }, {
     question: "Quels résultats obtenez-vous auprès des étudiants ?",
-    answer: "Nos programmes affichent 53% de création d'entreprise après accompagnement (vs 26% national), plus de 95% de satisfaction étudiants, et un engagement significativement accru dans les projets entrepreneuriaux."
+    answer: "Nous avons accompagné 17+ projets étudiants avec 358 heures de formation dispensées. 36% de néo-entrepreneurs accompagnés avec un engagement significativement accru dans les projets entrepreneuriaux. Plus de 80% de satisfaction étudiants."
   }, {
     question: "Comment se déroule la mise en place d'un programme ?",
     answer: "Nous commençons par un rendez-vous de découverte pour comprendre vos besoins, puis établissons un diagnostic personnalisé. Ensuite, nous vous proposons un programme sur-mesure que nous déployons avec votre équipe pédagogique."
@@ -298,19 +298,19 @@ const Education = () => {
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-3 gap-8 text-center">
               <div>
-                <div className="text-5xl font-bold text-primary mb-2">53%</div>
-                <div className="text-muted-foreground">de création d'entreprise</div>
-                <div className="text-sm text-muted-foreground">(vs 26% national)</div>
+                <div className="text-5xl font-bold text-primary mb-2">17+</div>
+                <div className="text-muted-foreground">projets étudiants</div>
+                <div className="text-sm text-muted-foreground">accompagnés</div>
               </div>
               <div>
-                <div className="text-5xl font-bold text-accent mb-2">&gt;95%</div>
-                <div className="text-muted-foreground">de satisfaction</div>
-                <div className="text-sm text-muted-foreground">auprès des étudiants</div>
+                <div className="text-5xl font-bold text-accent mb-2">358h</div>
+                <div className="text-muted-foreground">de formation</div>
+                <div className="text-sm text-muted-foreground">dispensées</div>
               </div>
               <div>
-                <div className="text-5xl font-bold text-primary mb-2">20+</div>
-                <div className="text-muted-foreground">établissements partenaires</div>
-                <div className="text-sm text-muted-foreground">en France et au Maroc</div>
+                <div className="text-5xl font-bold text-primary mb-2">36%</div>
+                <div className="text-muted-foreground">néo-entrepreneurs</div>
+                <div className="text-sm text-muted-foreground">accompagnés</div>
               </div>
             </div>
           </div>

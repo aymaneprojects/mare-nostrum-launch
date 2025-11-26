@@ -57,7 +57,7 @@ const Croissance = () => {
     answer: "Les sessions peuvent se dérouler en présentiel à Toulouse, Paris ou Casablanca, ou en distanciel selon vos préférences. Le Club organise également des événements réguliers dans nos trois villes."
   }, {
     question: "Quels résultats puis-je attendre ?",
-    answer: "Nos clients affichent 93% d'accélération dans leur prise de décision stratégique, plus de 95% de satisfaction, et un accès à un réseau de plus de 135 experts. Notre objectif est de sécuriser votre trajectoire de croissance."
+    answer: "Nous avons accompagné 24 entreprises dont 70% à impact (17 organisations). Plus de 80% de satisfaction clients, 210+ mises en relation professionnelles, 32 projets collaboratifs initiés, et un réseau de 135+ experts mobilisables."
   }];
   useEffect(() => {
     if (location.hash === "#offres") {
