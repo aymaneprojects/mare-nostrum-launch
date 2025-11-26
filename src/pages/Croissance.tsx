@@ -54,10 +54,10 @@ const Croissance = () => {
     answer: "Oui ! Nous proposons une session découverte gratuite de 30 minutes pour comprendre vos besoins et vous présenter nos méthodes. Vous pouvez également commencer par l'offre Tremplin avant de vous engager sur un accompagnement plus long."
   }, {
     question: "Où se déroulent les sessions ?",
-    answer: "Les sessions peuvent se dérouler en présentiel à Toulouse, Paris ou Casablanca, ou en distanciel selon vos préférences. Le Club organise également des événements réguliers dans nos trois villes."
+    answer: "Les sessions peuvent se dérouler en présentiel à Toulouse, Paris ou Casablanca, ou en distanciel selon vos préférences. Le Club organise également des événements réguliers dans nos 12 pays d'intervention en Afrique, au Maghreb et au Canada."
   }, {
     question: "Quels résultats puis-je attendre ?",
-    answer: "Nous avons accompagné 24 entreprises dont 70% à impact (17 organisations). Plus de 80% de satisfaction clients, 210+ mises en relation professionnelles, 32 projets collaboratifs initiés, et un réseau de 135+ experts mobilisables."
+    answer: "Nous avons accompagné 24 entreprises dont 70% à impact (17 organisations). Plus de 80% de satisfaction clients, 210+ mises en relation professionnelles, 32 projets collaboratifs initiés. Notre réseau mobilise 135+ experts avec 2000 années d'expérience cumulées dans 12 pays."
   }];
   useEffect(() => {
     if (location.hash === "#offres") {
