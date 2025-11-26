@@ -6,6 +6,11 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import alexisJanicotImg from "@/assets/team/alexis-janicot.png";
+import aymaneAbdennourImg from "@/assets/team/aymane-abdennour.png";
+import romeoMasipImg from "@/assets/team/romeo-masip.png";
+import khalidEzzemaniImg from "@/assets/team/khalid-ezzemani.png";
 import hufLogo from "@/assets/partners/huf.png";
 import bidayaLogo from "@/assets/partners/bidaya.png";
 import toulouseWayLogo from "@/assets/partners/toulouse-way.png";
@@ -176,6 +181,58 @@ const About = () => {
                   Nous grandissons ensemble avec nos clients et notre réseau. L'intelligence collective est au cœur de notre approche.
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-12 md:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">Notre équipe</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+            <div className="bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+              <Avatar className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4">
+                <AvatarImage src={alexisJanicotImg} alt="Alexis Janicot" />
+                <AvatarFallback>AJ</AvatarFallback>
+              </Avatar>
+              <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">Alexis Janicot</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Fondateur et Dirigeant</p>
+            </div>
+
+            <div className="bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+              <Avatar className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4">
+                <AvatarImage src={aymaneAbdennourImg} alt="Aymane Abdennour" />
+                <AvatarFallback>AA</AvatarFallback>
+              </Avatar>
+              <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">Aymane Abdennour</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Chef de projet et Ingénieur économique</p>
+            </div>
+
+            <div className="bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+              <Avatar className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4">
+                <AvatarImage src={romeoMasipImg} alt="Roméo Masip" />
+                <AvatarFallback>RM</AvatarFallback>
+              </Avatar>
+              <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">Roméo Masip</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Commercial Junior</p>
+            </div>
+
+            <div className="bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+              <Avatar className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4">
+                <AvatarImage src={khalidEzzemaniImg} alt="Khalid Ezzemani" />
+                <AvatarFallback>KE</AvatarFallback>
+              </Avatar>
+              <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">Khalid Ezzemani</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Co-Fondateur · Casablanca</p>
+            </div>
+
+            <div className="bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg transition-shadow">
+              <Avatar className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4">
+                <AvatarFallback className="text-2xl">AJ</AvatarFallback>
+              </Avatar>
+              <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">Alain Janicot</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Co-Fondateur · Paris</p>
             </div>
           </div>
         </div>
