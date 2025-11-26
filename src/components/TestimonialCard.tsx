@@ -2,7 +2,7 @@ import { Quote } from "lucide-react";
 
 interface TestimonialCardProps {
   text: string;
-  author: string;
+  author?: string;
   role: string;
   organization?: string;
 }
@@ -13,7 +13,7 @@ const TestimonialCard = ({ text, author, role, organization }: TestimonialCardPr
       <Quote className="h-6 w-6 md:h-8 md:w-8 text-accent mb-3 md:mb-4 mx-auto" />
       <p className="text-sm md:text-base text-foreground/90 mb-3 md:mb-4 italic">"{text}"</p>
       <div>
-        <p className="font-semibold text-foreground text-sm md:text-base">{author}</p>
+        {author && <p className="font-semibold text-foreground text-sm md:text-base">{author}</p>}
         <p className="text-xs md:text-sm text-muted-foreground">
           {role}
           {organization && ` · ${organization}`}
