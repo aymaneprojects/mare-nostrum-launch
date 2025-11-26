@@ -70,17 +70,7 @@ const Croissance = () => {
     }
   }, [location]);
   return <div className="min-h-screen flex flex-col">
-      <SEOHead 
-        title="Club Entrepreneur Francophone - Mare Nostrum Croissance | Toulouse Paris Casablanca" 
-        description="Rejoignez le Club Entrepreneur Francophone International Mare Nostrum. Accompagnement croissance startup : offres Tremplin 30€, Ascension 100€, Élite 190€. 93% accélération décisions. 135+ experts. Toulouse, Paris, Casablanca." 
-        keywords="club entrepreneur, croissance entreprise, accompagnement startup, mastermind, entrepreneur à impact, développement business, toulouse, paris, casablanca, francophonie" 
-        structuredData={croissanceSchema}
-        faqSchema={croissanceFaqs}
-        breadcrumbSchema={[
-          { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "Croissance", url: "https://marenostrum.tech/croissance" }
-        ]}
-      />
+      <SEOHead title="Mare Nostrum Croissance - Club Entrepreneur Francophone International" description="Rejoignez le Club Entrepreneur Francophone International. Accompagnement rigoureux et humain pour sécuriser votre passage à l'échelle. Offres Tremplin, Ascension et ÉLITE." keywords="club entrepreneur, croissance entreprise, accompagnement startup, mastermind, entrepreneur à impact, développement business" structuredData={croissanceSchema} />
       <Header />
 
       {/* Hero Section */}

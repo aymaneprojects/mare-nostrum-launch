@@ -58,34 +58,14 @@ const Index = () => {
           "@type": "PostalAddress",
           "addressLocality": "Paris",
           "addressRegion": "Île-de-France",
-          "addressCountry": "FR",
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "48.856614",
-            "longitude": "2.3522219"
-          }
+          "addressCountry": "FR"
         },
         {
           "@type": "PostalAddress",
           "addressLocality": "Casablanca",
-          "addressCountry": "MA",
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "33.5731104",
-            "longitude": "-7.5898434"
-          }
+          "addressCountry": "MA"
         }
       ],
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "09:00",
-          "closes": "18:00"
-        }
-      ],
-      "priceRange": "€€",
-      "image": "https://marenostrum.tech/logo.png",
       "contactPoint": [
         {
           "@type": "ContactPoint",
@@ -191,11 +171,10 @@ const Index = () => {
 
   return <div className="min-h-screen flex flex-col">
       <SEOHead 
-        title="Mare Nostrum - Conseil Entrepreneuriat à Impact | Toulouse, Paris, Casablanca"
-        description="Cabinet conseil en entrepreneuriat à impact à Toulouse, Paris et Casablanca. Accompagnement écoles et entrepreneurs : éducation entrepreneuriale, croissance business. +95% satisfaction. 53% création d'entreprise."
-        keywords="entrepreneuriat à impact, conseil entrepreneurial, éducation entrepreneuriale, Toulouse, Paris, Casablanca, francophonie, entreprise à mission, formation entrepreneuriat"
+        title="Mare Nostrum - Conseil en Entrepreneuriat à Impact | Toulouse, Paris, Casablanca"
+        description="Mare Nostrum accompagne les écoles et entrepreneurs à impact. De l'idée à la croissance. Éducation entrepreneuriale et conseil en croissance à Toulouse, Paris et Casablanca."
+        keywords="entrepreneuriat à impact, conseil entrepreneurial, éducation entrepreneuriale, Toulouse, Paris, Casablanca, francophonie, entreprise à mission"
         structuredData={homePageSchema}
-        faqSchema={faqs}
       />
       <Header />
 
@@ -361,64 +340,64 @@ De l'idée à la croissance.
               <CarouselContent>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <img src={hufLogo} alt="HUF - Partenaire Mare Nostrum accompagnement entrepreneuriat Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img src={hufLogo} alt="HUF" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <img src={bidayaLogo} alt="Bidaya - Partenaire Mare Nostrum entrepreneuriat Maroc Casablanca" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img src={bidayaLogo} alt="Bidaya" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <img src={toulouseWayLogo} alt="Toulouse Way - Partenaire écosystème entrepreneurial Toulouse Occitanie" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img src={toulouseWayLogo} alt="Toulouse Way" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <img src={airbusLogo} alt="Airbus Développement - Partenaire innovation entreprises Toulouse Aerospace" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img src={airbusLogo} alt="Airbus Développement" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <img src={roseLabLogo} alt="Rose Lab - Partenaire incubateur startups entreprises à impact" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img src={roseLabLogo} alt="Rose Lab" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <img src={cpme31Logo} alt="CPME 31 Haute-Garonne - Confédération PME entrepreneurs Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img src={cpme31Logo} alt="CPME 31 Haute-Garonne" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <img src={creditMutuelLogo} alt="Crédit Mutuel - Partenaire financement entrepreneurs PME" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img src={creditMutuelLogo} alt="Crédit Mutuel" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.touleco.fr/" target="_blank" rel="noopener noreferrer" className="block">
                     <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                      <img src={toulecoLogo} alt="Touleco - Média économique Toulouse Occitanie partenaire Mare Nostrum" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                      <img src={toulecoLogo} alt="Touleco" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.imaginationsfertiles.fr/" target="_blank" rel="noopener noreferrer" className="block">
                     <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                      <img src={imaginationsFertilesLogo} alt="Imaginations Fertiles - Partenaire créativité innovation entrepreneuriale" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                      <img src={imaginationsFertilesLogo} alt="Imaginations Fertiles" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://emergingbusinessfactory.com/" target="_blank" rel="noopener noreferrer" className="block">
                     <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                      <img src={emergingBusinessLogo} alt="Emerging Business Factory - Accélérateur startups scale-ups Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                      <img src={emergingBusinessLogo} alt="Emerging Business Factory" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.moovjee.fr/" target="_blank" rel="noopener noreferrer" className="block">
                     <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                      <img src={moovjeeLogo} alt="Moovjee - Mouvement jeunes entrepreneurs France accompagnement création" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                      <img src={moovjeeLogo} alt="Moovjee" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>

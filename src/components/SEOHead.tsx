@@ -10,8 +10,6 @@ interface SEOHeadProps {
   type?: string;
   noindex?: boolean;
   structuredData?: object | object[];
-  faqSchema?: Array<{ question: string; answer: string }>;
-  breadcrumbSchema?: Array<{ name: string; url: string }>;
 }
 
 const SEOHead = ({ 
@@ -21,9 +19,7 @@ const SEOHead = ({
   image = "https://lovable.dev/opengraph-image-p98pqg.png",
   type = "website",
   noindex = false,
-  structuredData,
-  faqSchema,
-  breadcrumbSchema
+  structuredData
 }: SEOHeadProps) => {
   const location = useLocation();
   const currentUrl = `https://marenostrum.tech${location.pathname}`;
@@ -78,42 +74,7 @@ const SEOHead = ({
     canonical.setAttribute('href', currentUrl);
   }, [title, description, keywords, image, type, currentUrl, noindex]);
 
-  // Build all structured data
-  const allStructuredData = [];
-  
-  if (structuredData) {
-    allStructuredData.push(...(Array.isArray(structuredData) ? structuredData : [structuredData]));
-  }
-  
-  if (faqSchema && faqSchema.length > 0) {
-    allStructuredData.push({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": faqSchema.map(faq => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer
-        }
-      }))
-    });
-  }
-  
-  if (breadcrumbSchema && breadcrumbSchema.length > 0) {
-    allStructuredData.push({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": breadcrumbSchema.map((item, index) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "name": item.name,
-        "item": item.url
-      }))
-    });
-  }
-  
-  return allStructuredData.length > 0 ? <StructuredData data={allStructuredData} /> : null;
+  return structuredData ? <StructuredData data={structuredData} /> : null;
 };
 
 export default SEOHead;
