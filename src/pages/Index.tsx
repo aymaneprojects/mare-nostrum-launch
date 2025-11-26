@@ -361,64 +361,64 @@ De l'idée à la croissance.
               <CarouselContent>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <img src={hufLogo} alt="Partenaire Mare Nostrum accompagnement entrepreneuriat Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img src={hufLogo} alt="HUF - Partenaire Mare Nostrum accompagnement entrepreneuriat Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <img src={bidayaLogo} alt="Partenaire Mare Nostrum entrepreneuriat Maroc Casablanca" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img src={bidayaLogo} alt="Bidaya - Partenaire Mare Nostrum entrepreneuriat Maroc Casablanca" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <img src={toulouseWayLogo} alt="Partenaire écosystème entrepreneurial Toulouse Occitanie" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img src={toulouseWayLogo} alt="Toulouse Way - Partenaire écosystème entrepreneurial Toulouse Occitanie" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <img src={airbusLogo} alt="Partenaire innovation entreprises Toulouse Aerospace" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img src={airbusLogo} alt="Airbus Développement - Partenaire innovation entreprises Toulouse Aerospace" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <img src={roseLabLogo} alt="Partenaire incubateur startups entreprises à impact" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img src={roseLabLogo} alt="Rose Lab - Partenaire incubateur startups entreprises à impact" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <img src={cpme31Logo} alt="Confédération PME entrepreneurs Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img src={cpme31Logo} alt="CPME 31 Haute-Garonne - Confédération PME entrepreneurs Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                    <img src={creditMutuelLogo} alt="Partenaire financement entrepreneurs PME" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img src={creditMutuelLogo} alt="Crédit Mutuel - Partenaire financement entrepreneurs PME" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.touleco.fr/" target="_blank" rel="noopener noreferrer" className="block">
                     <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                      <img src={toulecoLogo} alt="Média économique Toulouse Occitanie partenaire Mare Nostrum" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                      <img src={toulecoLogo} alt="Touleco - Média économique Toulouse Occitanie partenaire Mare Nostrum" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.imaginationsfertiles.fr/" target="_blank" rel="noopener noreferrer" className="block">
                     <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                      <img src={imaginationsFertilesLogo} alt="Partenaire créativité innovation entrepreneuriale" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                      <img src={imaginationsFertilesLogo} alt="Imaginations Fertiles - Partenaire créativité innovation entrepreneuriale" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://emergingbusinessfactory.com/" target="_blank" rel="noopener noreferrer" className="block">
                     <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                      <img src={emergingBusinessLogo} alt="Accélérateur startups scale-ups Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                      <img src={emergingBusinessLogo} alt="Emerging Business Factory - Accélérateur startups scale-ups Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.moovjee.fr/" target="_blank" rel="noopener noreferrer" className="block">
                     <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                      <img src={moovjeeLogo} alt="Mouvement jeunes entrepreneurs France accompagnement création" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                      <img src={moovjeeLogo} alt="Moovjee - Mouvement jeunes entrepreneurs France accompagnement création" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
