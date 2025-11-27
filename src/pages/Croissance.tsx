@@ -8,8 +8,6 @@ import TestimonialCard from "@/components/TestimonialCard";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
-import accompagnementEtudiant from "@/assets/accompagnement-etudiant.png";
-import atelierRose from "@/assets/atelier-rose.png";
 type LocationType = "toulouse" | "afrique";
 const Croissance = () => {
   const location = useLocation();
@@ -316,48 +314,6 @@ const Croissance = () => {
             <TestimonialCard text="Quelque chose qui était présent à chaque instant (du Programme) c'est l'échange d'expérience et d'opinion. Ce qui permettait un retour permanent, constructif et pointilleux tout ça dans la bienveillance et la bonne humeur" author="Annabel" role="Étudiante et néo-entrepreneure accompagnée" organization="2024" />
             <TestimonialCard text="Un acteur efficace, engagé et authentique, qui accompagne réellement les établissements dans leur transformation." author="Géraldine" role="Directrice d'établissement partenaire" />
             <TestimonialCard text="Être ici aux côtés de l'ensemble des porteurs de projet, pour moi, c'était important. Parce que ce sont des jeunes audacieux, persévérants, et parce qu'on a besoin d'un entrepreneuriat qui est en capacité de pouvoir changer le monde. Ils mettent leurs convictions au service de solutions. Ce sont des solutions concrètes et performantes. Faites leur confiance, aidez-les, accompagnez-les !" author="Nadia" role="Vice-présidente de la Région Occitanie" />
-          </div>
-        </div>
-      </section>
-
-      {/* Photos Ateliers Section */}
-      <section className="py-16 md:py-24 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
-            Nos ateliers en action
-          </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Découvrez nos sessions de travail collaboratives avec les entrepreneurs
-          </p>
-          
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
-              <img 
-                src={accompagnementEtudiant} 
-                alt="Session d'accompagnement avec des entrepreneurs Mare Nostrum" 
-                className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                <div className="p-6 text-primary-foreground">
-                  <h3 className="text-xl font-bold mb-2">Sessions collaboratives</h3>
-                  <p className="text-sm">Accompagnement personnalisé des entrepreneurs</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
-              <img 
-                src={atelierRose} 
-                alt="Atelier Mare Nostrum avec entrepreneurs et experts" 
-                className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-accent/90 via-accent/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                <div className="p-6 text-primary-foreground">
-                  <h3 className="text-xl font-bold mb-2">Ateliers thématiques</h3>
-                  <p className="text-sm">Workshops et masterclasses avec nos experts</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
