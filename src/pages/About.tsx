@@ -24,7 +24,6 @@ import toulecoLogo from "@/assets/partners/touleco.png";
 import imaginationsFertilesLogo from "@/assets/partners/imaginations-fertiles.png";
 import emergingBusinessLogo from "@/assets/partners/emerging-business.png";
 import moovjeeLogo from "@/assets/partners/moovjee.png";
-import accompagnementEtudiantImg from "@/assets/accompagnement-etudiant.png";
 import neoEntrepreneurEliteImg from "@/assets/neo-entrepreneur-elite.png";
 import francophonieScientiqueImg from "@/assets/francophonie-scientifique.png";
 import fresque1Img from "@/assets/fresque-1.png";
@@ -77,15 +76,6 @@ const About = () => {
                 Implantés à <strong className="text-foreground">Toulouse, Paris et Casablanca</strong>, nous agissons au cœur de la francophonie 
                 entrepreneuriale pour créer des ponts entre les territoires et accélérer l'impact des projets qui comptent.
               </p>
-            </div>
-            
-            {/* Image illustration accompagnement */}
-            <div className="mt-8 rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src={accompagnementEtudiantImg} 
-                alt="Accompagnement d'étudiants entrepreneurs par Mare Nostrum" 
-                className="w-full h-auto object-cover"
-              />
             </div>
           </div>
         </div>
