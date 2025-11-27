@@ -24,7 +24,7 @@ import toulecoLogo from "@/assets/partners/touleco.png";
 import imaginationsFertilesLogo from "@/assets/partners/imaginations-fertiles.png";
 import emergingBusinessLogo from "@/assets/partners/emerging-business.png";
 import moovjeeLogo from "@/assets/partners/moovjee.png";
-import accompagnementEtudiantImg from "@/assets/accompagnement-etudiant.png";
+import neoEntrepreneurEliteImg from "@/assets/neo-entrepreneur-elite.png";
 import francophonieScientiqueImg from "@/assets/francophonie-scientifique.png";
 import fresque1Img from "@/assets/fresque-1.png";
 import fresque2Img from "@/assets/fresque-2.png";
@@ -77,15 +77,6 @@ const About = () => {
                 entrepreneuriale pour créer des ponts entre les territoires et accélérer l'impact des projets qui comptent.
               </p>
             </div>
-            
-            {/* Image illustration accompagnement */}
-            <div className="mt-8 rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src={accompagnementEtudiantImg} 
-                alt="Accompagnement d'étudiants entrepreneurs par Mare Nostrum" 
-                className="w-full h-auto object-cover"
-              />
-            </div>
           </div>
         </div>
       </section>
@@ -130,6 +121,15 @@ const About = () => {
                 Encourager les projets qui incluent les publics vulnérables et protègent l'environnement
               </p>
             </div>
+          </div>
+          
+          {/* Image illustration mission */}
+          <div className="mt-12 max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg">
+            <img 
+              src={neoEntrepreneurEliteImg} 
+              alt="Journée avec des néo-entrepreneurs dans l'offre élite Mare Nostrum" 
+              className="w-full h-auto object-cover"
+            />
           </div>
         </div>
       </section>
