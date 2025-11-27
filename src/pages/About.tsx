@@ -26,19 +26,15 @@ import emergingBusinessLogo from "@/assets/partners/emerging-business.png";
 import moovjeeLogo from "@/assets/partners/moovjee.png";
 import neoEntrepreneurEliteImg from "@/assets/neo-entrepreneur-elite.png";
 import francophonieScientiqueImg from "@/assets/francophonie-scientifique.png";
-
 const About = () => {
-  return (
-    <div className="min-h-screen flex flex-col">
-      <SEOHead 
-        title="À propos Mare Nostrum - Cabinet Conseil Entrepreneuriat | 12 Pays Francophonie"
-        description="Société à mission fondée 2023. 24 entreprises, 17+ projets étudiants accompagnés. 135+ experts, 2000 ans expérience cumulée. Valeurs : respect, enthousiasme, fiabilité, impact. France, Afrique, Canada."
-        keywords="mare nostrum, à propos, équipe, valeurs, société à mission, toulouse, paris, casablanca, cabinet conseil, entrepreneuriat impact, francophonie, afrique, maghreb"
-        breadcrumbSchema={[
-          { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "À propos", url: "https://marenostrum.tech/a-propos" }
-        ]}
-      />
+  return <div className="min-h-screen flex flex-col">
+      <SEOHead title="À propos Mare Nostrum - Cabinet Conseil Entrepreneuriat | 12 Pays Francophonie" description="Société à mission fondée 2023. 24 entreprises, 17+ projets étudiants accompagnés. 135+ experts, 2000 ans expérience cumulée. Valeurs : respect, enthousiasme, fiabilité, impact. France, Afrique, Canada." keywords="mare nostrum, à propos, équipe, valeurs, société à mission, toulouse, paris, casablanca, cabinet conseil, entrepreneuriat impact, francophonie, afrique, maghreb" breadcrumbSchema={[{
+      name: "Accueil",
+      url: "https://marenostrum.tech/"
+    }, {
+      name: "À propos",
+      url: "https://marenostrum.tech/a-propos"
+    }]} />
       <Header />
 
       {/* Hero Section */}
@@ -122,11 +118,7 @@ const About = () => {
           
           {/* Image illustration mission */}
           <div className="mt-12 max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg">
-            <img 
-              src={neoEntrepreneurEliteImg} 
-              alt="Journée avec des néo-entrepreneurs dans l'offre élite Mare Nostrum" 
-              className="w-full h-auto object-cover"
-            />
+            
           </div>
         </div>
       </section>
@@ -278,11 +270,7 @@ const About = () => {
               Présents sur la scène internationale pour porter notre vision de l'entrepreneuriat à impact
             </p>
             <div className="rounded-xl overflow-hidden shadow-lg max-w-[50%] mx-auto">
-              <img 
-                src={francophonieScientiqueImg} 
-                alt="Alexis Janicot présent à la 5e Semaine mondiale de la Francophonie scientifique organisée par l'AUF" 
-                className="w-full h-auto object-cover"
-              />
+              <img src={francophonieScientiqueImg} alt="Alexis Janicot présent à la 5e Semaine mondiale de la Francophonie scientifique organisée par l'AUF" className="w-full h-auto object-cover" />
               <div className="bg-card p-4 border-t border-border">
                 <p className="text-sm text-muted-foreground text-center">
                   5e Semaine mondiale de la Francophonie scientifique organisée par l'AUF
@@ -303,18 +291,12 @@ const About = () => {
             Depuis 2023, Mare Nostrum accompagne entrepreneurs et établissements avec impact et excellence
           </p>
           
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            plugins={[
-              Autoplay({
-                delay: 3000,
-              }),
-            ]}
-            className="w-full max-w-6xl mx-auto mb-12"
-          >
+          <Carousel opts={{
+          align: "start",
+          loop: true
+        }} plugins={[Autoplay({
+          delay: 3000
+        })]} className="w-full max-w-6xl mx-auto mb-12">
             <CarouselContent className="-ml-4">
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-xl p-8 h-full hover:shadow-xl transition-all hover:scale-105">
@@ -460,18 +442,12 @@ const About = () => {
               et multiculturel dans 12 pays est notre force pour vous accompagner avec excellence sur tous les sujets.
             </p>
 
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              plugins={[
-                Autoplay({
-                  delay: 2500,
-                }),
-              ]}
-              className="w-full max-w-5xl mx-auto"
-            >
+            <Carousel opts={{
+            align: "start",
+            loop: true
+          }} plugins={[Autoplay({
+            delay: 2500
+          })]} className="w-full max-w-5xl mx-auto">
               <CarouselContent className="-ml-4">
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="bg-card border-2 border-primary/20 rounded-lg p-6 hover:shadow-lg transition-all">
@@ -574,18 +550,12 @@ const About = () => {
               Ils nous font confiance et contribuent à notre mission
             </p>
             
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              plugins={[
-                Autoplay({
-                  delay: 2000,
-                }),
-              ]}
-              className="w-full"
-            >
+            <Carousel opts={{
+            align: "start",
+            loop: true
+          }} plugins={[Autoplay({
+            delay: 2000
+          })]} className="w-full">
               <CarouselContent className="-ml-4">
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300">
@@ -676,8 +646,6 @@ const About = () => {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default About;
