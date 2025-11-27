@@ -8,6 +8,9 @@ import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import accompagnementEtudiant from "@/assets/accompagnement-etudiant.png";
+import fresque1Img from "@/assets/fresque-1.png";
+import fresque2Img from "@/assets/fresque-2.png";
+import fresque3Img from "@/assets/fresque-3.png";
 const Education = () => {
   const educationSchema = {
     "@context": "https://schema.org",
@@ -328,17 +331,59 @@ const Education = () => {
             Nos programmes en action dans les établissements partenaires
           </p>
           
-          <div className="max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
               <img 
                 src={accompagnementEtudiant} 
                 alt="Accompagnement étudiant au sein de Ynov Campus Toulouse dans le cadre du programme Ylook" 
-                className="w-full h-[500px] object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                <div className="p-8 text-primary-foreground">
-                  <h3 className="text-2xl font-bold mb-2">Programme Ylook - Ynov Campus Toulouse</h3>
-                  <p className="text-base">Accompagnement étudiant au sein de l'école Ynov Campus Toulouse dans le cadre du programme Ylook</p>
+                <div className="p-6 text-primary-foreground">
+                  <h3 className="text-xl font-bold mb-2">Programme Ylook - Ynov Campus Toulouse</h3>
+                  <p className="text-sm">Accompagnement étudiant au sein de l'école Ynov Campus Toulouse dans le cadre du programme Ylook</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
+              <img 
+                src={fresque1Img} 
+                alt="Fresque organisée pour 80 personnes dans un établissement" 
+                className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                <div className="p-6 text-primary-foreground">
+                  <h3 className="text-xl font-bold mb-2">Fresque collaborative</h3>
+                  <p className="text-sm">Fresque organisée pour 80 personnes dans un établissement</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
+              <img 
+                src={fresque2Img} 
+                alt="Animation de fresque collaborative par Mare Nostrum" 
+                className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                <div className="p-6 text-primary-foreground">
+                  <h3 className="text-xl font-bold mb-2">Animation de fresque</h3>
+                  <p className="text-sm">Animation de fresque collaborative par Mare Nostrum</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
+              <img 
+                src={fresque3Img} 
+                alt="Participants lors d'une fresque animée par Mare Nostrum" 
+                className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                <div className="p-6 text-primary-foreground">
+                  <h3 className="text-xl font-bold mb-2">Atelier collaboratif</h3>
+                  <p className="text-sm">Participants lors d'une fresque animée par Mare Nostrum</p>
                 </div>
               </div>
             </div>
