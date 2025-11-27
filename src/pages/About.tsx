@@ -26,9 +26,6 @@ import emergingBusinessLogo from "@/assets/partners/emerging-business.png";
 import moovjeeLogo from "@/assets/partners/moovjee.png";
 import neoEntrepreneurEliteImg from "@/assets/neo-entrepreneur-elite.png";
 import francophonieScientiqueImg from "@/assets/francophonie-scientifique.png";
-import fresque1Img from "@/assets/fresque-1.png";
-import fresque2Img from "@/assets/fresque-2.png";
-import fresque3Img from "@/assets/fresque-3.png";
 
 const About = () => {
   return (
@@ -280,7 +277,7 @@ const About = () => {
             <p className="text-center text-muted-foreground mb-8">
               Présents sur la scène internationale pour porter notre vision de l'entrepreneuriat à impact
             </p>
-            <div className="rounded-xl overflow-hidden shadow-lg">
+            <div className="rounded-xl overflow-hidden shadow-lg max-w-[50%] mx-auto">
               <img 
                 src={francophonieScientiqueImg} 
                 alt="Alexis Janicot présent à la 5e Semaine mondiale de la Francophonie scientifique organisée par l'AUF" 
@@ -659,46 +656,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Fresques Section */}
-      <section className="py-12 md:py-16 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground">
-              Nos interventions terrain
-            </h2>
-            <p className="text-center text-muted-foreground mb-8">
-              Fresques et ateliers pour sensibiliser et mobiliser les équipes
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                <img 
-                  src={fresque1Img} 
-                  alt="Fresque organisée pour 80 personnes dans un établissement" 
-                  className="w-full h-64 object-cover"
-                />
-              </div>
-              <div className="rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                <img 
-                  src={fresque2Img} 
-                  alt="Animation de fresque collaborative par Mare Nostrum" 
-                  className="w-full h-64 object-cover"
-                />
-              </div>
-              <div className="rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
-                <img 
-                  src={fresque3Img} 
-                  alt="Participants lors d'une fresque animée par Mare Nostrum" 
-                  className="w-full h-64 object-cover"
-                />
-              </div>
-            </div>
-            <p className="text-center text-sm text-muted-foreground mt-6">
-              Plus de 80 participants lors de nos fresques et ateliers collaboratifs
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-primary to-accent">
