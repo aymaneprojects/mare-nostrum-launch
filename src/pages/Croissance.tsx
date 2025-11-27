@@ -8,6 +8,7 @@ import TestimonialCard from "@/components/TestimonialCard";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
+import neoEntrepreneurEliteImg from "@/assets/neo-entrepreneur-elite.png";
 type LocationType = "toulouse" | "afrique";
 const Croissance = () => {
   const location = useLocation();
@@ -290,6 +291,15 @@ const Croissance = () => {
                 </a>
               </Button>
             </div>
+          </div>
+
+          {/* Image illustration offre élite */}
+          <div className="mt-12 max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg">
+            <img 
+              src={neoEntrepreneurEliteImg} 
+              alt="Journée avec des néo-entrepreneurs dans l'offre élite Mare Nostrum" 
+              className="w-full h-auto object-cover"
+            />
           </div>
 
           <div className="text-center mt-12">
