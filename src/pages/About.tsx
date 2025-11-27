@@ -24,6 +24,12 @@ import toulecoLogo from "@/assets/partners/touleco.png";
 import imaginationsFertilesLogo from "@/assets/partners/imaginations-fertiles.png";
 import emergingBusinessLogo from "@/assets/partners/emerging-business.png";
 import moovjeeLogo from "@/assets/partners/moovjee.png";
+import accompagnementEtudiantImg from "@/assets/accompagnement-etudiant.png";
+import neoEntrepreneurEliteImg from "@/assets/neo-entrepreneur-elite.png";
+import francophonieScientiqueImg from "@/assets/francophonie-scientifique.png";
+import fresque1Img from "@/assets/fresque-1.png";
+import fresque2Img from "@/assets/fresque-2.png";
+import fresque3Img from "@/assets/fresque-3.png";
 
 const About = () => {
   return (
@@ -72,6 +78,15 @@ const About = () => {
                 entrepreneuriale pour créer des ponts entre les territoires et accélérer l'impact des projets qui comptent.
               </p>
             </div>
+            
+            {/* Image illustration accompagnement */}
+            <div className="mt-8 rounded-xl overflow-hidden shadow-lg">
+              <img 
+                src={accompagnementEtudiantImg} 
+                alt="Accompagnement d'étudiants entrepreneurs par Mare Nostrum" 
+                className="w-full h-auto object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -116,6 +131,15 @@ const About = () => {
                 Encourager les projets qui incluent les publics vulnérables et protègent l'environnement
               </p>
             </div>
+          </div>
+          
+          {/* Image illustration mission */}
+          <div className="mt-12 max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg">
+            <img 
+              src={neoEntrepreneurEliteImg} 
+              alt="Journée avec des néo-entrepreneurs dans l'offre élite Mare Nostrum" 
+              className="w-full h-auto object-cover"
+            />
           </div>
         </div>
       </section>
@@ -253,6 +277,30 @@ const About = () => {
               </Avatar>
               <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">Diane Moulins</h3>
               <p className="text-sm md:text-base text-muted-foreground">Chef de projet Nitéo</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Rayonnement Section */}
+      <section className="py-12 md:py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-foreground">Notre rayonnement</h2>
+            <p className="text-center text-muted-foreground mb-8">
+              Présents sur la scène internationale pour porter notre vision de l'entrepreneuriat à impact
+            </p>
+            <div className="rounded-xl overflow-hidden shadow-lg">
+              <img 
+                src={francophonieScientiqueImg} 
+                alt="Alexis Janicot présent à la 5e Semaine mondiale de la Francophonie scientifique organisée par l'AUF" 
+                className="w-full h-auto object-cover"
+              />
+              <div className="bg-card p-4 border-t border-border">
+                <p className="text-sm text-muted-foreground text-center">
+                  5e Semaine mondiale de la Francophonie scientifique organisée par l'AUF
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -617,6 +665,47 @@ const About = () => {
                 </CarouselItem>
               </CarouselContent>
             </Carousel>
+          </div>
+        </div>
+      </section>
+
+      {/* Fresques Section */}
+      <section className="py-12 md:py-16 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground">
+              Nos interventions terrain
+            </h2>
+            <p className="text-center text-muted-foreground mb-8">
+              Fresques et ateliers pour sensibiliser et mobiliser les équipes
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+                <img 
+                  src={fresque1Img} 
+                  alt="Fresque organisée pour 80 personnes dans un établissement" 
+                  className="w-full h-64 object-cover"
+                />
+              </div>
+              <div className="rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+                <img 
+                  src={fresque2Img} 
+                  alt="Animation de fresque collaborative par Mare Nostrum" 
+                  className="w-full h-64 object-cover"
+                />
+              </div>
+              <div className="rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+                <img 
+                  src={fresque3Img} 
+                  alt="Participants lors d'une fresque animée par Mare Nostrum" 
+                  className="w-full h-64 object-cover"
+                />
+              </div>
+            </div>
+            <p className="text-center text-sm text-muted-foreground mt-6">
+              Plus de 80 participants lors de nos fresques et ateliers collaboratifs
+            </p>
           </div>
         </div>
       </section>
