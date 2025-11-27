@@ -10,6 +10,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import accompagnementEtudiant from "@/assets/accompagnement-etudiant.png";
 import atelierRose from "@/assets/atelier-rose.png";
+import neoEntrepreneurElite from "@/assets/neo-entrepreneur-elite.png";
 type LocationType = "toulouse" | "afrique";
 const Croissance = () => {
   const location = useLocation();
@@ -324,13 +325,13 @@ const Croissance = () => {
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
-            Nos ateliers en action
+            Exemples de nos actions
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
             Découvrez nos sessions de travail collaboratives avec les entrepreneurs
           </p>
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
               <img 
                 src={accompagnementEtudiant} 
@@ -355,6 +356,20 @@ const Croissance = () => {
                 <div className="p-6 text-primary-foreground">
                   <h3 className="text-xl font-bold mb-2">Ateliers thématiques</h3>
                   <p className="text-sm">Workshops et masterclasses avec nos experts</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
+              <img 
+                src={neoEntrepreneurElite} 
+                alt="Journée avec des néo-entrepreneurs dans l'offre élite Mare Nostrum" 
+                className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                <div className="p-6 text-primary-foreground">
+                  <h3 className="text-xl font-bold mb-2">Offre Élite</h3>
+                  <p className="text-sm">Accompagnement premium avec nos néo-entrepreneurs</p>
                 </div>
               </div>
             </div>
