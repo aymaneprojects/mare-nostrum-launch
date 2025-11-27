@@ -7,6 +7,7 @@ import TestimonialCard from "@/components/TestimonialCard";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
+import accompagnementEtudiant from "@/assets/accompagnement-etudiant.png";
 const Education = () => {
   const educationSchema = {
     "@context": "https://schema.org",
@@ -317,8 +318,36 @@ const Education = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Exemples de nos actions Section */}
       <section className="py-16 md:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+            Exemples de nos actions
+          </h2>
+          <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+            Nos programmes en action dans les établissements partenaires
+          </p>
+          
+          <div className="max-w-4xl mx-auto">
+            <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
+              <img 
+                src={accompagnementEtudiant} 
+                alt="Accompagnement étudiant au sein de Ynov Campus Toulouse dans le cadre du programme Ylook" 
+                className="w-full h-[500px] object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                <div className="p-8 text-primary-foreground">
+                  <h3 className="text-2xl font-bold mb-2">Programme Ylook - Ynov Campus Toulouse</h3>
+                  <p className="text-base">Accompagnement étudiant au sein de l'école Ynov Campus Toulouse dans le cadre du programme Ylook</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
             Ils nous font confiance

@@ -8,7 +8,6 @@ import TestimonialCard from "@/components/TestimonialCard";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
-import accompagnementEtudiant from "@/assets/accompagnement-etudiant.png";
 import atelierRose from "@/assets/atelier-rose.png";
 import neoEntrepreneurElite from "@/assets/neo-entrepreneur-elite.png";
 type LocationType = "toulouse" | "afrique";
@@ -331,21 +330,7 @@ const Croissance = () => {
             Découvrez nos sessions de travail collaboratives avec les entrepreneurs
           </p>
           
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
-              <img 
-                src={accompagnementEtudiant} 
-                alt="Session d'accompagnement avec des entrepreneurs Mare Nostrum" 
-                className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                <div className="p-6 text-primary-foreground">
-                  <h3 className="text-xl font-bold mb-2">Sessions collaboratives</h3>
-                  <p className="text-sm">Accompagnement personnalisé des entrepreneurs</p>
-                </div>
-              </div>
-            </div>
-
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
               <img 
                 src={atelierRose} 
