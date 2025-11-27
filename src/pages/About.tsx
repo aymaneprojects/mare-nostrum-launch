@@ -25,7 +25,6 @@ import imaginationsFertilesLogo from "@/assets/partners/imaginations-fertiles.pn
 import emergingBusinessLogo from "@/assets/partners/emerging-business.png";
 import moovjeeLogo from "@/assets/partners/moovjee.png";
 import accompagnementEtudiantImg from "@/assets/accompagnement-etudiant.png";
-import neoEntrepreneurEliteImg from "@/assets/neo-entrepreneur-elite.png";
 import francophonieScientiqueImg from "@/assets/francophonie-scientifique.png";
 import fresque1Img from "@/assets/fresque-1.png";
 import fresque2Img from "@/assets/fresque-2.png";
@@ -131,15 +130,6 @@ const About = () => {
                 Encourager les projets qui incluent les publics vulnérables et protègent l'environnement
               </p>
             </div>
-          </div>
-          
-          {/* Image illustration mission */}
-          <div className="mt-12 max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg">
-            <img 
-              src={neoEntrepreneurEliteImg} 
-              alt="Journée avec des néo-entrepreneurs dans l'offre élite Mare Nostrum" 
-              className="w-full h-auto object-cover"
-            />
           </div>
         </div>
       </section>
