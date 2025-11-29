@@ -12,31 +12,117 @@ import fresque1Img from "@/assets/fresque-1.png";
 import fresque2Img from "@/assets/fresque-2.png";
 import fresque3Img from "@/assets/fresque-3.png";
 const Education = () => {
-  const educationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Mare Nostrum Éducation",
-    "description": "Programmes d'éducation entrepreneuriale pour établissements : ateliers, fresques, cours, hackathons et programmes premium",
-    "provider": {
-      "@type": "Organization",
-      "name": "Mare Nostrum"
+  const educationSchema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "Programme Mare Nostrum Éducation",
+      "description": "Formation entrepreneuriale complète pour écoles et universités : ateliers participatifs, fresques collaboratives, hackathons et accompagnement premium. Programme éprouvé avec 17+ projets étudiants accompagnés.",
+      "provider": {
+        "@type": "Organization",
+        "name": "Mare Nostrum",
+        "sameAs": "https://marenostrum.tech",
+        "address": [
+          {
+            "@type": "PostalAddress",
+            "addressLocality": "Toulouse",
+            "addressCountry": "FR"
+          },
+          {
+            "@type": "PostalAddress",
+            "addressLocality": "Paris",
+            "addressCountry": "FR"
+          },
+          {
+            "@type": "PostalAddress",
+            "addressLocality": "Casablanca",
+            "addressCountry": "MA"
+          }
+        ]
+      },
+      "educationalLevel": "Higher Education",
+      "teaches": [
+        "Entrepreneuriat à impact",
+        "Innovation sociale",
+        "Business model canvas",
+        "Pitch entrepreneurial",
+        "Créativité et design thinking",
+        "Gestion de projet entrepreneurial",
+        "Intelligence collective"
+      ],
+      "coursePrerequisites": "Aucun prérequis - tous niveaux",
+      "numberOfCredits": "Variable selon programme",
+      "hasCourseInstance": [
+        {
+          "@type": "CourseInstance",
+          "name": "La Fresque de l'esprit d'entreprendre",
+          "description": "Atelier collaboratif de 3h pour découvrir l'entrepreneuriat de manière ludique",
+          "courseMode": "Blended",
+          "duration": "PT3H"
+        },
+        {
+          "@type": "CourseInstance",
+          "name": "L'Atelier des Alliés",
+          "description": "Session d'intelligence collective pour développer la créativité entrepreneuriale",
+          "courseMode": "Blended",
+          "duration": "P1D"
+        },
+        {
+          "@type": "CourseInstance",
+          "name": "Hackathons & Challenges",
+          "description": "Événements intensifs sur 1 à 3 jours pour stimuler l'innovation",
+          "courseMode": "On-site",
+          "duration": "P3D"
+        },
+        {
+          "@type": "CourseInstance",
+          "name": "Programme Premium Néo-Entrepreneurs",
+          "description": "Accompagnement complet sur plusieurs mois",
+          "courseMode": "Blended",
+          "duration": "P6M"
+        }
+      ],
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "student",
+        "audienceType": "Étudiants écoles de commerce, universités, écoles d'ingénieurs"
+      }
     },
-    "serviceType": "Éducation Entrepreneuriale",
-    "areaServed": ["FR", "MA"],
-    "offers": [{
-      "@type": "Offer",
-      "name": "La Fresque de l'esprit d'entreprendre",
-      "description": "Atelier collaboratif de 3h pour découvrir l'entrepreneuriat"
-    }, {
-      "@type": "Offer",
-      "name": "L'Atelier des Alliés",
-      "description": "Session d'intelligence collective pour développer la créativité entrepreneuriale"
-    }, {
-      "@type": "Offer",
-      "name": "Programme Premium Néo-Entrepreneurs",
-      "description": "Accompagnement complet sur plusieurs mois"
-    }]
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Mare Nostrum Éducation",
+      "description": "Programmes d'éducation entrepreneuriale pour établissements : ateliers, fresques, cours, hackathons et programmes premium",
+      "provider": {
+        "@type": "Organization",
+        "name": "Mare Nostrum"
+      },
+      "serviceType": "Éducation Entrepreneuriale",
+      "areaServed": [
+        { "@type": "Country", "name": "France" },
+        { "@type": "Country", "name": "Maroc" },
+        { "@type": "City", "name": "Toulouse" },
+        { "@type": "City", "name": "Paris" },
+        { "@type": "City", "name": "Casablanca" }
+      ],
+      "offers": [{
+        "@type": "Offer",
+        "name": "La Fresque de l'esprit d'entreprendre",
+        "description": "Atelier collaboratif de 3h pour découvrir l'entrepreneuriat",
+        "availability": "https://schema.org/InStock"
+      }, {
+        "@type": "Offer",
+        "name": "L'Atelier des Alliés",
+        "description": "Session d'intelligence collective pour développer la créativité entrepreneuriale",
+        "availability": "https://schema.org/InStock"
+      }, {
+        "@type": "Offer",
+        "name": "Programme Premium Néo-Entrepreneurs",
+        "description": "Accompagnement complet sur plusieurs mois",
+        "availability": "https://schema.org/InStock"
+      }]
+    }
+  ];
   const educationFaqs = [{
     question: "Quels types d'établissements accompagnez-vous ?",
     answer: "Nous accompagnons tous types d'établissements : écoles de commerce, universités, écoles d'ingénieurs, lycées, organismes de formation et centres d'apprentissage. Nos programmes s'adaptent à votre public et vos objectifs pédagogiques."

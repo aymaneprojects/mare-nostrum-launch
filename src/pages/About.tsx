@@ -28,13 +28,96 @@ import neoEntrepreneurEliteImg from "@/assets/neo-entrepreneur-elite.png";
 import francophonieScientiqueImg from "@/assets/francophonie-scientifique.png";
 const About = () => {
   return <div className="min-h-screen flex flex-col">
-      <SEOHead title="À propos Mare Nostrum - Cabinet Conseil Entrepreneuriat | 12 Pays Francophonie" description="Société à mission fondée 2023. 24 entreprises, 17+ projets étudiants accompagnés. 135+ experts, 2000 ans expérience cumulée. Valeurs : respect, enthousiasme, fiabilité, impact. France, Afrique, Canada." keywords="mare nostrum, à propos, équipe, valeurs, société à mission, toulouse, paris, casablanca, cabinet conseil, entrepreneuriat impact, francophonie, afrique, maghreb" breadcrumbSchema={[{
-      name: "Accueil",
-      url: "https://marenostrum.tech/"
-    }, {
-      name: "À propos",
-      url: "https://marenostrum.tech/a-propos"
-    }]} />
+      <SEOHead 
+        title="À propos Mare Nostrum - Cabinet Conseil Entrepreneuriat | 12 Pays Francophonie" 
+        description="Société à mission fondée 2023. 24 entreprises, 17+ projets étudiants accompagnés. 135+ experts, 2000 ans expérience cumulée. Valeurs : respect, enthousiasme, fiabilité, impact. France, Afrique, Canada." 
+        keywords="mare nostrum, à propos, équipe, valeurs, société à mission, toulouse, paris, casablanca, cabinet conseil, entrepreneuriat impact, francophonie, afrique, maghreb" 
+        breadcrumbSchema={[
+          { name: "Accueil", url: "https://marenostrum.tech/" }, 
+          { name: "À propos", url: "https://marenostrum.tech/a-propos" }
+        ]}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Mare Nostrum",
+          "foundingDate": "2023",
+          "description": "Société à mission, cabinet conseil entrepreneuriat à impact. 24 entreprises accompagnées, 135+ experts dans 12 pays francophonie.",
+          "url": "https://marenostrum.tech",
+          "logo": "https://marenostrum.tech/logo.png",
+          "address": [
+            {
+              "@type": "PostalAddress",
+              "addressLocality": "Toulouse",
+              "addressRegion": "Occitanie",
+              "addressCountry": "FR"
+            },
+            {
+              "@type": "PostalAddress",
+              "addressLocality": "Paris",
+              "addressCountry": "FR"
+            },
+            {
+              "@type": "PostalAddress",
+              "addressLocality": "Casablanca",
+              "addressCountry": "MA"
+            }
+          ],
+          "founders": [
+            {
+              "@type": "Person",
+              "name": "Alexis Janicot",
+              "jobTitle": "Fondateur et Dirigeant"
+            },
+            {
+              "@type": "Person",
+              "name": "Aymane Abdennour",
+              "jobTitle": "Chef de projet et Ingénieur économique"
+            }
+          ],
+          "employee": [
+            {
+              "@type": "Person",
+              "name": "Roméo Masip",
+              "jobTitle": "Commercial Junior"
+            },
+            {
+              "@type": "Person",
+              "name": "Khalid Ezzemani",
+              "jobTitle": "Co-Fondateur",
+              "workLocation": "Casablanca"
+            },
+            {
+              "@type": "Person",
+              "name": "Alain Janicot",
+              "jobTitle": "Co-Fondateur",
+              "workLocation": "Paris"
+            },
+            {
+              "@type": "Person",
+              "name": "Frédérique Bertelet",
+              "jobTitle": "Ingénieur pédagogique"
+            },
+            {
+              "@type": "Person",
+              "name": "Diane Moulins",
+              "jobTitle": "Chef de projet Nitéo"
+            }
+          ],
+          "knowsAbout": [
+            "Entrepreneuriat à impact",
+            "Innovation sociale",
+            "Éducation entrepreneuriale",
+            "Accompagnement croissance startup",
+            "Entreprise à mission",
+            "Développement Afrique francophone"
+          ],
+          "slogan": "Sécurisons la trajectoire et l'impact des néo-entrepreneurs",
+          "numberOfEmployees": {
+            "@type": "QuantitativeValue",
+            "value": "7"
+          }
+        }}
+      />
       <Header />
 
       {/* Hero Section */}
