@@ -18,32 +18,119 @@ const Croissance = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Mare Nostrum Croissance - Club Entrepreneur Francophone International",
-    "description": "Accompagnement d'entrepreneurs à impact pour sécuriser leur passage à l'échelle",
+    "description": "Club international d'accompagnement entrepreneurs à impact. 24 entreprises accompagnées, 93% accélération décisions, 135+ experts, 2000 ans expérience cumulée, 12 pays. Toulouse, Paris, Casablanca.",
     "provider": {
       "@type": "Organization",
-      "name": "Mare Nostrum"
+      "name": "Mare Nostrum",
+      "sameAs": "https://marenostrum.tech",
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Toulouse",
+          "addressRegion": "Occitanie",
+          "addressCountry": "FR"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Paris",
+          "addressCountry": "FR"
+        },
+        {
+          "@type": "PostalAddress",
+          "addressLocality": "Casablanca",
+          "addressCountry": "MA"
+        }
+      ]
     },
     "serviceType": "Accompagnement Entrepreneurial",
-    "areaServed": ["FR", "MA", "TN"],
-    "offers": [{
-      "@type": "Offer",
-      "name": "Offre Tremplin",
-      "description": "Session individuelle pour clarifier votre trajectoire",
-      "price": "250",
-      "priceCurrency": "EUR"
-    }, {
-      "@type": "Offer",
-      "name": "Offre Ascension",
-      "description": "Accompagnement mensuel sur 6 mois",
-      "price": "1200",
-      "priceCurrency": "EUR"
-    }, {
-      "@type": "Offer",
-      "name": "Offre ÉLITE",
-      "description": "Accompagnement premium intensif sur 12 mois",
-      "price": "2500",
-      "priceCurrency": "EUR"
-    }]
+    "category": "Conseil en Entrepreneuriat à Impact",
+    "areaServed": [
+      { "@type": "Country", "name": "France" },
+      { "@type": "Country", "name": "Maroc" },
+      { "@type": "Country", "name": "Tunisie" },
+      { "@type": "Country", "name": "Algérie" },
+      { "@type": "Country", "name": "Sénégal" },
+      { "@type": "Country", "name": "Côte d'Ivoire" },
+      { "@type": "Country", "name": "Bénin" },
+      { "@type": "Country", "name": "Cameroun" },
+      { "@type": "Country", "name": "Burkina Faso" },
+      { "@type": "Country", "name": "République démocratique du Congo" },
+      { "@type": "Country", "name": "Égypte" },
+      { "@type": "Country", "name": "Canada" },
+      { "@type": "City", "name": "Toulouse" },
+      { "@type": "City", "name": "Paris" },
+      { "@type": "City", "name": "Casablanca" }
+    ],
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Entrepreneurs à impact, Startups, Entreprises sociales, Porteurs de projets innovants"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Offres Mare Nostrum Croissance",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Offre Tremplin",
+            "description": "Accès au club international d'entrepreneurs francophones. Détection d'opportunités business et financement. Café galère pour résoudre vos problèmes.",
+            "category": "Offre d'entrée"
+          },
+          "price": "30",
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "30.00",
+            "priceCurrency": "EUR",
+            "unitText": "MONTH"
+          },
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Offre Ascension",
+            "description": "Tout de Tremplin + Visibilité projet + Génération IA de livrables + Masterclass mensuelles.",
+            "category": "Offre recommandée"
+          },
+          "price": "100",
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "100.00",
+            "priceCurrency": "EUR",
+            "unitText": "MONTH"
+          },
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Offre ÉLITE",
+            "description": "Tout d'Ascension + 6 journées business développement + Accès plateforme formation + Priorité 1 sur demandes.",
+            "category": "Offre premium"
+          },
+          "price": "190",
+          "priceCurrency": "EUR",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "190.00",
+            "priceCurrency": "EUR",
+            "unitText": "MONTH"
+          },
+          "availability": "https://schema.org/InStock"
+        }
+      ]
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.5",
+      "bestRating": "5",
+      "ratingCount": "24"
+    }
   };
   const croissanceFaqs = [{
     question: "Qui peut rejoindre Mare Nostrum Croissance ?",
