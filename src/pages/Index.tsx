@@ -194,8 +194,8 @@ const Index = () => {
 
   return <div className="min-h-screen flex flex-col">
       <SEOHead 
-        title="Mare Nostrum - Conseil Entrepreneuriat à Impact | 12 Pays - France, Afrique, Canada" 
-        description="Cabinet conseil entrepreneuriat à impact dans 12 pays. 24 entreprises, 17+ projets étudiants accompagnés. 2000 ans expérience cumulée. 135+ experts. Toulouse, Paris, Casablanca, Dakar. +80% satisfaction." 
+        title="Mare Nostrum | Conseil Entrepreneuriat à Impact" 
+        description="Expert en entrepreneuriat à impact depuis 2023. Accompagnement personnalisé pour écoles et entrepreneurs à Toulouse, Paris, Casablanca. 95% satisfaction." 
         keywords="entrepreneuriat à impact, conseil entrepreneurial, éducation entrepreneuriale, Toulouse, Paris, Casablanca, francophonie, Afrique, Maghreb, entreprise à mission, formation entrepreneuriat, Sénégal, Cameroun, Côte d'Ivoire" 
         structuredData={homePageSchema}
         faqSchema={faqs}
