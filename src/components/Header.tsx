@@ -28,6 +28,9 @@ const Header = () => {
     to: "/engagement-rse",
     label: "Engagement RSE"
   }, {
+    to: "/blog",
+    label: "Blog"
+  }, {
     to: "/a-propos",
     label: "À propos"
   }, {
