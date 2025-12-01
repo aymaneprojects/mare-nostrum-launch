@@ -1,5 +1,4 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import StructuredData from "./StructuredData";
 
 interface FAQ {
   question: string;
@@ -12,22 +11,11 @@ interface FAQSectionProps {
 }
 
 const FAQSection = ({ title = "Questions fréquentes", faqs }: FAQSectionProps) => {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
+  // Note: Le schéma FAQ est maintenant géré uniquement par SEOHead
+  // pour éviter les doublons détectés par Google Search Console
 
   return (
     <section className="py-16 md:py-24 bg-secondary/30">
-      <StructuredData data={faqSchema} />
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
           {title}
