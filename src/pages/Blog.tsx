@@ -21,40 +21,117 @@ interface BlogArticle {
   image?: string;
 }
 
-// Articles de démonstration (à remplacer par les données Strapi)
+// Articles sur l'entrepreneuriat étudiant
 const placeholderArticles: BlogArticle[] = [
   {
     id: "1",
-    title: "Les clés de la croissance entrepreneuriale en 2025",
-    excerpt: "Découvrez les stratégies essentielles pour développer votre entreprise dans un monde en constante évolution.",
+    title: "Comment créer son entreprise en étant étudiant",
+    excerpt: "Guide complet pour lancer votre projet entrepreneurial pendant vos études : démarches, aides financières et gestion du temps.",
     content: "",
     author: "Mare Nostrum",
-    publishedAt: "2025-01-15",
-    category: "Croissance",
-    slug: "cles-croissance-entrepreneuriale-2025",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80"
-  },
-  {
-    id: "2",
-    title: "L'impact de l'éducation entrepreneuriale",
-    excerpt: "Comment former la nouvelle génération d'entrepreneurs à impact positif.",
-    content: "",
-    author: "Mare Nostrum",
-    publishedAt: "2025-01-10",
-    category: "Éducation",
-    slug: "impact-education-entrepreneuriale",
+    publishedAt: "2025-01-20",
+    category: "Entrepreneuriat Étudiant",
+    slug: "creer-entreprise-etudiant",
     image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80"
   },
   {
+    id: "2",
+    title: "Les statuts juridiques adaptés aux étudiants entrepreneurs",
+    excerpt: "Micro-entreprise, SASU, association : quel statut choisir quand on est étudiant ? Comparatif et conseils pratiques.",
+    content: "",
+    author: "Mare Nostrum",
+    publishedAt: "2025-01-18",
+    category: "Entrepreneuriat Étudiant",
+    slug: "statuts-juridiques-etudiants",
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80"
+  },
+  {
     id: "3",
-    title: "RSE et performance : une alliance gagnante",
-    excerpt: "Pourquoi l'engagement RSE renforce la compétitivité des entreprises.",
+    title: "Financer son projet étudiant : aides et concours",
+    excerpt: "Découvrez les dispositifs de financement pour étudiants entrepreneurs : PÉPITE, concours, bourses et subventions disponibles.",
+    content: "",
+    author: "Mare Nostrum",
+    publishedAt: "2025-01-15",
+    category: "Financement",
+    slug: "financer-projet-etudiant",
+    image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80"
+  },
+  {
+    id: "4",
+    title: "Concilier études et entrepreneuriat : nos meilleurs conseils",
+    excerpt: "Comment gérer son temps efficacement entre cours, examens et développement de son entreprise. Témoignages et stratégies.",
+    content: "",
+    author: "Mare Nostrum",
+    publishedAt: "2025-01-12",
+    category: "Entrepreneuriat Étudiant",
+    slug: "concilier-etudes-entrepreneuriat",
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80"
+  },
+  {
+    id: "5",
+    title: "Le statut national étudiant-entrepreneur expliqué",
+    excerpt: "Tout savoir sur le SNEE : avantages, démarches d'inscription, accompagnement et témoignages d'étudiants bénéficiaires.",
+    content: "",
+    author: "Mare Nostrum",
+    publishedAt: "2025-01-10",
+    category: "Entrepreneuriat Étudiant",
+    slug: "statut-etudiant-entrepreneur",
+    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80"
+  },
+  {
+    id: "6",
+    title: "Réussir son pitch devant des investisseurs étudiants",
+    excerpt: "Les clés pour convaincre en 3 minutes : structurer son discours, éviter les pièges et captiver son audience lors de concours.",
+    content: "",
+    author: "Mare Nostrum",
+    publishedAt: "2025-01-08",
+    category: "Communication",
+    slug: "reussir-pitch-investisseurs",
+    image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80"
+  },
+  {
+    id: "7",
+    title: "Trouver ses premiers clients quand on est étudiant",
+    excerpt: "Stratégies marketing low-cost et efficaces pour acquérir vos premiers clients : réseaux sociaux, campus et réseau alumni.",
     content: "",
     author: "Mare Nostrum",
     publishedAt: "2025-01-05",
-    category: "RSE",
-    slug: "rse-performance-alliance-gagnante",
+    category: "Marketing",
+    slug: "premiers-clients-etudiant",
+    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80"
+  },
+  {
+    id: "8",
+    title: "L'entrepreneuriat à impact : créer une entreprise qui a du sens",
+    excerpt: "Comment construire un projet entrepreneurial aligné avec vos valeurs et créer un impact social ou environnemental positif.",
+    content: "",
+    author: "Mare Nostrum",
+    publishedAt: "2025-01-02",
+    category: "Impact",
+    slug: "entrepreneuriat-impact-etudiants",
     image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80"
+  },
+  {
+    id: "9",
+    title: "S'entourer des bonnes personnes pour réussir",
+    excerpt: "L'importance du réseau entrepreneurial étudiant : mentors, co-fondateurs, communautés et associations à rejoindre.",
+    content: "",
+    author: "Mare Nostrum",
+    publishedAt: "2024-12-28",
+    category: "Réseau",
+    slug: "s-entourer-reseau-entrepreneurial",
+    image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80"
+  },
+  {
+    id: "10",
+    title: "Transformer son projet de fin d'études en entreprise",
+    excerpt: "Du mémoire à la startup : comment valoriser votre travail académique et le transformer en projet entrepreneurial viable.",
+    content: "",
+    author: "Mare Nostrum",
+    publishedAt: "2024-12-25",
+    category: "Entrepreneuriat Étudiant",
+    slug: "projet-etudes-en-entreprise",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80"
   }
 ];
 
