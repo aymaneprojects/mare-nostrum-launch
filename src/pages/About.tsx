@@ -13,6 +13,7 @@ import romeoMasipImg from "@/assets/team/romeo-masip.png";
 import khalidEzzemaniImg from "@/assets/team/khalid-ezzemani.png";
 import frederiqueBerteletImg from "@/assets/team/frederique-bertelet.png";
 import dianeMoulinsImg from "@/assets/team/diane-moulins.png";
+import alainJanicotImg from "@/assets/team/alain-janicot.png";
 import hufLogo from "@/assets/partners/huf.png";
 import bidayaLogo from "@/assets/partners/bidaya.png";
 import toulouseWayLogo from "@/assets/partners/toulouse-way.png";
@@ -317,6 +318,7 @@ const About = () => {
 
             <div className="bg-card border border-border rounded-xl p-5 text-center hover:shadow-lg transition-shadow">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
+                <AvatarImage src={alainJanicotImg} alt="Alain Janicot" />
                 <AvatarFallback className="text-2xl">AJ</AvatarFallback>
               </Avatar>
               <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">Alain Janicot</h3>
