@@ -123,32 +123,39 @@ const BlogArticle = () => {
             {/* Contenu Markdown simplifié */}
             <article className="prose prose-lg max-w-none dark:prose-invert">
               {article.content.split('\n').map((line, index) => {
+                // Fonction pour parser le texte avec gras inline
+                const parseInlineBold = (text: string) => {
+                  const parts = text.split(/\*\*(.*?)\*\*/g);
+                  return parts.map((part, i) => {
+                    if (i % 2 === 1) {
+                      return <strong key={i} className="font-semibold text-foreground">{part}</strong>;
+                    }
+                    return part;
+                  });
+                };
+
                 // Headers
                 if (line.startsWith('## ')) {
-                  return <h2 key={index} className="text-2xl font-bold text-foreground mt-8 mb-4">{line.replace('## ', '')}</h2>;
+                  return <h2 key={index} className="text-2xl font-bold text-foreground mt-8 mb-4">{parseInlineBold(line.replace('## ', ''))}</h2>;
                 }
                 if (line.startsWith('### ')) {
-                  return <h3 key={index} className="text-xl font-bold text-foreground mt-6 mb-3">{line.replace('### ', '')}</h3>;
-                }
-                // Bold text with **
-                if (line.startsWith('**') && line.endsWith('**')) {
-                  return <p key={index} className="font-semibold text-foreground my-2">{line.replace(/\*\*/g, '')}</p>;
+                  return <h3 key={index} className="text-xl font-bold text-foreground mt-6 mb-3">{parseInlineBold(line.replace('### ', ''))}</h3>;
                 }
                 // List items
                 if (line.startsWith('- ')) {
-                  return <li key={index} className="text-muted-foreground ml-4 my-1">{line.replace('- ', '')}</li>;
+                  return <li key={index} className="text-muted-foreground ml-4 my-1">{parseInlineBold(line.replace('- ', ''))}</li>;
                 }
                 // Numbered list
                 if (/^\d+\.\s/.test(line)) {
-                  return <li key={index} className="text-muted-foreground ml-4 my-1 list-decimal">{line.replace(/^\d+\.\s/, '')}</li>;
+                  return <li key={index} className="text-muted-foreground ml-4 my-1 list-decimal">{parseInlineBold(line.replace(/^\d+\.\s/, ''))}</li>;
                 }
                 // Quote
                 if (line.startsWith('> ')) {
-                  return <blockquote key={index} className="border-l-4 border-primary pl-4 italic text-muted-foreground my-4">{line.replace('> ', '')}</blockquote>;
+                  return <blockquote key={index} className="border-l-4 border-primary pl-4 italic text-muted-foreground my-4">{parseInlineBold(line.replace('> ', ''))}</blockquote>;
                 }
                 // Regular paragraph
                 if (line.trim()) {
-                  return <p key={index} className="text-muted-foreground my-4 leading-relaxed">{line}</p>;
+                  return <p key={index} className="text-muted-foreground my-4 leading-relaxed">{parseInlineBold(line)}</p>;
                 }
                 return null;
               })}
