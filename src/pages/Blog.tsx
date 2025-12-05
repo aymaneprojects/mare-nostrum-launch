@@ -21,12 +21,12 @@ export interface BlogArticle {
   image: string;
 }
 
-// Articles sur l'entrepreneuriat étudiant
+// Articles sur l'entrepreneuriat
 export const blogArticles: BlogArticle[] = [
   {
     id: "1",
-    title: "Comment créer son entreprise quand on est étudiant ?",
-    excerpt: "Guide complet pour lancer votre première entreprise tout en poursuivant vos études. Découvrez les étapes clés, les aides disponibles et les erreurs à éviter.",
+    title: "Comment créer son entreprise : le guide complet",
+    excerpt: "Guide complet pour lancer votre première entreprise. Découvrez les étapes clés, les aides disponibles et les erreurs à éviter pour réussir votre projet entrepreneurial.",
     content: `
 ## Introduction : L'entrepreneuriat étudiant, une aventure transformatrice
 
@@ -176,7 +176,7 @@ Chez Mare Nostrum, nous accompagnons les étudiants-entrepreneurs à chaque éta
   },
   {
     id: "2",
-    title: "Quel statut juridique choisir pour son projet étudiant ?",
+    title: "Quel statut juridique choisir pour son projet entrepreneurial ?",
     excerpt: "Micro-entreprise, SASU, SAS... Comprendre les différents statuts juridiques pour faire le bon choix selon votre projet et votre situation.",
     content: `
 ## Le choix du statut juridique : une décision stratégique fondamentale
@@ -397,8 +397,8 @@ Chez Mare Nostrum, nous accompagnons les étudiants-entrepreneurs dans toutes ce
   },
   {
     id: "3",
-    title: "Les 10 erreurs fatales de l'entrepreneur étudiant",
-    excerpt: "Évitez les pièges classiques qui font échouer de nombreux projets étudiants. Retours d'expérience et conseils pratiques pour réussir.",
+    title: "Les 10 erreurs fatales de l'entrepreneur débutant",
+    excerpt: "Évitez les pièges classiques qui font échouer de nombreux projets entrepreneuriaux. Retours d'expérience et conseils pratiques pour réussir.",
     content: `
 ## Introduction : Apprendre des erreurs des autres pour mieux réussir
 
@@ -648,7 +648,7 @@ N'attendez pas de tout maîtriser pour vous lancer. L'entrepreneuriat s'apprend 
   },
   {
     id: "4",
-    title: "Financer son projet étudiant : toutes les aides disponibles",
+    title: "Financer son projet entrepreneurial : toutes les aides disponibles",
     excerpt: "De la bourse French Tech aux concours en passant par les prêts d'honneur, découvrez toutes les sources de financement pour votre projet.",
     content: `
 ## Introduction : Le financement, nerf de la guerre entrepreneuriale
@@ -982,8 +982,8 @@ N'attendez pas d'avoir tout l'argent nécessaire pour vous lancer. Commencez ave
   },
   {
     id: "5",
-    title: "Business plan étudiant : modèle et conseils",
-    excerpt: "Comment rédiger un business plan convaincant quand on débute ? Structure, conseils et modèle téléchargeable pour votre projet étudiant.",
+    title: "Business plan : modèle et conseils pour entrepreneurs",
+    excerpt: "Comment rédiger un business plan convaincant quand on débute ? Structure, conseils et modèle téléchargeable pour votre projet entrepreneurial.",
     content: `
 ## Introduction : Pourquoi le business plan reste indispensable
 
@@ -1331,8 +1331,8 @@ Chez Mare Nostrum, nous accompagnons les étudiants-entrepreneurs dans la rédac
   },
   {
     id: "6",
-    title: "Concilier études et entrepreneuriat : conseils pratiques",
-    excerpt: "Comment gérer son temps entre cours, examens et projet entrepreneurial ? Méthodes et outils pour réussir sur les deux fronts.",
+    title: "Concilier vie personnelle et entrepreneuriat : conseils pratiques",
+    excerpt: "Comment gérer son temps entre obligations quotidiennes et projet entrepreneurial ? Méthodes et outils pour réussir sur les deux fronts.",
     content: `
 ## Introduction : Le défi du double engagement
 
@@ -1800,7 +1800,7 @@ Un bon pitch ne s'improvise pas. Plus vous pratiquez, plus vous serez à l'aise.
   },
   {
     id: "8",
-    title: "Trouver son premier client quand on est étudiant",
+    title: "Trouver son premier client : stratégies efficaces",
     excerpt: "Les stratégies efficaces pour décrocher vos premiers clients sans budget marketing. Réseau, partenariats et techniques de prospection.",
     content: `
 ## Le premier client : une étape cruciale
@@ -2005,7 +2005,7 @@ L'entrepreneuriat à impact n'est pas une mode mais une transformation profonde 
   },
   {
     id: "10",
-    title: "Les meilleures ressources pour entrepreneurs étudiants",
+    title: "Les meilleures ressources pour entrepreneurs",
     excerpt: "Livres, podcasts, formations, communautés... Notre sélection des ressources indispensables pour progresser dans votre aventure entrepreneuriale.",
     content: `
 ## Se former en continu
@@ -2134,9 +2134,9 @@ const Blog = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead 
-        title="Blog Entrepreneuriat Étudiant - Mare Nostrum | Conseils et Ressources"
-        description="Guides pratiques pour créer son entreprise en étant étudiant. Statuts juridiques, financement, business plan, pitch... Ressources gratuites par Mare Nostrum."
-        keywords="blog entrepreneuriat étudiant, créer entreprise étudiant, statut juridique étudiant, financement projet étudiant, business plan étudiant"
+        title="Blog Entrepreneuriat - Mare Nostrum | Conseils et Ressources"
+        description="Guides pratiques pour créer son entreprise et réussir son aventure entrepreneuriale. Statuts juridiques, financement, business plan, pitch... Ressources gratuites par Mare Nostrum."
+        keywords="blog entrepreneuriat, créer entreprise, statut juridique entrepreneur, financement projet, business plan, conseils entrepreneur"
       />
       <Header />
 
@@ -2146,10 +2146,10 @@ const Blog = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-4">
-              Blog Entrepreneuriat Étudiant
+              Blog Entrepreneuriat
             </h1>
             <p className="text-xl text-primary-foreground/90 mb-8">
-              Guides pratiques et ressources pour lancer votre projet
+              Guides pratiques et ressources pour réussir votre aventure entrepreneuriale
             </p>
             
             {/* Barre de recherche */}
