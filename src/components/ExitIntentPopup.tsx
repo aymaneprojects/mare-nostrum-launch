@@ -71,16 +71,16 @@ const ExitIntentPopup = () => {
             Avant de partir...
           </DialogTitle>
           <DialogDescription className="text-muted-foreground text-base">
-            Téléchargez gratuitement notre Livre Blanc sur l'entrepreneuriat étudiant et découvrez comment transformer vos étudiants en entrepreneurs.
+            Téléchargez gratuitement notre Livre Blanc et découvrez les clés pour réussir votre aventure entrepreneuriale dès le plus jeune âge.
           </DialogDescription>
         </DialogHeader>
 
         <div className="bg-muted/50 rounded-lg p-4 my-4">
           <h4 className="font-medium text-foreground mb-2">Ce que vous découvrirez :</h4>
           <ul className="text-sm text-muted-foreground space-y-1">
-            <li>Les clés pour intégrer l'entrepreneuriat dans votre cursus</li>
-            <li>Des méthodologies éprouvées auprès de 17+ projets étudiants</li>
-            <li>Des retours d'expérience concrets</li>
+            <li>Les fondamentaux pour lancer son projet avant 30 ans</li>
+            <li>Des méthodologies éprouvées auprès de jeunes entrepreneurs</li>
+            <li>Des témoignages et retours d'expérience inspirants</li>
           </ul>
         </div>
 
