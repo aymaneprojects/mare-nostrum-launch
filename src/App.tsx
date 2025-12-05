@@ -5,10 +5,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
-import ExitIntentPopup from "@/components/ExitIntentPopup";
+
 import Index from "./pages/Index";
 import Education from "./pages/Education";
 import Croissance from "./pages/Croissance";
+import OffreIA from "./pages/OffreIA";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import MentionsLegales from "./pages/MentionsLegales";
@@ -31,11 +32,12 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop />
         <ScrollToTopButton />
-        <ExitIntentPopup />
+        
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/education" element={<Education />} />
           <Route path="/croissance" element={<Croissance />} />
+          <Route path="/offre-ia" element={<OffreIA />} />
           <Route path="/engagement-rse" element={<EngagementRSE />} />
           <Route path="/a-propos" element={<About />} />
           <Route path="/contact" element={<Contact />} />
