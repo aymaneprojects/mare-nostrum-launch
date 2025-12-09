@@ -1,20 +1,39 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Calendar, User, Clock, Share2 } from "lucide-react";
+import { ArrowLeft, Calendar, User, Clock, Share2, Loader2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import SEOHead from "@/components/SEOHead";
-import { blogArticles } from "./Blog";
+import { useBlogArticle, useRelatedArticles } from "@/hooks/useBlogArticles";
 
 const BlogArticle = () => {
   const { slug } = useParams<{ slug: string }>();
   
-  // Trouver l'article correspondant au slug
-  const article = blogArticles.find(a => a.slug === slug);
-  
-  // Si l'article n'existe pas
-  if (!article) {
+  const { data: article, isLoading, error } = useBlogArticle(slug);
+  const { data: relatedArticles = [] } = useRelatedArticles(article?.category, article?.id);
+
+  // État de chargement
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <SEOHead 
+          title="Chargement... - Blog Mare Nostrum"
+          description="Chargement de l'article"
+          noindex={true}
+        />
+        <Header />
+        <section className="flex-1 flex items-center justify-center py-16 md:py-24">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <span className="ml-3 text-muted-foreground">Chargement de l'article...</span>
+        </section>
+        <Footer />
+      </div>
+    );
+  }
+
+  // Si l'article n'existe pas ou erreur
+  if (error || !article) {
     return (
       <div className="min-h-screen flex flex-col">
         <SEOHead 
@@ -40,11 +59,6 @@ const BlogArticle = () => {
     );
   }
 
-  // Trouver des articles similaires (même catégorie, excluant l'actuel)
-  const relatedArticles = blogArticles
-    .filter(a => a.category === article.category && a.id !== article.id)
-    .slice(0, 3);
-
   // Calculer le temps de lecture estimé
   const wordsPerMinute = 200;
   const wordCount = article.content.split(/\s+/).length;
@@ -55,7 +69,7 @@ const BlogArticle = () => {
       <SEOHead 
         title={`${article.title} - Blog Mare Nostrum`}
         description={article.excerpt}
-        keywords={`${article.category.toLowerCase()}, entrepreneuriat étudiant, ${article.title.toLowerCase()}`}
+        keywords={`${article.category.toLowerCase()}, entrepreneuriat, ${article.title.toLowerCase()}`}
       />
       <Header />
 
@@ -76,7 +90,7 @@ const BlogArticle = () => {
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-1">
                 <Calendar className="h-4 w-4" />
-                <span>{new Date(article.publishedAt).toLocaleDateString('fr-FR', { 
+                <span>{new Date(article.published_at).toLocaleDateString('fr-FR', { 
                   year: 'numeric', 
                   month: 'long', 
                   day: 'numeric' 
