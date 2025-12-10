@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Calendar, User, ArrowRight, Search, Loader2 } from "lucide-react";
+import { Calendar, User, ArrowRight, Search } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -90,9 +90,23 @@ const Blog = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           {isLoading ? (
-            <div className="flex items-center justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-primary" />
-              <span className="ml-3 text-muted-foreground">Chargement des articles...</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <Card key={i} className="overflow-hidden animate-pulse">
+                  <div className="h-48 bg-muted" />
+                  <CardContent className="p-6 space-y-4">
+                    <div className="h-6 bg-muted rounded w-3/4" />
+                    <div className="space-y-2">
+                      <div className="h-4 bg-muted rounded" />
+                      <div className="h-4 bg-muted rounded w-5/6" />
+                    </div>
+                    <div className="flex justify-between">
+                      <div className="h-4 bg-muted rounded w-20" />
+                      <div className="h-4 bg-muted rounded w-24" />
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           ) : error ? (
             <div className="text-center py-12">
