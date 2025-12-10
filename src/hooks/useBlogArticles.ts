@@ -34,6 +34,7 @@ export const useBlogArticles = () => {
 
       return data as BlogArticle[];
     },
+    staleTime: 5 * 60 * 1000, // 5 minutes - évite les rechargements inutiles
   });
 };
 

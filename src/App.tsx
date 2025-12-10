@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
+import { usePrefetchBlog } from "@/hooks/usePrefetchBlog";
 
 import Index from "./pages/Index";
 import Education from "./pages/Education";
@@ -24,33 +25,44 @@ import Healthz from "./pages/Healthz";
 
 const queryClient = new QueryClient();
 
+// Composant qui gère le prefetch des données
+const AppContent = () => {
+  usePrefetchBlog();
+  
+  return (
+    <>
+      <ScrollToTop />
+      <ScrollToTopButton />
+      
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/education" element={<Education />} />
+        <Route path="/croissance" element={<Croissance />} />
+        <Route path="/offre-ia" element={<OffreIA />} />
+        <Route path="/engagement-rse" element={<EngagementRSE />} />
+        <Route path="/a-propos" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogArticle />} />
+        <Route path="/livre-entrepreneuriat" element={<LivreEntrepreneuriat />} />
+        <Route path="/mentions-legales" element={<MentionsLegales />} />
+        <Route path="/cgu" element={<CGU />} />
+        <Route path="/confidentialite" element={<Confidentialite />} />
+        <Route path="/healthz" element={<Healthz />} />
+        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <ScrollToTop />
-        <ScrollToTopButton />
-        
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/education" element={<Education />} />
-          <Route path="/croissance" element={<Croissance />} />
-          <Route path="/offre-ia" element={<OffreIA />} />
-          <Route path="/engagement-rse" element={<EngagementRSE />} />
-          <Route path="/a-propos" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogArticle />} />
-          <Route path="/livre-entrepreneuriat" element={<LivreEntrepreneuriat />} />
-          <Route path="/mentions-legales" element={<MentionsLegales />} />
-          <Route path="/cgu" element={<CGU />} />
-          <Route path="/confidentialite" element={<Confidentialite />} />
-          <Route path="/healthz" element={<Healthz />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <AppContent />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
