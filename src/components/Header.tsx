@@ -35,8 +35,6 @@ const Header = () => {
   const offres = [
     { to: "/education", label: "Offre Éducation", external: false },
     { to: "/croissance", label: "Offre Croissance", external: false },
-    { to: "/offre-ia", label: "IA dans ton projet", external: false },
-    { to: "https://mastermind-mut.fr/", label: "Mastermind Néo-entrepreneur", external: true },
   ];
 
   const isActive = (path: string) => location.pathname === path;
