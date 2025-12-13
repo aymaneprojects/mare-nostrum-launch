@@ -111,7 +111,8 @@ Génère uniquement le contenu HTML de l'article, sans wrapper ni métadonnées.
   if (!response.ok) {
     const error = await response.text();
     console.error("Gemini API error:", error);
-    throw new Error(`Gemini API error: ${response.status}`);
+    // Inclure le détail de l'erreur Google dans le message pour faciliter le debug
+    throw new Error(`Gemini API error: ${response.status} - ${error}`);
   }
 
   const data = await response.json();
@@ -201,9 +202,10 @@ Deno.serve(async (req) => {
   } catch (error) {
     console.error("Error generating article:", error);
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    const status = errorMessage.includes("429") ? 429 : 500;
     return new Response(
       JSON.stringify({ success: false, error: errorMessage }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      { status, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
 });
