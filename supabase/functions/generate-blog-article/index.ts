@@ -54,41 +54,38 @@ async function generateArticleWithGemini(
 
 Rédige un article de blog complet de 2000 à 3000 mots sur le sujet suivant :
 
-Titre : ${title}
-Catégorie : ${category}
+**Titre** : ${title}
+**Catégorie** : ${category}
 ${keywordsText}
 
-INSTRUCTIONS CRITIQUES DE FORMAT :
-- Génère UNIQUEMENT du code HTML valide, prêt à être injecté dans une page web
-- NE PAS inclure de blocs de code markdown (pas de \`\`\`html)
-- NE PAS échapper les balises HTML
-- Commence DIRECTEMENT par une balise <h2> contenant le titre de l'article
-- Utilise les balises : <h2>, <h3>, <p>, <ul>, <li>, <ol>, <blockquote>, <strong>, <em>
-- PAS de balises <html>, <head>, <body>, <article>
+**Instructions de rédaction** :
 
-STRUCTURE DE L'ARTICLE :
-1. <h2> avec le titre principal
-2. Introduction (2-3 paragraphes <p>)
-3. Sections avec <h3> pour les sous-titres
-4. Listes <ul> ou <ol> pour les points clés
-5. <blockquote> pour les citations inspirantes
-6. Conclusion avec appel à l'action
+1. **Structure HTML** :
+   - Utilise des balises HTML pour la mise en forme (h2, h3, p, ul, li, blockquote, strong, em)
+   - Commence directement par le contenu, pas besoin de balises html, head, body
+   - Structure logique avec introduction, développement en sections, et conclusion
 
-STYLE DE RÉDACTION :
-- Professionnel mais accessible
-- Tutoiement du lecteur
-- Conseils pratiques et exemples concrets
-- Mentionne subtilement Mare Nostrum comme ressource d'accompagnement
-- Termine par un appel à l'action vers Mare Nostrum
+2. **SEO & LLM Optimization** :
+   - Intègre naturellement le titre et les mots-clés dans le contenu
+   - Utilise des sous-titres H2 et H3 descriptifs contenant des mots-clés
+   - Rédige des paragraphes de 3-5 phrases maximum
+   - Inclus des listes à puces pour améliorer la lisibilité
+   - Ajoute des citations inspirantes en rapport avec le sujet
 
-SEO :
-- Intègre naturellement les mots-clés dans le contenu
-- Sous-titres H3 descriptifs avec mots-clés
-- Paragraphes de 3-5 phrases maximum
+3. **Ton et style** :
+   - Professionnel mais accessible
+   - Tutoiement du lecteur
+   - Orienté action et conseils pratiques
+   - Exemples concrets et cas d'usage
 
-Longueur : Entre 2000 et 3000 mots.
+4. **Contenu Mare Nostrum** :
+   - Mentionne subtilement Mare Nostrum comme ressource d'accompagnement
+   - Termine par un appel à l'action vers les services de Mare Nostrum
+   - Inclus une phrase sur l'expertise en entrepreneuriat à impact
 
-RAPPEL : Génère du HTML pur sans aucun wrapper markdown.`;
+5. **Longueur** : Exactement entre 2000 et 3000 mots, pas moins.
+
+Génère uniquement le contenu HTML de l'article, sans wrapper ni métadonnées.`;
 
   const response = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
