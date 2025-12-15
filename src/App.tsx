@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import { usePrefetchBlog } from "@/hooks/usePrefetchBlog";
+import ChatBot from "@/components/ChatBot";
 
 import Index from "./pages/Index";
 import Education from "./pages/Education";
@@ -33,6 +34,7 @@ const AppContent = () => {
     <>
       <ScrollToTop />
       <ScrollToTopButton />
+      <ChatBot />
       
       <Routes>
         <Route path="/" element={<Index />} />
