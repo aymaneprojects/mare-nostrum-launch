@@ -134,46 +134,25 @@ const BlogArticle = () => {
               {article.excerpt}
             </p>
 
-            {/* Contenu Markdown simplifié */}
-            <article className="prose prose-lg max-w-none dark:prose-invert">
-              {article.content.split('\n').map((line, index) => {
-                // Fonction pour parser le texte avec gras inline
-                const parseInlineBold = (text: string) => {
-                  const parts = text.split(/\*\*(.*?)\*\*/g);
-                  return parts.map((part, i) => {
-                    if (i % 2 === 1) {
-                      return <strong key={i} className="font-semibold text-foreground">{part}</strong>;
-                    }
-                    return part;
-                  });
-                };
-
-                // Headers
-                if (line.startsWith('## ')) {
-                  return <h2 key={index} className="text-2xl font-bold text-foreground mt-8 mb-4">{parseInlineBold(line.replace('## ', ''))}</h2>;
-                }
-                if (line.startsWith('### ')) {
-                  return <h3 key={index} className="text-xl font-bold text-foreground mt-6 mb-3">{parseInlineBold(line.replace('### ', ''))}</h3>;
-                }
-                // List items
-                if (line.startsWith('- ')) {
-                  return <li key={index} className="text-muted-foreground ml-4 my-1">{parseInlineBold(line.replace('- ', ''))}</li>;
-                }
-                // Numbered list
-                if (/^\d+\.\s/.test(line)) {
-                  return <li key={index} className="text-muted-foreground ml-4 my-1 list-decimal">{parseInlineBold(line.replace(/^\d+\.\s/, ''))}</li>;
-                }
-                // Quote
-                if (line.startsWith('> ')) {
-                  return <blockquote key={index} className="border-l-4 border-primary pl-4 italic text-muted-foreground my-4">{parseInlineBold(line.replace('> ', ''))}</blockquote>;
-                }
-                // Regular paragraph
-                if (line.trim()) {
-                  return <p key={index} className="text-muted-foreground my-4 leading-relaxed">{parseInlineBold(line)}</p>;
-                }
-                return null;
-              })}
-            </article>
+            {/* Contenu HTML stylisé */}
+            <article 
+              className="prose prose-lg max-w-none dark:prose-invert
+                prose-headings:text-foreground prose-headings:font-bold
+                prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-5 prose-h2:pb-3 prose-h2:border-b prose-h2:border-border
+                prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-primary
+                prose-p:text-muted-foreground prose-p:leading-relaxed prose-p:my-4
+                prose-strong:text-foreground prose-strong:font-semibold
+                prose-em:text-primary/80 prose-em:font-medium
+                prose-ul:my-6 prose-ul:space-y-2
+                prose-ol:my-6 prose-ol:space-y-2
+                prose-li:text-muted-foreground prose-li:leading-relaxed
+                prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-secondary/30 
+                prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:my-8 prose-blockquote:rounded-r-lg
+                prose-blockquote:italic prose-blockquote:text-foreground/80
+                prose-a:text-primary prose-a:underline hover:prose-a:text-primary/80
+                [&>ul]:list-disc [&>ul]:pl-6 [&>ol]:list-decimal [&>ol]:pl-6"
+              dangerouslySetInnerHTML={{ __html: article.content }}
+            />
 
             {/* CTA */}
             <div className="mt-12 p-8 bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl border border-border">

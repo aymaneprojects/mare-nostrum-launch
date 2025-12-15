@@ -52,7 +52,7 @@ async function generateArticleWithGemini(
 
   const prompt = `Tu es un expert en rédaction SEO pour Mare Nostrum, cabinet de conseil en entrepreneuriat à impact basé à Toulouse, Paris et Casablanca.
 
-Rédige un article de blog complet de 2000 à 3000 mots sur le sujet suivant :
+Rédige un article de blog TRÈS LONG et EXHAUSTIF de minimum 2500 mots à 5000 mots sur le sujet suivant :
 
 **Titre** : ${title}
 **Catégorie** : ${category}
@@ -60,32 +60,44 @@ ${keywordsText}
 
 **Instructions de rédaction** :
 
-1. **Structure HTML** :
-   - Utilise des balises HTML pour la mise en forme (h2, h3, p, ul, li, blockquote, strong, em)
-   - Commence directement par le contenu, pas besoin de balises html, head, body
-   - Structure logique avec introduction, développement en sections, et conclusion
+1. **Structure HTML obligatoire** :
+   - Utilise UNIQUEMENT des balises HTML pour la mise en forme : h2, h3, p, ul, li, ol, blockquote, strong, em
+   - NE PAS inclure de balises html, head, body - commence directement par le contenu
+   - Structure logique : introduction engageante, 6 à 8 sections principales avec sous-sections, conclusion avec appel à l'action
+   - Chaque section H2 doit avoir au moins 300-400 mots de contenu
 
 2. **SEO & LLM Optimization** :
    - Intègre naturellement le titre et les mots-clés dans le contenu
    - Utilise des sous-titres H2 et H3 descriptifs contenant des mots-clés
    - Rédige des paragraphes de 3-5 phrases maximum
-   - Inclus des listes à puces pour améliorer la lisibilité
-   - Ajoute des citations inspirantes en rapport avec le sujet
+   - Inclus des listes à puces et numérotées pour améliorer la lisibilité
+   - Ajoute des citations inspirantes en rapport avec le sujet (en blockquote)
 
 3. **Ton et style** :
-   - Professionnel mais accessible
-   - Tutoiement du lecteur
-   - Orienté action et conseils pratiques
-   - Exemples concrets et cas d'usage
+   - Professionnel mais accessible et engageant
+   - Tutoiement du lecteur (tu, toi, ton, ta)
+   - Orienté action et conseils pratiques concrets
+   - Exemples concrets, cas d'usage réels, statistiques pertinentes
+   - Utilise des mots forts : découvre, maîtrise, transforme, optimise
 
 4. **Contenu Mare Nostrum** :
-   - Mentionne subtilement Mare Nostrum comme ressource d'accompagnement
-   - Termine par un appel à l'action vers les services de Mare Nostrum
-   - Inclus une phrase sur l'expertise en entrepreneuriat à impact
+   - Mentionne Mare Nostrum 2-3 fois de manière subtile et naturelle
+   - Termine par un appel à l'action clair vers les services de Mare Nostrum
+   - Inclus l'expertise en entrepreneuriat à impact et accompagnement personnalisé
 
-5. **Longueur** : Exactement entre 2000 et 3000 mots, pas moins.
+5. **LONGUEUR CRITIQUE** : 
+   - MINIMUM 2500 mots, idéalement 3500-4500 mots
+   - Développe chaque section en profondeur avec des exemples détaillés
+   - N'hésite pas à être exhaustif sur le sujet
+   - C'est un article de fond, pas un résumé
 
-Génère uniquement le contenu HTML de l'article, sans wrapper ni métadonnées.`;
+6. **Formatage** :
+   - Utilise <strong> pour les termes importants
+   - Utilise <em> pour les mises en valeur subtiles
+   - Les blockquote pour les citations ou conseils clés
+   - Alterne entre paragraphes, listes et sous-sections pour le rythme
+
+Génère UNIQUEMENT le contenu HTML de l'article, sans wrapper ni métadonnées.`;
 
   const response = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
@@ -102,7 +114,7 @@ Génère uniquement le contenu HTML de l'article, sans wrapper ni métadonnées.
         ],
         generationConfig: {
           temperature: 0.7,
-          maxOutputTokens: 8192,
+          maxOutputTokens: 16384,
         },
       }),
     }
