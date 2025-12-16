@@ -36,23 +36,23 @@ function extractExcerpt(htmlContent: string): string {
   return plainText.substring(0, 200) + (plainText.length > 200 ? "..." : "");
 }
 
-async function generateArticleWithGemini(
+async function generateArticleWithMistral(
   title: string,
   category: string,
   keywords: string[] = []
 ): Promise<string> {
-  const apiKey = Deno.env.get("GOOGLE_API_KEY");
+  const apiKey = Deno.env.get("MISTRAL_API_KEY");
   if (!apiKey) {
-    throw new Error("GOOGLE_API_KEY not configured");
+    throw new Error("MISTRAL_API_KEY not configured");
   }
 
   const keywordsText = keywords.length > 0 
     ? `Mots-clés SEO à intégrer naturellement : ${keywords.join(", ")}.` 
     : "";
 
-  const prompt = `Tu es un expert en rédaction SEO pour Mare Nostrum, cabinet de conseil en entrepreneuriat à impact basé à Toulouse, Paris et Casablanca.
+  const systemPrompt = `Tu es un expert en rédaction SEO pour Mare Nostrum, cabinet de conseil en entrepreneuriat à impact basé à Toulouse, Paris et Casablanca.`;
 
-Rédige un article de blog TRÈS LONG et EXHAUSTIF de minimum 2500 mots à 5000 mots sur le sujet suivant :
+  const userPrompt = `Rédige un article de blog TRÈS LONG et EXHAUSTIF de minimum 2500 mots à 5000 mots sur le sujet suivant :
 
 **Titre** : ${title}
 **Catégorie** : ${category}
@@ -99,39 +99,34 @@ ${keywordsText}
 
 Génère UNIQUEMENT le contenu HTML de l'article, sans wrapper ni métadonnées.`;
 
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        contents: [
-          {
-            parts: [{ text: prompt }],
-          },
-        ],
-        generationConfig: {
-          temperature: 0.7,
-          maxOutputTokens: 16384,
-        },
-      }),
-    }
-  );
+  const response = await fetch("https://api.mistral.ai/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      model: "mistral-large-latest",
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userPrompt }
+      ],
+      max_tokens: 16384,
+      temperature: 0.7,
+    }),
+  });
 
   if (!response.ok) {
     const error = await response.text();
-    console.error("Gemini API error:", error);
-    // Inclure le détail de l'erreur Google dans le message pour faciliter le debug
-    throw new Error(`Gemini API error: ${response.status} - ${error}`);
+    console.error("Mistral API error:", error);
+    throw new Error(`Mistral API error: ${response.status} - ${error}`);
   }
 
   const data = await response.json();
-  const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
+  const content = data.choices?.[0]?.message?.content;
 
   if (!content) {
-    throw new Error("No content generated from Gemini");
+    throw new Error("No content generated from Mistral");
   }
 
   return content;
@@ -156,9 +151,9 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Generate article content with Gemini
-    console.log("Calling Gemini API...");
-    const content = await generateArticleWithGemini(title, category, keywords);
+    // Generate article content with Mistral
+    console.log("Calling Mistral API...");
+    const content = await generateArticleWithMistral(title, category, keywords);
     console.log(`Generated content length: ${content.length} characters`);
 
     // Generate slug and excerpt
