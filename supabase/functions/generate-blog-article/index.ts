@@ -36,7 +36,8 @@ function extractExcerpt(htmlContent: string): string {
 async function generateArticleWithMistral(
   title: string,
   category: string,
-  keywords: string[] = []
+  keywords: string[] = [],
+  taskId: string
 ): Promise<string> {
   const apiKey = Deno.env.get("MISTRAL_API_KEY");
   if (!apiKey) {
@@ -96,37 +97,63 @@ ${keywordsText}
 
 Génère UNIQUEMENT le contenu HTML de l'article, sans wrapper ni métadonnées.`;
 
-  const response = await fetch("https://api.mistral.ai/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      model: "mistral-large-latest",
-      messages: [
-        { role: "system", content: systemPrompt },
-        { role: "user", content: userPrompt }
-      ],
-      max_tokens: 16384,
-      temperature: 0.7,
-    }),
-  });
+  console.log(`[${taskId}] Sending request to Mistral API...`);
+  const startTime = Date.now();
 
-  if (!response.ok) {
-    const error = await response.text();
-    console.error("Mistral API error:", error);
-    throw new Error(`Mistral API error: ${response.status} - ${error}`);
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 120000); // 2 minute timeout
+
+  try {
+    const response = await fetch("https://api.mistral.ai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "mistral-large-latest",
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: userPrompt }
+        ],
+        max_tokens: 16384,
+        temperature: 0.7,
+      }),
+      signal: controller.signal,
+    });
+
+    clearTimeout(timeoutId);
+    const elapsed = Date.now() - startTime;
+    console.log(`[${taskId}] Mistral API responded in ${elapsed}ms with status ${response.status}`);
+
+    if (!response.ok) {
+      const error = await response.text();
+      console.error(`[${taskId}] Mistral API error response:`, error);
+      throw new Error(`Mistral API error: ${response.status} - ${error}`);
+    }
+
+    const data = await response.json();
+    console.log(`[${taskId}] Mistral API response received, parsing content...`);
+    
+    const content = data.choices?.[0]?.message?.content;
+
+    if (!content) {
+      console.error(`[${taskId}] No content in Mistral response:`, JSON.stringify(data).substring(0, 500));
+      throw new Error("No content generated from Mistral");
+    }
+
+    console.log(`[${taskId}] Content extracted successfully, length: ${content.length} chars`);
+    return content;
+
+  } catch (error) {
+    clearTimeout(timeoutId);
+    const err = error as Error;
+    if (err.name === 'AbortError') {
+      console.error(`[${taskId}] Mistral API request timed out after 120 seconds`);
+      throw new Error("Mistral API timeout");
+    }
+    throw error;
   }
-
-  const data = await response.json();
-  const content = data.choices?.[0]?.message?.content;
-
-  if (!content) {
-    throw new Error("No content generated from Mistral");
-  }
-
-  return content;
 }
 
 // Background task to generate and save article
@@ -138,25 +165,35 @@ async function processArticleGeneration(
   publish: boolean
 ) {
   const taskId = crypto.randomUUID().substring(0, 8);
-  console.log(`[${taskId}] Starting background article generation: "${title}"`);
+  console.log(`[${taskId}] ========== STARTING BACKGROUND TASK ==========`);
+  console.log(`[${taskId}] Title: "${title}"`);
+  console.log(`[${taskId}] Category: ${category}`);
+  console.log(`[${taskId}] Keywords: ${keywords.join(', ')}`);
 
   try {
     // Generate article content with Mistral
-    console.log(`[${taskId}] Calling Mistral API...`);
-    const content = await generateArticleWithMistral(title, category, keywords);
-    console.log(`[${taskId}] Generated content length: ${content.length} characters`);
+    const content = await generateArticleWithMistral(title, category, keywords, taskId);
+    console.log(`[${taskId}] Generated content: ${content.length} characters`);
 
     // Generate slug and excerpt
     const slug = generateSlug(title);
     const excerpt = extractExcerpt(content);
-    console.log(`[${taskId}] Generated slug: ${slug}`);
+    console.log(`[${taskId}] Slug: ${slug}`);
+    console.log(`[${taskId}] Excerpt: ${excerpt.substring(0, 100)}...`);
 
     // Initialize Supabase client with service role
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    
+    if (!supabaseUrl || !supabaseServiceKey) {
+      throw new Error("Missing Supabase credentials");
+    }
+    
+    console.log(`[${taskId}] Connecting to Supabase...`);
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
     // Insert article into database
+    console.log(`[${taskId}] Inserting article into database...`);
     const { data: article, error: insertError } = await supabase
       .from("blog_articles")
       .insert({
@@ -178,18 +215,24 @@ async function processArticleGeneration(
       throw new Error(`Database error: ${insertError.message}`);
     }
 
-    console.log(`[${taskId}] Article created successfully with ID: ${article.id}`);
+    console.log(`[${taskId}] ========== SUCCESS ==========`);
+    console.log(`[${taskId}] Article ID: ${article.id}`);
     console.log(`[${taskId}] Article URL: /blog/${slug}`);
     
   } catch (error) {
-    console.error(`[${taskId}] Error generating article:`, error);
+    const err = error as Error;
+    console.error(`[${taskId}] ========== ERROR ==========`);
+    console.error(`[${taskId}] Error type: ${err.name || 'Unknown'}`);
+    console.error(`[${taskId}] Error message: ${err.message || String(error)}`);
+    console.error(`[${taskId}] Full error:`, error);
   }
 }
 
 // Handle shutdown gracefully
 addEventListener('beforeunload', (ev) => {
   // @ts-ignore - Deno specific
-  console.log('Function shutdown:', ev.detail?.reason || 'unknown');
+  const reason = ev.detail?.reason || 'unknown';
+  console.log(`[SHUTDOWN] Function shutting down. Reason: ${reason}`);
 });
 
 Deno.serve(async (req) => {
@@ -197,6 +240,9 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
+
+  const requestId = crypto.randomUUID().substring(0, 8);
+  console.log(`[${requestId}] ========== NEW REQUEST ==========`);
 
   try {
     const body: RequestBody = await req.json();
@@ -217,10 +263,13 @@ Deno.serve(async (req) => {
       }
     }
 
-    console.log(`Received request for article: "${title}" in category "${category}"`);
-    console.log(`Parsed keywords:`, keywords);
+    console.log(`[${requestId}] Title: "${title}"`);
+    console.log(`[${requestId}] Category: ${category}`);
+    console.log(`[${requestId}] Keywords: ${JSON.stringify(keywords)}`);
+    console.log(`[${requestId}] Publish: ${publish}`);
 
     if (!title || !category) {
+      console.log(`[${requestId}] Missing required fields`);
       return new Response(
         JSON.stringify({ success: false, error: "title and category are required" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -228,15 +277,19 @@ Deno.serve(async (req) => {
     }
 
     // Start background task for article generation
+    console.log(`[${requestId}] Starting background task...`);
     // @ts-ignore - EdgeRuntime is available in Supabase Edge Functions
     EdgeRuntime.waitUntil(processArticleGeneration(title, category, keywords, image, publish));
 
+    console.log(`[${requestId}] Background task initiated, returning response`);
+    
     // Return immediate response
     return new Response(
       JSON.stringify({
         success: true,
         message: "Article generation started in background",
         status: "processing",
+        requestId,
         title,
         category,
         slug: generateSlug(title),
@@ -245,7 +298,7 @@ Deno.serve(async (req) => {
     );
 
   } catch (error) {
-    console.error("Error processing request:", error);
+    console.error(`[${requestId}] Request error:`, error);
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
     return new Response(
       JSON.stringify({ success: false, error: errorMessage }),
