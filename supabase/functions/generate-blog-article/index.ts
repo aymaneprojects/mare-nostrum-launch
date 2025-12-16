@@ -10,7 +10,7 @@ interface RequestBody {
   category: string;
   image?: string;
   publish?: boolean;
-  keywords?: string[];
+  keywords?: string[] | string; // Accept both array and string from n8n
 }
 
 function generateSlug(title: string): string {
@@ -140,9 +140,26 @@ Deno.serve(async (req) => {
 
   try {
     const body: RequestBody = await req.json();
-    const { title, category, image, publish = true, keywords = [] } = body;
+    const { title, category, image, publish = true } = body;
+
+    // Parse keywords - handle both string and array formats from n8n
+    let keywords: string[] = [];
+    if (body.keywords) {
+      if (Array.isArray(body.keywords)) {
+        keywords = body.keywords;
+      } else if (typeof body.keywords === 'string') {
+        try {
+          const parsed = JSON.parse(body.keywords);
+          keywords = Array.isArray(parsed) ? parsed : [];
+        } catch {
+          // If not valid JSON, treat as comma-separated string
+          keywords = body.keywords.split(',').map((k: string) => k.trim()).filter(Boolean);
+        }
+      }
+    }
 
     console.log(`Generating article: "${title}" in category "${category}"`);
+    console.log(`Parsed keywords:`, keywords);
 
     if (!title || !category) {
       return new Response(
