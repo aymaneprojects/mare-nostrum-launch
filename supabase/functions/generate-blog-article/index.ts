@@ -47,24 +47,35 @@ async function generateArticleWithMistral(
     ? `Mots-clés SEO à intégrer naturellement : ${keywords.join(", ")}.` 
     : "";
 
-  const systemPrompt = `Tu es un expert en rédaction SEO pour Mare Nostrum, cabinet de conseil en entrepreneuriat à impact basé à Toulouse, Paris et Casablanca.`;
+  const systemPrompt = `Tu es un rédacteur web expérimenté spécialisé en entrepreneuriat. Tu écris pour Mare Nostrum, cabinet de conseil en entrepreneuriat à impact basé à Toulouse, Paris et Casablanca. Ton style est chaleureux, accessible et engageant - comme si tu parlais à un ami entrepreneur.`;
 
-  const userPrompt = `Rédige un article de blog complet et optimisé SEO de 2000-3000 mots sur :
-
-**Titre** : ${title}
-**Catégorie** : ${category}
+  const userPrompt = `Rédige un article de blog de 2000-3000 mots sur : "${title}" (catégorie: ${category})
 ${keywordsText}
 
-**Instructions** :
-- Structure HTML : h2, h3, p, ul, li, ol, blockquote, strong, em (pas de html/head/body)
-- 5-6 sections principales avec introduction et conclusion
-- Paragraphes de 3-4 phrases max
-- Tutoiement du lecteur
-- Ton professionnel mais accessible
-- Mentionne Mare Nostrum 2-3 fois naturellement
-- Termine par un appel à l'action vers Mare Nostrum
+RÈGLES IMPORTANTES :
+1. NE PAS répéter le titre au début - commence directement par l'introduction
+2. NE PAS utiliser de balises markdown (pas de \`\`\`html)
+3. Génère UNIQUEMENT du HTML pur (h2, h3, p, ul, li, ol, blockquote, strong, em)
 
-Génère UNIQUEMENT le contenu HTML.`;
+STYLE D'ÉCRITURE :
+- Tutoie le lecteur naturellement
+- Utilise des phrases courtes et dynamiques
+- Pose des questions rhétoriques pour engager
+- Partage des anecdotes et exemples concrets
+- Évite le jargon trop technique
+- Sois encourageant et positif
+- Ajoute des transitions fluides entre les sections
+
+STRUCTURE :
+- Introduction accrocheuse (2-3 paragraphes) qui pose le contexte et donne envie de lire
+- 5-6 sections avec des sous-titres (h2) clairs et attractifs
+- Des conseils pratiques et actionnables
+- Des exemples réels ou réalistes
+- Conclusion inspirante avec appel à l'action vers Mare Nostrum
+
+Mentionne Mare Nostrum 2-3 fois de manière naturelle (pas forcé).
+
+Génère le contenu HTML maintenant :`;
 
   console.log("Calling Mistral API...");
 

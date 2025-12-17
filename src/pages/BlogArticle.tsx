@@ -6,8 +6,33 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import SEOHead from "@/components/SEOHead";
 import { useBlogArticle, useRelatedArticles } from "@/hooks/useBlogArticles";
+import { useToast } from "@/hooks/use-toast";
+
+// Nettoyer le contenu HTML généré par l'IA
+const cleanArticleContent = (content: string, title: string): string => {
+  let cleaned = content;
+  
+  // Supprimer les balises markdown code block
+  cleaned = cleaned.replace(/^```html\s*/i, '');
+  cleaned = cleaned.replace(/```\s*$/i, '');
+  cleaned = cleaned.trim();
+  
+  // Supprimer le titre s'il est répété au début du contenu
+  const titlePatterns = [
+    new RegExp(`^<h1[^>]*>\\s*${title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*</h1>\\s*`, 'i'),
+    new RegExp(`^<h2[^>]*>\\s*${title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*</h2>\\s*`, 'i'),
+    new RegExp(`^\\s*${title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*`, 'i'),
+  ];
+  
+  for (const pattern of titlePatterns) {
+    cleaned = cleaned.replace(pattern, '');
+  }
+  
+  return cleaned.trim();
+};
 
 const BlogArticle = () => {
+  const { toast } = useToast();
   const { slug } = useParams<{ slug: string }>();
   
   const { data: article, isLoading, error } = useBlogArticle(slug);
@@ -121,8 +146,36 @@ const BlogArticle = () => {
                   Retour au blog
                 </Link>
               </Button>
-              <Button variant="outline" size="sm" onClick={() => {
-                navigator.clipboard.writeText(window.location.href);
+              <Button variant="outline" size="sm" onClick={async () => {
+                const shareUrl = window.location.href;
+                const shareTitle = article.title;
+                
+                // Utiliser l'API Web Share si disponible (mobile)
+                if (navigator.share) {
+                  try {
+                    await navigator.share({
+                      title: shareTitle,
+                      text: article.excerpt,
+                      url: shareUrl,
+                    });
+                  } catch (err) {
+                    // L'utilisateur a annulé ou erreur
+                    if ((err as Error).name !== 'AbortError') {
+                      navigator.clipboard.writeText(shareUrl);
+                      toast({
+                        title: "Lien copié",
+                        description: "Le lien de l'article a été copié dans le presse-papier.",
+                      });
+                    }
+                  }
+                } else {
+                  // Fallback: copier dans le presse-papier
+                  await navigator.clipboard.writeText(shareUrl);
+                  toast({
+                    title: "Lien copié",
+                    description: "Le lien de l'article a été copié dans le presse-papier.",
+                  });
+                }
               }}>
                 <Share2 className="mr-2 h-4 w-4" />
                 Partager
@@ -137,7 +190,7 @@ const BlogArticle = () => {
             {/* Contenu HTML stylisé */}
             <article 
               className="blog-article-content"
-              dangerouslySetInnerHTML={{ __html: article.content }}
+              dangerouslySetInnerHTML={{ __html: cleanArticleContent(article.content, article.title) }}
             />
 
             {/* CTA */}
