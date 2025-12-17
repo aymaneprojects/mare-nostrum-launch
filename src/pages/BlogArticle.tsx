@@ -9,13 +9,16 @@ import { useBlogArticle, useRelatedArticles } from "@/hooks/useBlogArticles";
 import { useToast } from "@/hooks/use-toast";
 
 // Nettoyer le contenu HTML généré par l'IA
-const cleanArticleContent = (content: string, title: string): string => {
-  let cleaned = content;
-  
+const cleanMarkdown = (text: string): string => {
+  let cleaned = text;
   // Supprimer les balises markdown code block
   cleaned = cleaned.replace(/^```html\s*/i, '');
   cleaned = cleaned.replace(/```\s*$/i, '');
-  cleaned = cleaned.trim();
+  return cleaned.trim();
+};
+
+const cleanArticleContent = (content: string, title: string): string => {
+  let cleaned = cleanMarkdown(content);
   
   // Supprimer le titre s'il est répété au début du contenu
   const titlePatterns = [
@@ -184,7 +187,7 @@ const BlogArticle = () => {
 
             {/* Extrait */}
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed border-l-4 border-primary pl-4">
-              {article.excerpt}
+              {cleanMarkdown(article.excerpt)}
             </p>
 
             {/* Contenu HTML stylisé */}
