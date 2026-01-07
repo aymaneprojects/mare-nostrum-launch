@@ -23,44 +23,69 @@ const Croissance = () => {
       "@type": "Organization",
       "name": "Mare Nostrum",
       "sameAs": "https://marenostrum.tech",
-      "address": [
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Toulouse",
-          "addressRegion": "Occitanie",
-          "addressCountry": "FR"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Paris",
-          "addressCountry": "FR"
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Casablanca",
-          "addressCountry": "MA"
-        }
-      ]
+      "address": [{
+        "@type": "PostalAddress",
+        "addressLocality": "Toulouse",
+        "addressRegion": "Occitanie",
+        "addressCountry": "FR"
+      }, {
+        "@type": "PostalAddress",
+        "addressLocality": "Paris",
+        "addressCountry": "FR"
+      }, {
+        "@type": "PostalAddress",
+        "addressLocality": "Casablanca",
+        "addressCountry": "MA"
+      }]
     },
     "serviceType": "Accompagnement Entrepreneurial",
     "category": "Conseil en Entrepreneuriat à Impact",
-    "areaServed": [
-      { "@type": "Country", "name": "France" },
-      { "@type": "Country", "name": "Maroc" },
-      { "@type": "Country", "name": "Tunisie" },
-      { "@type": "Country", "name": "Algérie" },
-      { "@type": "Country", "name": "Sénégal" },
-      { "@type": "Country", "name": "Côte d'Ivoire" },
-      { "@type": "Country", "name": "Bénin" },
-      { "@type": "Country", "name": "Cameroun" },
-      { "@type": "Country", "name": "Burkina Faso" },
-      { "@type": "Country", "name": "République démocratique du Congo" },
-      { "@type": "Country", "name": "Égypte" },
-      { "@type": "Country", "name": "Canada" },
-      { "@type": "City", "name": "Toulouse" },
-      { "@type": "City", "name": "Paris" },
-      { "@type": "City", "name": "Casablanca" }
-    ],
+    "areaServed": [{
+      "@type": "Country",
+      "name": "France"
+    }, {
+      "@type": "Country",
+      "name": "Maroc"
+    }, {
+      "@type": "Country",
+      "name": "Tunisie"
+    }, {
+      "@type": "Country",
+      "name": "Algérie"
+    }, {
+      "@type": "Country",
+      "name": "Sénégal"
+    }, {
+      "@type": "Country",
+      "name": "Côte d'Ivoire"
+    }, {
+      "@type": "Country",
+      "name": "Bénin"
+    }, {
+      "@type": "Country",
+      "name": "Cameroun"
+    }, {
+      "@type": "Country",
+      "name": "Burkina Faso"
+    }, {
+      "@type": "Country",
+      "name": "République démocratique du Congo"
+    }, {
+      "@type": "Country",
+      "name": "Égypte"
+    }, {
+      "@type": "Country",
+      "name": "Canada"
+    }, {
+      "@type": "City",
+      "name": "Toulouse"
+    }, {
+      "@type": "City",
+      "name": "Paris"
+    }, {
+      "@type": "City",
+      "name": "Casablanca"
+    }],
     "audience": {
       "@type": "Audience",
       "audienceType": "Entrepreneurs à impact, Startups, Entreprises sociales, Porteurs de projets innovants"
@@ -68,62 +93,58 @@ const Croissance = () => {
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Offres Mare Nostrum Croissance",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Offre Tremplin",
-            "description": "Accès au club international d'entrepreneurs francophones. Détection d'opportunités business et financement. Café galère pour résoudre vos problèmes.",
-            "category": "Offre d'entrée"
-          },
-          "price": "30",
-          "priceCurrency": "EUR",
-          "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": "30.00",
-            "priceCurrency": "EUR",
-            "unitText": "MONTH"
-          },
-          "availability": "https://schema.org/InStock"
+      "itemListElement": [{
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Offre Tremplin",
+          "description": "Accès au club international d'entrepreneurs francophones. Détection d'opportunités business et financement. Café galère pour résoudre vos problèmes.",
+          "category": "Offre d'entrée"
         },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Offre Ascension",
-            "description": "Tout de Tremplin + Visibilité projet + Génération IA de livrables + Masterclass mensuelles.",
-            "category": "Offre recommandée"
-          },
-          "price": "100",
+        "price": "30",
+        "priceCurrency": "EUR",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "30.00",
           "priceCurrency": "EUR",
-          "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": "100.00",
-            "priceCurrency": "EUR",
-            "unitText": "MONTH"
-          },
-          "availability": "https://schema.org/InStock"
+          "unitText": "MONTH"
         },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Offre ÉLITE",
-            "description": "Tout d'Ascension + 6 journées business développement + Accès plateforme formation + Priorité 1 sur demandes.",
-            "category": "Offre premium"
-          },
-          "price": "190",
+        "availability": "https://schema.org/InStock"
+      }, {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Offre Ascension",
+          "description": "Tout de Tremplin + Visibilité projet + Génération IA de livrables + Masterclass mensuelles.",
+          "category": "Offre recommandée"
+        },
+        "price": "100",
+        "priceCurrency": "EUR",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "100.00",
           "priceCurrency": "EUR",
-          "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": "190.00",
-            "priceCurrency": "EUR",
-            "unitText": "MONTH"
-          },
-          "availability": "https://schema.org/InStock"
-        }
-      ]
+          "unitText": "MONTH"
+        },
+        "availability": "https://schema.org/InStock"
+      }, {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Offre ÉLITE",
+          "description": "Tout d'Ascension + 6 journées business développement + Accès plateforme formation + Priorité 1 sur demandes.",
+          "category": "Offre premium"
+        },
+        "price": "190",
+        "priceCurrency": "EUR",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "190.00",
+          "priceCurrency": "EUR",
+          "unitText": "MONTH"
+        },
+        "availability": "https://schema.org/InStock"
+      }]
     },
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -159,17 +180,13 @@ const Croissance = () => {
     }
   }, [location]);
   return <div className="min-h-screen flex flex-col">
-      <SEOHead 
-        title="Club Entrepreneur Francophone - Mare Nostrum Croissance | Toulouse Paris Casablanca" 
-        description="Rejoignez le Club Entrepreneur Francophone International Mare Nostrum. Accompagnement croissance startup : offres Tremplin 30€, Ascension 100€, Élite 190€. 93% accélération décisions. 135+ experts. Toulouse, Paris, Casablanca." 
-        keywords="club entrepreneur, croissance entreprise, accompagnement startup, mastermind, entrepreneur à impact, développement business, toulouse, paris, casablanca, francophonie" 
-        structuredData={croissanceSchema}
-        faqSchema={croissanceFaqs}
-        breadcrumbSchema={[
-          { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "Croissance", url: "https://marenostrum.tech/croissance" }
-        ]}
-      />
+      <SEOHead title="Club Entrepreneur Francophone - Mare Nostrum Croissance | Toulouse Paris Casablanca" description="Rejoignez le Club Entrepreneur Francophone International Mare Nostrum. Accompagnement croissance startup : offres Tremplin 30€, Ascension 100€, Élite 190€. 93% accélération décisions. 135+ experts. Toulouse, Paris, Casablanca." keywords="club entrepreneur, croissance entreprise, accompagnement startup, mastermind, entrepreneur à impact, développement business, toulouse, paris, casablanca, francophonie" structuredData={croissanceSchema} faqSchema={croissanceFaqs} breadcrumbSchema={[{
+      name: "Accueil",
+      url: "https://marenostrum.tech/"
+    }, {
+      name: "Croissance",
+      url: "https://marenostrum.tech/croissance"
+    }]} />
       <Header />
 
       {/* Hero Section */}
@@ -361,7 +378,7 @@ const Croissance = () => {
                 </li>
                 <li className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">6 journées business développement et 6 webinaires/masterclasses par an</span>
+                  <span className="text-sm text-muted-foreground">6 journées business développement et 5 webinaires/masterclasses par an</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
@@ -419,11 +436,7 @@ const Croissance = () => {
           
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
-              <img 
-                src={atelierRose} 
-                alt="Atelier Mare Nostrum avec entrepreneurs et experts" 
-                className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300"
-              />
+              <img src={atelierRose} alt="Atelier Mare Nostrum avec entrepreneurs et experts" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-accent/90 via-accent/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
                   <h3 className="text-xl font-bold mb-2">Ateliers thématiques</h3>
@@ -433,11 +446,7 @@ const Croissance = () => {
             </div>
 
             <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
-              <img 
-                src={neoEntrepreneurElite} 
-                alt="Journée avec des néo-entrepreneurs dans l'offre élite Mare Nostrum" 
-                className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300"
-              />
+              <img src={neoEntrepreneurElite} alt="Journée avec des néo-entrepreneurs dans l'offre élite Mare Nostrum" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
                   <h3 className="text-xl font-bold mb-2">Offre Élite</h3>
