@@ -17,6 +17,7 @@ const PromoBanner = () => {
         <span className="hidden md:inline">sur les offres Tremplin & Ascension</span>
         <span className="md:hidden">Tremplin & Ascension</span>
         <span className="mx-1">|</span>
+        <span className="hidden sm:inline">Code promo :</span>
         <span className="font-mono font-bold bg-white/20 px-2 py-0.5 rounded">MN2026</span>
         <span className="hidden lg:inline ml-1">| Valable 2 mois</span>
         <Link 
