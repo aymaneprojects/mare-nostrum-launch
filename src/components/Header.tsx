@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import logo from "@/assets/logo.png";
-import PromoBanner from "./PromoBanner";
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -41,15 +41,13 @@ const Header = () => {
   const isOffreActive = offres.some(o => !o.external && location.pathname === o.to);
 
   return (
-    <>
-      <PromoBanner />
-      <header
-        className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
-          scrolled
-            ? "border-border/60 bg-background/98 backdrop-blur-xl shadow-lg"
-            : "border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
-        }`}
-      >
+    <header
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
+        scrolled
+          ? "border-border/60 bg-background/98 backdrop-blur-xl shadow-lg"
+          : "border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+      }`}
+    >
       <nav className="container mx-auto flex h-14 md:h-16 items-center justify-between px-3 md:px-4">
         <Link to="/" className="flex items-center space-x-2 group">
           <img
@@ -252,8 +250,7 @@ const Header = () => {
           </div>
         </div>
       )}
-      </header>
-    </>
+    </header>
   );
 };
 
