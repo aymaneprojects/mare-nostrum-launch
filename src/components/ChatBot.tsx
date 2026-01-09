@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Loader2, Bot, User } from "lucide-react";
+import { X, Send, User, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -10,13 +10,22 @@ interface Message {
   timestamp: Date;
 }
 
+// Composant pour l'indicateur de frappe avec points animés
+const TypingIndicator = () => (
+  <div className="flex items-center gap-1 px-2">
+    <span className="w-2 h-2 bg-primary/60 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+    <span className="w-2 h-2 bg-primary/60 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+    <span className="w-2 h-2 bg-primary/60 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+  </div>
+);
+
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "welcome",
       role: "assistant",
-      content: "Bonjour ! Je suis l'assistant Mare Nostrum. Comment puis-je vous aider aujourd'hui ?",
+      content: "Bonjour, je suis Brandy, votre assistante Mare Nostrum. Je suis là pour répondre à vos questions sur l'entrepreneuriat, nos programmes éducatifs et nos services d'accompagnement. Comment puis-je vous aider ?",
       timestamp: new Date(),
     },
   ]);
@@ -143,50 +152,47 @@ const ChatBot = () => {
 
   return (
     <>
-      {/* Chat Toggle Button */}
+      {/* Chat Toggle Button - Brandy */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full shadow-lg 
-          flex items-center justify-center transition-all duration-300 
+        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg 
+          flex items-center justify-center transition-all duration-200 
           ${isOpen 
-            ? "bg-muted-foreground hover:bg-muted-foreground/90" 
-            : "bg-gradient-to-br from-primary to-accent hover:scale-110"
+            ? "bg-muted-foreground" 
+            : "bg-primary hover:bg-primary/90"
           }`}
-        aria-label={isOpen ? "Fermer le chat" : "Ouvrir le chat"}
+        aria-label={isOpen ? "Fermer le chat" : "Discuter avec Brandy"}
       >
         {isOpen ? (
-          <X className="h-7 w-7 text-white" />
+          <X className="h-6 w-6 text-white" />
         ) : (
-          <MessageCircle className="h-7 w-7 text-white" />
-        )}
-        {!isOpen && (
-          <span className="absolute -top-1 -right-1 w-4 h-4 bg-accent rounded-full animate-pulse" />
+          <Sparkles className="h-6 w-6 text-white" />
         )}
       </button>
 
       {/* Chat Window */}
       <div
-        className={`fixed bottom-24 right-6 z-50 w-[380px] max-w-[calc(100vw-3rem)] 
-          transition-all duration-300 transform origin-bottom-right
+        className={`fixed bottom-24 right-6 z-50 w-[360px] max-w-[calc(100vw-3rem)] 
+          transition-all duration-200 transform origin-bottom-right
           ${isOpen 
             ? "scale-100 opacity-100 pointer-events-auto" 
             : "scale-95 opacity-0 pointer-events-none"
           }`}
       >
-        <div className="bg-card border border-border rounded-2xl shadow-2xl overflow-hidden flex flex-col h-[500px]">
+        <div className="bg-card border border-border rounded-xl shadow-xl overflow-hidden flex flex-col h-[480px]">
           {/* Header */}
-          <div className="bg-gradient-to-r from-primary to-primary/80 p-4 flex items-center gap-3">
+          <div className="bg-primary p-4 flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-              <Bot className="h-6 w-6 text-white" />
+              <Sparkles className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h3 className="font-semibold text-white">Assistant Mare Nostrum</h3>
-              <p className="text-xs text-white/80">En ligne - Répond instantanément</p>
+              <h3 className="font-semibold text-white">Brandy</h3>
+              <p className="text-xs text-white/70">Assistante Mare Nostrum</p>
             </div>
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-secondary/20">
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-secondary/10">
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -195,7 +201,7 @@ const ChatBot = () => {
                 }`}
               >
                 <div
-                  className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center ${
+                  className={`w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center ${
                     message.role === "user"
                       ? "bg-accent text-accent-foreground"
                       : "bg-primary text-primary-foreground"
@@ -204,20 +210,20 @@ const ChatBot = () => {
                   {message.role === "user" ? (
                     <User className="h-4 w-4" />
                   ) : (
-                    <Bot className="h-4 w-4" />
+                    <Sparkles className="h-3.5 w-3.5" />
                   )}
                 </div>
                 <div
-                  className={`max-w-[75%] rounded-2xl px-4 py-3 ${
+                  className={`max-w-[80%] rounded-xl px-3 py-2 ${
                     message.role === "user"
                       ? "bg-accent text-accent-foreground rounded-tr-sm"
-                      : "bg-card border border-border text-foreground rounded-tl-sm shadow-sm"
+                      : "bg-card border border-border text-foreground rounded-tl-sm"
                   }`}
                 >
                   <div className="text-sm leading-relaxed">
                     {formatContent(message.content)}
                   </div>
-                  <span className="text-[10px] opacity-60 mt-1 block">
+                  <span className="text-[10px] opacity-50 mt-1 block">
                     {message.timestamp.toLocaleTimeString("fr-FR", {
                       hour: "2-digit",
                       minute: "2-digit",
@@ -229,14 +235,11 @@ const ChatBot = () => {
             
             {isLoading && (
               <div className="flex items-start gap-2">
-                <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
-                  <Bot className="h-4 w-4" />
+                <div className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
+                  <Sparkles className="h-3.5 w-3.5" />
                 </div>
-                <div className="bg-card border border-border rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
-                  <div className="flex items-center gap-2">
-                    <Loader2 className="h-4 w-4 animate-spin text-primary" />
-                    <span className="text-sm text-muted-foreground">En train d'écrire...</span>
-                  </div>
+                <div className="bg-card border border-border rounded-xl rounded-tl-sm px-3 py-3">
+                  <TypingIndicator />
                 </div>
               </div>
             )}
@@ -244,7 +247,7 @@ const ChatBot = () => {
           </div>
 
           {/* Input */}
-          <div className="p-4 bg-card border-t border-border">
+          <div className="p-3 bg-card border-t border-border">
             <div className="flex items-center gap-2">
               <Input
                 ref={inputRef}
@@ -252,21 +255,18 @@ const ChatBot = () => {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Posez votre question..."
-                className="flex-1 rounded-full border-border focus-visible:ring-primary"
+                className="flex-1 rounded-full border-border text-sm"
                 disabled={isLoading}
               />
               <Button
                 onClick={sendMessage}
                 disabled={!input.trim() || isLoading}
                 size="icon"
-                className="rounded-full bg-primary hover:bg-primary/90 h-10 w-10"
+                className="rounded-full bg-primary hover:bg-primary/90 h-9 w-9"
               >
                 <Send className="h-4 w-4" />
               </Button>
             </div>
-            <p className="text-[10px] text-muted-foreground text-center mt-2">
-              Propulsé par Mare Nostrum
-            </p>
           </div>
         </div>
       </div>
