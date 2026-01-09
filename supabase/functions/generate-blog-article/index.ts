@@ -6,11 +6,14 @@ const corsHeaders = {
 };
 
 interface RequestBody {
-  title: string;
+  title?: string;
+  topic?: string; // Alternative à title pour n8n
   category: string;
   image?: string;
+  cover_image_url?: string; // Alternative à image pour n8n
   publish?: boolean;
   keywords?: string[] | string;
+  keyword?: string; // Mot-clé unique pour n8n
 }
 
 function generateSlug(title: string): string {
@@ -124,9 +127,14 @@ Deno.serve(async (req) => {
 
   try {
     const body: RequestBody = await req.json();
-    const { title, category, image, publish = true } = body;
+    
+    // Support both formats: title/topic et image/cover_image_url
+    const title = body.title || body.topic;
+    const category = body.category;
+    const imageUrl = body.cover_image_url || body.image || "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800";
+    const publish = body.publish !== false; // true par défaut
 
-    // Parse keywords
+    // Parse keywords - support array, string, ou single keyword
     let keywords: string[] = [];
     if (body.keywords) {
       if (Array.isArray(body.keywords)) {
@@ -134,14 +142,18 @@ Deno.serve(async (req) => {
       } else if (typeof body.keywords === 'string') {
         keywords = body.keywords.split(',').map(k => k.trim()).filter(Boolean);
       }
+    } else if (body.keyword) {
+      keywords = [body.keyword];
     }
 
-    console.log(`Title: ${title}`);
+    console.log(`Title/Topic: ${title}`);
     console.log(`Category: ${category}`);
+    console.log(`Image: ${imageUrl}`);
+    console.log(`Keywords: ${keywords.join(', ')}`);
 
     if (!title || !category) {
       return new Response(
-        JSON.stringify({ success: false, error: "title and category required" }),
+        JSON.stringify({ success: false, error: "title/topic and category required" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
@@ -169,7 +181,7 @@ Deno.serve(async (req) => {
         excerpt,
         content,
         category,
-        image: image || "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800",
+        image: imageUrl,
         author: "Mare Nostrum",
         is_published: publish,
         published_at: publish ? new Date().toISOString() : null,
