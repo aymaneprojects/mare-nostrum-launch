@@ -9,6 +9,16 @@ import { Badge } from "@/components/ui/badge";
 import SEOHead from "@/components/SEOHead";
 import { useBlogArticles, BlogArticle } from "@/hooks/useBlogArticles";
 
+// Fonction pour nettoyer l'excerpt des balises HTML/markdown
+const cleanExcerpt = (excerpt: string): string => {
+  return excerpt
+    .replace(/```html\s*/gi, '') // Supprime ```html
+    .replace(/```\s*/g, '')       // Supprime ```
+    .replace(/<[^>]*>/g, '')      // Supprime les balises HTML
+    .replace(/\s+/g, ' ')         // Normalise les espaces
+    .trim();
+};
+
 const Blog = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -141,7 +151,7 @@ const Blog = () => {
                       {article.title}
                     </h2>
                     <p className="text-muted-foreground mb-4 line-clamp-3">
-                      {article.excerpt}
+                      {cleanExcerpt(article.excerpt)}
                     </p>
                     <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
                       <div className="flex items-center gap-2">
