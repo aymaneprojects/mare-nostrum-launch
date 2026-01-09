@@ -47,38 +47,26 @@ async function generateArticleWithMistral(
   }
 
   const keywordsText = keywords.length > 0 
-    ? `Mots-clés SEO à intégrer naturellement : ${keywords.join(", ")}.` 
+    ? `Mots-clés SEO : ${keywords.join(", ")}.` 
     : "";
 
-  const systemPrompt = `Tu es un rédacteur web expérimenté spécialisé en entrepreneuriat. Tu écris pour Mare Nostrum, cabinet de conseil en entrepreneuriat à impact basé à Toulouse, Paris et Casablanca. Ton style est chaleureux, accessible et engageant - comme si tu parlais à un ami entrepreneur.`;
+  const systemPrompt = `Rédacteur web expert en entrepreneuriat pour Mare Nostrum (Toulouse, Paris, Casablanca). Style chaleureux, tutoiement.`;
 
-  const userPrompt = `Rédige un article de blog de 2000-3000 mots sur : "${title}" (catégorie: ${category})
+  const userPrompt = `Article blog 1500-2000 mots : "${title}" (${category})
 ${keywordsText}
 
-RÈGLES IMPORTANTES :
-1. NE PAS répéter le titre au début - commence directement par l'introduction
-2. NE PAS utiliser de balises markdown (pas de \`\`\`html)
-3. Génère UNIQUEMENT du HTML pur (h2, h3, p, ul, li, ol, blockquote, strong, em)
-
-STYLE D'ÉCRITURE :
-- Tutoie le lecteur naturellement
-- Utilise des phrases courtes et dynamiques
-- Pose des questions rhétoriques pour engager
-- Partage des anecdotes et exemples concrets
-- Évite le jargon trop technique
-- Sois encourageant et positif
-- Ajoute des transitions fluides entre les sections
+FORMAT : HTML pur (h2, h3, p, ul, li, strong, em). Pas de markdown, pas de titre H1.
 
 STRUCTURE :
-- Introduction accrocheuse (2-3 paragraphes) qui pose le contexte et donne envie de lire
-- 5-6 sections avec des sous-titres (h2) clairs et attractifs
-- Des conseils pratiques et actionnables
-- Des exemples réels ou réalistes
-- Conclusion inspirante avec appel à l'action vers Mare Nostrum
+- Intro accrocheuse (2 paragraphes)
+- 4-5 sections H2
+- Conseils pratiques avec exemples
+- Conclusion avec CTA Mare Nostrum
 
-Mentionne Mare Nostrum 2-3 fois de manière naturelle (pas forcé).
+STYLE : Tutoiement, phrases courtes, questions rhétoriques, encourageant.
+Mentionne Mare Nostrum 2 fois naturellement.
 
-Génère le contenu HTML maintenant :`;
+HTML :`;
 
   console.log("Calling Mistral API...");
 
@@ -94,8 +82,8 @@ Génère le contenu HTML maintenant :`;
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt }
       ],
-      max_tokens: 8000,
-      temperature: 0.7,
+      max_tokens: 5000,
+      temperature: 0.8,
     }),
   });
 
