@@ -89,7 +89,7 @@ Génère le contenu HTML maintenant :`;
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model: "mistral-large-latest",
+      model: "mistral-large-2512",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt }
