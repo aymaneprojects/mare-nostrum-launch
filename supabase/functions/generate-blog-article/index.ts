@@ -198,7 +198,7 @@ Deno.serve(async (req) => {
         content,
         category,
         image: imageUrl,
-        author: "Rédaction",
+        author: "Mare Nostrum",
         is_published: publish,
         published_at: publish ? new Date().toISOString() : null,
       })

@@ -22,7 +22,7 @@ const TypingIndicator = () => (
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
-  const [notificationDismissed, setNotificationDismissed] = useState(false);
+  const [hasUsedChat, setHasUsedChat] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "welcome",
@@ -33,6 +33,7 @@ const ChatBot = () => {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [notificationCount, setNotificationCount] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -50,26 +51,40 @@ const ChatBot = () => {
     }
   }, [isOpen]);
 
-  // Afficher la notification après 5 secondes si pas déjà vu
+  // Vérifier si l'utilisateur a déjà utilisé le chat
   useEffect(() => {
-    const hasSeenNotification = sessionStorage.getItem("brandy_notification_seen");
-    
-    if (!hasSeenNotification && !isOpen) {
+    const hasUsed = sessionStorage.getItem("brandy_chat_used") === "true";
+    setHasUsedChat(hasUsed);
+  }, []);
+
+  // Afficher la notification périodiquement (max 3 fois par session)
+  useEffect(() => {
+    if (hasUsedChat || isOpen) return;
+
+    const showNotificationWithDelay = () => {
+      // Première notification après 8 secondes, puis toutes les 60 secondes
+      const delay = notificationCount === 0 ? 8000 : 60000;
+      
       const timer = setTimeout(() => {
-        setShowNotification(true);
-      }, 5000);
+        if (notificationCount < 3 && !hasUsedChat && !isOpen) {
+          setShowNotification(true);
+          setNotificationCount(prev => prev + 1);
+        }
+      }, delay);
       
       return () => clearTimeout(timer);
-    }
-  }, [isOpen]);
+    };
 
-  // Cacher la notification après 10 secondes
+    const cleanup = showNotificationWithDelay();
+    return cleanup;
+  }, [notificationCount, hasUsedChat, isOpen]);
+
+  // Cacher la notification après 8 secondes
   useEffect(() => {
     if (showNotification) {
       const timer = setTimeout(() => {
         setShowNotification(false);
-        setNotificationDismissed(true);
-      }, 10000);
+      }, 8000);
       
       return () => clearTimeout(timer);
     }
@@ -78,19 +93,25 @@ const ChatBot = () => {
   const handleOpenChat = () => {
     setIsOpen(true);
     setShowNotification(false);
-    setNotificationDismissed(true);
-    sessionStorage.setItem("brandy_notification_seen", "true");
   };
 
   const handleDismissNotification = (e: React.MouseEvent) => {
     e.stopPropagation();
     setShowNotification(false);
-    setNotificationDismissed(true);
-    sessionStorage.setItem("brandy_notification_seen", "true");
+  };
+
+  const markChatAsUsed = () => {
+    setHasUsedChat(true);
+    sessionStorage.setItem("brandy_chat_used", "true");
   };
 
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
+
+    // Marquer le chat comme utilisé dès le premier message
+    if (!hasUsedChat) {
+      markChatAsUsed();
+    }
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -111,6 +132,7 @@ const ChatBot = () => {
           headers: {
             "Content-Type": "application/json",
           },
+          mode: "cors",
           body: JSON.stringify({
             message: userMessage.content,
             sessionId: localStorage.getItem("chat_session_id") || Date.now().toString(),
@@ -194,9 +216,9 @@ const ChatBot = () => {
   return (
     <>
       {/* Notification Bubble */}
-      {showNotification && !isOpen && !notificationDismissed && (
+      {showNotification && !isOpen && (
         <div 
-          className="fixed bottom-24 right-6 z-50 max-w-[280px] animate-in slide-in-from-right-5 fade-in duration-300"
+          className="fixed bottom-24 right-4 sm:right-6 z-50 max-w-[280px] animate-in slide-in-from-right-5 fade-in duration-300"
           onClick={handleOpenChat}
         >
           <div className="bg-card border border-border rounded-xl shadow-lg p-4 cursor-pointer hover:shadow-xl transition-shadow relative">
@@ -226,7 +248,7 @@ const ChatBot = () => {
       {/* Chat Toggle Button - Brandy */}
       <button
         onClick={() => isOpen ? setIsOpen(false) : handleOpenChat()}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg 
+        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-full shadow-lg 
           flex items-center justify-center transition-all duration-200 
           ${isOpen 
             ? "bg-muted-foreground" 
@@ -243,14 +265,17 @@ const ChatBot = () => {
 
       {/* Chat Window */}
       <div
-        className={`fixed bottom-24 right-6 z-50 w-[360px] max-w-[calc(100vw-3rem)] 
-          transition-all duration-200 transform origin-bottom-right
+        className={`fixed z-50 transition-all duration-200 transform origin-bottom-right
           ${isOpen 
             ? "scale-100 opacity-100 pointer-events-auto" 
             : "scale-95 opacity-0 pointer-events-none"
-          }`}
+          }
+          /* Mobile: full width minus margins */
+          bottom-20 right-2 left-2 sm:left-auto
+          /* Desktop: fixed width */
+          sm:bottom-24 sm:right-6 sm:w-[360px] sm:max-w-[calc(100vw-3rem)]`}
       >
-        <div className="bg-card border border-border rounded-xl shadow-xl overflow-hidden flex flex-col h-[480px]">
+        <div className="bg-card border border-border rounded-xl shadow-xl overflow-hidden flex flex-col h-[70vh] sm:h-[480px] max-h-[600px]">
           {/* Header */}
           <div className="bg-primary p-4 flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">

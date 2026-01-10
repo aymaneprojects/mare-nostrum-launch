@@ -93,9 +93,15 @@ const Footer = () => {
         <div className="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-primary-foreground/20">
           <div className="flex flex-col md:flex-row justify-between items-center text-xs md:text-sm text-primary-foreground/60 gap-3 md:gap-0">
             <p>© {new Date().getFullYear()} Mare Nostrum. Tous droits réservés.</p>
-            <div className="flex space-x-4">
+            <div className="flex flex-wrap gap-x-4 gap-y-2">
               <Link to="/mentions-legales" className="hover:text-primary-foreground/80 transition-colors">
                 Mentions légales
+              </Link>
+              <Link to="/cgu" className="hover:text-primary-foreground/80 transition-colors">
+                CGU
+              </Link>
+              <Link to="/confidentialite" className="hover:text-primary-foreground/80 transition-colors">
+                Politique de confidentialité
               </Link>
             </div>
           </div>
