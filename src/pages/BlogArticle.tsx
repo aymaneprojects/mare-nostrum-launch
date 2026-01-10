@@ -92,12 +92,54 @@ const BlogArticle = () => {
   const wordCount = article.content.split(/\s+/).length;
   const readingTime = Math.ceil(wordCount / wordsPerMinute);
 
+  // Schema Article pour SEO
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": article.title,
+    "description": article.excerpt,
+    "image": article.image,
+    "datePublished": article.published_at,
+    "dateModified": article.updated_at || article.published_at,
+    "author": {
+      "@type": "Organization",
+      "name": article.author,
+      "url": "https://marenostrum.tech"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Mare Nostrum",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://marenostrum.tech/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://marenostrum.tech/blog/${article.slug}`
+    },
+    "articleSection": article.category,
+    "wordCount": wordCount,
+    "timeRequired": `PT${readingTime}M`
+  };
+
+  // Breadcrumb schema
+  const breadcrumbSchema = [
+    { name: "Accueil", url: "https://marenostrum.tech" },
+    { name: "Blog", url: "https://marenostrum.tech/blog" },
+    { name: article.title, url: `https://marenostrum.tech/blog/${article.slug}` }
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead 
-        title={`${article.title} - Blog Mare Nostrum`}
-        description={article.excerpt}
-        keywords={`${article.category.toLowerCase()}, entrepreneuriat, ${article.title.toLowerCase()}`}
+        title={`${article.title} | Blog Entrepreneuriat Mare Nostrum`}
+        description={article.excerpt.substring(0, 155)}
+        keywords={`${article.category.toLowerCase()}, entrepreneuriat, business, startup, ${article.title.toLowerCase().split(' ').slice(0, 5).join(', ')}`}
+        image={article.image}
+        type="article"
+        structuredData={articleSchema}
+        breadcrumbSchema={breadcrumbSchema}
       />
       <Header />
 
