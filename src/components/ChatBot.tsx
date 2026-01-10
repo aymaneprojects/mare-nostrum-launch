@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { X, Send, User, Sparkles } from "lucide-react";
+import { X, Send, User, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -21,11 +21,13 @@ const TypingIndicator = () => (
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationDismissed, setNotificationDismissed] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "welcome",
       role: "assistant",
-      content: "Bonjour, je suis Brandy, votre assistante Mare Nostrum. Je suis là pour répondre à vos questions sur l'entrepreneuriat, nos programmes éducatifs et nos services d'accompagnement. Comment puis-je vous aider ?",
+      content: "Bonjour, je suis Brandy, votre assistante. Je suis là pour répondre à vos questions sur l'entrepreneuriat, les programmes éducatifs et l'accompagnement. Comment puis-je vous aider ?",
       timestamp: new Date(),
     },
   ]);
@@ -47,6 +49,45 @@ const ChatBot = () => {
       inputRef.current.focus();
     }
   }, [isOpen]);
+
+  // Afficher la notification après 5 secondes si pas déjà vu
+  useEffect(() => {
+    const hasSeenNotification = sessionStorage.getItem("brandy_notification_seen");
+    
+    if (!hasSeenNotification && !isOpen) {
+      const timer = setTimeout(() => {
+        setShowNotification(true);
+      }, 5000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
+  // Cacher la notification après 10 secondes
+  useEffect(() => {
+    if (showNotification) {
+      const timer = setTimeout(() => {
+        setShowNotification(false);
+        setNotificationDismissed(true);
+      }, 10000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [showNotification]);
+
+  const handleOpenChat = () => {
+    setIsOpen(true);
+    setShowNotification(false);
+    setNotificationDismissed(true);
+    sessionStorage.setItem("brandy_notification_seen", "true");
+  };
+
+  const handleDismissNotification = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setShowNotification(false);
+    setNotificationDismissed(true);
+    sessionStorage.setItem("brandy_notification_seen", "true");
+  };
 
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
@@ -152,9 +193,39 @@ const ChatBot = () => {
 
   return (
     <>
+      {/* Notification Bubble */}
+      {showNotification && !isOpen && !notificationDismissed && (
+        <div 
+          className="fixed bottom-24 right-6 z-50 max-w-[280px] animate-in slide-in-from-right-5 fade-in duration-300"
+          onClick={handleOpenChat}
+        >
+          <div className="bg-card border border-border rounded-xl shadow-lg p-4 cursor-pointer hover:shadow-xl transition-shadow relative">
+            <button 
+              onClick={handleDismissNotification}
+              className="absolute -top-2 -right-2 w-6 h-6 bg-muted rounded-full flex items-center justify-center hover:bg-muted-foreground/20 transition-colors"
+              aria-label="Fermer"
+            >
+              <X className="h-3 w-3 text-muted-foreground" />
+            </button>
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+                <MessageCircle className="h-5 w-5 text-primary-foreground" />
+              </div>
+              <div>
+                <p className="font-medium text-sm text-foreground">Besoin d'aide ?</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Je suis Brandy, votre assistante. Posez-moi vos questions !
+                </p>
+              </div>
+            </div>
+            <div className="absolute bottom-0 right-6 translate-y-1/2 w-3 h-3 bg-card border-r border-b border-border rotate-45" />
+          </div>
+        </div>
+      )}
+
       {/* Chat Toggle Button - Brandy */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => isOpen ? setIsOpen(false) : handleOpenChat()}
         className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg 
           flex items-center justify-center transition-all duration-200 
           ${isOpen 
@@ -166,7 +237,7 @@ const ChatBot = () => {
         {isOpen ? (
           <X className="h-6 w-6 text-white" />
         ) : (
-          <Sparkles className="h-6 w-6 text-white" />
+          <MessageCircle className="h-6 w-6 text-white" />
         )}
       </button>
 
@@ -183,11 +254,11 @@ const ChatBot = () => {
           {/* Header */}
           <div className="bg-primary p-4 flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-              <Sparkles className="h-5 w-5 text-white" />
+              <MessageCircle className="h-5 w-5 text-white" />
             </div>
             <div>
               <h3 className="font-semibold text-white">Brandy</h3>
-              <p className="text-xs text-white/70">Assistante Mare Nostrum</p>
+              <p className="text-xs text-white/70">Assistante virtuelle</p>
             </div>
           </div>
 
@@ -210,7 +281,7 @@ const ChatBot = () => {
                   {message.role === "user" ? (
                     <User className="h-4 w-4" />
                   ) : (
-                    <Sparkles className="h-3.5 w-3.5" />
+                    <MessageCircle className="h-3.5 w-3.5" />
                   )}
                 </div>
                 <div
@@ -236,7 +307,7 @@ const ChatBot = () => {
             {isLoading && (
               <div className="flex items-start gap-2">
                 <div className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
-                  <Sparkles className="h-3.5 w-3.5" />
+                  <MessageCircle className="h-3.5 w-3.5" />
                 </div>
                 <div className="bg-card border border-border rounded-xl rounded-tl-sm px-3 py-3">
                   <TypingIndicator />

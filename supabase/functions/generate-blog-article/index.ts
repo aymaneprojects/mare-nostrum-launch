@@ -47,28 +47,50 @@ async function generateArticleWithMistral(
   }
 
   const keywordsText = keywords.length > 0 
-    ? `Mots-clés SEO : ${keywords.join(", ")}.` 
+    ? `Mots-clés SEO à intégrer naturellement : ${keywords.join(", ")}.` 
     : "";
 
-  const systemPrompt = `Rédacteur web expert en entrepreneuriat pour Mare Nostrum (Toulouse, Paris, Casablanca). Style chaleureux, tutoiement.`;
+  const systemPrompt = `Tu es un rédacteur web expert en création de contenu éducatif et informatif de haute qualité. 
+Tu rédiges des articles de blog professionnels, objectifs et pédagogiques.
+Tu ne fais JAMAIS de promotion commerciale ni de mention d'entreprise.
+Tu te concentres uniquement sur apporter de la valeur au lecteur avec des informations pratiques et actionnables.
+Style : professionnel mais accessible, vouvoiement, phrases claires et structurées.`;
 
-  const userPrompt = `Article blog 1500-2000 mots : "${title}" (${category})
+  const userPrompt = `Rédige un article de blog complet et optimisé SEO sur le sujet : "${title}"
+Catégorie : ${category}
 ${keywordsText}
 
-FORMAT : HTML pur (h2, h3, p, ul, li, strong, em). Pas de markdown, pas de titre H1.
+CONSIGNES SEO IMPORTANTES :
+- L'article doit faire entre 2000 et 3000 mots
+- Utilise le mot-clé principal dans les 100 premiers mots
+- Inclus des sous-titres H2 et H3 avec des mots-clés pertinents
+- Ajoute des listes à puces pour améliorer la lisibilité
+- Utilise des paragraphes courts (3-4 phrases max)
+- Intègre des questions que les lecteurs pourraient poser (format FAQ)
+- Ajoute des statistiques ou données chiffrées quand pertinent
+- Termine par une conclusion avec un résumé des points clés
 
-STRUCTURE :
-- Intro accrocheuse (2 paragraphes)
-- 4-5 sections H2
-- Conseils pratiques avec exemples
-- Conclusion avec CTA Mare Nostrum
+FORMAT : HTML pur uniquement (h2, h3, p, ul, li, ol, strong, em, blockquote). 
+PAS de markdown, PAS de balises code, PAS de titre H1 (il sera ajouté automatiquement).
 
-STYLE : Tutoiement, phrases courtes, questions rhétoriques, encourageant.
-Mentionne Mare Nostrum 2 fois naturellement.
+STRUCTURE REQUISE :
+1. Introduction engageante qui pose le problème/sujet (2-3 paragraphes)
+2. Section "Comprendre [le sujet]" avec définitions et contexte
+3. Section principale avec 4-6 sous-sections détaillées (H2 avec H3 si nécessaire)
+4. Section "Conseils pratiques" ou "Étapes à suivre" avec liste numérotée
+5. Section FAQ avec 3-4 questions fréquentes
+6. Conclusion avec récapitulatif et ouverture
 
-HTML :`;
+RÈGLES STRICTES :
+- NE MENTIONNE AUCUNE entreprise, marque ou service commercial
+- NE fais AUCUNE promotion ou call-to-action commercial
+- Reste 100% informatif, éducatif et objectif
+- Cite des sources génériques (études, experts du domaine) mais pas de marques
+- Le contenu doit être utile même sans contexte commercial
 
-  console.log("Calling Mistral API...");
+Commence directement avec le contenu HTML :`;
+
+  console.log("Calling Mistral API for SEO-optimized article...");
 
   const response = await fetch("https://api.mistral.ai/v1/chat/completions", {
     method: "POST",
@@ -82,8 +104,8 @@ HTML :`;
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt }
       ],
-      max_tokens: 5000,
-      temperature: 0.8,
+      max_tokens: 8000,
+      temperature: 0.7,
     }),
   });
 
@@ -102,8 +124,14 @@ HTML :`;
     throw new Error("No content from Mistral");
   }
 
-  console.log(`Generated ${content.length} chars`);
-  return content;
+  // Clean up any markdown code blocks that might have slipped through
+  const cleanedContent = content
+    .replace(/```html\n?/g, "")
+    .replace(/```\n?/g, "")
+    .trim();
+
+  console.log(`Generated ${cleanedContent.length} chars (SEO-optimized, non-commercial)`);
+  return cleanedContent;
 }
 
 Deno.serve(async (req) => {
@@ -170,7 +198,7 @@ Deno.serve(async (req) => {
         content,
         category,
         image: imageUrl,
-        author: "Mare Nostrum",
+        author: "Rédaction",
         is_published: publish,
         published_at: publish ? new Date().toISOString() : null,
       })
