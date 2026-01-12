@@ -18,7 +18,7 @@ const SEOHead = ({
   title, 
   description, 
   keywords = "entrepreneuriat, conseil, formation, impact, Toulouse, Paris, Casablanca",
-  image = "https://lovable.dev/opengraph-image-p98pqg.png",
+  image = "https://marenostrum.tech/favicon.png",
   type = "website",
   noindex = false,
   structuredData,

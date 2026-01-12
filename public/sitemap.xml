@@ -6,7 +6,7 @@
   <!-- Page d'accueil -->
   <url>
     <loc>https://marenostrum.tech/</loc>
-    <lastmod>2025-11-25</lastmod>
+    <lastmod>2026-01-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/" />
@@ -17,7 +17,7 @@
   <!-- Mare Nostrum Éducation -->
   <url>
     <loc>https://marenostrum.tech/education</loc>
-    <lastmod>2025-11-25</lastmod>
+    <lastmod>2026-01-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/education" />
@@ -26,16 +26,25 @@
   <!-- Mare Nostrum Croissance -->
   <url>
     <loc>https://marenostrum.tech/croissance</loc>
-    <lastmod>2025-11-25</lastmod>
+    <lastmod>2026-01-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/croissance" />
   </url>
 
+  <!-- Offre IA -->
+  <url>
+    <loc>https://marenostrum.tech/offre-ia</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/offre-ia" />
+  </url>
+
   <!-- Contact -->
   <url>
     <loc>https://marenostrum.tech/contact</loc>
-    <lastmod>2025-11-25</lastmod>
+    <lastmod>2026-01-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/contact" />
@@ -44,7 +53,7 @@
   <!-- À Propos -->
   <url>
     <loc>https://marenostrum.tech/a-propos</loc>
-    <lastmod>2025-11-25</lastmod>
+    <lastmod>2026-01-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/a-propos" />
@@ -53,16 +62,81 @@
   <!-- Blog -->
   <url>
     <loc>https://marenostrum.tech/blog</loc>
-    <lastmod>2025-11-25</lastmod>
+    <lastmod>2026-01-12</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/blog" />
+  </url>
+
+  <!-- Articles de Blog -->
+  <url>
+    <loc>https://marenostrum.tech/blog/elaborer-un-business-plan-efficace-modele-et-conseils-pour-entrepreneurs</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/blog/elaborer-un-business-plan-efficace-modele-et-conseils-pour-entrepreneurs" />
+  </url>
+
+  <url>
+    <loc>https://marenostrum.tech/blog/impact-social-comment-mesurer-limpact-de-votre-entreprise-a-impact-</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/blog/impact-social-comment-mesurer-limpact-de-votre-entreprise-a-impact-" />
+  </url>
+
+  <url>
+    <loc>https://marenostrum.tech/blog/auto-entrepreneur-vs-entrepreneur-classique-quelles-differences-</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/blog/auto-entrepreneur-vs-entrepreneur-classique-quelles-differences-" />
+  </url>
+
+  <url>
+    <loc>https://marenostrum.tech/blog/impact-environnemental-comment-les-entreprises-a-impact-reduisent-leur-empreinte</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/blog/impact-environnemental-comment-les-entreprises-a-impact-reduisent-leur-empreinte" />
+  </url>
+
+  <url>
+    <loc>https://marenostrum.tech/blog/equilibre-vie-personnelle-et-entrepreneuriat-concilier-efficacement-les-deux</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/blog/equilibre-vie-personnelle-et-entrepreneuriat-concilier-efficacement-les-deux" />
+  </url>
+
+  <url>
+    <loc>https://marenostrum.tech/blog/quelles-competences-et-qualites-pour-reussir-en-entrepreneuriat-</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/blog/quelles-competences-et-qualites-pour-reussir-en-entrepreneuriat-" />
+  </url>
+
+  <url>
+    <loc>https://marenostrum.tech/blog/comment-trouver-une-idee-de-business-rentable-en-2025-</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/blog/comment-trouver-une-idee-de-business-rentable-en-2025-" />
+  </url>
+
+  <url>
+    <loc>https://marenostrum.tech/blog/demarrer-une-entreprise-avec-un-petit-budget-guide-pratique-et-astuces</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/blog/demarrer-une-entreprise-avec-un-petit-budget-guide-pratique-et-astuces" />
   </url>
 
   <!-- Livre Blanc Entrepreneuriat -->
   <url>
     <loc>https://marenostrum.tech/livre-blanc-entrepreneuriat</loc>
-    <lastmod>2025-11-25</lastmod>
+    <lastmod>2026-01-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/livre-blanc-entrepreneuriat" />
@@ -71,7 +145,7 @@
   <!-- Engagement RSE -->
   <url>
     <loc>https://marenostrum.tech/engagement-rse</loc>
-    <lastmod>2025-11-25</lastmod>
+    <lastmod>2026-01-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/engagement-rse" />
@@ -80,7 +154,7 @@
   <!-- Mentions Légales -->
   <url>
     <loc>https://marenostrum.tech/mentions-legales</loc>
-    <lastmod>2025-11-25</lastmod>
+    <lastmod>2026-01-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/mentions-legales" />
@@ -89,7 +163,7 @@
   <!-- Politique de Confidentialité -->
   <url>
     <loc>https://marenostrum.tech/confidentialite</loc>
-    <lastmod>2025-11-25</lastmod>
+    <lastmod>2026-01-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/confidentialite" />
@@ -98,7 +172,7 @@
   <!-- CGU -->
   <url>
     <loc>https://marenostrum.tech/cgu</loc>
-    <lastmod>2025-11-25</lastmod>
+    <lastmod>2026-01-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://marenostrum.tech/cgu" />
