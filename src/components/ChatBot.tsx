@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { X, Send, User, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,16 @@ interface Message {
   timestamp: Date;
 }
 
+interface StoredMessage {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  timestamp: string;
+}
+
+const CHAT_HISTORY_KEY = "brandy_chat_history";
+const CHAT_SESSION_KEY = "brandy_session_id";
+
 // Composant pour l'indicateur de frappe avec points animés
 const TypingIndicator = () => (
   <div className="flex items-center gap-1 px-2">
@@ -19,23 +29,69 @@ const TypingIndicator = () => (
   </div>
 );
 
+const welcomeMessage: Message = {
+  id: "welcome",
+  role: "assistant",
+  content: "Bonjour, je suis Brandy, votre assistante. Je suis là pour répondre à vos questions sur l'entrepreneuriat, les programmes éducatifs et l'accompagnement. Comment puis-je vous aider ?",
+  timestamp: new Date(),
+};
+
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const [hasUsedChat, setHasUsedChat] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "welcome",
-      role: "assistant",
-      content: "Bonjour, je suis Brandy, votre assistante. Je suis là pour répondre à vos questions sur l'entrepreneuriat, les programmes éducatifs et l'accompagnement. Comment puis-je vous aider ?",
-      timestamp: new Date(),
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([welcomeMessage]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [notificationCount, setNotificationCount] = useState(0);
+  const [sessionId, setSessionId] = useState<string>("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Charger l'historique depuis localStorage au démarrage
+  useEffect(() => {
+    try {
+      // Charger ou créer le session ID
+      let storedSessionId = localStorage.getItem(CHAT_SESSION_KEY);
+      if (!storedSessionId) {
+        storedSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+        localStorage.setItem(CHAT_SESSION_KEY, storedSessionId);
+      }
+      setSessionId(storedSessionId);
+
+      // Charger l'historique des messages
+      const storedHistory = localStorage.getItem(CHAT_HISTORY_KEY);
+      if (storedHistory) {
+        const parsedHistory: StoredMessage[] = JSON.parse(storedHistory);
+        // Convertir les timestamps string en Date
+        const restoredMessages = parsedHistory.map(msg => ({
+          ...msg,
+          timestamp: new Date(msg.timestamp),
+        }));
+        // S'assurer que le message de bienvenue est présent
+        if (restoredMessages.length > 0 && restoredMessages[0].id !== "welcome") {
+          setMessages([welcomeMessage, ...restoredMessages]);
+        } else if (restoredMessages.length > 0) {
+          setMessages(restoredMessages);
+        }
+      }
+    } catch (error) {
+      console.error("Error loading chat history:", error);
+    }
+  }, []);
+
+  // Sauvegarder l'historique dans localStorage à chaque changement
+  const saveHistory = useCallback((msgs: Message[]) => {
+    try {
+      const toStore: StoredMessage[] = msgs.map(msg => ({
+        ...msg,
+        timestamp: msg.timestamp.toISOString(),
+      }));
+      localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(toStore));
+    } catch (error) {
+      console.error("Error saving chat history:", error);
+    }
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -53,7 +109,7 @@ const ChatBot = () => {
 
   // Vérifier si l'utilisateur a déjà utilisé le chat
   useEffect(() => {
-    const hasUsed = sessionStorage.getItem("brandy_chat_used") === "true";
+    const hasUsed = localStorage.getItem("brandy_chat_used") === "true";
     setHasUsedChat(hasUsed);
   }, []);
 
@@ -102,7 +158,7 @@ const ChatBot = () => {
 
   const markChatAsUsed = () => {
     setHasUsedChat(true);
-    sessionStorage.setItem("brandy_chat_used", "true");
+    localStorage.setItem("brandy_chat_used", "true");
   };
 
   const sendMessage = async () => {
@@ -120,7 +176,9 @@ const ChatBot = () => {
       timestamp: new Date(),
     };
 
-    setMessages((prev) => [...prev, userMessage]);
+    const newMessages = [...messages, userMessage];
+    setMessages(newMessages);
+    saveHistory(newMessages);
     setInput("");
     setIsLoading(true);
 
@@ -135,15 +193,10 @@ const ChatBot = () => {
           mode: "cors",
           body: JSON.stringify({
             message: userMessage.content,
-            sessionId: localStorage.getItem("chat_session_id") || Date.now().toString(),
+            sessionId: sessionId,
           }),
         }
       );
-
-      // Store session ID for conversation continuity
-      if (!localStorage.getItem("chat_session_id")) {
-        localStorage.setItem("chat_session_id", Date.now().toString());
-      }
 
       const data = await response.json();
       console.log("Webhook response:", data);
@@ -173,7 +226,9 @@ const ChatBot = () => {
         timestamp: new Date(),
       };
 
-      setMessages((prev) => [...prev, assistantMessage]);
+      const updatedMessages = [...newMessages, assistantMessage];
+      setMessages(updatedMessages);
+      saveHistory(updatedMessages);
     } catch (error) {
       console.error("Error sending message:", error);
       const errorMessage: Message = {
@@ -182,7 +237,9 @@ const ChatBot = () => {
         content: "Désolé, une erreur s'est produite. Veuillez réessayer.",
         timestamp: new Date(),
       };
-      setMessages((prev) => [...prev, errorMessage]);
+      const updatedMessages = [...newMessages, errorMessage];
+      setMessages(updatedMessages);
+      saveHistory(updatedMessages);
     } finally {
       setIsLoading(false);
     }
