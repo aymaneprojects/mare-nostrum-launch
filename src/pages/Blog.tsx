@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Calendar, User, ArrowRight, Search } from "lucide-react";
+import { Calendar, User, ArrowRight, Search, ChevronLeft, ChevronRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/SEOHead";
 import { useBlogArticles, BlogArticle } from "@/hooks/useBlogArticles";
+
+const ARTICLES_PER_PAGE = 9;
 
 // Fonction pour nettoyer l'excerpt des balises HTML/markdown
 const cleanExcerpt = (excerpt: string): string => {
@@ -22,16 +25,37 @@ const cleanExcerpt = (excerpt: string): string => {
 const Blog = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const { data: articles = [], isLoading, error } = useBlogArticles();
 
   // Filtrer les articles selon la recherche et la catégorie
-  const filteredArticles = articles.filter((article: BlogArticle) => {
-    const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         article.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = !selectedCategory || article.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const filteredArticles = useMemo(() => {
+    return articles.filter((article: BlogArticle) => {
+      const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           article.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesCategory = !selectedCategory || article.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    });
+  }, [articles, searchQuery, selectedCategory]);
+
+  // Pagination
+  const totalPages = Math.ceil(filteredArticles.length / ARTICLES_PER_PAGE);
+  const paginatedArticles = useMemo(() => {
+    const startIndex = (currentPage - 1) * ARTICLES_PER_PAGE;
+    return filteredArticles.slice(startIndex, startIndex + ARTICLES_PER_PAGE);
+  }, [filteredArticles, currentPage]);
+
+  // Reset page when filters change
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value);
+    setCurrentPage(1);
+  };
+
+  const handleCategoryChange = (category: string | null) => {
+    setSelectedCategory(category);
+    setCurrentPage(1);
+  };
 
   const categories = Array.from(new Set(articles.map((a: BlogArticle) => a.category)));
 
@@ -63,7 +87,7 @@ const Blog = () => {
                 type="text"
                 placeholder="Rechercher un article..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => handleSearchChange(e.target.value)}
                 className="pl-12 h-12 bg-background/95 backdrop-blur"
               />
             </div>
@@ -78,7 +102,7 @@ const Blog = () => {
             <Badge
               variant={selectedCategory === null ? "default" : "outline"}
               className="cursor-pointer px-4 py-2"
-              onClick={() => setSelectedCategory(null)}
+              onClick={() => handleCategoryChange(null)}
             >
               Tous les articles
             </Badge>
@@ -87,7 +111,7 @@ const Blog = () => {
                 key={category}
                 variant={selectedCategory === category ? "default" : "outline"}
                 className="cursor-pointer px-4 py-2"
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => handleCategoryChange(category)}
               >
                 {category}
               </Badge>
@@ -133,47 +157,92 @@ const Blog = () => {
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredArticles.map((article: BlogArticle) => (
-                <Card key={article.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={article.image}
-                      alt={article.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <Badge className="absolute top-4 left-4">
-                      {article.category}
-                    </Badge>
-                  </div>
-                  <CardContent className="p-6">
-                    <h2 className="text-xl font-semibold mb-3 line-clamp-2 group-hover:text-primary transition-colors">
-                      {article.title}
-                    </h2>
-                    <p className="text-muted-foreground mb-4 line-clamp-3">
-                      {cleanExcerpt(article.excerpt)}
-                    </p>
-                    <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-                      <div className="flex items-center gap-2">
-                        <User className="h-4 w-4" />
-                        <span>{article.author}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4" />
-                        <span>{new Date(article.published_at).toLocaleDateString('fr-FR')}</span>
-                      </div>
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {paginatedArticles.map((article: BlogArticle) => (
+                  <Card key={article.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <Badge className="absolute top-4 left-4">
+                        {article.category}
+                      </Badge>
                     </div>
-                    <Link
-                      to={`/blog/${article.slug}`}
-                      className="inline-flex items-center text-primary hover:text-primary/80 font-medium group/link"
-                    >
-                      Lire l'article
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
-                    </Link>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                    <CardContent className="p-6">
+                      <h2 className="text-xl font-semibold mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                        {article.title}
+                      </h2>
+                      <p className="text-muted-foreground mb-4 line-clamp-3">
+                        {cleanExcerpt(article.excerpt)}
+                      </p>
+                      <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                        <div className="flex items-center gap-2">
+                          <User className="h-4 w-4" />
+                          <span>{article.author}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4" />
+                          <span>{new Date(article.published_at).toLocaleDateString('fr-FR')}</span>
+                        </div>
+                      </div>
+                      <Link
+                        to={`/blog/${article.slug}`}
+                        className="inline-flex items-center text-primary hover:text-primary/80 font-medium group/link"
+                      >
+                        Lire l'article
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
+                      </Link>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="flex items-center justify-center gap-2 mt-12">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                    disabled={currentPage === 1}
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </Button>
+                  
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                      <Button
+                        key={page}
+                        variant={currentPage === page ? "default" : "outline"}
+                        size="icon"
+                        onClick={() => setCurrentPage(page)}
+                        className="w-10 h-10"
+                      >
+                        {page}
+                      </Button>
+                    ))}
+                  </div>
+                  
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                    disabled={currentPage === totalPages}
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                </div>
+              )}
+
+              {/* Compteur d'articles */}
+              <p className="text-center text-muted-foreground mt-6">
+                {filteredArticles.length} article{filteredArticles.length > 1 ? 's' : ''} au total
+              </p>
+            </>
           )}
         </div>
       </section>
