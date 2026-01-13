@@ -1,8 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { X, Send, User, MessageCircle } from "lucide-react";
+import { X, Send, User, MessageCircle, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
 interface Message {
   id: string;
   role: "user" | "assistant";
@@ -159,6 +158,15 @@ const ChatBot = () => {
   const markChatAsUsed = () => {
     setHasUsedChat(true);
     localStorage.setItem("brandy_chat_used", "true");
+  };
+
+  // Réinitialiser le chat
+  const resetChat = () => {
+    const newSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    setSessionId(newSessionId);
+    localStorage.setItem(CHAT_SESSION_KEY, newSessionId);
+    setMessages([welcomeMessage]);
+    localStorage.removeItem(CHAT_HISTORY_KEY);
   };
 
   const sendMessage = async () => {
@@ -334,14 +342,25 @@ const ChatBot = () => {
       >
         <div className="bg-card border border-border rounded-xl shadow-xl overflow-hidden flex flex-col h-[70vh] sm:h-[480px] max-h-[600px]">
           {/* Header */}
-          <div className="bg-primary p-4 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-              <MessageCircle className="h-5 w-5 text-white" />
+          <div className="bg-primary p-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                <MessageCircle className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-white">Brandy</h3>
+                <p className="text-xs text-white/70">Assistante virtuelle</p>
+              </div>
             </div>
-            <div>
-              <h3 className="font-semibold text-white">Brandy</h3>
-              <p className="text-xs text-white/70">Assistante virtuelle</p>
-            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={resetChat}
+              className="text-white/70 hover:text-white hover:bg-white/10 h-8 w-8"
+              title="Nouvelle conversation"
+            >
+              <RotateCcw className="h-4 w-4" />
+            </Button>
           </div>
 
           {/* Messages */}
