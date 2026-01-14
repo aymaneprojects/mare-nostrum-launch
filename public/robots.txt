@@ -1,13 +1,9 @@
-# Mare Nostrum - Cabinet de conseil en entrepreneuriat
-# Robots.txt optimisé pour SEO
+# Mare Nostrum - Cabinet Expert Conseil Entrepreneuriat à Impact
+# Robots.txt optimisé SEO - Toulouse, Paris, Casablanca
+# https://marenostrum.tech
 
-# Googlebot (Google Search)
+# Googlebot (Google Search) - Priorité maximale
 User-agent: Googlebot
-Allow: /
-Crawl-delay: 0
-
-# Bingbot (Microsoft Bing)
-User-agent: Bingbot
 Allow: /
 Crawl-delay: 0
 
@@ -15,15 +11,32 @@ Crawl-delay: 0
 User-agent: Googlebot-Image
 Allow: /
 
-# Baiduspider (Baidu Search - important pour audiences internationales)
+# Google News (pour articles blog)
+User-agent: Googlebot-News
+Allow: /blog/
+
+# Bingbot (Microsoft Bing)
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+# Baiduspider (Baidu - marchés internationaux)
 User-agent: Baiduspider
 Allow: /
 
-# Yandex (moteur russe, présent en francophonie)
+# Yandex (Europe de l'Est, francophonie)
 User-agent: YandexBot
 Allow: /
 
-# Social Media Crawlers
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Yahoo Slurp
+User-agent: Slurp
+Allow: /
+
+# Social Media Crawlers - Important pour partage
 User-agent: Twitterbot
 Allow: /
 
@@ -36,11 +49,39 @@ Allow: /
 User-agent: WhatsApp
 Allow: /
 
-# Autres bots autorisés
-User-agent: DuckDuckBot
+User-agent: Discordbot
 Allow: /
 
-User-agent: Slurp
+User-agent: TelegramBot
+Allow: /
+
+# AI Crawlers - Pour référencement LLM
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# Autres bots SEO
+User-agent: AhrefsBot
+Allow: /
+
+User-agent: SemrushBot
+Allow: /
+
+User-agent: MJ12bot
 Allow: /
 
 # Tous les autres robots
@@ -48,11 +89,17 @@ User-agent: *
 Allow: /
 Crawl-delay: 1
 
-# Fichiers à ne pas indexer
+# Fichiers et dossiers à ne pas indexer
 Disallow: /api/
+Disallow: /healthz
 Disallow: /*.json$
 Disallow: /admin/
 Disallow: /private/
+Disallow: /_
+Disallow: /node_modules/
 
-# Sitemap
+# Sitemaps
 Sitemap: https://marenostrum.tech/sitemap.xml
+
+# Host canonique
+Host: https://marenostrum.tech

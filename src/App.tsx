@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import { usePrefetchBlog } from "@/hooks/usePrefetchBlog";
@@ -28,7 +28,19 @@ const queryClient = new QueryClient();
 
 // Composant qui gère le prefetch des données
 const AppContent = () => {
+  const location = useLocation();
+  const isHealthz = location.pathname === "/healthz";
+  
   usePrefetchBlog();
+  
+  // Pour /healthz, afficher uniquement le JSON sans UI globale
+  if (isHealthz) {
+    return (
+      <Routes>
+        <Route path="/healthz" element={<Healthz />} />
+      </Routes>
+    );
+  }
   
   return (
     <>
@@ -51,7 +63,6 @@ const AppContent = () => {
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/cgu" element={<CGU />} />
         <Route path="/confidentialite" element={<Confidentialite />} />
-        <Route path="/healthz" element={<Healthz />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
