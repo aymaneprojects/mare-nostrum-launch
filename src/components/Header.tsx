@@ -34,7 +34,7 @@ const Header = () => {
 
   const offres = [
     { to: "/education", label: "Offre Éducation", external: false },
-    { to: "/croissance", label: "Offre Croissance", external: false },
+    { to: "/croissance", label: "Co-Founders Lab", external: false },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -134,8 +134,8 @@ const Header = () => {
           ))}
 
           <button className="ml-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold h-9 px-4 bg-gradient-to-r from-[#6BB5C4] to-[#4A9BAC] text-white hover:from-[#7BC5D4] hover:to-[#5AABBC] transition-all duration-300 shadow-md hover:shadow-xl">
-            <Link to="/croissance#offres" className="flex items-center gap-2">
-              Rejoignez le Club
+            <Link to="/croissance#matching" className="flex items-center gap-2">
+              Trouver mon équipe
             </Link>
           </button>
           <Button asChild size="sm" className="ml-2">
@@ -233,8 +233,8 @@ const Header = () => {
               style={{ animationDelay: `${navLinks.length * 50 + 100}ms` }}
               onClick={() => setIsMenuOpen(false)}
             >
-              <Link to="/croissance#offres" className="flex items-center gap-2 w-full justify-center">
-                Rejoignez le Club
+              <Link to="/croissance#matching" className="flex items-center gap-2 w-full justify-center">
+                Trouver mon équipe
               </Link>
             </button>
             <Button
