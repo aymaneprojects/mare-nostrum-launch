@@ -1,6 +1,9 @@
+# Sitemap dynamique
+/sitemap.xml https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/sitemap 200
+
 # API redirects
 /healthz https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/healthz 200
 /api/healthz https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/healthz 200
 
-# SPA fallback - 200! means only apply if file doesn't exist
-/*    /index.html   200!
+# SPA fallback
+/*    /index.html   200
