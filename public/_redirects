@@ -1,9 +1,9 @@
-# Sitemap dynamique
-/sitemap.xml https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/sitemap 200
+# Sitemap dynamique - proxy vers Edge Function
+/sitemap.xml  https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/sitemap  200!
 
 # API redirects
-/healthz https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/healthz 200
-/api/healthz https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/healthz 200
+/healthz  https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/healthz  200
+/api/healthz  https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/healthz  200
 
-# SPA fallback
-/*    /index.html   200
+# SPA fallback - ne s'applique que si aucun fichier/règle ne correspond
+/*  /index.html  200
