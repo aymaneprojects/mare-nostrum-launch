@@ -66,12 +66,10 @@ const Contact = () => {
         body: formData
       });
 
-      // Send data to n8n webhook
+      // Send data to n8n webhook via proxy
       try {
-        await fetch('https://n8n.srv1174483.hstgr.cloud/webhook/web-contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formData)
+        await supabase.functions.invoke('webhook-proxy', {
+          body: { type: 'contact', data: formData }
         });
       } catch (webhookError) {
         console.error("Webhook error:", webhookError);
