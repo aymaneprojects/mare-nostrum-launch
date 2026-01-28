@@ -1,12 +1,6 @@
-# Static files - served directly
-/sitemap.xml    /sitemap.xml    200
-/robots.txt     /robots.txt     200
-/favicon.ico    /favicon.ico    200
-/favicon.png    /favicon.png    200
-
 # API redirects
 /healthz https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/healthz 200
 /api/healthz https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/healthz 200
 
-# SPA fallback - must be last
-/*    /index.html   200
+# SPA fallback - 200! means only apply if file doesn't exist
+/*    /index.html   200!
