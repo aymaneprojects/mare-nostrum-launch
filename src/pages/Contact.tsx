@@ -65,6 +65,17 @@ const Contact = () => {
       await supabase.functions.invoke('send-contact-notification', {
         body: formData
       });
+
+      // Send data to n8n webhook
+      try {
+        await fetch('https://n8n.srv1174483.hstgr.cloud/webhook/web-contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+      } catch (webhookError) {
+        console.error("Webhook error:", webhookError);
+      }
       
       setIsSuccess(true);
       toast({
