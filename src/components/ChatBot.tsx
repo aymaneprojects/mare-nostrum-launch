@@ -352,15 +352,18 @@ const ChatBot = () => {
                 <p className="text-xs text-white/70">Assistante virtuelle</p>
               </div>
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={resetChat}
-              className="text-white/70 hover:text-white hover:bg-white/10 h-8 w-8"
-              title="Nouvelle conversation"
-            >
-              <RotateCcw className="h-4 w-4" />
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={resetChat}
+                className="text-white/70 hover:text-white hover:bg-white/10 h-8 px-2 flex items-center gap-1.5"
+                title="Réinitialiser la conversation"
+              >
+                <RotateCcw className="h-4 w-4" />
+                <span className="text-xs hidden sm:inline">Réinitialiser</span>
+              </Button>
+            </div>
           </div>
 
           {/* Messages */}
