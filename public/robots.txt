@@ -98,8 +98,8 @@ Disallow: /private/
 Disallow: /_
 Disallow: /node_modules/
 
-# Sitemaps
-Sitemap: https://marenostrum.tech/sitemap.xml
+# Sitemaps - URL directe vers l'edge function
+Sitemap: https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/sitemap
 
 # Host canonique
 Host: https://marenostrum.tech

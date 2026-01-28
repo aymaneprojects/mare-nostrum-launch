@@ -3,6 +3,9 @@ project_id = "fpdxpvkgzrddemldvemg"
 [functions.healthz]
 verify_jwt = false
 
+[functions.sitemap]
+verify_jwt = false
+
 [functions.send-livre-blanc]
 verify_jwt = false
 
