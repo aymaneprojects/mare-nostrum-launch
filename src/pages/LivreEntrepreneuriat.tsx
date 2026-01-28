@@ -85,21 +85,22 @@ const LivreEntrepreneuriat = () => {
       });
       if (error) throw error;
 
-      // Send data to n8n webhook
+      // Send data to n8n webhook via proxy
       try {
-        await fetch('https://n8n.srv1174483.hstgr.cloud/webhook/livre-blanc', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email,
-            phone: data.phone,
-            country: data.country,
-            organization: data.organization,
-            position: data.position,
-            schoolType: data.schoolType
-          })
+        await supabase.functions.invoke('webhook-proxy', {
+          body: { 
+            type: 'livre-blanc', 
+            data: {
+              firstName: data.firstName,
+              lastName: data.lastName,
+              email: data.email,
+              phone: data.phone,
+              country: data.country,
+              organization: data.organization,
+              position: data.position,
+              schoolType: data.schoolType
+            }
+          }
         });
       } catch (webhookError) {
         console.error("Webhook error:", webhookError);
