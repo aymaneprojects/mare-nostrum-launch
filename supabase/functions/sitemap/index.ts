@@ -39,6 +39,18 @@ Deno.serve(async (req) => {
       { loc: "https://marenostrum.tech/blog", priority: "0.8", changefreq: "weekly" },
       { loc: "https://marenostrum.tech/livre-blanc-entrepreneuriat", priority: "0.8", changefreq: "monthly" },
       { loc: "https://marenostrum.tech/engagement-rse", priority: "0.6", changefreq: "monthly" },
+      // Silo 1: Écoles
+      { loc: "https://marenostrum.tech/ecoles/transformation-entrepreneuriale", priority: "0.9", changefreq: "weekly" },
+      { loc: "https://marenostrum.tech/ecoles/diagnostic-gratuit", priority: "0.8", changefreq: "monthly" },
+      // Silo 2: Entrepreneurs
+      { loc: "https://marenostrum.tech/entrepreneurs/accompagnement-francophonie-afrique", priority: "0.9", changefreq: "weekly" },
+      { loc: "https://marenostrum.tech/entrepreneurs/test-maturite-projet", priority: "0.8", changefreq: "monthly" },
+      { loc: "https://marenostrum.tech/entrepreneurs/mentorat-individuel", priority: "0.8", changefreq: "monthly" },
+      // Silo 3: Magazine
+      { loc: "https://marenostrum.tech/mag/entrepreneuriat-social-francophonie", priority: "0.7", changefreq: "monthly" },
+      { loc: "https://marenostrum.tech/mag/innovation-pedagogique-entrepreneuriat", priority: "0.7", changefreq: "monthly" },
+      { loc: "https://marenostrum.tech/mag/impact-mesure-startup", priority: "0.7", changefreq: "monthly" },
+      // Legal
       { loc: "https://marenostrum.tech/mentions-legales", priority: "0.3", changefreq: "yearly" },
       { loc: "https://marenostrum.tech/confidentialite", priority: "0.3", changefreq: "yearly" },
       { loc: "https://marenostrum.tech/cgu", priority: "0.3", changefreq: "yearly" },
