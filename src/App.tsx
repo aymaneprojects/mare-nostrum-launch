@@ -24,6 +24,20 @@ import Confidentialite from "./pages/Confidentialite";
 import NotFound from "./pages/NotFound";
 import Healthz from "./pages/Healthz";
 
+// Silo 1: Écoles
+import TransformationEntrepreneuriale from "./pages/ecoles/TransformationEntrepreneuriale";
+import DiagnosticGratuit from "./pages/ecoles/DiagnosticGratuit";
+
+// Silo 2: Entrepreneurs
+import AccompagnementFrancophonie from "./pages/entrepreneurs/AccompagnementFrancophonie";
+import TestMaturiteProjet from "./pages/entrepreneurs/TestMaturiteProjet";
+import MentoratIndividuel from "./pages/entrepreneurs/MentoratIndividuel";
+
+// Silo 3: Magazine
+import EntrepreneuriatSocialFrancophonie from "./pages/mag/EntrepreneuriatSocialFrancophonie";
+import InnovationPedagogiqueEntrepreneuriat from "./pages/mag/InnovationPedagogiqueEntrepreneuriat";
+import ImpactMesureStartup from "./pages/mag/ImpactMesureStartup";
+
 const queryClient = new QueryClient();
 
 // Composant qui gère le prefetch des données
@@ -63,6 +77,21 @@ const AppContent = () => {
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/cgu" element={<CGU />} />
         <Route path="/confidentialite" element={<Confidentialite />} />
+        
+        {/* SILO 1: Écoles (B2B) */}
+        <Route path="/ecoles/transformation-entrepreneuriale" element={<TransformationEntrepreneuriale />} />
+        <Route path="/ecoles/diagnostic-gratuit" element={<DiagnosticGratuit />} />
+        
+        {/* SILO 2: Entrepreneurs (B2C) */}
+        <Route path="/entrepreneurs/accompagnement-francophonie-afrique" element={<AccompagnementFrancophonie />} />
+        <Route path="/entrepreneurs/test-maturite-projet" element={<TestMaturiteProjet />} />
+        <Route path="/entrepreneurs/mentorat-individuel" element={<MentoratIndividuel />} />
+        
+        {/* SILO 3: Magazine (Thought Leadership) */}
+        <Route path="/mag/entrepreneuriat-social-francophonie" element={<EntrepreneuriatSocialFrancophonie />} />
+        <Route path="/mag/innovation-pedagogique-entrepreneuriat" element={<InnovationPedagogiqueEntrepreneuriat />} />
+        <Route path="/mag/impact-mesure-startup" element={<ImpactMesureStartup />} />
+        
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
