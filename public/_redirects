@@ -1,5 +1,6 @@
-# Sitemap dynamique - proxy vers Edge Function
-/sitemap.xml  https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/sitemap  200!
+# Note: Le sitemap statique est dans public/sitemap.xml
+# Le sitemap dynamique complet est disponible via l'edge function:
+# https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/sitemap
 
 # API redirects
 /healthz  https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/healthz  200
