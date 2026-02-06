@@ -145,12 +145,6 @@ const Croissance = () => {
         },
         "availability": "https://schema.org/InStock"
       }]
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.5",
-      "bestRating": "5",
-      "ratingCount": "24"
     }
   };
   const croissanceFaqs = [{
