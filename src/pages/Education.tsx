@@ -20,6 +20,11 @@ import schoolAuf from "@/assets/schools/auf.png";
 import schoolIct from "@/assets/schools/ict.png";
 import schoolComue from "@/assets/schools/comue-toulouse.png";
 import schoolInpN7 from "@/assets/schools/inp-n7.png";
+import schoolIcam from "@/assets/schools/icam.png";
+import schoolNeoma from "@/assets/schools/neoma.png";
+import schoolIcd from "@/assets/schools/icd.png";
+import schoolEsct from "@/assets/schools/esct.png";
+import schoolEfap from "@/assets/schools/efap.png";
 const Education = () => {
   const educationSchema = [{
     "@context": "https://schema.org",
@@ -469,6 +474,11 @@ const Education = () => {
               { src: schoolIct, alt: "ICT - Institut Catholique de Toulouse" },
               { src: schoolComue, alt: "Communauté d'universités de Toulouse" },
               { src: schoolInpN7, alt: "Toulouse INP N7" },
+              { src: schoolIcam, alt: "ICAM" },
+              { src: schoolNeoma, alt: "NEOMA Business School" },
+              { src: schoolIcd, alt: "ICD Business School" },
+              { src: schoolEsct, alt: "ESCT" },
+              { src: schoolEfap, alt: "EFAP" },
             ].map((school) => (
               <div key={school.alt} className="flex items-center justify-center h-16 md:h-20 grayscale hover:grayscale-0 transition-all duration-300">
                 <img src={school.src} alt={school.alt} className="max-h-full max-w-[140px] md:max-w-[160px] object-contain" />
