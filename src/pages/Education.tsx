@@ -168,7 +168,7 @@ const Education = () => {
             </p>
             <Button asChild size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto">
               <Link to="/contact">
-                Parler de votre projet pédagogique
+                Intégrez l'entrepreneuriat dans votre projet pédagogique
                 <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
               </Link>
             </Button>
