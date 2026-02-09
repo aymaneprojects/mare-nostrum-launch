@@ -12,117 +12,106 @@ import fresque1Img from "@/assets/fresque-1.png";
 import fresque2Img from "@/assets/fresque-2.png";
 import fresque3Img from "@/assets/fresque-3.png";
 const Education = () => {
-  const educationSchema = [
-    {
-      "@context": "https://schema.org",
-      "@type": "Course",
-      "name": "Programme Mare Nostrum Éducation",
-      "description": "Formation entrepreneuriale complète pour écoles et universités : ateliers participatifs, fresques collaboratives, hackathons et accompagnement premium. Programme éprouvé avec 17+ projets étudiants accompagnés.",
-      "provider": {
-        "@type": "Organization",
-        "name": "Mare Nostrum",
-        "sameAs": "https://marenostrum.tech",
-        "address": [
-          {
-            "@type": "PostalAddress",
-            "addressLocality": "Toulouse",
-            "addressCountry": "FR"
-          },
-          {
-            "@type": "PostalAddress",
-            "addressLocality": "Paris",
-            "addressCountry": "FR"
-          },
-          {
-            "@type": "PostalAddress",
-            "addressLocality": "Casablanca",
-            "addressCountry": "MA"
-          }
-        ]
-      },
-      "educationalLevel": "Higher Education",
-      "teaches": [
-        "Entrepreneuriat à impact",
-        "Innovation sociale",
-        "Business model canvas",
-        "Pitch entrepreneurial",
-        "Créativité et design thinking",
-        "Gestion de projet entrepreneurial",
-        "Intelligence collective"
-      ],
-      "coursePrerequisites": "Aucun prérequis - tous niveaux",
-      "numberOfCredits": "Variable selon programme",
-      "hasCourseInstance": [
-        {
-          "@type": "CourseInstance",
-          "name": "La Fresque de l'esprit d'entreprendre",
-          "description": "Atelier collaboratif de 3h pour découvrir l'entrepreneuriat de manière ludique",
-          "courseMode": "Blended",
-          "duration": "PT3H"
-        },
-        {
-          "@type": "CourseInstance",
-          "name": "L'Atelier des Alliés",
-          "description": "Session d'intelligence collective pour développer la créativité entrepreneuriale",
-          "courseMode": "Blended",
-          "duration": "P1D"
-        },
-        {
-          "@type": "CourseInstance",
-          "name": "Hackathons & Challenges",
-          "description": "Événements intensifs sur 1 à 3 jours pour stimuler l'innovation",
-          "courseMode": "On-site",
-          "duration": "P3D"
-        },
-        {
-          "@type": "CourseInstance",
-          "name": "Programme Premium Néo-Entrepreneurs",
-          "description": "Accompagnement complet sur plusieurs mois",
-          "courseMode": "Blended",
-          "duration": "P6M"
-        }
-      ],
-      "audience": {
-        "@type": "EducationalAudience",
-        "educationalRole": "student",
-        "audienceType": "Étudiants écoles de commerce, universités, écoles d'ingénieurs"
-      }
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Mare Nostrum Éducation",
-      "description": "Programmes d'éducation entrepreneuriale pour établissements : ateliers, fresques, cours, hackathons et programmes premium",
-      "provider": {
-        "@type": "Organization",
-        "name": "Mare Nostrum"
-      },
-      "serviceType": "Éducation Entrepreneuriale",
-      "areaServed": [
-        { "@type": "Country", "name": "France" },
-        { "@type": "Country", "name": "Maroc" },
-        { "@type": "City", "name": "Toulouse" },
-        { "@type": "City", "name": "Paris" },
-        { "@type": "City", "name": "Casablanca" }
-      ],
-      "offers": [{
-        "@type": "Offer",
-        "name": "La Fresque de l'esprit d'entreprendre",
-        "description": "Atelier collaboratif de 3h pour découvrir l'entrepreneuriat",
-        "availability": "https://schema.org/InStock"
+  const educationSchema = [{
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Programme Mare Nostrum Éducation",
+    "description": "Formation entrepreneuriale complète pour écoles et universités : ateliers participatifs, fresques collaboratives, hackathons et accompagnement premium. Programme éprouvé avec 17+ projets étudiants accompagnés.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Mare Nostrum",
+      "sameAs": "https://marenostrum.tech",
+      "address": [{
+        "@type": "PostalAddress",
+        "addressLocality": "Toulouse",
+        "addressCountry": "FR"
       }, {
-        "@type": "Offer",
-        "name": "L'Atelier des Alliés",
-        "description": "Session d'intelligence collective pour développer la créativité entrepreneuriale",
-        "availability": "https://schema.org/InStock"
+        "@type": "PostalAddress",
+        "addressLocality": "Paris",
+        "addressCountry": "FR"
       }, {
-        "@type": "Offer",
-        "name": "Programme Premium Néo-Entrepreneurs",
-        "description": "Accompagnement complet sur plusieurs mois",
-        "availability": "https://schema.org/InStock"
+        "@type": "PostalAddress",
+        "addressLocality": "Casablanca",
+        "addressCountry": "MA"
       }]
+    },
+    "educationalLevel": "Higher Education",
+    "teaches": ["Entrepreneuriat à impact", "Innovation sociale", "Business model canvas", "Pitch entrepreneurial", "Créativité et design thinking", "Gestion de projet entrepreneurial", "Intelligence collective"],
+    "coursePrerequisites": "Aucun prérequis - tous niveaux",
+    "numberOfCredits": "Variable selon programme",
+    "hasCourseInstance": [{
+      "@type": "CourseInstance",
+      "name": "La Fresque de l'esprit d'entreprendre",
+      "description": "Atelier collaboratif de 3h pour découvrir l'entrepreneuriat de manière ludique",
+      "courseMode": "Blended",
+      "duration": "PT3H"
+    }, {
+      "@type": "CourseInstance",
+      "name": "L'Atelier des Alliés",
+      "description": "Session d'intelligence collective pour développer la créativité entrepreneuriale",
+      "courseMode": "Blended",
+      "duration": "P1D"
+    }, {
+      "@type": "CourseInstance",
+      "name": "Hackathons & Challenges",
+      "description": "Événements intensifs sur 1 à 3 jours pour stimuler l'innovation",
+      "courseMode": "On-site",
+      "duration": "P3D"
+    }, {
+      "@type": "CourseInstance",
+      "name": "Programme Premium Néo-Entrepreneurs",
+      "description": "Accompagnement complet sur plusieurs mois",
+      "courseMode": "Blended",
+      "duration": "P6M"
+    }],
+    "audience": {
+      "@type": "EducationalAudience",
+      "educationalRole": "student",
+      "audienceType": "Étudiants écoles de commerce, universités, écoles d'ingénieurs"
     }
-  ];
+  }, {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Mare Nostrum Éducation",
+    "description": "Programmes d'éducation entrepreneuriale pour établissements : ateliers, fresques, cours, hackathons et programmes premium",
+    "provider": {
+      "@type": "Organization",
+      "name": "Mare Nostrum"
+    },
+    "serviceType": "Éducation Entrepreneuriale",
+    "areaServed": [{
+      "@type": "Country",
+      "name": "France"
+    }, {
+      "@type": "Country",
+      "name": "Maroc"
+    }, {
+      "@type": "City",
+      "name": "Toulouse"
+    }, {
+      "@type": "City",
+      "name": "Paris"
+    }, {
+      "@type": "City",
+      "name": "Casablanca"
+    }],
+    "offers": [{
+      "@type": "Offer",
+      "name": "La Fresque de l'esprit d'entreprendre",
+      "description": "Atelier collaboratif de 3h pour découvrir l'entrepreneuriat",
+      "availability": "https://schema.org/InStock"
+    }, {
+      "@type": "Offer",
+      "name": "L'Atelier des Alliés",
+      "description": "Session d'intelligence collective pour développer la créativité entrepreneuriale",
+      "availability": "https://schema.org/InStock"
+    }, {
+      "@type": "Offer",
+      "name": "Programme Premium Néo-Entrepreneurs",
+      "description": "Accompagnement complet sur plusieurs mois",
+      "availability": "https://schema.org/InStock"
+    }]
+  }];
   const educationFaqs = [{
     question: "Quels types d'établissements accompagnez-vous ?",
     answer: "Nous accompagnons tous types d'établissements : écoles de commerce, universités, écoles d'ingénieurs, lycées, organismes de formation et centres d'apprentissage. Nos programmes s'adaptent à votre public et vos objectifs pédagogiques."
@@ -140,17 +129,13 @@ const Education = () => {
     answer: "Nous commençons par un rendez-vous de découverte pour comprendre vos besoins, puis établissons un diagnostic personnalisé. Ensuite, nous vous proposons un programme sur-mesure que nous déployons avec votre équipe pédagogique."
   }];
   return <div className="min-h-screen flex flex-col">
-      <SEOHead 
-        title="Mare Nostrum Éducation - Programmes Entrepreneuriat Écoles | Toulouse Paris Casablanca" 
-        description="Programmes entrepreneuriat clés en main pour écoles : Fresque de l'esprit d'entreprendre, ateliers, hackathons, cours. 53% création entreprise. +95% satisfaction. Toulouse, Paris, Casablanca." 
-        keywords="éducation entrepreneuriale, formation entrepreneuriat, programmes écoles, ateliers, hackathons, enseignement supérieur, fresque entrepreneuriat, toulouse, paris" 
-        structuredData={educationSchema}
-        faqSchema={educationFaqs}
-        breadcrumbSchema={[
-          { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "Éducation", url: "https://marenostrum.tech/education" }
-        ]}
-      />
+      <SEOHead title="Mare Nostrum Éducation - Programmes Entrepreneuriat Écoles | Toulouse Paris Casablanca" description="Programmes entrepreneuriat clés en main pour écoles : Fresque de l'esprit d'entreprendre, ateliers, hackathons, cours. 53% création entreprise. +95% satisfaction. Toulouse, Paris, Casablanca." keywords="éducation entrepreneuriale, formation entrepreneuriat, programmes écoles, ateliers, hackathons, enseignement supérieur, fresque entrepreneuriat, toulouse, paris" structuredData={educationSchema} faqSchema={educationFaqs} breadcrumbSchema={[{
+      name: "Accueil",
+      url: "https://marenostrum.tech/"
+    }, {
+      name: "Éducation",
+      url: "https://marenostrum.tech/education"
+    }]} />
       <Header />
       
 
@@ -238,15 +223,15 @@ const Education = () => {
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Format participatif et ludique</span>
+                  <span className="text-sm text-muted-foreground">Tous niveaux (licence, master, doctorat)</span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Adapté à tous niveaux</span>
+                  <span className="text-sm text-muted-foreground">10 à 80 participants</span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">30-50 participants</span>
+                  <span className="text-sm text-muted-foreground">Réseaux de formateurs agrées</span>
                 </li>
               </ul>
             </div>
@@ -419,11 +404,7 @@ const Education = () => {
           
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
-              <img 
-                src={accompagnementEtudiant} 
-                alt="Accompagnement étudiant au sein de Ynov Campus Toulouse dans le cadre du programme Ylook" 
-                className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300"
-              />
+              <img src={accompagnementEtudiant} alt="Accompagnement étudiant au sein de Ynov Campus Toulouse dans le cadre du programme Ylook" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
                   <h3 className="text-xl font-bold mb-2">Programme Ylook - Ynov Campus Toulouse</h3>
@@ -433,11 +414,7 @@ const Education = () => {
             </div>
 
             <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
-              <img 
-                src={fresque1Img} 
-                alt="Fresque organisée pour 80 personnes dans un établissement" 
-                className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300"
-              />
+              <img src={fresque1Img} alt="Fresque organisée pour 80 personnes dans un établissement" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
                   <h3 className="text-xl font-bold mb-2">Fresque collaborative</h3>
@@ -447,11 +424,7 @@ const Education = () => {
             </div>
 
             <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
-              <img 
-                src={fresque2Img} 
-                alt="Animation de fresque collaborative par Mare Nostrum" 
-                className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300"
-              />
+              <img src={fresque2Img} alt="Animation de fresque collaborative par Mare Nostrum" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
                   <h3 className="text-xl font-bold mb-2">Animation de fresque</h3>
@@ -461,11 +434,7 @@ const Education = () => {
             </div>
 
             <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
-              <img 
-                src={fresque3Img} 
-                alt="Participants lors d'une fresque animée par Mare Nostrum" 
-                className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300"
-              />
+              <img src={fresque3Img} alt="Participants lors d'une fresque animée par Mare Nostrum" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
                   <h3 className="text-xl font-bold mb-2">Atelier collaboratif</h3>
