@@ -267,21 +267,19 @@ const Education = () => {
                 <Trophy className="h-7 w-7 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Hackathons & Challenges</h3>
-              <p className="text-muted-foreground mb-6">
-                Événements sur-mesure pour stimuler l'innovation et développer des projets entrepreneuriaux en équipe sur 1 à 3 jours.
-              </p>
+              <p className="text-muted-foreground mb-6">Événements sur-mesure pour stimuler l'innovation et développer des projets entrepreneuriaux en équipe sur 1 à 5 jours.</p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Format intensif</span>
+                  <span className="text-sm text-muted-foreground">Format intensif et structuré</span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Jury d'experts</span>
+                  <span className="text-sm text-muted-foreground">Mobilisation d'intervenants et de jury</span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Projets concrets</span>
+                  <span className="text-sm text-muted-foreground">Projets concrets (fictifs ou réels)</span>
                 </li>
               </ul>
             </div>
@@ -291,22 +289,20 @@ const Education = () => {
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-6">
                 <GraduationCap className="h-7 w-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Programme Premium Néo-Entrepreneurs</h3>
-              <p className="text-muted-foreground mb-6">
-                Accompagnement complet sur plusieurs mois pour structurer et accélérer les projets entrepreneuriaux de vos étudiants.
-              </p>
+              <h3 className="text-xl font-bold mb-4 text-foreground">Programme Niteo</h3>
+              <p className="text-muted-foreground mb-6">Accompagnement complet sur 2 mois pour faciliter l'insertion de vos étudiants dans l'écosystème entrepreneuriat.</p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Suivi personnalisé</span>
+                  <span className="text-sm text-muted-foreground">Programme clé en main</span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Outils professionnels</span>
+                  <span className="text-sm text-muted-foreground">Pédagogie éprouvée</span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Réseau d'experts</span>
+                  <span className="text-sm text-muted-foreground">Écosystème de partenaires mobilisées </span>
                 </li>
               </ul>
             </div>
@@ -317,21 +313,19 @@ const Education = () => {
                 <BookOpen className="h-7 w-7 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Cours professionnalisants</h3>
-              <p className="text-muted-foreground mb-6">
-                Interventions pédagogiques personnalisées sur des thématiques entrepreneuriales spécifiques (pitch, modèle économique, stratégie...).
-              </p>
+              <p className="text-muted-foreground mb-6">Interventions pédagogiques personnalisées sur des thématiques entrepreneuriales spécifiques (stratégie d'entreprise, business plan...).</p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Contenu sur-mesure</span>
+                  <span className="text-sm text-muted-foreground">Contenu adapté à votre syllabus</span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Intervenants experts</span>
+                  <span className="text-sm text-muted-foreground">Portage d'intervenants professionnels </span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Format modulable</span>
+                  <span className="text-sm text-muted-foreground">Organisme de formation déclaré</span>
                 </li>
               </ul>
             </div>
@@ -341,14 +335,14 @@ const Education = () => {
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-6">
                 <Network className="h-7 w-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Réseau territorial</h3>
+              <h3 className="text-xl font-bold mb-4 text-foreground">Matinale de la pédagogie entrepreneuriale</h3>
               <p className="text-muted-foreground mb-6">
                 Intégrez un réseau d'établissements et partagez les meilleures pratiques en pédagogie entrepreneuriale avec vos pairs.
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Événements collaboratifs</span>
+                  <span className="text-sm text-muted-foreground">Veille national et francophones </span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
@@ -356,7 +350,7 @@ const Education = () => {
                 </li>
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Veille pédagogique</span>
+                  <span className="text-sm text-muted-foreground">ff</span>
                 </li>
               </ul>
             </div>
