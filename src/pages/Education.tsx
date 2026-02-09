@@ -11,6 +11,15 @@ import ylookProgramme from "@/assets/ylook-programme.jpg";
 import fresque1Img from "@/assets/fresque-1.png";
 import iscomChallenge from "@/assets/iscom-startup-challenge.jpeg";
 import fresqueDoctorant from "@/assets/fresque-doctorant.png";
+import schoolIpstCnam from "@/assets/schools/ipst-cnam.png";
+import schoolIscom from "@/assets/schools/iscom.png";
+import schoolIstef from "@/assets/schools/istef.png";
+import schoolYnov from "@/assets/schools/ynov.png";
+import schoolEcole3a from "@/assets/schools/ecole-3a.png";
+import schoolAuf from "@/assets/schools/auf.png";
+import schoolIct from "@/assets/schools/ict.png";
+import schoolComue from "@/assets/schools/comue-toulouse.png";
+import schoolInpN7 from "@/assets/schools/inp-n7.png";
 const Education = () => {
   const educationSchema = [{
     "@context": "https://schema.org",
@@ -397,9 +406,9 @@ const Education = () => {
           </p>
           
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
-              <img src={ylookProgramme} alt="Programme Ylook - Ynov Campus Toulouse" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+            <div className="relative overflow-hidden rounded-xl shadow-lg">
+              <img src={ylookProgramme} alt="Programme Ylook - Ynov Campus Toulouse" className="w-full h-[400px] object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                 <div className="p-6 text-primary-foreground">
                   <h3 className="text-xl font-bold mb-2">Programme Ylook - Ynov Campus Toulouse</h3>
                   <p className="text-sm">Accompagnement étudiant au sein de l'école Ynov Campus Toulouse dans le cadre du programme Ylook</p>
@@ -407,9 +416,9 @@ const Education = () => {
               </div>
             </div>
 
-            <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
-              <img src={fresque1Img} alt="Fresque organisée pour 80 personnes dans un établissement" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+            <div className="relative overflow-hidden rounded-xl shadow-lg">
+              <img src={fresque1Img} alt="Fresque organisée pour 80 personnes dans un établissement" className="w-full h-[400px] object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                 <div className="p-6 text-primary-foreground">
                   <h3 className="text-xl font-bold mb-2">Fresque collaborative</h3>
                   <p className="text-sm">Fresque organisée pour 80 personnes dans un établissement</p>
@@ -417,9 +426,9 @@ const Education = () => {
               </div>
             </div>
 
-            <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
-              <img src={iscomChallenge} alt="ISCOM Startup Challenge - Réfléchir vite pour répondre à la problématique donnée" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+            <div className="relative overflow-hidden rounded-xl shadow-lg">
+              <img src={iscomChallenge} alt="ISCOM Startup Challenge - Réfléchir vite pour répondre à la problématique donnée" className="w-full h-[400px] object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                 <div className="p-6 text-primary-foreground">
                   <h3 className="text-xl font-bold mb-2">ISCOM Startup Challenge</h3>
                   <p className="text-sm">Réfléchir vite pour répondre à la problématique donnée</p>
@@ -427,15 +436,44 @@ const Education = () => {
               </div>
             </div>
 
-            <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
-              <img src={fresqueDoctorant} alt="Fresque de l'esprit d'entreprendre adaptée aux doctorants" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+            <div className="relative overflow-hidden rounded-xl shadow-lg">
+              <img src={fresqueDoctorant} alt="Fresque de l'esprit d'entreprendre adaptée aux doctorants" className="w-full h-[400px] object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                 <div className="p-6 text-primary-foreground">
                   <h3 className="text-xl font-bold mb-2">Fresque de l'esprit d'entreprendre</h3>
                   <p className="text-sm">Fresque de l'esprit d'entreprendre adaptée aux doctorants</p>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Écoles Partenaires Section */}
+      <section className="py-16 md:py-24 bg-background">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+            Nos écoles partenaires
+          </h2>
+          <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+            Ils nous font confiance pour former leurs étudiants à l'entrepreneuriat
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 max-w-5xl mx-auto">
+            {[
+              { src: schoolIpstCnam, alt: "IPST CNAM" },
+              { src: schoolIscom, alt: "ISCOM" },
+              { src: schoolIstef, alt: "ISTEF" },
+              { src: schoolYnov, alt: "Toulouse Ynov Campus" },
+              { src: schoolEcole3a, alt: "Ecole 3A" },
+              { src: schoolAuf, alt: "AUF" },
+              { src: schoolIct, alt: "ICT - Institut Catholique de Toulouse" },
+              { src: schoolComue, alt: "Communauté d'universités de Toulouse" },
+              { src: schoolInpN7, alt: "Toulouse INP N7" },
+            ].map((school) => (
+              <div key={school.alt} className="flex items-center justify-center h-16 md:h-20 grayscale hover:grayscale-0 transition-all duration-300">
+                <img src={school.src} alt={school.alt} className="max-h-full max-w-[140px] md:max-w-[160px] object-contain" />
+              </div>
+            ))}
           </div>
         </div>
       </section>
