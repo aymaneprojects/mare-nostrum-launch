@@ -342,15 +342,15 @@ const Education = () => {
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Veille national et francophones </span>
+                  <span className="text-sm text-muted-foreground">Veille nationale et francophone</span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Partage d'expériences</span>
+                  <span className="text-sm text-muted-foreground">Partage d'expériences entre pairs </span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">ff</span>
+                  <span className="text-sm text-muted-foreground">Sur invitation</span>
                 </li>
               </ul>
             </div>
