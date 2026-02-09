@@ -367,19 +367,19 @@ const Education = () => {
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-3 gap-8 text-center">
               <div>
-                <div className="text-5xl font-bold text-primary mb-2">17+</div>
+                <div className="text-5xl font-bold text-primary mb-2">95+</div>
                 <div className="text-muted-foreground">projets étudiants</div>
                 <div className="text-sm text-muted-foreground">accompagnés</div>
               </div>
               <div>
-                <div className="text-5xl font-bold text-accent mb-2">358h</div>
+                <div className="text-5xl font-bold text-accent mb-2">544h</div>
                 <div className="text-muted-foreground">de formation</div>
                 <div className="text-sm text-muted-foreground">dispensées</div>
               </div>
               <div>
-                <div className="text-5xl font-bold text-primary mb-2">36%</div>
-                <div className="text-muted-foreground">néo-entrepreneurs</div>
-                <div className="text-sm text-muted-foreground">accompagnés</div>
+                <div className="text-5xl font-bold text-primary mb-2">55%</div>
+                <div className="text-muted-foreground">des néo-entrepreneurs</div>
+                <div className="text-sm text-muted-foreground">se rémunèrent dans les 2 ans</div>
               </div>
             </div>
           </div>
