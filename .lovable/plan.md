@@ -1,221 +1,114 @@
-# Plan : Création des 3 Silos SEO
 
-## Objectif
-Créer une architecture de pages en silos SEO pour maximiser la pertinence thématique. Chaque silo est une "salle blanche" - les liens internes restent UNIQUEMENT au sein du même silo.
 
----
+# Plan : Creation de la page Niteo Toulouse
+
+## Resume
+
+Creation d'une landing page `/niteo-toulouse` avec ajout dans la navbar sous "Offres" avec le label "Niteo Toulouse". La page reprend exactement la meme structure et le meme design que les pages Education et Croissance (Header, SEOHead, Breadcrumbs, sections alternees, Footer).
+
+## Assets a copier
+
+Les photos uploadees seront copiees dans `src/assets/niteo/` :
+
+| Fichier source | Destination | Usage |
+|---|---|---|
+| Logo_NITEO26_Fonce_1.png | src/assets/niteo/logo-niteo.png | Logo hero + page |
+| bertrand-serp.png | src/assets/niteo/bertrand-serp.png | Parrain section |
+| aymane-abdennour.jpeg | src/assets/niteo/aymane-abdennour.jpeg | Equipe |
+| geraldin-lecaer.jpeg | src/assets/niteo/geraldin-lecaer.jpeg | Equipe |
+| frederique_bertelet.jpeg | src/assets/niteo/frederique-bertelet.jpeg | Equipe |
+| benjamin_lebailly.jpeg | src/assets/niteo/benjamin-lebailly.jpeg | Equipe |
+| jean-baptiste_prost.jpeg | src/assets/niteo/jean-baptiste-prost.jpeg | Equipe |
+| ludovic.jpeg | src/assets/niteo/ludovic-de-gromard.jpeg | Equipe |
+| pascal_david.jpeg | src/assets/niteo/pascal-david.jpeg | Equipe |
+| abdallah.jpeg | src/assets/niteo/abdallah-hassani.jpeg | Equipe |
+
+Photo d'Alexis Janicot : reutilisation de `src/assets/team/alexis-janicot.png` deja present dans le projet.
+
+## Structure de la page (src/pages/NiteoToulouse.tsx)
+
+### Section 1 -- Hero
+- Logo Niteo 2026 centre en haut
+- Titre : "Niteo by Mare Nostrum -- Edition Toulouse 2026"
+- Sous-titre : "Accelerez l'insertion professionnelle de vos etudiants entrepreneurs"
+- Description : Programme de 50h pour cycles licence et master
+- CTA : "Rejoindre Niteo 2026" vers /contact
+- Design : gradient from-primary to-accent comme les autres pages
+
+### Section 2 -- Les enjeux pedagogiques
+4 cartes (meme style que la section "enjeux des etablissements" de /education) :
+- Attirer plus d'etudiants avec des formations alignees
+- Developper les competences transversales (learning by doing)
+- Structurer une communaute d'alumni engagee
+- Renforcer l'image d'insertion professionnelle
+
+### Section 3 -- Pourquoi Niteo
+- Explication du nom ("briller, prosperer" en latin)
+- 3 points cles avec icones
+
+### Section 4 -- Le parcours de 50 heures
+4 blocs visuels avec icones :
+- 19h de e-learning
+- 24h de sessions collectives
+- 2h de coaching individuel
+- Jury de professionnels (demo day)
+
+### Section 5 -- 3 resultats immediats
+3 colonnes (meme style que la section "Resultats" de /education) :
+- Pedagogie eprouvee
+- Ecosysteme mobilise (30 decideurs, +10 000 EUR dotations)
+- Structure optimisee (cle en main, plateforme numerique)
+
+### Section 6 -- Parrain
+Photo de Bertrand SERP avec son titre "Vice-President de Toulouse Metropole"
+
+### Section 7 -- Calendrier
+Timeline visuelle avec les dates cles :
+- Mars : Appel a candidatures
+- Avril : Selection
+- Avril-Juin : 4 ateliers collectifs (samedis)
+- 16 juin : Demo Day
+
+### Section 8 -- Les 3 options tarifaires
+3 cartes comparatives (style similaire aux offres de /education) :
+- SOUTIEN : a votre convenance
+- ENGAGEMENT : 500 EUR HT
+- PIONNIER : a partir de 1 500 EUR HT
+
+### Section 9 -- L'equipe Niteo
+Grille de photos avec noms et roles :
+- Entrepreneurs conseil : Alexis Janicot, Aymane Abdennour, Geraldine Le Caer, Frederique Bertelet, Benjamin Lebailly, Jean-Baptiste Prost, Ludovic De Gromard
+- Coachs : Pascal David, Abdallah Hassani
+- Experts : placeholders texte (photos a venir)
+
+### Section 10 -- Partenaires ecosysteme
+Reutilisation des logos partenaires deja presents (Airbus, Credit Mutuel, CPME31, Moovjee, Touleco, etc.)
+
+### Section 11 -- FAQ
+Questions frequentes sur le programme
+
+### Section 12 -- CTA final
+"Rejoignez Niteo Toulouse 2026" avec bouton vers /contact
+
+## Modifications des fichiers existants
+
+### src/App.tsx
+- Import de NiteoToulouse
+- Ajout de la route `/niteo-toulouse`
+
+### src/components/Header.tsx
+- Ajout de "Niteo Toulouse" dans le tableau `offres` avec `to: "/niteo-toulouse"`
+
+### public/sitemap.xml
+- Ajout de l'URL /niteo-toulouse
 
-## Architecture des Silos
+## SEO
+- SEOHead avec titre optimise pour "programme entrepreneuriat etudiant Toulouse 2026"
+- Schema.org de type Course + Event
+- Breadcrumbs : Accueil > Niteo Toulouse
+- FAQ Schema integre
 
-```text
-SILO 1 : ÉCOLES (B2B) - 2 pages
-================================
-/ecoles/transformation-entrepreneuriale (Page Pilier)
-    │
-    └──> /ecoles/diagnostic-gratuit (Landing conversion)
+## Elements en attente
+- Photos des experts (Jean Jodeau, Claire Virazels, etc.) : a fournir plus tard
+- Photo de l'edition 2025 precedente : a fournir plus tard
 
-SILO 2 : ENTREPRENEURS (B2C) - 3 pages
-=======================================
-/entrepreneurs/accompagnement-francophonie-afrique (Page Pilier)
-    │
-    ├──> /entrepreneurs/test-maturite-projet (Outil interactif)
-    └──> /entrepreneurs/mentorat-individuel (Service)
-
-SILO 3 : MAGAZINE THOUGHT LEADERSHIP - 3 pages
-===============================================
-/mag/entrepreneuriat-social-francophonie
-/mag/innovation-pedagogique-entrepreneuriat
-/mag/impact-mesure-startup
-```
-
----
-
-## Fichiers à Créer (8 pages total)
-
-### SILO 1 : Écoles (2 pages)
-
-| Fichier | Type | Description |
-|---------|------|-------------|
-| `src/pages/ecoles/TransformationEntrepreneuriale.tsx` | Page Pilier | Landing B2B pour directeurs d'écoles |
-| `src/pages/ecoles/DiagnosticGratuit.tsx` | Landing Conversion | Formulaire de diagnostic pour écoles |
-
-### SILO 2 : Entrepreneurs (3 pages)
-
-| Fichier | Type | Description |
-|---------|------|-------------|
-| `src/pages/entrepreneurs/AccompagnementFrancophonie.tsx` | Page Pilier | Landing B2C incubateur Toulouse-Casablanca |
-| `src/pages/entrepreneurs/TestMaturiteProjet.tsx` | Outil | Quiz interactif maturité projet |
-| `src/pages/entrepreneurs/MentoratIndividuel.tsx` | Service | Page service mentorat |
-
-### SILO 3 : Magazine (3 pages)
-
-| Fichier | Type | Description |
-|---------|------|-------------|
-| `src/pages/mag/EntrepreneuriatSocialFrancophonie.tsx` | Article Expert | 2000-3000 mots |
-| `src/pages/mag/InnovationPedagogiqueEntrepreneuriat.tsx` | Article Expert | 2000-3000 mots |
-| `src/pages/mag/ImpactMesureStartup.tsx` | Article Expert | 2000-3000 mots |
-
----
-
-## Règle des Liens Internes (Critique SEO)
-
-**JAMAIS de lien entre silos différents :**
-- ❌ Une page Écoles ne pointe JAMAIS vers Entrepreneurs ou Mag
-- ❌ Une page Entrepreneurs ne pointe JAMAIS vers Écoles ou Mag
-- ❌ Les pages Mag restent autonomes
-
-**Liens autorisés :**
-- ✅ Page support → Page pilier du même silo
-- ✅ Page pilier → Pages support du même silo
-- ✅ Toutes les pages peuvent pointer vers /contact (page transversale)
-
----
-
-## Détails des Pages
-
-### SILO 1 - Page Pilier : `/ecoles/transformation-entrepreneuriale`
-
-**Titre SEO :** "Programmes d'Entrepreneuriat pour Écoles | Alternative Agile à Pépite"
-
-**Sections :**
-1. Hero avec proposition de valeur B2B
-2. Problématiques des directeurs d'écoles
-3. Notre approche vs approches traditionnelles (tableau comparatif)
-4. CTA diagnostic gratuit
-
-**Liens internes (silo only) :**
-- Vers `/ecoles/diagnostic-gratuit`
-
----
-
-### SILO 1 - Landing : `/ecoles/diagnostic-gratuit`
-
-**Titre SEO :** "Diagnostic Entrepreneuriat École Gratuit | Évaluation 15 min"
-
-**Sections :**
-1. Hero avec bénéfices du diagnostic
-2. Ce que le diagnostic couvre
-3. Formulaire de demande
-4. FAQ
-
-**Liens internes :**
-- Retour vers `/ecoles/transformation-entrepreneuriale`
-
----
-
-### SILO 2 - Page Pilier : `/entrepreneurs/accompagnement-francophonie-afrique`
-
-**Titre SEO :** "Incubateur Impact Toulouse-Casablanca | Accompagnement Personnalisé"
-
-**Sections :**
-1. Hero vision internationale
-2. Notre approche unique
-3. Les 3 offres (Tremplin, Ascension, Élite)
-4. Liens vers outils du silo
-5. CTA rejoindre le club
-
-**Liens internes (silo only) :**
-- Vers `/entrepreneurs/test-maturite-projet`
-- Vers `/entrepreneurs/mentorat-individuel`
-
----
-
-### SILO 2 - Outil : `/entrepreneurs/test-maturite-projet`
-
-**Titre SEO :** "Test Maturité Projet Entrepreneurial | Évaluation Gratuite 5 min"
-
-**Sections :**
-1. Hero avec promesse
-2. Quiz interactif (10 questions)
-3. Résultat avec recommandation personnalisée
-4. CTA vers accompagnement adapté
-
-**Liens internes :**
-- Vers `/entrepreneurs/accompagnement-francophonie-afrique`
-- Vers `/entrepreneurs/mentorat-individuel`
-
----
-
-### SILO 2 - Service : `/entrepreneurs/mentorat-individuel`
-
-**Titre SEO :** "Mentorat Entrepreneur Individuel | Séances 1-to-1 Expert"
-
-**Sections :**
-1. Hero avec bénéfices
-2. Comment ça fonctionne
-3. Nos mentors (vrais profils de l'équipe)
-4. FAQ
-
-**Liens internes :**
-- Vers `/entrepreneurs/accompagnement-francophonie-afrique`
-- Vers `/entrepreneurs/test-maturite-projet`
-
----
-
-### SILO 3 - Articles Magazine (Thought Leadership)
-
-Articles longs (2000-3000 mots) pour établir l'expertise :
-
-1. `/mag/entrepreneuriat-social-francophonie`
-   - Vision de l'entrepreneuriat social en francophonie
-   - Tendances, analyses, perspectives
-
-2. `/mag/innovation-pedagogique-entrepreneuriat`
-   - Nouvelles approches pédagogiques
-   - Design thinking, learning by doing
-
-3. `/mag/impact-mesure-startup`
-   - Comment mesurer l'impact social
-   - Frameworks, méthodologies
-
-**Liens internes :** Ces articles restent autonomes.
-
----
-
-## Routes à Ajouter (App.tsx)
-
-```typescript
-// SILO 1 : Écoles
-/ecoles/transformation-entrepreneuriale
-/ecoles/diagnostic-gratuit
-
-// SILO 2 : Entrepreneurs
-/entrepreneurs/accompagnement-francophonie-afrique
-/entrepreneurs/test-maturite-projet
-/entrepreneurs/mentorat-individuel
-
-// SILO 3 : Magazine
-/mag/entrepreneuriat-social-francophonie
-/mag/innovation-pedagogique-entrepreneuriat
-/mag/impact-mesure-startup
-```
-
----
-
-## Ordre d'Implémentation
-
-1. **Phase 1** - Routes App.tsx + dossiers
-2. **Phase 2** - Pages Piliers (2 pages)
-3. **Phase 3** - Pages Support Silo 1 (1 page)
-4. **Phase 4** - Pages Support Silo 2 (2 pages)
-5. **Phase 5** - Magazine Silo 3 (3 articles longs)
-6. **Phase 6** - Mise à jour sitemap
-
----
-
-## Fichiers à Modifier
-
-| Fichier | Modification |
-|---------|-------------|
-| `src/App.tsx` | Ajouter 8 nouvelles routes |
-| `public/sitemap.xml` | Ajouter 8 nouvelles URLs |
-| `supabase/functions/sitemap/index.ts` | Ajouter les pages statiques |
-
----
-
-## Contraintes Importantes
-
-- ⚠️ **Pas de faux témoignages** - Utiliser uniquement des données réelles
-- ⚠️ **Pas de faux chiffres** - Ne pas inventer de statistiques
-- ✅ Utiliser les vrais profils de l'équipe existante
-- ✅ Respecter la charte graphique existante
