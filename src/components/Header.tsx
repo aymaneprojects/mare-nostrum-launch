@@ -35,6 +35,7 @@ const Header = () => {
   const offres = [
     { to: "/education", label: "Offre Éducation", external: false },
     { to: "/croissance", label: "Offre Croissance", external: false },
+    { to: "/niteo-toulouse", label: "Niteo Toulouse", external: false },
   ];
 
   const isActive = (path: string) => location.pathname === path;
