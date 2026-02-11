@@ -37,6 +37,7 @@ import MentoratIndividuel from "./pages/entrepreneurs/MentoratIndividuel";
 import EntrepreneuriatSocialFrancophonie from "./pages/mag/EntrepreneuriatSocialFrancophonie";
 import InnovationPedagogiqueEntrepreneuriat from "./pages/mag/InnovationPedagogiqueEntrepreneuriat";
 import ImpactMesureStartup from "./pages/mag/ImpactMesureStartup";
+import NiteoToulouse from "./pages/NiteoToulouse";
 
 const queryClient = new QueryClient();
 
@@ -91,6 +92,9 @@ const AppContent = () => {
         <Route path="/mag/entrepreneuriat-social-francophonie" element={<EntrepreneuriatSocialFrancophonie />} />
         <Route path="/mag/innovation-pedagogique-entrepreneuriat" element={<InnovationPedagogiqueEntrepreneuriat />} />
         <Route path="/mag/impact-mesure-startup" element={<ImpactMesureStartup />} />
+        
+        {/* Niteo */}
+        <Route path="/niteo-toulouse" element={<NiteoToulouse />} />
         
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
