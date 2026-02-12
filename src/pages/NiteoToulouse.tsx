@@ -19,23 +19,22 @@ import ludovicDeGromard from "@/assets/niteo/ludovic-de-gromard.jpeg";
 import pascalDavid from "@/assets/niteo/pascal-david.jpeg";
 import abdallahHassani from "@/assets/niteo/abdallah-hassani.jpeg";
 
-import partnerAirbus from "@/assets/partners/airbus.png";
-import partnerCreditMutuel from "@/assets/partners/credit-mutuel.png";
-import partnerCpme31 from "@/assets/partners/cpme31.png";
-import partnerMoovjee from "@/assets/partners/moovjee.png";
-import partnerTouleco from "@/assets/partners/touleco.png";
-import partnerBidaya from "@/assets/partners/bidaya.png";
-import partnerEmergingBusiness from "@/assets/partners/emerging-business.png";
-import partnerImaginationsFertiles from "@/assets/partners/imaginations-fertiles.png";
-import partnerToulouseWay from "@/assets/partners/toulouse-way.png";
-import partnerRoseLab from "@/assets/partners/rose-lab.png";
+import partnerToulouseMetropole from "@/assets/partners/toulouse-metropole.png";
+import partnerAuf from "@/assets/partners/auf-niteo.png";
+import partnerAirbusDev from "@/assets/partners/airbus-dev.png";
+import partnerBanqueInnovation from "@/assets/partners/banque-innovation.png";
+import partnerCreditMutuel from "@/assets/partners/credit-mutuel-niteo.png";
+import partnerReseauEntreprendre from "@/assets/partners/reseau-entreprendre.png";
+import partnerCpme31 from "@/assets/partners/cpme31-niteo.png";
+import partnerEntreprisesMission from "@/assets/partners/entreprises-mission.png";
+import partnerEdc from "@/assets/partners/edc.png";
 
 const NiteoToulouse = () => {
   const niteoSchema = [{
     "@context": "https://schema.org",
     "@type": "Course",
     "name": "Programme Niteo Toulouse 2026",
-    "description": "Programme d'acceleration entrepreneuriale de 50h pour etudiants en licence et master. E-learning, ateliers collectifs, coaching individuel et Demo Day devant 30 decideurs.",
+    "description": "Programme d'accélération entrepreneuriale de 50h pour étudiants en licence et master. E-learning, ateliers collectifs, coaching individuel et Demo Day devant 30 décideurs.",
     "provider": {
       "@type": "Organization",
       "name": "Mare Nostrum",
@@ -45,7 +44,7 @@ const NiteoToulouse = () => {
     "teaches": ["Entrepreneuriat", "Business model", "Pitch", "Leadership", "Gestion de projet"],
     "hasCourseInstance": {
       "@type": "CourseInstance",
-      "name": "Niteo Toulouse Edition 2026",
+      "name": "Niteo Toulouse Édition 2026",
       "startDate": "2026-04-11",
       "endDate": "2026-06-16",
       "courseMode": "Blended",
@@ -62,37 +61,37 @@ const NiteoToulouse = () => {
     "startDate": "2026-06-16",
     "location": { "@type": "Place", "name": "Toulouse" },
     "organizer": { "@type": "Organization", "name": "Mare Nostrum" },
-    "description": "Journee finale du programme Niteo : pitch devant 30 decideurs et +10 000 EUR de dotations"
+    "description": "Journée finale du programme Niteo : pitch devant 30 décideurs et +10 000 EUR de dotations"
   }];
 
   const niteoFaqs = [
     {
-      question: "A qui s'adresse le programme Niteo ?",
-      answer: "Niteo s'adresse aux etudiants entrepreneurs en cycle licence et master, inscrits dans un etablissement d'enseignement superieur partenaire a Toulouse. Aucun prerequis technique n'est requis, seule la motivation entrepreneuriale compte."
+      question: "À qui s'adresse le programme Niteo ?",
+      answer: "Niteo s'adresse aux étudiants entrepreneurs en cycle licence et master, inscrits dans un établissement d'enseignement supérieur partenaire à Toulouse. Aucun prérequis technique n'est requis, seule la motivation entrepreneuriale compte."
     },
     {
       question: "Combien de temps dure le programme ?",
-      answer: "Le programme represente 50 heures au total, reparties sur environ 2 mois : 19h de e-learning flexible, 24h de sessions collectives le samedi, et 2h de coaching individuel. Il se termine par un Demo Day le 16 juin 2026."
+      answer: "Le programme représente 50 heures au total, réparties sur environ 2 mois : 19h de e-learning flexible, 24h de sessions collectives le samedi, et 2h de coaching individuel. Il se termine par un Demo Day le 16 juin 2026."
     },
     {
-      question: "Quel est le cout pour l'etablissement partenaire ?",
-      answer: "Trois options sont proposees : Soutien (a votre convenance), Engagement (500 EUR HT avec 1 place garantie) et Pionnier (a partir de 1 500 EUR HT avec 2+ places garanties et tarif preserve en 2027). Exoneration de TVA (DREETS Occitanie)."
+      question: "Quel est le coût pour l'établissement partenaire ?",
+      answer: "Trois options sont proposées : Soutien (à votre convenance), Engagement (500 EUR HT avec 1 place garantie) et Pionnier (à partir de 1 500 EUR HT avec 2+ places garanties et tarif préservé en 2027). Exonération de TVA (DREETS Occitanie)."
     },
     {
-      question: "Les etudiants doivent-ils avoir un projet pour participer ?",
-      answer: "Non, les etudiants peuvent rejoindre Niteo avec une simple idee ou envie d'entreprendre. Le programme les accompagne dans la structuration de leur projet, du concept initial au pitch final."
+      question: "Les étudiants doivent-ils avoir un projet pour participer ?",
+      answer: "Non, les étudiants peuvent rejoindre Niteo avec une simple idée ou envie d'entreprendre. Le programme les accompagne dans la structuration de leur projet, du concept initial au pitch final."
     },
     {
-      question: "Quels sont les avantages concrets pour l'ecole partenaire ?",
-      answer: "L'ecole beneficie d'un programme cle en main conforme Qualiopi, d'une visibilite aupres de l'ecosysteme entrepreneurial toulousain (30 decideurs, partenaires), et d'un renforcement de son image en matiere d'insertion professionnelle."
+      question: "Quels sont les avantages concrets pour l'école partenaire ?",
+      answer: "L'école bénéficie d'un programme clé en main conforme Qualiopi, d'une visibilité auprès de l'écosystème entrepreneurial toulousain (30 décideurs, partenaires), et d'un renforcement de son image en matière d'insertion professionnelle."
     }
   ];
 
   const teamEntrepreneurs = [
     { name: "Alexis Janicot", role: "Fondateur Mare Nostrum", photo: alexisJanicot },
     { name: "Aymane Abdennour", role: "Entrepreneur conseil", photo: aymaneAbdennour },
-    { name: "Geraldine Le Caer", role: "Entrepreneure conseil", photo: geraldinLecaer },
-    { name: "Frederique Bertelet", role: "Entrepreneure conseil", photo: frederiqueBertelet },
+    { name: "Géraldine Le Caer", role: "Entrepreneure conseil", photo: geraldinLecaer },
+    { name: "Frédérique Bertelet", role: "Entrepreneure conseil", photo: frederiqueBertelet },
     { name: "Benjamin Lebailly", role: "Entrepreneur conseil", photo: benjaminLebailly },
     { name: "Jean-Baptiste Prost", role: "Entrepreneur conseil", photo: jeanBaptisteProst },
     { name: "Ludovic De Gromard", role: "Entrepreneur conseil", photo: ludovicDeGromard },
@@ -108,25 +107,24 @@ const NiteoToulouse = () => {
     { name: "Claire Virazels", role: "Experte" },
     { name: "Christian Turpaud", role: "Expert" },
     { name: "Anne-Sophie Alsif", role: "Experte" },
-    { name: "Sebastien Boussois", role: "Expert" },
+    { name: "Sébastien Boussois", role: "Expert" },
   ];
 
   const partners = [
-    { src: partnerAirbus, alt: "Airbus" },
-    { src: partnerCreditMutuel, alt: "Credit Mutuel" },
-    { src: partnerCpme31, alt: "CPME 31" },
-    { src: partnerMoovjee, alt: "Moovjee" },
-    { src: partnerTouleco, alt: "Touleco" },
-    { src: partnerBidaya, alt: "Bidaya" },
-    { src: partnerEmergingBusiness, alt: "Emerging Business" },
-    { src: partnerImaginationsFertiles, alt: "Imaginations Fertiles" },
-    { src: partnerToulouseWay, alt: "Toulouse Way" },
-    { src: partnerRoseLab, alt: "Rose Lab" },
+    { src: partnerToulouseMetropole, alt: "Toulouse Métropole" },
+    { src: partnerAuf, alt: "AUF - Agence Universitaire de la Francophonie" },
+    { src: partnerAirbusDev, alt: "Airbus Développement" },
+    { src: partnerBanqueInnovation, alt: "Banque de l'Innovation by CA31" },
+    { src: partnerCreditMutuel, alt: "Crédit Mutuel" },
+    { src: partnerReseauEntreprendre, alt: "Réseau Entreprendre Occitanie Garonne" },
+    { src: partnerCpme31, alt: "CPME 31 Haute-Garonne" },
+    { src: partnerEntreprisesMission, alt: "Communauté des Entreprises à Mission" },
+    { src: partnerEdc, alt: "Entrepreneurs et Dirigeants Chrétiens" },
   ];
 
   const timeline = [
-    { date: "Mars 2026", label: "Appel a candidatures", icon: <Mic className="h-5 w-5" /> },
-    { date: "1-3 avril", label: "Selection des participants", icon: <Target className="h-5 w-5" /> },
+    { date: "Mars 2026", label: "Appel à candidatures", icon: <Mic className="h-5 w-5" /> },
+    { date: "1-3 avril", label: "Sélection des participants", icon: <Target className="h-5 w-5" /> },
     { date: "11 avril", label: "Atelier collectif 1", icon: <Users className="h-5 w-5" /> },
     { date: "5 mai", label: "Atelier collectif 2", icon: <Users className="h-5 w-5" /> },
     { date: "30 mai", label: "Atelier collectif 3", icon: <Users className="h-5 w-5" /> },
@@ -137,9 +135,9 @@ const NiteoToulouse = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
-        title="Niteo Toulouse 2026 - Programme Entrepreneuriat Etudiant | Mare Nostrum"
-        description="Programme Niteo Toulouse 2026 : 50h d'acceleration entrepreneuriale pour etudiants. E-learning, ateliers, coaching, Demo Day devant 30 decideurs. +10 000 EUR de dotations."
-        keywords="niteo toulouse, programme entrepreneuriat etudiant, acceleration startup etudiant, mare nostrum toulouse, demo day toulouse 2026"
+        title="Niteo Toulouse 2026 - Programme Entrepreneuriat Étudiant | Mare Nostrum"
+        description="Programme Niteo Toulouse 2026 : 50h d'accélération entrepreneuriale pour étudiants. E-learning, ateliers, coaching, Demo Day devant 30 décideurs. +10 000 EUR de dotations."
+        keywords="niteo toulouse, programme entrepreneuriat étudiant, accélération startup étudiant, mare nostrum toulouse, demo day toulouse 2026"
         structuredData={niteoSchema}
         faqSchema={niteoFaqs}
         breadcrumbSchema={[
@@ -155,13 +153,13 @@ const NiteoToulouse = () => {
           <div className="max-w-4xl mx-auto text-center">
             <img src={logoNiteo} alt="Logo Niteo 2026" className="h-24 md:h-36 mx-auto mb-6 md:mb-8" />
             <div className="inline-block bg-white/10 backdrop-blur-sm rounded-full px-4 md:px-6 py-2 mb-4 md:mb-6">
-              <span className="text-primary-foreground font-medium text-sm md:text-base">Edition Toulouse 2026</span>
+              <span className="text-primary-foreground font-medium text-sm md:text-base">Édition Toulouse 2026</span>
             </div>
             <h1 className="text-3xl md:text-6xl font-bold text-primary-foreground mb-4 md:mb-6">
               Niteo by Mare Nostrum
             </h1>
             <p className="text-lg md:text-2xl text-primary-foreground/90 mb-8 md:mb-12">
-              Accelerez l'insertion professionnelle de vos etudiants entrepreneurs avec un programme de 50h pour cycles licence et master
+              Accélérez l'insertion professionnelle de vos étudiants entrepreneurs avec un programme de 50h pour cycles licence et master
             </p>
             <Button asChild size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto">
               <Link to="/contact">
@@ -177,14 +175,14 @@ const NiteoToulouse = () => {
       <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
-            Les enjeux pedagogiques
+            Les enjeux pédagogiques
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
             {[
-              { icon: <GraduationCap className="h-8 w-8 text-primary" />, title: "Attirer plus d'etudiants", desc: "Proposer des formations alignees avec les attentes du marche et les aspirations des jeunes" },
-              { icon: <Lightbulb className="h-8 w-8 text-accent" />, title: "Competences transversales", desc: "Developper le learning by doing, la creativite et l'autonomie entrepreneuriale" },
-              { icon: <Users className="h-8 w-8 text-primary" />, title: "Communaute alumni", desc: "Structurer une communaute d'anciens engagee et active dans l'ecosysteme" },
-              { icon: <Trophy className="h-8 w-8 text-accent" />, title: "Image d'insertion", desc: "Renforcer votre positionnement en matiere d'insertion professionnelle et d'employabilite" },
+              { icon: <GraduationCap className="h-8 w-8 text-primary" />, title: "Attirer plus d'étudiants", desc: "Proposer des formations alignées avec les attentes du marché et les aspirations des jeunes" },
+              { icon: <Lightbulb className="h-8 w-8 text-accent" />, title: "Compétences transversales", desc: "Développer le learning by doing, la créativité et l'autonomie entrepreneuriale" },
+              { icon: <Users className="h-8 w-8 text-primary" />, title: "Communauté alumni", desc: "Structurer une communauté d'anciens engagée et active dans l'écosystème" },
+              { icon: <Trophy className="h-8 w-8 text-accent" />, title: "Image d'insertion", desc: "Renforcer votre positionnement en matière d'insertion professionnelle et d'employabilité" },
             ].map((item, i) => (
               <div key={i} className="text-center p-6">
                 <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -206,13 +204,13 @@ const NiteoToulouse = () => {
               Pourquoi Niteo ?
             </h2>
             <p className="text-lg text-muted-foreground mb-12">
-              Du latin "briller, prosperer" -- Niteo incarne la volonte de faire rayonner les talents entrepreneuriaux de Toulouse.
+              Du latin "briller, prospérer" -- Niteo incarne la volonté de faire rayonner les talents entrepreneuriaux de Toulouse.
             </p>
             <div className="grid md:grid-cols-3 gap-8">
               {[
-                { icon: <Star className="h-7 w-7 text-white" />, title: "Faire rayonner l'ecole", desc: "Positionnez votre etablissement comme acteur cle de l'entrepreneuriat etudiant" },
-                { icon: <Briefcase className="h-7 w-7 text-white" />, title: "Accompagner les jeunes", desc: "Offrez a vos etudiants un tremplin concret vers la creation d'entreprise" },
-                { icon: <Award className="h-7 w-7 text-white" />, title: "Valoriser l'enseignement", desc: "Renforcez l'image de l'enseignement superieur toulousain a travers l'entrepreneuriat" },
+                { icon: <Star className="h-7 w-7 text-white" />, title: "Faire rayonner l'école", desc: "Positionnez votre établissement comme acteur clé de l'entrepreneuriat étudiant" },
+                { icon: <Briefcase className="h-7 w-7 text-white" />, title: "Accompagner les jeunes", desc: "Offrez à vos étudiants un tremplin concret vers la création d'entreprise" },
+                { icon: <Award className="h-7 w-7 text-white" />, title: "Valoriser l'enseignement", desc: "Renforcez l'image de l'enseignement supérieur toulousain à travers l'entrepreneuriat" },
               ].map((item, i) => (
                 <div key={i} className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
                   <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-6 mx-auto">
@@ -234,14 +232,14 @@ const NiteoToulouse = () => {
             Le parcours de 50 heures
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Un programme structure et progressif, pilote par 6 collaborateurs dedies
+            Un programme structuré et progressif, piloté par 6 collaborateurs dédiés
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {[
-              { icon: <BookOpen className="h-7 w-7 text-white" />, hours: "19h", title: "E-learning", desc: "Formation en ligne flexible, accessible a tout moment" },
-              { icon: <Users className="h-7 w-7 text-white" />, hours: "24h", title: "Sessions collectives", desc: "4 ateliers pratiques multi-ecoles le samedi" },
-              { icon: <Target className="h-7 w-7 text-white" />, hours: "2h", title: "Coaching individuel", desc: "Accompagnement personnalise pour chaque porteur de projet" },
-              { icon: <Trophy className="h-7 w-7 text-white" />, hours: "5h", title: "Demo Day", desc: "Pitch final devant un jury de professionnels et decideurs" },
+              { icon: <BookOpen className="h-7 w-7 text-white" />, hours: "19h", title: "E-learning", desc: "Formation en ligne flexible, accessible à tout moment" },
+              { icon: <Users className="h-7 w-7 text-white" />, hours: "24h", title: "Sessions collectives", desc: "4 ateliers pratiques multi-écoles le samedi" },
+              { icon: <Target className="h-7 w-7 text-white" />, hours: "2h", title: "Coaching individuel", desc: "Accompagnement personnalisé pour chaque porteur de projet" },
+              { icon: <Trophy className="h-7 w-7 text-white" />, hours: "5h", title: "Demo Day", desc: "Pitch final devant un jury de professionnels et décideurs" },
             ].map((item, i) => (
               <div key={i} className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow text-center">
                 <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-4 mx-auto">
@@ -260,16 +258,16 @@ const NiteoToulouse = () => {
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
-            3 resultats immediats
+            3 résultats immédiats
           </h2>
           <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
             <div className="bg-card border border-border rounded-xl p-8 shadow-lg">
               <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle2 className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-center text-foreground">Pedagogie eprouvee</h3>
+              <h3 className="text-xl font-bold mb-4 text-center text-foreground">Pédagogie éprouvée</h3>
               <ul className="space-y-3 text-muted-foreground text-sm">
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" /> Testee et validee</li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" /> Testée et validée</li>
                 <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" /> Conforme Qualiopi</li>
                 <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" /> Livrables concrets</li>
               </ul>
@@ -278,22 +276,22 @@ const NiteoToulouse = () => {
               <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Users className="h-8 w-8 text-accent" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-center text-foreground">Ecosysteme mobilise</h3>
+              <h3 className="text-xl font-bold mb-4 text-center text-foreground">Écosystème mobilisé</h3>
               <ul className="space-y-3 text-muted-foreground text-sm">
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" /> 30 decideurs au Demo Day</li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" /> 30 décideurs au Demo Day</li>
                 <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" /> +10 000 EUR de dotations</li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" /> Reseau professionnel actif</li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" /> Réseau professionnel actif</li>
               </ul>
             </div>
             <div className="bg-card border border-border rounded-xl p-8 shadow-lg">
               <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Briefcase className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-center text-foreground">Structure optimisee</h3>
+              <h3 className="text-xl font-bold mb-4 text-center text-foreground">Structure optimisée</h3>
               <ul className="space-y-3 text-muted-foreground text-sm">
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" /> Programme cle en main</li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" /> Mutualisation inter-ecoles</li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" /> Plateforme numerique dediee</li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" /> Programme clé en main</li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" /> Mutualisation inter-écoles</li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" /> Plateforme numérique dédiée</li>
               </ul>
             </div>
           </div>
@@ -304,15 +302,15 @@ const NiteoToulouse = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-foreground">Parrain de l'edition 2026</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-foreground">Parrain de l'édition 2026</h2>
             <div className="bg-card border border-border rounded-xl p-8 shadow-lg inline-block">
               <img
                 src={bertrandSerp}
-                alt="Bertrand SERP, Vice-President de Toulouse Metropole"
+                alt="Bertrand SERP, Vice-Président de Toulouse Métropole"
                 className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover mx-auto mb-6 border-4 border-primary/20"
               />
               <h3 className="text-2xl font-bold text-foreground mb-2">Bertrand SERP</h3>
-              <p className="text-muted-foreground">Vice-President de Toulouse Metropole</p>
+              <p className="text-muted-foreground">Vice-Président de Toulouse Métropole</p>
             </div>
           </div>
         </div>
@@ -353,16 +351,16 @@ const NiteoToulouse = () => {
             Les 3 options tarifaires
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Exoneration de TVA (DREETS Occitanie)
+            Exonération de TVA (DREETS Occitanie)
           </p>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Soutien */}
             <div className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-2xl font-bold mb-2 text-foreground">Soutien</h3>
-              <div className="text-3xl font-bold text-primary mb-6">A votre convenance</div>
+              <div className="text-3xl font-bold text-primary mb-6">À votre convenance</div>
               <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">Ouverture du programme aux etudiants</span></li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">Acces securise a la plateforme</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">Ouverture du programme aux étudiants</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">Accès sécurisé à la plateforme</span></li>
                 <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">Logo sur les supports de communication</span></li>
               </ul>
               <Button asChild variant="outline" className="w-full">
@@ -373,15 +371,15 @@ const NiteoToulouse = () => {
             {/* Engagement */}
             <div className="bg-card border-2 border-primary rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow relative">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-4 py-1 rounded-full">
-                Recommande
+                Recommandé
               </div>
               <h3 className="text-2xl font-bold mb-2 text-foreground">Engagement</h3>
               <div className="text-3xl font-bold text-primary mb-1">500 EUR HT</div>
-              <div className="text-sm text-muted-foreground mb-6">par etablissement</div>
+              <div className="text-sm text-muted-foreground mb-6">par établissement</div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">Tout ce qui est inclus dans Soutien</span></li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">1 place garantie pour un etudiant</span></li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">1 acces Demo Day</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">1 place garantie pour un étudiant</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">1 accès Demo Day</span></li>
               </ul>
               <Button asChild className="w-full">
                 <Link to="/contact">Choisir cette offre</Link>
@@ -391,13 +389,13 @@ const NiteoToulouse = () => {
             {/* Pionnier */}
             <div className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-2xl font-bold mb-2 text-foreground">Pionnier</h3>
-              <div className="text-3xl font-bold text-primary mb-1">A partir de 1 500 EUR HT</div>
-              <div className="text-sm text-muted-foreground mb-6">tarif preserve en 2027</div>
+              <div className="text-3xl font-bold text-primary mb-1">À partir de 1 500 EUR HT</div>
+              <div className="text-sm text-muted-foreground mb-6">tarif préservé en 2027</div>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">Tout ce qui est inclus dans Engagement</span></li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">2+ places garanties pour vos etudiants</span></li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">2+ acces Demo Day</span></li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">Tarif preserve pour l'edition 2027</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">2+ places garanties pour vos étudiants</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">2+ accès Demo Day</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">Tarif préservé pour l'édition 2027</span></li>
               </ul>
               <Button asChild variant="outline" className="w-full">
                 <Link to="/contact">Devenir Pionnier</Link>
@@ -411,10 +409,10 @@ const NiteoToulouse = () => {
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
-            L'equipe Niteo
+            L'équipe Niteo
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Des entrepreneurs et coachs experimentes au service de vos etudiants
+            Des entrepreneurs et coachs expérimentés au service de vos étudiants
           </p>
 
           {/* Entrepreneurs conseil */}
@@ -475,10 +473,10 @@ const NiteoToulouse = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
-            Partenaires ecosysteme
+            Partenaires écosystème
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Un reseau de partenaires engages pour accompagner les talents
+            Un réseau de partenaires engagés pour accompagner les talents
           </p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 max-w-5xl mx-auto">
             {partners.map((partner) => (
@@ -491,7 +489,7 @@ const NiteoToulouse = () => {
       </section>
 
       {/* Section 11: FAQ */}
-      <FAQSection title="Questions frequentes sur Niteo" faqs={niteoFaqs} />
+      <FAQSection title="Questions fréquentes sur Niteo" faqs={niteoFaqs} />
 
       {/* Section 12: CTA final */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-primary to-accent">
@@ -501,7 +499,7 @@ const NiteoToulouse = () => {
               Rejoignez Niteo Toulouse 2026
             </h2>
             <p className="text-xl text-primary-foreground/90 mb-8">
-              Faites de votre etablissement un acteur cle de l'entrepreneuriat etudiant a Toulouse
+              Faites de votre établissement un acteur clé de l'entrepreneuriat étudiant à Toulouse
             </p>
             <Button asChild size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto">
               <Link to="/contact">

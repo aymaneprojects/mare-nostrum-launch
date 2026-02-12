@@ -369,6 +369,16 @@ const Education = () => {
               </ul>
             </div>
           </div>
+
+          {/* Bouton Niteo */}
+          <div className="mt-12 text-center">
+            <Button asChild size="lg" className="text-base md:text-lg">
+              <Link to="/niteo-toulouse">
+                Découvrir le Programme Niteo Toulouse 2026
+                <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
