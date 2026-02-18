@@ -18,6 +18,9 @@ import jeanBaptisteProst from "@/assets/niteo/jean-baptiste-prost.jpeg";
 import ludovicDeGromard from "@/assets/niteo/ludovic-de-gromard.jpeg";
 import pascalDavid from "@/assets/niteo/pascal-david.jpeg";
 import abdallahHassani from "@/assets/niteo/abdallah-hassani.jpeg";
+import jeanJodeau from "@/assets/niteo/jean-jodeau.jpeg";
+import claireVirazels from "@/assets/niteo/claire-virazels.jpeg";
+import christianTurpaud from "@/assets/niteo/christian-turpaud.jpeg";
 
 import partnerToulouseMetropole from "@/assets/partners/toulouse-metropole.png";
 import partnerAuf from "@/assets/partners/auf-niteo.png";
@@ -28,6 +31,12 @@ import partnerReseauEntreprendre from "@/assets/partners/reseau-entreprendre.png
 import partnerCpme31 from "@/assets/partners/cpme31-niteo.png";
 import partnerEntreprisesMission from "@/assets/partners/entreprises-mission.png";
 import partnerEdc from "@/assets/partners/edc.png";
+import partnerBdd from "@/assets/niteo/bdd-logo.png";
+import partnerMoovjee from "@/assets/niteo/moovjee-logo.png";
+import partnerVenture from "@/assets/niteo/venture.png";
+import partnerTouleco from "@/assets/niteo/touleco.png";
+import partnerRoselab from "@/assets/niteo/roselab.png";
+import partnerToulouseWay from "@/assets/niteo/toulouse-way.png";
 
 const NiteoToulouse = () => {
   const niteoSchema = [{
@@ -103,9 +112,9 @@ const NiteoToulouse = () => {
   const teamCoachs = [
     { name: "Pascal David", role: "Coach stratégie d'entreprise", photo: pascalDavid },
     { name: "Abdallah Hassani", role: "Coach prise de parole en public", photo: abdallahHassani },
-    { name: "Jean Jodeau", role: "Avocat, juriste d'entreprise" },
-    { name: "Claire Virazels", role: "Coach commercialisation" },
-    { name: "Christian Turpaud", role: "Coach business model ESS" },
+    { name: "Jean Jodeau", role: "Avocat, juriste d'entreprise", photo: jeanJodeau },
+    { name: "Claire Virazels", role: "Coach commercialisation", photo: claireVirazels },
+    { name: "Christian Turpaud", role: "Coach business model ESS", photo: christianTurpaud },
   ];
 
   const teamExperts = [
@@ -123,6 +132,12 @@ const NiteoToulouse = () => {
     { src: partnerCpme31, alt: "CPME 31 Haute-Garonne" },
     { src: partnerEntreprisesMission, alt: "Communauté des Entreprises à Mission" },
     { src: partnerEdc, alt: "Entrepreneurs et Dirigeants Chrétiens" },
+    { src: partnerBdd, alt: "Bras Droit des Dirigeants" },
+    { src: partnerMoovjee, alt: "Moovjee" },
+    { src: partnerVenture, alt: "Ventury Avocats & EY" },
+    { src: partnerTouleco, alt: "Touléco" },
+    { src: partnerRoselab, alt: "Rose Lab" },
+    { src: partnerToulouseWay, alt: "Toulouse Way" },
   ];
 
   const timeline = [
@@ -304,24 +319,27 @@ const NiteoToulouse = () => {
       {/* Parrain intégré dans la section équipe */}
 
       {/* Section 7: Calendrier */}
-      <section className="py-16 md:py-24 bg-secondary/30">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-foreground">
             Calendrier 2026
           </h2>
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-2xl mx-auto">
             <div className="relative">
-              {/* Timeline line */}
-              <div className="absolute left-6 md:left-8 top-0 bottom-0 w-0.5 bg-primary/20" />
-              <div className="space-y-8">
+              {/* Ligne verticale de connexion */}
+              <div className="absolute left-7 md:left-8 top-8 bottom-8 w-[3px] bg-gradient-to-b from-accent/60 via-accent/40 to-accent/20 rounded-full" />
+              
+              <div className="space-y-10 md:space-y-12">
                 {timeline.map((item, i) => (
-                  <div key={i} className="flex items-start gap-6">
-                    <div className="relative z-10 flex-shrink-0 w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white">
+                  <div key={i} className="flex items-center gap-6 md:gap-8 group">
+                    {/* Cercle avec icone */}
+                    <div className="relative z-10 flex-shrink-0 w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-primary-foreground shadow-lg group-hover:scale-110 transition-transform duration-300">
                       {item.icon}
                     </div>
-                    <div className="pt-2 md:pt-4">
-                      <div className="text-sm font-semibold text-primary">{item.date}</div>
-                      <div className="text-lg font-bold text-foreground">{item.label}</div>
+                    {/* Texte */}
+                    <div>
+                      <div className="text-sm font-medium text-muted-foreground">{item.date}</div>
+                      <div className="text-lg md:text-xl font-bold text-foreground">{item.label}</div>
                     </div>
                   </div>
                 ))}
