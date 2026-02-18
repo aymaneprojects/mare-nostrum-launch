@@ -359,11 +359,11 @@ const NiteoToulouse = () => {
               </div>
 
               {/* Entrepreneurs conseil */}
-              <div className="lg:col-span-6 bg-card border border-accent rounded-xl p-6 shadow-lg">
+              <div className="lg:col-span-6 bg-card border border-accent rounded-xl p-6 shadow-lg flex flex-col justify-center">
                 <h3 className="text-xl font-bold text-foreground mb-6 text-center">Les entrepreneurs conseil</h3>
-                <div className="grid grid-cols-3 gap-6">
+                <div className="flex justify-center gap-8">
                   {teamEntrepreneursConseil.map((member) => (
-                    <div key={member.name} className="text-center">
+                    <div key={member.name} className="text-center max-w-[160px]">
                       <img src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover mx-auto mb-3" />
                       <div className="font-bold text-sm text-foreground">{member.name.split(' ')[0]} <span className="uppercase">{member.name.split(' ').slice(1).join(' ')}</span></div>
                       <div className="text-xs text-muted-foreground whitespace-pre-line mt-1">{member.role}</div>
