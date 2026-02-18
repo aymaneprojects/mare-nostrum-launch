@@ -343,11 +343,11 @@ const NiteoToulouse = () => {
 
           <div className="max-w-7xl mx-auto">
             {/* Row 1: Equipe Mare Nostrum + Entrepreneurs conseil + Parrain */}
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_auto] gap-6 mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
               {/* Equipe Mare Nostrum */}
-              <div className="bg-card border border-border rounded-xl p-6 shadow-lg">
+              <div className="lg:col-span-4 bg-card border border-border rounded-xl p-6 shadow-lg">
                 <h3 className="text-xl font-bold text-foreground mb-6 text-center">L'équipe Mare Nostrum</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 gap-6">
                   {teamMareNostrum.map((member) => (
                     <div key={member.name} className="text-center">
                       <img src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover mx-auto mb-3" />
@@ -359,9 +359,9 @@ const NiteoToulouse = () => {
               </div>
 
               {/* Entrepreneurs conseil */}
-              <div className="bg-card border border-accent rounded-xl p-6 shadow-lg">
+              <div className="lg:col-span-6 bg-card border border-accent rounded-xl p-6 shadow-lg">
                 <h3 className="text-xl font-bold text-foreground mb-6 text-center">Les entrepreneurs conseil</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-3 gap-6">
                   {teamEntrepreneursConseil.map((member) => (
                     <div key={member.name} className="text-center">
                       <img src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover mx-auto mb-3" />
@@ -373,7 +373,7 @@ const NiteoToulouse = () => {
               </div>
 
               {/* Parrain */}
-              <div className="bg-accent/10 border border-accent rounded-xl p-6 shadow-lg flex flex-col items-center justify-center">
+              <div className="lg:col-span-2 bg-accent/10 border border-accent rounded-xl p-6 shadow-lg flex flex-col items-center justify-center">
                 <img src={bertrandSerp} alt="Bertrand SERP" className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover mb-3" />
                 <div className="font-bold text-sm text-foreground">Bertrand <span className="uppercase">SERP</span></div>
                 <div className="text-xs text-muted-foreground text-center mt-1">Parrain<br />Vice-Président de<br />Toulouse Métropole</div>
@@ -381,15 +381,15 @@ const NiteoToulouse = () => {
             </div>
 
             {/* Row 2: Coachs + Experts + Alumni */}
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_auto] gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Coachs */}
-              <div className="bg-card border border-border rounded-xl p-6 shadow-lg">
+              <div className="lg:col-span-6 bg-card border border-border rounded-xl p-6 shadow-lg">
                 <h3 className="text-xl font-bold text-foreground mb-6 text-center">Les coachs</h3>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
                   {teamCoachs.map((member) => (
                     <div key={member.name} className="text-center">
                       {'photo' in member && member.photo ? (
-                        <img src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover mx-auto mb-3" />
+                        <img src={member.photo as string} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover mx-auto mb-3" />
                       ) : (
                         <div className="w-20 h-20 md:w-24 md:h-24 rounded-lg bg-muted flex items-center justify-center mx-auto mb-3">
                           <span className="text-2xl font-bold text-muted-foreground">{member.name.charAt(0)}</span>
@@ -403,9 +403,9 @@ const NiteoToulouse = () => {
               </div>
 
               {/* Experts */}
-              <div className="bg-card border border-accent rounded-xl p-6 shadow-lg">
+              <div className="lg:col-span-4 bg-card border border-accent rounded-xl p-6 shadow-lg">
                 <h3 className="text-xl font-bold text-foreground mb-6 text-center">Les experts</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-2 gap-6">
                   {teamExperts.map((member) => (
                     <div key={member.name} className="text-center">
                       <div className="w-20 h-20 md:w-24 md:h-24 rounded-lg bg-muted flex items-center justify-center mx-auto mb-3">
@@ -419,7 +419,7 @@ const NiteoToulouse = () => {
               </div>
 
               {/* Alumni badge */}
-              <div className="bg-accent/10 border border-accent rounded-xl p-6 shadow-lg flex flex-col items-center justify-center">
+              <div className="lg:col-span-2 bg-accent/10 border border-accent rounded-xl p-6 shadow-lg flex flex-col items-center justify-center min-h-[160px]">
                 <div className="text-4xl font-bold text-accent mb-2">+95</div>
                 <div className="text-sm font-bold text-foreground text-center">alumni de nos<br />programmes</div>
               </div>
