@@ -87,27 +87,30 @@ const NiteoToulouse = () => {
     }
   ];
 
-  const teamEntrepreneurs = [
-    { name: "Alexis Janicot", role: "Fondateur Mare Nostrum", photo: alexisJanicot },
-    { name: "Aymane Abdennour", role: "Entrepreneur conseil", photo: aymaneAbdennour },
-    { name: "Géraldine Le Caer", role: "Entrepreneure conseil", photo: geraldinLecaer },
-    { name: "Frédérique Bertelet", role: "Entrepreneure conseil", photo: frederiqueBertelet },
-    { name: "Benjamin Lebailly", role: "Entrepreneur conseil", photo: benjaminLebailly },
-    { name: "Jean-Baptiste Prost", role: "Entrepreneur conseil", photo: jeanBaptisteProst },
-    { name: "Ludovic De Gromard", role: "Entrepreneur conseil", photo: ludovicDeGromard },
+  const teamMareNostrum = [
+    { name: "Alexis Janicot", role: "Président de Mare Nostrum\nEx-DG French Tech Toulouse", photo: alexisJanicot },
+    { name: "Aymane Abdennour", role: "Chargé de mission / chef de projet Niteo\nMare Nostrum", photo: aymaneAbdennour },
+    { name: "Géraldine Le Caër", role: "Membre du Comité de mission\nEx-DG Toulouse Ynov Campus", photo: geraldinLecaer },
+    { name: "Frédérique Bertelet", role: "Ingénieure pédagogique", photo: frederiqueBertelet },
+  ];
+
+  const teamEntrepreneursConseil = [
+    { name: "Benjamin Lebailly", role: "Directeur général Le Hibou\n(lauréat Next 40)", photo: benjaminLebailly },
+    { name: "Jean-Baptiste Prost", role: "Entrepreneur, ambassadeur de la fondation des EDC", photo: jeanBaptisteProst },
+    { name: "Ludovic De Gromard", role: "Entrepreneur social, Chance", photo: ludovicDeGromard },
   ];
 
   const teamCoachs = [
-    { name: "Pascal David", role: "Coach", photo: pascalDavid },
-    { name: "Abdallah Hassani", role: "Coach", photo: abdallahHassani },
+    { name: "Pascal David", role: "Coach stratégie d'entreprise", photo: pascalDavid },
+    { name: "Abdallah Hassani", role: "Coach prise de parole en public", photo: abdallahHassani },
+    { name: "Jean Jodeau", role: "Avocat, juriste d'entreprise" },
+    { name: "Claire Virazels", role: "Coach commercialisation" },
+    { name: "Christian Turpaud", role: "Coach business model ESS" },
   ];
 
   const teamExperts = [
-    { name: "Jean Jodeau", role: "Expert" },
-    { name: "Claire Virazels", role: "Experte" },
-    { name: "Christian Turpaud", role: "Expert" },
-    { name: "Anne-Sophie Alsif", role: "Experte" },
-    { name: "Sébastien Boussois", role: "Expert" },
+    { name: "Anne-Sophie Alsif", role: "Économiste" },
+    { name: "Sébastien Boussois", role: "Expert en sciences politiques" },
   ];
 
   const partners = [
@@ -298,23 +301,7 @@ const NiteoToulouse = () => {
         </div>
       </section>
 
-      {/* Section 6: Parrain */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-foreground">Parrain de l'édition 2026</h2>
-            <div className="bg-card border border-border rounded-xl p-8 shadow-lg inline-block">
-              <img
-                src={bertrandSerp}
-                alt="Bertrand SERP, Vice-Président de Toulouse Métropole"
-                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover mx-auto mb-6 border-4 border-primary/20"
-              />
-              <h3 className="text-2xl font-bold text-foreground mb-2">Bertrand SERP</h3>
-              <p className="text-muted-foreground">Vice-Président de Toulouse Métropole</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Parrain intégré dans la section équipe */}
 
       {/* Section 7: Calendrier */}
       <section className="py-16 md:py-24 bg-secondary/30">
@@ -344,68 +331,7 @@ const NiteoToulouse = () => {
         </div>
       </section>
 
-      {/* Section 8: Options tarifaires */}
-      <section className="py-16 md:py-24 bg-background" id="offres">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
-            Les 3 options tarifaires
-          </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Exonération de TVA (DREETS Occitanie)
-          </p>
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Soutien */}
-            <div className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-2xl font-bold mb-2 text-foreground">Soutien</h3>
-              <div className="text-3xl font-bold text-primary mb-6">À votre convenance</div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">Ouverture du programme aux étudiants</span></li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">Accès sécurisé à la plateforme</span></li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">Logo sur les supports de communication</span></li>
-              </ul>
-              <Button asChild variant="outline" className="w-full">
-                <Link to="/contact">Nous contacter</Link>
-              </Button>
-            </div>
-
-            {/* Engagement */}
-            <div className="bg-card border-2 border-primary rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-4 py-1 rounded-full">
-                Recommandé
-              </div>
-              <h3 className="text-2xl font-bold mb-2 text-foreground">Engagement</h3>
-              <div className="text-3xl font-bold text-primary mb-1">500 EUR HT</div>
-              <div className="text-sm text-muted-foreground mb-6">par établissement</div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">Tout ce qui est inclus dans Soutien</span></li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">1 place garantie pour un étudiant</span></li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">1 accès Demo Day</span></li>
-              </ul>
-              <Button asChild className="w-full">
-                <Link to="/contact">Choisir cette offre</Link>
-              </Button>
-            </div>
-
-            {/* Pionnier */}
-            <div className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-2xl font-bold mb-2 text-foreground">Pionnier</h3>
-              <div className="text-3xl font-bold text-primary mb-1">À partir de 1 500 EUR HT</div>
-              <div className="text-sm text-muted-foreground mb-6">tarif préservé en 2027</div>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">Tout ce qui est inclus dans Engagement</span></li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">2+ places garanties pour vos étudiants</span></li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">2+ accès Demo Day</span></li>
-                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-muted-foreground text-sm">Tarif préservé pour l'édition 2027</span></li>
-              </ul>
-              <Button asChild variant="outline" className="w-full">
-                <Link to="/contact">Devenir Pionnier</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 9: Equipe Niteo */}
+      {/* Section 8: Equipe Niteo */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
@@ -415,55 +341,88 @@ const NiteoToulouse = () => {
             Des entrepreneurs et coachs expérimentés au service de vos étudiants
           </p>
 
-          {/* Entrepreneurs conseil */}
-          <div className="max-w-6xl mx-auto mb-12">
-            <h3 className="text-xl font-semibold text-foreground mb-8 text-center">Entrepreneurs conseil</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
-              {teamEntrepreneurs.map((member) => (
-                <div key={member.name} className="text-center">
-                  <img
-                    src={member.photo}
-                    alt={member.name}
-                    className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover mx-auto mb-3 border-2 border-primary/20"
-                  />
-                  <div className="font-semibold text-sm text-foreground">{member.name}</div>
-                  <div className="text-xs text-muted-foreground">{member.role}</div>
+          <div className="max-w-7xl mx-auto">
+            {/* Row 1: Equipe Mare Nostrum + Entrepreneurs conseil + Parrain */}
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_auto] gap-6 mb-8">
+              {/* Equipe Mare Nostrum */}
+              <div className="bg-card border border-border rounded-xl p-6 shadow-lg">
+                <h3 className="text-xl font-bold text-foreground mb-6 text-center">L'équipe Mare Nostrum</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                  {teamMareNostrum.map((member) => (
+                    <div key={member.name} className="text-center">
+                      <img src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover mx-auto mb-3" />
+                      <div className="font-bold text-sm text-foreground">{member.name.split(' ')[0]} <span className="uppercase">{member.name.split(' ').slice(1).join(' ')}</span></div>
+                      <div className="text-xs text-muted-foreground whitespace-pre-line mt-1">{member.role}</div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
 
-          {/* Coachs */}
-          <div className="max-w-4xl mx-auto mb-12">
-            <h3 className="text-xl font-semibold text-foreground mb-8 text-center">Coachs</h3>
-            <div className="flex justify-center gap-12">
-              {teamCoachs.map((member) => (
-                <div key={member.name} className="text-center">
-                  <img
-                    src={member.photo}
-                    alt={member.name}
-                    className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover mx-auto mb-3 border-2 border-primary/20"
-                  />
-                  <div className="font-semibold text-sm text-foreground">{member.name}</div>
-                  <div className="text-xs text-muted-foreground">{member.role}</div>
+              {/* Entrepreneurs conseil */}
+              <div className="bg-card border border-accent rounded-xl p-6 shadow-lg">
+                <h3 className="text-xl font-bold text-foreground mb-6 text-center">Les entrepreneurs conseil</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {teamEntrepreneursConseil.map((member) => (
+                    <div key={member.name} className="text-center">
+                      <img src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover mx-auto mb-3" />
+                      <div className="font-bold text-sm text-foreground">{member.name.split(' ')[0]} <span className="uppercase">{member.name.split(' ').slice(1).join(' ')}</span></div>
+                      <div className="text-xs text-muted-foreground whitespace-pre-line mt-1">{member.role}</div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
 
-          {/* Experts (placeholder) */}
-          <div className="max-w-4xl mx-auto">
-            <h3 className="text-xl font-semibold text-foreground mb-8 text-center">Experts</h3>
-            <div className="flex flex-wrap justify-center gap-8">
-              {teamExperts.map((member) => (
-                <div key={member.name} className="text-center">
-                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-muted flex items-center justify-center mx-auto mb-3 border-2 border-primary/20">
-                    <span className="text-2xl font-bold text-muted-foreground">{member.name.charAt(0)}</span>
-                  </div>
-                  <div className="font-semibold text-sm text-foreground">{member.name}</div>
-                  <div className="text-xs text-muted-foreground">{member.role}</div>
+              {/* Parrain */}
+              <div className="bg-accent/10 border border-accent rounded-xl p-6 shadow-lg flex flex-col items-center justify-center">
+                <img src={bertrandSerp} alt="Bertrand SERP" className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover mb-3" />
+                <div className="font-bold text-sm text-foreground">Bertrand <span className="uppercase">SERP</span></div>
+                <div className="text-xs text-muted-foreground text-center mt-1">Parrain<br />Vice-Président de<br />Toulouse Métropole</div>
+              </div>
+            </div>
+
+            {/* Row 2: Coachs + Experts + Alumni */}
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_auto] gap-6">
+              {/* Coachs */}
+              <div className="bg-card border border-border rounded-xl p-6 shadow-lg">
+                <h3 className="text-xl font-bold text-foreground mb-6 text-center">Les coachs</h3>
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+                  {teamCoachs.map((member) => (
+                    <div key={member.name} className="text-center">
+                      {'photo' in member && member.photo ? (
+                        <img src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover mx-auto mb-3" />
+                      ) : (
+                        <div className="w-20 h-20 md:w-24 md:h-24 rounded-lg bg-muted flex items-center justify-center mx-auto mb-3">
+                          <span className="text-2xl font-bold text-muted-foreground">{member.name.charAt(0)}</span>
+                        </div>
+                      )}
+                      <div className="font-bold text-sm text-foreground">{member.name.split(' ')[0]} <span className="uppercase">{member.name.split(' ').slice(1).join(' ')}</span></div>
+                      <div className="text-xs text-muted-foreground whitespace-pre-line mt-1">{member.role}</div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              {/* Experts */}
+              <div className="bg-card border border-accent rounded-xl p-6 shadow-lg">
+                <h3 className="text-xl font-bold text-foreground mb-6 text-center">Les experts</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {teamExperts.map((member) => (
+                    <div key={member.name} className="text-center">
+                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-lg bg-muted flex items-center justify-center mx-auto mb-3">
+                        <span className="text-2xl font-bold text-muted-foreground">{member.name.charAt(0)}</span>
+                      </div>
+                      <div className="font-bold text-sm text-foreground">{member.name.split(' ')[0]} <span className="uppercase">{member.name.split(' ').slice(1).join(' ')}</span></div>
+                      <div className="text-xs text-muted-foreground whitespace-pre-line mt-1">{member.role}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Alumni badge */}
+              <div className="bg-accent/10 border border-accent rounded-xl p-6 shadow-lg flex flex-col items-center justify-center">
+                <div className="text-4xl font-bold text-accent mb-2">+95</div>
+                <div className="text-sm font-bold text-foreground text-center">alumni de nos<br />programmes</div>
+              </div>
             </div>
           </div>
         </div>
