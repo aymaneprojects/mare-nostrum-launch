@@ -21,6 +21,8 @@ import abdallahHassani from "@/assets/niteo/abdallah-hassani.jpeg";
 import jeanJodeau from "@/assets/niteo/jean-jodeau.jpeg";
 import claireVirazels from "@/assets/niteo/claire-virazels.jpeg";
 import christianTurpaud from "@/assets/niteo/christian-turpaud.jpeg";
+import anneSophie from "@/assets/niteo/anne-sophie.jpeg";
+import sebastien from "@/assets/niteo/sebastien.jpg";
 
 import partnerToulouseMetropole from "@/assets/partners/toulouse-metropole.png";
 import partnerAuf from "@/assets/partners/auf-niteo.png";
@@ -118,8 +120,8 @@ const NiteoToulouse = () => {
   ];
 
   const teamExperts = [
-    { name: "Anne-Sophie Alsif", role: "Économiste" },
-    { name: "Sébastien Boussois", role: "Expert en sciences politiques" },
+    { name: "Anne-Sophie Alsif", role: "Économiste", photo: anneSophie },
+    { name: "Sébastien Boussois", role: "Expert en sciences politiques", photo: sebastien },
   ];
 
   const partners = [
@@ -426,9 +428,7 @@ const NiteoToulouse = () => {
                 <div className="grid grid-cols-2 gap-6">
                   {teamExperts.map((member) => (
                     <div key={member.name} className="text-center">
-                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-lg bg-muted flex items-center justify-center mx-auto mb-3">
-                        <span className="text-2xl font-bold text-muted-foreground">{member.name.charAt(0)}</span>
-                      </div>
+                      <img src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover mx-auto mb-3" />
                       <div className="font-bold text-sm text-foreground">{member.name.split(' ')[0]} <span className="uppercase">{member.name.split(' ').slice(1).join(' ')}</span></div>
                       <div className="text-xs text-muted-foreground whitespace-pre-line mt-1">{member.role}</div>
                     </div>
