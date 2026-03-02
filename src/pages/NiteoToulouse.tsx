@@ -44,35 +44,46 @@ const NiteoToulouse = () => {
   const niteoSchema = [{
     "@context": "https://schema.org",
     "@type": "Course",
-    "name": "Programme Niteo Toulouse 2026",
-    "description": "Programme d'accélération entrepreneuriale de 50h pour étudiants en licence et master. E-learning, ateliers collectifs, coaching individuel et Demo Day devant 30 décideurs.",
+    "name": "Programme Niteo Toulouse 2026 - Acceleration Entrepreneuriale Etudiants",
+    "description": "Niteo Toulouse : programme d'acceleration entrepreneuriale de 50h pour etudiants en licence et master. E-learning, ateliers collectifs, coaching individuel et Demo Day devant 30 decideurs. Par Mare Nostrum, cabinet expert entrepreneuriat Toulouse.",
     "provider": {
       "@type": "Organization",
       "name": "Mare Nostrum",
-      "sameAs": "https://marenostrum.tech"
+      "sameAs": "https://marenostrum.tech",
+      "alternateName": ["Niteo", "Niteo Toulouse"]
     },
     "educationalLevel": "Higher Education",
-    "teaches": ["Entrepreneuriat", "Business model", "Pitch", "Leadership", "Gestion de projet"],
+    "teaches": ["Entrepreneuriat", "Business model", "Pitch", "Leadership", "Gestion de projet", "Entrepreneuriat a impact", "Startup Toulouse"],
+    "inLanguage": "fr",
     "hasCourseInstance": {
       "@type": "CourseInstance",
-      "name": "Niteo Toulouse Édition 2026",
+      "name": "Niteo Toulouse Edition 2026",
       "startDate": "2026-04-11",
       "endDate": "2026-06-16",
       "courseMode": "Blended",
       "location": {
         "@type": "Place",
         "name": "Toulouse",
-        "address": { "@type": "PostalAddress", "addressLocality": "Toulouse", "addressCountry": "FR" }
+        "address": { "@type": "PostalAddress", "addressLocality": "Toulouse", "addressRegion": "Occitanie", "postalCode": "31000", "addressCountry": "FR" }
       }
     }
   }, {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "Niteo Demo Day 2026",
+    "name": "Niteo Demo Day 2026 - Pitch Entrepreneurs Etudiants Toulouse",
     "startDate": "2026-06-16",
-    "location": { "@type": "Place", "name": "Toulouse" },
-    "organizer": { "@type": "Organization", "name": "Mare Nostrum" },
-    "description": "Journée finale du programme Niteo : pitch devant 30 décideurs et +10 000 EUR de dotations"
+    "location": { "@type": "Place", "name": "Toulouse", "address": { "@type": "PostalAddress", "addressLocality": "Toulouse", "addressCountry": "FR" } },
+    "organizer": { "@type": "Organization", "name": "Mare Nostrum", "url": "https://marenostrum.tech" },
+    "description": "Journee finale du programme Niteo Toulouse : pitch devant 30 decideurs et +10 000 EUR de dotations. Le programme d'acceleration entrepreneuriale etudiants de reference a Toulouse."
+  }, {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Niteo Toulouse - Mare Nostrum",
+    "alternateName": ["Niteo", "Programme Niteo", "Niteo Toulouse"],
+    "description": "Programme d'acceleration entrepreneuriale pour etudiants a Toulouse. 50h de formation, coaching individuel, Demo Day. Par Mare Nostrum.",
+    "url": "https://marenostrum.tech/niteo-toulouse",
+    "address": { "@type": "PostalAddress", "addressLocality": "Toulouse", "addressRegion": "Occitanie", "addressCountry": "FR" },
+    "parentOrganization": { "@type": "Organization", "name": "Mare Nostrum", "url": "https://marenostrum.tech" }
   }];
 
   const niteoFaqs = [
@@ -155,9 +166,9 @@ const NiteoToulouse = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
-        title="Niteo Toulouse 2026 - Programme Entrepreneuriat Étudiant | Mare Nostrum"
-        description="Programme Niteo Toulouse 2026 : 50h d'accélération entrepreneuriale pour étudiants. E-learning, ateliers, coaching, Demo Day devant 30 décideurs. +10 000 EUR de dotations."
-        keywords="niteo toulouse, programme entrepreneuriat étudiant, accélération startup étudiant, mare nostrum toulouse, demo day toulouse 2026"
+        title="Niteo Toulouse 2026 - Programme Entrepreneuriat Etudiant | Mare Nostrum"
+        description="Niteo Toulouse 2026 : programme d'acceleration entrepreneuriale de 50h pour etudiants. E-learning, ateliers, coaching individuel, Demo Day devant 30 decideurs. +10 000 EUR de dotations. Par Mare Nostrum, expert entrepreneuriat Toulouse."
+        keywords="Niteo, Niteo Toulouse, programme Niteo, Niteo 2026, entrepreneuriat toulouse, programme entrepreneuriat etudiant toulouse, acceleration startup etudiant toulouse, mare nostrum toulouse, demo day toulouse, incubateur etudiant toulouse, entrepreneuriat etudiant toulouse, creation entreprise etudiant, startup etudiante toulouse, mare nostrum niteo"
         structuredData={niteoSchema}
         faqSchema={niteoFaqs}
         breadcrumbSchema={[

@@ -51,9 +51,9 @@ const AccompagnementFrancophonie = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
-        title="Incubateur Impact Toulouse-Casablanca | Accompagnement Entrepreneurs Francophonie - Mare Nostrum"
-        description="Rejoignez notre incubateur d'entrepreneurs à impact. Programmes d'accompagnement personnalisés Toulouse-Casablanca pour la francophonie. Test de maturité projet gratuit."
-        keywords="incubateur toulouse, accompagnement entrepreneur, startup impact, francophonie entrepreneuriat, incubateur casablanca, mentorat entrepreneur"
+        title="Incubateur Entrepreneurs Toulouse & Afrique | Accompagnement Francophonie - Mare Nostrum"
+        description="Incubateur d'entrepreneurs a impact a Toulouse et en Afrique francophone. Programmes Tremplin, Ascension, Elite. Accompagnement personnalise, mentorat, financement. Mare Nostrum, expert entrepreneuriat Toulouse et Afrique."
+        keywords="incubateur toulouse, entrepreneuriat toulouse, entrepreneuriat afrique, accompagnement entrepreneur toulouse, startup impact toulouse, incubateur afrique, entrepreneur afrique francophone, mentorat entrepreneur toulouse, accompagnement startup afrique, incubateur casablanca, creation entreprise toulouse, accelerateur toulouse"
         structuredData={pageSchema}
         faqSchema={faqs}
         breadcrumbSchema={[

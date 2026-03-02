@@ -194,9 +194,9 @@ const Index = () => {
 
   return <div className="min-h-screen flex flex-col">
       <SEOHead 
-        title="Mare Nostrum | Conseil Entrepreneuriat à Impact" 
-        description="Expert en entrepreneuriat à impact depuis 2023. Accompagnement personnalisé pour écoles et entrepreneurs à Toulouse, Paris, Casablanca. 95% satisfaction." 
-        keywords="entrepreneuriat à impact, conseil entrepreneurial, éducation entrepreneuriale, Toulouse, Paris, Casablanca, francophonie, Afrique, Maghreb, entreprise à mission, formation entrepreneuriat, Sénégal, Cameroun, Côte d'Ivoire" 
+        title="Mare Nostrum | Entrepreneuriat Toulouse & Afrique | Niteo" 
+        description="Cabinet expert en entrepreneuriat a Toulouse et en Afrique francophone. Programme Niteo, accompagnement startups a impact, education entrepreneuriale. 135+ experts, 12 pays, +95% satisfaction." 
+        keywords="entrepreneuriat toulouse, entrepreneuriat afrique, Niteo, Niteo Toulouse, programme Niteo, mare nostrum, conseil entrepreneuriat toulouse, accompagnement entrepreneur toulouse, incubateur toulouse, startup toulouse, creation entreprise toulouse, entrepreneuriat afrique francophone, entrepreneuriat francophonie, startup afrique, club entrepreneur, education entrepreneuriale, Casablanca, Senegal, Cote d'Ivoire, entreprise a mission" 
         structuredData={homePageSchema}
         faqSchema={faqs}
         breadcrumbSchema={[

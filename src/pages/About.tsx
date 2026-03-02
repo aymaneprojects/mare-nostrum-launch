@@ -30,9 +30,9 @@ import francophonieScientiqueImg from "@/assets/francophonie-scientifique.png";
 const About = () => {
   return <div className="min-h-screen flex flex-col">
       <SEOHead 
-        title="À propos Mare Nostrum - Cabinet Conseil Entrepreneuriat | 12 Pays Francophonie" 
-        description="Société à mission fondée 2023. 24 entreprises, 17+ projets étudiants accompagnés. 135+ experts, 2000 ans expérience cumulée. Valeurs : respect, enthousiasme, fiabilité, impact. France, Afrique, Canada." 
-        keywords="mare nostrum, à propos, équipe, valeurs, société à mission, toulouse, paris, casablanca, cabinet conseil, entrepreneuriat impact, francophonie, afrique, maghreb" 
+        title="A propos Mare Nostrum - Expert Entrepreneuriat Toulouse & Afrique | Niteo" 
+        description="Mare Nostrum, societe a mission fondee en 2023 a Toulouse. Createurs du programme Niteo. 24 entreprises, 17+ projets etudiants accompagnes. 135+ experts, 2000 ans experience. Entrepreneuriat Toulouse, Afrique, francophonie." 
+        keywords="mare nostrum, a propos, equipe, entrepreneuriat toulouse, niteo toulouse, programme niteo, entrepreneuriat afrique, societe a mission, toulouse, cabinet conseil, entrepreneuriat impact, francophonie, afrique, maghreb, incubateur toulouse" 
         breadcrumbSchema={[
           { name: "Accueil", url: "https://marenostrum.tech/" }, 
           { name: "À propos", url: "https://marenostrum.tech/a-propos" }

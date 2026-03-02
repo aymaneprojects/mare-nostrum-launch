@@ -89,7 +89,7 @@ User-agent: *
 Allow: /
 Crawl-delay: 1
 
-# Fichiers et dossiers à ne pas indexer
+# Fichiers et dossiers a ne pas indexer
 Disallow: /api/
 Disallow: /healthz
 Disallow: /*.json$
@@ -97,6 +97,9 @@ Disallow: /admin/
 Disallow: /private/
 Disallow: /_
 Disallow: /node_modules/
+
+# LLMs.txt - Pour les AI crawlers
+# https://marenostrum.tech/llms.txt
 
 # Sitemaps - URL directe vers l'edge function
 Sitemap: https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/sitemap

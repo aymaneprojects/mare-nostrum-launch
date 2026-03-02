@@ -18,8 +18,8 @@ interface EnhancedSEO {
 }
 
 const BRAND_NAME = "Mare Nostrum";
-const BRAND_KEYWORDS = "mare nostrum, Mare Nostrum entrepreneuriat, Mare Nostrum conseil, cabinet mare nostrum";
-const DEFAULT_KEYWORDS = "entrepreneuriat à impact, conseil entrepreneurial, formation entrepreneurs, Toulouse, Paris, Casablanca";
+const BRAND_KEYWORDS = "mare nostrum, Mare Nostrum entrepreneuriat, Mare Nostrum toulouse, mare nostrum afrique, Niteo, Niteo Toulouse, programme Niteo, cabinet mare nostrum";
+const DEFAULT_KEYWORDS = "entrepreneuriat toulouse, entrepreneuriat afrique, entrepreneuriat a impact, conseil entrepreneurial, formation entrepreneurs, incubateur toulouse, startup toulouse, accompagnement entrepreneur afrique, Toulouse, Paris, Casablanca";
 
 /**
  * Enrichit automatiquement le titre pour SEO
