@@ -1,50 +1,31 @@
 
 
-## Plan : Landing Page Niteo (sous-domaine uniquement)
+## Plan : Remplacer le logo Niteo et ameliorer la navbar
 
-### Approche
+### Ce qui sera fait
 
-La page Niteo candidature etudiants ne sera PAS une route `/niteo` dans l'application principale. Elle sera accessible uniquement via le sous-domaine `niteo.marenostrum.tech`.
+1. **Copier le nouveau logo** (`Logo_NITEO26_Clair_1-2.png`) dans `src/assets/niteo/logo-niteo-2026.png`
 
-### Architecture technique
+2. **Modifier la navbar** (ligne 186-194 de `NiteoCandidature.tsx`) :
+   - Remplacer l'ancien logo par le nouveau
+   - Ajouter le texte "Toulouse" centre dans la navbar
+   - Ameliorer le design de la navbar pour un rendu plus professionnel : ombre portee, espacement, typographie plus affirmee
 
-**Detection du sous-domaine dans `src/main.tsx`** : Si `window.location.hostname === "niteo.marenostrum.tech"`, on rend un composant `NiteoCandidature` autonome au lieu de l'application principale `App`.
+3. **Remplacer le logo dans le Hero** (ligne 204) par le nouveau logo
 
-**Nouveau fichier : `src/pages/NiteoCandidature.tsx`** : Page standalone complete (pas de Header/Footer du site principal), design conversion-first oriente etudiant.
-
-### Aucune modification dans App.tsx ni dans le routeur
-
-Pas de nouvelle route. Pas de lien dans la navbar. Le sous-domaine charge directement la page Niteo.
-
-### Contenu de NiteoCandidature.tsx
-
-1. **Hero** -- Logo Niteo + "Transforme ton idee en entreprise qui genere des revenus et de l'impact" + badge "Gratuit -- Places limitees" + chiffres (50h, Gratuit, +10 000 EUR, 30 decideurs) + CTA externe "Je candidate" (placeholder `https://forms.gle/PLACEHOLDER`)
-2. **Pour qui** -- 5 profils : Licence, Master, Jeunes diplomes, Porteurs d'idee, Motives
-3. **Ton defi en 50h** -- 4 blocs : e-learning 19h, ateliers 24h, coaching 2h, Demo Day
-4. **Ce que tu vas vivre** -- Ateliers collectifs, coaching, plateforme e-learning, pitcher devant decideurs
-5. **A la cle** -- Grille benefices + dotations 10 000 EUR + Club Mare Nostrum
-6. **Calendrier** -- Candidatures jusqu'au 2 avril, programme 11 avril - 16 juin, dates ateliers, mention presence obligatoire
-7. **Coachs et mentors** -- Photos existantes (`src/assets/niteo/` + `src/assets/team/`)
-8. **Partenaires** -- Logos existants (`src/assets/partners/`)
-9. **FAQ etudiants** -- Gratuit ?, besoin d'un projet ?, criteres, travail parallele, Demo Day
-10. **CTA final** -- "Candidate MAINTENANT" + "Tout dossier incomplet sera elimine"
+4. **Ameliorer le UIX global** de la navbar :
+   - Ajout d'un effet glassmorphism plus marque (backdrop-blur + transparence)
+   - Ombre subtile pour detacher la barre du contenu
+   - Le texte "Toulouse" sera affiche en tant que badge ou texte stylise entre le logo et le CTA, centre dans la barre
 
 ### Fichiers modifies
 
 | Fichier | Modification |
 |---|---|
-| `src/main.tsx` | Detection hostname `niteo.marenostrum.tech` pour rendre `NiteoCandidature` au lieu de `App` |
-| `src/pages/NiteoCandidature.tsx` | Nouveau fichier -- page complete autonome |
+| `src/assets/niteo/logo-niteo-2026.png` | Nouveau fichier (copie du logo uploade) |
+| `src/pages/NiteoCandidature.tsx` | Import du nouveau logo, refonte navbar avec "Toulouse" centre, remplacement logo hero |
 
-### Configuration sous-domaine (apres implementation)
+### Detail technique
 
-1. Lovable > Settings > Domains > ajouter `niteo.marenostrum.tech`
-2. Chez le registraire DNS de `marenostrum.tech` : ajouter un enregistrement A pour `niteo` pointant vers `185.158.133.1`
-3. Attendre propagation DNS + certificat SSL automatique
-
-### SEO
-
-- Title : "Niteo Toulouse 2026 -- Programme Entrepreneuriat Etudiant Gratuit | Candidature"
-- Schema.org Course + Event
-- FAQ Schema integre
+La navbar passera d'une structure `logo | CTA` a `logo | Toulouse | CTA` avec le texte Toulouse en lettres capitales, tracking large, style professionnel.
 
