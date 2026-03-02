@@ -36,7 +36,7 @@ import partnerTouleco from "@/assets/niteo/touleco.png";
 import partnerRoselab from "@/assets/niteo/roselab.png";
 import partnerToulouseWay from "@/assets/niteo/toulouse-way.png";
 
-const CTA_URL = "https://forms.gle/PLACEHOLDER";
+const CTA_URL = "https://airtable.com/appZ8ykNuUOv89ou0/shrxZTmKppjTEHTjE";
 
 const NiteoCandidature = () => {
   const structuredData = [
