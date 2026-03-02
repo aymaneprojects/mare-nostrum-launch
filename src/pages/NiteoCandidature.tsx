@@ -43,8 +43,8 @@ const NiteoCandidature = () => {
     {
       "@context": "https://schema.org",
       "@type": "Course",
-      "name": "Niteo Toulouse 2026 - Programme Entrepreneuriat Etudiant Gratuit",
-      "description": "Programme d'acceleration entrepreneuriale gratuit de 50h pour etudiants a Toulouse. E-learning, ateliers collectifs, coaching individuel, Demo Day devant 30 decideurs. +10 000 EUR de dotations.",
+      "name": "Niteo Toulouse 2026 - Programme Entrepreneuriat Étudiant Gratuit",
+      "description": "Programme d'accélération entrepreneuriale gratuit de 50h pour étudiants à Toulouse. E-learning, ateliers collectifs, coaching individuel, Demo Day devant 30 décideurs. +10 000 EUR de dotations.",
       "provider": {
         "@type": "Organization",
         "name": "Mare Nostrum",
@@ -73,17 +73,17 @@ const NiteoCandidature = () => {
       "startDate": "2026-06-16",
       "location": { "@type": "Place", "name": "Toulouse", "address": { "@type": "PostalAddress", "addressLocality": "Toulouse", "addressCountry": "FR" } },
       "organizer": { "@type": "Organization", "name": "Mare Nostrum", "url": "https://marenostrum.tech" },
-      "description": "Pitch devant 30 decideurs et +10 000 EUR de dotations pour les meilleurs projets etudiants."
+      "description": "Pitch devant 30 décideurs et +10 000 EUR de dotations pour les meilleurs projets étudiants."
     },
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "Le programme Niteo est-il vraiment gratuit ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, Niteo est 100% gratuit pour les etudiants. Aucun frais d'inscription ni de participation. Le programme est finance par nos partenaires institutionnels et prives." } },
-        { "@type": "Question", "name": "Dois-je deja avoir un projet pour candidater ?", "acceptedAnswer": { "@type": "Answer", "text": "Non. Tu peux rejoindre Niteo avec une simple idee ou meme juste l'envie d'entreprendre. Le programme t'accompagne de l'idee au pitch." } },
-        { "@type": "Question", "name": "Quels sont les criteres de selection ?", "acceptedAnswer": { "@type": "Answer", "text": "Motivation, engagement, capacite a travailler en equipe. Pas besoin de competences techniques specifiques. Tout dossier incomplet sera elimine." } },
-        { "@type": "Question", "name": "Puis-je continuer mes etudes en parallele ?", "acceptedAnswer": { "@type": "Answer", "text": "Absolument. Le programme est concu pour s'articuler avec ton emploi du temps etudiant : e-learning flexible en semaine, ateliers le samedi." } },
-        { "@type": "Question", "name": "Qu'est-ce que le Demo Day ?", "acceptedAnswer": { "@type": "Answer", "text": "Le Demo Day est la journee finale ou tu pitches ton projet devant 30 decideurs toulousains (entrepreneurs, investisseurs, institutionnels). Les meilleurs projets se partagent +10 000 EUR de dotations." } },
+        { "@type": "Question", "name": "Le programme Niteo est-il vraiment gratuit ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, Niteo est 100% gratuit pour les étudiants. Aucun frais d'inscription ni de participation. Le programme est financé par nos partenaires institutionnels et privés." } },
+        { "@type": "Question", "name": "Dois-je déjà avoir un projet pour candidater ?", "acceptedAnswer": { "@type": "Answer", "text": "Non. Tu peux rejoindre Niteo avec une simple idée ou même juste l'envie d'entreprendre. Le programme t'accompagne de l'idée au pitch." } },
+        { "@type": "Question", "name": "Quels sont les critères de sélection ?", "acceptedAnswer": { "@type": "Answer", "text": "Motivation, engagement, capacité à travailler en équipe. Pas besoin de compétences techniques spécifiques. Tout dossier incomplet sera éliminé." } },
+        { "@type": "Question", "name": "Puis-je continuer mes études en parallèle ?", "acceptedAnswer": { "@type": "Answer", "text": "Absolument. Le programme est conçu pour s'articuler avec ton emploi du temps étudiant : e-learning flexible en semaine, ateliers le samedi." } },
+        { "@type": "Question", "name": "Qu'est-ce que le Demo Day ?", "acceptedAnswer": { "@type": "Answer", "text": "Le Demo Day est la journée finale où tu pitches ton projet devant 30 décideurs toulousains (entrepreneurs, investisseurs, institutionnels). Les meilleurs projets se partagent +10 000 EUR de dotations." } },
       ]
     }
   ];
@@ -95,23 +95,23 @@ const NiteoCandidature = () => {
   const profiles = [
     { icon: <GraduationCap className="h-7 w-7" />, label: "Licence", desc: "Tu es en cycle licence et tu veux entreprendre" },
     { icon: <BookOpen className="h-7 w-7" />, label: "Master", desc: "Tu es en master et tu veux lancer ton projet" },
-    { icon: <Award className="h-7 w-7" />, label: "Jeune diplome", desc: "Diplome depuis moins de 2 ans, tu veux te lancer" },
-    { icon: <Lightbulb className="h-7 w-7" />, label: "Porteur d'idee", desc: "Tu as une idee mais tu ne sais pas par ou commencer" },
-    { icon: <Rocket className="h-7 w-7" />, label: "Motive", desc: "Tu n'as pas encore d'idee mais l'entrepreneuriat t'attire" },
+    { icon: <Award className="h-7 w-7" />, label: "Jeune diplômé", desc: "Diplômé depuis moins de 2 ans, tu veux te lancer" },
+    { icon: <Lightbulb className="h-7 w-7" />, label: "Porteur d'idée", desc: "Tu as une idée mais tu ne sais pas par où commencer" },
+    { icon: <Rocket className="h-7 w-7" />, label: "Motivé", desc: "Tu n'as pas encore d'idée mais l'entrepreneuriat t'attire" },
   ];
 
   const parcours = [
-    { icon: <BookOpen className="h-7 w-7 text-primary-foreground" />, hours: "19h", title: "E-learning", desc: "Formation en ligne flexible, a ton rythme, ou tu veux" },
-    { icon: <Users className="h-7 w-7 text-primary-foreground" />, hours: "24h", title: "Ateliers collectifs", desc: "4 samedis en presentiel avec d'autres etudiants entrepreneurs" },
-    { icon: <Target className="h-7 w-7 text-primary-foreground" />, hours: "2h", title: "Coaching individuel", desc: "Accompagnement personnalise sur mesure avec un coach dedie" },
-    { icon: <Trophy className="h-7 w-7 text-primary-foreground" />, hours: "1 jour", title: "Demo Day", desc: "Pitche ton projet devant 30 decideurs toulousains" },
+    { icon: <BookOpen className="h-7 w-7 text-primary-foreground" />, hours: "19h", title: "E-learning", desc: "Formation en ligne flexible, à ton rythme, où tu veux" },
+    { icon: <Users className="h-7 w-7 text-primary-foreground" />, hours: "24h", title: "Ateliers collectifs", desc: "4 samedis en présentiel avec d'autres étudiants entrepreneurs" },
+    { icon: <Target className="h-7 w-7 text-primary-foreground" />, hours: "2h", title: "Coaching individuel", desc: "Accompagnement personnalisé sur mesure avec un coach dédié" },
+    { icon: <Trophy className="h-7 w-7 text-primary-foreground" />, hours: "1 jour", title: "Demo Day", desc: "Pitche ton projet devant 30 décideurs toulousains" },
   ];
 
   const benefices = [
-    "Business model structure et valide",
-    "Etude de marche en conditions reelles",
-    "Proposition de valeur affinee",
-    "Strategie de lancement concrete",
+    "Business model structuré et validé",
+    "Étude de marché en conditions réelles",
+    "Proposition de valeur affinée",
+    "Stratégie de lancement concrète",
     "Prototype ou MVP fonctionnel",
     "Pitch deck professionnel",
     "Feedback d'un jury de pros",
@@ -120,7 +120,7 @@ const NiteoCandidature = () => {
 
   const timeline = [
     { date: "Jusqu'au 2 avril", label: "Candidatures ouvertes", icon: <Mic className="h-5 w-5" />, active: true },
-    { date: "1-3 avril", label: "Selection des participants", icon: <Target className="h-5 w-5" /> },
+    { date: "1-3 avril", label: "Sélection des participants", icon: <Target className="h-5 w-5" /> },
     { date: "11 avril", label: "Atelier collectif 1", icon: <Users className="h-5 w-5" /> },
     { date: "2 mai", label: "Atelier collectif 2", icon: <Users className="h-5 w-5" /> },
     { date: "30 mai", label: "Atelier collectif 3", icon: <Users className="h-5 w-5" /> },
@@ -129,14 +129,14 @@ const NiteoCandidature = () => {
   ];
 
   const teamMareNostrum = [
-    { name: "Alexis Janicot", role: "President de Mare Nostrum", photo: alexisJanicot },
+    { name: "Alexis Janicot", role: "Président de Mare Nostrum", photo: alexisJanicot },
     { name: "Aymane Abdennour", role: "Chef de projet Niteo", photo: aymaneAbdennour },
-    { name: "Geraldine Le Caer", role: "Membre du Comite de mission", photo: geraldinLecaer },
-    { name: "Frederique Bertelet", role: "Ingenieure pedagogique", photo: frederiqueBertelet },
+    { name: "Géraldine Le Caër", role: "Membre du Comité de mission", photo: geraldinLecaer },
+    { name: "Frédérique Bertelet", role: "Ingénieure pédagogique", photo: frederiqueBertelet },
   ];
 
   const coachs = [
-    { name: "Pascal David", role: "Coach strategie d'entreprise", photo: pascalDavid },
+    { name: "Pascal David", role: "Coach stratégie d'entreprise", photo: pascalDavid },
     { name: "Abdallah Hassani", role: "Coach prise de parole", photo: abdallahHassani },
     { name: "Jean Jodeau", role: "Avocat, juriste d'entreprise", photo: jeanJodeau },
     { name: "Claire Virazels", role: "Coach commercialisation", photo: claireVirazels },
@@ -147,19 +147,19 @@ const NiteoCandidature = () => {
     { name: "Benjamin Lebailly", role: "DG Le Hibou (Next 40)", photo: benjaminLebailly },
     { name: "Jean-Baptiste Prost", role: "Entrepreneur, ambassadeur EDC", photo: jeanBaptisteProst },
     { name: "Ludovic De Gromard", role: "Entrepreneur social, Chance", photo: ludovicDeGromard },
-    { name: "Anne-Sophie Alsif", role: "Economiste", photo: anneSophie },
-    { name: "Sebastien Boussois", role: "Expert sciences politiques", photo: sebastien },
+    { name: "Anne-Sophie Alsif", role: "Économiste", photo: anneSophie },
+    { name: "Sébastien Boussois", role: "Expert sciences politiques", photo: sebastien },
   ];
 
   const partners = [
-    { src: partnerToulouseMetropole, alt: "Toulouse Metropole" },
+    { src: partnerToulouseMetropole, alt: "Toulouse Métropole" },
     { src: partnerAuf, alt: "AUF" },
-    { src: partnerAirbusDev, alt: "Airbus Developpement" },
+    { src: partnerAirbusDev, alt: "Airbus Développement" },
     { src: partnerBanqueInnovation, alt: "Banque de l'Innovation" },
-    { src: partnerCreditMutuel, alt: "Credit Mutuel" },
-    { src: partnerReseauEntreprendre, alt: "Reseau Entreprendre" },
+    { src: partnerCreditMutuel, alt: "Crédit Mutuel" },
+    { src: partnerReseauEntreprendre, alt: "Réseau Entreprendre" },
     { src: partnerCpme31, alt: "CPME 31" },
-    { src: partnerEntreprisesMission, alt: "Entreprises a Mission" },
+    { src: partnerEntreprisesMission, alt: "Entreprises à Mission" },
     { src: partnerEdc, alt: "EDC" },
     { src: partnerBdd, alt: "Bras Droit des Dirigeants" },
     { src: partnerMoovjee, alt: "Moovjee" },
@@ -170,11 +170,11 @@ const NiteoCandidature = () => {
   ];
 
   const faqs = [
-    { q: "Le programme est-il vraiment gratuit ?", a: "Oui, Niteo est 100% gratuit pour les etudiants. Aucun frais d'inscription ni de participation. Le programme est finance par nos partenaires institutionnels et prives." },
-    { q: "Dois-je deja avoir un projet pour candidater ?", a: "Non. Tu peux rejoindre Niteo avec une simple idee ou meme juste l'envie d'entreprendre. Le programme t'accompagne de zero jusqu'au pitch devant des decideurs." },
-    { q: "Quels sont les criteres de selection ?", a: "Motivation, engagement et capacite a travailler en equipe. Pas besoin de competences techniques specifiques. Attention : tout dossier incomplet sera elimine." },
-    { q: "Puis-je continuer mes etudes en parallele ?", a: "Absolument. Le programme est concu pour s'articuler avec ton emploi du temps : e-learning flexible en semaine, ateliers le samedi. Presence obligatoire en presentiel a Toulouse." },
-    { q: "Qu'est-ce que le Demo Day ?", a: "C'est la journee finale ou tu pitches ton projet devant 30 decideurs toulousains (entrepreneurs, investisseurs, institutionnels). Les meilleurs projets se partagent +10 000 EUR de dotations et integrent le Club Mare Nostrum." },
+    { q: "Le programme est-il vraiment gratuit ?", a: "Oui, Niteo est 100% gratuit pour les étudiants. Aucun frais d'inscription ni de participation. Le programme est financé par nos partenaires institutionnels et privés." },
+    { q: "Dois-je déjà avoir un projet pour candidater ?", a: "Non. Tu peux rejoindre Niteo avec une simple idée ou même juste l'envie d'entreprendre. Le programme t'accompagne de zéro jusqu'au pitch devant des décideurs." },
+    { q: "Quels sont les critères de sélection ?", a: "Motivation, engagement et capacité à travailler en équipe. Pas besoin de compétences techniques spécifiques. Attention : tout dossier incomplet sera éliminé." },
+    { q: "Puis-je continuer mes études en parallèle ?", a: "Absolument. Le programme est conçu pour s'articuler avec ton emploi du temps : e-learning flexible en semaine, ateliers le samedi. Présence obligatoire en présentiel à Toulouse." },
+    { q: "Qu'est-ce que le Demo Day ?", a: "C'est la journée finale où tu pitches ton projet devant 30 décideurs toulousains (entrepreneurs, investisseurs, institutionnels). Les meilleurs projets se partagent +10 000 EUR de dotations et intègrent le Club Mare Nostrum." },
   ];
 
   return (
@@ -205,22 +205,22 @@ const NiteoCandidature = () => {
             <img src={logoNiteo} alt="Logo Niteo Toulouse 2026" className="h-20 md:h-32 mx-auto mb-6" />
             <div className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
               <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-              <span className="text-primary-foreground font-semibold text-sm">Gratuit -- Places limitees</span>
+              <span className="text-primary-foreground font-semibold text-sm">Gratuit -- Places limitées</span>
             </div>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
-              Transforme ton idee en entreprise qui genere des revenus et de l'impact
+              Transforme ton idée en entreprise qui génère des revenus et de l'impact
             </h1>
             <p className="text-lg md:text-xl text-primary-foreground/85 mb-10 max-w-2xl mx-auto">
-              50h chrono pour structurer ton business, tester ton marche et pitcher devant 30 decideurs toulousains.
+              50h chrono pour structurer ton business, tester ton marché et pitcher devant 30 décideurs toulousains.
             </p>
 
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 max-w-3xl mx-auto">
               {[
                 { value: "50h", label: "de programme" },
-                { value: "Gratuit", label: "100% finance" },
+                { value: "Gratuit", label: "100% financé" },
                 { value: "+10 000 EUR", label: "de dotations" },
-                { value: "30", label: "decideurs au jury" },
+                { value: "30", label: "décideurs au jury" },
               ].map((s, i) => (
                 <div key={i} className="bg-primary-foreground/10 backdrop-blur-sm rounded-xl p-4">
                   <div className="text-2xl md:text-3xl font-bold text-primary-foreground">{s.value}</div>
@@ -230,7 +230,7 @@ const NiteoCandidature = () => {
             </div>
 
             <Button onClick={scrollToCTA} size="lg" variant="secondary" className="text-lg font-bold px-10 py-6 shadow-lg hover:shadow-xl transition-shadow">
-              Je candidate a Niteo 2026
+              Je candidate à Niteo 2026
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <p className="text-primary-foreground/60 text-sm mt-4">Candidatures ouvertes jusqu'au 2 avril 2026</p>
@@ -245,7 +245,7 @@ const NiteoCandidature = () => {
             Pour qui ?
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Niteo s'adresse aux etudiants et jeunes diplomes qui veulent entreprendre a Toulouse
+            Niteo s'adresse aux étudiants et jeunes diplômés qui veulent entreprendre à Toulouse
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
             {profiles.map((p, i) => (
@@ -265,10 +265,10 @@ const NiteoCandidature = () => {
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
-            Ton defi en 50h chrono
+            Ton défi en 50h chrono
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Un programme intensif et structure pour passer de l'idee au pitch
+            Un programme intensif et structuré pour passer de l'idée au pitch
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {parcours.map((item, i) => (
@@ -289,14 +289,14 @@ const NiteoCandidature = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
-            Ce que tu vas vivre concretement
+            Ce que tu vas vivre concrètement
           </h2>
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
             {[
-              { icon: <Users className="h-6 w-6 text-accent" />, title: "Ateliers collectifs", desc: "Travaille avec d'autres etudiants entrepreneurs motives. Echanges, entraide et dynamique de groupe pour avancer plus vite." },
-              { icon: <Target className="h-6 w-6 text-accent" />, title: "Coaching individuel sur mesure", desc: "Un coach dedie t'accompagne sur les defis specifiques de ton projet. 2h de face-a-face pour debloquer les points cles." },
-              { icon: <BookOpen className="h-6 w-6 text-accent" />, title: "Plateforme e-learning", desc: "19h de contenu pedagogique accessible a ton rythme. Business model, marketing, finance, pitch : tout ce qu'il faut pour entreprendre." },
-              { icon: <Mic className="h-6 w-6 text-accent" />, title: "Pitcher devant des decideurs", desc: "Le Demo Day : ta chance de presenter ton projet devant 30 entrepreneurs, investisseurs et institutionnels toulousains." },
+              { icon: <Users className="h-6 w-6 text-accent" />, title: "Ateliers collectifs", desc: "Travaille avec d'autres étudiants entrepreneurs motivés. Échanges, entraide et dynamique de groupe pour avancer plus vite." },
+              { icon: <Target className="h-6 w-6 text-accent" />, title: "Coaching individuel sur mesure", desc: "Un coach dédié t'accompagne sur les défis spécifiques de ton projet. 2h de face-à-face pour débloquer les points clés." },
+              { icon: <BookOpen className="h-6 w-6 text-accent" />, title: "Plateforme e-learning", desc: "19h de contenu pédagogique accessible à ton rythme. Business model, marketing, finance, pitch : tout ce qu'il faut pour entreprendre." },
+              { icon: <Mic className="h-6 w-6 text-accent" />, title: "Pitcher devant des décideurs", desc: "Le Demo Day : ta chance de présenter ton projet devant 30 entrepreneurs, investisseurs et institutionnels toulousains." },
             ].map((item, i) => (
               <div key={i} className="flex gap-4 p-6 rounded-xl bg-secondary/30 hover:bg-secondary/50 transition-colors">
                 <div className="flex-shrink-0 bg-accent/10 w-12 h-12 rounded-lg flex items-center justify-center">
@@ -316,7 +316,7 @@ const NiteoCandidature = () => {
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
-            A la cle
+            À la clé
           </h2>
           <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
@@ -336,7 +336,7 @@ const NiteoCandidature = () => {
               <div className="bg-gradient-to-br from-accent to-primary rounded-xl p-8 text-primary-foreground text-center">
                 <Globe className="h-10 w-10 mx-auto mb-4" />
                 <div className="text-xl font-bold mb-2">Club Mare Nostrum</div>
-                <p className="text-primary-foreground/80">Integration dans le reseau des entrepreneurs francophones a impact</p>
+                <p className="text-primary-foreground/80">Intégration dans le réseau des entrepreneurs francophones à impact</p>
               </div>
             </div>
           </div>
@@ -371,7 +371,7 @@ const NiteoCandidature = () => {
             </div>
             <div className="mt-8 p-4 bg-destructive/10 border border-destructive/20 rounded-xl text-center">
               <p className="text-sm text-foreground font-medium">
-                Presence obligatoire en presentiel a Toulouse pour tous les ateliers collectifs et le Demo Day.
+                Présence obligatoire en présentiel à Toulouse pour tous les ateliers collectifs et le Demo Day.
               </p>
             </div>
           </div>
@@ -385,7 +385,7 @@ const NiteoCandidature = () => {
             Tes coachs et mentors
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Des professionnels engages pour t'accompagner dans ton aventure entrepreneuriale
+            Des professionnels engagés pour t'accompagner dans ton aventure entrepreneuriale
           </p>
 
           {/* Parrain */}
@@ -393,12 +393,12 @@ const NiteoCandidature = () => {
             <img src={bertrandSerp} alt="Bertrand Serp, parrain Niteo 2026" className="w-28 h-28 rounded-full object-cover mx-auto mb-4 border-4 border-accent" />
             <h3 className="text-xl font-bold text-foreground">Bertrand Serp</h3>
             <p className="text-accent font-semibold mb-1">Parrain Niteo 2026</p>
-            <p className="text-sm text-muted-foreground">Vice-President Toulouse Metropole en charge du numerique</p>
+            <p className="text-sm text-muted-foreground">Vice-Président Toulouse Métropole en charge du numérique</p>
           </div>
 
           {/* Equipe Mare Nostrum */}
           <div className="mb-12">
-            <h3 className="text-xl font-bold text-center mb-8 text-foreground">Equipe Mare Nostrum</h3>
+            <h3 className="text-xl font-bold text-center mb-8 text-foreground">Équipe Mare Nostrum</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
               {teamMareNostrum.map((m, i) => (
                 <div key={i} className="text-center">
@@ -460,7 +460,7 @@ const NiteoCandidature = () => {
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
-            Questions frequentes
+            Questions fréquentes
           </h2>
           <div className="max-w-3xl mx-auto">
             <Accordion type="single" collapsible className="w-full">
@@ -479,13 +479,13 @@ const NiteoCandidature = () => {
       <section className="py-20 md:py-28 bg-gradient-to-br from-primary to-accent">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-6">
-            Pret(e) a vivre l'aventure ?
+            Prêt(e) à vivre l'aventure ?
           </h2>
           <p className="text-lg text-primary-foreground/80 mb-4 max-w-xl mx-auto">
-            Les candidatures sont ouvertes jusqu'au 2 avril 2026. Places limitees.
+            Les candidatures sont ouvertes jusqu'au 2 avril 2026. Places limitées.
           </p>
           <p className="text-sm text-primary-foreground/60 mb-8">
-            Tout dossier incomplet sera elimine.
+            Tout dossier incomplet sera éliminé.
           </p>
           <Button onClick={scrollToCTA} size="lg" variant="secondary" className="text-lg font-bold px-12 py-6 shadow-xl hover:shadow-2xl transition-shadow">
             Candidate MAINTENANT
