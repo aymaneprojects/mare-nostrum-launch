@@ -216,7 +216,7 @@ const NiteoCandidature = () => {
           <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-3">
             <span className="text-primary-foreground/90 text-sm font-semibold tracking-[0.3em] uppercase">Toulouse</span>
             <span className="text-primary-foreground/40">|</span>
-            <CountdownTimer targetDate={new Date("2026-06-30T23:59:59")} />
+            <CountdownTimer targetDate={new Date("2026-04-02T23:59:59")} />
           </div>
           <Button onClick={scrollToCTA} size="sm" variant="secondary" className="font-bold shadow-md hover:shadow-lg transition-shadow">
             Je candidate
