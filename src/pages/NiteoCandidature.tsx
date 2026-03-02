@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import StructuredData from "@/components/StructuredData";
 
-import logoNiteo from "@/assets/niteo/logo-niteo.png";
+import logoNiteo from "@/assets/niteo/logo-niteo-2026.png";
 import bertrandSerp from "@/assets/niteo/bertrand-serp.png";
 import alexisJanicot from "@/assets/team/alexis-janicot.png";
 import aymaneAbdennour from "@/assets/niteo/aymane-abdennour.jpeg";
@@ -183,10 +183,11 @@ const NiteoCandidature = () => {
       <StructuredData data={structuredData} />
       
       {/* Sticky CTA bar */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm border-b border-primary-foreground/10">
-        <div className="container mx-auto px-4 h-14 flex items-center justify-between">
-          <img src={logoNiteo} alt="Niteo" className="h-8" />
-          <Button onClick={scrollToCTA} size="sm" variant="secondary" className="font-bold">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-primary/90 backdrop-blur-xl border-b border-primary-foreground/5 shadow-[0_4px_30px_-4px_rgba(0,0,0,0.3)]">
+        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+          <img src={logoNiteo} alt="Niteo" className="h-9" />
+          <span className="absolute left-1/2 -translate-x-1/2 text-primary-foreground/90 text-sm font-semibold tracking-[0.3em] uppercase">Toulouse</span>
+          <Button onClick={scrollToCTA} size="sm" variant="secondary" className="font-bold shadow-md hover:shadow-lg transition-shadow">
             Je candidate
             <ArrowRight className="ml-1 h-4 w-4" />
           </Button>
