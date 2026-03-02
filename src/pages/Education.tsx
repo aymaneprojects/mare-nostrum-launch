@@ -143,7 +143,7 @@ const Education = () => {
     answer: "Nous commençons par un rendez-vous de découverte pour comprendre vos besoins, puis établissons un diagnostic personnalisé. Ensuite, nous vous proposons un programme sur-mesure que nous déployons avec votre équipe pédagogique."
   }];
   return <div className="min-h-screen flex flex-col">
-      <SEOHead title="Mare Nostrum Éducation - Programmes Entrepreneuriat Écoles | Toulouse Paris Casablanca" description="Programmes entrepreneuriat clés en main pour écoles : Fresque de l'esprit d'entreprendre, ateliers, hackathons, cours. 53% création entreprise. +95% satisfaction. Toulouse, Paris, Casablanca." keywords="éducation entrepreneuriale, formation entrepreneuriat, programmes écoles, ateliers, hackathons, enseignement supérieur, fresque entrepreneuriat, toulouse, paris" structuredData={educationSchema} faqSchema={educationFaqs} breadcrumbSchema={[{
+      <SEOHead title="Education Entrepreneuriale Toulouse - Mare Nostrum Education | Programmes Ecoles" description="Programmes d'education entrepreneuriale a Toulouse, Paris, Casablanca et Afrique. Fresque de l'esprit d'entreprendre, ateliers, hackathons, programme Niteo. 53% creation entreprise, +95% satisfaction. Mare Nostrum, expert entrepreneuriat Toulouse." keywords="education entrepreneuriale toulouse, formation entrepreneuriat toulouse, programmes ecoles entrepreneuriat, ateliers entrepreneuriat toulouse, hackathon entrepreneuriat, enseignement superieur toulouse, Niteo, programme Niteo, fresque entrepreneuriat, entrepreneuriat afrique, formation entrepreneur afrique" structuredData={educationSchema} faqSchema={educationFaqs} breadcrumbSchema={[{
       name: "Accueil",
       url: "https://marenostrum.tech/"
     }, {

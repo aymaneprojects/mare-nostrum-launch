@@ -31,6 +31,7 @@ Deno.serve(async (req) => {
     // Static pages
     const staticPages = [
       { loc: "https://marenostrum.tech/", priority: "1.0", changefreq: "weekly" },
+      { loc: "https://marenostrum.tech/niteo-toulouse", priority: "0.95", changefreq: "weekly" },
       { loc: "https://marenostrum.tech/education", priority: "0.9", changefreq: "weekly" },
       { loc: "https://marenostrum.tech/croissance", priority: "0.9", changefreq: "weekly" },
       { loc: "https://marenostrum.tech/offre-ia", priority: "0.8", changefreq: "weekly" },
@@ -39,7 +40,7 @@ Deno.serve(async (req) => {
       { loc: "https://marenostrum.tech/blog", priority: "0.8", changefreq: "weekly" },
       { loc: "https://marenostrum.tech/livre-blanc-entrepreneuriat", priority: "0.8", changefreq: "monthly" },
       { loc: "https://marenostrum.tech/engagement-rse", priority: "0.6", changefreq: "monthly" },
-      // Silo 1: Écoles
+      // Silo 1: Ecoles
       { loc: "https://marenostrum.tech/ecoles/transformation-entrepreneuriale", priority: "0.9", changefreq: "weekly" },
       { loc: "https://marenostrum.tech/ecoles/diagnostic-gratuit", priority: "0.8", changefreq: "monthly" },
       // Silo 2: Entrepreneurs
