@@ -1,114 +1,50 @@
 
 
-# Plan : Creation de la page Niteo Toulouse
+## Plan : Landing Page Niteo (sous-domaine uniquement)
 
-## Resume
+### Approche
 
-Creation d'une landing page `/niteo-toulouse` avec ajout dans la navbar sous "Offres" avec le label "Niteo Toulouse". La page reprend exactement la meme structure et le meme design que les pages Education et Croissance (Header, SEOHead, Breadcrumbs, sections alternees, Footer).
+La page Niteo candidature etudiants ne sera PAS une route `/niteo` dans l'application principale. Elle sera accessible uniquement via le sous-domaine `niteo.marenostrum.tech`.
 
-## Assets a copier
+### Architecture technique
 
-Les photos uploadees seront copiees dans `src/assets/niteo/` :
+**Detection du sous-domaine dans `src/main.tsx`** : Si `window.location.hostname === "niteo.marenostrum.tech"`, on rend un composant `NiteoCandidature` autonome au lieu de l'application principale `App`.
 
-| Fichier source | Destination | Usage |
-|---|---|---|
-| Logo_NITEO26_Fonce_1.png | src/assets/niteo/logo-niteo.png | Logo hero + page |
-| bertrand-serp.png | src/assets/niteo/bertrand-serp.png | Parrain section |
-| aymane-abdennour.jpeg | src/assets/niteo/aymane-abdennour.jpeg | Equipe |
-| geraldin-lecaer.jpeg | src/assets/niteo/geraldin-lecaer.jpeg | Equipe |
-| frederique_bertelet.jpeg | src/assets/niteo/frederique-bertelet.jpeg | Equipe |
-| benjamin_lebailly.jpeg | src/assets/niteo/benjamin-lebailly.jpeg | Equipe |
-| jean-baptiste_prost.jpeg | src/assets/niteo/jean-baptiste-prost.jpeg | Equipe |
-| ludovic.jpeg | src/assets/niteo/ludovic-de-gromard.jpeg | Equipe |
-| pascal_david.jpeg | src/assets/niteo/pascal-david.jpeg | Equipe |
-| abdallah.jpeg | src/assets/niteo/abdallah-hassani.jpeg | Equipe |
+**Nouveau fichier : `src/pages/NiteoCandidature.tsx`** : Page standalone complete (pas de Header/Footer du site principal), design conversion-first oriente etudiant.
 
-Photo d'Alexis Janicot : reutilisation de `src/assets/team/alexis-janicot.png` deja present dans le projet.
+### Aucune modification dans App.tsx ni dans le routeur
 
-## Structure de la page (src/pages/NiteoToulouse.tsx)
+Pas de nouvelle route. Pas de lien dans la navbar. Le sous-domaine charge directement la page Niteo.
 
-### Section 1 -- Hero
-- Logo Niteo 2026 centre en haut
-- Titre : "Niteo by Mare Nostrum -- Edition Toulouse 2026"
-- Sous-titre : "Accelerez l'insertion professionnelle de vos etudiants entrepreneurs"
-- Description : Programme de 50h pour cycles licence et master
-- CTA : "Rejoindre Niteo 2026" vers /contact
-- Design : gradient from-primary to-accent comme les autres pages
+### Contenu de NiteoCandidature.tsx
 
-### Section 2 -- Les enjeux pedagogiques
-4 cartes (meme style que la section "enjeux des etablissements" de /education) :
-- Attirer plus d'etudiants avec des formations alignees
-- Developper les competences transversales (learning by doing)
-- Structurer une communaute d'alumni engagee
-- Renforcer l'image d'insertion professionnelle
+1. **Hero** -- Logo Niteo + "Transforme ton idee en entreprise qui genere des revenus et de l'impact" + badge "Gratuit -- Places limitees" + chiffres (50h, Gratuit, +10 000 EUR, 30 decideurs) + CTA externe "Je candidate" (placeholder `https://forms.gle/PLACEHOLDER`)
+2. **Pour qui** -- 5 profils : Licence, Master, Jeunes diplomes, Porteurs d'idee, Motives
+3. **Ton defi en 50h** -- 4 blocs : e-learning 19h, ateliers 24h, coaching 2h, Demo Day
+4. **Ce que tu vas vivre** -- Ateliers collectifs, coaching, plateforme e-learning, pitcher devant decideurs
+5. **A la cle** -- Grille benefices + dotations 10 000 EUR + Club Mare Nostrum
+6. **Calendrier** -- Candidatures jusqu'au 2 avril, programme 11 avril - 16 juin, dates ateliers, mention presence obligatoire
+7. **Coachs et mentors** -- Photos existantes (`src/assets/niteo/` + `src/assets/team/`)
+8. **Partenaires** -- Logos existants (`src/assets/partners/`)
+9. **FAQ etudiants** -- Gratuit ?, besoin d'un projet ?, criteres, travail parallele, Demo Day
+10. **CTA final** -- "Candidate MAINTENANT" + "Tout dossier incomplet sera elimine"
 
-### Section 3 -- Pourquoi Niteo
-- Explication du nom ("briller, prosperer" en latin)
-- 3 points cles avec icones
+### Fichiers modifies
 
-### Section 4 -- Le parcours de 50 heures
-4 blocs visuels avec icones :
-- 19h de e-learning
-- 24h de sessions collectives
-- 2h de coaching individuel
-- Jury de professionnels (demo day)
+| Fichier | Modification |
+|---|---|
+| `src/main.tsx` | Detection hostname `niteo.marenostrum.tech` pour rendre `NiteoCandidature` au lieu de `App` |
+| `src/pages/NiteoCandidature.tsx` | Nouveau fichier -- page complete autonome |
 
-### Section 5 -- 3 resultats immediats
-3 colonnes (meme style que la section "Resultats" de /education) :
-- Pedagogie eprouvee
-- Ecosysteme mobilise (30 decideurs, +10 000 EUR dotations)
-- Structure optimisee (cle en main, plateforme numerique)
+### Configuration sous-domaine (apres implementation)
 
-### Section 6 -- Parrain
-Photo de Bertrand SERP avec son titre "Vice-President de Toulouse Metropole"
+1. Lovable > Settings > Domains > ajouter `niteo.marenostrum.tech`
+2. Chez le registraire DNS de `marenostrum.tech` : ajouter un enregistrement A pour `niteo` pointant vers `185.158.133.1`
+3. Attendre propagation DNS + certificat SSL automatique
 
-### Section 7 -- Calendrier
-Timeline visuelle avec les dates cles :
-- Mars : Appel a candidatures
-- Avril : Selection
-- Avril-Juin : 4 ateliers collectifs (samedis)
-- 16 juin : Demo Day
+### SEO
 
-### Section 8 -- Les 3 options tarifaires
-3 cartes comparatives (style similaire aux offres de /education) :
-- SOUTIEN : a votre convenance
-- ENGAGEMENT : 500 EUR HT
-- PIONNIER : a partir de 1 500 EUR HT
-
-### Section 9 -- L'equipe Niteo
-Grille de photos avec noms et roles :
-- Entrepreneurs conseil : Alexis Janicot, Aymane Abdennour, Geraldine Le Caer, Frederique Bertelet, Benjamin Lebailly, Jean-Baptiste Prost, Ludovic De Gromard
-- Coachs : Pascal David, Abdallah Hassani
-- Experts : placeholders texte (photos a venir)
-
-### Section 10 -- Partenaires ecosysteme
-Reutilisation des logos partenaires deja presents (Airbus, Credit Mutuel, CPME31, Moovjee, Touleco, etc.)
-
-### Section 11 -- FAQ
-Questions frequentes sur le programme
-
-### Section 12 -- CTA final
-"Rejoignez Niteo Toulouse 2026" avec bouton vers /contact
-
-## Modifications des fichiers existants
-
-### src/App.tsx
-- Import de NiteoToulouse
-- Ajout de la route `/niteo-toulouse`
-
-### src/components/Header.tsx
-- Ajout de "Niteo Toulouse" dans le tableau `offres` avec `to: "/niteo-toulouse"`
-
-### public/sitemap.xml
-- Ajout de l'URL /niteo-toulouse
-
-## SEO
-- SEOHead avec titre optimise pour "programme entrepreneuriat etudiant Toulouse 2026"
-- Schema.org de type Course + Event
-- Breadcrumbs : Accueil > Niteo Toulouse
+- Title : "Niteo Toulouse 2026 -- Programme Entrepreneuriat Etudiant Gratuit | Candidature"
+- Schema.org Course + Event
 - FAQ Schema integre
-
-## Elements en attente
-- Photos des experts (Jean Jodeau, Claire Virazels, etc.) : a fournir plus tard
-- Photo de l'edition 2025 precedente : a fournir plus tard
 
