@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { BookOpen, Download, GraduationCap, Target, Users, Loader2 } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
@@ -38,6 +39,9 @@ const formSchema = z.object({
   }).max(100),
   schoolType: z.string().min(1, {
     message: "Type d'établissement requis"
+  }),
+  rgpd: z.boolean().refine(val => val === true, {
+    message: "Vous devez accepter la politique de confidentialité"
   })
 });
 type FormData = z.infer<typeof formSchema>;
@@ -57,7 +61,8 @@ const LivreEntrepreneuriat = () => {
       country: "",
       organization: "",
       position: "",
-      schoolType: ""
+      schoolType: "",
+      rgpd: false
     }
   });
   const onSubmit = async (data: FormData) => {
@@ -280,6 +285,27 @@ const LivreEntrepreneuriat = () => {
                                   </SelectContent>
                                 </Select>
                                 <FormMessage />
+                              </FormItem>} />
+
+                          <FormField control={form.control} name="rgpd" render={({
+                        field
+                      }) => <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                                <FormControl>
+                                  <Checkbox
+                                    checked={field.value}
+                                    onCheckedChange={field.onChange}
+                                  />
+                                </FormControl>
+                                <div className="space-y-1 leading-none">
+                                  <FormLabel className="text-sm font-normal">
+                                    J'accepte que mes données soient traitées conformément à la{" "}
+                                    <a href="/confidentialite" target="_blank" className="text-primary underline hover:text-primary/80">
+                                      politique de confidentialité
+                                    </a>{" "}
+                                    de Mare Nostrum. *
+                                  </FormLabel>
+                                  <FormMessage />
+                                </div>
                               </FormItem>} />
 
                           <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
