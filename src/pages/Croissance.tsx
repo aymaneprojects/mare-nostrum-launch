@@ -454,6 +454,27 @@ const Croissance = () => {
 
       <FAQSection title="Questions fréquentes sur nos offres" faqs={croissanceFaqs} />
 
+      {/* Niteo CTA Banner */}
+      <section className="py-12 md:py-16 bg-gradient-to-r from-accent/10 via-primary/5 to-accent/10 border-y border-border/40">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-3xl mx-auto">
+            <span className="inline-block bg-accent/15 text-accent-foreground font-semibold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full mb-4">Programme gratuit</span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-3 text-foreground">
+              Niteo Toulouse 2026
+            </h2>
+            <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
+              50h pour transformer ton idée en entreprise. E-learning, coaching, Demo Day devant 30 décideurs.
+            </p>
+            <Button asChild size="lg" className="text-lg font-bold shadow-lg hover:shadow-xl transition-shadow">
+              <Link to="/niteo-toulouse">
+                Candidater à Niteo
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-accent via-primary to-primary">
         <div className="container mx-auto px-4 text-center">
