@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { ArrowRight, CheckCircle2, GraduationCap, Users, Lightbulb, Trophy, BookOpen, Calendar, Target, Clock, Award, Mic, Rocket, Globe, Briefcase, Star, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -37,6 +38,32 @@ import partnerRoselab from "@/assets/niteo/roselab.png";
 import partnerToulouseWay from "@/assets/niteo/toulouse-way.png";
 
 const CTA_URL = "https://airtable.com/appZ8ykNuUOv89ou0/shrxZTmKppjTEHTjE";
+
+const CountdownTimer = ({ targetDate }: { targetDate: Date }) => {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, mins: 0, secs: 0 });
+
+  useEffect(() => {
+    const tick = () => {
+      const diff = Math.max(0, targetDate.getTime() - Date.now());
+      setTimeLeft({
+        days: Math.floor(diff / 86400000),
+        hours: Math.floor((diff % 86400000) / 3600000),
+        mins: Math.floor((diff % 3600000) / 60000),
+        secs: Math.floor((diff % 60000) / 1000),
+      });
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [targetDate]);
+
+  return (
+    <div className="flex items-center gap-1.5 text-primary-foreground/80 text-xs font-mono">
+      <Clock className="h-3.5 w-3.5" />
+      <span className="tabular-nums">{timeLeft.days}j {String(timeLeft.hours).padStart(2, "0")}:{String(timeLeft.mins).padStart(2, "0")}:{String(timeLeft.secs).padStart(2, "0")}</span>
+    </div>
+  );
+};
 
 const NiteoCandidature = () => {
   const structuredData = [
@@ -185,8 +212,12 @@ const NiteoCandidature = () => {
       {/* Sticky CTA bar */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-primary/90 backdrop-blur-xl border-b border-primary-foreground/5 shadow-[0_4px_30px_-4px_rgba(0,0,0,0.3)]">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <img src={logoNiteo} alt="Niteo" className="h-9" />
-          <span className="absolute left-1/2 -translate-x-1/2 text-primary-foreground/90 text-sm font-semibold tracking-[0.3em] uppercase">Toulouse</span>
+          <img src={logoNiteo} alt="Niteo" className="h-14" />
+          <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-3">
+            <span className="text-primary-foreground/90 text-sm font-semibold tracking-[0.3em] uppercase">Toulouse</span>
+            <span className="text-primary-foreground/40">|</span>
+            <CountdownTimer targetDate={new Date("2026-06-30T23:59:59")} />
+          </div>
           <Button onClick={scrollToCTA} size="sm" variant="secondary" className="font-bold shadow-md hover:shadow-lg transition-shadow">
             Je candidate
             <ArrowRight className="ml-1 h-4 w-4" />
