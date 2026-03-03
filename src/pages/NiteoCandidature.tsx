@@ -138,7 +138,7 @@ const NiteoCandidature = () => {
     { icon: <BookOpen className="h-7 w-7 text-primary-foreground" />, hours: "19h", title: "E-learning", desc: "Plateforme e-learning dédiée, accessible à ton rythme, où tu veux" },
     { icon: <Users className="h-7 w-7 text-primary-foreground" />, hours: "24h", title: "Ateliers collectifs", desc: "4 samedis en présentiel avec d'autres étudiants entrepreneurs" },
     { icon: <Target className="h-7 w-7 text-primary-foreground" />, hours: "2h", title: "Coaching individuel sur mesure", desc: "Accompagnement personnalisé avec un coach dédié à ton projet" },
-    { icon: <Trophy className="h-7 w-7 text-primary-foreground" />, hours: "1 jour", title: "Demo Day", desc: "Pitch final devant 30 décideurs toulousains -- test marché en conditions réelles" },
+    { icon: <Trophy className="h-7 w-7 text-primary-foreground" />, hours: "1 jour", title: "Demo Day", desc: "Pitch final devant 30 décideurs toulousains · test marché en conditions réelles" },
   ];
 
   const benefices = [
@@ -247,7 +247,7 @@ const NiteoCandidature = () => {
             <img src={logoNiteo} alt="Logo Niteo Toulouse 2026" className="h-20 md:h-32 mx-auto mb-6" />
             <div className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
               <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-              <span className="text-primary-foreground font-semibold text-sm">Gratuit -- Places limitées</span>
+              <span className="text-primary-foreground font-semibold text-sm">Gratuit · Places limitées</span>
             </div>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
               Apprends à transformer ton idée en projet qui génère des revenus
@@ -256,7 +256,7 @@ const NiteoCandidature = () => {
               Étudiants et jeunes diplômés : développe tes soft skills, structure ton business et teste ton marché en 50h chrono.
             </p>
             <p className="text-base text-primary-foreground/70 mb-10 max-w-2xl mx-auto">
-              Tu ne sais pas par où commencer ? Ce n'est pas grave -- tant que l'entrepreneuriat t'intéresse, c'est le plus important. Niteo t'accompagne de l'idée au pitch devant 30 décideurs toulousains.
+              Tu ne sais pas par où commencer ? Ce n'est pas grave, tant que l'entrepreneuriat t'intéresse, c'est le plus important. Niteo t'accompagne de l'idée au pitch devant 30 décideurs toulousains.
             </p>
 
             {/* Stats */}
@@ -399,7 +399,7 @@ const NiteoCandidature = () => {
             Calendrier
           </h2>
           <p className="text-center text-muted-foreground mb-12">
-            Du 11 avril au 16 juin 2026 -- Toulouse
+            Du 11 avril au 16 juin 2026 · Toulouse
           </p>
           <div className="max-w-3xl mx-auto">
             <div className="space-y-4">
@@ -552,10 +552,10 @@ const NiteoCandidature = () => {
           <p className="text-primary-foreground/60 text-sm">
             Niteo est un programme de{" "}
             <a href="https://marenostrum.tech" className="text-primary-foreground/80 underline hover:text-primary-foreground">Mare Nostrum</a>
-            {" "}-- Cabinet de conseil en entrepreneuriat a impact
+            {" · "}Cabinet de conseil en entrepreneuriat à impact
           </p>
           <p className="text-primary-foreground/40 text-xs mt-2">
-            Toulouse -- Paris -- Casablanca
+            Toulouse · Paris · Casablanca
           </p>
         </div>
       </footer>
