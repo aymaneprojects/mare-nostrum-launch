@@ -72,7 +72,7 @@ export const useRelatedArticles = (category: string | undefined, excludeId: stri
 
       const { data, error } = await supabase
         .from("blog_articles")
-        .select("*")
+        .select("id, title, slug, excerpt, category, image, published_at")
         .eq("category", category)
         .eq("is_published", true)
         .neq("id", excludeId || "")
