@@ -98,6 +98,11 @@ const NiteoCandidature = () => {
       "@type": "Event",
       "name": "Niteo Demo Day 2026",
       "startDate": "2026-06-16",
+      "endDate": "2026-06-16",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "image": "https://marenostrum.tech/favicon.png",
+      "performer": { "@type": "Organization", "name": "Mare Nostrum", "url": "https://marenostrum.tech" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "url": "https://niteo.marenostrum.tech", "availability": "https://schema.org/InStock", "validFrom": "2026-01-01" },
       "location": { "@type": "Place", "name": "Toulouse", "address": { "@type": "PostalAddress", "addressLocality": "Toulouse", "addressCountry": "FR" } },
       "organizer": { "@type": "Organization", "name": "Mare Nostrum", "url": "https://marenostrum.tech" },
       "description": "Pitch devant 30 décideurs et +10 000 EUR de dotations pour les meilleurs projets étudiants."
