@@ -15,11 +15,21 @@ const ARTICLES_PER_PAGE = 9;
 // Fonction pour nettoyer l'excerpt des balises HTML/markdown
 const cleanExcerpt = (excerpt: string): string => {
   return excerpt
-    .replace(/```html\s*/gi, '') // Supprime ```html
-    .replace(/```\s*/g, '')       // Supprime ```
-    .replace(/<[^>]*>/g, '')      // Supprime les balises HTML
-    .replace(/\s+/g, ' ')         // Normalise les espaces
+    .replace(/```html\s*/gi, '')
+    .replace(/```\s*/g, '')
+    .replace(/<[^>]*>/g, '')
+    .replace(/\s+/g, ' ')
     .trim();
+};
+
+// Optimiser les URLs d'images Unsplash pour le web
+const optimizeImageUrl = (url: string, width = 600): string => {
+  if (!url) return url;
+  if (url.includes('unsplash.com')) {
+    const baseUrl = url.split('?')[0];
+    return `${baseUrl}?w=${width}&q=75&auto=format&fit=crop`;
+  }
+  return url;
 };
 
 const Blog = () => {
@@ -161,11 +171,14 @@ const Blog = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {paginatedArticles.map((article: BlogArticle) => (
                   <Card key={article.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
-                    <div className="relative h-48 overflow-hidden">
+                    <div className="relative h-48 overflow-hidden bg-muted">
                       <img
-                        src={article.image}
+                        src={optimizeImageUrl(article.image, 600)}
                         alt={article.title}
                         loading="lazy"
+                        decoding="async"
+                        width={600}
+                        height={400}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                       <Badge className="absolute top-4 left-4">
