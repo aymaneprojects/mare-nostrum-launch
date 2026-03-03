@@ -203,24 +203,21 @@ const Index = () => {
           { name: "Accueil", url: "https://marenostrum.tech/" }
         ]}
       />
-      <Header />
-
       {/* Niteo Promotion Banner */}
-      <div className="bg-primary text-primary-foreground py-2.5 px-4">
+      <div className="bg-primary text-primary-foreground py-2 px-4">
         <div className="container mx-auto flex items-center justify-center gap-3 md:gap-6 flex-wrap">
-          <span className="text-xs md:text-sm font-semibold uppercase tracking-wider opacity-90">Niteo Toulouse 2026 -- Programme gratuit</span>
+          <span className="text-xs md:text-sm font-semibold uppercase tracking-wider opacity-90">Niteo Toulouse 2026</span>
           <span className="hidden md:inline text-primary-foreground/40">|</span>
-          <span className="text-xs md:text-sm opacity-80">50h pour transformer ton idée en entreprise</span>
-          <Button asChild size="sm" variant="secondary" className="font-bold text-xs md:text-sm h-7 md:h-8 px-3 md:px-4">
-            <Link to="/niteo-toulouse">
-              Candidater
-              <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
-            </Link>
-          </Button>
+          <span className="text-xs md:text-sm opacity-80">Lance-toi : 50h pour passer de l'idee a l'action</span>
+          <a href="https://niteo.marenostrum.tech" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-bold text-xs md:text-sm h-7 md:h-8 px-3 md:px-4 rounded-md bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors">
+            Candidater
+            <ArrowRight className="h-3.5 w-3.5" />
+          </a>
         </div>
       </div>
+      <Header />
 
-      {/* Hero Section */}
+
       <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-accent py-16 md:py-32">
         <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
         <div className="container mx-auto px-4 relative z-10">
