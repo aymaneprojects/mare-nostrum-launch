@@ -71,7 +71,7 @@ const NiteoCandidature = () => {
       "@context": "https://schema.org",
       "@type": "Course",
       "name": "Niteo Toulouse 2026 - Programme Entrepreneuriat Étudiant Gratuit",
-      "description": "Programme d'accélération entrepreneuriale gratuit de 50h pour étudiants à Toulouse. E-learning, ateliers collectifs, coaching individuel, Demo Day devant 30 décideurs. +10 000 EUR de dotations.",
+      "description": "Programme d'accélération entrepreneuriale gratuit de 50h pour étudiants et jeunes diplômés à Toulouse. Développe tes soft skills, coaching individuel sur mesure, plateforme e-learning dédiée, Demo Day devant 30 décideurs. +10 000 EUR de dotations. 95 projets déjà accompagnés.",
       "provider": {
         "@type": "Organization",
         "name": "Mare Nostrum",
@@ -79,7 +79,7 @@ const NiteoCandidature = () => {
       },
       "isAccessibleForFree": true,
       "educationalLevel": "Higher Education",
-      "teaches": ["Entrepreneuriat", "Business model", "Pitch", "Leadership", "Startup"],
+      "teaches": ["Entrepreneuriat", "Business model", "Pitch", "Leadership", "Startup", "Soft skills", "Innovation", "Coaching"],
       "inLanguage": "fr",
       "hasCourseInstance": {
         "@type": "CourseInstance",
@@ -111,6 +111,8 @@ const NiteoCandidature = () => {
         { "@type": "Question", "name": "Quels sont les critères de sélection ?", "acceptedAnswer": { "@type": "Answer", "text": "Motivation, engagement, capacité à travailler en équipe. Pas besoin de compétences techniques spécifiques. Tout dossier incomplet sera éliminé." } },
         { "@type": "Question", "name": "Puis-je continuer mes études en parallèle ?", "acceptedAnswer": { "@type": "Answer", "text": "Absolument. Le programme est conçu pour s'articuler avec ton emploi du temps étudiant : e-learning flexible en semaine, ateliers le samedi." } },
         { "@type": "Question", "name": "Qu'est-ce que le Demo Day ?", "acceptedAnswer": { "@type": "Answer", "text": "Le Demo Day est la journée finale où tu pitches ton projet devant 30 décideurs toulousains (entrepreneurs, investisseurs, institutionnels). Les meilleurs projets se partagent +10 000 EUR de dotations." } },
+        { "@type": "Question", "name": "Niteo développe-t-il vraiment mes soft skills ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. Au-delà du business, Niteo développe tes compétences en leadership, prise de parole, gestion de projet et travail en équipe. C'est une expérience concrète qui compte sur ton CV." } },
+        { "@type": "Question", "name": "Combien de projets ont déjà été accompagnés ?", "acceptedAnswer": { "@type": "Answer", "text": "Niteo a déjà accompagné 95 projets étudiants. Rejoins la communauté des entrepreneurs francophones à impact portée par Mare Nostrum." } },
       ]
     }
   ];
@@ -128,19 +130,21 @@ const NiteoCandidature = () => {
   ];
 
   const parcours = [
-    { icon: <BookOpen className="h-7 w-7 text-primary-foreground" />, hours: "19h", title: "E-learning", desc: "Formation en ligne flexible, à ton rythme, où tu veux" },
+    { icon: <BookOpen className="h-7 w-7 text-primary-foreground" />, hours: "19h", title: "E-learning", desc: "Plateforme e-learning dédiée, accessible à ton rythme, où tu veux" },
     { icon: <Users className="h-7 w-7 text-primary-foreground" />, hours: "24h", title: "Ateliers collectifs", desc: "4 samedis en présentiel avec d'autres étudiants entrepreneurs" },
-    { icon: <Target className="h-7 w-7 text-primary-foreground" />, hours: "2h", title: "Coaching individuel", desc: "Accompagnement personnalisé sur mesure avec un coach dédié" },
-    { icon: <Trophy className="h-7 w-7 text-primary-foreground" />, hours: "1 jour", title: "Demo Day", desc: "Pitche ton projet devant 30 décideurs toulousains" },
+    { icon: <Target className="h-7 w-7 text-primary-foreground" />, hours: "2h", title: "Coaching individuel sur mesure", desc: "Accompagnement personnalisé avec un coach dédié à ton projet" },
+    { icon: <Trophy className="h-7 w-7 text-primary-foreground" />, hours: "1 jour", title: "Demo Day", desc: "Pitch final devant 30 décideurs toulousains -- test marché en conditions réelles" },
   ];
 
   const benefices = [
     "Business model structuré et validé",
-    "Étude de marché en conditions réelles",
+    "Test marché en conditions réelles",
     "Proposition de valeur affinée",
     "Stratégie de lancement concrète",
     "Prototype ou MVP fonctionnel",
     "Pitch deck professionnel",
+    "Soft skills entrepreneuriales renforcées",
+    "Une expérience concrète qui compte sur ton CV",
     "Feedback d'un jury de pros",
     "Accompagnement post-programme 6 mois",
   ];
@@ -202,6 +206,8 @@ const NiteoCandidature = () => {
     { q: "Quels sont les critères de sélection ?", a: "Motivation, engagement et capacité à travailler en équipe. Pas besoin de compétences techniques spécifiques. Attention : tout dossier incomplet sera éliminé." },
     { q: "Puis-je continuer mes études en parallèle ?", a: "Absolument. Le programme est conçu pour s'articuler avec ton emploi du temps : e-learning flexible en semaine, ateliers le samedi. Présence obligatoire en présentiel à Toulouse." },
     { q: "Qu'est-ce que le Demo Day ?", a: "C'est la journée finale où tu pitches ton projet devant 30 décideurs toulousains (entrepreneurs, investisseurs, institutionnels). Les meilleurs projets se partagent +10 000 EUR de dotations et intègrent le Club Mare Nostrum." },
+    { q: "Niteo développe-t-il vraiment mes soft skills ?", a: "Oui. Au-delà du business, Niteo développe tes compétences en leadership, prise de parole, gestion de projet et travail en équipe. C'est une expérience concrète qui fait la différence sur ton CV et te prépare au monde professionnel." },
+    { q: "Combien de projets ont déjà été accompagnés ?", a: "Niteo a déjà accompagné 95 projets étudiants. Rejoins la communauté des entrepreneurs francophones à impact portée par Mare Nostrum." },
   ];
 
   return (
@@ -239,19 +245,23 @@ const NiteoCandidature = () => {
               <span className="text-primary-foreground font-semibold text-sm">Gratuit -- Places limitées</span>
             </div>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
-              Transforme ton idée en entreprise qui génère des revenus et de l'impact
+              Apprends à transformer ton idée en projet qui génère des revenus
             </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/85 mb-10 max-w-2xl mx-auto">
-              50h chrono pour structurer ton business, tester ton marché et pitcher devant 30 décideurs toulousains.
+            <p className="text-lg md:text-xl text-primary-foreground/85 mb-4 max-w-2xl mx-auto">
+              Étudiants et jeunes diplômés : développe tes soft skills, structure ton business et teste ton marché en 50h chrono.
+            </p>
+            <p className="text-base text-primary-foreground/70 mb-10 max-w-2xl mx-auto">
+              Tu ne sais pas par où commencer ? Ce n'est pas grave -- tant que l'entrepreneuriat t'intéresse, c'est le plus important. Niteo t'accompagne de l'idée au pitch devant 30 décideurs toulousains.
             </p>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 max-w-3xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-10 max-w-4xl mx-auto">
               {[
                 { value: "50h", label: "de programme" },
                 { value: "Gratuit", label: "100% financé" },
                 { value: "+10 000 EUR", label: "de dotations" },
                 { value: "30", label: "décideurs au jury" },
+                { value: "95", label: "projets accompagnés" },
               ].map((s, i) => (
                 <div key={i} className="bg-primary-foreground/10 backdrop-blur-sm rounded-xl p-4">
                   <div className="text-2xl md:text-3xl font-bold text-primary-foreground">{s.value}</div>
@@ -275,8 +285,11 @@ const NiteoCandidature = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
             Pour qui ?
           </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+          <p className="text-center text-muted-foreground mb-4 max-w-2xl mx-auto">
             Niteo s'adresse aux étudiants et jeunes diplômés qui veulent entreprendre à Toulouse
+          </p>
+          <p className="text-center text-muted-foreground/80 mb-12 max-w-2xl mx-auto text-sm">
+            Tu cherches à développer tes soft skills d'une façon différente ? Tu as envie d'entreprendre mais tu ne sais pas par où commencer ? Tant que l'entrepreneuriat t'intéresse, c'est le plus important.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
             {profiles.map((p, i) => (
@@ -512,8 +525,11 @@ const NiteoCandidature = () => {
           <h2 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-6">
             Prêt(e) à vivre l'aventure ?
           </h2>
-          <p className="text-lg text-primary-foreground/80 mb-4 max-w-xl mx-auto">
-            Les candidatures sont ouvertes jusqu'au 2 avril 2026. Places limitées.
+          <p className="text-lg text-primary-foreground/80 mb-2 max-w-xl mx-auto">
+            Rejoins les 95 projets déjà accompagnés.
+          </p>
+          <p className="text-base text-primary-foreground/70 mb-4 max-w-xl mx-auto">
+            Candidatures ouvertes jusqu'au 2 avril 2026. Places limitées.
           </p>
           <p className="text-sm text-primary-foreground/60 mb-8">
             Tout dossier incomplet sera éliminé.
