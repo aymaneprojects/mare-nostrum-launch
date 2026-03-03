@@ -23,7 +23,7 @@ export const useBlogArticles = () => {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("blog_articles")
-        .select("*")
+        .select("id, title, slug, excerpt, author, category, image, published_at, is_published")
         .eq("is_published", true)
         .order("published_at", { ascending: false });
 
@@ -34,7 +34,7 @@ export const useBlogArticles = () => {
 
       return data as BlogArticle[];
     },
-    staleTime: 5 * 60 * 1000, // 5 minutes - évite les rechargements inutiles
+    staleTime: 5 * 60 * 1000,
   });
 };
 
