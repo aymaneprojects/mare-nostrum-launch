@@ -8,6 +8,16 @@ import SEOHead from "@/components/SEOHead";
 import { useBlogArticle, useRelatedArticles } from "@/hooks/useBlogArticles";
 import { useToast } from "@/hooks/use-toast";
 
+// Optimiser les URLs d'images Unsplash
+const optimizeImageUrl = (url: string, width = 800): string => {
+  if (!url) return url;
+  if (url.includes('unsplash.com')) {
+    const baseUrl = url.split('?')[0];
+    return `${baseUrl}?w=${width}&q=75&auto=format&fit=crop`;
+  }
+  return url;
+};
+
 // Nettoyer le contenu HTML généré par l'IA
 const cleanMarkdown = (text: string): string => {
   let cleaned = text;
@@ -146,8 +156,9 @@ const BlogArticle = () => {
       {/* Hero avec image */}
       <section className="relative h-[40vh] md:h-[50vh] overflow-hidden">
         <img
-          src={article.image}
+          src={optimizeImageUrl(article.image, 1200)}
           alt={article.title}
+          decoding="async"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent"></div>
@@ -270,9 +281,12 @@ const BlogArticle = () => {
                 >
                   <div className="h-40 overflow-hidden">
                     <img
-                      src={related.image}
+                      src={optimizeImageUrl(related.image, 400)}
                       alt={related.title}
                       loading="lazy"
+                      decoding="async"
+                      width={400}
+                      height={267}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
