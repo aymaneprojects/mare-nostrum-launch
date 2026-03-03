@@ -103,6 +103,9 @@ const Footer = () => {
               <Link to="/confidentialite" className="hover:text-primary-foreground/80 transition-colors">
                 Politique de confidentialité
               </Link>
+              <a href="https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/sitemap" target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground/80 transition-colors">
+                Sitemap
+              </a>
             </div>
           </div>
         </div>
