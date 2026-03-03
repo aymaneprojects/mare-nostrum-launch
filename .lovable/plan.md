@@ -1,31 +1,33 @@
+## Plan : Ameliorer le banner top et la landing page Niteo avec les mots-cles fournis
 
+### Modifications
 
-## Plan : Remplacer le logo Niteo et ameliorer la navbar
+**1. Banner promotionnel (Index.tsx, Croissance.tsx, Education.tsx)**
 
-### Ce qui sera fait
+Remplacement du texte actuel par un message plus percutant et cible :
 
-1. **Copier le nouveau logo** (`Logo_NITEO26_Clair_1-2.png`) dans `src/assets/niteo/logo-niteo-2026.png`
+- Accroche : "Etudiant(e), jeune diplome(e) ? Transforme ton idee en projet concret en 50h chrono -- 100% gratuit"
+- CTA : "Candidater" vers niteo.marenostrum.tech
 
-2. **Modifier la navbar** (ligne 186-194 de `NiteoCandidature.tsx`) :
-   - Remplacer l'ancien logo par le nouveau
-   - Ajouter le texte "Toulouse" centre dans la navbar
-   - Ameliorer le design de la navbar pour un rendu plus professionnel : ombre portee, espacement, typographie plus affirmee
+Le banner reste compact (une ligne sur desktop, wrap sur mobile) mais avec un message beaucoup plus engageant.
 
-3. **Remplacer le logo dans le Hero** (ligne 204) par le nouveau logo
+**2. Landing page Niteo (NiteoCandidature.tsx)**
 
-4. **Ameliorer le UIX global** de la navbar :
-   - Ajout d'un effet glassmorphism plus marque (backdrop-blur + transparence)
-   - Ombre subtile pour detacher la barre du contenu
-   - Le texte "Toulouse" sera affiche en tant que badge ou texte stylise entre le logo et le CTA, centre dans la barre
+Enrichissement du contenu avec les mots-cles fournis en respectant l'orthographe:
+
+- **Hero** : Sous-titre enrichi mentionnant "etudiants et jeunes diplomes", "soft skills", "apprendre a transformer une idee en projet qui genere des revenus"
+- **Section "Pourquoi Niteo"** ou intro : Ajout d'un paragraphe empathique reprenant les pain points ("Tu ne sais pas par ou commencer ? Ce n'est pas grave -- tant que l'entrepreneuriat t'interesse")
+- **Benefices** : Integration des elements cles (coaching individuel sur mesure, plateforme e-learning dediee, pitch final devant 30 decideurs, test marche en conditions reelles)
+- **Stats** : Ajout de "95 projets deja accompagnes" comme preuve sociale
+- **FAQ** : Ajout question sur les soft skills et l'experience CV
+- **Meta SEO** : Enrichissement des keywords avec #Entrepreneuriat #Etudiants #Innovation #Toulouse #Coaching #Pedagogie
 
 ### Fichiers modifies
 
-| Fichier | Modification |
-|---|---|
-| `src/assets/niteo/logo-niteo-2026.png` | Nouveau fichier (copie du logo uploade) |
-| `src/pages/NiteoCandidature.tsx` | Import du nouveau logo, refonte navbar avec "Toulouse" centre, remplacement logo hero |
 
-### Detail technique
-
-La navbar passera d'une structure `logo | CTA` a `logo | Toulouse | CTA` avec le texte Toulouse en lettres capitales, tracking large, style professionnel.
-
+| Fichier                          | Modification                                                            |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| `src/pages/Index.tsx`            | Texte banner enrichi                                                    |
+| `src/pages/Croissance.tsx`       | Texte banner enrichi                                                    |
+| `src/pages/Education.tsx`        | Texte banner enrichi                                                    |
+| `src/pages/NiteoCandidature.tsx` | Hero, intro, benefices, dotations, FAQ, SEO enrichis avec les mots-cles |
