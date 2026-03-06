@@ -1,10 +1,6 @@
-# Note: Le sitemap statique est dans public/sitemap.xml
-# Le sitemap dynamique complet est disponible via l'edge function:
-# https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/sitemap
-
 # API redirects
 /healthz  https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/healthz  200
 /api/healthz  https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/healthz  200
 
-# SPA fallback - ne s'applique que si aucun fichier/règle ne correspond
+# SPA fallback
 /*  /index.html  200

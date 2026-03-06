@@ -101,8 +101,8 @@ Disallow: /node_modules/
 # LLMs.txt - Pour les AI crawlers
 # https://marenostrum.tech/llms.txt
 
-# Sitemaps - URL directe vers l'edge function
-Sitemap: https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/sitemap
+# Sitemaps
+Sitemap: https://marenostrum.tech/sitemap.xml
 
 # Host canonique
 Host: https://marenostrum.tech
