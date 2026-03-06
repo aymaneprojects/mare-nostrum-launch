@@ -38,7 +38,7 @@ Deno.serve(async (req) => {
       { loc: "https://marenostrum.tech/contact", priority: "0.8", changefreq: "monthly" },
       { loc: "https://marenostrum.tech/a-propos", priority: "0.7", changefreq: "monthly" },
       { loc: "https://marenostrum.tech/blog", priority: "0.8", changefreq: "weekly" },
-      { loc: "https://marenostrum.tech/livre-blanc-entrepreneuriat", priority: "0.8", changefreq: "monthly" },
+      { loc: "https://marenostrum.tech/livre-entrepreneuriat", priority: "0.8", changefreq: "monthly" },
       { loc: "https://marenostrum.tech/engagement-rse", priority: "0.6", changefreq: "monthly" },
       // Silo 1: Ecoles
       { loc: "https://marenostrum.tech/ecoles/transformation-entrepreneuriale", priority: "0.9", changefreq: "weekly" },
