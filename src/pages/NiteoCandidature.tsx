@@ -60,6 +60,7 @@ const CountdownTimer = ({ targetDate }: { targetDate: Date }) => {
   return (
     <div className="flex items-center gap-1.5 text-primary-foreground/80 text-xs font-mono">
       <Clock className="h-3.5 w-3.5" />
+      <span className="text-primary-foreground/60">Il reste</span>
       <span className="tabular-nums">{timeLeft.days}j {String(timeLeft.hours).padStart(2, "0")}:{String(timeLeft.mins).padStart(2, "0")}:{String(timeLeft.secs).padStart(2, "0")}</span>
     </div>
   );
