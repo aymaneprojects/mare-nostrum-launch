@@ -55,7 +55,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="h-4 w-4" />
-                <a href="mailto:contact@marenostrum.com" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                <a href="mailto:contact@marenostrum.tech" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                   contact@marenostrum.tech
 
 
