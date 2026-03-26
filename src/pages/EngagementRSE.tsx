@@ -6,7 +6,7 @@ import impactScoreImage from "@/assets/impact-score-79.png";
 import entreprisesEngagentImage from "@/assets/entreprises-engagent.png";
 const EngagementRSE = () => {
   return <div className="min-h-screen flex flex-col">
-      <SEOHead title="Engagement RSE - Mare Nostrum" description="Découvrez nos engagements RSE : environnement, social, gouvernance. Société à mission depuis 2025, nous contribuons au développement durable et solidaire." keywords="RSE, développement durable, société à mission, impact social, environnement, gouvernance" />
+      <SEOHead title="Engagement RSE Mare Nostrum - Societe a Mission Toulouse | Impact Score 79/100" description="Mare Nostrum, societe a mission a Toulouse depuis 2025. Impact Score 79/100, top 5% Occitanie. Engagements RSE : environnement, social, gouvernance. Entrepreneuriat responsable et durable." keywords="RSE toulouse, societe a mission toulouse, impact social, developpement durable toulouse, entrepreneuriat responsable, gouvernance, mare nostrum RSE, entreprise a mission occitanie, impact score" breadcrumbSchema={[{ name: "Accueil", url: "https://marenostrum.tech/" }, { name: "Engagement RSE", url: "https://marenostrum.tech/engagement-rse" }]} />
       <Header />
 
       {/* Hero Section */}

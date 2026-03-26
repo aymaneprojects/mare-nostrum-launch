@@ -240,7 +240,7 @@ const NiteoToulouse = () => {
               Pourquoi Niteo ?
             </h2>
             <p className="text-lg text-muted-foreground mb-12">
-              Du latin "briller, prospérer" -- Niteo incarne la volonté de faire rayonner les talents entrepreneuriaux de Toulouse.
+              Du latin "briller, prospérer" &mdash; Niteo incarne la volonté de faire rayonner les talents entrepreneuriaux de Toulouse.
             </p>
             <div className="grid md:grid-cols-3 gap-8">
               {[

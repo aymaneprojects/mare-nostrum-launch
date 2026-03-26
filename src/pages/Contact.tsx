@@ -263,6 +263,12 @@ const Contact = () => {
                       <SelectItem value="France">France</SelectItem>
                       <SelectItem value="Maroc">Maroc</SelectItem>
                       <SelectItem value="Tunisie">Tunisie</SelectItem>
+                      <SelectItem value="Algérie">Algérie</SelectItem>
+                      <SelectItem value="Sénégal">Sénégal</SelectItem>
+                      <SelectItem value="Côte d'Ivoire">Côte d'Ivoire</SelectItem>
+                      <SelectItem value="Bénin">Bénin</SelectItem>
+                      <SelectItem value="Cameroun">Cameroun</SelectItem>
+                      <SelectItem value="Canada">Canada</SelectItem>
                       <SelectItem value="Autre">Autre</SelectItem>
                     </SelectContent>
                   </Select>
