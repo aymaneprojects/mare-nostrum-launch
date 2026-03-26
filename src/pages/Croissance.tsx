@@ -263,7 +263,7 @@ const Croissance = () => {
 
           <div className="text-center mt-12">
             <p className="text-lg text-foreground font-medium">
-              Mare Nostrum Croissance est là pour t'aider à passer ces caps 🚀
+              Mare Nostrum Croissance est là pour t'aider à passer ces caps.
             </p>
           </div>
         </div>
