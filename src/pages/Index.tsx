@@ -163,7 +163,10 @@ const Index = () => {
       "url": "https://marenostrum.tech",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://marenostrum.tech/search?q={search_term_string}",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://marenostrum.tech/blog?search={search_term_string}"
+        },
         "query-input": "required name=search_term_string"
       }
     }
