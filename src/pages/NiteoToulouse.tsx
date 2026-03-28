@@ -44,8 +44,8 @@ const NiteoToulouse = () => {
   const niteoSchema = [{
     "@context": "https://schema.org",
     "@type": "Course",
-    "name": "Programme Niteo Toulouse 2026 - Acceleration Entrepreneuriale Etudiants",
-    "description": "Niteo Toulouse : programme d'acceleration entrepreneuriale de 50h pour etudiants en licence et master. E-learning, ateliers collectifs, coaching individuel et Demo Day devant 30 decideurs. Par Mare Nostrum, cabinet expert entrepreneuriat Toulouse.",
+    "name": "Programme Niteo Toulouse 2026 - Entrepreneuriat Etudiant Acceleration",
+    "description": "Niteo Toulouse : programme d'acceleration entrepreneuriat etudiant de 50h pour etudiants en licence et master. E-learning, ateliers collectifs, coaching individuel et Demo Day devant 30 decideurs. Par Mare Nostrum, cabinet expert entrepreneuriat etudiant Toulouse.",
     "provider": {
       "@type": "Organization",
       "name": "Mare Nostrum",
