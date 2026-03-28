@@ -175,15 +175,15 @@ const Index = () => {
   const faqs = [
     {
       question: "Qu'est-ce que Mare Nostrum ?",
-      answer: "Mare Nostrum est un cabinet de conseil en entrepreneuriat à impact, fondé en 2023 à Toulouse. Nous accompagnons les écoles et les entrepreneurs à travers deux pôles : Mare Nostrum Éducation pour les établissements et Mare Nostrum Croissance pour les entrepreneurs."
+      answer: "Mare Nostrum est un cabinet de conseil en entrepreneuriat à impact, fondé en 2023 à Toulouse. Nous accompagnons les écoles et les entrepreneurs à travers deux pôles : Mare Nostrum Éducation pour les programmes d'entrepreneuriat étudiant dans les écoles et universités, et Mare Nostrum Croissance pour les entrepreneurs à impact."
+    },
+    {
+      question: "Quels programmes proposez-vous pour les étudiants entrepreneurs ?",
+      answer: "Nous proposons le programme Niteo Toulouse, un parcours d'accélération entrepreneuriale de 50h pour étudiants en licence et master. Il comprend du e-learning, des ateliers collectifs, du coaching individuel et un Demo Day devant 30 décideurs. Nous proposons aussi des fresques de l'esprit d'entreprendre, des hackathons et des programmes premium pour les écoles."
     },
     {
       question: "Dans quelles villes êtes-vous présents ?",
       answer: "Mare Nostrum est implanté à Toulouse, Paris et Casablanca, avec un réseau de 135+ experts dans 12 pays : France, Maroc, Tunisie, Algérie, Sénégal, Côte d'Ivoire, Bénin, Cameroun, Burkina Faso, RD Congo, Égypte et Canada. Nous intervenons dans toute la francophonie."
-    },
-    {
-      question: "Quels sont vos domaines d'expertise ?",
-      answer: "Nous sommes spécialisés dans l'entrepreneuriat à impact, l'éducation entrepreneuriale, l'accompagnement à la croissance, l'innovation sociale et les entreprises à mission. Nos valeurs sont le respect, l'enthousiasme, la fiabilité, l'impact et le co-apprentissage."
     },
     {
       question: "Comment puis-je travailler avec Mare Nostrum ?",
@@ -197,9 +197,9 @@ const Index = () => {
 
   return <div className="min-h-screen flex flex-col">
       <SEOHead 
-        title="Mare Nostrum | Entrepreneuriat Toulouse & Afrique | Niteo" 
-        description="Cabinet expert en entrepreneuriat a Toulouse et en Afrique francophone. Programme Niteo, accompagnement startups a impact, education entrepreneuriale. 135+ experts, 12 pays, +95% satisfaction." 
-        keywords="entrepreneuriat toulouse, entrepreneuriat afrique, Niteo, Niteo Toulouse, programme Niteo, mare nostrum, conseil entrepreneuriat toulouse, accompagnement entrepreneur toulouse, incubateur toulouse, startup toulouse, creation entreprise toulouse, entrepreneuriat afrique francophone, entrepreneuriat francophonie, startup afrique, club entrepreneur, education entrepreneuriale, Casablanca, Senegal, Cote d'Ivoire, entreprise a mission" 
+        title="Mare Nostrum | Entrepreneuriat Toulouse, Afrique & Etudiant | Niteo" 
+        description="Mare Nostrum, cabinet expert en entrepreneuriat a Toulouse et en Afrique francophone. Programme Niteo pour etudiants, accompagnement startups a impact, education entrepreneuriale. 135+ experts, 12 pays, +95% satisfaction." 
+        keywords="entrepreneuriat toulouse, entrepreneuriat etudiant, entrepreneuriat afrique, entrepreneuriat etudiant toulouse, Niteo, Niteo Toulouse, programme Niteo, mare nostrum, conseil entrepreneuriat toulouse, accompagnement entrepreneur toulouse, incubateur toulouse, startup toulouse, creation entreprise toulouse, entrepreneuriat afrique francophone, entrepreneuriat francophonie, startup afrique, club entrepreneur, education entrepreneuriale, entrepreneuriat jeune, entrepreneuriat universite, entrepreneuriat ecole, Casablanca, Senegal, Cote d'Ivoire, entreprise a mission"
         structuredData={homePageSchema}
         faqSchema={faqs}
         breadcrumbSchema={[
