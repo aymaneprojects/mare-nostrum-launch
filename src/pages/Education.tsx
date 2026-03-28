@@ -81,8 +81,9 @@ const Education = () => {
     "audience": {
       "@type": "EducationalAudience",
       "educationalRole": "student",
-      "audienceType": "Étudiants écoles de commerce, universités, écoles d'ingénieurs"
-    }
+      "audienceType": "Étudiants écoles de commerce, universités, écoles d'ingénieurs, entrepreneuriat étudiant"
+    },
+    "keywords": "entrepreneuriat etudiant, education entrepreneuriale, formation entrepreneur etudiant, programme entrepreneuriat ecole, entrepreneuriat universite toulouse"
   }, {
     "@context": "https://schema.org",
     "@type": "Service",

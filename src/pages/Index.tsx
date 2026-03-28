@@ -197,9 +197,9 @@ const Index = () => {
 
   return <div className="min-h-screen flex flex-col">
       <SEOHead 
-        title="Mare Nostrum | Entrepreneuriat Toulouse & Afrique | Niteo" 
-        description="Cabinet expert en entrepreneuriat a Toulouse et en Afrique francophone. Programme Niteo, accompagnement startups a impact, education entrepreneuriale. 135+ experts, 12 pays, +95% satisfaction." 
-        keywords="entrepreneuriat toulouse, entrepreneuriat afrique, Niteo, Niteo Toulouse, programme Niteo, mare nostrum, conseil entrepreneuriat toulouse, accompagnement entrepreneur toulouse, incubateur toulouse, startup toulouse, creation entreprise toulouse, entrepreneuriat afrique francophone, entrepreneuriat francophonie, startup afrique, club entrepreneur, education entrepreneuriale, Casablanca, Senegal, Cote d'Ivoire, entreprise a mission" 
+        title="Mare Nostrum | Entrepreneuriat Toulouse, Afrique & Etudiant | Niteo" 
+        description="Mare Nostrum, cabinet expert en entrepreneuriat a Toulouse et en Afrique francophone. Programme Niteo pour etudiants, accompagnement startups a impact, education entrepreneuriale. 135+ experts, 12 pays, +95% satisfaction." 
+        keywords="entrepreneuriat toulouse, entrepreneuriat etudiant, entrepreneuriat afrique, entrepreneuriat etudiant toulouse, Niteo, Niteo Toulouse, programme Niteo, mare nostrum, conseil entrepreneuriat toulouse, accompagnement entrepreneur toulouse, incubateur toulouse, startup toulouse, creation entreprise toulouse, entrepreneuriat afrique francophone, entrepreneuriat francophonie, startup afrique, club entrepreneur, education entrepreneuriale, entrepreneuriat jeune, entrepreneuriat universite, entrepreneuriat ecole, Casablanca, Senegal, Cote d'Ivoire, entreprise a mission"
         structuredData={homePageSchema}
         faqSchema={faqs}
         breadcrumbSchema={[

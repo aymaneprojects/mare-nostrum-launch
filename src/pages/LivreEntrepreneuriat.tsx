@@ -128,7 +128,15 @@ const LivreEntrepreneuriat = () => {
     }
   };
   return <div className="min-h-screen flex flex-col">
-      <SEOHead title="Livre Blanc - Pédagogie Entrepreneuriale 2025" description="Téléchargez notre Livre Blanc sur la Pédagogie Entrepreneuriale 2025. Découvrez les meilleures pratiques pour intégrer l'entrepreneuriat dans votre établissement." keywords="livre blanc, pédagogie entrepreneuriale, éducation, innovation pédagogique, formation entrepreneuriat" />
+      <SEOHead 
+        title="Livre Blanc Pedagogie Entrepreneuriale 2025 - Mare Nostrum Toulouse" 
+        description="Telechargez le Livre Blanc Mare Nostrum sur la Pedagogie Entrepreneuriale 2025. Meilleures pratiques pour integrer l'entrepreneuriat etudiant dans votre ecole ou universite. Guide gratuit." 
+        keywords="livre blanc entrepreneuriat, pedagogie entrepreneuriale, education entrepreneuriale, formation entrepreneuriat ecole, entrepreneuriat etudiant, innovation pedagogique, mare nostrum livre blanc"
+        breadcrumbSchema={[
+          { name: "Accueil", url: "https://marenostrum.tech/" },
+          { name: "Livre Blanc", url: "https://marenostrum.tech/livre-entrepreneuriat" }
+        ]}
+      />
       <Header />
       
       <main className="flex-1">

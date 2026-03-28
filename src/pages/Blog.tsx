@@ -72,9 +72,13 @@ const Blog = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead 
-        title="Blog Entrepreneuriat - Mare Nostrum | Conseils et Ressources"
-        description="Guides pratiques pour créer son entreprise et réussir son aventure entrepreneuriale. Statuts juridiques, financement, business plan, pitch... Ressources gratuites par Mare Nostrum."
-        keywords="blog entrepreneuriat, créer entreprise, statut juridique entrepreneur, financement projet, business plan, conseils entrepreneur"
+        title="Blog Entrepreneuriat Etudiant & Impact - Mare Nostrum | Conseils Toulouse Afrique"
+        description="Blog Mare Nostrum : guides pratiques entrepreneuriat etudiant, creation entreprise, financement, business plan, pitch. Ressources gratuites pour entrepreneurs a impact Toulouse et Afrique francophone."
+        keywords="blog entrepreneuriat, entrepreneuriat etudiant, creer entreprise etudiant, statut juridique entrepreneur, financement projet etudiant, business plan, conseils entrepreneur, entrepreneuriat toulouse, entrepreneuriat afrique, mare nostrum blog"
+        breadcrumbSchema={[
+          { name: "Accueil", url: "https://marenostrum.tech/" },
+          { name: "Blog", url: "https://marenostrum.tech/blog" }
+        ]}
       />
       <Header />
 
