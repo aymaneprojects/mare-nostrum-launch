@@ -156,7 +156,7 @@ const NiteoCandidature = () => {
   ];
 
   const timeline = [
-    { date: "Jusqu'au 2 avril", label: "Candidatures ouvertes", icon: <Mic className="h-5 w-5" />, active: true },
+    { date: "Hors délai", label: "Liste d'attente ouverte", icon: <Mic className="h-5 w-5" />, active: true },
     { date: "1-3 avril", label: "Sélection des participants", icon: <Target className="h-5 w-5" /> },
     { date: "11 avril", label: "Atelier collectif 1", icon: <Users className="h-5 w-5" /> },
     { date: "2 mai", label: "Atelier collectif 2", icon: <Users className="h-5 w-5" /> },
@@ -228,7 +228,7 @@ const NiteoCandidature = () => {
           <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-3">
             <span className="text-primary-foreground/90 text-sm font-semibold tracking-[0.3em] uppercase">Toulouse</span>
             <span className="text-primary-foreground/40">|</span>
-            <CountdownTimer targetDate={new Date("2026-04-02T23:59:59")} />
+            <span className="text-accent text-xs font-semibold">Candidature hors délai — Accepté en liste d'attente</span>
           </div>
           <Button onClick={scrollToCTA} size="sm" variant="secondary" className="font-bold shadow-md hover:shadow-lg transition-shadow">
             Je candidate
