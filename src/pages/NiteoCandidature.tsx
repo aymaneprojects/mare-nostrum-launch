@@ -156,7 +156,7 @@ const NiteoCandidature = () => {
   ];
 
   const timeline = [
-    { date: "Jusqu'au 2 avril", label: "Candidatures ouvertes", icon: <Mic className="h-5 w-5" />, active: true },
+    { date: "Hors délai", label: "Liste d'attente ouverte", icon: <Mic className="h-5 w-5" />, active: true },
     { date: "1-3 avril", label: "Sélection des participants", icon: <Target className="h-5 w-5" /> },
     { date: "11 avril", label: "Atelier collectif 1", icon: <Users className="h-5 w-5" /> },
     { date: "2 mai", label: "Atelier collectif 2", icon: <Users className="h-5 w-5" /> },
