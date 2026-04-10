@@ -3,6 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { TrendingUp, Users, Award, Zap, MessageSquare, Calendar, FileText, CheckCircle2, ArrowRight, Clock, Brain, Target, Flame, Info } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TestimonialCard from "@/components/TestimonialCard";
@@ -60,6 +61,7 @@ const FeatureWithTooltipLight = ({ feature }: { feature: OfferFeature }) => (
 const Croissance = () => {
   const location = useLocation();
   const [selectedLocation, setSelectedLocation] = useState<LocationType>("toulouse");
+  const [showGroupeDialog, setShowGroupeDialog] = useState(false);
 
   const communauteFeatures: OfferFeature[] = [
     {
@@ -202,22 +204,56 @@ const Croissance = () => {
     }
   };
 
-  const croissanceFaqs = [{
-    question: "Qui peut rejoindre Mare Nostrum Croissance ?",
-    answer: "Mare Nostrum Croissance s'adresse aux entrepreneurs et dirigeants d'entreprises à impact, porteurs de projets innovants, inclusifs et durables. Que vous soyez en phase d'amorçage ou de développement, nos offres s'adaptent à votre stade de maturité."
-  }, {
-    question: "Quelle est la différence entre les offres Communauté, Groupe et Individuel ?",
-    answer: "Communauté est l'offre d'entrée pour sortir de l'isolement avec accès au club, veille et académie. Groupe ajoute l'intégration dans un cercle d'entrepreneurs et des sessions collectives. Individuel offre un accompagnement premium avec sessions 1-to-1 IA, 4 micro-mentorats et une ligne directe avec le fondateur."
-  }, {
-    question: "Peut-on essayer avant de s'engager ?",
-    answer: "Oui ! Pas de frais d'entrée sur toutes nos offres. Communauté inclut 1 micro mentorat offert, Groupe inclut 1 pré-diag offert, et Individuel inclut 1 tutorat personnalisé offert."
-  }, {
-    question: "Où se déroulent les sessions ?",
-    answer: "Les sessions peuvent se dérouler en présentiel à Toulouse, Paris ou Casablanca, ou en distanciel selon vos préférences. Le Club organise également des événements réguliers dans nos pays d'intervention."
-  }, {
-    question: "Quels résultats puis-je attendre ?",
-    answer: "50% des entrepreneurs accompagnés se rémunèrent correctement dans les 2 ans. 3 contacts qualifiés en moyenne dès le premier mois. 93% des membres se disent très satisfaits. 90% déclarent gagner du temps, de la clarté et de la sérénité."
-  }];
+  const croissanceFaqs = [
+    {
+      question: "Qui peut rejoindre Mare Nostrum Croissance ?",
+      answer: "Tout entrepreneur francophone qui veut accélérer son activité et son impact. Peu importe ton stade : que tu sois en phase d'idée, en croissance ou déjà structuré, nous t'accompagnons pour transformer ton énergie en progrès concret."
+    },
+    {
+      question: "Peut-on essayer avant de s'engager ?",
+      answer: "Oui. L'offre Tremplin te permet de rejoindre le collectif sans engagement long terme. Dès ton inscription, tu reçois ton premier micro-mentorat de 20 min offert — pour avancer tout de suite, pas \"plus tard\"."
+    },
+    {
+      question: "\"Je n'ai pas le temps de suivre un accompagnement intensif.\"",
+      answer: "Justement, le Club Mare Nostrum est fait pour ça. Tu ne rajoutes pas du travail : tu remplaces du temps perdu par du temps utile. Les formats sont légers (rencontres mensuelles + micro-mentorat à la demande + veille mutualisée livrée chaque semaine). En moyenne, nos membres gagnent entre 8 et 12 heures par semaine dès le 2e mois."
+    },
+    {
+      question: "\"Je n'ai pas les moyens pour une dépense fixe chaque mois.\"",
+      answer: "30 €, 90 € ou 190 € par mois — c'est le coût de 1 à 3 heures perdues à hésiter seul. Nos membres disent souvent : « Le jour où j'ai eu mon premier contrat grâce au Club, l'abonnement s'est remboursé dix fois. » Le ROI est concret : nouveaux clients, mise en relation, temps gagné, décisions plus rentables. C'est une dépense qui rapporte."
+    },
+    {
+      question: "\"J'ai peur que ce soit trop général, pas adapté à mon projet.\"",
+      answer: "Chaque membre bénéficie d'un accompagnement selon son niveau et ses besoins : Tremplin pour rompre l'isolement et poser les bases solides. Ascension pour structurer la croissance et affiner l'offre. Élite pour un accompagnement stratégique individuel sur l'IA, les financements ou le développement. Et nos experts connaissent le quotidien des entrepreneurs — on parle concret, pas théorie."
+    },
+    {
+      question: "\"Je suis déjà accompagné ailleurs.\"",
+      answer: "Parfait. Le Club vient compléter ce que tu fais déjà. Il t'apporte le regard collectif et la mise en relation que peu de programmes offrent. Nos membres l'utilisent pour accélérer entre deux expertises, pour valider des décisions ou sortir d'un blocage opérationnel. Mare Nostrum devient ton filet de sécurité entre les grands rendez-vous stratégiques."
+    },
+    {
+      question: "\"Je ne vois pas en quoi c'est différent d'un simple réseau.\"",
+      answer: "Un réseau te connecte, le Club t'accompagne. Chez Mare Nostrum, chaque mise en relation est orientée résultat : création d'occasion d'affaires, entraide sur des freins, accès aux bons outils. C'est un espace où tu trouves des solutions en 1 heure, là où tu passerais 3 jours seul à chercher."
+    },
+    {
+      question: "\"Et si je n'étais pas au bon niveau pour rejoindre le Club ?\"",
+      answer: "L'offre est faite pour s'adapter à ton stade actuel : Phase idéation / MVP avec Tremplin. Phase croissance (50K–200K € de CA) avec Ascension. Phase structuration / automatisation avec Élite. L'objectif est simple : te faire passer au niveau supérieur sans précipitation, mais avec méthode et soutien."
+    },
+    {
+      question: "\"Comment savoir si ça marche vraiment ?\"",
+      answer: "Plus de 80 % des membres déclarent \"gagner du temps utile\" dès les 3 premiers mois. 50 % se rémunèrent dans les deux ans. 90 % affirment avoir \"une vision claire\" de leurs priorités au bout de 90 jours. Et surtout : chaque avancée est partagée au sein du collectif — tu progresses avec et grâce aux autres."
+    },
+    {
+      question: "\"30€ pour une communauté en ligne, j'en ai déjà des gratuites\"",
+      answer: "Les communautés gratuites n'ont pas de filtre. Ici chaque membre est sélectionné, chaque rencontre est animée, et vous avez 30h de formation incluses. Testez 30 jours, remboursé si ça ne vous convient pas."
+    },
+    {
+      question: "\"90€/mois c'est cher, je n'ai pas de budget\"",
+      answer: "Un seul contrat signé grâce au Cercle rembourse 2 ans d'abonnement. Et le pré-diag offert à l'entrée vaut à lui seul 300€ sur le marché. Essayez un trimestre à 80€/mois."
+    },
+    {
+      question: "\"190€/mois, je peux trouver un freelance pour ce prix\"",
+      answer: "Un freelance répond à une mission. Nous, on répond en 2h à n'importe quel blocage, on vous accompagne sur l'IA, et on vous connecte à un réseau de décideurs. Aucun freelance ne fait ça pour 190€/mois."
+    }
+  ];
 
   useEffect(() => {
     if (location.hash === "#offres") {
@@ -227,6 +263,17 @@ const Croissance = () => {
       }
     }
   }, [location]);
+
+  const groupeStripeLinks = {
+    toulouse: {
+      financement: "https://buy.stripe.com/28E7sNakqcHvgqSdbc67S09",
+      ia: "https://buy.stripe.com/28E7sNakqcHvgqSdbc67S09"
+    },
+    afrique: {
+      financement: "https://buy.stripe.com/28EbJ32RY4aZa2u6MO67S06",
+      ia: "https://buy.stripe.com/28EbJ32RY4aZa2u6MO67S06"
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -368,9 +415,9 @@ const Croissance = () => {
             </Button>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
             {/* Communauté */}
-            <div className="bg-card border-2 border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col">
+            <div className="bg-card border-2 border-border rounded-xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col h-full">
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Communauté</h3>
                 <div className="text-4xl font-bold text-primary mb-2">
@@ -394,7 +441,7 @@ const Croissance = () => {
                 ))}
               </ul>
 
-              <Button asChild className="w-full">
+              <Button asChild className="w-full mt-auto">
                 <a href={selectedLocation === "toulouse" ? "https://buy.stripe.com/00w3cx3W2bDr5Me6MO67S08" : "https://buy.stripe.com/dRmaEZ78e4aZ3E61su67S04"} target="_blank" rel="noopener noreferrer">
                   Rejoindre Communauté
                 </a>
@@ -402,7 +449,7 @@ const Croissance = () => {
             </div>
 
             {/* Groupe - Highlighted */}
-            <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground border-2 border-accent rounded-xl p-8 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 relative flex flex-col">
+            <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground border-2 border-accent rounded-xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 relative flex flex-col h-full">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <span className="bg-accent text-accent-foreground px-4 py-1 rounded-full text-sm font-semibold">
                   Recommandé
@@ -432,15 +479,13 @@ const Croissance = () => {
                 ))}
               </ul>
 
-              <Button asChild className="w-full bg-white text-primary hover:bg-white/90">
-                <a href={selectedLocation === "toulouse" ? "https://buy.stripe.com/28E7sNakqcHvgqSdbc67S09" : "https://buy.stripe.com/28EbJ32RY4aZa2u6MO67S06"} target="_blank" rel="noopener noreferrer">
-                  Rejoindre Groupe
-                </a>
+              <Button className="w-full bg-white text-primary hover:bg-white/90 mt-auto" onClick={() => setShowGroupeDialog(true)}>
+                Rejoindre Groupe
               </Button>
             </div>
 
             {/* Individuel */}
-            <div className="bg-card border-2 border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col">
+            <div className="bg-card border-2 border-border rounded-xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col h-full">
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Individuel</h3>
                 <div className="text-4xl font-bold text-primary mb-2">
@@ -464,7 +509,7 @@ const Croissance = () => {
                 ))}
               </ul>
 
-              <Button asChild variant="default" className="w-full">
+              <Button asChild variant="default" className="w-full mt-auto">
                 <a href={selectedLocation === "toulouse" ? "https://buy.stripe.com/bJe5kF64a0YNgqS4EG67S0a" : "https://buy.stripe.com/6oUaEZ8cidLzeiK9Z067S07"} target="_blank" rel="noopener noreferrer">
                   Rejoindre Individuel
                 </a>
@@ -483,6 +528,32 @@ const Croissance = () => {
           </div>
         </div>
       </section>
+
+      {/* Groupe Diagnostic Dialog */}
+      <Dialog open={showGroupeDialog} onOpenChange={setShowGroupeDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-center">Choisissez votre pré-diagnostic offert</DialogTitle>
+            <DialogDescription className="text-center text-muted-foreground">
+              En rejoignant l'offre Groupe, vous bénéficiez d'un pré-diagnostic gratuit. Quel domaine souhaitez-vous explorer ?
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 mt-4">
+            <Button asChild size="lg" className="w-full h-auto py-4 flex flex-col gap-1">
+              <a href={selectedLocation === "toulouse" ? groupeStripeLinks.toulouse.financement : groupeStripeLinks.afrique.financement} target="_blank" rel="noopener noreferrer">
+                <span className="font-bold text-base">Pré-diagnostic Financement</span>
+                <span className="text-xs opacity-80 font-normal">Identifiez les leviers de financement adaptés à votre projet</span>
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="w-full h-auto py-4 flex flex-col gap-1">
+              <a href={selectedLocation === "toulouse" ? groupeStripeLinks.toulouse.ia : groupeStripeLinks.afrique.ia} target="_blank" rel="noopener noreferrer">
+                <span className="font-bold text-base">Pré-diagnostic IA</span>
+                <span className="text-xs opacity-80 font-normal">Découvrez comment l'IA peut accélérer votre activité</span>
+              </a>
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Section 3 : Résultats Concrets */}
       <section className="py-16 md:py-24 bg-background">
@@ -580,7 +651,7 @@ const Croissance = () => {
         </div>
       </section>
 
-      <FAQSection title="Questions fréquentes sur nos offres" faqs={croissanceFaqs} />
+      <FAQSection title="FAQ — Réponses à vos objections les plus courantes" faqs={croissanceFaqs} />
 
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-accent via-primary to-primary">
