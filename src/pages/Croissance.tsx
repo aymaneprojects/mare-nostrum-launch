@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, Users, Award, Zap, MessageSquare, Calendar, FileText, CheckCircle2, ArrowRight } from "lucide-react";
+import { TrendingUp, Users, Award, Zap, MessageSquare, Calendar, FileText, CheckCircle2, ArrowRight, Clock, Brain, Target, Flame, Info } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TestimonialCard from "@/components/TestimonialCard";
@@ -10,15 +11,126 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import atelierRose from "@/assets/atelier-rose.png";
 import neoEntrepreneurElite from "@/assets/neo-entrepreneur-elite.png";
+
 type LocationType = "toulouse" | "afrique";
+
+interface OfferFeature {
+  label: string;
+  tooltip: string;
+}
+
+const FeatureWithTooltip = ({ feature }: { feature: OfferFeature }) => (
+  <TooltipProvider delayDuration={200}>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <li className="flex items-start space-x-3 cursor-help group/item">
+          <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+          <span className="text-sm text-muted-foreground group-hover/item:text-foreground transition-colors flex items-center gap-1.5">
+            {feature.label}
+            <Info className="h-3.5 w-3.5 text-muted-foreground/50 flex-shrink-0" />
+          </span>
+        </li>
+      </TooltipTrigger>
+      <TooltipContent side="right" className="max-w-xs text-sm">
+        {feature.tooltip}
+      </TooltipContent>
+    </Tooltip>
+  </TooltipProvider>
+);
+
+const FeatureWithTooltipLight = ({ feature }: { feature: OfferFeature }) => (
+  <TooltipProvider delayDuration={200}>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <li className="flex items-start space-x-3 cursor-help group/item">
+          <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
+          <span className="text-sm opacity-95 group-hover/item:opacity-100 transition-opacity flex items-center gap-1.5">
+            {feature.label}
+            <Info className="h-3.5 w-3.5 opacity-50 flex-shrink-0" />
+          </span>
+        </li>
+      </TooltipTrigger>
+      <TooltipContent side="right" className="max-w-xs text-sm">
+        {feature.tooltip}
+      </TooltipContent>
+    </Tooltip>
+  </TooltipProvider>
+);
+
 const Croissance = () => {
   const location = useLocation();
   const [selectedLocation, setSelectedLocation] = useState<LocationType>("toulouse");
+
+  const communauteFeatures: OfferFeature[] = [
+    {
+      label: "Accès au Club International",
+      tooltip: "Rencontre des nouveaux partenaires dans notre communauté d'entrepreneurs francophones de valeur, et des nouvelles opportunités"
+    },
+    {
+      label: "Veille mutualisée entrepreneuriat",
+      tooltip: "Reçois chaque mois une sélection à jour des meilleures opportunités sur l'entrepreneuriat et l'innovation, parmi des milliers de sources de données spécialisées"
+    },
+    {
+      label: "1 rencontre mensuelle en ligne",
+      tooltip: "Participe à une session de networking animée pour élargir ton réseau avec humour et bienveillance"
+    },
+    {
+      label: "Opportunités privilégiées",
+      tooltip: "Sois informé des tarifs préférentiels aux événements, des opportunités de nos partenaires et des possibilités de collaboration avec Mare Nostrum"
+    },
+    {
+      label: "Accès à l'Académie en ligne",
+      tooltip: "Développe tes compétences et tes soft skills entrepreneuriales : plus de 30 heures de formation sur les fondamentaux du business"
+    }
+  ];
+
+  const groupeFeatures: OfferFeature[] = [
+    {
+      label: "Tout le pack Communauté +",
+      tooltip: "Découvre tous les avantages dans l'offre Communauté"
+    },
+    {
+      label: "Intégration dans un Cercle",
+      tooltip: "Rejoins un petit groupe soudé d'entrepreneurs aux profils complémentaires qui s'entraident"
+    },
+    {
+      label: "1 session mensuelle collective de business développement",
+      tooltip: "Repars avec un plan d'action concret co-construit par le groupe dans chaque journée et économise chaque mois plusieurs jours de réflexion en solitaire"
+    },
+    {
+      label: "Mises en relation partenaires & réseaux",
+      tooltip: "Bénéficie de mises en relation directes avec des partenaires de Mare Nostrum à votre demande (plus de 100 partenaires clés dans l'écosystème)"
+    },
+    {
+      label: "1 micro-mentorat (visio-galère)",
+      tooltip: "Profite d'une visio individualisée, chaque mois, avec un accompagnateur pendant 20 minutes qui vous permets de débloquer une problématique clé"
+    }
+  ];
+
+  const individuelFeatures: OfferFeature[] = [
+    {
+      label: "Tout le pack Communauté + Groupe +",
+      tooltip: "Découvre tous les avantages dans l'offre Communauté et dans l'offre Groupe"
+    },
+    {
+      label: "Accompagnement 1-to-1 IA",
+      tooltip: "Implémente concrètement l'IA dans votre projet grâce à une session individuelle d'1 heure chaque mois"
+    },
+    {
+      label: "4 micro-mentorat",
+      tooltip: "Profite de quatre visio individualisées, chaque mois, avec un accompagnateur pendant 20 minutes qui vous permets de débloquer une problématique clé"
+    },
+    {
+      label: "Ligne directe avec le fondateur de Mare Nostrum",
+      tooltip: "Accède à une ligne directe pour obtenir le soutien du dirigeant de Mare Nostrum en moins de 2h : un blocage technique ? une décision stratégique urgente ? Ne reste plus jamais seul face à un imprévu !"
+    }
+  ];
+
   const croissanceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Mare Nostrum Croissance - Club Entrepreneur Francophone International",
-    "description": "Club international d'accompagnement entrepreneurs à impact. 24 entreprises accompagnées, 93% accélération décisions, 135+ experts, 2000 ans expérience cumulée, 12 pays. Toulouse, Paris, Casablanca.",
+    "description": "Club international d'accompagnement entrepreneurs à impact. 24 entreprises accompagnées, 93% satisfaction, 135+ experts, 2000 ans expérience cumulée, 12 pays. Toulouse, Paris, Casablanca.",
     "provider": {
       "@type": "Organization",
       "name": "Mare Nostrum",
@@ -40,56 +152,16 @@ const Croissance = () => {
     },
     "serviceType": "Accompagnement Entrepreneurial",
     "category": "Conseil en Entrepreneuriat à Impact",
-    "areaServed": [{
-      "@type": "Country",
-      "name": "France"
-    }, {
-      "@type": "Country",
-      "name": "Maroc"
-    }, {
-      "@type": "Country",
-      "name": "Tunisie"
-    }, {
-      "@type": "Country",
-      "name": "Algérie"
-    }, {
-      "@type": "Country",
-      "name": "Sénégal"
-    }, {
-      "@type": "Country",
-      "name": "Côte d'Ivoire"
-    }, {
-      "@type": "Country",
-      "name": "Bénin"
-    }, {
-      "@type": "Country",
-      "name": "Cameroun"
-    }, {
-      "@type": "Country",
-      "name": "Burkina Faso"
-    }, {
-      "@type": "Country",
-      "name": "République démocratique du Congo"
-    }, {
-      "@type": "Country",
-      "name": "Égypte"
-    }, {
-      "@type": "Country",
-      "name": "Canada"
-    }, {
-      "@type": "City",
-      "name": "Toulouse"
-    }, {
-      "@type": "City",
-      "name": "Paris"
-    }, {
-      "@type": "City",
-      "name": "Casablanca"
-    }],
-    "audience": {
-      "@type": "Audience",
-      "audienceType": "Entrepreneurs à impact, Startups, Entreprises sociales, Porteurs de projets innovants"
-    },
+    "areaServed": [
+      { "@type": "Country", "name": "France" },
+      { "@type": "Country", "name": "Maroc" },
+      { "@type": "Country", "name": "Tunisie" },
+      { "@type": "Country", "name": "Sénégal" },
+      { "@type": "Country", "name": "Côte d'Ivoire" },
+      { "@type": "City", "name": "Toulouse" },
+      { "@type": "City", "name": "Paris" },
+      { "@type": "City", "name": "Casablanca" }
+    ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Offres Mare Nostrum Croissance",
@@ -97,105 +169,99 @@ const Croissance = () => {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Offre Tremplin",
-          "description": "Accès au club international d'entrepreneurs francophones. Détection d'opportunités business et financement. Café galère pour résoudre vos problèmes.",
+          "name": "Communauté",
+          "description": "Accès au club international, veille mutualisée, rencontres mensuelles, académie en ligne.",
           "category": "Offre d'entrée"
         },
         "price": "30",
         "priceCurrency": "EUR",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "price": "30.00",
-          "priceCurrency": "EUR",
-          "unitText": "MONTH"
-        },
-        "availability": "https://schema.org/InStock"
+        "priceSpecification": { "@type": "UnitPriceSpecification", "price": "30.00", "priceCurrency": "EUR", "unitText": "MONTH" }
       }, {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Offre Ascension",
-          "description": "Tout de Tremplin + Visibilité projet + Génération IA de livrables + Masterclass mensuelles.",
+          "name": "Groupe",
+          "description": "Tout de Communauté + Cercle d'entrepreneurs, sessions collectives, mises en relation partenaires.",
           "category": "Offre recommandée"
         },
-        "price": "100",
+        "price": "90",
         "priceCurrency": "EUR",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "price": "100.00",
-          "priceCurrency": "EUR",
-          "unitText": "MONTH"
-        },
-        "availability": "https://schema.org/InStock"
+        "priceSpecification": { "@type": "UnitPriceSpecification", "price": "90.00", "priceCurrency": "EUR", "unitText": "MONTH" }
       }, {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Offre ÉLITE",
-          "description": "Tout d'Ascension + 6 journées business développement + Accès plateforme formation + Priorité 1 sur demandes.",
+          "name": "Individuel",
+          "description": "Tout de Groupe + Accompagnement 1-to-1 IA, 4 micro-mentorats, ligne directe fondateur.",
           "category": "Offre premium"
         },
         "price": "190",
         "priceCurrency": "EUR",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "price": "190.00",
-          "priceCurrency": "EUR",
-          "unitText": "MONTH"
-        },
-        "availability": "https://schema.org/InStock"
+        "priceSpecification": { "@type": "UnitPriceSpecification", "price": "190.00", "priceCurrency": "EUR", "unitText": "MONTH" }
       }]
     }
   };
+
   const croissanceFaqs = [{
     question: "Qui peut rejoindre Mare Nostrum Croissance ?",
     answer: "Mare Nostrum Croissance s'adresse aux entrepreneurs et dirigeants d'entreprises à impact, porteurs de projets innovants, inclusifs et durables. Que vous soyez en phase d'amorçage ou de développement, nos offres s'adaptent à votre stade de maturité."
   }, {
-    question: "Quelle est la différence entre les offres Tremplin, Ascension et ÉLITE ?",
-    answer: "Tremplin est une session unique pour clarifier votre trajectoire. Ascension offre un accompagnement mensuel sur 6 mois avec accès au réseau et outils. ÉLITE propose un suivi premium intensif sur 12 mois avec des sessions individuelles bi-mensuelles et l'accès à tous nos experts."
+    question: "Quelle est la différence entre les offres Communauté, Groupe et Individuel ?",
+    answer: "Communauté est l'offre d'entrée pour sortir de l'isolement avec accès au club, veille et académie. Groupe ajoute l'intégration dans un cercle d'entrepreneurs et des sessions collectives. Individuel offre un accompagnement premium avec sessions 1-to-1 IA, 4 micro-mentorats et une ligne directe avec le fondateur."
   }, {
     question: "Peut-on essayer avant de s'engager ?",
-    answer: "Oui ! Nous proposons une session découverte gratuite de 30 minutes pour comprendre vos besoins et vous présenter nos méthodes. Vous pouvez également commencer par l'offre Tremplin avant de vous engager sur un accompagnement plus long."
+    answer: "Oui ! Pas de frais d'entrée sur toutes nos offres. Communauté inclut 1 micro mentorat offert, Groupe inclut 1 pré-diag offert, et Individuel inclut 1 tutorat personnalisé offert."
   }, {
     question: "Où se déroulent les sessions ?",
-    answer: "Les sessions peuvent se dérouler en présentiel à Toulouse, Paris ou Casablanca, ou en distanciel selon vos préférences. Le Club organise également des événements réguliers dans nos 12 pays d'intervention en Afrique, au Maghreb et au Canada."
+    answer: "Les sessions peuvent se dérouler en présentiel à Toulouse, Paris ou Casablanca, ou en distanciel selon vos préférences. Le Club organise également des événements réguliers dans nos pays d'intervention."
   }, {
     question: "Quels résultats puis-je attendre ?",
-    answer: "Nous avons accompagné 24 entreprises dont 70% à impact (17 organisations). Plus de 80% de satisfaction clients, 210+ mises en relation professionnelles, 32 projets collaboratifs initiés. Notre réseau mobilise 135+ experts avec 2000 années d'expérience cumulées dans 12 pays."
+    answer: "50% des entrepreneurs accompagnés se rémunèrent correctement dans les 2 ans. 3 contacts qualifiés en moyenne dès le premier mois. 93% des membres se disent très satisfaits. 90% déclarent gagner du temps, de la clarté et de la sérénité."
   }];
+
   useEffect(() => {
     if (location.hash === "#offres") {
       const element = document.getElementById("offres");
       if (element) {
-        element.scrollIntoView({
-          behavior: "smooth"
-        });
+        element.scrollIntoView({ behavior: "smooth" });
       }
     }
   }, [location]);
-  return <div className="min-h-screen flex flex-col">
-      <SEOHead title="Club Entrepreneur Toulouse & Afrique - Mare Nostrum Croissance | Accompagnement Startup" description="Rejoignez le Club Entrepreneur Mare Nostrum a Toulouse et en Afrique francophone. Accompagnement croissance startup a impact : Tremplin 30EUR, Ascension 100EUR, Elite 190EUR. 93% acceleration decisions. 135+ experts dans 12 pays." keywords="entrepreneuriat toulouse, entrepreneuriat afrique, club entrepreneur toulouse, accompagnement startup toulouse, croissance entreprise toulouse, startup toulouse, entrepreneur afrique francophone, mastermind entrepreneur, accompagnement entrepreneur afrique, incubateur toulouse, accelerateur toulouse, club entrepreneur francophone, mentorat toulouse, business development afrique" structuredData={croissanceSchema} faqSchema={croissanceFaqs} breadcrumbSchema={[{
-      name: "Accueil",
-      url: "https://marenostrum.tech/"
-    }, {
-      name: "Croissance",
-      url: "https://marenostrum.tech/croissance"
-    }]} />
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      <SEOHead
+        title="Club Entrepreneur Toulouse & Afrique - Mare Nostrum Croissance | Accompagnement Startup"
+        description="Rejoignez le Club Entrepreneur Mare Nostrum. Communauté 30EUR, Groupe 90EUR, Individuel 190EUR. 93% satisfaction. 50% se rémunèrent dans les 2 ans. Toulouse, Paris, Casablanca."
+        keywords="entrepreneuriat toulouse, club entrepreneur toulouse, accompagnement startup, croissance entreprise, entrepreneur afrique francophone, mentorat entrepreneur, club entrepreneur francophone"
+        structuredData={croissanceSchema}
+        faqSchema={croissanceFaqs}
+        breadcrumbSchema={[
+          { name: "Accueil", url: "https://marenostrum.tech/" },
+          { name: "Croissance", url: "https://marenostrum.tech/croissance" }
+        ]}
+      />
+
       {/* Niteo Promotion Banner */}
       <div className="bg-primary text-primary-foreground py-2 px-4">
         <div className="container mx-auto flex items-center justify-center gap-3 md:gap-6 flex-wrap">
-          <span className="text-xs md:text-sm font-semibold uppercase tracking-wider opacity-90">Nouveau programme entrepreneuriat <span className="inline-block mx-1.5 w-1 h-1 rounded-full bg-primary-foreground/40 align-middle"></span> Toulouse</span>
+          <span className="text-xs md:text-sm font-semibold uppercase tracking-wider opacity-90">
+            Nouveau programme entrepreneuriat <span className="inline-block mx-1.5 w-1 h-1 rounded-full bg-primary-foreground/40 align-middle"></span> Toulouse
+          </span>
           <span className="hidden md:inline text-primary-foreground/40">|</span>
-          <span className="text-xs md:text-sm opacity-80">Étudiant(e), jeune diplômé(e) ? Transforme ton idée en projet concret en 50h chrono <span className="inline-block mx-1 w-1 h-1 rounded-full bg-secondary align-middle"></span> 100% gratuit</span>
+          <span className="text-xs md:text-sm opacity-80">
+            Étudiant(e), jeune diplômé(e) ? Transforme ton idée en projet concret en 50h chrono <span className="inline-block mx-1 w-1 h-1 rounded-full bg-secondary align-middle"></span> 100% gratuit
+          </span>
           <a href="https://niteo.marenostrum.tech" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-bold text-xs md:text-sm h-7 md:h-8 px-3 md:px-4 rounded-md bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors">
             Candidater
             <ArrowRight className="h-3.5 w-3.5" />
           </a>
         </div>
       </div>
+
       <Header />
 
-
+      {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-accent via-primary to-primary py-16 md:py-32">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
@@ -205,78 +271,91 @@ const Croissance = () => {
             <h1 className="text-3xl md:text-6xl font-bold text-primary-foreground mb-4 md:mb-6">
               Sécurisez la trajectoire de votre entreprise à impact
             </h1>
-            <p className="text-lg md:text-2xl text-primary-foreground/90 mb-8 md:mb-12">Nous accompagnons les entrepreneurs francophones qui veulent rapidement doubler leur activité et leur impact</p>
+            <p className="text-lg md:text-2xl text-primary-foreground/90 mb-8 md:mb-12">
+              Nous accompagnons les entrepreneurs francophones qui veulent rapidement doubler leur activité et leur impact
+            </p>
             <Button size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto" onClick={() => {
-            document.getElementById('offres')?.scrollIntoView({
-              behavior: 'smooth'
-            });
-          }}>
-              Rejoindre le Club 
+              document.getElementById('offres')?.scrollIntoView({ behavior: 'smooth' });
+            }}>
+              Rejoindre le Club
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Problems Section */}
+      {/* Section 1 : Douleur Client */}
       <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-3 md:mb-4 text-foreground">
-            Tu te reconnais dans ça ?
-          </h2>
-          <p className="text-center text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto text-sm md:text-base">
-            Les défis courants des entrepreneurs à impact
-          </p>
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
+              Tu te reconnais dans ça ?
+            </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
-            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-md transition-shadow">
-              <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                <Zap className="h-6 w-6 text-destructive" />
+            <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-10">
+              <div className="bg-card border border-border rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                  <Clock className="h-6 w-6 text-destructive" />
+                </div>
+                <h3 className="font-semibold mb-3 text-foreground">Tu manques de temps</h3>
+                <p className="text-sm text-muted-foreground">
+                  Ton agenda ne reflète plus tes vrais objectifs ? Tu travailles 60 heures par semaine, mais ton chiffre d'affaires ne bouge pas ? Tu sens que ton énergie ne se transforme pas en résultats concrets ?
+                </p>
               </div>
-              <h3 className="font-semibold mb-2 text-foreground">Manque de temps</h3>
-              <p className="text-sm text-muted-foreground">Tu cours après le temps et as du mal à prioriser</p>
+
+              <div className="bg-card border border-border rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                  <Brain className="h-6 w-6 text-destructive" />
+                </div>
+                <h3 className="font-semibold mb-3 text-foreground">Tu décides seul(e)</h3>
+                <p className="text-sm text-muted-foreground">
+                  Tu prends toutes les décisions stratégiques seul(e) ? Tu doutes, tu tournes en rond, tu n'as personne pour challenger ou clarifier tes choix stratégiques ? Tu es en stress permanent ?
+                </p>
+              </div>
+
+              <div className="bg-card border border-border rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                  <Target className="h-6 w-6 text-destructive" />
+                </div>
+                <h3 className="font-semibold mb-3 text-foreground">Tu ne sais plus par quoi commencer</h3>
+                <p className="text-sm text-muted-foreground">
+                  Ton offre manque de structure, ta prospection stagne ? Tu as du mal à prioriser tes actions ? Tu confonds urgence et importance ?
+                </p>
+              </div>
+
+              <div className="bg-card border border-border rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                  <Flame className="h-6 w-6 text-destructive" />
+                </div>
+                <h3 className="font-semibold mb-3 text-foreground">Tu t'épuises sans résultat</h3>
+                <p className="text-sm text-muted-foreground">
+                  Tu n'as pas le temps de faire de la veille ou du réseau ? Chaque journée se termine avec la sensation de n'avoir rien fait d'utile ?
+                </p>
+              </div>
             </div>
 
-            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-md transition-shadow">
-              <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                <Users className="h-6 w-6 text-destructive" />
-              </div>
-              <h3 className="font-semibold mb-2 text-foreground">Multi-casquettes</h3>
-              <p className="text-sm text-muted-foreground">Tu gères trop de fonctions en même temps</p>
+            <div className="text-center bg-gradient-to-r from-primary/5 to-accent/5 border border-border rounded-xl p-6 md:p-8">
+              <p className="text-lg md:text-xl text-foreground font-semibold">
+                Bonne nouvelle : tu n'es pas seul.
+              </p>
+              <p className="text-muted-foreground mt-2">
+                Le Club Mare Nostrum est là pour t'aider à passer TES caps et à renforcer la performance de ton modèle économique.
+              </p>
             </div>
-
-            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-md transition-shadow">
-              <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                <MessageSquare className="h-6 w-6 text-destructive" />
-              </div>
-              <h3 className="font-semibold mb-2 text-foreground">Solitude</h3>
-              <p className="text-sm text-muted-foreground">Tu es seul dans tes décisions stratégiques</p>
-            </div>
-
-            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-md transition-shadow">
-              <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                <TrendingUp className="h-6 w-6 text-destructive" />
-              </div>
-              <h3 className="font-semibold mb-2 text-foreground">Structuration</h3>
-              <p className="text-sm text-muted-foreground">Tu as besoin de structurer ton offre et ta prospection</p>
-            </div>
-          </div>
-
-          <div className="text-center mt-12">
-            <p className="text-lg text-foreground font-medium">
-              Mare Nostrum Croissance est là pour t'aider à passer ces caps.
-            </p>
           </div>
         </div>
       </section>
 
-      {/* Offers Section */}
+      {/* Section 2 : Offres */}
       <section id="offres" className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
             Nos 3 offres pour entrepreneurs
           </h2>
-          <p className="text-center text-muted-foreground mb-8 max-w-3xl mx-auto">
+          <p className="text-center text-muted-foreground mb-4 max-w-3xl mx-auto">
             Choisis le niveau d'accompagnement qui te correspond
+          </p>
+          <p className="text-center text-xs text-muted-foreground/70 mb-8">
+            Survole chaque avantage pour en savoir plus
           </p>
 
           {/* Location Selector */}
@@ -290,40 +369,39 @@ const Croissance = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Tremplin */}
+            {/* Communauté */}
             <div className="bg-card border-2 border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col">
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold mb-2 text-foreground">Tremplin</h3>
+                <h3 className="text-2xl font-bold mb-2 text-foreground">Communauté</h3>
                 <div className="text-4xl font-bold text-primary mb-2">
-                  {selectedLocation === "toulouse" && "30€"}
-                  {selectedLocation === "afrique" && "24€"}
-                  <span className="text-lg font-normal text-muted-foreground">/mois</span>
+                  {selectedLocation === "toulouse" ? "30€" : "24€"}
+                  <span className="text-lg font-normal text-muted-foreground"> /mois</span>
                 </div>
+                <p className="text-xs text-accent font-medium">Pas de frais d'entrée — 1 micro mentorat offert</p>
               </div>
 
+              <div className="bg-muted/50 rounded-lg p-3 mb-6">
+                <p className="text-xs text-muted-foreground text-center">
+                  Vous lancez votre activité et sortez de l'isolement (0-12 mois, pré-revenu)
+                </p>
+              </div>
+
+              <p className="text-sm font-medium text-foreground mb-4">L'essentiel pour ne plus entreprendre seul</p>
+
               <ul className="space-y-4 mb-8 flex-grow">
-                <li className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Accès au club international d'entrepreneurs francophones</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Accès aux opportunités : détection d'opportunités de business et de financement</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Café galère: 20 minutes pour résoudre un problème avec un membre de l'équipe</span>
-                </li>
+                {communauteFeatures.map((feature, idx) => (
+                  <FeatureWithTooltip key={idx} feature={feature} />
+                ))}
               </ul>
 
               <Button asChild className="w-full">
                 <a href={selectedLocation === "toulouse" ? "https://buy.stripe.com/00w3cx3W2bDr5Me6MO67S08" : "https://buy.stripe.com/dRmaEZ78e4aZ3E61su67S04"} target="_blank" rel="noopener noreferrer">
-                  Rejoindre Tremplin
+                  Rejoindre Communauté
                 </a>
               </Button>
             </div>
 
-            {/* Ascension - Highlighted */}
+            {/* Groupe - Highlighted */}
             <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground border-2 border-accent rounded-xl p-8 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 relative flex flex-col">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <span className="bg-accent text-accent-foreground px-4 py-1 rounded-full text-sm font-semibold">
@@ -332,73 +410,63 @@ const Croissance = () => {
               </div>
 
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold mb-2">Ascension</h3>
+                <h3 className="text-2xl font-bold mb-2">Groupe</h3>
                 <div className="text-4xl font-bold mb-2">
-                  {selectedLocation === "toulouse" && "100€"}
-                  {selectedLocation === "afrique" && "84€"}
-                  <span className="text-lg font-normal opacity-80">/mois</span>
+                  {selectedLocation === "toulouse" ? "90€" : "74€"}
+                  <span className="text-lg font-normal opacity-80"> /mois</span>
                 </div>
+                <p className="text-xs font-medium opacity-90">Pas de frais d'entrée — 1 pré-diag offert</p>
               </div>
 
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 mb-6">
+                <p className="text-xs text-center opacity-90">
+                  Vous avez vos premiers clients et voulez accélérer (1K-10K€ MRR)
+                </p>
+              </div>
+
+              <p className="text-sm font-medium mb-4 opacity-95">L'indispensable pour accélérer votre traction</p>
+
               <ul className="space-y-4 mb-8 flex-grow">
-                <li className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
-                  <span className="text-sm opacity-95"><strong>Tout de Tremplin</strong></span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
-                  <span className="text-sm opacity-95">Visibilité de votre projet via nos réseaux, partenaires et événements</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
-                  <span className="text-sm opacity-95">Génération supervisée par IA d'un livrable</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
-                  <span className="text-sm opacity-95">Accès aux masterclass mensuelles</span>
-                </li>
+                {groupeFeatures.map((feature, idx) => (
+                  <FeatureWithTooltipLight key={idx} feature={feature} />
+                ))}
               </ul>
 
               <Button asChild className="w-full bg-white text-primary hover:bg-white/90">
                 <a href={selectedLocation === "toulouse" ? "https://buy.stripe.com/28E7sNakqcHvgqSdbc67S09" : "https://buy.stripe.com/28EbJ32RY4aZa2u6MO67S06"} target="_blank" rel="noopener noreferrer">
-                  Rejoindre Ascension
+                  Rejoindre Groupe
                 </a>
               </Button>
             </div>
 
-            {/* Élite */}
+            {/* Individuel */}
             <div className="bg-card border-2 border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col">
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold mb-2 text-foreground">Élite</h3>
+                <h3 className="text-2xl font-bold mb-2 text-foreground">Individuel</h3>
                 <div className="text-4xl font-bold text-primary mb-2">
-                  {selectedLocation === "toulouse" && "190€"}
-                  {selectedLocation === "afrique" && "184€"}
-                  <span className="text-lg font-normal text-muted-foreground">/mois</span>
+                  {selectedLocation === "toulouse" ? "190€" : "184€"}
+                  <span className="text-lg font-normal text-muted-foreground"> /mois</span>
                 </div>
+                <p className="text-xs text-accent font-medium">Pas de frais d'entrée — 1 tutorat personnalisé offert</p>
               </div>
 
+              <div className="bg-muted/50 rounded-lg p-3 mb-6">
+                <p className="text-xs text-muted-foreground text-center">
+                  Vous structurez votre croissance, chaque décision compte (10K€+ MRR)
+                </p>
+              </div>
+
+              <p className="text-sm font-medium text-foreground mb-4">Le bras droit pour réussir vos choix structurants</p>
+
               <ul className="space-y-4 mb-8 flex-grow">
-                <li className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground"><strong>Tout d'Ascension</strong></span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">6 journées business développement et 5 webinaires/masterclasses par an</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Accès à la plateforme de formation en ligne</span>
-                </li>
-                <li className="flex items-start space-x-3">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Priorité 1 sur toutes les demandes</span>
-                </li>
+                {individuelFeatures.map((feature, idx) => (
+                  <FeatureWithTooltip key={idx} feature={feature} />
+                ))}
               </ul>
 
               <Button asChild variant="default" className="w-full">
                 <a href={selectedLocation === "toulouse" ? "https://buy.stripe.com/bJe5kF64a0YNgqS4EG67S0a" : "https://buy.stripe.com/6oUaEZ8cidLzeiK9Z067S07"} target="_blank" rel="noopener noreferrer">
-                  Rejoindre Élite
+                  Rejoindre Individuel
                 </a>
               </Button>
             </div>
@@ -416,22 +484,70 @@ const Croissance = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Section 3 : Résultats Concrets */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
-            Témoignages d'entrepreneurs
+            Des résultats concrets
+          </h2>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <div className="text-center bg-card border border-border rounded-xl p-6 hover:shadow-md transition-shadow">
+              <div className="text-4xl md:text-5xl font-bold text-primary mb-3">50%</div>
+              <p className="text-sm text-muted-foreground">
+                des entrepreneurs accompagnés se rémunèrent correctement dans les 2 ans après la création
+              </p>
+            </div>
+            <div className="text-center bg-card border border-border rounded-xl p-6 hover:shadow-md transition-shadow">
+              <div className="text-4xl md:text-5xl font-bold text-accent mb-3">3</div>
+              <p className="text-sm text-muted-foreground">
+                contacts qualifiés en moyenne dès le premier mois d'adhésion
+              </p>
+            </div>
+            <div className="text-center bg-card border border-border rounded-xl p-6 hover:shadow-md transition-shadow">
+              <div className="text-4xl md:text-5xl font-bold text-primary mb-3">93%</div>
+              <p className="text-sm text-muted-foreground">
+                des membres se disent "très satisfaits ou satisfaits" de leur expérience
+              </p>
+            </div>
+            <div className="text-center bg-card border border-border rounded-xl p-6 hover:shadow-md transition-shadow">
+              <div className="text-4xl md:text-5xl font-bold text-accent mb-3">90%</div>
+              <p className="text-sm text-muted-foreground">
+                déclarent gagner du temps, de la clarté et de la sérénité après chaque session
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 4 : Témoignages */}
+      <section className="py-16 md:py-24 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+            Témoignages
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <TestimonialCard text="Quelque chose qui était présent à chaque instant (du Programme) c'est l'échange d'expérience et d'opinion. Ce qui permettait un retour permanent, constructif et pointilleux tout ça dans la bienveillance et la bonne humeur" author="Annabel" role="Étudiante et néo-entrepreneure accompagnée" organization="2024" />
-            <TestimonialCard text="Un acteur efficace, engagé et authentique, qui accompagne réellement les établissements dans leur transformation." author="Géraldine" role="Directrice d'établissement partenaire" />
-            <TestimonialCard text="Être ici aux côtés de l'ensemble des porteurs de projet, pour moi, c'était important. Parce que ce sont des jeunes audacieux, persévérants, et parce qu'on a besoin d'un entrepreneuriat qui est en capacité de pouvoir changer le monde. Ils mettent leurs convictions au service de solutions. Ce sont des solutions concrètes et performantes. Faites leur confiance, aidez-les, accompagnez-les !" author="Nadia" role="Vice-présidente de la Région Occitanie" />
+            <TestimonialCard
+              text="J'ai trouvé mon premier client grâce à une mise en relation au Club. 30€ pour un contrat à 2000€, le calcul est vite fait."
+              author="Lucas"
+              role="Membre du Club Mare Nostrum"
+            />
+            <TestimonialCard
+              text="Je ne perds plus 3 heures sur LinkedIn pour faire ma veille. Tout arrive trié dans ma messagerie du Club."
+              author="Aristide"
+              role="Membre du Club Mare Nostrum"
+            />
+            <TestimonialCard
+              text="La session d'accompagnement m'a obligé à poser un plan d'action clair. En 2 mois, j'ai réussi à lancer ma campagne de tests et à trouver mes premiers beta-testeurs."
+              author="Lucas"
+              role="Membre du Club Mare Nostrum"
+            />
           </div>
         </div>
       </section>
 
       {/* Photos Ateliers Section */}
-      <section className="py-16 md:py-24 bg-secondary/30">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
             Exemples de nos actions
@@ -439,7 +555,7 @@ const Croissance = () => {
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
             Découvrez nos sessions de travail collaboratives avec les entrepreneurs
           </p>
-          
+
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
               <img src={atelierRose} alt="Atelier Mare Nostrum avec entrepreneurs et experts" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
@@ -452,10 +568,10 @@ const Croissance = () => {
             </div>
 
             <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
-              <img src={neoEntrepreneurElite} alt="Journée avec des néo-entrepreneurs dans l'offre élite Mare Nostrum" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
+              <img src={neoEntrepreneurElite} alt="Journée avec des néo-entrepreneurs dans l'offre Individuel Mare Nostrum" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
-                  <h3 className="text-xl font-bold mb-2">Offre Élite</h3>
+                  <h3 className="text-xl font-bold mb-2">Offre Individuel</h3>
                   <p className="text-sm">Accompagnement premium avec nos néo-entrepreneurs</p>
                 </div>
               </div>
@@ -485,7 +601,7 @@ const Croissance = () => {
             <Button asChild size="lg" variant="outline" className="text-lg bg-white/10 border-white text-white hover:bg-white hover:text-primary">
               <Link to="/contact">
                 <MessageSquare className="mr-2 h-5 w-5" />
-                Essayer 30 jours gratuits                        
+                Essayer 30 jours gratuits
               </Link>
             </Button>
           </div>
@@ -493,6 +609,8 @@ const Croissance = () => {
       </section>
 
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default Croissance;
