@@ -32,7 +32,7 @@ const FeatureWithTooltip = ({ feature }: { feature: OfferFeature }) => (
           </span>
         </li>
       </TooltipTrigger>
-      <TooltipContent side="right" className="max-w-xs text-sm">
+      <TooltipContent side="top" className="max-w-xs text-sm z-[100]">
         {feature.tooltip}
       </TooltipContent>
     </Tooltip>
@@ -51,7 +51,7 @@ const FeatureWithTooltipLight = ({ feature }: { feature: OfferFeature }) => (
           </span>
         </li>
       </TooltipTrigger>
-      <TooltipContent side="right" className="max-w-xs text-sm">
+      <TooltipContent side="top" className="max-w-xs text-sm z-[100]">
         {feature.tooltip}
       </TooltipContent>
     </Tooltip>
@@ -207,51 +207,51 @@ const Croissance = () => {
   const croissanceFaqs = [
     {
       question: "Qui peut rejoindre Mare Nostrum Croissance ?",
-      answer: "Tout entrepreneur francophone qui veut accélérer son activité et son impact. Peu importe ton stade : que tu sois en phase d'idée, en croissance ou déjà structuré, nous t'accompagnons pour transformer ton énergie en progrès concret."
+      answer: "Tout entrepreneur francophone qui veut accélérer son activité et son impact. Peu importe ton stade : que tu sois en phase d'idéation, en croissance ou déjà structuré, nous t'accompagnons pour transformer ton énergie en progrès concret."
     },
     {
       question: "Peut-on essayer avant de s'engager ?",
-      answer: "Oui. L'offre Tremplin te permet de rejoindre le collectif sans engagement long terme. Dès ton inscription, tu reçois ton premier micro-mentorat de 20 min offert — pour avancer tout de suite, pas \"plus tard\"."
+      answer: "Oui. L'offre Communauté te permet de rejoindre le collectif sans engagement long terme. Dès ton inscription, tu reçois ton premier micro-mentorat de 20 minutes offert — pour avancer tout de suite, pas « plus tard »."
     },
     {
-      question: "\"Je n'ai pas le temps de suivre un accompagnement intensif.\"",
-      answer: "Justement, le Club Mare Nostrum est fait pour ça. Tu ne rajoutes pas du travail : tu remplaces du temps perdu par du temps utile. Les formats sont légers (rencontres mensuelles + micro-mentorat à la demande + veille mutualisée livrée chaque semaine). En moyenne, nos membres gagnent entre 8 et 12 heures par semaine dès le 2e mois."
+      question: "Je n'ai pas le temps de suivre un accompagnement intensif.",
+      answer: "Justement, le Club Mare Nostrum est fait pour ça. Tu ne rajoutes pas du travail : tu remplaces du temps perdu par du temps utile. Les formats sont légers (rencontres mensuelles, micro-mentorat à la demande, veille mutualisée livrée chaque semaine). En moyenne, nos membres gagnent entre 8 et 12 heures par semaine dès le deuxième mois."
     },
     {
-      question: "\"Je n'ai pas les moyens pour une dépense fixe chaque mois.\"",
-      answer: "30 €, 90 € ou 190 € par mois — c'est le coût de 1 à 3 heures perdues à hésiter seul. Nos membres disent souvent : « Le jour où j'ai eu mon premier contrat grâce au Club, l'abonnement s'est remboursé dix fois. » Le ROI est concret : nouveaux clients, mise en relation, temps gagné, décisions plus rentables. C'est une dépense qui rapporte."
+      question: "Je n'ai pas les moyens pour une dépense fixe chaque mois.",
+      answer: "30 €, 90 € ou 190 € par mois — c'est le coût de 1 à 3 heures perdues à hésiter seul. Nos membres disent souvent : « Le jour où j'ai eu mon premier contrat grâce au Club, l'abonnement s'est remboursé dix fois. » Le retour sur investissement est concret : nouveaux clients, mises en relation, temps gagné, décisions plus rentables. C'est une dépense qui rapporte."
     },
     {
-      question: "\"J'ai peur que ce soit trop général, pas adapté à mon projet.\"",
-      answer: "Chaque membre bénéficie d'un accompagnement selon son niveau et ses besoins : Tremplin pour rompre l'isolement et poser les bases solides. Ascension pour structurer la croissance et affiner l'offre. Élite pour un accompagnement stratégique individuel sur l'IA, les financements ou le développement. Et nos experts connaissent le quotidien des entrepreneurs — on parle concret, pas théorie."
+      question: "J'ai peur que ce soit trop général, pas adapté à mon projet.",
+      answer: "Chaque membre bénéficie d'un accompagnement selon son niveau et ses besoins. Communauté pour rompre l'isolement et poser les bases solides. Groupe pour structurer la croissance et affiner l'offre. Individuel pour un accompagnement stratégique personnalisé sur l'IA, les financements ou le développement. Nos experts connaissent le quotidien des entrepreneurs — on parle concret, pas théorie."
     },
     {
-      question: "\"Je suis déjà accompagné ailleurs.\"",
-      answer: "Parfait. Le Club vient compléter ce que tu fais déjà. Il t'apporte le regard collectif et la mise en relation que peu de programmes offrent. Nos membres l'utilisent pour accélérer entre deux expertises, pour valider des décisions ou sortir d'un blocage opérationnel. Mare Nostrum devient ton filet de sécurité entre les grands rendez-vous stratégiques."
+      question: "Je suis déjà accompagné ailleurs.",
+      answer: "Parfait. Le Club vient compléter ce que tu fais déjà. Il t'apporte le regard collectif et la mise en relation que peu de programmes offrent. Nos membres l'utilisent pour accélérer entre deux expertises, valider des décisions ou sortir d'un blocage opérationnel. Mare Nostrum devient ton filet de sécurité entre les grands rendez-vous stratégiques."
     },
     {
-      question: "\"Je ne vois pas en quoi c'est différent d'un simple réseau.\"",
-      answer: "Un réseau te connecte, le Club t'accompagne. Chez Mare Nostrum, chaque mise en relation est orientée résultat : création d'occasion d'affaires, entraide sur des freins, accès aux bons outils. C'est un espace où tu trouves des solutions en 1 heure, là où tu passerais 3 jours seul à chercher."
+      question: "Je ne vois pas en quoi c'est différent d'un simple réseau.",
+      answer: "Un réseau te connecte, le Club t'accompagne. Chez Mare Nostrum, chaque mise en relation est orientée résultat : création d'occasions d'affaires, entraide sur des freins concrets, accès aux bons outils. C'est un espace où tu trouves des solutions en une heure, là où tu passerais trois jours seul à chercher."
     },
     {
-      question: "\"Et si je n'étais pas au bon niveau pour rejoindre le Club ?\"",
-      answer: "L'offre est faite pour s'adapter à ton stade actuel : Phase idéation / MVP avec Tremplin. Phase croissance (50K–200K € de CA) avec Ascension. Phase structuration / automatisation avec Élite. L'objectif est simple : te faire passer au niveau supérieur sans précipitation, mais avec méthode et soutien."
+      question: "Et si je n'étais pas au bon niveau pour rejoindre le Club ?",
+      answer: "L'offre est faite pour s'adapter à ton stade actuel. Phase idéation ou MVP : Communauté. Phase croissance (50K à 200K euros de chiffre d'affaires) : Groupe. Phase structuration et automatisation : Individuel. L'objectif est simple : te faire passer au niveau supérieur sans précipitation, mais avec méthode et soutien."
     },
     {
-      question: "\"Comment savoir si ça marche vraiment ?\"",
-      answer: "Plus de 80 % des membres déclarent \"gagner du temps utile\" dès les 3 premiers mois. 50 % se rémunèrent dans les deux ans. 90 % affirment avoir \"une vision claire\" de leurs priorités au bout de 90 jours. Et surtout : chaque avancée est partagée au sein du collectif — tu progresses avec et grâce aux autres."
+      question: "Comment savoir si ça marche vraiment ?",
+      answer: "Plus de 80 % des membres déclarent gagner du temps utile dès les trois premiers mois. 50 % se rémunèrent correctement dans les deux ans. 90 % affirment avoir une vision claire de leurs priorités au bout de 90 jours. Et surtout, chaque avancée est partagée au sein du collectif — tu progresses avec et grâce aux autres."
     },
     {
-      question: "\"30€ pour une communauté en ligne, j'en ai déjà des gratuites\"",
-      answer: "Les communautés gratuites n'ont pas de filtre. Ici chaque membre est sélectionné, chaque rencontre est animée, et vous avez 30h de formation incluses. Testez 30 jours, remboursé si ça ne vous convient pas."
+      question: "30 euros pour une communauté en ligne, j'en ai déjà des gratuites.",
+      answer: "Les communautés gratuites n'ont pas de filtre. Ici, chaque membre est sélectionné, chaque rencontre est animée, et vous avez plus de 30 heures de formation incluses. Testez 30 jours : remboursé si cela ne vous convient pas."
     },
     {
-      question: "\"90€/mois c'est cher, je n'ai pas de budget\"",
-      answer: "Un seul contrat signé grâce au Cercle rembourse 2 ans d'abonnement. Et le pré-diag offert à l'entrée vaut à lui seul 300€ sur le marché. Essayez un trimestre à 80€/mois."
+      question: "90 euros par mois, c'est cher. Je n'ai pas de budget.",
+      answer: "Un seul contrat signé grâce au Cercle rembourse deux ans d'abonnement. Le pré-diagnostic offert à l'entrée vaut à lui seul 300 euros sur le marché. Essayez un trimestre à 80 euros par mois."
     },
     {
-      question: "\"190€/mois, je peux trouver un freelance pour ce prix\"",
-      answer: "Un freelance répond à une mission. Nous, on répond en 2h à n'importe quel blocage, on vous accompagne sur l'IA, et on vous connecte à un réseau de décideurs. Aucun freelance ne fait ça pour 190€/mois."
+      question: "190 euros par mois, je peux trouver un freelance pour ce prix.",
+      answer: "Un freelance répond à une mission ponctuelle. Nous, nous répondons en moins de deux heures à n'importe quel blocage, nous vous accompagnons sur l'IA et nous vous connectons à un réseau de décideurs. Aucun freelance ne fait tout cela pour 190 euros par mois."
     }
   ];
 
@@ -335,7 +335,7 @@ const Croissance = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
-              Tu te reconnais dans ça ?
+              Ce qui freine 90% des entrepreneurs (et comment en sortir)
             </h2>
 
             <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-10">
