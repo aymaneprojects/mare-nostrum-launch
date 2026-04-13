@@ -128,81 +128,94 @@ const Croissance = () => {
     }
   ];
 
-  const croissanceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Mare Nostrum Croissance - Club Entrepreneur Francophone International",
-    "description": "Club international d'accompagnement entrepreneurs à impact. 24 entreprises accompagnées, 93% satisfaction, 135+ experts, 2000 ans expérience cumulée, 12 pays. Toulouse, Paris, Casablanca.",
-    "provider": {
-      "@type": "Organization",
-      "name": "Mare Nostrum",
-      "sameAs": "https://marenostrum.tech",
-      "address": [{
-        "@type": "PostalAddress",
-        "addressLocality": "Toulouse",
-        "addressRegion": "Occitanie",
-        "addressCountry": "FR"
-      }, {
-        "@type": "PostalAddress",
-        "addressLocality": "Paris",
-        "addressCountry": "FR"
-      }, {
-        "@type": "PostalAddress",
-        "addressLocality": "Casablanca",
-        "addressCountry": "MA"
-      }]
+  const croissanceSchema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Club Entrepreneur Mare Nostrum - Accompagnement Startup Toulouse & Afrique",
+      "url": "https://marenostrum.tech/croissance",
+      "description": "Club d'accompagnement pour entrepreneurs francophones à impact. Mentorat, réseau, IA, formation. 3 offres dès 30€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans.",
+      "provider": {
+        "@type": "Organization",
+        "name": "Mare Nostrum",
+        "url": "https://marenostrum.tech",
+        "logo": "https://marenostrum.tech/favicon.png",
+        "sameAs": [
+          "https://marenostrum.tech",
+          "https://www.linkedin.com/company/mare-nostrum-entrepreneuriat"
+        ],
+        "address": [
+          { "@type": "PostalAddress", "addressLocality": "Toulouse", "addressRegion": "Occitanie", "postalCode": "31000", "addressCountry": "FR" },
+          { "@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR" },
+          { "@type": "PostalAddress", "addressLocality": "Casablanca", "addressCountry": "MA" }
+        ]
+      },
+      "serviceType": "Accompagnement Entrepreneurial",
+      "category": "Conseil en Entrepreneuriat à Impact",
+      "areaServed": [
+        { "@type": "Country", "name": "France" },
+        { "@type": "Country", "name": "Maroc" },
+        { "@type": "Country", "name": "Tunisie" },
+        { "@type": "Country", "name": "Sénégal" },
+        { "@type": "Country", "name": "Côte d'Ivoire" },
+        { "@type": "City", "name": "Toulouse" },
+        { "@type": "City", "name": "Paris" },
+        { "@type": "City", "name": "Casablanca" }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "bestRating": "5",
+        "ratingCount": "24",
+        "reviewCount": "24"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Offres Club Entrepreneur Mare Nostrum",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Communauté",
+            "description": "Accès au club international d'entrepreneurs francophones, veille mutualisée, rencontres mensuelles en ligne, académie en ligne avec plus de 30h de formation.",
+            "price": "30",
+            "priceCurrency": "EUR",
+            "priceSpecification": { "@type": "UnitPriceSpecification", "price": "30.00", "priceCurrency": "EUR", "unitText": "MONTH" },
+            "itemOffered": { "@type": "Service", "name": "Communauté", "category": "Offre d'entrée entrepreneur" }
+          },
+          {
+            "@type": "Offer",
+            "name": "Groupe",
+            "description": "Tout de Communauté + intégration dans un Cercle d'entrepreneurs, sessions collectives de business développement, mises en relation partenaires, micro-mentorat mensuel.",
+            "price": "90",
+            "priceCurrency": "EUR",
+            "priceSpecification": { "@type": "UnitPriceSpecification", "price": "90.00", "priceCurrency": "EUR", "unitText": "MONTH" },
+            "itemOffered": { "@type": "Service", "name": "Groupe", "category": "Offre recommandée entrepreneur" }
+          },
+          {
+            "@type": "Offer",
+            "name": "Individuel",
+            "description": "Tout de Groupe + accompagnement individuel IA, 4 micro-mentorats par mois, ligne directe avec le fondateur Mare Nostrum pour réponse en moins de 2h.",
+            "price": "190",
+            "priceCurrency": "EUR",
+            "priceSpecification": { "@type": "UnitPriceSpecification", "price": "190.00", "priceCurrency": "EUR", "unitText": "MONTH" },
+            "itemOffered": { "@type": "Service", "name": "Individuel", "category": "Offre premium entrepreneur" }
+          }
+        ]
+      }
     },
-    "serviceType": "Accompagnement Entrepreneurial",
-    "category": "Conseil en Entrepreneuriat à Impact",
-    "areaServed": [
-      { "@type": "Country", "name": "France" },
-      { "@type": "Country", "name": "Maroc" },
-      { "@type": "Country", "name": "Tunisie" },
-      { "@type": "Country", "name": "Sénégal" },
-      { "@type": "Country", "name": "Côte d'Ivoire" },
-      { "@type": "City", "name": "Toulouse" },
-      { "@type": "City", "name": "Paris" },
-      { "@type": "City", "name": "Casablanca" }
-    ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Offres Mare Nostrum Croissance",
-      "itemListElement": [{
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Communauté",
-          "description": "Accès au club international, veille mutualisée, rencontres mensuelles, académie en ligne.",
-          "category": "Offre d'entrée"
-        },
-        "price": "30",
-        "priceCurrency": "EUR",
-        "priceSpecification": { "@type": "UnitPriceSpecification", "price": "30.00", "priceCurrency": "EUR", "unitText": "MONTH" }
-      }, {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Groupe",
-          "description": "Tout de Communauté + Cercle d'entrepreneurs, sessions collectives, mises en relation partenaires.",
-          "category": "Offre recommandée"
-        },
-        "price": "90",
-        "priceCurrency": "EUR",
-        "priceSpecification": { "@type": "UnitPriceSpecification", "price": "90.00", "priceCurrency": "EUR", "unitText": "MONTH" }
-      }, {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Individuel",
-          "description": "Tout de Groupe + Accompagnement 1-to-1 IA, 4 micro-mentorats, ligne directe fondateur.",
-          "category": "Offre premium"
-        },
-        "price": "190",
-        "priceCurrency": "EUR",
-        "priceSpecification": { "@type": "UnitPriceSpecification", "price": "190.00", "priceCurrency": "EUR", "unitText": "MONTH" }
-      }]
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Club Entrepreneur Toulouse & Afrique - Mare Nostrum",
+      "url": "https://marenostrum.tech/croissance",
+      "description": "Club d'accompagnement entrepreneur à Toulouse et en Afrique francophone. Mentorat, réseau, IA dès 30€/mois.",
+      "isPartOf": { "@type": "WebSite", "name": "Mare Nostrum", "url": "https://marenostrum.tech" },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", ".hero-description"]
+      }
     }
-  };
+  ];
 
   const croissanceFaqs = [
     {
@@ -278,14 +291,14 @@ const Croissance = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOHead
-        title="Club Entrepreneur Toulouse & Afrique - Mare Nostrum Croissance | Accompagnement Startup"
-        description="Rejoignez le Club Entrepreneur Mare Nostrum. Communauté 30EUR, Groupe 90EUR, Individuel 190EUR. 93% satisfaction. 50% se rémunèrent dans les 2 ans. Toulouse, Paris, Casablanca."
-        keywords="entrepreneuriat toulouse, club entrepreneur toulouse, accompagnement startup, croissance entreprise, entrepreneur afrique francophone, mentorat entrepreneur, club entrepreneur francophone"
+        title="Club Entrepreneur Toulouse & Afrique | Accompagnement Startup dès 30€/mois - Mare Nostrum"
+        description="Rejoignez le Club Entrepreneur Mare Nostrum à Toulouse. 3 offres : Communauté 30€, Groupe 90€, Individuel 190€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans. Mentorat, réseau, IA. Toulouse, Paris, Casablanca, Afrique francophone."
+        keywords="club entrepreneur toulouse, accompagnement entrepreneur toulouse, mentorat startup toulouse, accompagnement entrepreneur afrique, club entrepreneur francophone, incubateur toulouse, croissance entreprise toulouse, réseau entrepreneur toulouse, coaching entrepreneur, accompagnement startup francophonie, entrepreneuriat toulouse, entrepreneuriat afrique"
         structuredData={croissanceSchema}
         faqSchema={croissanceFaqs}
         breadcrumbSchema={[
           { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "Croissance", url: "https://marenostrum.tech/croissance" }
+          { name: "Offre Club", url: "https://marenostrum.tech/croissance" }
         ]}
       />
 
@@ -309,29 +322,29 @@ const Croissance = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-accent via-primary to-primary py-16 md:py-32">
+      <section className="relative overflow-hidden bg-gradient-to-br from-accent via-primary to-primary py-16 md:py-32" aria-label="Présentation du Club Entrepreneur Mare Nostrum">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-block bg-white/10 backdrop-blur-sm rounded-full px-4 md:px-6 py-2 mb-4 md:mb-6">
-              <span className="text-primary-foreground font-medium text-sm md:text-base">Mare Nostrum Croissance</span>
+              <span className="text-primary-foreground font-medium text-sm md:text-base">Club Entrepreneur Mare Nostrum — Toulouse, Paris, Casablanca</span>
             </div>
             <h1 className="text-3xl md:text-6xl font-bold text-primary-foreground mb-4 md:mb-6">
-              Sécurisez la trajectoire de votre entreprise à impact
+              Accompagnement entrepreneur à Toulouse et en Afrique francophone
             </h1>
-            <p className="text-lg md:text-2xl text-primary-foreground/90 mb-8 md:mb-12">
-              Nous accompagnons les entrepreneurs francophones qui veulent rapidement doubler leur activité et leur impact
+            <p className="hero-description text-lg md:text-2xl text-primary-foreground/90 mb-8 md:mb-12">
+              Mentorat, réseau international et intelligence artificielle pour doubler votre activité et votre impact — dès 30€ par mois
             </p>
             <Button size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto" onClick={() => {
               document.getElementById('offres')?.scrollIntoView({ behavior: 'smooth' });
             }}>
-              Rejoindre le Club
+              Rejoindre le Club Entrepreneur
             </Button>
           </div>
         </div>
       </section>
 
       {/* Section 1 : Douleur Client */}
-      <section className="py-12 md:py-24 bg-background">
+      <section className="py-12 md:py-24 bg-background" aria-label="Problèmes courants des entrepreneurs">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
@@ -393,10 +406,10 @@ const Croissance = () => {
       </section>
 
       {/* Section 2 : Offres */}
-      <section id="offres" className="py-16 md:py-24 bg-secondary/30">
+      <section id="offres" className="py-16 md:py-24 bg-secondary/30" aria-label="Tarifs et offres du Club Entrepreneur">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
-            Nos 3 offres pour entrepreneurs
+            Nos offres d'accompagnement entrepreneur — Toulouse et Afrique
           </h2>
           <p className="text-center text-muted-foreground mb-4 max-w-3xl mx-auto">
             Choisis le niveau d'accompagnement qui te correspond
@@ -556,10 +569,10 @@ const Croissance = () => {
       </Dialog>
 
       {/* Section 3 : Résultats Concrets */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background" aria-label="Résultats et statistiques d'accompagnement entrepreneur">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
-            Des résultats concrets
+            Résultats concrets de l'accompagnement entrepreneur Mare Nostrum
           </h2>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
@@ -592,10 +605,10 @@ const Croissance = () => {
       </section>
 
       {/* Section 4 : Témoignages */}
-      <section className="py-16 md:py-24 bg-secondary/30">
+      <section className="py-16 md:py-24 bg-secondary/30" aria-label="Témoignages de membres du Club Entrepreneur">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
-            Témoignages
+            Ce que disent nos membres entrepreneurs
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <TestimonialCard
@@ -618,18 +631,18 @@ const Croissance = () => {
       </section>
 
       {/* Photos Ateliers Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background" aria-label="Photos des ateliers et sessions d'accompagnement">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
-            Exemples de nos actions
+            Nos ateliers d'accompagnement entrepreneur en action
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Découvrez nos sessions de travail collaboratives avec les entrepreneurs
+            Sessions de travail collaboratives avec les entrepreneurs à Toulouse et en Afrique francophone
           </p>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
-              <img src={atelierRose} alt="Atelier Mare Nostrum avec entrepreneurs et experts" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
+              <img src={atelierRose} alt="Atelier d'accompagnement entrepreneur Mare Nostrum à Toulouse avec experts et participants" loading="lazy" width="600" height="400" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-accent/90 via-accent/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
                   <h3 className="text-xl font-bold mb-2">Ateliers thématiques</h3>
@@ -639,7 +652,7 @@ const Croissance = () => {
             </div>
 
             <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
-              <img src={neoEntrepreneurElite} alt="Journée avec des néo-entrepreneurs dans l'offre Individuel Mare Nostrum" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
+              <img src={neoEntrepreneurElite} alt="Journée de business développement avec néo-entrepreneurs dans l'offre Individuel Mare Nostrum Toulouse" loading="lazy" width="600" height="400" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
                   <h3 className="text-xl font-bold mb-2">Offre Individuel</h3>
@@ -657,10 +670,10 @@ const Croissance = () => {
       <section className="py-16 md:py-20 bg-gradient-to-br from-accent via-primary to-primary">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary-foreground">
-            Tu veux sortir la tête de l'eau et passer à l'action ?
+            Prêt à accélérer votre entreprise avec un accompagnement sur mesure ?
           </h2>
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-            Clarifie ta vision, structure ta stratégie et accélère ta croissance avec Mare Nostrum
+            Clarifie ta vision, structure ta stratégie et accélère ta croissance avec le Club Entrepreneur Mare Nostrum à Toulouse
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" variant="secondary" className="text-lg">
