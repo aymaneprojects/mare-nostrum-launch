@@ -57,11 +57,11 @@ Programmes d'education entrepreneuriale pour ecoles et universites :
 
 URL: https://marenostrum.tech/education
 
-### 2. Mare Nostrum Croissance (B2C - Entrepreneurs)
-Club international d'entrepreneurs francophones :
-- Offre Tremplin (30 EUR/mois) : visio galere, groupe international, detection opportunites
-- Offre Ascension (100 EUR/mois) : + visibilite, generation IA livrables, masterclass
-- Offre Elite (190 EUR/mois) : + journees business dev, plateforme formation
+### 2. Club Entrepreneur Mare Nostrum (B2C - Entrepreneurs)
+Club international d'entrepreneurs francophones, accompagnement startup a Toulouse et en Afrique :
+- Offre Communaute (30 EUR/mois) : club international, veille mutualisee, rencontres mensuelles, academie en ligne 30h+
+- Offre Groupe (90 EUR/mois) : + cercle d'entrepreneurs, sessions collectives business dev, mises en relation partenaires, micro-mentorat
+- Offre Individuel (190 EUR/mois) : + accompagnement 1-to-1 IA, 4 micro-mentorats, ligne directe fondateur en moins de 2h
 
 URL: https://marenostrum.tech/croissance
 
