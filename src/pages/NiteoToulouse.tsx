@@ -248,8 +248,8 @@ const NiteoToulouse = () => {
                 { icon: <Briefcase className="h-7 w-7 text-white" />, title: "Accompagner les jeunes", desc: "Offrez à vos étudiants un tremplin concret vers la création d'entreprise" },
                 { icon: <Award className="h-7 w-7 text-white" />, title: "Valoriser l'enseignement", desc: "Renforcez l'image de l'enseignement supérieur toulousain à travers l'entrepreneuriat" },
               ].map((item, i) => (
-                <div key={i} className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-6 mx-auto">
+                <div key={i} className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6 mx-auto">
                     {item.icon}
                   </div>
                   <h3 className="text-xl font-bold mb-4 text-foreground">{item.title}</h3>
@@ -277,8 +277,8 @@ const NiteoToulouse = () => {
               { icon: <Target className="h-7 w-7 text-white" />, hours: "2h", title: "Coaching individuel", desc: "Accompagnement personnalisé pour chaque porteur de projet" },
               { icon: <Trophy className="h-7 w-7 text-white" />, hours: "5h", title: "Demo Day", desc: "Pitch final devant un jury de professionnels et décideurs" },
             ].map((item, i) => (
-              <div key={i} className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow text-center">
-                <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-4 mx-auto">
+              <div key={i} className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-4 mx-auto">
                   {item.icon}
                 </div>
                 <div className="text-3xl font-bold text-primary mb-2">{item.hours}</div>
@@ -297,7 +297,7 @@ const NiteoToulouse = () => {
             3 résultats immédiats
           </h2>
           <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-            <div className="bg-card border border-border rounded-xl p-8 shadow-lg">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg">
               <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle2 className="h-8 w-8 text-primary" />
               </div>
@@ -308,7 +308,7 @@ const NiteoToulouse = () => {
                 <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" /> Livrables concrets</li>
               </ul>
             </div>
-            <div className="bg-card border border-border rounded-xl p-8 shadow-lg">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg">
               <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Users className="h-8 w-8 text-accent" />
               </div>
@@ -319,7 +319,7 @@ const NiteoToulouse = () => {
                 <li className="flex items-start gap-2"><CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" /> Réseau professionnel actif</li>
               </ul>
             </div>
-            <div className="bg-card border border-border rounded-xl p-8 shadow-lg">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg">
               <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Briefcase className="h-8 w-8 text-primary" />
               </div>
@@ -381,12 +381,12 @@ const NiteoToulouse = () => {
             {/* Row 1: Equipe Mare Nostrum + Entrepreneurs conseil + Parrain */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
               {/* Equipe Mare Nostrum */}
-              <div className="lg:col-span-4 bg-card border border-border rounded-xl p-6 shadow-lg">
+              <div className="lg:col-span-4 bg-card border border-border rounded-sm p-6 shadow-lg">
                 <h3 className="text-xl font-bold text-foreground mb-6 text-center">L'équipe Mare Nostrum</h3>
                 <div className="grid grid-cols-2 gap-6">
                   {teamMareNostrum.map((member) => (
                     <div key={member.name} className="text-center">
-                      <img src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover mx-auto mb-3" />
+                      <img src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-sm object-cover mx-auto mb-3" />
                       <div className="font-bold text-sm text-foreground">{member.name.split(' ')[0]} <span className="uppercase">{member.name.split(' ').slice(1).join(' ')}</span></div>
                       <div className="text-xs text-muted-foreground whitespace-pre-line mt-1">{member.role}</div>
                     </div>
@@ -395,12 +395,12 @@ const NiteoToulouse = () => {
               </div>
 
               {/* Entrepreneurs conseil */}
-              <div className="lg:col-span-6 bg-card border border-accent rounded-xl p-6 shadow-lg flex flex-col justify-center">
+              <div className="lg:col-span-6 bg-card border border-accent rounded-sm p-6 shadow-lg flex flex-col justify-center">
                 <h3 className="text-xl font-bold text-foreground mb-6 text-center">Les entrepreneurs conseil</h3>
                 <div className="flex justify-center gap-8">
                   {teamEntrepreneursConseil.map((member) => (
                     <div key={member.name} className="text-center max-w-[160px]">
-                      <img src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover mx-auto mb-3" />
+                      <img src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-sm object-cover mx-auto mb-3" />
                       <div className="font-bold text-sm text-foreground">{member.name.split(' ')[0]} <span className="uppercase">{member.name.split(' ').slice(1).join(' ')}</span></div>
                       <div className="text-xs text-muted-foreground whitespace-pre-line mt-1">{member.role}</div>
                     </div>
@@ -409,8 +409,8 @@ const NiteoToulouse = () => {
               </div>
 
               {/* Parrain */}
-              <div className="lg:col-span-2 bg-accent/10 border border-accent rounded-xl p-6 shadow-lg flex flex-col items-center justify-center">
-                <img src={bertrandSerp} alt="Bertrand SERP" className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover mb-3" />
+              <div className="lg:col-span-2 bg-accent/10 border border-accent rounded-sm p-6 shadow-lg flex flex-col items-center justify-center">
+                <img src={bertrandSerp} alt="Bertrand SERP" className="w-20 h-20 md:w-24 md:h-24 rounded-sm object-cover mb-3" />
                 <div className="font-bold text-sm text-foreground">Bertrand <span className="uppercase">SERP</span></div>
                 <div className="text-xs text-muted-foreground text-center mt-1">Parrain<br />Vice-Président de<br />Toulouse Métropole</div>
               </div>
@@ -419,15 +419,15 @@ const NiteoToulouse = () => {
             {/* Row 2: Coachs + Experts + Alumni */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Coachs */}
-              <div className="lg:col-span-6 bg-card border border-border rounded-xl p-6 shadow-lg">
+              <div className="lg:col-span-6 bg-card border border-border rounded-sm p-6 shadow-lg">
                 <h3 className="text-xl font-bold text-foreground mb-6 text-center">Les coachs</h3>
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
                   {teamCoachs.map((member) => (
                     <div key={member.name} className="text-center">
                       {'photo' in member && member.photo ? (
-                        <img src={member.photo as string} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover mx-auto mb-3" />
+                        <img src={member.photo as string} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-sm object-cover mx-auto mb-3" />
                       ) : (
-                        <div className="w-20 h-20 md:w-24 md:h-24 rounded-lg bg-muted flex items-center justify-center mx-auto mb-3">
+                        <div className="w-20 h-20 md:w-24 md:h-24 rounded-sm bg-muted flex items-center justify-center mx-auto mb-3">
                           <span className="text-2xl font-bold text-muted-foreground">{member.name.charAt(0)}</span>
                         </div>
                       )}
@@ -439,12 +439,12 @@ const NiteoToulouse = () => {
               </div>
 
               {/* Experts */}
-              <div className="lg:col-span-4 bg-card border border-accent rounded-xl p-6 shadow-lg">
+              <div className="lg:col-span-4 bg-card border border-accent rounded-sm p-6 shadow-lg">
                 <h3 className="text-xl font-bold text-foreground mb-6 text-center">Les experts</h3>
                 <div className="grid grid-cols-2 gap-6">
                   {teamExperts.map((member) => (
                     <div key={member.name} className="text-center">
-                      <img src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-lg object-cover mx-auto mb-3" />
+                      <img src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-sm object-cover mx-auto mb-3" />
                       <div className="font-bold text-sm text-foreground">{member.name.split(' ')[0]} <span className="uppercase">{member.name.split(' ').slice(1).join(' ')}</span></div>
                       <div className="text-xs text-muted-foreground whitespace-pre-line mt-1">{member.role}</div>
                     </div>
@@ -453,7 +453,7 @@ const NiteoToulouse = () => {
               </div>
 
               {/* Alumni badge */}
-              <div className="lg:col-span-2 bg-accent/10 border border-accent rounded-xl p-6 shadow-lg flex flex-col items-center justify-center min-h-[160px]">
+              <div className="lg:col-span-2 bg-accent/10 border border-accent rounded-sm p-6 shadow-lg flex flex-col items-center justify-center min-h-[160px]">
                 <div className="text-4xl font-bold text-accent mb-2">+95</div>
                 <div className="text-sm font-bold text-foreground text-center">alumni de nos<br />programmes</div>
               </div>

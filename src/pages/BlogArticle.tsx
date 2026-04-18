@@ -250,7 +250,7 @@ const BlogArticle = () => {
             />
 
             {/* CTA */}
-            <div className="mt-12 p-8 bg-gradient-to-br from-primary/10 to-accent/10 rounded-xl border border-border">
+            <div className="mt-12 p-8 bg-gradient-to-br from-primary/10 to-accent/10 rounded-sm border border-border">
               <h3 className="text-xl font-bold text-foreground mb-3">
                 Besoin d'accompagnement pour votre projet ?
               </h3>
@@ -277,7 +277,7 @@ const BlogArticle = () => {
                 <Link
                   key={related.id}
                   to={`/blog/${related.slug}`}
-                  className="group bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg transition-shadow"
+                  className="group bg-card border border-border rounded-sm overflow-hidden hover:shadow-lg transition-shadow"
                 >
                   <div className="h-40 overflow-hidden">
                     <img

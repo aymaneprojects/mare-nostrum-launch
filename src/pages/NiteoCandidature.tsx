@@ -269,7 +269,7 @@ const NiteoCandidature = () => {
                 { value: "30", label: "décideurs au jury" },
                 { value: "95", label: "projets accompagnés" },
               ].map((s, i) => (
-                <div key={i} className="bg-primary-foreground/10 backdrop-blur-sm rounded-xl p-4">
+                <div key={i} className="bg-primary-foreground/10 backdrop-blur-sm rounded-sm p-4">
                   <div className="text-2xl md:text-3xl font-bold text-primary-foreground">{s.value}</div>
                   <div className="text-sm text-primary-foreground/70">{s.label}</div>
                 </div>
@@ -299,7 +299,7 @@ const NiteoCandidature = () => {
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
             {profiles.map((p, i) => (
-              <div key={i} className="text-center p-6 rounded-xl bg-secondary/50 hover:bg-secondary transition-colors">
+              <div key={i} className="text-center p-6 rounded-sm bg-secondary/50 hover:bg-secondary transition-colors">
                 <div className="bg-primary/10 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 text-primary">
                   {p.icon}
                 </div>
@@ -322,8 +322,8 @@ const NiteoCandidature = () => {
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {parcours.map((item, i) => (
-              <div key={i} className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow text-center">
-                <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-4 mx-auto">
+              <div key={i} className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-4 mx-auto">
                   {item.icon}
                 </div>
                 <div className="text-3xl font-bold text-primary mb-2">{item.hours}</div>
@@ -348,8 +348,8 @@ const NiteoCandidature = () => {
               { icon: <BookOpen className="h-6 w-6 text-accent" />, title: "Plateforme e-learning", desc: "19h de contenu pédagogique accessible à ton rythme. Business model, marketing, finance, pitch : tout ce qu'il faut pour entreprendre." },
               { icon: <Mic className="h-6 w-6 text-accent" />, title: "Pitcher devant des décideurs", desc: "Le Demo Day : ta chance de présenter ton projet devant 30 entrepreneurs, investisseurs et institutionnels toulousains." },
             ].map((item, i) => (
-              <div key={i} className="flex gap-4 p-6 rounded-xl bg-secondary/30 hover:bg-secondary/50 transition-colors">
-                <div className="flex-shrink-0 bg-accent/10 w-12 h-12 rounded-lg flex items-center justify-center">
+              <div key={i} className="flex gap-4 p-6 rounded-sm bg-secondary/30 hover:bg-secondary/50 transition-colors">
+                <div className="flex-shrink-0 bg-accent/10 w-12 h-12 rounded-sm flex items-center justify-center">
                   {item.icon}
                 </div>
                 <div>
@@ -371,19 +371,19 @@ const NiteoCandidature = () => {
           <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
               {benefices.map((b, i) => (
-                <div key={i} className="flex items-start gap-3 p-4 bg-card border border-border rounded-lg">
+                <div key={i} className="flex items-start gap-3 p-4 bg-card border border-border rounded-sm">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
                   <span className="text-sm text-foreground">{b}</span>
                 </div>
               ))}
             </div>
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-gradient-to-br from-primary to-accent rounded-xl p-8 text-primary-foreground text-center">
+              <div className="bg-gradient-to-br from-primary to-accent rounded-sm p-8 text-primary-foreground text-center">
                 <Trophy className="h-10 w-10 mx-auto mb-4" />
                 <div className="text-3xl font-bold mb-2">+10 000 EUR</div>
                 <p className="text-primary-foreground/80">de dotations pour les meilleurs projets</p>
               </div>
-              <div className="bg-gradient-to-br from-accent to-primary rounded-xl p-8 text-primary-foreground text-center">
+              <div className="bg-gradient-to-br from-accent to-primary rounded-sm p-8 text-primary-foreground text-center">
                 <Globe className="h-10 w-10 mx-auto mb-4" />
                 <div className="text-xl font-bold mb-2">Club Mare Nostrum</div>
                 <p className="text-primary-foreground/80">Intégration dans le réseau des entrepreneurs francophones à impact</p>
@@ -405,7 +405,7 @@ const NiteoCandidature = () => {
           <div className="max-w-3xl mx-auto">
             <div className="space-y-4">
               {timeline.map((t, i) => (
-                <div key={i} className={`flex items-center gap-4 p-4 rounded-xl border transition-colors ${t.active ? 'bg-accent/10 border-accent' : 'bg-card border-border'}`}>
+                <div key={i} className={`flex items-center gap-4 p-4 rounded-sm border transition-colors ${t.active ? 'bg-accent/10 border-accent' : 'bg-card border-border'}`}>
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${t.active ? 'bg-accent text-primary-foreground' : 'bg-primary/10 text-primary'}`}>
                     {t.icon}
                   </div>
@@ -419,7 +419,7 @@ const NiteoCandidature = () => {
                 </div>
               ))}
             </div>
-            <div className="mt-8 p-4 bg-destructive/10 border border-destructive/20 rounded-xl text-center">
+            <div className="mt-8 p-4 bg-destructive/10 border border-destructive/20 rounded-sm text-center">
               <p className="text-sm text-foreground font-medium">
                 Présence obligatoire en présentiel à Toulouse pour tous les ateliers collectifs et le Demo Day.
               </p>

@@ -163,8 +163,8 @@ const MentoratIndividuel = () => {
           </h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="bg-card border border-border rounded-xl p-6">
-              <div className="bg-accent/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+            <div className="bg-card border border-border rounded-sm p-6">
+              <div className="bg-accent/10 w-12 h-12 rounded-sm flex items-center justify-center mb-4">
                 <Target className="h-6 w-6 text-accent" />
               </div>
               <h3 className="font-semibold text-foreground mb-2">Clarté stratégique</h3>
@@ -172,8 +172,8 @@ const MentoratIndividuel = () => {
                 Prenez du recul sur votre projet et clarifiez votre vision et vos priorités
               </p>
             </div>
-            <div className="bg-card border border-border rounded-xl p-6">
-              <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+            <div className="bg-card border border-border rounded-sm p-6">
+              <div className="bg-primary/10 w-12 h-12 rounded-sm flex items-center justify-center mb-4">
                 <MessageSquare className="h-6 w-6 text-primary" />
               </div>
               <h3 className="font-semibold text-foreground mb-2">Retour d'expérience</h3>
@@ -181,8 +181,8 @@ const MentoratIndividuel = () => {
                 Bénéficiez de l'expérience d'entrepreneurs qui sont passés par les mêmes étapes
               </p>
             </div>
-            <div className="bg-card border border-border rounded-xl p-6">
-              <div className="bg-accent/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+            <div className="bg-card border border-border rounded-sm p-6">
+              <div className="bg-accent/10 w-12 h-12 rounded-sm flex items-center justify-center mb-4">
                 <Users className="h-6 w-6 text-accent" />
               </div>
               <h3 className="font-semibold text-foreground mb-2">Réseau qualifié</h3>
@@ -190,8 +190,8 @@ const MentoratIndividuel = () => {
                 Accédez à notre réseau de partenaires, investisseurs et experts
               </p>
             </div>
-            <div className="bg-card border border-border rounded-xl p-6">
-              <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+            <div className="bg-card border border-border rounded-sm p-6">
+              <div className="bg-primary/10 w-12 h-12 rounded-sm flex items-center justify-center mb-4">
                 <Calendar className="h-6 w-6 text-primary" />
               </div>
               <h3 className="font-semibold text-foreground mb-2">Flexibilité totale</h3>
@@ -199,8 +199,8 @@ const MentoratIndividuel = () => {
                 Des séances adaptées à votre emploi du temps, en présentiel ou à distance
               </p>
             </div>
-            <div className="bg-card border border-border rounded-xl p-6">
-              <div className="bg-accent/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+            <div className="bg-card border border-border rounded-sm p-6">
+              <div className="bg-accent/10 w-12 h-12 rounded-sm flex items-center justify-center mb-4">
                 <Clock className="h-6 w-6 text-accent" />
               </div>
               <h3 className="font-semibold text-foreground mb-2">Gain de temps</h3>
@@ -208,8 +208,8 @@ const MentoratIndividuel = () => {
                 Évitez les erreurs classiques et accélérez votre progression
               </p>
             </div>
-            <div className="bg-card border border-border rounded-xl p-6">
-              <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+            <div className="bg-card border border-border rounded-sm p-6">
+              <div className="bg-primary/10 w-12 h-12 rounded-sm flex items-center justify-center mb-4">
                 <CheckCircle2 className="h-6 w-6 text-primary" />
               </div>
               <h3 className="font-semibold text-foreground mb-2">Responsabilisation</h3>
@@ -233,7 +233,7 @@ const MentoratIndividuel = () => {
           
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {mentors.map((mentor, index) => (
-              <div key={index} className="bg-card border border-border rounded-xl p-6 text-center">
+              <div key={index} className="bg-card border border-border rounded-sm p-6 text-center">
                 <img
                   src={mentor.image}
                   alt={mentor.name}

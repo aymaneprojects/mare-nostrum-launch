@@ -65,7 +65,7 @@ const Header = () => {
             </Link>
           ))}
 
-          <Link to="/croissance#offres" className="ml-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold h-9 px-4 bg-gradient-to-r from-[#6BB5C4] to-[#4A9BAC] text-white hover:from-[#7BC5D4] hover:to-[#5AABBC] transition-all duration-300 shadow-md hover:shadow-xl">
+          <Link to="/croissance#offres" className="ml-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm text-sm font-semibold h-9 px-4 bg-gradient-to-r from-[#6BB5C4] to-[#4A9BAC] text-white hover:from-[#7BC5D4] hover:to-[#5AABBC] transition-all duration-300 shadow-md hover:shadow-xl">
             Rejoignez le Club
           </Link>
           <Button asChild size="sm" className="ml-2">
@@ -107,7 +107,7 @@ const Header = () => {
 
             <Link
               to="/croissance#offres"
-              className="w-full inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold h-9 px-4 bg-gradient-to-r from-[#6BB5C4] to-[#4A9BAC] text-white hover:from-[#7BC5D4] hover:to-[#5AABBC] transition-all duration-300 shadow-md hover:shadow-xl animate-fade-in"
+              className="w-full inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm text-sm font-semibold h-9 px-4 bg-gradient-to-r from-[#6BB5C4] to-[#4A9BAC] text-white hover:from-[#7BC5D4] hover:to-[#5AABBC] transition-all duration-300 shadow-md hover:shadow-xl animate-fade-in"
               style={{ animationDelay: `${navLinks.length * 50 + 100}ms` }}
               onClick={() => setIsMenuOpen(false)}
             >

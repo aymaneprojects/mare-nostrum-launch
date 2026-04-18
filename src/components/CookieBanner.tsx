@@ -81,7 +81,7 @@ const CookieBanner = () => {
     <>
       {/* Bannière principale */}
       <div className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6 animate-in slide-in-from-bottom duration-300">
-        <div className="max-w-4xl mx-auto bg-card border border-border rounded-xl shadow-xl">
+        <div className="max-w-4xl mx-auto bg-card border border-border rounded-sm shadow-xl">
           <div className="p-4 md:p-6">
             <div className="flex items-start gap-4">
               <div className="hidden sm:flex w-12 h-12 bg-primary/10 rounded-full items-center justify-center flex-shrink-0">
@@ -133,7 +133,7 @@ const CookieBanner = () => {
           </div>
           
           {/* Lien vers politique de confidentialité */}
-          <div className="border-t border-border px-4 md:px-6 py-3 bg-secondary/30 rounded-b-xl">
+          <div className="border-t border-border px-4 md:px-6 py-3 bg-secondary/30 rounded-b-sm">
             <p className="text-xs text-muted-foreground">
               En savoir plus sur notre{" "}
               <a href="/confidentialite" className="text-primary underline hover:text-primary/80">
