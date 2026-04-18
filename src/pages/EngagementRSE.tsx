@@ -54,7 +54,7 @@ const EngagementRSE = () => {
             Nos cinq objectifs sociaux et environnementaux
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="bg-card p-6 rounded-lg border border-border shadow-sm">
+            <div className="bg-card p-6 rounded-sm border border-border shadow-sm">
               <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                 <Target className="h-6 w-6 text-primary" />
               </div>
@@ -63,7 +63,7 @@ const EngagementRSE = () => {
                 géopolitiques dans leurs pratiques
               </p>
             </div>
-            <div className="bg-card p-6 rounded-lg border border-border shadow-sm">
+            <div className="bg-card p-6 rounded-sm border border-border shadow-sm">
               <div className="bg-accent/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                 <TrendingUp className="h-6 w-6 text-accent" />
               </div>
@@ -72,7 +72,7 @@ const EngagementRSE = () => {
                 développement durable et solidaire
               </p>
             </div>
-            <div className="bg-card p-6 rounded-lg border border-border shadow-sm">
+            <div className="bg-card p-6 rounded-sm border border-border shadow-sm">
               <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                 <Users className="h-6 w-6 text-primary" />
               </div>
@@ -80,7 +80,7 @@ const EngagementRSE = () => {
                 Fédérer et animer un réseau diversifié et influent d'alliés qui adhèrent à notre raison d'être
               </p>
             </div>
-            <div className="bg-card p-6 rounded-lg border border-border shadow-sm">
+            <div className="bg-card p-6 rounded-sm border border-border shadow-sm">
               <div className="bg-accent/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                 <Heart className="h-6 w-6 text-accent" />
               </div>
@@ -88,7 +88,7 @@ const EngagementRSE = () => {
                 Favoriser les échanges entre pairs et l'apprentissage collectif au sein de notre écosystème
               </p>
             </div>
-            <div className="bg-card p-6 rounded-lg border border-border shadow-sm">
+            <div className="bg-card p-6 rounded-sm border border-border shadow-sm">
               <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                 <Shield className="h-6 w-6 text-primary" />
               </div>
@@ -121,7 +121,7 @@ const EngagementRSE = () => {
 
           {/* Carbone */}
           <div className="max-w-5xl mx-auto mb-16">
-            <div className="bg-card p-8 rounded-lg border border-border shadow-sm">
+            <div className="bg-card p-8 rounded-sm border border-border shadow-sm">
               <h3 className="text-2xl font-bold text-foreground mb-4">Carbone</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">
                 Mare Nostrum met en place un environnement de travail "neutre en carbone", porté par un engagement fort 
@@ -173,7 +173,7 @@ const EngagementRSE = () => {
 
           {/* Biodiversité */}
           <div className="max-w-5xl mx-auto mb-16">
-            <div className="bg-card p-8 rounded-lg border border-border shadow-sm">
+            <div className="bg-card p-8 rounded-sm border border-border shadow-sm">
               <h3 className="text-2xl font-bold text-foreground mb-4">Biodiversité</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">
                 La protection du vivant fait partie intégrante de la raison d'être de Mare Nostrum. La stratégie vise à 
@@ -205,7 +205,7 @@ const EngagementRSE = () => {
 
           {/* Économie circulaire */}
           <div className="max-w-5xl mx-auto">
-            <div className="bg-card p-8 rounded-lg border border-border shadow-sm">
+            <div className="bg-card p-8 rounded-sm border border-border shadow-sm">
               <div className="flex items-center gap-3 mb-4">
                 <Recycle className="h-6 w-6 text-primary" />
                 <h3 className="text-2xl font-bold text-foreground">Économie circulaire</h3>
@@ -260,7 +260,7 @@ const EngagementRSE = () => {
             </h2>
           </div>
           <div className="max-w-5xl mx-auto">
-            <div className="bg-card p-8 rounded-lg border border-border shadow-sm">
+            <div className="bg-card p-8 rounded-sm border border-border shadow-sm">
               <p className="text-muted-foreground mb-6 leading-relaxed">
                 L'inclusion de publics vulnérables et le bien-être au travail nourrissent la démarche sociale de Mare Nostrum. 
                 L'entreprise est intergénérationnelle et interculturelle. Nos valeurs liées au co-apprentissage et au respect 
@@ -322,7 +322,7 @@ const EngagementRSE = () => {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* Gouvernance */}
-            <div className="bg-card p-8 rounded-lg border border-border shadow-sm">
+            <div className="bg-card p-8 rounded-sm border border-border shadow-sm">
               <h3 className="text-2xl font-bold text-foreground mb-4">Gouvernance</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">
                 Transparence, confiance et gestion collaborative fondent la gouvernance de Mare Nostrum. Elle se structure 
@@ -363,7 +363,7 @@ const EngagementRSE = () => {
             </div>
 
             {/* Finance */}
-            <div className="bg-card p-8 rounded-lg border border-border shadow-sm">
+            <div className="bg-card p-8 rounded-sm border border-border shadow-sm">
               <h3 className="text-2xl font-bold text-foreground mb-4">Finance et investissement</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">
                 Mare Nostrum accompagne la création de modèles économiques durables, favorisant l'indépendance financière 
@@ -418,7 +418,7 @@ const EngagementRSE = () => {
             Pour aller plus loin : comment notre stratégie RSE est-elle implémentée ?
           </h2>
           <div className="max-w-4xl mx-auto">
-            <div className="bg-card p-8 rounded-lg border border-border shadow-sm mb-8">
+            <div className="bg-card p-8 rounded-sm border border-border shadow-sm mb-8">
               <p className="text-muted-foreground leading-relaxed mb-6">
                 Fidèles à notre vocation, nous participons activement à des réseaux d'entreprises qui favorisent le partage 
                 de bonnes pratiques : la coalition Haute-Garonne "Les entreprises s'engagent", Planet RSE, Communauté des 

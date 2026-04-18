@@ -212,7 +212,7 @@ const Index = () => {
           <span className="text-xs md:text-sm font-semibold uppercase tracking-wider opacity-90">Nouveau programme entrepreneuriat <span className="inline-block mx-1.5 w-1 h-1 rounded-full bg-primary-foreground/40 align-middle"></span> Toulouse</span>
           <span className="hidden md:inline text-primary-foreground/40">|</span>
           <span className="text-xs md:text-sm opacity-80">Étudiant(e), jeune diplômé(e) ? Transforme ton idée en projet concret en 50h chrono <span className="inline-block mx-1 w-1 h-1 rounded-full bg-secondary align-middle"></span> 100% gratuit</span>
-          <a href="https://niteo.marenostrum.tech" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-bold text-xs md:text-sm h-7 md:h-8 px-3 md:px-4 rounded-md bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors">
+          <a href="https://niteo.marenostrum.tech" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-bold text-xs md:text-sm h-7 md:h-8 px-3 md:px-4 rounded-sm bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors">
             Candidater
             <ArrowRight className="h-3.5 w-3.5" />
           </a>
@@ -307,7 +307,7 @@ De l'idée à la croissance.
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
               <Link 
                 to="/education" 
-                className="group bg-[hsl(210,50%,35%)] hover:bg-[hsl(210,50%,40%)] active:bg-[hsl(210,50%,50%)] border-2 border-transparent rounded-2xl p-8 md:p-10 shadow-lg transition-all duration-200 cursor-pointer"
+                className="group bg-[hsl(210,50%,35%)] hover:bg-[hsl(210,50%,40%)] active:bg-[hsl(210,50%,50%)] border-2 border-transparent rounded-sm p-8 md:p-10 shadow-lg transition-all duration-200 cursor-pointer"
               >
                 <div>
                   <GraduationCap className="h-12 w-12 md:h-14 md:w-14 text-white mx-auto mb-4" />
@@ -322,7 +322,7 @@ De l'idée à la croissance.
 
               <Link 
                 to="/croissance" 
-                className="group bg-[hsl(180,60%,60%)] hover:bg-[hsl(180,60%,65%)] active:bg-[hsl(180,60%,75%)] border-2 border-transparent rounded-2xl p-8 md:p-10 shadow-lg transition-all duration-200 cursor-pointer"
+                className="group bg-[hsl(180,60%,60%)] hover:bg-[hsl(180,60%,65%)] active:bg-[hsl(180,60%,75%)] border-2 border-transparent rounded-sm p-8 md:p-10 shadow-lg transition-all duration-200 cursor-pointer"
               >
                 <div>
                   <TrendingUp className="h-12 w-12 md:h-14 md:w-14 text-white mx-auto mb-4" />
@@ -360,7 +360,7 @@ De l'idée à la croissance.
           >
             <CarouselContent className="-ml-4">
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-primary/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                <div className="bg-card border-2 border-primary/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
                   <div className="text-5xl font-bold text-primary mb-2">24</div>
                   <div className="text-muted-foreground font-medium">Entreprises</div>
                   <div className="text-sm text-muted-foreground">accompagnées</div>
@@ -368,7 +368,7 @@ De l'idée à la croissance.
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-accent/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                <div className="bg-card border-2 border-accent/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
                   <div className="text-5xl font-bold text-accent mb-2">17+</div>
                   <div className="text-muted-foreground font-medium">Projets étudiants</div>
                   <div className="text-sm text-muted-foreground">accompagnés</div>
@@ -376,7 +376,7 @@ De l'idée à la croissance.
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-primary/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                <div className="bg-card border-2 border-primary/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
                   <div className="text-5xl font-bold text-primary mb-2">70%</div>
                   <div className="text-muted-foreground font-medium">Entreprises à impact</div>
                   <div className="text-sm text-muted-foreground">17 organisations</div>
@@ -384,7 +384,7 @@ De l'idée à la croissance.
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-accent/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                <div className="bg-card border-2 border-accent/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
                   <div className="text-5xl font-bold text-accent mb-2">93%</div>
                   <div className="text-muted-foreground font-medium">Prise de décision</div>
                   <div className="text-sm text-muted-foreground">accélérée</div>
@@ -392,7 +392,7 @@ De l'idée à la croissance.
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-accent/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                <div className="bg-card border-2 border-accent/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
                   <div className="text-5xl font-bold text-accent mb-2">95%</div>
                   <div className="text-muted-foreground font-medium">Satisfaction</div>
                   <div className="text-sm text-muted-foreground">satisfaits/très satisfaits</div>
@@ -400,7 +400,7 @@ De l'idée à la croissance.
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-primary/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                <div className="bg-card border-2 border-primary/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
                   <div className="text-5xl font-bold text-primary mb-2">55%</div>
                   <div className="text-muted-foreground font-medium">Projet à temps plein</div>
                   <div className="text-sm text-muted-foreground">avec satisfaction</div>
@@ -408,7 +408,7 @@ De l'idée à la croissance.
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-primary/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                <div className="bg-card border-2 border-primary/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
                   <div className="text-5xl font-bold text-primary mb-2">210+</div>
                   <div className="text-muted-foreground font-medium">Mises en relation</div>
                   <div className="text-sm text-muted-foreground">professionnelles</div>
@@ -416,7 +416,7 @@ De l'idée à la croissance.
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-accent/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                <div className="bg-card border-2 border-accent/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
                   <div className="text-5xl font-bold text-accent mb-2">32</div>
                   <div className="text-muted-foreground font-medium">Projets collaboratifs</div>
                   <div className="text-sm text-muted-foreground">initiés</div>
@@ -424,7 +424,7 @@ De l'idée à la croissance.
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-primary/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                <div className="bg-card border-2 border-primary/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
                   <div className="text-5xl font-bold text-primary mb-2">135+</div>
                   <div className="text-muted-foreground font-medium">Experts</div>
                   <div className="text-sm text-muted-foreground">mobilisables</div>
@@ -432,7 +432,7 @@ De l'idée à la croissance.
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-accent/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                <div className="bg-card border-2 border-accent/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
                   <div className="text-5xl font-bold text-accent mb-2">2000</div>
                   <div className="text-muted-foreground font-medium">Années d'expérience</div>
                   <div className="text-sm text-muted-foreground">cumulées experts</div>
@@ -440,7 +440,7 @@ De l'idée à la croissance.
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-primary/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                <div className="bg-card border-2 border-primary/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
                   <div className="text-5xl font-bold text-primary mb-2">358h</div>
                   <div className="text-muted-foreground font-medium">Formation</div>
                   <div className="text-sm text-muted-foreground">dispensées</div>
@@ -448,7 +448,7 @@ De l'idée à la croissance.
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-accent/20 rounded-xl p-6 h-full hover:shadow-lg transition-all">
+                <div className="bg-card border-2 border-accent/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
                   <div className="text-5xl font-bold text-accent mb-2">12</div>
                   <div className="text-muted-foreground font-medium">Pays</div>
                   <div className="text-sm text-muted-foreground">d'intervention</div>
@@ -490,64 +490,64 @@ De l'idée à la croissance.
           })]} className="w-full">
               <CarouselContent>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
                     <img src={hufLogo} alt="HUF - Partenaire Mare Nostrum accompagnement entrepreneuriat Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
                     <img src={bidayaLogo} alt="Bidaya - Partenaire Mare Nostrum entrepreneuriat Maroc Casablanca" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
                     <img src={toulouseWayLogo} alt="Toulouse Way - Partenaire écosystème entrepreneurial Toulouse Occitanie" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
                     <img src={airbusLogo} alt="Airbus Développement - Partenaire innovation entreprises Toulouse Aerospace" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
                     <img src={roseLabLogo} alt="Rose Lab - Partenaire incubateur startups entreprises à impact" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
                     <img src={cpme31Logo} alt="CPME 31 Haute-Garonne - Confédération PME entrepreneurs Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
                     <img src={creditMutuelLogo} alt="Crédit Mutuel - Partenaire financement entrepreneurs PME" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.touleco.fr/" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
                       <img src={toulecoLogo} alt="Touleco - Média économique Toulouse Occitanie partenaire Mare Nostrum" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.imaginationsfertiles.fr/" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
                       <img src={imaginationsFertilesLogo} alt="Imaginations Fertiles - Partenaire créativité innovation entrepreneuriale" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://emergingbusinessfactory.com/" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
                       <img src={emergingBusinessLogo} alt="Emerging Business Factory - Accélérateur startups scale-ups Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.moovjee.fr/" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
                       <img src={moovjeeLogo} alt="Moovjee - Mouvement jeunes entrepreneurs France accompagnement création" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
@@ -586,7 +586,7 @@ De l'idée à la croissance.
               step: "5",
               title: "Évaluation d'impact",
               description: "Mesure des résultats et ajustements continus"
-            }].map(item => <div key={item.step} className="flex items-start space-x-4 p-6 bg-card border border-border rounded-lg hover:shadow-md transition-shadow">
+            }].map(item => <div key={item.step} className="flex items-start space-x-4 p-6 bg-card border border-border rounded-sm hover:shadow-md transition-shadow">
                   <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white font-bold text-lg">
                     {item.step}
                   </div>

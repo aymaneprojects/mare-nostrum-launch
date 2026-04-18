@@ -157,7 +157,7 @@ const Education = () => {
           <span className="text-xs md:text-sm font-semibold uppercase tracking-wider opacity-90">Nouveau programme entrepreneuriat <span className="inline-block mx-1.5 w-1 h-1 rounded-full bg-primary-foreground/40 align-middle"></span> Toulouse</span>
           <span className="hidden md:inline text-primary-foreground/40">|</span>
           <span className="text-xs md:text-sm opacity-80">Étudiant(e), jeune diplômé(e) ? Transforme ton idée en projet concret en 50h chrono <span className="inline-block mx-1 w-1 h-1 rounded-full bg-secondary align-middle"></span> 100% gratuit</span>
-          <a href="https://niteo.marenostrum.tech" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-bold text-xs md:text-sm h-7 md:h-8 px-3 md:px-4 rounded-md bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors">
+          <a href="https://niteo.marenostrum.tech" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-bold text-xs md:text-sm h-7 md:h-8 px-3 md:px-4 rounded-sm bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors">
             Candidater
             <ArrowRight className="h-3.5 w-3.5" />
           </a>
@@ -238,8 +238,8 @@ const Education = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Fresque */}
-            <div className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Lightbulb className="h-7 w-7 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">La Fresque de l'esprit d'entreprendre</h3>
@@ -263,8 +263,8 @@ const Education = () => {
             </div>
 
             {/* Atelier des Alliés */}
-            <div className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Users className="h-7 w-7 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">L'Atelier des Alliés</h3>
@@ -288,8 +288,8 @@ const Education = () => {
             </div>
 
             {/* Hackathons */}
-            <div className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Trophy className="h-7 w-7 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Hackathons & Challenges</h3>
@@ -311,8 +311,8 @@ const Education = () => {
             </div>
 
             {/* Programme Premium */}
-            <div className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <GraduationCap className="h-7 w-7 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Programme Niteo</h3>
@@ -334,8 +334,8 @@ const Education = () => {
             </div>
 
             {/* Cours */}
-            <div className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <BookOpen className="h-7 w-7 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Cours professionnalisants</h3>
@@ -357,8 +357,8 @@ const Education = () => {
             </div>
 
             {/* Réseau */}
-            <div className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Network className="h-7 w-7 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Matinale de la pédagogie entrepreneuriale</h3>
@@ -433,7 +433,7 @@ const Education = () => {
           </p>
           
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <div className="relative overflow-hidden rounded-xl shadow-lg">
+            <div className="relative overflow-hidden rounded-sm shadow-lg">
               <img src={ylookProgramme} alt="Programme Ylook - Ynov Campus Toulouse" className="w-full h-[400px] object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                 <div className="p-6 text-primary-foreground">
@@ -443,7 +443,7 @@ const Education = () => {
               </div>
             </div>
 
-            <div className="relative overflow-hidden rounded-xl shadow-lg">
+            <div className="relative overflow-hidden rounded-sm shadow-lg">
               <img src={fresque1Img} alt="Fresque organisée pour 80 personnes dans un établissement" className="w-full h-[400px] object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                 <div className="p-6 text-primary-foreground">
@@ -453,7 +453,7 @@ const Education = () => {
               </div>
             </div>
 
-            <div className="relative overflow-hidden rounded-xl shadow-lg">
+            <div className="relative overflow-hidden rounded-sm shadow-lg">
               <img src={iscomChallenge} alt="ISCOM Startup Challenge - Réfléchir vite pour répondre à la problématique donnée" className="w-full h-[400px] object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                 <div className="p-6 text-primary-foreground">
@@ -463,7 +463,7 @@ const Education = () => {
               </div>
             </div>
 
-            <div className="relative overflow-hidden rounded-xl shadow-lg">
+            <div className="relative overflow-hidden rounded-sm shadow-lg">
               <img src={fresqueDoctorant} alt="Fresque de l'esprit d'entreprendre adaptée aux doctorants" className="w-full h-[400px] object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                 <div className="p-6 text-primary-foreground">
@@ -538,7 +538,7 @@ const Education = () => {
             </p>
             
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8">
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-sm p-8">
                 <h3 className="text-xl font-bold text-primary-foreground mb-4">Responsable pédagogique ?</h3>
                 <p className="text-primary-foreground/80 mb-6">
                   Planifions un rendez-vous pour discuter de vos besoins
@@ -551,7 +551,7 @@ const Education = () => {
                 </Button>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8">
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-sm p-8">
                 <h3 className="text-xl font-bold text-primary-foreground mb-4">Appel d'offres en cours ?</h3>
                 <p className="text-primary-foreground/80 mb-6">
                   Envoyez-nous votre brief pour une réponse personnalisée

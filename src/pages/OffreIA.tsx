@@ -152,8 +152,8 @@ const OffreIA = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {services.map((service, index) => (
-              <div key={index} className="bg-card border border-border rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-                <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+              <div key={index} className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                   <service.icon className="h-7 w-7 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-foreground">{service.title}</h3>
@@ -223,8 +223,8 @@ const OffreIA = () => {
                   </div>
                 </div>
               </div>
-              <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-8 border border-border">
-                <div className="bg-gradient-to-br from-primary to-accent w-16 h-16 rounded-lg flex items-center justify-center mb-6">
+              <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-sm p-8 border border-border">
+                <div className="bg-gradient-to-br from-primary to-accent w-16 h-16 rounded-sm flex items-center justify-center mb-6">
                   <Brain className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">Dimension entrepreneuriale intégrée</h3>

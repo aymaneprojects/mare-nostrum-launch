@@ -102,7 +102,7 @@ const TransformationEntrepreneuriale = () => {
             Vous souhaitez développer la culture entrepreneuriale mais faites face à des contraintes réelles
           </p>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="bg-card border border-border rounded-xl p-8 text-center">
+            <div className="bg-card border border-border rounded-sm p-8 text-center">
               <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Clock className="h-8 w-8 text-primary" />
               </div>
@@ -111,7 +111,7 @@ const TransformationEntrepreneuriale = () => {
                 Les programmes existants sont souvent lourds à mettre en place et difficiles à intégrer dans le calendrier académique
               </p>
             </div>
-            <div className="bg-card border border-border rounded-xl p-8 text-center">
+            <div className="bg-card border border-border rounded-sm p-8 text-center">
               <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Target className="h-8 w-8 text-accent" />
               </div>
@@ -120,7 +120,7 @@ const TransformationEntrepreneuriale = () => {
                 Les contraintes budgétaires et le manque d'expertise interne freinent le développement de programmes ambitieux
               </p>
             </div>
-            <div className="bg-card border border-border rounded-xl p-8 text-center">
+            <div className="bg-card border border-border rounded-sm p-8 text-center">
               <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Zap className="h-8 w-8 text-primary" />
               </div>
@@ -144,7 +144,7 @@ const TransformationEntrepreneuriale = () => {
           </p>
           
           <div className="max-w-4xl mx-auto">
-            <div className="bg-card border border-border rounded-xl overflow-hidden">
+            <div className="bg-card border border-border rounded-sm overflow-hidden">
               <div className="grid md:grid-cols-3 bg-primary text-primary-foreground">
                 <div className="p-4 font-semibold">Critère</div>
                 <div className="p-4 font-semibold text-center">Dispositifs traditionnels</div>
@@ -179,8 +179,8 @@ const TransformationEntrepreneuriale = () => {
           </p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="bg-card border border-border rounded-xl p-8 hover:shadow-lg transition-shadow">
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+            <div className="bg-card border border-border rounded-sm p-8 hover:shadow-lg transition-shadow">
+              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Lightbulb className="h-7 w-7 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">La Fresque de l'esprit d'entreprendre</h3>
@@ -199,8 +199,8 @@ const TransformationEntrepreneuriale = () => {
               </ul>
             </div>
 
-            <div className="bg-card border border-border rounded-xl p-8 hover:shadow-lg transition-shadow">
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+            <div className="bg-card border border-border rounded-sm p-8 hover:shadow-lg transition-shadow">
+              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Users className="h-7 w-7 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Ateliers & Hackathons</h3>
@@ -219,8 +219,8 @@ const TransformationEntrepreneuriale = () => {
               </ul>
             </div>
 
-            <div className="bg-card border border-border rounded-xl p-8 hover:shadow-lg transition-shadow">
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+            <div className="bg-card border border-border rounded-sm p-8 hover:shadow-lg transition-shadow">
+              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <GraduationCap className="h-7 w-7 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Programme Premium</h3>

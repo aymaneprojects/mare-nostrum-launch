@@ -151,8 +151,8 @@ const AccompagnementFrancophonie = () => {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Tremplin */}
-            <div className="bg-card border border-border rounded-xl p-8 hover:shadow-lg transition-shadow">
-              <div className="bg-gradient-to-br from-primary/80 to-primary w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+            <div className="bg-card border border-border rounded-sm p-8 hover:shadow-lg transition-shadow">
+              <div className="bg-gradient-to-br from-primary/80 to-primary w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Sparkles className="h-7 w-7 text-white" />
               </div>
               <h3 className="text-2xl font-bold mb-2 text-foreground">Tremplin</h3>
@@ -177,11 +177,11 @@ const AccompagnementFrancophonie = () => {
             </div>
 
             {/* Ascension */}
-            <div className="bg-card border-2 border-primary rounded-xl p-8 hover:shadow-lg transition-shadow relative">
+            <div className="bg-card border-2 border-primary rounded-sm p-8 hover:shadow-lg transition-shadow relative">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-sm font-medium px-4 py-1 rounded-full">
                 Populaire
               </div>
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Rocket className="h-7 w-7 text-white" />
               </div>
               <h3 className="text-2xl font-bold mb-2 text-foreground">Ascension</h3>
@@ -210,8 +210,8 @@ const AccompagnementFrancophonie = () => {
             </div>
 
             {/* Élite */}
-            <div className="bg-card border border-border rounded-xl p-8 hover:shadow-lg transition-shadow">
-              <div className="bg-gradient-to-br from-accent to-accent/80 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+            <div className="bg-card border border-border rounded-sm p-8 hover:shadow-lg transition-shadow">
+              <div className="bg-gradient-to-br from-accent to-accent/80 w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Users className="h-7 w-7 text-white" />
               </div>
               <h3 className="text-2xl font-bold mb-2 text-foreground">Élite</h3>
@@ -252,7 +252,7 @@ const AccompagnementFrancophonie = () => {
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <Link 
               to="/entrepreneurs/test-maturite-projet"
-              className="bg-card border border-border rounded-xl p-8 hover:shadow-lg transition-all hover:border-primary group"
+              className="bg-card border border-border rounded-sm p-8 hover:shadow-lg transition-all hover:border-primary group"
             >
               <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
                 Test de maturité projet
@@ -268,7 +268,7 @@ const AccompagnementFrancophonie = () => {
 
             <Link 
               to="/entrepreneurs/mentorat-individuel"
-              className="bg-card border border-border rounded-xl p-8 hover:shadow-lg transition-all hover:border-primary group"
+              className="bg-card border border-border rounded-sm p-8 hover:shadow-lg transition-all hover:border-primary group"
             >
               <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
                 Mentorat individuel

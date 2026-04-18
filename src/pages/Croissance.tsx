@@ -312,7 +312,7 @@ const Croissance = () => {
           <span className="text-xs md:text-sm opacity-80">
             Étudiant(e), jeune diplômé(e) ? Transforme ton idée en projet concret en 50h chrono <span className="inline-block mx-1 w-1 h-1 rounded-full bg-secondary align-middle"></span> 100% gratuit
           </span>
-          <a href="https://niteo.marenostrum.tech" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-bold text-xs md:text-sm h-7 md:h-8 px-3 md:px-4 rounded-md bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors">
+          <a href="https://niteo.marenostrum.tech" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-bold text-xs md:text-sm h-7 md:h-8 px-3 md:px-4 rounded-sm bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors">
             Candidater
             <ArrowRight className="h-3.5 w-3.5" />
           </a>
@@ -352,7 +352,7 @@ const Croissance = () => {
             </h2>
 
             <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-10">
-              <div className="bg-card border border-border rounded-lg p-6 hover:shadow-md transition-shadow">
+              <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
                 <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                   <Clock className="h-6 w-6 text-destructive" />
                 </div>
@@ -362,7 +362,7 @@ const Croissance = () => {
                 </p>
               </div>
 
-              <div className="bg-card border border-border rounded-lg p-6 hover:shadow-md transition-shadow">
+              <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
                 <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                   <Brain className="h-6 w-6 text-destructive" />
                 </div>
@@ -372,7 +372,7 @@ const Croissance = () => {
                 </p>
               </div>
 
-              <div className="bg-card border border-border rounded-lg p-6 hover:shadow-md transition-shadow">
+              <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
                 <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                   <Target className="h-6 w-6 text-destructive" />
                 </div>
@@ -382,7 +382,7 @@ const Croissance = () => {
                 </p>
               </div>
 
-              <div className="bg-card border border-border rounded-lg p-6 hover:shadow-md transition-shadow">
+              <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
                 <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                   <Flame className="h-6 w-6 text-destructive" />
                 </div>
@@ -393,7 +393,7 @@ const Croissance = () => {
               </div>
             </div>
 
-            <div className="text-center bg-gradient-to-r from-primary/5 to-accent/5 border border-border rounded-xl p-6 md:p-8">
+            <div className="text-center bg-gradient-to-r from-primary/5 to-accent/5 border border-border rounded-sm p-6 md:p-8">
               <p className="text-lg md:text-xl text-foreground font-semibold">
                 Bonne nouvelle : tu n'es pas seul.
               </p>
@@ -430,7 +430,7 @@ const Croissance = () => {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
             {/* Communauté */}
-            <div className="bg-card border-2 border-border rounded-xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col h-full">
+            <div className="bg-card border-2 border-border rounded-sm p-6 md:p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col h-full">
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Communauté</h3>
                 <div className="text-4xl font-bold text-primary mb-2">
@@ -440,7 +440,7 @@ const Croissance = () => {
                 <p className="text-xs text-accent font-medium">Pas de frais d'entrée — 1 micro mentorat offert</p>
               </div>
 
-              <div className="bg-muted/50 rounded-lg p-3 mb-6">
+              <div className="bg-muted/50 rounded-sm p-3 mb-6">
                 <p className="text-xs text-muted-foreground text-center">
                   Vous lancez votre activité et sortez de l'isolement (0-12 mois, pré-revenu)
                 </p>
@@ -462,7 +462,7 @@ const Croissance = () => {
             </div>
 
             {/* Groupe - Highlighted */}
-            <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground border-2 border-accent rounded-xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 relative flex flex-col h-full">
+            <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground border-2 border-accent rounded-sm p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 relative flex flex-col h-full">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <span className="bg-accent text-accent-foreground px-4 py-1 rounded-full text-sm font-semibold">
                   Recommandé
@@ -478,7 +478,7 @@ const Croissance = () => {
                 <p className="text-xs font-medium opacity-90">Pas de frais d'entrée — 1 pré-diag offert</p>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 mb-6">
+              <div className="bg-white/10 backdrop-blur-sm rounded-sm p-3 mb-6">
                 <p className="text-xs text-center opacity-90">
                   Vous avez vos premiers clients et voulez accélérer (1K-10K€ MRR)
                 </p>
@@ -498,7 +498,7 @@ const Croissance = () => {
             </div>
 
             {/* Individuel */}
-            <div className="bg-card border-2 border-border rounded-xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col h-full">
+            <div className="bg-card border-2 border-border rounded-sm p-6 md:p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col h-full">
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Individuel</h3>
                 <div className="text-4xl font-bold text-primary mb-2">
@@ -508,7 +508,7 @@ const Croissance = () => {
                 <p className="text-xs text-accent font-medium">Pas de frais d'entrée — 1 tutorat personnalisé offert</p>
               </div>
 
-              <div className="bg-muted/50 rounded-lg p-3 mb-6">
+              <div className="bg-muted/50 rounded-sm p-3 mb-6">
                 <p className="text-xs text-muted-foreground text-center">
                   Vous structurez votre croissance, chaque décision compte (10K€+ MRR)
                 </p>
@@ -576,25 +576,25 @@ const Croissance = () => {
           </h2>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            <div className="text-center bg-card border border-border rounded-xl p-6 hover:shadow-md transition-shadow">
+            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
               <div className="text-4xl md:text-5xl font-bold text-primary mb-3">50%</div>
               <p className="text-sm text-muted-foreground">
                 des entrepreneurs accompagnés se rémunèrent correctement dans les 2 ans après la création
               </p>
             </div>
-            <div className="text-center bg-card border border-border rounded-xl p-6 hover:shadow-md transition-shadow">
+            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
               <div className="text-4xl md:text-5xl font-bold text-accent mb-3">3</div>
               <p className="text-sm text-muted-foreground">
                 contacts qualifiés en moyenne dès le premier mois d'adhésion
               </p>
             </div>
-            <div className="text-center bg-card border border-border rounded-xl p-6 hover:shadow-md transition-shadow">
+            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
               <div className="text-4xl md:text-5xl font-bold text-primary mb-3">93%</div>
               <p className="text-sm text-muted-foreground">
                 des membres se disent "très satisfaits ou satisfaits" de leur expérience
               </p>
             </div>
-            <div className="text-center bg-card border border-border rounded-xl p-6 hover:shadow-md transition-shadow">
+            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
               <div className="text-4xl md:text-5xl font-bold text-accent mb-3">90%</div>
               <p className="text-sm text-muted-foreground">
                 déclarent gagner du temps, de la clarté et de la sérénité après chaque session
@@ -641,7 +641,7 @@ const Croissance = () => {
           </p>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
+            <div className="group relative overflow-hidden rounded-sm shadow-lg hover:shadow-2xl transition-all">
               <img src={atelierRose} alt="Atelier d'accompagnement entrepreneur Mare Nostrum à Toulouse avec experts et participants" loading="lazy" width="600" height="400" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-accent/90 via-accent/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
@@ -651,7 +651,7 @@ const Croissance = () => {
               </div>
             </div>
 
-            <div className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all">
+            <div className="group relative overflow-hidden rounded-sm shadow-lg hover:shadow-2xl transition-all">
               <img src={neoEntrepreneurElite} alt="Journée de business développement avec néo-entrepreneurs dans l'offre Individuel Mare Nostrum Toulouse" loading="lazy" width="600" height="400" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">

@@ -288,7 +288,7 @@ const InnovationPedagogiqueEntrepreneuriat = () => {
 
             {/* Author / CTA */}
             <div className="mt-12 pt-8 border-t border-border">
-              <div className="bg-secondary/50 rounded-xl p-8">
+              <div className="bg-secondary/50 rounded-sm p-8">
                 <h3 className="font-bold text-foreground mb-4">À propos de Mare Nostrum</h3>
                 <p className="text-muted-foreground mb-6">
                   Mare Nostrum conçoit et déploie des programmes d'éducation entrepreneuriale innovants pour les écoles et universités. Nos méthodes : fresques collaboratives, ateliers d'intelligence collective, hackathons et accompagnement premium.

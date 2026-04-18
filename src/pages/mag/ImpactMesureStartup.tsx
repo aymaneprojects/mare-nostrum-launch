@@ -363,7 +363,7 @@ const ImpactMesureStartup = () => {
 
             {/* Author / CTA */}
             <div className="mt-12 pt-8 border-t border-border">
-              <div className="bg-secondary/50 rounded-xl p-8">
+              <div className="bg-secondary/50 rounded-sm p-8">
                 <h3 className="font-bold text-foreground mb-4">À propos de Mare Nostrum</h3>
                 <p className="text-muted-foreground mb-6">
                   Mare Nostrum accompagne les entrepreneurs à impact dans la structuration de leur projet, y compris dans la définition et le suivi de leurs indicateurs d'impact. Notre approche combine rigueur méthodologique et pragmatisme opérationnel.

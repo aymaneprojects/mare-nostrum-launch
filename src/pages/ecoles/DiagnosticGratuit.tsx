@@ -148,7 +148,7 @@ const DiagnosticGratuit = () => {
               
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="bg-accent/10 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="bg-accent/10 w-12 h-12 rounded-sm flex items-center justify-center flex-shrink-0">
                     <Target className="h-6 w-6 text-accent" />
                   </div>
                   <div>
@@ -160,7 +160,7 @@ const DiagnosticGratuit = () => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="bg-primary/10 w-12 h-12 rounded-sm flex items-center justify-center flex-shrink-0">
                     <Users className="h-6 w-6 text-primary" />
                   </div>
                   <div>
@@ -172,7 +172,7 @@ const DiagnosticGratuit = () => {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="bg-accent/10 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="bg-accent/10 w-12 h-12 rounded-sm flex items-center justify-center flex-shrink-0">
                     <Clock className="h-6 w-6 text-accent" />
                   </div>
                   <div>
@@ -184,7 +184,7 @@ const DiagnosticGratuit = () => {
                 </div>
               </div>
 
-              <div className="mt-8 p-6 bg-secondary/50 rounded-xl">
+              <div className="mt-8 p-6 bg-secondary/50 rounded-sm">
                 <p className="text-sm text-muted-foreground mb-2">Durée</p>
                 <p className="text-xl font-bold text-foreground mb-4">30 minutes</p>
                 <p className="text-sm text-muted-foreground mb-2">Format</p>
@@ -203,7 +203,7 @@ const DiagnosticGratuit = () => {
             </div>
 
             {/* Form */}
-            <div className="bg-card border border-border rounded-xl p-8">
+            <div className="bg-card border border-border rounded-sm p-8">
               <h2 className="text-xl font-bold text-foreground mb-6">
                 Demander mon diagnostic gratuit
               </h2>

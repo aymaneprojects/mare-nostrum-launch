@@ -208,7 +208,7 @@ const TestMaturiteProjet = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
             {!showResults ? (
-              <div className="bg-card border border-border rounded-xl p-8">
+              <div className="bg-card border border-border rounded-sm p-8">
                 {/* Progress */}
                 <div className="mb-8">
                   <div className="flex justify-between text-sm text-muted-foreground mb-2">
@@ -234,7 +234,7 @@ const TestMaturiteProjet = () => {
                     <button
                       key={index}
                       onClick={() => handleAnswer(option.score)}
-                      className="w-full text-left p-4 rounded-lg border border-border hover:border-primary hover:bg-primary/5 transition-all"
+                      className="w-full text-left p-4 rounded-sm border border-border hover:border-primary hover:bg-primary/5 transition-all"
                     >
                       <span className="text-foreground">{option.text}</span>
                     </button>
@@ -253,7 +253,7 @@ const TestMaturiteProjet = () => {
                 )}
               </div>
             ) : (
-              <div className="bg-card border border-border rounded-xl p-8 text-center">
+              <div className="bg-card border border-border rounded-sm p-8 text-center">
                 {/* Result Icon */}
                 <div className={`${result.bgColor} w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6`}>
                   <ResultIcon className={`h-10 w-10 ${result.color}`} />
@@ -274,7 +274,7 @@ const TestMaturiteProjet = () => {
                   {result.description}
                 </p>
 
-                <div className="bg-secondary/50 rounded-lg p-6 mb-8 text-left">
+                <div className="bg-secondary/50 rounded-sm p-6 mb-8 text-left">
                   <h3 className="font-semibold text-foreground mb-2">Notre recommandation</h3>
                   <p className="text-muted-foreground">{result.recommendation}</p>
                 </div>

@@ -210,7 +210,7 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div className="bg-secondary/50 border border-border rounded-lg p-4 md:p-6">
+              <div className="bg-secondary/50 border border-border rounded-sm p-4 md:p-6">
                 <h3 className="font-semibold text-foreground mb-2 text-sm md:text-base">On vous répond sous 48h</h3>
                 <p className="text-xs md:text-sm text-muted-foreground">
                   Nous nous engageons à répondre à toutes vos demandes dans un délai maximum de 48 heures ouvrées.
@@ -219,7 +219,7 @@ const Contact = () => {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-card border border-border rounded-xl p-6 md:p-8 shadow-lg">
+            <div className="bg-card border border-border rounded-sm p-6 md:p-8 shadow-lg">
               {isSuccess ? (
                 <div className="text-center py-12">
                   <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
