@@ -104,7 +104,32 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  /* Editorial typography per UI/UX Pro Max — Editorial Classic pairing */
+  h1, h2 {
+    @apply font-display tracking-tight;
+    font-feature-settings: "lnum", "ss01";
+  }
+
+  h1 { @apply text-4xl md:text-6xl font-semibold leading-[1.05]; }
+  h2 { @apply text-3xl md:text-5xl font-semibold leading-tight; }
+  h3 { @apply text-xl md:text-2xl font-semibold tracking-tight; }
+
+  /* Accessibility — visible focus rings (UI/UX checklist) */
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-background;
+  }
+
+  /* Reduced motion respect (UI/UX checklist) */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
