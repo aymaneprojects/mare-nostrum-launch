@@ -300,7 +300,7 @@ const NiteoCandidature = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-5xl mx-auto">
             {profiles.map((p, i) => (
               <div key={i} className="text-center p-6 rounded-sm bg-secondary/50 hover:bg-secondary transition-colors">
-                <div className="bg-primary/10 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 text-primary">
+                <div className="bg-primary/10 w-14 h-14 shape-hex flex items-center justify-center mx-auto mb-4 text-primary">
                   {p.icon}
                 </div>
                 <h3 className="font-bold text-foreground mb-2">{p.label}</h3>
@@ -406,7 +406,7 @@ const NiteoCandidature = () => {
             <div className="space-y-4">
               {timeline.map((t, i) => (
                 <div key={i} className={`flex items-center gap-4 p-4 rounded-sm border transition-colors ${t.active ? 'bg-accent/10 border-accent' : 'bg-card border-border'}`}>
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${t.active ? 'bg-accent text-primary-foreground' : 'bg-primary/10 text-primary'}`}>
+                  <div className={`w-10 h-10 shape-hex flex items-center justify-center flex-shrink-0 ${t.active ? 'bg-accent text-primary-foreground' : 'bg-primary/10 text-primary'}`}>
                     {t.icon}
                   </div>
                   <div className="flex-1">

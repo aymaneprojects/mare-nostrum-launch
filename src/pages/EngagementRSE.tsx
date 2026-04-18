@@ -55,7 +55,7 @@ const EngagementRSE = () => {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div className="bg-card p-6 rounded-sm border border-border shadow-sm">
-              <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+              <div className="bg-primary/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                 <Target className="h-6 w-6 text-primary" />
               </div>
               <p className="text-foreground">
@@ -64,7 +64,7 @@ const EngagementRSE = () => {
               </p>
             </div>
             <div className="bg-card p-6 rounded-sm border border-border shadow-sm">
-              <div className="bg-accent/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+              <div className="bg-accent/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                 <TrendingUp className="h-6 w-6 text-accent" />
               </div>
               <p className="text-foreground">
@@ -73,7 +73,7 @@ const EngagementRSE = () => {
               </p>
             </div>
             <div className="bg-card p-6 rounded-sm border border-border shadow-sm">
-              <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+              <div className="bg-primary/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                 <Users className="h-6 w-6 text-primary" />
               </div>
               <p className="text-foreground">
@@ -81,7 +81,7 @@ const EngagementRSE = () => {
               </p>
             </div>
             <div className="bg-card p-6 rounded-sm border border-border shadow-sm">
-              <div className="bg-accent/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+              <div className="bg-accent/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                 <Heart className="h-6 w-6 text-accent" />
               </div>
               <p className="text-foreground">
@@ -89,7 +89,7 @@ const EngagementRSE = () => {
               </p>
             </div>
             <div className="bg-card p-6 rounded-sm border border-border shadow-sm">
-              <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+              <div className="bg-primary/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                 <Shield className="h-6 w-6 text-primary" />
               </div>
               <p className="text-foreground">

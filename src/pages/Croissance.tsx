@@ -353,7 +353,7 @@ const Croissance = () => {
 
             <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-10">
               <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
-                <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                <div className="bg-destructive/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                   <Clock className="h-6 w-6 text-destructive" />
                 </div>
                 <h3 className="font-semibold mb-3 text-foreground">Tu manques de temps</h3>
@@ -363,7 +363,7 @@ const Croissance = () => {
               </div>
 
               <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
-                <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                <div className="bg-destructive/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                   <Brain className="h-6 w-6 text-destructive" />
                 </div>
                 <h3 className="font-semibold mb-3 text-foreground">Tu décides seul(e)</h3>
@@ -373,7 +373,7 @@ const Croissance = () => {
               </div>
 
               <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
-                <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                <div className="bg-destructive/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                   <Target className="h-6 w-6 text-destructive" />
                 </div>
                 <h3 className="font-semibold mb-3 text-foreground">Tu ne sais plus par quoi commencer</h3>
@@ -383,7 +383,7 @@ const Croissance = () => {
               </div>
 
               <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
-                <div className="bg-destructive/10 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                <div className="bg-destructive/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                   <Flame className="h-6 w-6 text-destructive" />
                 </div>
                 <h3 className="font-semibold mb-3 text-foreground">Tu t'épuises sans résultat</h3>

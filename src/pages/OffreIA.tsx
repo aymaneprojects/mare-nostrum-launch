@@ -110,7 +110,7 @@ const OffreIA = () => {
           </h2>
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
             <div className="text-center p-6">
-              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Lightbulb className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Avantage compétitif</h3>
@@ -119,7 +119,7 @@ const OffreIA = () => {
               </p>
             </div>
             <div className="text-center p-6">
-              <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-accent/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <TrendingUp className="h-8 w-8 text-accent" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Scalabilité</h3>
@@ -128,7 +128,7 @@ const OffreIA = () => {
               </p>
             </div>
             <div className="text-center p-6">
-              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <BarChart3 className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Décisions data-driven</h3>
