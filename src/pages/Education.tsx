@@ -196,7 +196,7 @@ const Education = () => {
           </h2>
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
             <div className="text-center p-6">
-              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Lightbulb className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Transformation pédagogique</h3>
@@ -205,7 +205,7 @@ const Education = () => {
               </p>
             </div>
             <div className="text-center p-6">
-              <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-accent/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Users className="h-8 w-8 text-accent" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Attractivité & engagement</h3>
@@ -214,7 +214,7 @@ const Education = () => {
               </p>
             </div>
             <div className="text-center p-6">
-              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Trophy className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Soutenabilité budgétaire</h3>

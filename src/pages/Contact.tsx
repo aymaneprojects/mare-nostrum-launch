@@ -186,7 +186,7 @@ const Contact = () => {
                 
 
                 <div className="flex items-start space-x-3 md:space-x-4">
-                  <div className="bg-accent/10 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center flex-shrink-0">
+                  <div className="bg-accent/10 w-10 h-10 md:w-12 md:h-12 shape-hex flex items-center justify-center flex-shrink-0">
                     <Calendar className="h-5 w-5 md:h-6 md:w-6 text-accent" />
                   </div>
                   <div className="flex-1">

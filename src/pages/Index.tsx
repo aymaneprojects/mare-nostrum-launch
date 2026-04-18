@@ -587,7 +587,7 @@ De l'idée à la croissance.
               title: "Évaluation d'impact",
               description: "Mesure des résultats et ajustements continus"
             }].map(item => <div key={item.step} className="flex items-start space-x-4 p-6 bg-card border border-border rounded-sm hover:shadow-md transition-shadow">
-                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white font-bold text-lg">
+                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary to-accent shape-squircle flex items-center justify-center text-white font-bold text-lg">
                     {item.step}
                   </div>
                   <div>

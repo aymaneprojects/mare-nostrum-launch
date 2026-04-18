@@ -170,7 +170,7 @@ const About = () => {
 
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
             <div className="bg-card border border-border rounded-sm p-6 md:p-8 text-center hover:shadow-lg transition-shadow">
-              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Target className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Sécuriser les trajectoires</h3>
@@ -180,7 +180,7 @@ const About = () => {
             </div>
 
             <div className="bg-card border border-border rounded-sm p-8 text-center hover:shadow-lg transition-shadow">
-              <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-accent/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Users className="h-8 w-8 text-accent" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Renforcer la coopération</h3>
@@ -190,7 +190,7 @@ const About = () => {
             </div>
 
             <div className="bg-card border border-border rounded-sm p-8 text-center hover:shadow-lg transition-shadow">
-              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Heart className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Protéger le vivant</h3>
@@ -213,7 +213,7 @@ const About = () => {
           <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">Nos valeurs</h2>
           <div className="max-w-4xl mx-auto space-y-6 md:space-y-8">
             <div className="flex items-start space-x-3 md:space-x-4 p-4 md:p-6 bg-card border border-border rounded-sm">
-              <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-full flex items-center justify-center">
+              <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-primary/10 shape-hex flex items-center justify-center">
                 <Target className="h-5 w-5 md:h-6 md:w-6 text-primary" />
               </div>
               <div>
@@ -225,7 +225,7 @@ const About = () => {
             </div>
 
             <div className="flex items-start space-x-4 p-6 bg-card border border-border rounded-sm">
-              <div className="flex-shrink-0 w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
+              <div className="flex-shrink-0 w-12 h-12 bg-accent/10 shape-hex flex items-center justify-center">
                 <Lightbulb className="h-6 w-6 text-accent" />
               </div>
               <div>
@@ -237,7 +237,7 @@ const About = () => {
             </div>
 
             <div className="flex items-start space-x-4 p-6 bg-card border border-border rounded-sm">
-              <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+              <div className="flex-shrink-0 w-12 h-12 bg-primary/10 shape-hex flex items-center justify-center">
                 <Target className="h-6 w-6 text-primary" />
               </div>
               <div>
@@ -249,7 +249,7 @@ const About = () => {
             </div>
 
             <div className="flex items-start space-x-4 p-6 bg-card border border-border rounded-sm">
-              <div className="flex-shrink-0 w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
+              <div className="flex-shrink-0 w-12 h-12 bg-accent/10 shape-hex flex items-center justify-center">
                 <Target className="h-6 w-6 text-accent" />
               </div>
               <div>
@@ -261,7 +261,7 @@ const About = () => {
             </div>
 
             <div className="flex items-start space-x-4 p-6 bg-card border border-border rounded-sm">
-              <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+              <div className="flex-shrink-0 w-12 h-12 bg-primary/10 shape-hex flex items-center justify-center">
                 <Users className="h-6 w-6 text-primary" />
               </div>
               <div>

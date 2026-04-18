@@ -116,7 +116,7 @@ const MentoratIndividuel = () => {
           
           <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
             <div className="text-center">
-              <div className="bg-primary/10 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-primary/10 w-14 h-14 shape-hex flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold text-primary">1</span>
               </div>
               <h3 className="font-semibold text-foreground mb-2">Premier contact</h3>
@@ -125,7 +125,7 @@ const MentoratIndividuel = () => {
               </p>
             </div>
             <div className="text-center">
-              <div className="bg-primary/10 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-primary/10 w-14 h-14 shape-hex flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold text-primary">2</span>
               </div>
               <h3 className="font-semibold text-foreground mb-2">Matching mentor</h3>
@@ -134,7 +134,7 @@ const MentoratIndividuel = () => {
               </p>
             </div>
             <div className="text-center">
-              <div className="bg-primary/10 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-primary/10 w-14 h-14 shape-hex flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold text-primary">3</span>
               </div>
               <h3 className="font-semibold text-foreground mb-2">Séances régulières</h3>
@@ -143,7 +143,7 @@ const MentoratIndividuel = () => {
               </p>
             </div>
             <div className="text-center">
-              <div className="bg-primary/10 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-primary/10 w-14 h-14 shape-hex flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold text-primary">4</span>
               </div>
               <h3 className="font-semibold text-foreground mb-2">Suivi continu</h3>

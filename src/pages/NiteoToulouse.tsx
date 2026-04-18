@@ -221,7 +221,7 @@ const NiteoToulouse = () => {
               { icon: <Trophy className="h-8 w-8 text-accent" />, title: "Image d'insertion", desc: "Renforcer votre positionnement en matière d'insertion professionnelle et d'employabilité" },
             ].map((item, i) => (
               <div key={i} className="text-center p-6">
-                <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                   {item.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-foreground">{item.title}</h3>
@@ -298,7 +298,7 @@ const NiteoToulouse = () => {
           </h2>
           <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
             <div className="bg-card border border-border rounded-sm p-8 shadow-lg">
-              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <CheckCircle2 className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-center text-foreground">Pédagogie éprouvée</h3>
@@ -309,7 +309,7 @@ const NiteoToulouse = () => {
               </ul>
             </div>
             <div className="bg-card border border-border rounded-sm p-8 shadow-lg">
-              <div className="bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-accent/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Users className="h-8 w-8 text-accent" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-center text-foreground">Écosystème mobilisé</h3>
@@ -320,7 +320,7 @@ const NiteoToulouse = () => {
               </ul>
             </div>
             <div className="bg-card border border-border rounded-sm p-8 shadow-lg">
-              <div className="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Briefcase className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-center text-foreground">Structure optimisée</h3>

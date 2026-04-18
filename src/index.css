@@ -108,6 +108,68 @@ All colors MUST be HSL.
   }
 }
 
+/* Geometric shape utilities — variety of forms beyond circles & squares */
+@layer utilities {
+  /* Cut corners (top-right & bottom-left chamfered) */
+  .shape-cut {
+    clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+  }
+
+  /* Single corner cut (bottom-right) — like a folded card */
+  .shape-fold {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%);
+  }
+
+  /* Asymmetric rounded — only diagonal corners rounded */
+  .shape-diagonal {
+    border-radius: 1.5rem 0 1.5rem 0;
+  }
+
+  .shape-diagonal-alt {
+    border-radius: 0 1.5rem 0 1.5rem;
+  }
+
+  /* Hexagon */
+  .shape-hex {
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  }
+
+  /* Parallelogram */
+  .shape-parallelogram {
+    clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+  }
+
+  /* Arrow/chevron right (for CTAs, badges) */
+  .shape-arrow {
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%);
+  }
+
+  /* Pill (full rounded horizontal) */
+  .shape-pill {
+    border-radius: 9999px;
+  }
+
+  /* Squircle — superellipse-ish via large radius */
+  .shape-squircle {
+    border-radius: 30%;
+  }
+
+  /* Top slash (diagonal top edge) */
+  .shape-slash-top {
+    clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%);
+  }
+
+  /* Bottom slash (diagonal bottom edge) */
+  .shape-slash-bottom {
+    clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
+  }
+
+  /* Notch top (small triangular cutout — like a label) */
+  .shape-notch {
+    clip-path: polygon(0 0, calc(50% - 12px) 0, 50% 10px, calc(50% + 12px) 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
 /* Blog Article Content Styling */
 @layer components {
   .blog-article-content {
