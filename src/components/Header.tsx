@@ -31,10 +31,10 @@ const Header = () => {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         scrolled
-          ? "border-border/60 bg-background/98 backdrop-blur-xl shadow-lg"
-          : "border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+          ? "bg-background/95 backdrop-blur-xl border-b border-primary/10 shadow-soft"
+          : "bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/70 border-b border-transparent"
       }`}
     >
       <nav className="container mx-auto flex h-14 md:h-16 items-center justify-between px-3 md:px-4">
@@ -47,35 +47,35 @@ const Header = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-6">
+        <div className="hidden md:flex items-center space-x-5 lg:space-x-7">
           {navLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
-              className={`relative text-sm font-medium transition-all duration-300 hover:text-primary group ${
-                isActive(link.to) ? "text-primary" : "text-foreground/80"
+              className={`relative text-[13px] font-medium transition-colors duration-200 hover:text-primary group ${
+                isActive(link.to) ? "text-primary" : "text-foreground/75"
               }`}
             >
               {link.label}
               <span
-                className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                className={`absolute -bottom-1.5 left-0 h-0.5 bg-accent transition-all duration-300 ${
                   isActive(link.to) ? "w-full" : "w-0 group-hover:w-full"
                 }`}
               ></span>
             </Link>
           ))}
 
-          <Link to="/croissance#offres" className="ml-4 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm text-sm font-semibold h-9 px-4 bg-gradient-to-r from-[#6BB5C4] to-[#4A9BAC] text-white hover:from-[#7BC5D4] hover:to-[#5AABBC] transition-all duration-300 shadow-md hover:shadow-xl">
-            Rejoignez le Club
-          </Link>
-          <Button asChild size="sm" className="ml-2">
+          <Button asChild variant="outline" size="sm" className="ml-3">
+            <Link to="/croissance#offres">Rejoindre le Club</Link>
+          </Button>
+          <Button asChild size="sm">
             <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
           </Button>
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden transition-transform duration-300 hover:scale-110 active:scale-95"
+          className="md:hidden transition-transform duration-300 hover:scale-110 active:scale-95 text-primary"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -89,14 +89,14 @@ const Header = () => {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden border-t border-border/40 bg-background/98 backdrop-blur-xl animate-slide-in-right">
-          <div className="container mx-auto px-4 py-4 space-y-2">
+        <div className="md:hidden border-t border-primary/10 bg-background/98 backdrop-blur-xl animate-slide-in-right">
+          <div className="container mx-auto px-4 py-4 space-y-1">
             {navLinks.map((link, index) => (
               <Link
                 key={link.to}
                 to={link.to}
                 onClick={() => setIsMenuOpen(false)}
-                className={`block py-3 text-base font-medium transition-all duration-300 hover:text-primary hover:translate-x-2 animate-fade-in ${
+                className={`block py-3 text-base font-medium transition-all duration-300 hover:text-primary hover:translate-x-1 animate-fade-in ${
                   isActive(link.to) ? "text-primary" : "text-foreground/80"
                 }`}
                 style={{ animationDelay: `${index * 50}ms` }}
@@ -105,24 +105,18 @@ const Header = () => {
               </Link>
             ))}
 
-            <Link
-              to="/croissance#offres"
-              className="w-full inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm text-sm font-semibold h-9 px-4 bg-gradient-to-r from-[#6BB5C4] to-[#4A9BAC] text-white hover:from-[#7BC5D4] hover:to-[#5AABBC] transition-all duration-300 shadow-md hover:shadow-xl animate-fade-in"
-              style={{ animationDelay: `${navLinks.length * 50 + 100}ms` }}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Rejoignez le Club
-            </Link>
-            <Button
-              asChild
-              className="w-full mt-2 animate-fade-in"
-              size="sm"
-              style={{ animationDelay: `${navLinks.length * 50 + 150}ms` }}
-            >
-              <Link to="/livre-entrepreneuriat" onClick={() => setIsMenuOpen(false)}>
-                Livre Entrepreneuriat
-              </Link>
-            </Button>
+            <div className="pt-4 space-y-2">
+              <Button asChild variant="outline" size="sm" className="w-full">
+                <Link to="/croissance#offres" onClick={() => setIsMenuOpen(false)}>
+                  Rejoindre le Club
+                </Link>
+              </Button>
+              <Button asChild size="sm" className="w-full">
+                <Link to="/livre-entrepreneuriat" onClick={() => setIsMenuOpen(false)}>
+                  Livre Entrepreneuriat
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       )}

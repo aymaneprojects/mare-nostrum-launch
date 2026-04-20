@@ -150,63 +150,123 @@ All colors MUST be HSL.
   }
 }
 
-/* Geometric shape utilities — variety of forms beyond circles & squares */
+/* === Mare Nostrum brand utilities === */
 @layer utilities {
-  /* Cut corners (top-right & bottom-left chamfered) */
+  /* Pills (full rounded) — primary brand shape */
+  .shape-pill { border-radius: 9999px; }
+
+  /* Editorial accent typeface */
+  .font-editorial { font-family: 'Fraunces', Georgia, serif; }
+
+  /* Micro labels (KIND / DATE / EYEBROW) */
+  .mn-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: hsl(var(--mn-nuit));
+  }
+  .mn-eyebrow-muted {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: hsl(var(--mn-muted));
+  }
+  .mn-eyebrow-turquoise {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: hsl(var(--mn-turquoise));
+  }
+
+  /* Date / category chips — three brand variants */
+  .mn-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .mn-chip-nuit { background: hsl(var(--mn-nuit)); color: hsl(var(--mn-ivory)); }
+  .mn-chip-turquoise { background: hsl(var(--mn-turquoise)); color: hsl(var(--mn-nuit)); }
+  .mn-chip-ocre { background: hsl(var(--mn-ocre)); color: #fff; }
+  .mn-chip-outline {
+    background: transparent;
+    color: hsl(var(--mn-nuit));
+    border: 1.5px solid hsl(var(--mn-nuit));
+  }
+
+  /* Page shell — paper card with soft lift */
+  .mn-page-shell {
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 30px 80px rgba(15,23,51,0.08);
+  }
+
+  /* Card with brand border */
+  .mn-card {
+    background: #fff;
+    border: 1.5px solid hsl(var(--mn-nuit) / 0.18);
+    border-radius: 14px;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .mn-card-accent { border-color: hsl(var(--mn-turquoise)); }
+  .mn-card:hover { border-color: hsl(var(--mn-nuit) / 0.4); }
+
+  /* Hairline section divider with side rules */
+  .mn-section-label {
+    position: relative;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: hsl(var(--mn-nuit));
+    padding: 28px 0 14px;
+  }
+  .mn-section-label::before,
+  .mn-section-label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 28%;
+    height: 1px;
+    background: hsl(var(--mn-nuit) / 0.14);
+  }
+  .mn-section-label::before { left: 0; }
+  .mn-section-label::after { right: 0; }
+
+  /* Plain hairline */
+  .mn-hairline { border-top: 1px solid hsl(var(--mn-nuit) / 0.14); }
+
+  /* Legacy geometric utilities (kept for retro-compat where used) */
   .shape-cut {
     clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
   }
-
-  /* Single corner cut (bottom-right) — like a folded card */
   .shape-fold {
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%);
   }
-
-  /* Asymmetric rounded — only diagonal corners rounded */
-  .shape-diagonal {
-    border-radius: 1.5rem 0 1.5rem 0;
-  }
-
-  .shape-diagonal-alt {
-    border-radius: 0 1.5rem 0 1.5rem;
-  }
-
-  /* Hexagon */
+  .shape-diagonal { border-radius: 1.5rem 0 1.5rem 0; }
+  .shape-diagonal-alt { border-radius: 0 1.5rem 0 1.5rem; }
   .shape-hex {
     clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   }
-
-  /* Parallelogram */
   .shape-parallelogram {
     clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
   }
-
-  /* Arrow/chevron right (for CTAs, badges) */
   .shape-arrow {
     clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%);
   }
-
-  /* Pill (full rounded horizontal) */
-  .shape-pill {
-    border-radius: 9999px;
-  }
-
-  /* Squircle — superellipse-ish via large radius */
-  .shape-squircle {
-    border-radius: 30%;
-  }
-
-  /* Top slash (diagonal top edge) */
-  .shape-slash-top {
-    clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%);
-  }
-
-  /* Bottom slash (diagonal bottom edge) */
-  .shape-slash-bottom {
-    clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
-  }
-
-  /* Notch top (small triangular cutout — like a label) */
+  .shape-squircle { border-radius: 30%; }
+  .shape-slash-top { clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%); }
+  .shape-slash-bottom { clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%); }
   .shape-notch {
     clip-path: polygon(0 0, calc(50% - 12px) 0, 50% 10px, calc(50% + 12px) 0, 100% 0, 100% 100%, 0 100%);
   }
