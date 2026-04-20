@@ -8,53 +8,70 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 213 47% 26%;
+    /* === Mare Nostrum brand palette ===
+       Nuit       #24335D  → 222 44% 25%
+       Turquoise  #3BD9DB  → 181 67% 54%
+       Ivory      #F6F2EA  → 40 38% 94%
+       Ocre       #C88A1C  → 36 78% 45%
+       Ink        #0F1733  → 228 56% 13%
+       Muted txt  #6C7591  → 224 14% 50%
+    */
+    --mn-nuit: 222 44% 25%;
+    --mn-turquoise: 181 67% 54%;
+    --mn-ivory: 40 38% 94%;
+    --mn-ocre: 36 78% 45%;
+    --mn-ink: 228 56% 13%;
+    --mn-muted: 224 14% 50%;
+
+    --background: 40 38% 94%;          /* Ivory global */
+    --foreground: 228 56% 13%;          /* Ink */
 
     --card: 0 0% 100%;
-    --card-foreground: 213 47% 26%;
+    --card-foreground: 228 56% 13%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 213 47% 26%;
+    --popover-foreground: 228 56% 13%;
 
-    --primary: 213 47% 26%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 222 44% 25%;             /* Nuit */
+    --primary-foreground: 40 38% 94%;   /* Ivory on nuit */
 
-    --secondary: 213 30% 95%;
-    --secondary-foreground: 213 47% 26%;
+    --secondary: 40 30% 90%;            /* Sand-tinted ivory */
+    --secondary-foreground: 222 44% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 213 20% 50%;
+    --muted: 40 25% 92%;
+    --muted-foreground: 224 14% 50%;
 
-    --accent: 181 71% 54%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 181 67% 54%;              /* Turquoise */
+    --accent-foreground: 222 44% 25%;   /* Nuit on turquoise */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 181 71% 54%;
+    --border: 222 44% 25% / 0.14;
+    --input: 222 30% 88%;
+    --ring: 181 67% 54%;
 
-    --radius: 0.125rem;
+    --radius: 0.875rem;                 /* 14px — cards */
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 213 47% 26%;
-    --sidebar-primary: 213 47% 26%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 213 47% 26%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 181 71% 54%;
+    --sidebar-background: 40 38% 96%;
+    --sidebar-foreground: 228 56% 13%;
+    --sidebar-primary: 222 44% 25%;
+    --sidebar-primary-foreground: 40 38% 94%;
+    --sidebar-accent: 40 25% 92%;
+    --sidebar-accent-foreground: 222 44% 25%;
+    --sidebar-border: 222 30% 88%;
+    --sidebar-ring: 181 67% 54%;
 
-    /* Custom Mare Nostrum tokens */
-    --gradient-hero: linear-gradient(135deg, hsl(213 47% 26%), hsl(181 71% 54%));
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(213 30% 98%));
-    
-    --shadow-soft: 0 1px 3px 0 hsl(213 47% 26% / 0.06), 0 1px 2px -1px hsl(213 47% 26% / 0.06);
-    --shadow-medium: 0 4px 6px -1px hsl(213 47% 26% / 0.08), 0 2px 4px -2px hsl(213 47% 26% / 0.06);
-    --shadow-elegant: 0 20px 50px -12px hsl(213 47% 26% / 0.18);
-    
+    /* Mare Nostrum custom tokens */
+    --gradient-hero: linear-gradient(135deg, hsl(222 44% 25%), hsl(228 56% 13%));
+    --gradient-subtle: linear-gradient(180deg, hsl(40 38% 94%), hsl(40 30% 90%));
+    --gradient-turquoise: linear-gradient(135deg, hsl(181 67% 54%), hsl(181 50% 40%));
+
+    --shadow-soft: 0 1px 3px 0 hsl(228 56% 13% / 0.06), 0 1px 2px -1px hsl(228 56% 13% / 0.06);
+    --shadow-medium: 0 4px 6px -1px hsl(228 56% 13% / 0.08), 0 2px 4px -2px hsl(228 56% 13% / 0.06);
+    --shadow-elegant: 0 20px 50px -12px hsl(222 44% 25% / 0.18);
+    --shadow-lift: 0 30px 80px rgba(15,23,51,0.08);
+
     --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -105,15 +122,17 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "ss02";
   }
 
-  /* Asap font applied site-wide */
-  h1, h2 {
+  /* DM Sans applied site-wide for headings & UI; Fraunces reserved for editorial accents */
+  h1, h2, h3, h4 {
     @apply font-display tracking-tight;
+    color: hsl(var(--foreground));
   }
 
-  h1 { @apply text-4xl md:text-6xl font-bold leading-[1.05]; }
-  h2 { @apply text-3xl md:text-5xl font-bold leading-tight; }
+  h1 { @apply text-4xl md:text-6xl font-bold leading-[1.05]; letter-spacing: -0.02em; }
+  h2 { @apply text-3xl md:text-5xl font-bold leading-tight; letter-spacing: -0.015em; }
   h3 { @apply text-xl md:text-2xl font-semibold tracking-tight; }
 
   /* Accessibility — visible focus rings (UI/UX checklist) */
@@ -131,63 +150,123 @@ All colors MUST be HSL.
   }
 }
 
-/* Geometric shape utilities — variety of forms beyond circles & squares */
+/* === Mare Nostrum brand utilities === */
 @layer utilities {
-  /* Cut corners (top-right & bottom-left chamfered) */
+  /* Pills (full rounded) — primary brand shape */
+  .shape-pill { border-radius: 9999px; }
+
+  /* Editorial accent typeface */
+  .font-editorial { font-family: 'Fraunces', Georgia, serif; }
+
+  /* Micro labels (KIND / DATE / EYEBROW) */
+  .mn-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: hsl(var(--mn-nuit));
+  }
+  .mn-eyebrow-muted {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: hsl(var(--mn-muted));
+  }
+  .mn-eyebrow-turquoise {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: hsl(var(--mn-turquoise));
+  }
+
+  /* Date / category chips — three brand variants */
+  .mn-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .mn-chip-nuit { background: hsl(var(--mn-nuit)); color: hsl(var(--mn-ivory)); }
+  .mn-chip-turquoise { background: hsl(var(--mn-turquoise)); color: hsl(var(--mn-nuit)); }
+  .mn-chip-ocre { background: hsl(var(--mn-ocre)); color: #fff; }
+  .mn-chip-outline {
+    background: transparent;
+    color: hsl(var(--mn-nuit));
+    border: 1.5px solid hsl(var(--mn-nuit));
+  }
+
+  /* Page shell — paper card with soft lift */
+  .mn-page-shell {
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 30px 80px rgba(15,23,51,0.08);
+  }
+
+  /* Card with brand border */
+  .mn-card {
+    background: #fff;
+    border: 1.5px solid hsl(var(--mn-nuit) / 0.18);
+    border-radius: 14px;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .mn-card-accent { border-color: hsl(var(--mn-turquoise)); }
+  .mn-card:hover { border-color: hsl(var(--mn-nuit) / 0.4); }
+
+  /* Hairline section divider with side rules */
+  .mn-section-label {
+    position: relative;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: hsl(var(--mn-nuit));
+    padding: 28px 0 14px;
+  }
+  .mn-section-label::before,
+  .mn-section-label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 28%;
+    height: 1px;
+    background: hsl(var(--mn-nuit) / 0.14);
+  }
+  .mn-section-label::before { left: 0; }
+  .mn-section-label::after { right: 0; }
+
+  /* Plain hairline */
+  .mn-hairline { border-top: 1px solid hsl(var(--mn-nuit) / 0.14); }
+
+  /* Legacy geometric utilities (kept for retro-compat where used) */
   .shape-cut {
     clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
   }
-
-  /* Single corner cut (bottom-right) — like a folded card */
   .shape-fold {
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%);
   }
-
-  /* Asymmetric rounded — only diagonal corners rounded */
-  .shape-diagonal {
-    border-radius: 1.5rem 0 1.5rem 0;
-  }
-
-  .shape-diagonal-alt {
-    border-radius: 0 1.5rem 0 1.5rem;
-  }
-
-  /* Hexagon */
+  .shape-diagonal { border-radius: 1.5rem 0 1.5rem 0; }
+  .shape-diagonal-alt { border-radius: 0 1.5rem 0 1.5rem; }
   .shape-hex {
     clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   }
-
-  /* Parallelogram */
   .shape-parallelogram {
     clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
   }
-
-  /* Arrow/chevron right (for CTAs, badges) */
   .shape-arrow {
     clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%);
   }
-
-  /* Pill (full rounded horizontal) */
-  .shape-pill {
-    border-radius: 9999px;
-  }
-
-  /* Squircle — superellipse-ish via large radius */
-  .shape-squircle {
-    border-radius: 30%;
-  }
-
-  /* Top slash (diagonal top edge) */
-  .shape-slash-top {
-    clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%);
-  }
-
-  /* Bottom slash (diagonal bottom edge) */
-  .shape-slash-bottom {
-    clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
-  }
-
-  /* Notch top (small triangular cutout — like a label) */
+  .shape-squircle { border-radius: 30%; }
+  .shape-slash-top { clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%); }
+  .shape-slash-bottom { clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%); }
   .shape-notch {
     clip-path: polygon(0 0, calc(50% - 12px) 0, 50% 10px, calc(50% + 12px) 0, 100% 0, 100% 100%, 0 100%);
   }
