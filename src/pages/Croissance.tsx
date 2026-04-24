@@ -462,7 +462,7 @@ const Croissance = () => {
               </Button>
             </div>
 
-            <div className="flex items-center gap-1 bg-muted rounded-full p-1">
+            <div className="flex items-center gap-1 bg-background border border-border rounded-full p-1 shadow-sm">
               <button
                 onClick={() => setSelectedBilling("monthly")}
                 className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${selectedBilling === "monthly" ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
