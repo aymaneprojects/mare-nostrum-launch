@@ -380,7 +380,7 @@ const Croissance = () => {
             </h2>
 
             <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-10">
-              <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
+              <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
                 <div className="bg-destructive/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                   <Clock className="h-6 w-6 text-destructive" />
                 </div>
@@ -390,7 +390,7 @@ const Croissance = () => {
                 </p>
               </div>
 
-              <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
+              <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
                 <div className="bg-destructive/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                   <Brain className="h-6 w-6 text-destructive" />
                 </div>
@@ -400,7 +400,7 @@ const Croissance = () => {
                 </p>
               </div>
 
-              <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
+              <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
                 <div className="bg-destructive/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                   <Target className="h-6 w-6 text-destructive" />
                 </div>
@@ -410,7 +410,7 @@ const Croissance = () => {
                 </p>
               </div>
 
-              <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
+              <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
                 <div className="bg-destructive/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                   <Flame className="h-6 w-6 text-destructive" />
                 </div>
@@ -704,25 +704,25 @@ const Croissance = () => {
           </h2>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
+            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
               <div className="text-4xl md:text-5xl font-bold text-primary mb-3">50%</div>
               <p className="text-sm text-muted-foreground">
                 des entrepreneurs accompagnés se rémunèrent correctement dans les 2 ans après la création
               </p>
             </div>
-            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
+            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
               <div className="text-4xl md:text-5xl font-bold text-accent mb-3">3</div>
               <p className="text-sm text-muted-foreground">
                 contacts qualifiés en moyenne dès le premier mois d'adhésion
               </p>
             </div>
-            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
+            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
               <div className="text-4xl md:text-5xl font-bold text-primary mb-3">93%</div>
               <p className="text-sm text-muted-foreground">
                 des membres se disent "très satisfaits ou satisfaits" de leur expérience
               </p>
             </div>
-            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md transition-shadow">
+            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
               <div className="text-4xl md:text-5xl font-bold text-accent mb-3">90%</div>
               <p className="text-sm text-muted-foreground">
                 déclarent gagner du temps, de la clarté et de la sérénité après chaque session

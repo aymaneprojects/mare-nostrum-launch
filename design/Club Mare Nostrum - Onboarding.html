@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Club Mare Nostrum — Onboarding</title>
+<meta name="viewport" content="width=1600" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #E8E3DB; font-family: 'DM Sans', system-ui, sans-serif; color: #0F1733; }
+  button { font-family: inherit; }
+  /* Custom scrollbar on inner panes */
+  .mn-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+  .mn-scroll::-webkit-scrollbar-thumb { background: rgba(36,51,93,0.2); border-radius: 4px; }
+  input::placeholder { color: rgba(108, 117, 145, 0.6); }
+
+  /* Tweaks panel styling */
+  .tweaks {
+    position: fixed; right: 18px; bottom: 18px; z-index: 99;
+    background: rgba(15, 23, 51, 0.96); color: #fff;
+    border-radius: 14px; padding: 18px 20px; width: 280px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    backdrop-filter: blur(12px);
+  }
+  .tweaks h4 { margin: 0 0 14px; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #3BD9DB; font-weight: 700; }
+  .tweaks label { display: block; font-size: 12px; color: rgba(255,255,255,0.65); margin: 10px 0 6px; letter-spacing: 0.5px; }
+  .tweaks .seg { display: flex; gap: 4px; background: rgba(255,255,255,0.06); padding: 3px; border-radius: 8px; }
+  .tweaks .seg button {
+    flex: 1; background: transparent; border: none; color: rgba(255,255,255,0.6);
+    padding: 8px 10px; border-radius: 6px; font-size: 12px; cursor: pointer;
+    font-weight: 500; transition: all .18s;
+  }
+  .tweaks .seg button.on { background: #3BD9DB; color: #0F1733; font-weight: 700; }
+  .tweaks .row { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
+  .tweaks .toggle {
+    width: 40px; height: 22px; background: rgba(255,255,255,0.12); border-radius: 999px;
+    position: relative; border: none; cursor: pointer;
+  }
+  .tweaks .toggle.on { background: #3BD9DB; }
+  .tweaks .toggle::after {
+    content: ''; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px;
+    background: #fff; border-radius: 50%; transition: left .18s;
+  }
+  .tweaks .toggle.on::after { left: 20px; }
+</style>
+</head>
+<body>
+
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="tokens.jsx"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="browser-frame.jsx"></script>
+<script type="text/babel" src="onboarding-shared.jsx"></script>
+<script type="text/babel" src="var-a.jsx"></script>
+<script type="text/babel" src="var-b.jsx"></script>
+<script type="text/babel" src="var-c.jsx"></script>
+
+<script type="text/babel">
+// ============================================================
+// Tweaks — live-editable config block
+// ============================================================
+const TWEAKS = /*EDITMODE-BEGIN*/{
+  "typography": "chillax",
+  "dark": false
+}/*EDITMODE-END*/;
+
+const TYPOGRAPHY = {
+  agenda: {
+    // Piste 01 — Agenda Bold ≈ condensed modern sans. Closest Google mate: Space Grotesk for display, DM Sans for body.
+    display: "'Space Grotesk', 'Agenda', system-ui, sans-serif",
+    body:    "'DM Sans', 'Agenda', system-ui, sans-serif",
+    name:    'Piste 01 — Agenda',
+  },
+  chillax: {
+    // Piste 02 — Chillax Medium ≈ warm geometric sans. Closest Google mate: DM Sans for display, Inter for body.
+    display: "'DM Sans', 'Chillax', system-ui, sans-serif",
+    body:    "'Inter', 'Chillax', system-ui, sans-serif",
+    name:    'Piste 02 — Chillax',
+  },
+};
+
+function Root() {
+  const [typoKey, setTypoKey] = React.useState(TWEAKS.typography);
+  const [dark, setDark] = React.useState(TWEAKS.dark);
+  const [tweaksOn, setTweaksOn] = React.useState(false);
+
+  // Each variation has its own onboarding state so users can explore them independently.
+  const obA = useOnboarding();
+  const obB = useOnboarding();
+  const obC = useOnboarding();
+
+  const typography = TYPOGRAPHY[typoKey];
+
+  // Persist edits through the host so reloads remember them.
+  React.useEffect(() => {
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { typography: typoKey, dark }}, '*');
+  }, [typoKey, dark]);
+
+  // Tweaks panel availability
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      if (!e.data || typeof e.data !== 'object') return;
+      if (e.data.type === '__activate_edit_mode') setTweaksOn(true);
+      if (e.data.type === '__deactivate_edit_mode') setTweaksOn(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  return (
+    <>
+      <DesignCanvas minScale={0.1} maxScale={2}>
+        <div style={{ padding: '80px 80px 60px' }}>
+          {/* Header */}
+          <div style={{ marginBottom: 64, maxWidth: 1100 }}>
+            <div style={{
+              fontSize: 11, letterSpacing: 3, textTransform: 'uppercase',
+              color: 'rgba(60,50,40,0.55)', fontWeight: 600, marginBottom: 14,
+            }}>Mare Nostrum · Club · Onboarding · R1</div>
+            <h1 style={{
+              fontFamily: typography.display,
+              fontSize: 54, lineHeight: 1.05, fontWeight: 600, margin: 0,
+              letterSpacing: -1.5, color: '#0F1733', textWrap: 'balance',
+            }}>Trois pistes pour l’entrée au Club.</h1>
+            <p style={{
+              fontSize: 16, lineHeight: 1.55, color: 'rgba(40,30,20,0.68)',
+              marginTop: 18, maxWidth: 720,
+            }}>
+              Un seul parcours — 6 étapes, puis la confirmation — décliné en trois
+              directions visuelles. Cliquez sur les pas ou les numéros pour naviguer
+              dans chaque flux. Version mobile à côté. Tweaks (en bas à droite) pour
+              basculer typographie (Agenda ↔ Chillax) et mode sombre.
+            </p>
+          </div>
+
+          {/* Variation A */}
+          <VarSection
+            label="Variation A — Conservative"
+            subtitle="Split-screen institutionnel. Panneau bleu nuit + photographie, formulaire ivoire. Hiérarchie sobre, pavé typographique discret."
+            ob={obA} Comp={VarA} typography={typography} dark={dark}
+            url="clubmarenostrum.club/adhesion"
+          />
+
+          {/* Variation B */}
+          <VarSection
+            label="Variation B — Balanced"
+            subtitle="Carte centrée sur photographie pleine page changeante par étape. Rail de progression sous le logo. Équilibre entre produit et ligne éditoriale."
+            ob={obB} Comp={VarB} typography={typography} dark={dark}
+            url="app.clubmarenostrum.com/adhesion"
+          />
+
+          {/* Variation C */}
+          <VarSection
+            label="Variation C — Bold / Editorial"
+            subtitle="Grille éditoriale asymétrique. Numéro d’étape surdimensionné à la française, ruban évoquant le logo en arrière-plan, sommaire vertical à droite."
+            ob={obC} Comp={VarC} typography={typography} dark={dark}
+            url="marenostrum.club/rejoindre"
+          />
+        </div>
+      </DesignCanvas>
+
+      {tweaksOn && (
+        <div className="tweaks">
+          <h4>Tweaks</h4>
+          <label>Typographie</label>
+          <div className="seg">
+            <button className={typoKey === 'agenda' ? 'on' : ''} onClick={() => setTypoKey('agenda')}>Agenda</button>
+            <button className={typoKey === 'chillax' ? 'on' : ''} onClick={() => setTypoKey('chillax')}>Chillax</button>
+          </div>
+          <label>Mode sombre</label>
+          <div className="row">
+            <button className={`toggle ${dark ? 'on' : ''}`} onClick={() => setDark(!dark)} />
+            <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)' }}>{dark ? 'Activé' : 'Désactivé'}</span>
+          </div>
+          <div style={{
+            marginTop: 16, paddingTop: 14, borderTop: '1px solid rgba(255,255,255,0.08)',
+            fontSize: 11, color: 'rgba(255,255,255,0.45)', lineHeight: 1.5,
+          }}>
+            Piste 01 (Agenda) est condensée & institutionnelle · Piste 02 (Chillax) est arrondie & contemporaine.
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+function VarSection({ label, subtitle, ob, Comp, typography, dark, url }) {
+  return (
+    <div data-screen-label={label} style={{ marginBottom: 100 }}>
+      <div style={{ marginBottom: 28, maxWidth: 780 }}>
+        <div style={{
+          fontSize: 11, letterSpacing: 3, textTransform: 'uppercase',
+          fontWeight: 700, color: '#24335D', marginBottom: 8,
+        }}>{label}</div>
+        <div style={{ fontSize: 14, lineHeight: 1.55, color: 'rgba(40,30,20,0.65)' }}>{subtitle}</div>
+      </div>
+      <div style={{ display: 'flex', gap: 40, alignItems: 'flex-start' }}>
+        <MNBrowser width={1340} height={820} url={url} theme={dark ? 'dark' : 'light'}>
+          <Comp ob={ob} typography={typography} dark={dark} />
+        </MNBrowser>
+        <div>
+          <div style={{
+            fontSize: 11, letterSpacing: 2, textTransform: 'uppercase',
+            color: 'rgba(60,50,40,0.55)', fontWeight: 600, marginBottom: 14, paddingLeft: 8,
+          }}>Mobile · même étape</div>
+          <MNPhone width={340} height={720} theme={dark ? 'dark' : 'light'}>
+            <div style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+              {/* Compact mobile view: reuse same component with scaled content */}
+              <MobileView ob={ob} typography={typography} dark={dark} />
+            </div>
+          </MNPhone>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// A single compact mobile flow shared by all three variants — keeps this deliverable
+// focused on the three *desktop* directions without tripling the mobile work. The
+// mobile screen adopts the balanced direction (Variation B cues).
+function MobileView({ ob, typography, dark }) {
+  const C = {
+    bg: dark ? '#060A1A' : '#fff',
+    text: dark ? '#EAEFFA' : '#0F1733',
+    muted: dark ? '#8894B8' : '#6C7591',
+    line: dark ? 'rgba(255,255,255,0.08)' : 'rgba(36,51,93,0.12)',
+    nuit: dark ? '#EAEFFA' : '#24335D',
+    accent: '#3BD9DB',
+  };
+  return (
+    <div style={{
+      width: '100%', height: '100%', background: C.bg, color: C.text,
+      fontFamily: typography.body, display: 'flex', flexDirection: 'column',
+      paddingTop: 44,
+    }}>
+      <div style={{ padding: '14px 22px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <MNLogomark size={22} color={C.nuit} showWord={false} />
+        <div style={{ fontSize: 10, letterSpacing: 1.5, textTransform: 'uppercase', color: C.muted, fontWeight: 600 }}>
+          {String(ob.step + 1).padStart(2,'0')} / {String(ob.total).padStart(2,'0')}
+        </div>
+      </div>
+      <div style={{ padding: '14px 22px 0' }}>
+        <WaveProgress step={ob.step} total={ob.total} color={C.nuit === '#EAEFFA' ? '#24335D' : C.nuit} accent={C.accent} height={3} />
+      </div>
+      <div className="mn-scroll" style={{ flex: 1, overflow: 'auto', padding: '22px 22px 0' }}>
+        <MobileStep ob={ob} typography={typography} C={C} />
+      </div>
+      <div style={{
+        padding: '16px 22px', borderTop: `1px solid ${C.line}`,
+        display: 'flex', gap: 10,
+      }}>
+        {ob.step > 0 && (
+          <button onClick={ob.back} style={{
+            flex: '0 0 auto', padding: '14px 18px', background: 'transparent',
+            border: `1px solid ${C.line}`, borderRadius: 999, color: C.text,
+            fontSize: 12, letterSpacing: 1.5, textTransform: 'uppercase', fontWeight: 600,
+          }}>←</button>
+        )}
+        <button onClick={ob.next} disabled={ob.step === ob.total - 1} style={{
+          flex: 1, padding: '14px', background: '#24335D',
+          border: 'none', borderRadius: 999, color: '#fff',
+          fontSize: 12, letterSpacing: 1.5, textTransform: 'uppercase', fontWeight: 700,
+          opacity: ob.step === ob.total - 1 ? 0.3 : 1,
+        }}>{ob.step === ob.total - 2 ? 'Adhérer' : 'Continuer'}</button>
+      </div>
+    </div>
+  );
+}
+
+function MobileStep({ ob, typography, C }) {
+  const d = ob.data;
+  const Title = ({ eyebrow, children }) => (
+    <>
+      {eyebrow && <div style={{ fontSize: 10, letterSpacing: 2.5, textTransform: 'uppercase', color: C.accent, fontWeight: 700, marginBottom: 8 }}>{eyebrow}</div>}
+      <h2 style={{ fontFamily: typography.display, fontSize: 26, lineHeight: 1.1, fontWeight: 600, margin: '0 0 10px', letterSpacing: -0.5, textWrap: 'balance' }}>{children}</h2>
+    </>
+  );
+  const Lead = ({ children }) => <p style={{ fontSize: 13, lineHeight: 1.55, color: C.muted, margin: '0 0 20px' }}>{children}</p>;
+
+  switch (MN_CONTENT.steps[ob.step].key) {
+    case 'welcome':
+      return <>
+        <Title eyebrow="Bienvenue">Faisons connaissance.</Title>
+        <Lead>Club Mare Nostrum réunit les jeunes entrepreneurs du pourtour méditerranéen. 4 minutes pour rejoindre.</Lead>
+        <div style={{ display: 'grid', gap: 10, marginTop: 18 }}>
+          {[{n:'320+', l:'membres'},{n:'14', l:'pays'},{n:'48', l:'événements / an'}].map(s => (
+            <div key={s.n} style={{ padding: '14px 16px', border: `1px solid ${C.line}`, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+              <span style={{ fontFamily: typography.display, fontSize: 20, fontWeight: 700, color: C.nuit }}>{s.n}</span>
+              <span style={{ fontSize: 11, color: C.muted, letterSpacing: 1, textTransform: 'uppercase' }}>{s.l}</span>
+            </div>
+          ))}
+        </div>
+      </>;
+    case 'language':
+      return <>
+        <Title eyebrow="02 — Langue">Choisissez votre langue.</Title>
+        <Lead>Sert à la mise en relation. Modifiable.</Lead>
+        <div style={{ display: 'grid', gap: 10 }}>
+          {[{k:'fr',n:'Français'},{k:'en',n:'English'},{k:'ar',n:'العربية'}].map(o => {
+            const active = d.lang === o.k;
+            return <button key={o.k} onClick={() => ob.set({lang: o.k})} style={{
+              padding: '16px 18px', textAlign: 'left', background: active ? 'rgba(36,51,93,0.05)' : 'transparent',
+              border: `1.5px solid ${active ? C.nuit : C.line}`, fontFamily: typography.display,
+              fontSize: 18, fontWeight: 600, color: C.text,
+            }}>{o.n}</button>;
+          })}
+        </div>
+      </>;
+    case 'profile':
+      return <>
+        <Title eyebrow="03 — Entreprise">Votre entreprise.</Title>
+        <div style={{ display: 'grid', gap: 22 }}>
+          <TextField label="Raison sociale" value={d.company} onChange={v => ob.set({company:v})} placeholder="Atlas Consulting" color={C.text} accent={C.accent} />
+          <TextField label="Pays principal" value={d.country} onChange={v => ob.set({country:v})} placeholder="France" color={C.text} accent={C.accent} />
+          <div>
+            <div style={{ fontSize: 10, letterSpacing: 1.8, textTransform: 'uppercase', color: C.muted, fontWeight: 600, marginBottom: 10 }}>Effectif</div>
+            <ChipGroup options={MN_CONTENT.sizes} value={d.size} onChange={v => ob.set({size:v})} color={C.nuit} />
+          </div>
+        </div>
+      </>;
+    case 'goals':
+      return <>
+        <Title eyebrow="04 — Ambitions">Qu’attendez-vous ?</Title>
+        <Lead>Une ou plusieurs réponses.</Lead>
+        <div style={{ display: 'grid', gap: 10 }}>
+          {MN_CONTENT.goals.map(g => {
+            const active = d.goals.includes(g.k);
+            return <button key={g.k} onClick={() => ob.toggleGoal(g.k)} style={{
+              padding: '14px 16px', textAlign: 'left', background: active ? 'rgba(36,51,93,0.05)' : 'transparent',
+              border: `1.5px solid ${active ? C.nuit : C.line}`, color: C.text,
+            }}>
+              <div style={{ fontFamily: typography.display, fontSize: 15, fontWeight: 600, marginBottom: 4 }}>{g.title}</div>
+              <div style={{ fontSize: 11, color: C.muted, lineHeight: 1.4 }}>{g.sub}</div>
+            </button>;
+          })}
+        </div>
+      </>;
+    case 'tier':
+      return <>
+        <Title eyebrow="05 — Formule">Votre adhésion.</Title>
+        <div style={{ display: 'grid', gap: 10 }}>
+          {MN_CONTENT.tiers.map(t => {
+            const active = d.tier === t.k;
+            return <button key={t.k} onClick={() => ob.set({tier: t.k})} style={{
+              padding: '16px 18px', textAlign: 'left', background: active ? 'rgba(36,51,93,0.05)' : 'transparent',
+              border: `1.5px solid ${active ? C.nuit : C.line}`, color: C.text, position: 'relative',
+            }}>
+              {t.popular && <span style={{ position:'absolute', top: 8, right: 12, fontSize: 9, letterSpacing: 1.5, color: C.accent, fontWeight: 700, textTransform: 'uppercase' }}>Recommandé</span>}
+              <div style={{ fontFamily: typography.display, fontSize: 17, fontWeight: 600 }}>{t.name}</div>
+              <div style={{ fontSize: 11, color: C.muted, marginTop: 2 }}>{t.tagline}</div>
+              <div style={{ marginTop: 8, fontFamily: typography.display, fontSize: 18, fontWeight: 600, color: C.nuit }}>{t.price === 0 ? 'Gratuit' : `${t.price} €/mois`}</div>
+            </button>;
+          })}
+        </div>
+      </>;
+    case 'payment': {
+      const tier = MN_CONTENT.tiers.find(t => t.k === d.tier);
+      const isFree = tier.price === 0;
+      return <>
+        <Title eyebrow="06 — Paiement">{isFree ? 'Confirmation.' : 'Paiement sécurisé.'}</Title>
+        {!isFree ? (
+          <div style={{ display: 'grid', gap: 22 }}>
+            <TextField label="Nom sur la carte" value={d.card.name} onChange={v => ob.set({card:{...d.card,name:v}})} placeholder="Khalid Benali" color={C.text} accent={C.accent} />
+            <TextField label="Numéro" value={d.card.number} onChange={v => ob.set({card:{...d.card,number:v}})} placeholder="4242 4242 4242 4242" color={C.text} accent={C.accent} />
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+              <TextField label="Exp" value={d.card.exp} onChange={v => ob.set({card:{...d.card,exp:v}})} placeholder="MM/AA" color={C.text} accent={C.accent} />
+              <TextField label="CVC" value={d.card.cvc} onChange={v => ob.set({card:{...d.card,cvc:v}})} placeholder="•••" color={C.text} accent={C.accent} />
+            </div>
+          </div>
+        ) : null}
+        <div style={{ marginTop: 22, padding: 14, background: 'rgba(36,51,93,0.04)', border: `1px solid ${C.line}` }}>
+          <div style={{ fontSize: 10, letterSpacing: 2, textTransform: 'uppercase', color: C.muted, fontWeight: 600 }}>{tier.name}</div>
+          <div style={{ fontFamily: typography.display, fontSize: 22, fontWeight: 700, color: C.nuit, marginTop: 4 }}>{tier.price} €<span style={{ fontSize: 11, color: C.muted, fontWeight: 400 }}> {tier.suffix}</span></div>
+        </div>
+      </>;
+    }
+    case 'done': {
+      const tier = MN_CONTENT.tiers.find(t => t.k === d.tier);
+      return <div style={{ textAlign: 'center', paddingTop: 30 }}>
+        <div style={{ width: 56, height: 56, margin: '0 auto 20px', borderRadius: '50%', background: 'rgba(59,217,219,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1.5px solid ${C.accent}` }}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12.5 L10 17 L19 7" stroke={C.nuit === '#EAEFFA' ? '#24335D' : C.nuit} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+        </div>
+        <Title eyebrow="Bienvenue">{d.company || 'Vous'} rejoignez le Club.</Title>
+        <Lead>Palier <strong>{tier.name}</strong>. Email de confirmation sous 2 min.</Lead>
+        <button style={{ padding: '14px 28px', background: '#24335D', color: '#fff', border: 'none', borderRadius: 999, fontSize: 12, letterSpacing: 1.5, textTransform: 'uppercase', fontWeight: 700 }}>Accéder au Club</button>
+      </div>;
+    }
+  }
+}
+
+Object.assign(window, { Root, VarSection, MobileView, MobileStep });
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Root />);
+</script>
+
+</body>
+</html>

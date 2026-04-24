@@ -181,6 +181,25 @@ const Education = () => {
         }
       />
 
+      {/* Trust Strip */}
+      <section className="py-5 md:py-6 bg-secondary/40 border-b border-border">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 max-w-4xl mx-auto">
+            {[
+              { value: "14+", label: "établissements partenaires" },
+              { value: "17+", label: "projets étudiants accompagnés" },
+              { value: "3h→6 mois", label: "formats adaptables" },
+              { value: "95%", label: "satisfaction des étudiants" },
+            ].map(({ value, label }) => (
+              <div key={label} className="flex items-center gap-2">
+                <span className="font-editorial font-semibold text-lg text-primary">{value}</span>
+                <span className="text-sm text-muted-foreground">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Challenges Section */}
       <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
@@ -233,7 +252,7 @@ const Education = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Fresque */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Lightbulb className="h-7 w-7 text-white" />
               </div>
@@ -258,7 +277,7 @@ const Education = () => {
             </div>
 
             {/* Atelier des Alliés */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Users className="h-7 w-7 text-white" />
               </div>
@@ -283,7 +302,7 @@ const Education = () => {
             </div>
 
             {/* Hackathons */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Trophy className="h-7 w-7 text-white" />
               </div>
@@ -306,7 +325,7 @@ const Education = () => {
             </div>
 
             {/* Programme Premium */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <GraduationCap className="h-7 w-7 text-white" />
               </div>
@@ -329,7 +348,7 @@ const Education = () => {
             </div>
 
             {/* Cours */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <BookOpen className="h-7 w-7 text-white" />
               </div>
@@ -352,7 +371,7 @@ const Education = () => {
             </div>
 
             {/* Réseau */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Network className="h-7 w-7 text-white" />
               </div>
@@ -476,7 +495,8 @@ const Education = () => {
       {/* Écoles Partenaires Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <div className="mn-eyebrow-turquoise text-center mb-3">14+ établissements</div>
+          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-4 text-foreground">
             Nos écoles partenaires
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -510,7 +530,8 @@ const Education = () => {
       {/* Testimonials Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <div className="mn-eyebrow-turquoise text-center mb-3">Témoignages</div>
+          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-12 text-foreground">
             Ils nous font confiance
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">

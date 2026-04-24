@@ -128,13 +128,33 @@ const Contact = () => {
         size="sm"
       />
 
+      {/* Trust Strip */}
+      <section className="py-5 md:py-6 bg-secondary/40 border-b border-border">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 max-w-4xl mx-auto">
+            {[
+              { value: "24", label: "entreprises accompagnées" },
+              { value: "135+", label: "experts actifs" },
+              { value: "95%", label: "satisfaction clients" },
+              { value: "48h", label: "délai de réponse max" },
+            ].map(({ value, label }) => (
+              <div key={label} className="flex items-center gap-2">
+                <span className="font-editorial font-semibold text-lg text-primary">{value}</span>
+                <span className="text-sm text-muted-foreground">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
             {/* Contact Info */}
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-foreground">Nous contacter</h2>
+              <div className="mn-eyebrow-turquoise mb-3">Nos bureaux</div>
+              <h2 className="font-editorial italic text-2xl md:text-3xl font-semibold mb-6 md:mb-8 text-foreground">Nous contacter</h2>
               <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-8">
                 Que vous soyez une école, une université, un entrepreneur ou un dirigeant d'entreprise à impact, 
                 nous sommes là pour vous accompagner.
@@ -205,8 +225,11 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div className="bg-secondary/50 border border-border rounded-sm p-4 md:p-6">
-                <h3 className="font-semibold text-foreground mb-2 text-sm md:text-base">On vous répond sous 48h</h3>
+              <div className="bg-accent/8 border border-accent/20 rounded-sm p-4 md:p-6" style={{ background: "hsl(181 67% 54% / 0.07)" }}>
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                  <h3 className="font-semibold text-foreground text-sm md:text-base">Réponse garantie sous 48h</h3>
+                </div>
                 <p className="text-xs md:text-sm text-muted-foreground">
                   Nous nous engageons à répondre à toutes vos demandes dans un délai maximum de 48 heures ouvrées.
                 </p>
@@ -215,6 +238,13 @@ const Contact = () => {
 
             {/* Contact Form */}
             <div className="bg-card border border-border rounded-sm p-6 md:p-8 shadow-lg">
+              {!isSuccess && (
+                <div className="mb-6 pb-6 border-b border-border">
+                  <div className="mn-eyebrow-turquoise mb-2">Formulaire de contact</div>
+                  <h3 className="font-editorial italic text-xl font-semibold text-foreground">Décrivez votre projet</h3>
+                  <p className="text-sm text-muted-foreground mt-1">Réponse garantie sous 48h ouvrées</p>
+                </div>
+              )}
               {isSuccess ? (
                 <div className="text-center py-12">
                   <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">

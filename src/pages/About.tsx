@@ -165,7 +165,7 @@ const About = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-            <div className="bg-card border border-border rounded-sm p-6 md:p-8 text-center hover:shadow-lg transition-shadow">
+            <div className="bg-card border border-border rounded-sm p-6 md:p-8 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
               <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Target className="h-8 w-8 text-primary" />
               </div>
@@ -175,7 +175,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-8 text-center hover:shadow-lg transition-shadow">
+            <div className="bg-card border border-border rounded-sm p-8 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
               <div className="bg-accent/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Users className="h-8 w-8 text-accent" />
               </div>
@@ -185,7 +185,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-8 text-center hover:shadow-lg transition-shadow">
+            <div className="bg-card border border-border rounded-sm p-8 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
               <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Heart className="h-8 w-8 text-primary" />
               </div>
@@ -278,7 +278,7 @@ const About = () => {
           <div className="mn-eyebrow-turquoise text-center mb-3">Les visages de Mare Nostrum</div>
           <h2 className="font-editorial italic text-2xl md:text-4xl font-semibold text-center mb-8 md:mb-12 text-foreground">Notre équipe</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 max-w-6xl mx-auto">
-            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg transition-shadow">
+            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={alexisJanicotImg} alt="Alexis Janicot" />
                 <AvatarFallback>AJ</AvatarFallback>
@@ -287,7 +287,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Fondateur et Dirigeant</p>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg transition-shadow">
+            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={aymaneAbdennourImg} alt="Aymane Abdennour" />
                 <AvatarFallback>AA</AvatarFallback>
@@ -296,7 +296,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Chargé de mission entreprenariat junior</p>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg transition-shadow">
+            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={romeoMasipImg} alt="Roméo Masip" />
                 <AvatarFallback>RM</AvatarFallback>
@@ -305,7 +305,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Commercial Junior</p>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg transition-shadow">
+            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={khalidEzzemaniImg} alt="Khalid Ezzemani" />
                 <AvatarFallback>KE</AvatarFallback>
@@ -314,7 +314,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Co-Fondateur · Casablanca</p>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg transition-shadow">
+            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={alainJanicotImg} alt="Alain Janicot" />
                 <AvatarFallback className="text-2xl">AJ</AvatarFallback>
@@ -323,7 +323,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Co-Fondateur · Paris</p>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg transition-shadow">
+            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={frederiqueBerteletImg} alt="Frédérique Bertelet" />
                 <AvatarFallback>FB</AvatarFallback>
@@ -332,7 +332,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Ingénieur pédagogique</p>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg transition-shadow">
+            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={dianeMoulinsImg} alt="Diane Moulins" />
                 <AvatarFallback>DM</AvatarFallback>
@@ -383,7 +383,7 @@ const About = () => {
         })]} className="w-full max-w-6xl mx-auto mb-12">
             <CarouselContent className="-ml-4">
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
                   <div className="text-5xl font-bold mb-2">24</div>
                   <div className="font-medium mb-1">Entreprises</div>
                   <div className="text-sm opacity-90">accompagnées</div>
@@ -391,7 +391,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
                   <div className="text-5xl font-bold mb-2">17+</div>
                   <div className="font-medium mb-1">Projets étudiants</div>
                   <div className="text-sm opacity-90">accompagnés</div>
@@ -399,7 +399,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
                   <div className="text-5xl font-bold mb-2">70%</div>
                   <div className="font-medium mb-1">Entreprises à impact</div>
                   <div className="text-sm opacity-90">17 organisations</div>
@@ -407,7 +407,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
                   <div className="text-5xl font-bold mb-2">93%</div>
                   <div className="font-medium mb-1">Prise de décision</div>
                   <div className="text-sm opacity-90">accélérée</div>
@@ -415,7 +415,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
                   <div className="text-5xl font-bold mb-2">95%</div>
                   <div className="font-medium mb-1">Satisfaction</div>
                   <div className="text-sm opacity-90">satisfaits/très satisfaits</div>
@@ -423,7 +423,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
                   <div className="text-5xl font-bold mb-2">55%</div>
                   <div className="font-medium mb-1">Projet à temps plein</div>
                   <div className="text-sm opacity-90">avec satisfaction</div>
@@ -431,7 +431,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
                   <div className="text-5xl font-bold mb-2">210+</div>
                   <div className="font-medium mb-1">Mises en relation</div>
                   <div className="text-sm opacity-90">professionnelles</div>
@@ -439,7 +439,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
                   <div className="text-5xl font-bold mb-2">32</div>
                   <div className="font-medium mb-1">Projets collaboratifs</div>
                   <div className="text-sm opacity-90">initiés</div>
@@ -447,7 +447,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
                   <div className="text-5xl font-bold mb-2">135+</div>
                   <div className="font-medium mb-1">Experts</div>
                   <div className="text-sm opacity-90">mobilisables</div>
@@ -455,7 +455,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
                   <div className="text-5xl font-bold mb-2">2000</div>
                   <div className="font-medium mb-1">Années d'expérience</div>
                   <div className="text-sm opacity-90">cumulées experts</div>
@@ -463,7 +463,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
                   <div className="text-5xl font-bold mb-2">358h</div>
                   <div className="font-medium mb-1">Formation</div>
                   <div className="text-sm opacity-90">dispensées</div>
@@ -471,7 +471,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
                   <div className="text-5xl font-bold mb-2">36%</div>
                   <div className="font-medium mb-1">Néo-entrepreneurs</div>
                   <div className="text-sm opacity-90">accompagnés</div>
@@ -479,7 +479,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all hover:scale-105">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
                   <div className="text-5xl font-bold mb-2">12</div>
                   <div className="font-medium mb-1">Pays</div>
                   <div className="text-sm opacity-90">d'intervention</div>
