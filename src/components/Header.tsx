@@ -20,7 +20,7 @@ const Header = () => {
   const navLinks = [
     { to: "/", label: "Accueil" },
     { to: "/education", label: "Offre Éducation" },
-    { to: "/croissance", label: "Offre Club" },
+    { to: "/club", label: "Offre Club" },
     { to: "/engagement-rse", label: "Engagement RSE" },
     { to: "/blog", label: "Blog" },
     { to: "/a-propos", label: "À propos" },
@@ -66,7 +66,7 @@ const Header = () => {
           ))}
 
           <Button asChild variant="outline" size="sm" className="ml-3">
-            <Link to="/croissance#offres">Rejoindre le Club</Link>
+            <Link to="/club#offres">Rejoindre le Club</Link>
           </Button>
           <Button asChild size="sm">
             <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
@@ -107,7 +107,7 @@ const Header = () => {
 
             <div className="pt-4 space-y-2">
               <Button asChild variant="outline" size="sm" className="w-full">
-                <Link to="/croissance#offres" onClick={() => setIsMenuOpen(false)}>
+                <Link to="/club#offres" onClick={() => setIsMenuOpen(false)}>
                   Rejoindre le Club
                 </Link>
               </Button>

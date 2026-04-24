@@ -61,7 +61,40 @@ const FeatureWithTooltipLight = ({ feature }: { feature: OfferFeature }) => (
 const Croissance = () => {
   const location = useLocation();
   const [selectedLocation, setSelectedLocation] = useState<LocationType>("france");
+  const [selectedBilling, setSelectedBilling] = useState<"monthly" | "annual">("monthly");
   const [showGroupeDialog, setShowGroupeDialog] = useState(false);
+
+  const monthlyPrices = {
+    france: { communaute: 30, groupe: 90, individuel: 190 },
+    congo_brazzaville: { communaute: 24, groupe: 74, individuel: 184 },
+  };
+
+  const getPrice = (offer: "communaute" | "groupe" | "individuel") => {
+    const m = monthlyPrices[selectedLocation][offer];
+    if (selectedBilling === "monthly") return `${m}€`;
+    if (selectedLocation === "france") return `${Math.round(m * 12 * 0.8)}€`;
+    return `${m * 10}€`;
+  };
+
+  const getPricePeriod = () => selectedBilling === "monthly" ? "/mois" : "/an";
+
+  type PriceDetail = { equiv: string; badge: string; saving: string | null };
+  const getPriceDetail = (offer: "communaute" | "groupe" | "individuel"): PriceDetail | null => {
+    if (selectedBilling === "monthly") return null;
+    const m = monthlyPrices[selectedLocation][offer];
+    if (selectedLocation === "france") {
+      return {
+        equiv: `soit ${Math.round(m * 0.8)}€/mois`,
+        badge: "-20%",
+        saving: `Économisez ${Math.round(m * 12 * 0.2)}€/an`,
+      };
+    }
+    return {
+      equiv: "10 mois facturés · 12 mois d'accès",
+      badge: "2 mois offerts",
+      saving: null,
+    };
+  };
 
   const communauteFeatures: OfferFeature[] = [
     {
@@ -298,7 +331,7 @@ const Croissance = () => {
         faqSchema={croissanceFaqs}
         breadcrumbSchema={[
           { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "Offre Club", url: "https://marenostrum.tech/croissance" }
+          { name: "Offre Club", url: "https://marenostrum.tech/club" }
         ]}
       />
 
@@ -418,14 +451,34 @@ const Croissance = () => {
             Survole chaque avantage pour en savoir plus
           </p>
 
-          {/* Location Selector */}
-          <div className="flex justify-center gap-4 mb-12">
-            <Button variant={selectedLocation === "france" ? "default" : "outline"} onClick={() => setSelectedLocation("france")} size="lg">
-              France
-            </Button>
-            <Button variant={selectedLocation === "congo_brazzaville" ? "default" : "outline"} onClick={() => setSelectedLocation("congo_brazzaville")} size="lg">
-              Congo-Brazzaville
-            </Button>
+          {/* Selectors: country + billing */}
+          <div className="flex flex-col items-center gap-5 mb-12">
+            <div className="flex gap-3">
+              <Button variant={selectedLocation === "france" ? "default" : "outline"} onClick={() => setSelectedLocation("france")} size="lg">
+                France
+              </Button>
+              <Button variant={selectedLocation === "congo_brazzaville" ? "default" : "outline"} onClick={() => setSelectedLocation("congo_brazzaville")} size="lg">
+                Congo-Brazzaville
+              </Button>
+            </div>
+
+            <div className="flex items-center gap-1 bg-muted rounded-full p-1">
+              <button
+                onClick={() => setSelectedBilling("monthly")}
+                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${selectedBilling === "monthly" ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
+              >
+                Mensuel
+              </button>
+              <button
+                onClick={() => setSelectedBilling("annual")}
+                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all flex items-center gap-2 ${selectedBilling === "annual" ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
+              >
+                Annuel
+                <span className="text-xs font-bold px-1.5 py-0.5 rounded-full bg-accent/20 text-accent">
+                  {selectedLocation === "france" ? "-20%" : "2 mois offerts"}
+                </span>
+              </button>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
@@ -433,11 +486,18 @@ const Croissance = () => {
             <div className="bg-card border-2 border-border rounded-sm p-6 md:p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col h-full">
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Communauté</h3>
-                <div className="text-4xl font-bold text-primary mb-2">
-                  {selectedLocation === "france" ? "30€" : "24€"}
-                  <span className="text-lg font-normal text-muted-foreground"> /mois</span>
+                <div className="text-4xl font-bold text-primary mb-1">
+                  {getPrice("communaute")}
+                  <span className="text-lg font-normal text-muted-foreground"> {getPricePeriod()}</span>
                 </div>
-                <p className="text-xs text-accent font-medium">Pas de frais d'entrée — 1 micro mentorat offert</p>
+                {getPriceDetail("communaute") && (
+                  <div className="mb-2">
+                    <span className="inline-block bg-accent/15 text-accent text-xs font-bold px-2 py-0.5 rounded-full mr-2">{getPriceDetail("communaute")!.badge}</span>
+                    <span className="text-xs text-muted-foreground">{getPriceDetail("communaute")!.equiv}</span>
+                    {getPriceDetail("communaute")!.saving && <p className="text-xs text-accent font-medium mt-0.5">{getPriceDetail("communaute")!.saving}</p>}
+                  </div>
+                )}
+                <p className="text-xs text-accent font-semibold">1 micro-mentorat offert dès votre arrivée</p>
               </div>
 
               <div className="bg-muted/50 rounded-sm p-3 mb-6">
@@ -471,11 +531,18 @@ const Croissance = () => {
 
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2">Groupe</h3>
-                <div className="text-4xl font-bold mb-2">
-                  {selectedLocation === "france" ? "90€" : "74€"}
-                  <span className="text-lg font-normal opacity-80"> /mois</span>
+                <div className="text-4xl font-bold mb-1">
+                  {getPrice("groupe")}
+                  <span className="text-lg font-normal opacity-80"> {getPricePeriod()}</span>
                 </div>
-                <p className="text-xs font-medium opacity-90">Pas de frais d'entrée — 1 pré-diag offert</p>
+                {getPriceDetail("groupe") && (
+                  <div className="mb-2">
+                    <span className="inline-block bg-white/20 text-white text-xs font-bold px-2 py-0.5 rounded-full mr-2">{getPriceDetail("groupe")!.badge}</span>
+                    <span className="text-xs opacity-80">{getPriceDetail("groupe")!.equiv}</span>
+                    {getPriceDetail("groupe")!.saving && <p className="text-xs font-semibold opacity-90 mt-0.5">{getPriceDetail("groupe")!.saving}</p>}
+                  </div>
+                )}
+                <p className="text-xs font-semibold opacity-95">Pré-diagnostic offert — valeur 300€</p>
               </div>
 
               <div className="bg-white/10 backdrop-blur-sm rounded-sm p-3 mb-6">
@@ -501,11 +568,18 @@ const Croissance = () => {
             <div className="bg-card border-2 border-border rounded-sm p-6 md:p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col h-full">
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Individuel</h3>
-                <div className="text-4xl font-bold text-primary mb-2">
-                  {selectedLocation === "france" ? "190€" : "184€"}
-                  <span className="text-lg font-normal text-muted-foreground"> /mois</span>
+                <div className="text-4xl font-bold text-primary mb-1">
+                  {getPrice("individuel")}
+                  <span className="text-lg font-normal text-muted-foreground"> {getPricePeriod()}</span>
                 </div>
-                <p className="text-xs text-accent font-medium">Pas de frais d'entrée — 1 tutorat personnalisé offert</p>
+                {getPriceDetail("individuel") && (
+                  <div className="mb-2">
+                    <span className="inline-block bg-accent/15 text-accent text-xs font-bold px-2 py-0.5 rounded-full mr-2">{getPriceDetail("individuel")!.badge}</span>
+                    <span className="text-xs text-muted-foreground">{getPriceDetail("individuel")!.equiv}</span>
+                    {getPriceDetail("individuel")!.saving && <p className="text-xs text-accent font-medium mt-0.5">{getPriceDetail("individuel")!.saving}</p>}
+                  </div>
+                )}
+                <p className="text-xs text-accent font-semibold">1 tutorat personnalisé offert dès J+1</p>
               </div>
 
               <div className="bg-muted/50 rounded-sm p-3 mb-6">

@@ -243,7 +243,7 @@ const Index = () => {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="text-base md:text-lg bg-white/10 border-white text-white hover:bg-white hover:text-primary w-full sm:w-auto">
-                <Link to="/croissance">
+                <Link to="/club">
                   <TrendingUp className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                   Je suis entrepreneur
                 </Link>
@@ -331,7 +331,7 @@ const Index = () => {
               </Link>
 
               <Link
-                to="/croissance"
+                to="/club"
                 className="group relative overflow-hidden rounded-sm p-8 md:p-10 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200 cursor-pointer text-left"
                 style={{ background: 'linear-gradient(135deg, hsl(181 67% 38%) 0%, hsl(181 67% 24%) 100%)' }}
               >
