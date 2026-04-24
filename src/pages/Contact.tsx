@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Mail, Phone, MapPin, Calendar, Send, Loader2, CheckCircle2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
 import { useToast } from "@/hooks/use-toast";
 import SEOHead from "@/components/SEOHead";
 const Contact = () => {
@@ -120,18 +121,12 @@ const Contact = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-16 md:py-32">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl md:text-6xl font-bold text-primary-foreground mb-4 md:mb-6">
-              Contactez-nous
-            </h1>
-            <p className="text-lg md:text-2xl text-primary-foreground/90">
-              Construisons ensemble votre projet entrepreneurial
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Parlons de votre projet"
+        title="Contactez-nous"
+        subtitle="Construisons ensemble votre projet entrepreneurial"
+        size="sm"
+      />
 
       {/* Contact Section */}
       <section className="py-12 md:py-24 bg-background">

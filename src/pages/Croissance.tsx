@@ -6,6 +6,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
 import TestimonialCard from "@/components/TestimonialCard";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -355,32 +356,26 @@ const Croissance = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-accent via-primary to-primary py-16 md:py-32" aria-label="Présentation du Club Entrepreneur Mare Nostrum">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block bg-white/10 backdrop-blur-sm rounded-full px-4 md:px-6 py-2 mb-4 md:mb-6">
-              <span className="text-primary-foreground font-medium text-sm md:text-base">Club Entrepreneur Mare Nostrum — Toulouse, Paris, Casablanca</span>
-            </div>
-            <h1 className="text-3xl md:text-6xl font-bold text-primary-foreground mb-4 md:mb-6">
-              Accompagnement entrepreneur à Toulouse et en Afrique francophone
-            </h1>
-            <p className="hero-description text-lg md:text-2xl text-primary-foreground/90 mb-8 md:mb-12">
-              Mentorat, réseau international et intelligence artificielle pour doubler votre activité et votre impact — dès 30€ par mois
-            </p>
-            <Button size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto" onClick={() => {
-              document.getElementById('offres')?.scrollIntoView({ behavior: 'smooth' });
-            }}>
-              Rejoindre le Club Entrepreneur
-            </Button>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        badgeContent="Club Entrepreneur Mare Nostrum — Toulouse, Paris, Casablanca"
+        title="Accompagnement entrepreneur à Toulouse et en Afrique francophone"
+        subtitle="Mentorat, réseau international et intelligence artificielle pour doubler votre activité et votre impact — dès 30€ par mois"
+        size="lg"
+        ctas={
+          <Button size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto" onClick={() => {
+            document.getElementById('offres')?.scrollIntoView({ behavior: 'smooth' });
+          }}>
+            Rejoindre le Club Entrepreneur
+          </Button>
+        }
+      />
 
       {/* Section 1 : Douleur Client */}
       <section className="py-12 md:py-24 bg-background" aria-label="Problèmes courants des entrepreneurs">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
+            <div className="mn-eyebrow-turquoise text-center mb-3">Le diagnostic</div>
+            <h2 className="font-editorial italic text-2xl md:text-4xl font-semibold text-center mb-8 md:mb-12 text-foreground">
               Ce qui freine 90% des entrepreneurs (et comment en sortir)
             </h2>
 
@@ -441,7 +436,8 @@ const Croissance = () => {
       {/* Section 2 : Offres */}
       <section id="offres" className="py-16 md:py-24 bg-secondary/30" aria-label="Tarifs et offres du Club Entrepreneur">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <div className="mn-eyebrow-turquoise text-center mb-3">Choisissez votre niveau</div>
+          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-4 text-foreground">
             Nos offres d'accompagnement entrepreneur — Toulouse et Afrique
           </h2>
           <p className="text-center text-muted-foreground mb-4 max-w-3xl mx-auto">
@@ -702,7 +698,8 @@ const Croissance = () => {
       {/* Section 3 : Résultats Concrets */}
       <section className="py-16 md:py-24 bg-background" aria-label="Résultats et statistiques d'accompagnement entrepreneur">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <div className="mn-eyebrow-turquoise text-center mb-3">Impact mesuré</div>
+          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-12 text-foreground">
             Résultats concrets de l'accompagnement entrepreneur Mare Nostrum
           </h2>
 

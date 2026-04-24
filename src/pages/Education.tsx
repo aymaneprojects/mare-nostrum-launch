@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { GraduationCap, Users, Lightbulb, Trophy, BookOpen, Network, ArrowRight, CheckCircle2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
 import TestimonialCard from "@/components/TestimonialCard";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -166,32 +167,25 @@ const Education = () => {
       <Header />
 
 
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-16 md:py-32">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block bg-white/10 backdrop-blur-sm rounded-full px-4 md:px-6 py-2 mb-4 md:mb-6">
-              <span className="text-primary-foreground font-medium text-sm md:text-base">Mare Nostrum Éducation</span>
-            </div>
-            <h1 className="text-3xl md:text-6xl font-bold text-primary-foreground mb-4 md:mb-6">
-              L'esprit d'entreprendre au cœur de votre établissement
-            </h1>
-            <p className="text-lg md:text-2xl text-primary-foreground/90 mb-8 md:mb-12">
-              Des dispositifs clés en main pour sensibiliser, former et accompagner vos étudiants vers l'entrepreneuriat
-            </p>
-            <Button asChild size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto">
-              <Link to="/contact">
-                Intégrez l'entrepreneuriat dans votre projet pédagogique
-                <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        badgeContent="Mare Nostrum Éducation"
+        title="L'esprit d'entreprendre au cœur de votre établissement"
+        subtitle="Des dispositifs clés en main pour sensibiliser, former et accompagner vos étudiants vers l'entrepreneuriat"
+        ctas={
+          <Button asChild size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto">
+            <Link to="/contact">
+              Intégrez l'entrepreneuriat dans votre projet pédagogique
+              <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
+            </Link>
+          </Button>
+        }
+      />
 
       {/* Challenges Section */}
       <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
+          <div className="mn-eyebrow-turquoise text-center mb-3">Comprendre les besoins</div>
+          <h2 className="font-editorial italic text-2xl md:text-4xl font-semibold text-center mb-8 md:mb-12 text-foreground">
             Les enjeux des établissements
           </h2>
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
@@ -229,7 +223,8 @@ const Education = () => {
       {/* Offers Section */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <div className="mn-eyebrow-turquoise text-center mb-3">Nos dispositifs</div>
+          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-4 text-foreground">
             Ce que propose Mare Nostrum Éducation
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -397,7 +392,8 @@ const Education = () => {
       {/* Results Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <div className="mn-eyebrow-turquoise text-center mb-3">Ils nous font confiance</div>
+          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-12 text-foreground">
             Résultats & preuve sociale
           </h2>
           <div className="max-w-4xl mx-auto">
@@ -425,7 +421,8 @@ const Education = () => {
       {/* Exemples de nos actions Section */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <div className="mn-eyebrow-turquoise text-center mb-3">Retours d'expérience</div>
+          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-4 text-foreground">
             Exemples de nos actions
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">

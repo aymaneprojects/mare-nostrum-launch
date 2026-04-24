@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Globe, Heart, Users, Target, Lightbulb, ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
 import SEOHead from "@/components/SEOHead";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
@@ -122,24 +123,18 @@ const About = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-16 md:py-32">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl md:text-6xl font-bold text-primary-foreground mb-4 md:mb-6">
-              À propos de Mare Nostrum
-            </h1>
-            <p className="text-lg md:text-2xl text-primary-foreground/90">
-              Construire l'avenir avec les entrepreneurs d'aujourd'hui
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Notre histoire · 2023"
+        title="À propos de Mare Nostrum"
+        subtitle="Construire l'avenir avec les entrepreneurs d'aujourd'hui"
+      />
 
       {/* Story Section */}
       <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-foreground">Notre histoire</h2>
+            <div className="mn-eyebrow-turquoise mb-3">Nos origines</div>
+            <h2 className="font-editorial italic text-2xl md:text-4xl font-semibold mb-6 md:mb-8 text-foreground">Notre histoire</h2>
             <div className="prose prose-lg max-w-none">
               <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6">
                 Mare Nostrum est née en 2023 à Toulouse d'une conviction forte : <strong className="text-foreground">l'entrepreneuriat 
@@ -162,7 +157,8 @@ const About = () => {
       <section className="py-12 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-8 md:mb-12">
-            <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 text-foreground">Notre raison d'être</h2>
+            <div className="mn-eyebrow-turquoise mb-3">Société à mission</div>
+            <h2 className="font-editorial italic text-2xl md:text-4xl font-semibold mb-4 md:mb-6 text-foreground">Notre raison d'être</h2>
             <p className="text-lg md:text-xl text-muted-foreground">
               Société à mission, familiale et interculturelle, nous existons pour :
             </p>
@@ -210,7 +206,8 @@ const About = () => {
       {/* Values Section */}
       <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">Nos valeurs</h2>
+          <div className="mn-eyebrow-turquoise text-center mb-3">Ce qui nous guide</div>
+          <h2 className="font-editorial italic text-2xl md:text-4xl font-semibold text-center mb-8 md:mb-12 text-foreground">Nos valeurs</h2>
           <div className="max-w-4xl mx-auto space-y-6 md:space-y-8">
             <div className="flex items-start space-x-3 md:space-x-4 p-4 md:p-6 bg-card border border-border rounded-sm">
               <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-primary/10 shape-hex flex items-center justify-center">
@@ -278,7 +275,8 @@ const About = () => {
       {/* Team Section */}
       <section className="py-12 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">Notre équipe</h2>
+          <div className="mn-eyebrow-turquoise text-center mb-3">Les visages de Mare Nostrum</div>
+          <h2 className="font-editorial italic text-2xl md:text-4xl font-semibold text-center mb-8 md:mb-12 text-foreground">Notre équipe</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 max-w-6xl mx-auto">
             <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg transition-shadow">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
@@ -369,7 +367,8 @@ const About = () => {
       {/* Key Figures Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <div className="mn-eyebrow-turquoise text-center mb-3">Impact mesuré</div>
+          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-4 text-foreground">
             Nos chiffres clés
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
