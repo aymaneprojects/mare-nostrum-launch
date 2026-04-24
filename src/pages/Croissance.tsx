@@ -458,7 +458,7 @@ const Croissance = () => {
                 France
               </Button>
               <Button variant={selectedLocation === "congo_brazzaville" ? "default" : "outline"} onClick={() => setSelectedLocation("congo_brazzaville")} size="lg">
-                Congo-Brazzaville
+                République du Congo
               </Button>
             </div>
 
