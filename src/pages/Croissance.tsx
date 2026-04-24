@@ -13,7 +13,7 @@ import FAQSection from "@/components/FAQSection";
 import atelierRose from "@/assets/atelier-rose.png";
 import neoEntrepreneurElite from "@/assets/neo-entrepreneur-elite.png";
 
-type LocationType = "toulouse" | "afrique";
+type LocationType = "france" | "congo_brazzaville";
 
 interface OfferFeature {
   label: string;
@@ -60,7 +60,7 @@ const FeatureWithTooltipLight = ({ feature }: { feature: OfferFeature }) => (
 
 const Croissance = () => {
   const location = useLocation();
-  const [selectedLocation, setSelectedLocation] = useState<LocationType>("toulouse");
+  const [selectedLocation, setSelectedLocation] = useState<LocationType>("france");
   const [showGroupeDialog, setShowGroupeDialog] = useState(false);
 
   const communauteFeatures: OfferFeature[] = [
@@ -278,11 +278,11 @@ const Croissance = () => {
   }, [location]);
 
   const groupeStripeLinks = {
-    toulouse: {
+    france: {
       financement: "https://buy.stripe.com/28E7sNakqcHvgqSdbc67S09",
       ia: "https://buy.stripe.com/28E7sNakqcHvgqSdbc67S09"
     },
-    afrique: {
+    congo_brazzaville: {
       financement: "https://buy.stripe.com/28EbJ32RY4aZa2u6MO67S06",
       ia: "https://buy.stripe.com/28EbJ32RY4aZa2u6MO67S06"
     }
@@ -420,11 +420,11 @@ const Croissance = () => {
 
           {/* Location Selector */}
           <div className="flex justify-center gap-4 mb-12">
-            <Button variant={selectedLocation === "toulouse" ? "default" : "outline"} onClick={() => setSelectedLocation("toulouse")} size="lg">
-              Toulouse
+            <Button variant={selectedLocation === "france" ? "default" : "outline"} onClick={() => setSelectedLocation("france")} size="lg">
+              France
             </Button>
-            <Button variant={selectedLocation === "afrique" ? "default" : "outline"} onClick={() => setSelectedLocation("afrique")} size="lg">
-              Afrique
+            <Button variant={selectedLocation === "congo_brazzaville" ? "default" : "outline"} onClick={() => setSelectedLocation("congo_brazzaville")} size="lg">
+              Congo-Brazzaville
             </Button>
           </div>
 
@@ -434,7 +434,7 @@ const Croissance = () => {
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Communauté</h3>
                 <div className="text-4xl font-bold text-primary mb-2">
-                  {selectedLocation === "toulouse" ? "30€" : "24€"}
+                  {selectedLocation === "france" ? "30€" : "24€"}
                   <span className="text-lg font-normal text-muted-foreground"> /mois</span>
                 </div>
                 <p className="text-xs text-accent font-medium">Pas de frais d'entrée — 1 micro mentorat offert</p>
@@ -455,7 +455,7 @@ const Croissance = () => {
               </ul>
 
               <Button asChild className="w-full mt-auto">
-                <a href={selectedLocation === "toulouse" ? "https://buy.stripe.com/00w3cx3W2bDr5Me6MO67S08" : "https://buy.stripe.com/dRmaEZ78e4aZ3E61su67S04"} target="_blank" rel="noopener noreferrer">
+                <a href={selectedLocation === "france" ? "https://buy.stripe.com/00w3cx3W2bDr5Me6MO67S08" : "https://buy.stripe.com/dRmaEZ78e4aZ3E61su67S04"} target="_blank" rel="noopener noreferrer">
                   Rejoindre Communauté
                 </a>
               </Button>
@@ -472,7 +472,7 @@ const Croissance = () => {
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2">Groupe</h3>
                 <div className="text-4xl font-bold mb-2">
-                  {selectedLocation === "toulouse" ? "90€" : "74€"}
+                  {selectedLocation === "france" ? "90€" : "74€"}
                   <span className="text-lg font-normal opacity-80"> /mois</span>
                 </div>
                 <p className="text-xs font-medium opacity-90">Pas de frais d'entrée — 1 pré-diag offert</p>
@@ -502,7 +502,7 @@ const Croissance = () => {
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold mb-2 text-foreground">Individuel</h3>
                 <div className="text-4xl font-bold text-primary mb-2">
-                  {selectedLocation === "toulouse" ? "190€" : "184€"}
+                  {selectedLocation === "france" ? "190€" : "184€"}
                   <span className="text-lg font-normal text-muted-foreground"> /mois</span>
                 </div>
                 <p className="text-xs text-accent font-medium">Pas de frais d'entrée — 1 tutorat personnalisé offert</p>
@@ -523,7 +523,7 @@ const Croissance = () => {
               </ul>
 
               <Button asChild variant="default" className="w-full mt-auto">
-                <a href={selectedLocation === "toulouse" ? "https://buy.stripe.com/bJe5kF64a0YNgqS4EG67S0a" : "https://buy.stripe.com/6oUaEZ8cidLzeiK9Z067S07"} target="_blank" rel="noopener noreferrer">
+                <a href={selectedLocation === "france" ? "https://buy.stripe.com/bJe5kF64a0YNgqS4EG67S0a" : "https://buy.stripe.com/6oUaEZ8cidLzeiK9Z067S07"} target="_blank" rel="noopener noreferrer">
                   Rejoindre Individuel
                 </a>
               </Button>
@@ -553,13 +553,13 @@ const Croissance = () => {
           </DialogHeader>
           <div className="grid gap-4 mt-4">
             <Button asChild size="lg" className="w-full h-auto py-4 flex flex-col gap-1">
-              <a href={selectedLocation === "toulouse" ? groupeStripeLinks.toulouse.financement : groupeStripeLinks.afrique.financement} target="_blank" rel="noopener noreferrer">
+              <a href={selectedLocation === "france" ? groupeStripeLinks.france.financement : groupeStripeLinks.congo_brazzaville.financement} target="_blank" rel="noopener noreferrer">
                 <span className="font-bold text-base">Pré-diagnostic Financement</span>
                 <span className="text-xs opacity-80 font-normal">Identifiez les leviers de financement adaptés à votre projet</span>
               </a>
             </Button>
             <Button asChild size="lg" variant="outline" className="w-full h-auto py-4 flex flex-col gap-1">
-              <a href={selectedLocation === "toulouse" ? groupeStripeLinks.toulouse.ia : groupeStripeLinks.afrique.ia} target="_blank" rel="noopener noreferrer">
+              <a href={selectedLocation === "france" ? groupeStripeLinks.france.ia : groupeStripeLinks.congo_brazzaville.ia} target="_blank" rel="noopener noreferrer">
                 <span className="font-bold text-base">Pré-diagnostic IA</span>
                 <span className="text-xs opacity-80 font-normal">Découvrez comment l'IA peut accélérer votre activité</span>
               </a>
