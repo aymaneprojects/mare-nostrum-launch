@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, GraduationCap, TrendingUp, Users, Target, Lightbulb, Globe } from "lucide-react";
+import { ArrowRight, GraduationCap, TrendingUp, Users, Target, Lightbulb, Globe, ShieldCheck, Star, Award, MapPin } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StatCard from "@/components/StatCard";
@@ -253,6 +253,26 @@ const Index = () => {
             <p className="text-xs md:text-sm text-primary-foreground/70">
               Implanté à Toulouse, Paris et Casablanca – francophonie, innovation et impact
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Strip */}
+      <section className="py-4 md:py-5 bg-background border-b" style={{ borderColor: 'hsl(222 44% 25% / 0.08)' }}>
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap justify-center items-center gap-x-6 md:gap-x-10 gap-y-2.5">
+            {[
+              { icon: ShieldCheck, label: "Société à Mission" },
+              { icon: Star, label: "95% satisfaction clients" },
+              { icon: Users, label: "135+ experts actifs" },
+              { icon: MapPin, label: "12 pays d'intervention" },
+              { icon: Award, label: "Soutenu par la Région Occitanie" },
+            ].map(({ icon: Icon, label }) => (
+              <div key={label} className="flex items-center gap-2 text-sm font-medium" style={{ color: 'hsl(222 44% 25% / 0.75)' }}>
+                <Icon className="h-4 w-4 flex-shrink-0" style={{ color: 'hsl(181 67% 54%)' }} />
+                <span>{label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>

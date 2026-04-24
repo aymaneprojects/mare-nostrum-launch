@@ -604,6 +604,63 @@ const Croissance = () => {
             </div>
           </div>
 
+          {/* Feature Comparison Table */}
+          <div className="max-w-5xl mx-auto mt-16 overflow-x-auto">
+            <p className="text-center text-sm font-semibold text-muted-foreground uppercase tracking-widest mb-6" style={{ letterSpacing: '0.18em' }}>Comparaison détaillée</p>
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr>
+                  <th className="text-left py-3 px-4 text-muted-foreground font-medium" style={{ width: '40%' }}></th>
+                  <th className="py-3 px-4 text-center font-bold text-foreground">Communauté</th>
+                  <th className="py-3 px-4 text-center font-bold text-primary-foreground rounded-t-sm" style={{ background: 'hsl(222 44% 25%)' }}>Groupe</th>
+                  <th className="py-3 px-4 text-center font-bold text-foreground">Individuel</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { feature: "Accès Club International", c: true, g: true, i: true },
+                  { feature: "Veille mutualisée mensuelle", c: true, g: true, i: true },
+                  { feature: "Rencontre networking mensuelle", c: true, g: true, i: true },
+                  { feature: "Académie en ligne +30h", c: true, g: true, i: true },
+                  { feature: "Opportunités & tarifs partenaires", c: true, g: true, i: true },
+                  { feature: "Intégration dans un Cercle", c: false, g: true, i: true },
+                  { feature: "Session collective biz dev / mois", c: false, g: true, i: true },
+                  { feature: "Mises en relation partenaires", c: false, g: true, i: true },
+                  { feature: "Micro-mentorat mensuel", c: "1×", g: "1×", i: "4×" },
+                  { feature: "Accompagnement 1-to-1 IA", c: false, g: false, i: true },
+                  { feature: "Ligne directe fondateur (<2h)", c: false, g: false, i: true },
+                ].map(({ feature, c, g, i }, idx) => {
+                  const bg = idx % 2 === 0 ? 'hsl(40 38% 94% / 0.5)' : '#fff';
+                  const Cell = ({ val }: { val: boolean | string }) => (
+                    <td className="py-3 px-4 text-center" style={{ background: val !== false && val !== true ? 'hsl(222 44% 25% / 0.04)' : undefined }}>
+                      {val === true ? <CheckCircle2 className="h-4 w-4 mx-auto" style={{ color: 'hsl(181 67% 40%)' }} /> :
+                       val === false ? <span className="text-muted-foreground/30 font-bold text-lg leading-none">—</span> :
+                       <span className="font-semibold text-primary">{val}</span>}
+                    </td>
+                  );
+                  return (
+                    <tr key={feature} style={{ background: bg, borderTop: '1px solid hsl(222 44% 25% / 0.07)' }}>
+                      <td className="py-3 px-4 text-foreground/80 font-medium">{feature}</td>
+                      <Cell val={c} />
+                      <td className="py-3 px-4 text-center" style={{ background: 'hsl(222 44% 25% / 0.04)' }}>
+                        {g === true ? <CheckCircle2 className="h-4 w-4 mx-auto" style={{ color: 'hsl(181 67% 40%)' }} /> :
+                         g === false ? <span className="text-muted-foreground/30 font-bold text-lg leading-none">—</span> :
+                         <span className="font-semibold text-primary">{g}</span>}
+                      </td>
+                      <Cell val={i} />
+                    </tr>
+                  );
+                })}
+                <tr style={{ borderTop: '2px solid hsl(222 44% 25% / 0.12)' }}>
+                  <td className="py-4 px-4 font-bold text-foreground">Prix mensuel — France</td>
+                  <td className="py-4 px-4 text-center font-bold text-primary">30€</td>
+                  <td className="py-4 px-4 text-center font-bold text-primary-foreground rounded-b-sm" style={{ background: 'hsl(222 44% 25%)' }}>90€</td>
+                  <td className="py-4 px-4 text-center font-bold text-primary">190€</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
           <div className="text-center mt-12">
             <p className="text-muted-foreground mb-4">Pas sûr de quelle offre choisir ?</p>
             <Button asChild variant="outline" size="lg">
