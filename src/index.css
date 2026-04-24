@@ -246,6 +246,26 @@ All colors MUST be HSL.
   /* Plain hairline */
   .mn-hairline { border-top: 1px solid hsl(var(--mn-nuit) / 0.14); }
 
+  /* Eyebrow for dark (navy) panel backgrounds */
+  .mn-eyebrow-light {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: hsl(var(--mn-turquoise) / 0.80);
+  }
+
+  /* Mono-style stat sublabel */
+  .mn-stat-label {
+    font-size: 10px;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: hsl(var(--mn-muted));
+    margin-top: 0.5rem;
+    display: block;
+  }
+
   /* Legacy geometric utilities (kept for retro-compat where used) */
   .shape-cut {
     clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));

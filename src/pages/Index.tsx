@@ -221,14 +221,18 @@ const Index = () => {
       <Header />
 
 
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-accent py-16 md:py-32">
-        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
+      <section className="relative overflow-hidden py-16 md:py-32" style={{ background: 'linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)' }}>
+        {/* Diagonal stripe texture */}
+        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, hsl(181 67% 54% / 0.055) 22px 23px)' }}></div>
+        {/* Turquoise radial glow top-left + deep ink vignette bottom-right */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 22% 18%, hsl(181 67% 54% / 0.20) 0%, transparent 52%), radial-gradient(ellipse at 80% 88%, hsl(228 56% 8% / 0.75) 0%, transparent 58%)' }}></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl md:text-6xl font-bold text-primary-foreground mb-4 md:mb-6 animate-fade-in leading-tight">Sécurisons la trajectoire et l'impact des néo-entrepreneurs.</h1>
-            <p className="text-lg md:text-2xl text-primary-foreground/90 mb-8 md:mb-12">
+            <div className="mn-eyebrow-light mb-5">Cabinet de conseil · Toulouse · Paris · Casablanca</div>
+            <h1 className="font-editorial italic text-3xl md:text-6xl font-semibold text-primary-foreground mb-4 md:mb-6 leading-[1.05]" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>Sécurisons la trajectoire et l'impact des néo-entrepreneurs.</h1>
+            <p className="text-base md:text-xl text-primary-foreground/75 mb-8 md:mb-12 max-w-2xl mx-auto" style={{ lineHeight: '1.65' }}>
               Mare Nostrum accompagne les écoles et les entrepreneurs à impact.
-De l'idée à la croissance.
+              De l'idée à la croissance.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-6 md:mb-8 px-4">
@@ -257,6 +261,7 @@ De l'idée à la croissance.
       <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
+            <div className="mn-eyebrow-turquoise text-center mb-4">À propos</div>
             <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 md:mb-6 text-foreground">
               Qui sommes-nous ?
             </h2>
@@ -300,36 +305,45 @@ De l'idée à la croissance.
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
+            <div className="mn-eyebrow-turquoise text-center mb-4">Nos offres</div>
             <h2 className="text-2xl md:text-3xl font-bold mb-12 md:mb-16 text-foreground">
               Nos deux pôles d'expertise
             </h2>
-            
+
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-              <Link 
-                to="/education" 
-                className="group bg-[hsl(210,50%,35%)] hover:bg-[hsl(210,50%,40%)] active:bg-[hsl(210,50%,50%)] border-2 border-transparent rounded-sm p-8 md:p-10 shadow-lg transition-all duration-200 cursor-pointer"
+              <Link
+                to="/education"
+                className="group relative overflow-hidden rounded-sm p-8 md:p-10 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200 cursor-pointer text-left"
+                style={{ background: 'linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)' }}
               >
-                <div>
-                  <GraduationCap className="h-12 w-12 md:h-14 md:w-14 text-white mx-auto mb-4" />
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+                <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, hsl(181 67% 54% / 0.06) 22px 23px)' }}></div>
+                <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 20% 20%, hsl(181 67% 54% / 0.18) 0%, transparent 60%)' }}></div>
+                <div className="relative z-10">
+                  <div className="mn-eyebrow-light mb-4">Mare Nostrum Éducation</div>
+                  <GraduationCap className="h-12 w-12 md:h-14 md:w-14 text-white mb-5" />
+                  <h3 className="text-xl md:text-2xl font-semibold text-white mb-3" style={{ letterSpacing: '-0.01em' }}>
                     Éducation
                   </h3>
-                  <p className="text-sm md:text-base text-white/90">
+                  <p className="text-sm md:text-base text-white/75">
                     L'esprit d'entreprendre de demain au cœur de votre établissement aujourd'hui
                   </p>
                 </div>
               </Link>
 
-              <Link 
-                to="/croissance" 
-                className="group bg-[hsl(180,60%,60%)] hover:bg-[hsl(180,60%,65%)] active:bg-[hsl(180,60%,75%)] border-2 border-transparent rounded-sm p-8 md:p-10 shadow-lg transition-all duration-200 cursor-pointer"
+              <Link
+                to="/croissance"
+                className="group relative overflow-hidden rounded-sm p-8 md:p-10 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200 cursor-pointer text-left"
+                style={{ background: 'linear-gradient(135deg, hsl(181 67% 38%) 0%, hsl(181 67% 24%) 100%)' }}
               >
-                <div>
-                  <TrendingUp className="h-12 w-12 md:h-14 md:w-14 text-white mx-auto mb-4" />
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+                <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, rgba(255,255,255,0.05) 22px 23px)' }}></div>
+                <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.10) 0%, transparent 55%)' }}></div>
+                <div className="relative z-10">
+                  <div className="mn-eyebrow-light mb-4">Mare Nostrum Croissance</div>
+                  <TrendingUp className="h-12 w-12 md:h-14 md:w-14 text-white mb-5" />
+                  <h3 className="text-xl md:text-2xl font-semibold text-white mb-3" style={{ letterSpacing: '-0.01em' }}>
                     Croissance
                   </h3>
-                  <p className="text-sm md:text-base text-white/90">
+                  <p className="text-sm md:text-base text-white/75">
                     Sécurisez votre passage à l'échelle avec un accompagnement rigoureux et humain
                   </p>
                 </div>
@@ -342,6 +356,7 @@ De l'idée à la croissance.
       {/* Stats Section */}
       <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
+          <div className="mn-eyebrow-turquoise text-center mb-4">Résultats</div>
           <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
             Pourquoi nous choisir
           </h2>
@@ -360,97 +375,97 @@ De l'idée à la croissance.
           >
             <CarouselContent className="-ml-4">
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-primary/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
-                  <div className="text-5xl font-bold text-primary mb-2">24</div>
-                  <div className="text-muted-foreground font-medium">Entreprises</div>
+                <div className="bg-card border border-nuit/12 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                  <div className="font-editorial font-semibold text-5xl text-nuit mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>24</div>
+                  <div className="mn-stat-label">Entreprises</div>
                   <div className="text-sm text-muted-foreground">accompagnées</div>
                 </div>
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-accent/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
-                  <div className="text-5xl font-bold text-accent mb-2">17+</div>
-                  <div className="text-muted-foreground font-medium">Projets étudiants</div>
+                <div className="bg-card border border-turquoise/20 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                  <div className="font-editorial font-semibold text-5xl text-turquoise mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>17+</div>
+                  <div className="mn-stat-label">Projets étudiants</div>
                   <div className="text-sm text-muted-foreground">accompagnés</div>
                 </div>
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-primary/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
-                  <div className="text-5xl font-bold text-primary mb-2">70%</div>
-                  <div className="text-muted-foreground font-medium">Entreprises à impact</div>
+                <div className="bg-card border border-nuit/12 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                  <div className="font-editorial font-semibold text-5xl text-nuit mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>70%</div>
+                  <div className="mn-stat-label">Entreprises à impact</div>
                   <div className="text-sm text-muted-foreground">17 organisations</div>
                 </div>
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-accent/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
-                  <div className="text-5xl font-bold text-accent mb-2">93%</div>
-                  <div className="text-muted-foreground font-medium">Prise de décision</div>
+                <div className="bg-card border border-turquoise/20 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                  <div className="font-editorial font-semibold text-5xl text-turquoise mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>93%</div>
+                  <div className="mn-stat-label">Prise de décision</div>
                   <div className="text-sm text-muted-foreground">accélérée</div>
                 </div>
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-accent/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
-                  <div className="text-5xl font-bold text-accent mb-2">95%</div>
-                  <div className="text-muted-foreground font-medium">Satisfaction</div>
+                <div className="bg-card border border-turquoise/20 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                  <div className="font-editorial font-semibold text-5xl text-turquoise mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>95%</div>
+                  <div className="mn-stat-label">Satisfaction</div>
                   <div className="text-sm text-muted-foreground">satisfaits/très satisfaits</div>
                 </div>
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-primary/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
-                  <div className="text-5xl font-bold text-primary mb-2">55%</div>
-                  <div className="text-muted-foreground font-medium">Projet à temps plein</div>
+                <div className="bg-card border border-nuit/12 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                  <div className="font-editorial font-semibold text-5xl text-nuit mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>55%</div>
+                  <div className="mn-stat-label">Projet à temps plein</div>
                   <div className="text-sm text-muted-foreground">avec satisfaction</div>
                 </div>
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-primary/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
-                  <div className="text-5xl font-bold text-primary mb-2">210+</div>
-                  <div className="text-muted-foreground font-medium">Mises en relation</div>
+                <div className="bg-card border border-nuit/12 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                  <div className="font-editorial font-semibold text-5xl text-nuit mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>210+</div>
+                  <div className="mn-stat-label">Mises en relation</div>
                   <div className="text-sm text-muted-foreground">professionnelles</div>
                 </div>
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-accent/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
-                  <div className="text-5xl font-bold text-accent mb-2">32</div>
-                  <div className="text-muted-foreground font-medium">Projets collaboratifs</div>
+                <div className="bg-card border border-turquoise/20 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                  <div className="font-editorial font-semibold text-5xl text-turquoise mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>32</div>
+                  <div className="mn-stat-label">Projets collaboratifs</div>
                   <div className="text-sm text-muted-foreground">initiés</div>
                 </div>
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-primary/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
-                  <div className="text-5xl font-bold text-primary mb-2">135+</div>
-                  <div className="text-muted-foreground font-medium">Experts</div>
+                <div className="bg-card border border-nuit/12 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                  <div className="font-editorial font-semibold text-5xl text-nuit mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>135+</div>
+                  <div className="mn-stat-label">Experts</div>
                   <div className="text-sm text-muted-foreground">mobilisables</div>
                 </div>
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-accent/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
-                  <div className="text-5xl font-bold text-accent mb-2">2000</div>
-                  <div className="text-muted-foreground font-medium">Années d'expérience</div>
+                <div className="bg-card border border-turquoise/20 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                  <div className="font-editorial font-semibold text-5xl text-turquoise mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>2000</div>
+                  <div className="mn-stat-label">Années d'expérience</div>
                   <div className="text-sm text-muted-foreground">cumulées experts</div>
                 </div>
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-primary/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
-                  <div className="text-5xl font-bold text-primary mb-2">358h</div>
-                  <div className="text-muted-foreground font-medium">Formation</div>
+                <div className="bg-card border border-nuit/12 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                  <div className="font-editorial font-semibold text-5xl text-nuit mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>358h</div>
+                  <div className="mn-stat-label">Formation</div>
                   <div className="text-sm text-muted-foreground">dispensées</div>
                 </div>
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border-2 border-accent/20 rounded-sm p-6 h-full hover:shadow-lg transition-all">
-                  <div className="text-5xl font-bold text-accent mb-2">12</div>
-                  <div className="text-muted-foreground font-medium">Pays</div>
+                <div className="bg-card border border-turquoise/20 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                  <div className="font-editorial font-semibold text-5xl text-turquoise mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>12</div>
+                  <div className="mn-stat-label">Pays</div>
                   <div className="text-sm text-muted-foreground">d'intervention</div>
                 </div>
               </CarouselItem>
@@ -466,6 +481,7 @@ De l'idée à la croissance.
       {/* Testimonials */}
       <section className="py-12 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
+          <div className="mn-eyebrow-turquoise text-center mb-4">Témoignages</div>
           <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
             Ils nous font confiance
           </h2>
@@ -561,6 +577,7 @@ De l'idée à la croissance.
       {/* How to Work With Us */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
+          <div className="mn-eyebrow-turquoise text-center mb-4">Notre approche</div>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
             Comment travailler avec nous ?
           </h2>
@@ -586,9 +603,9 @@ De l'idée à la croissance.
               step: "5",
               title: "Évaluation d'impact",
               description: "Mesure des résultats et ajustements continus"
-            }].map(item => <div key={item.step} className="flex items-start space-x-4 p-6 bg-card border border-border rounded-sm hover:shadow-md transition-shadow">
-                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary to-accent shape-squircle flex items-center justify-center text-white font-bold text-lg">
-                    {item.step}
+            }].map(item => <div key={item.step} className="flex items-start gap-6 p-6 bg-card border border-nuit/12 rounded-sm hover:shadow-md hover:border-nuit/25 transition-all duration-200">
+                  <div className="flex-shrink-0 w-12 pt-0.5 text-right">
+                    <span className="font-editorial font-semibold select-none" style={{ fontSize: '2.75rem', lineHeight: '1', letterSpacing: '-0.02em', color: 'hsl(222 44% 25% / 0.20)' }}>{item.step.padStart(2, '0')}</span>
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2 text-foreground">{item.title}</h3>
@@ -611,12 +628,15 @@ De l'idée à la croissance.
       <FAQSection faqs={faqs} />
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-primary to-accent">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary-foreground">
+      <section className="relative overflow-hidden py-16 md:py-20" style={{ background: 'linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)' }}>
+        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, hsl(181 67% 54% / 0.055) 22px 23px)' }}></div>
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 70% 30%, hsl(181 67% 54% / 0.18) 0%, transparent 52%), radial-gradient(ellipse at 15% 80%, hsl(228 56% 8% / 0.65) 0%, transparent 55%)' }}></div>
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <div className="mn-eyebrow-light mb-5">Travaillons ensemble</div>
+          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold mb-6 text-primary-foreground" style={{ letterSpacing: '-0.015em' }}>
             Prêt à construire l'avenir ensemble ?
           </h2>
-          <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-primary-foreground/75 mb-8 max-w-2xl mx-auto" style={{ lineHeight: '1.65' }}>
             Rejoignez les écoles et entrepreneurs qui transforment leurs ambitions en réalité
           </p>
           <Button asChild size="lg" variant="secondary" className="text-lg">
