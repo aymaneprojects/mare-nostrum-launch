@@ -1,0 +1,732 @@
+{
+  "nodes": [
+    {
+      "id": "mare_nostrum_org",
+      "label": "Mare Nostrum",
+      "file_type": "image",
+      "source_file": "src/assets/logo.png",
+      "source_location": null,
+      "source_url": "https://www.marenostrum.tech",
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "mare_nostrum_logo",
+      "label": "Mare Nostrum Logo",
+      "file_type": "image",
+      "source_file": "src/assets/logo.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "livre_blanc_cover",
+      "label": "Livre Blanc – Former à l'entrepreneuriat responsable",
+      "file_type": "image",
+      "source_file": "src/assets/livre-blanc-cover.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "impact_score_metric",
+      "label": "Impact Score 79",
+      "file_type": "image",
+      "source_file": "src/assets/impact-score-79.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "impact_score_brand",
+      "label": "Impact Score (brand / platform)",
+      "file_type": "image",
+      "source_file": "src/assets/impact-score-79.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "iscom_startup_challenge_event",
+      "label": "ISCOM Startup Challenge 2025",
+      "file_type": "image",
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "iscom_school",
+      "label": "ISCOM (école de communication)",
+      "file_type": "image",
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "startup_depods",
+      "label": "dépods – Dépose Ton Pods",
+      "file_type": "image",
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "startup_ora",
+      "label": "ORA",
+      "file_type": "image",
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "startup_daccord",
+      "label": "D'accord",
+      "file_type": "image",
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "startup_washere",
+      "label": "Washere",
+      "file_type": "image",
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "startup_pengue_tard",
+      "label": "Pengue Tard",
+      "file_type": "image",
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "startup_rootine",
+      "label": "Rootine",
+      "file_type": "image",
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "startup_movere",
+      "label": "Movere – Trouve Ton Sport",
+      "file_type": "image",
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "startup_revy",
+      "label": "Revy",
+      "file_type": "image",
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "startup_pillaleur",
+      "label": "Pill'aleur – Le Bon Médicament Au Bon Moment",
+      "file_type": "image",
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "startup_fyts",
+      "label": "FYTS – Find Your True Size",
+      "file_type": "image",
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "startup_odorium",
+      "label": "Odorium – Feel The Scent",
+      "file_type": "image",
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "startup_epilog",
+      "label": "Epilog",
+      "file_type": "image",
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "fresque_doctorant_event",
+      "label": "Fresque Doctorant Workshop at La Cité",
+      "file_type": "image",
+      "source_file": "src/assets/fresque-doctorant.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "la_cite_venue",
+      "label": "La Cité (venue / institution)",
+      "file_type": "image",
+      "source_file": "src/assets/fresque-doctorant.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "doctorant_participants",
+      "label": "Doctorant Participants (anonymised group)",
+      "file_type": "image",
+      "source_file": "src/assets/fresque-doctorant.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "neo_entrepreneur_elite_program",
+      "label": "Neo-Entrepreneur Elite Program Session",
+      "file_type": "image",
+      "source_file": "src/assets/neo-entrepreneur-elite.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "neo_entrepreneur_participants",
+      "label": "Neo-Entrepreneur Elite Participants (group)",
+      "file_type": "image",
+      "source_file": "src/assets/neo-entrepreneur-elite.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "abdallah_hassani_person",
+      "label": "Abdallah Hassani",
+      "file_type": "image",
+      "source_file": "src/assets/niteo/abdallah-hassani.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "niteo_network",
+      "label": "Niteo Network",
+      "file_type": "image",
+      "source_file": "src/assets/niteo/abdallah-hassani.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "anne_sophie_person",
+      "label": "Anne-Sophie",
+      "file_type": "image",
+      "source_file": "src/assets/niteo/anne-sophie.jpeg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "entrepreneuriat_responsable_topic",
+      "label": "Entrepreneuriat Responsable",
+      "file_type": "image",
+      "source_file": "src/assets/livre-blanc-cover.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "enseignement_superieur_topic",
+      "label": "Enseignement Supérieur",
+      "file_type": "image",
+      "source_file": "src/assets/livre-blanc-cover.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "francophonie_topic",
+      "label": "Francophonie",
+      "file_type": "image",
+      "source_file": "src/assets/livre-blanc-cover.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "rse_topic",
+      "label": "RSE (Responsabilité Sociale des Entreprises)",
+      "file_type": "image",
+      "source_file": "src/assets/livre-blanc-cover.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "innovation_topic",
+      "label": "Innovation",
+      "file_type": "image",
+      "source_file": "src/assets/livre-blanc-cover.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "insertion_professionnelle_topic",
+      "label": "Insertion Professionnelle",
+      "file_type": "image",
+      "source_file": "src/assets/livre-blanc-cover.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "mare_nostrum_org",
+      "target": "mare_nostrum_logo",
+      "relation": "has_brand_asset",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/logo.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "mare_nostrum_org",
+      "target": "livre_blanc_cover",
+      "relation": "published",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/livre-blanc-cover.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "livre_blanc_cover",
+      "target": "entrepreneuriat_responsable_topic",
+      "relation": "covers_topic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/livre-blanc-cover.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "livre_blanc_cover",
+      "target": "enseignement_superieur_topic",
+      "relation": "targets_audience",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/livre-blanc-cover.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "livre_blanc_cover",
+      "target": "francophonie_topic",
+      "relation": "covers_topic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/livre-blanc-cover.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "livre_blanc_cover",
+      "target": "rse_topic",
+      "relation": "covers_topic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/livre-blanc-cover.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "livre_blanc_cover",
+      "target": "innovation_topic",
+      "relation": "covers_topic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/livre-blanc-cover.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "livre_blanc_cover",
+      "target": "insertion_professionnelle_topic",
+      "relation": "covers_topic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/livre-blanc-cover.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "mare_nostrum_org",
+      "target": "impact_score_metric",
+      "relation": "has_impact_score",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/assets/impact-score-79.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "impact_score_metric",
+      "target": "impact_score_brand",
+      "relation": "measured_by",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/impact-score-79.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "iscom_school",
+      "target": "iscom_startup_challenge_event",
+      "relation": "organized",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "iscom_startup_challenge_event",
+      "target": "startup_depods",
+      "relation": "featured_participant",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "iscom_startup_challenge_event",
+      "target": "startup_ora",
+      "relation": "featured_participant",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "iscom_startup_challenge_event",
+      "target": "startup_daccord",
+      "relation": "featured_participant",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "iscom_startup_challenge_event",
+      "target": "startup_washere",
+      "relation": "featured_participant",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "iscom_startup_challenge_event",
+      "target": "startup_pengue_tard",
+      "relation": "featured_participant",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "iscom_startup_challenge_event",
+      "target": "startup_rootine",
+      "relation": "featured_participant",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "iscom_startup_challenge_event",
+      "target": "startup_movere",
+      "relation": "featured_participant",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "iscom_startup_challenge_event",
+      "target": "startup_revy",
+      "relation": "featured_participant",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "iscom_startup_challenge_event",
+      "target": "startup_pillaleur",
+      "relation": "featured_participant",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "iscom_startup_challenge_event",
+      "target": "startup_fyts",
+      "relation": "featured_participant",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "iscom_startup_challenge_event",
+      "target": "startup_odorium",
+      "relation": "featured_participant",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "iscom_startup_challenge_event",
+      "target": "startup_epilog",
+      "relation": "featured_participant",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "mare_nostrum_org",
+      "target": "iscom_startup_challenge_event",
+      "relation": "partner_or_sponsor",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "src/assets/iscom-startup-challenge.jpeg",
+      "source_location": null,
+      "weight": 0.7
+    },
+    {
+      "source": "fresque_doctorant_event",
+      "target": "la_cite_venue",
+      "relation": "held_at",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/fresque-doctorant.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "fresque_doctorant_event",
+      "target": "doctorant_participants",
+      "relation": "attended_by",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/fresque-doctorant.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "mare_nostrum_org",
+      "target": "fresque_doctorant_event",
+      "relation": "organized_or_facilitated",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "src/assets/fresque-doctorant.png",
+      "source_location": null,
+      "weight": 0.75
+    },
+    {
+      "source": "neo_entrepreneur_elite_program",
+      "target": "neo_entrepreneur_participants",
+      "relation": "attended_by",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/neo-entrepreneur-elite.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "mare_nostrum_org",
+      "target": "neo_entrepreneur_elite_program",
+      "relation": "runs_program",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/neo-entrepreneur-elite.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "abdallah_hassani_person",
+      "target": "niteo_network",
+      "relation": "member_of",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "src/assets/niteo/abdallah-hassani.jpeg",
+      "source_location": null,
+      "weight": 0.85
+    },
+    {
+      "source": "abdallah_hassani_person",
+      "target": "mare_nostrum_org",
+      "relation": "associated_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/assets/niteo/abdallah-hassani.jpeg",
+      "source_location": null,
+      "weight": 0.8
+    },
+    {
+      "source": "anne_sophie_person",
+      "target": "niteo_network",
+      "relation": "member_of",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "src/assets/niteo/anne-sophie.jpeg",
+      "source_location": null,
+      "weight": 0.85
+    },
+    {
+      "source": "anne_sophie_person",
+      "target": "mare_nostrum_org",
+      "relation": "associated_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/assets/niteo/anne-sophie.jpeg",
+      "source_location": null,
+      "weight": 0.8
+    },
+    {
+      "source": "niteo_network",
+      "target": "mare_nostrum_org",
+      "relation": "partner_network_of",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "src/assets/niteo/abdallah-hassani.jpeg",
+      "source_location": null,
+      "weight": 0.8
+    },
+    {
+      "source": "mare_nostrum_org",
+      "target": "entrepreneuriat_responsable_topic",
+      "relation": "specialises_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/livre-blanc-cover.png",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "mare_nostrum_org",
+      "target": "francophonie_topic",
+      "relation": "serves_community",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/assets/livre-blanc-cover.png",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}
