@@ -2,6 +2,21 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Sector agents (token-efficient specialisation)
+
+Before working on any feature, read the relevant brief from `.agents/`:
+
+| Task involves…         | Read first            |
+|------------------------|-----------------------|
+| Club, pricing, Stripe  | `.agents/club.md`     |
+| Écoles, Niteo, B2B     | `.agents/education.md`|
+| Blog, articles, mag    | `.agents/mag.md`      |
+| SEO, meta, schema      | `.agents/seo.md`      |
+| Design, CSS, tokens    | `.agents/design.md`   |
+| Supabase, functions    | `.agents/backend.md`  |
+
+Only read the brief(s) relevant to the task — not all of them. This keeps context tight and saves tokens.
+
 ## Auto-push after every task
 
 After completing any task, always commit the changes and push to the `main` branch on `origin` (GitHub: `aymaneprojects/mare-nostrum-launch`).
