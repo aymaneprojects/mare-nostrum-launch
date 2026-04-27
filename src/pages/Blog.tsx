@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Calendar, User, ArrowRight, Search, ChevronLeft, ChevronRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -92,36 +93,25 @@ const Blog = () => {
       />
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-accent py-16 md:py-24">
-        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-4">
-              Blog Entrepreneuriat
-            </h1>
-            <p className="text-xl text-primary-foreground/90 mb-8">
-              Guides pratiques et ressources pour réussir votre aventure entrepreneuriale
-            </p>
-            
-            {/* Barre de recherche */}
-            <div className="max-w-2xl mx-auto relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Rechercher un article..."
-                value={searchQuery}
-                onChange={(e) => handleSearchChange(e.target.value)}
-                className="pl-12 h-12 bg-background/95 backdrop-blur"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="Blog Entrepreneuriat"
+        subtitle="Guides pratiques et ressources pour réussir votre aventure entrepreneuriale"
+        eyebrow="Ressources · Stratégie · Impact"
+      />
 
-      {/* Filtres par catégorie */}
+      {/* Recherche + Filtres */}
       <section className="py-8 bg-secondary/30 border-b border-border">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 space-y-4">
+          <div className="max-w-2xl mx-auto relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Rechercher un article..."
+              value={searchQuery}
+              onChange={(e) => handleSearchChange(e.target.value)}
+              className="pl-12 h-12"
+            />
+          </div>
           <div className="flex flex-wrap gap-3 justify-center">
             <Badge
               variant={selectedCategory === null ? "default" : "outline"}

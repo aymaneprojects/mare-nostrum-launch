@@ -342,7 +342,7 @@ const Croissance = () => {
     },
     {
       question: "Et si je n'étais pas au bon niveau pour rejoindre le Club ?",
-      answer: "L'offre est faite pour s'adapter à ton stade actuel. Phase idéation ou MVP : Communauté. Phase croissance (50K à 200K euros de chiffre d'affaires) : Groupe. Phase structuration et automatisation : Individuel. L'objectif est simple : te faire passer au niveau supérieur sans précipitation, mais avec méthode et soutien."
+      answer: "L'offre a été construite pour répondre au mieux aux besoins des entrepreneurs. Si vous choisissez un niveau qui n'est pas adapté, vous pouvez changer à tout moment de forfait."
     },
     {
       question: "Comment savoir si ça marche vraiment ?",
@@ -351,10 +351,6 @@ const Croissance = () => {
     {
       question: "30 euros pour une communauté en ligne, j'en ai déjà des gratuites.",
       answer: "Les communautés gratuites n'ont pas de filtre. Ici, chaque membre est sélectionné, chaque rencontre est animée, et vous avez plus de 30 heures de formation incluses. Testez 30 jours : remboursé si cela ne vous convient pas."
-    },
-    {
-      question: "90 euros par mois, c'est cher. Je n'ai pas de budget.",
-      answer: "Un seul contrat signé grâce au Cercle rembourse deux ans d'abonnement. Le pré-diagnostic offert à l'entrée vaut à lui seul 300 euros sur le marché. Essayez un trimestre à 80 euros par mois."
     },
     {
       question: "190 euros par mois, je peux trouver un freelance pour ce prix.",

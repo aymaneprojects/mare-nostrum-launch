@@ -2,6 +2,7 @@ import { Leaf, Users, Recycle, Heart, TrendingUp, Shield, Award, Target } from "
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import PageHero from "@/components/PageHero";
 import impactScoreImage from "@/assets/impact-score-79.png";
 import entreprisesEngagentImage from "@/assets/entreprises-engagent.png";
 const EngagementRSE = () => {
@@ -9,27 +10,12 @@ const EngagementRSE = () => {
       <SEOHead title="Engagement RSE Mare Nostrum - Societe a Mission Toulouse | Impact Score 79/100" description="Mare Nostrum, societe a mission a Toulouse depuis 2025. Impact Score 79/100, top 5% Occitanie. Engagements RSE : environnement, social, gouvernance. Entrepreneuriat responsable et durable." keywords="RSE toulouse, societe a mission toulouse, impact social, developpement durable toulouse, entrepreneuriat responsable, gouvernance, mare nostrum RSE, entreprise a mission occitanie, impact score" breadcrumbSchema={[{ name: "Accueil", url: "https://marenostrum.tech/" }, { name: "Engagement RSE", url: "https://marenostrum.tech/engagement-rse" }]} />
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-20 md:py-32">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
-              <span className="text-primary-foreground font-medium">Société à mission depuis septembre 2025</span>
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
-              Nos engagements RSE
-            </h1>
-            <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8">
-              Un engagement porté par la gouvernance de l'entreprise
-            </p>
-            <div className="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm rounded-full px-6 py-3">
-              <Award className="h-6 w-6 text-primary-foreground" />
-              <span className="text-primary-foreground font-semibold">Impact Score 2025 : 79/100</span>
-              <span className="text-primary-foreground/80">Top 5% en Occitanie</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Société à mission depuis septembre 2025"
+        title="Nos engagements RSE"
+        subtitle="Un engagement porté par la gouvernance de l'entreprise"
+        badgeContent="Impact Score 2025 : 79/100 — Top 5% en Occitanie"
+      />
 
       {/* Introduction */}
       <section className="py-16 md:py-24 bg-background">
