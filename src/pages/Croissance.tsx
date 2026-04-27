@@ -769,7 +769,7 @@ const Croissance = () => {
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <TestimonialCard
               text="J'ai trouvé mon premier client grâce à une mise en relation au Club. 30€ pour un contrat à 2000€, le calcul est vite fait."
-              author="Lucas"
+              author="Adam"
               role="Membre du Club Mare Nostrum"
             />
             <TestimonialCard
@@ -779,7 +779,7 @@ const Croissance = () => {
             />
             <TestimonialCard
               text="La session d'accompagnement m'a obligé à poser un plan d'action clair. En 2 mois, j'ai réussi à lancer ma campagne de tests et à trouver mes premiers beta-testeurs."
-              author="Lucas"
+              author="Annabel"
               role="Membre du Club Mare Nostrum"
             />
           </div>
