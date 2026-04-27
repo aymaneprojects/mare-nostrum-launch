@@ -57,75 +57,25 @@ const handler = async (req: Request): Promise<Response> => {
     // ── Email au visiteur ──────────────────────────────────────────────────────
     await sendEmail(
       email,
-      `${prenom}, voici ton code promo exclusif Mare Nostrum`,
+      `Ton code promo –10% — Club Mare Nostrum`,
       `
-<!DOCTYPE html>
-<html lang="fr">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-<body style="margin:0;padding:0;background:#f5f0e8;font-family:'DM Sans',Arial,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f0e8;padding:40px 16px;">
-    <tr><td align="center">
-      <table width="100%" style="max-width:560px;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+        <p>Bonjour ${prenom},</p>
 
-        <!-- Header -->
-        <tr>
-          <td style="background:linear-gradient(135deg,#2d3e6e 0%,#1a2440 100%);padding:36px 40px;text-align:center;">
-            <p style="margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#4dd9d5;">Offre exclusive</p>
-            <h1 style="margin:0;font-size:28px;font-style:italic;color:#ffffff;line-height:1.2;">Ton code promo<br/>–10% le premier mois</h1>
-          </td>
-        </tr>
+        <p>Voici ton code promo personnalisé : <strong>${promoCode}</strong></p>
 
-        <!-- Body -->
-        <tr>
-          <td style="padding:36px 40px;">
-            <p style="margin:0 0 20px;font-size:16px;color:#334155;line-height:1.6;">Bonjour <strong>${prenom}</strong>,</p>
-            <p style="margin:0 0 28px;font-size:15px;color:#64748b;line-height:1.65;">
-              Comme promis, voici ton code promo personnalisé. Il te donne <strong>–10% sur ton premier mois</strong> d'abonnement au Club Mare Nostrum.
-            </p>
+        <p>Il te donne <strong>–10% sur ton premier mois</strong> d'abonnement au Club Mare Nostrum. Entre-le au moment du paiement sur <a href="https://marenostrum.tech/croissance">marenostrum.tech/croissance</a>.</p>
 
-            <!-- Promo code block -->
-            <table width="100%" cellpadding="0" cellspacing="0" style="background:#f0fdf9;border:2px solid #4dd9d5;border-radius:12px;margin-bottom:28px;">
-              <tr>
-                <td style="padding:24px;text-align:center;">
-                  <p style="margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#4dd9d5;">Ton code promo</p>
-                  <p style="margin:0;font-size:32px;font-weight:700;letter-spacing:6px;color:#1a2440;font-family:'Courier New',monospace;">${promoCode}</p>
-                </td>
-              </tr>
-            </table>
+        <p>Ce code est valable 30 jours et utilisable une seule fois.</p>
 
-            <p style="margin:0 0 16px;font-size:14px;color:#64748b;line-height:1.6;">
-              Pour l'utiliser : rends-toi sur <a href="https://marenostrum.tech/croissance" style="color:#4dd9d5;text-decoration:none;font-weight:600;">marenostrum.tech/croissance</a>, choisis ton offre et entre ce code au moment du paiement.
-            </p>
-            <p style="margin:0 0 28px;font-size:14px;color:#94a3b8;">Notre équipe te contactera également sous 24h pour répondre à tes questions et valider ton code.</p>
+        <p>Notre équipe te contacte sous 24h pour répondre à tes questions.</p>
 
-            <!-- CTA -->
-            <table cellpadding="0" cellspacing="0" style="margin:0 auto 28px;">
-              <tr>
-                <td style="background:#4dd9d5;border-radius:8px;padding:14px 32px;text-align:center;">
-                  <a href="https://marenostrum.tech/croissance" style="color:#1a2440;text-decoration:none;font-weight:700;font-size:15px;">Rejoindre le Club →</a>
-                </td>
-              </tr>
-            </table>
+        <p>Cordialement,<br>L'équipe Mare Nostrum</p>
 
-            <p style="margin:0;font-size:13px;color:#94a3b8;line-height:1.6;">
-              Ce code est personnel et valable une seule fois.<br/>
-              Des questions ? Réponds directement à cet email ou écris-nous à <a href="mailto:contact@marenostrum.tech" style="color:#4dd9d5;">contact@marenostrum.tech</a>
-            </p>
-          </td>
-        </tr>
+        <hr>
 
-        <!-- Footer -->
-        <tr>
-          <td style="background:#f8fafc;border-top:1px solid #e2e8f0;padding:20px 40px;text-align:center;">
-            <p style="margin:0;font-size:12px;color:#94a3b8;">Mare Nostrum · Depuis Toulouse, dans tout l'espace francophone</p>
-          </td>
-        </tr>
-
-      </table>
-    </td></tr>
-  </table>
-</body>
-</html>
+        <p>Mare Nostrum - Accompagnement entrepreneurial<br>
+        Depuis Toulouse, dans tout l'espace francophone</p>
+        <p><a href="mailto:contact@marenostrum.tech">contact@marenostrum.tech</a></p>
       `.trim()
     );
 
