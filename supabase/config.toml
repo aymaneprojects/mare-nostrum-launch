@@ -1,4 +1,4 @@
-project_id = "fpdxpvkgzrddemldvemg"
+project_id = "oivxznyzijtoylwfigyq"
 
 [functions.healthz]
 verify_jwt = false
