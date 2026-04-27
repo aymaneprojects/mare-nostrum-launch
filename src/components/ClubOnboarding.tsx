@@ -14,7 +14,7 @@ import {
 const stripeKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY as string | undefined;
 const stripePromise = stripeKey?.startsWith("pk_") ? loadStripe(stripeKey) : null;
 
-const KIT_URL   = "https://drive.google.com/file/d/1FVsdyMqBs7QG4FpGYzEO4o1yH5MkzUDj/view?usp=sharing";
+const KIT_URL   = "/kit-adherent-club.pdf";
 const SLACK_URL = "https://join.slack.com/t/clubmarenostrum/shared_invite/zt-3k96xxhx1-UjfT8oy4ISyHKScmuqsleg";
 
 export type Offer        = "communaute" | "groupe" | "individuel";
@@ -398,8 +398,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
 
               <a
                 href={KIT_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                download="Kit Adhérent Club Mare Nostrum.pdf"
                 onClick={() => setKitClicked(true)}
                 className="flex items-center justify-center gap-2 w-full max-w-xs bg-primary text-primary-foreground rounded-sm px-5 py-3.5 font-semibold text-sm hover:bg-primary/90 transition-colors"
               >
