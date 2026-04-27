@@ -28,16 +28,16 @@ function generateCode(prenom: string): string {
 }
 
 export default function ExitIntentPopup() {
-  const [visible, setVisible]   = useState(false);
-  const [prenom, setPrenom]     = useState("");
-  const [email, setEmail]       = useState("");
-  const [phone, setPhone]       = useState("");
-  const [zone, setZone]         = useState("");
+  const [visible, setVisible]     = useState(false);
+  const [prenom, setPrenom]       = useState("");
+  const [email, setEmail]         = useState("");
+  const [phone, setPhone]         = useState("");
+  const [zone, setZone]           = useState("");
   const [promoCode, setPromoCode] = useState("");
-  const [copied, setCopied]     = useState(false);
-  const [loading, setLoading]   = useState(false);
-  const [sent, setSent]         = useState(false);
-  const [error, setError]       = useState("");
+  const [copied, setCopied]       = useState(false);
+  const [loading, setLoading]     = useState(false);
+  const [sent, setSent]           = useState(false);
+  const [error, setError]         = useState("");
   const codeRef = useRef<string>("");
 
   useEffect(() => {
@@ -46,7 +46,6 @@ export default function ExitIntentPopup() {
     return () => clearTimeout(id);
   }, []);
 
-  // Generate promo code as soon as user types their first name
   useEffect(() => {
     if (prenom.trim().length >= 2 && !codeRef.current) {
       const code = generateCode(prenom);
@@ -58,7 +57,11 @@ export default function ExitIntentPopup() {
   const handleClose = () => { setVisible(false); markDismissed(); };
 
   const handleCopy = async () => {
-    try { await navigator.clipboard.writeText(promoCode); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch {}
+    try {
+      await navigator.clipboard.writeText(promoCode);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {}
   };
 
   const valid = prenom.trim() !== "" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && zone !== "";
@@ -92,170 +95,172 @@ export default function ExitIntentPopup() {
   if (!visible) return null;
 
   return (
-    <>
-      {/* Backdrop */}
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="ep-title"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      onClick={handleClose}
+    >
+      {/* Carte modale */}
       <div
-        className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
-        onClick={handleClose}
-        aria-hidden="true"
-      />
-
-      {/* Modal — centré */}
-      <div
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="ep-title"
-        className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
+        className="w-full max-w-md bg-background rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 fade-in duration-300"
+        onClick={e => e.stopPropagation()}
       >
-        <div
-          className="pointer-events-auto w-full max-w-md bg-background rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 fade-in duration-300"
-          onClick={e => e.stopPropagation()}
-        >
-          {/* ── Header marketing ── */}
-          <div className="relative bg-[hsl(var(--mn-nuit))] px-7 py-7 overflow-hidden">
-            {/* Decorative glow */}
-            <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full bg-[hsl(var(--mn-turquoise))]/20 blur-2xl pointer-events-none" />
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-full bg-[hsl(var(--mn-ocre))]/15 blur-2xl pointer-events-none" />
+        {/* ── Header marketing ── */}
+        <div className="relative bg-[hsl(var(--mn-nuit))] px-7 py-7 overflow-hidden">
+          <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full bg-[hsl(var(--mn-turquoise))]/20 blur-2xl pointer-events-none" />
+          <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-full bg-[hsl(var(--mn-ocre))]/15 blur-2xl pointer-events-none" />
 
-            <button
-              onClick={handleClose}
-              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-              aria-label="Fermer"
-            >
-              <X className="h-4 w-4 text-white" />
-            </button>
+          <button
+            onClick={handleClose}
+            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+            aria-label="Fermer"
+          >
+            <X className="h-4 w-4 text-white" />
+          </button>
 
-            <div className="flex items-center gap-2 mb-3">
-              <Sparkles className="h-4 w-4 text-[hsl(var(--mn-turquoise))]" />
-              <span className="text-xs font-bold uppercase tracking-widest text-[hsl(var(--mn-turquoise))]">Offre exclusive — places limitées</span>
-            </div>
-
-            <h2 id="ep-title" className="font-editorial italic text-3xl text-white leading-tight mb-2">
-              Attendez !<br />
-              <span className="text-[hsl(var(--mn-turquoise))]">–10%</span> le premier mois
-            </h2>
-            <p className="text-sm text-white/60 leading-relaxed">
-              Remplis le formulaire, on génère ton code promo personnel et on te rappelle sous 24h pour le valider.
-            </p>
+          <div className="flex items-center gap-2 mb-3">
+            <Sparkles className="h-4 w-4 text-[hsl(var(--mn-turquoise))]" />
+            <span className="text-xs font-bold uppercase tracking-widest text-[hsl(var(--mn-turquoise))]">
+              Offre exclusive — places limitées
+            </span>
           </div>
 
-          {/* ── Body ── */}
-          <div className="px-7 py-6">
-            {sent ? (
-              <div className="flex flex-col items-center text-center gap-4 py-4">
-                <CheckCircle2 className="h-12 w-12 text-[hsl(var(--mn-turquoise))]" strokeWidth={1.5} />
-                <div>
-                  <p className="font-semibold text-xl text-foreground mb-1">C'est dans la boîte !</p>
-                  <p className="text-sm text-muted-foreground">Ton code <strong className="text-foreground font-mono">{promoCode}</strong> est réservé.<br />On te contacte dans les 24h.</p>
-                </div>
-                <Button onClick={handleClose} className="mt-2">Fermer</Button>
+          <h2 id="ep-title" className="font-editorial italic text-3xl text-white leading-tight mb-2">
+            Attendez !<br />
+            <span className="text-[hsl(var(--mn-turquoise))]">–10%</span> le premier mois
+          </h2>
+          <p className="text-sm text-white/60 leading-relaxed">
+            Remplis le formulaire, on génère ton code promo personnel et on te rappelle sous 24h pour le valider.
+          </p>
+        </div>
+
+        {/* ── Body ── */}
+        <div className="px-7 py-6">
+          {sent ? (
+            <div className="flex flex-col items-center text-center gap-4 py-4">
+              <CheckCircle2 className="h-12 w-12 text-[hsl(var(--mn-turquoise))]" strokeWidth={1.5} />
+              <div>
+                <p className="font-semibold text-xl text-foreground mb-1">C'est dans la boîte !</p>
+                <p className="text-sm text-muted-foreground">
+                  Ton code <strong className="text-foreground font-mono">{promoCode}</strong> est réservé.<br />
+                  On te contacte dans les 24h.
+                </p>
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-3" noValidate>
-
-                {/* Promo code — apparaît dès que le prénom est saisi */}
-                {promoCode && (
-                  <div className="flex items-center justify-between gap-3 bg-[hsl(var(--mn-turquoise))]/10 border border-[hsl(var(--mn-turquoise))]/30 rounded-lg px-4 py-3 mb-1">
-                    <div className="flex items-center gap-2">
-                      <Tag className="h-4 w-4 text-[hsl(var(--mn-turquoise))] shrink-0" />
-                      <div>
-                        <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Ton code promo</p>
-                        <p className="font-mono font-bold text-lg text-foreground tracking-widest">{promoCode}</p>
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={handleCopy}
-                      className="flex items-center gap-1.5 text-xs font-semibold text-[hsl(var(--mn-turquoise))] hover:opacity-70 transition-opacity shrink-0"
-                    >
-                      {copied ? <><Check className="h-3.5 w-3.5" />Copié</> : <><Copy className="h-3.5 w-3.5" />Copier</>}
-                    </button>
-                  </div>
-                )}
-
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="space-y-1">
-                    <Label htmlFor="ep-prenom" className="text-xs text-muted-foreground">Prénom *</Label>
-                    <div className="relative">
-                      <User className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 pointer-events-none" />
-                      <Input
-                        id="ep-prenom"
-                        placeholder="Aymane"
-                        value={prenom}
-                        onChange={e => setPrenom(e.target.value)}
-                        className="pl-8 h-9 text-sm"
-                        autoComplete="given-name"
-                        autoFocus
-                      />
+              <Button onClick={handleClose} className="mt-2">Fermer</Button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-3" noValidate>
+              {/* Code promo — apparaît dès que le prénom est saisi */}
+              {promoCode && (
+                <div className="flex items-center justify-between gap-3 bg-[hsl(var(--mn-turquoise))]/10 border border-[hsl(var(--mn-turquoise))]/30 rounded-lg px-4 py-3 mb-1">
+                  <div className="flex items-center gap-2">
+                    <Tag className="h-4 w-4 text-[hsl(var(--mn-turquoise))] shrink-0" />
+                    <div>
+                      <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Ton code promo</p>
+                      <p className="font-mono font-bold text-lg text-foreground tracking-widest">{promoCode}</p>
                     </div>
                   </div>
-
-                  <div className="space-y-1">
-                    <Label htmlFor="ep-phone" className="text-xs text-muted-foreground">Téléphone</Label>
-                    <div className="relative">
-                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 pointer-events-none" />
-                      <Input
-                        id="ep-phone"
-                        type="tel"
-                        placeholder="+33 6…"
-                        value={phone}
-                        onChange={e => setPhone(e.target.value)}
-                        className="pl-8 h-9 text-sm"
-                        autoComplete="tel"
-                      />
-                    </div>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={handleCopy}
+                    className="flex items-center gap-1.5 text-xs font-semibold text-[hsl(var(--mn-turquoise))] hover:opacity-70 transition-opacity shrink-0 cursor-pointer"
+                  >
+                    {copied
+                      ? <><Check className="h-3.5 w-3.5" />Copié</>
+                      : <><Copy className="h-3.5 w-3.5" />Copier</>
+                    }
+                  </button>
                 </div>
+              )}
 
+              <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <Label htmlFor="ep-email" className="text-xs text-muted-foreground">Email *</Label>
+                  <Label htmlFor="ep-prenom" className="text-xs text-muted-foreground">Prénom *</Label>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 pointer-events-none" />
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 pointer-events-none" />
                     <Input
-                      id="ep-email"
-                      type="email"
-                      placeholder="toi@exemple.com"
-                      value={email}
-                      onChange={e => setEmail(e.target.value)}
+                      id="ep-prenom"
+                      placeholder="Aymane"
+                      value={prenom}
+                      onChange={e => setPrenom(e.target.value)}
                       className="pl-8 h-9 text-sm"
-                      autoComplete="email"
+                      autoComplete="given-name"
+                      autoFocus
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1">
-                  <Label htmlFor="ep-zone" className="text-xs text-muted-foreground">Zone *</Label>
+                  <Label htmlFor="ep-phone" className="text-xs text-muted-foreground">Téléphone</Label>
                   <div className="relative">
-                    <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 z-10 pointer-events-none" />
-                    <Select onValueChange={setZone} value={zone}>
-                      <SelectTrigger id="ep-zone" className="pl-8 h-9 text-sm">
-                        <SelectValue placeholder="Où es-tu basé ?" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="france">France</SelectItem>
-                        <SelectItem value="afrique">Afrique francophone</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 pointer-events-none" />
+                    <Input
+                      id="ep-phone"
+                      type="tel"
+                      placeholder="+33 6…"
+                      value={phone}
+                      onChange={e => setPhone(e.target.value)}
+                      className="pl-8 h-9 text-sm"
+                      autoComplete="tel"
+                    />
                   </div>
                 </div>
+              </div>
 
-                {error && <p className="text-xs text-destructive">{error}</p>}
+              <div className="space-y-1">
+                <Label htmlFor="ep-email" className="text-xs text-muted-foreground">Email *</Label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 pointer-events-none" />
+                  <Input
+                    id="ep-email"
+                    type="email"
+                    placeholder="toi@exemple.com"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    className="pl-8 h-9 text-sm"
+                    autoComplete="email"
+                  />
+                </div>
+              </div>
 
-                <Button type="submit" className="w-full h-11 text-sm font-semibold mt-1" disabled={!valid || loading}>
-                  {loading
-                    ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Envoi…</>
-                    : "Réserver mon appel — obtenir mon code"
-                  }
-                </Button>
+              <div className="space-y-1">
+                <Label htmlFor="ep-zone" className="text-xs text-muted-foreground">Zone *</Label>
+                <div className="relative">
+                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 z-10 pointer-events-none" />
+                  <Select onValueChange={setZone} value={zone}>
+                    <SelectTrigger id="ep-zone" className="pl-8 h-9 text-sm">
+                      <SelectValue placeholder="Où es-tu basé ?" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="france">France</SelectItem>
+                      <SelectItem value="afrique">Afrique francophone</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
 
-                <p className="text-[10px] text-muted-foreground text-center">
-                  Pas de spam. Rappel unique sous 24h pour activer ton offre.
-                </p>
-              </form>
-            )}
-          </div>
+              {error && <p className="text-xs text-destructive">{error}</p>}
+
+              <Button
+                type="submit"
+                className="w-full h-11 text-sm font-semibold mt-1"
+                disabled={!valid || loading}
+              >
+                {loading
+                  ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Envoi…</>
+                  : "Réserver mon appel — obtenir mon code"
+                }
+              </Button>
+
+              <p className="text-[10px] text-muted-foreground text-center">
+                Pas de spam. Rappel unique sous 24h pour activer ton offre.
+              </p>
+            </form>
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
