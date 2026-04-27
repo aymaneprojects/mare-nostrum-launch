@@ -63,10 +63,24 @@ serve(async (req) => {
     const interval = billing === "monthly" ? "month" : "year";
     const billingLabel = billing === "monthly" ? "mensuel" : "annuel";
 
+    // Pré-créer un customer pour y attacher prénom + entreprise
+    const customer = await stripe.customers.create({
+      email,
+      name: [prenom, entreprise].filter(Boolean).join(" — ") || prenom,
+      metadata: {
+        prenom,
+        entreprise: entreprise ?? "",
+        stade: stade ?? "",
+        offer,
+        location,
+        billing,
+      },
+    });
+
     const session = await stripe.checkout.sessions.create({
       ui_mode: "embedded",
       mode: "subscription",
-      customer_email: email,
+      customer: customer.id,
       line_items: [{
         price_data: {
           currency,
@@ -79,14 +93,7 @@ serve(async (req) => {
         },
         quantity: 1,
       }],
-      metadata: {
-        prenom,
-        entreprise: entreprise ?? "",
-        stade: stade ?? "",
-        offer,
-        location,
-        billing,
-      },
+      phone_number_collection: { enabled: true },
       allow_promotion_codes: true,
       return_url: "https://marenostrum.tech/club?success=true",
     });
