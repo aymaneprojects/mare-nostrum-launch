@@ -172,7 +172,7 @@ const Education = () => {
         title="L'esprit d'entreprendre au cœur de votre établissement"
         subtitle="Des dispositifs clés en main pour sensibiliser, former et accompagner vos étudiants vers l'entrepreneuriat"
         ctas={
-          <Button asChild size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto">
+          <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
             <Link to="/contact">
               Intégrez l'entrepreneuriat dans votre projet pédagogique
               <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
@@ -398,7 +398,7 @@ const Education = () => {
 
           {/* Bouton Niteo */}
           <div className="mt-12 text-center">
-            <Button asChild size="lg" className="text-base md:text-lg">
+            <Button asChild size="lg">
               <Link to="/niteo-toulouse">
                 Découvrir le Programme Niteo Toulouse 2026
                 <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />

@@ -100,7 +100,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent
-        className={`p-0 overflow-hidden transition-all duration-300 ${
+        className={`p-0 overflow-hidden transition-all duration-300 mx-3 sm:mx-auto ${
           phase === "payment" ? "sm:max-w-2xl" : "sm:max-w-lg"
         }`}
       >
@@ -213,7 +213,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                         key={opt.val}
                         type="button"
                         onClick={() => setStade(opt.val)}
-                        className={`text-left px-4 py-3 rounded-sm border text-sm transition-all cursor-pointer ${
+                        className={`text-left px-4 py-2.5 rounded-sm border text-sm transition-all cursor-pointer ${
                           stade === opt.val
                             ? "border-primary bg-primary/5 text-primary font-semibold"
                             : "border-border hover:border-primary/40"

@@ -347,23 +347,6 @@ const Croissance = () => {
         ]}
       />
 
-      {/* Niteo Promotion Banner */}
-      <div className="bg-primary text-primary-foreground py-2 px-4">
-        <div className="container mx-auto flex items-center justify-center gap-3 md:gap-6 flex-wrap">
-          <span className="text-xs md:text-sm font-semibold uppercase tracking-wider opacity-90">
-            Nouveau programme entrepreneuriat <span className="inline-block mx-1.5 w-1 h-1 rounded-full bg-primary-foreground/40 align-middle"></span> Toulouse
-          </span>
-          <span className="hidden md:inline text-primary-foreground/40">|</span>
-          <span className="text-xs md:text-sm opacity-80">
-            Étudiant(e), jeune diplômé(e) ? Transforme ton idée en projet concret en 50h chrono <span className="inline-block mx-1 w-1 h-1 rounded-full bg-secondary align-middle"></span> 100% gratuit
-          </span>
-          <a href="https://niteo.marenostrum.tech" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-bold text-xs md:text-sm h-7 md:h-8 px-3 md:px-4 rounded-sm bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors">
-            Candidater
-            <ArrowRight className="h-3.5 w-3.5" />
-          </a>
-        </div>
-      </div>
-
       <Header />
 
       {/* Hero Section */}
@@ -373,7 +356,7 @@ const Croissance = () => {
         subtitle="Mentorat, réseau international et intelligence artificielle pour doubler votre activité et votre impact — dès 30€ par mois"
         size="lg"
         ctas={
-          <Button size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto" onClick={() => {
+          <Button size="lg" variant="secondary" className="w-full sm:w-auto" onClick={() => {
             document.getElementById('offres')?.scrollIntoView({ behavior: 'smooth' });
           }}>
             Rejoindre le Club Entrepreneur
@@ -460,11 +443,11 @@ const Croissance = () => {
 
           {/* Selectors: country + billing */}
           <div className="flex flex-col items-center gap-5 mb-12">
-            <div className="flex gap-3">
-              <Button variant={selectedLocation === "france" ? "default" : "outline"} onClick={() => setSelectedLocation("france")} size="lg">
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button variant={selectedLocation === "france" ? "default" : "outline"} onClick={() => setSelectedLocation("france")} size="default">
                 France
               </Button>
-              <Button variant={selectedLocation === "congo_brazzaville" ? "default" : "outline"} onClick={() => setSelectedLocation("congo_brazzaville")} size="lg">
+              <Button variant={selectedLocation === "congo_brazzaville" ? "default" : "outline"} onClick={() => setSelectedLocation("congo_brazzaville")} size="default">
                 République du Congo
               </Button>
             </div>
@@ -610,13 +593,13 @@ const Croissance = () => {
           {/* Feature Comparison Table */}
           <div className="max-w-5xl mx-auto mt-16 overflow-x-auto">
             <p className="text-center text-sm font-semibold text-muted-foreground uppercase tracking-widest mb-6" style={{ letterSpacing: '0.18em' }}>Comparaison détaillée</p>
-            <table className="w-full text-sm border-collapse">
+            <table className="w-full text-xs md:text-sm border-collapse">
               <thead>
                 <tr>
-                  <th className="text-left py-3 px-4 text-muted-foreground font-medium" style={{ width: '40%' }}></th>
-                  <th className="py-3 px-4 text-center font-bold text-foreground">Communauté</th>
-                  <th className="py-3 px-4 text-center font-bold text-primary-foreground rounded-t-sm" style={{ background: 'hsl(222 44% 25%)' }}>Groupe</th>
-                  <th className="py-3 px-4 text-center font-bold text-foreground">Individuel</th>
+                  <th className="text-left py-2 px-2 md:py-3 md:px-4 text-muted-foreground font-medium" style={{ width: '40%' }}></th>
+                  <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Communauté</th>
+                  <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-primary-foreground rounded-t-sm" style={{ background: 'hsl(222 44% 25%)' }}>Groupe</th>
+                  <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Individuel</th>
                 </tr>
               </thead>
               <tbody>
@@ -635,7 +618,7 @@ const Croissance = () => {
                 ].map(({ feature, c, g, i }, idx) => {
                   const bg = idx % 2 === 0 ? 'hsl(40 38% 94% / 0.5)' : '#fff';
                   const Cell = ({ val }: { val: boolean | string }) => (
-                    <td className="py-3 px-4 text-center" style={{ background: val !== false && val !== true ? 'hsl(222 44% 25% / 0.04)' : undefined }}>
+                    <td className="py-2 px-2 md:py-3 md:px-4 text-center" style={{ background: val !== false && val !== true ? 'hsl(222 44% 25% / 0.04)' : undefined }}>
                       {val === true ? <CheckCircle2 className="h-4 w-4 mx-auto" style={{ color: 'hsl(181 67% 40%)' }} /> :
                        val === false ? <span className="text-muted-foreground/30 font-bold text-lg leading-none">—</span> :
                        <span className="font-semibold text-primary">{val}</span>}
@@ -643,9 +626,9 @@ const Croissance = () => {
                   );
                   return (
                     <tr key={feature} style={{ background: bg, borderTop: '1px solid hsl(222 44% 25% / 0.07)' }}>
-                      <td className="py-3 px-4 text-foreground/80 font-medium">{feature}</td>
+                      <td className="py-2 px-2 md:py-3 md:px-4 text-foreground/80 font-medium">{feature}</td>
                       <Cell val={c} />
-                      <td className="py-3 px-4 text-center" style={{ background: 'hsl(222 44% 25% / 0.04)' }}>
+                      <td className="py-2 px-2 md:py-3 md:px-4 text-center" style={{ background: 'hsl(222 44% 25% / 0.04)' }}>
                         {g === true ? <CheckCircle2 className="h-4 w-4 mx-auto" style={{ color: 'hsl(181 67% 40%)' }} /> :
                          g === false ? <span className="text-muted-foreground/30 font-bold text-lg leading-none">—</span> :
                          <span className="font-semibold text-primary">{g}</span>}
@@ -655,16 +638,16 @@ const Croissance = () => {
                   );
                 })}
                 <tr style={{ borderTop: '2px solid hsl(222 44% 25% / 0.12)' }}>
-                  <td className="py-4 px-4 font-bold text-foreground">
+                  <td className="py-3 px-2 md:py-4 md:px-4 font-bold text-foreground">
                     Prix mensuel — {selectedLocation === "france" ? "France" : "Rép. du Congo"}
                   </td>
-                  <td className="py-4 px-4 text-center font-bold text-primary">
+                  <td className="py-3 px-2 md:py-4 md:px-4 text-center font-bold text-primary">
                     {selectedLocation === "france" ? "30€" : "10 000 XOF"}
                   </td>
-                  <td className="py-4 px-4 text-center font-bold text-primary-foreground rounded-b-sm" style={{ background: 'hsl(222 44% 25%)' }}>
+                  <td className="py-3 px-2 md:py-4 md:px-4 text-center font-bold text-primary-foreground rounded-b-sm" style={{ background: 'hsl(222 44% 25%)' }}>
                     {selectedLocation === "france" ? "90€" : "30 000 XOF"}
                   </td>
-                  <td className="py-4 px-4 text-center font-bold text-primary">
+                  <td className="py-3 px-2 md:py-4 md:px-4 text-center font-bold text-primary">
                     {selectedLocation === "france" ? "190€" : "80 000 XOF"}
                   </td>
                 </tr>
@@ -770,7 +753,7 @@ const Croissance = () => {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <div className="group relative overflow-hidden rounded-sm shadow-lg hover:shadow-2xl transition-all">
-              <img src={atelierRose} alt="Atelier d'accompagnement entrepreneur Mare Nostrum à Toulouse avec experts et participants" loading="lazy" width="600" height="400" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
+              <img src={atelierRose} alt="Atelier d'accompagnement entrepreneur Mare Nostrum à Toulouse avec experts et participants" loading="lazy" width="600" height="400" className="w-full h-[220px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-accent/90 via-accent/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
                   <h3 className="text-xl font-bold mb-2">Ateliers thématiques</h3>
@@ -780,7 +763,7 @@ const Croissance = () => {
             </div>
 
             <div className="group relative overflow-hidden rounded-sm shadow-lg hover:shadow-2xl transition-all">
-              <img src={neoEntrepreneurElite} alt="Journée de business développement avec néo-entrepreneurs dans l'offre Individuel Mare Nostrum Toulouse" loading="lazy" width="600" height="400" className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
+              <img src={neoEntrepreneurElite} alt="Journée de business développement avec néo-entrepreneurs dans l'offre Individuel Mare Nostrum Toulouse" loading="lazy" width="600" height="400" className="w-full h-[220px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
                   <h3 className="text-xl font-bold mb-2">Offre Individuel</h3>
@@ -804,13 +787,13 @@ const Croissance = () => {
             Clarifie ta vision, structure ta stratégie et accélère ta croissance avec le Club Entrepreneur Mare Nostrum à Toulouse
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" variant="secondary" className="text-lg">
+            <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
               <Link to="/contact">
                 <Calendar className="mr-2 h-5 w-5" />
                 Réserver une session découverte
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="text-lg bg-white/10 border-white text-white hover:bg-white hover:text-primary">
+            <Button asChild size="lg" variant="outline" className="w-full sm:w-auto bg-white/10 border-white text-white hover:bg-white hover:text-primary">
               <Link to="/contact">
                 <MessageSquare className="mr-2 h-5 w-5" />
                 Essayer 30 jours gratuits

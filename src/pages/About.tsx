@@ -720,7 +720,7 @@ const About = () => {
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             Que vous soyez une école ou un entrepreneur, commençons à construire ensemble
           </p>
-          <Button asChild size="lg" variant="secondary" className="text-lg">
+          <Button asChild size="lg" variant="secondary">
             <Link to="/contact">
               Prendre contact
               <ArrowRight className="ml-2 h-5 w-5" />

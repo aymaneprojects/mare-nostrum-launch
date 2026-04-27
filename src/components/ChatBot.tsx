@@ -340,7 +340,7 @@ const ChatBot = () => {
           /* Desktop: fixed width */
           sm:bottom-24 sm:right-6 sm:w-[360px] sm:max-w-[calc(100vw-3rem)]`}
       >
-        <div className="bg-card border border-border rounded-sm shadow-xl overflow-hidden flex flex-col h-[70vh] sm:h-[480px] max-h-[600px]">
+        <div className="bg-card border border-border rounded-sm shadow-xl overflow-hidden flex flex-col h-[60vh] sm:h-[480px] max-h-[600px]">
           {/* Header */}
           <div className="bg-primary p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">

@@ -236,13 +236,13 @@ const Index = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-6 md:mb-8 px-4">
-              <Button asChild size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto">
+              <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
                 <Link to="/education">
                   <GraduationCap className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                   Je suis une école
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="text-base md:text-lg bg-white/10 border-white text-white hover:bg-white hover:text-primary w-full sm:w-auto">
+              <Button asChild size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-primary w-full sm:w-auto">
                 <Link to="/club">
                   <TrendingUp className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                   Je suis entrepreneur
@@ -659,7 +659,7 @@ const Index = () => {
           <p className="text-lg text-primary-foreground/75 mb-8 max-w-2xl mx-auto" style={{ lineHeight: '1.65' }}>
             Rejoignez les écoles et entrepreneurs qui transforment leurs ambitions en réalité
           </p>
-          <Button asChild size="lg" variant="secondary" className="text-lg">
+          <Button asChild size="lg" variant="secondary">
             <Link to="/contact">
               Contactez-nous maintenant
               <ArrowRight className="ml-2 h-5 w-5" />
