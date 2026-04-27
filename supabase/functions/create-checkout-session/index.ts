@@ -90,6 +90,7 @@ serve(async (req) => {
             description: `Abonnement ${billingLabel} — Club Entrepreneur Mare Nostrum`,
           },
           unit_amount: amount,
+          tax_behavior: "inclusive",
           recurring: { interval },
         },
         quantity: 1,
