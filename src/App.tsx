@@ -7,6 +7,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import { usePrefetchBlog } from "@/hooks/usePrefetchBlog";
 import ChatBot from "@/components/ChatBot";
+import BottomNav from "@/components/BottomNav";
 import CookieBanner from "@/components/CookieBanner";
 import Index from "./pages/Index";
 import Education from "./pages/Education";
@@ -63,6 +64,7 @@ const AppContent = () => {
       <ScrollToTop />
       <ScrollToTopButton />
       <ChatBot />
+      <BottomNav />
       <CookieBanner />
       
       <Routes>

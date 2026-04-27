@@ -100,8 +100,10 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent
-        className={`p-0 flex flex-col transition-all duration-300 mx-3 sm:mx-auto
-          max-h-[92dvh] overflow-hidden
+        className={`p-0 flex flex-col transition-all duration-300
+          max-sm:left-0 max-sm:top-0 max-sm:translate-x-0 max-sm:translate-y-0
+          max-sm:w-full max-sm:h-[100dvh] max-sm:max-w-none max-sm:max-h-none max-sm:rounded-none
+          sm:mx-auto sm:max-h-[92dvh] overflow-hidden
           ${phase === "payment" ? "sm:max-w-2xl" : "sm:max-w-lg"}`}
       >
         {/* Header — fixe */}

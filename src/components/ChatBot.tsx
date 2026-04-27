@@ -283,7 +283,7 @@ const ChatBot = () => {
       {/* Notification Bubble */}
       {showNotification && !isOpen && (
         <div 
-          className="fixed bottom-24 right-4 sm:right-6 z-50 max-w-[280px] animate-in slide-in-from-right-5 fade-in duration-300"
+          className="fixed bottom-36 right-4 sm:bottom-24 sm:right-6 z-50 max-w-[280px] animate-in slide-in-from-right-5 fade-in duration-300"
           onClick={handleOpenChat}
         >
           <div className="bg-card border border-border rounded-sm shadow-lg p-4 cursor-pointer hover:shadow-xl transition-shadow relative">
@@ -313,10 +313,10 @@ const ChatBot = () => {
       {/* Chat Toggle Button - Brandy */}
       <button
         onClick={() => isOpen ? setIsOpen(false) : handleOpenChat()}
-        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-full shadow-lg 
-          flex items-center justify-center transition-all duration-200 
-          ${isOpen 
-            ? "bg-muted-foreground" 
+        className={`fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-full shadow-lg
+          flex items-center justify-center transition-all duration-200
+          ${isOpen
+            ? "bg-muted-foreground"
             : "bg-primary hover:bg-primary/90"
           }`}
         aria-label={isOpen ? "Fermer le chat" : "Discuter avec Brandy"}
@@ -336,7 +336,7 @@ const ChatBot = () => {
             : "scale-95 opacity-0 pointer-events-none"
           }
           /* Mobile: full width minus margins */
-          bottom-20 right-2 left-2 sm:left-auto
+          bottom-36 right-2 left-2 sm:left-auto
           /* Desktop: fixed width */
           sm:bottom-24 sm:right-6 sm:w-[360px] sm:max-w-[calc(100vw-3rem)]`}
       >
