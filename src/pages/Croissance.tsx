@@ -86,6 +86,25 @@ const Croissance = () => {
   const [onboardingOffer, setOnboardingOffer] = useState<Offer | null>(null);
   const [restoredCheckout, setRestoredCheckout] = useState<{ prenom: string; email: string } | null>(null);
 
+  // Géolocalisation par IP — détection automatique Afrique francophone
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("session_id")) return; // Stripe restore prend la main
+    fetch("https://ipapi.co/json/")
+      .then(r => r.json())
+      .then(({ country_code }: { country_code: string }) => {
+        const AFRICAN_CODES = [
+          "CG","CD","MA","TN","DZ","SN","CI","BJ","CM","BF",
+          "EG","GA","GN","ML","NE","TD","CF","GW","TG","MR",
+          "RW","BI","KM","DJ","MG","MU","GQ","ST","CV",
+        ];
+        if (AFRICAN_CODES.includes(country_code)) {
+          setSelectedLocation("congo_brazzaville");
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   // Restore onboarding after Stripe redirect (3DS / redirect-based payment)
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
