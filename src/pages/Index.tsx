@@ -237,9 +237,7 @@ const Index = () => {
               </Button>
             </div>
 
-            <p className="text-xs md:text-sm text-primary-foreground/70">
-              Depuis Toulouse, dans tout l'espace francophone — innovation et impact
-            </p>
+
           </div>
         </div>
       </section>
