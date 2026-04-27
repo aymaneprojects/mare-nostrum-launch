@@ -540,7 +540,7 @@ const Croissance = () => {
               </ul>
 
               <Button className="w-full mt-auto" onClick={() => openOnboarding("communaute")}>
-                Rejoindre Communauté
+                Rejoindre le Club
               </Button>
             </div>
 
@@ -584,7 +584,7 @@ const Croissance = () => {
               </ul>
 
               <Button className="w-full bg-white text-primary hover:bg-white/90 mt-auto" onClick={() => openOnboarding("groupe")}>
-                Rejoindre Groupe
+                Rejoindre le Club
               </Button>
             </div>
 
@@ -622,7 +622,7 @@ const Croissance = () => {
               </ul>
 
               <Button variant="default" className="w-full mt-auto" onClick={() => openOnboarding("individuel")}>
-                Rejoindre Individuel
+                Rejoindre le Club
               </Button>
             </div>
           </div>
