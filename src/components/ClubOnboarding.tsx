@@ -85,6 +85,24 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   const currentStep = phaseToStep[phase];
   const isPostPayment = ["success", "kit", "slack"].includes(phase);
 
+  const handleKitDownload = async () => {
+    setKitClicked(true);
+    try {
+      const res = await fetch(KIT_URL);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Kit Adhérent Club Mare Nostrum.pdf";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch {
+      window.open(KIT_URL, "_blank");
+    }
+  };
+
   const handleClose = () => {
     setPhase("step1");
     setPrenom(""); setEmail(""); setEntreprise(""); setStade("");
@@ -399,15 +417,13 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                 </p>
               </div>
 
-              <a
-                href={KIT_URL}
-                download="Kit Adhérent Club Mare Nostrum.pdf"
-                onClick={() => setKitClicked(true)}
-                className="flex items-center justify-center gap-2 w-full max-w-xs bg-primary text-primary-foreground rounded-sm px-5 py-3.5 font-semibold text-sm hover:bg-primary/90 transition-colors"
+              <button
+                onClick={handleKitDownload}
+                className="flex items-center justify-center gap-2 w-full max-w-xs bg-primary text-primary-foreground rounded-sm px-5 py-3.5 font-semibold text-sm hover:bg-primary/90 transition-colors cursor-pointer"
               >
                 <Download className="h-4 w-4" />
                 Télécharger le kit
-              </a>
+              </button>
 
               <Button
                 className="w-full max-w-xs"
