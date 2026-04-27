@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from "@stripe/react-stripe-js";
 import { Dialog, DialogContent, DialogTitle, DialogClose } from "@/components/ui/dialog";
@@ -121,6 +121,9 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
     onComplete: handleComplete,
   }), [fetchClientSecret, handleComplete]);
 
+  const bodyRef = useRef<HTMLDivElement>(null);
+  useEffect(() => { bodyRef.current?.scrollTo({ top: 0, behavior: "instant" }); }, [phase]);
+
   // Fallback: poll session status in case onComplete doesn't fire (some banks / mobile)
   useEffect(() => {
     if (phase !== "payment" || !clientSecret) return;
@@ -213,7 +216,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
         )}
 
         {/* ── Body scrollable ───────────────────────────────── */}
-        <div className="flex-1 overflow-y-auto px-6 pb-8 pt-4">
+        <div ref={bodyRef} className="flex-1 overflow-y-auto px-6 pb-8 pt-4">
 
           {/* Étape 1 : Prénom + email */}
           {phase === "step1" && (

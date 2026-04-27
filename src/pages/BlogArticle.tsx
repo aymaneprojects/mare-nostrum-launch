@@ -56,7 +56,7 @@ const BlogArticle = () => {
   if (isLoading) {
     return (
       <div className="min-h-screen flex flex-col">
-        <SEOHead 
+        <EnhancedSEOHead
           title="Chargement... - Blog Mare Nostrum"
           description="Chargement de l'article"
           noindex={true}
@@ -75,7 +75,7 @@ const BlogArticle = () => {
   if (error || !article) {
     return (
       <div className="min-h-screen flex flex-col">
-        <SEOHead 
+        <EnhancedSEOHead
           title="Article non trouvé - Blog Mare Nostrum"
           description="Cet article n'existe pas sur le blog Mare Nostrum"
           noindex={true}
