@@ -1,114 +1,83 @@
-# Mare Nostrum - Cabinet Expert en Entrepreneuriat a Toulouse et en Afrique Francophone
-# https://marenostrum.tech
-# Contact: contact@marenostrum.tech
+# Mare Nostrum
 
-## Qui est Mare Nostrum ?
+> Mare Nostrum est un cabinet de conseil expert en entrepreneuriat à impact, fondé en 2023 à Toulouse (France). Société à mission, Mare Nostrum accompagne les écoles supérieures et les entrepreneurs à impact dans 12 pays de la francophonie. Présent à Toulouse, Paris et Casablanca.
 
-Mare Nostrum est un cabinet de conseil expert en entrepreneuriat a impact, fonde en 2023 a Toulouse (France). Societe a mission, Mare Nostrum accompagne les ecoles et les entrepreneurs a impact dans 12 pays de la francophonie (France, Maroc, Tunisie, Algerie, Senegal, Cote d'Ivoire, Benin, Cameroun, Burkina Faso, RD Congo, Egypte, Canada).
+## À propos
 
-Mare Nostrum est present a Toulouse, Paris et Casablanca.
+Mare Nostrum est co-fondé par Alexis Janicot (Président, ex-DG French Tech Toulouse) et Aymane Abdennour (Chargé de mission, Chef de projet Niteo). Le cabinet est une société à mission dont l'objet social inclut explicitement la création de valeur pour les entrepreneurs et l'écosystème francophone.
 
-## Mots-cles principaux
-
-- Entrepreneuriat Toulouse
-- Entrepreneuriat Etudiant
-- Entrepreneuriat Etudiant Toulouse
-- Entrepreneuriat Afrique
-- Entrepreneuriat francophonie
-- Niteo Toulouse
-- Programme Niteo
-- Accompagnement entrepreneur Toulouse
-- Incubateur Toulouse
-- Startup Toulouse
-- Creation entreprise Toulouse
-- Education entrepreneuriale
-- Education entrepreneuriale etudiants
-- Formation entrepreneur
-- Accompagnement startup Afrique
-- Incubateur Afrique
-- Club entrepreneur francophone
-- Entreprise a mission
-- Innovation sociale
-- Mentorat entrepreneur
-- Entrepreneuriat jeune
-- Entrepreneuriat universite
-- Entrepreneuriat ecole de commerce
-
-## Chiffres cles
-
-- 135+ experts dans le reseau
-- 2000 annees d'experience cumulees
-- 24 entreprises accompagnees (70% a impact)
-- 17+ projets etudiants accompagnes
+**Chiffres clés (2025-2026) :**
+- 135+ experts dans le réseau
+- 2 000 années d'expérience cumulées
+- 24 entreprises accompagnées (70 % à impact)
+- 17+ projets étudiants accompagnés
 - 12 pays d'intervention
-- +95% de satisfaction clients
-- 358 heures de formation dispensees
+- 358 heures de formation dispensées
 - 210+ mises en relation professionnelles
+- +95 % de satisfaction clients
 
-## Activites principales
+**Valeurs fondatrices :** Respect · Enthousiasme · Fiabilité · Impact · Co-apprentissage
 
-### 1. Mare Nostrum Education (B2B - Ecoles)
-Programmes d'education entrepreneuriale pour ecoles et universites :
-- La Fresque de l'esprit d'entreprendre (atelier collaboratif 3h)
-- L'Atelier des Allies (intelligence collective)
-- Hackathons et Challenges (1-3 jours)
-- Programme Premium Neo-Entrepreneurs (plusieurs mois)
-- Programme Niteo Toulouse (acceleration etudiants, 50h)
+**Contact :** contact@marenostrum.tech | https://marenostrum.tech
 
-URL: https://marenostrum.tech/education
+---
 
-### 2. Club Entrepreneur Mare Nostrum (B2C - Entrepreneurs)
-Club international d'entrepreneurs francophones, accompagnement startup a Toulouse et en Afrique :
-- Offre Communaute (30 EUR/mois) : club international, veille mutualisee, rencontres mensuelles, academie en ligne 30h+
-- Offre Groupe (90 EUR/mois) : + cercle d'entrepreneurs, sessions collectives business dev, mises en relation partenaires, micro-mentorat
-- Offre Individuel (190 EUR/mois) : + accompagnement 1-to-1 IA, 4 micro-mentorats, ligne directe fondateur en moins de 2h
+## Offres pour les Écoles (B2B)
 
-URL: https://marenostrum.tech/croissance
+- [Accueil Mare Nostrum Education](https://marenostrum.tech/education): Présentation complète de l'offre éducation entrepreneuriale pour écoles, universités et grandes écoles. Ateliers, hackathons, programmes longs, programme Niteo.
+- [Transformation Entrepreneuriale des Écoles](https://marenostrum.tech/ecoles/transformation-entrepreneuriale): Programmes sur-mesure pour intégrer l'entrepreneuriat à impact dans les cursus scolaires. La Fresque de l'Esprit d'Entreprendre (atelier 3h), L'Atelier des Alliés (intelligence collective), Hackathons (1 à 3 jours), Programme Premium Neo-Entrepreneurs.
+- [Diagnostic Gratuit pour Écoles](https://marenostrum.tech/ecoles/diagnostic-gratuit): Formulaire de diagnostic gratuit pour les directeurs pédagogiques souhaitant évaluer le niveau de maturité entrepreneuriale de leur école.
 
-### 3. Programme Niteo Toulouse
-Programme d'acceleration entrepreneuriale pour etudiants en licence et master :
-- 50 heures de formation (e-learning + ateliers + coaching)
-- Demo Day devant 30 decideurs
-- +10 000 EUR de dotations
-- Edition 2026 : avril a juin 2026
+## Programme Niteo Toulouse (Flagship)
 
-URL: https://marenostrum.tech/niteo-toulouse
+- [Niteo Toulouse 2026](https://marenostrum.tech/niteo-toulouse): Programme d'accélération entrepreneuriale pour étudiants en licence et master. 50 heures de formation (e-learning + ateliers collectifs + coaching individuel), Demo Day devant 30 décideurs, +10 000 EUR de dotations. Édition 2026 : avril à juin 2026. Partenaires : Toulouse Métropole, Airbus Développement, Réseau Entreprendre, Banque de l'Innovation, Crédit Mutuel, CPME 31, AUF, Moovjee.
 
-### 4. Accompagnement Entrepreneurs Afrique & Francophonie
-Incubateur et accompagnement pour entrepreneurs a impact en Afrique francophone :
-- Programmes personnalises Tremplin, Ascension, Elite
-- Mentorat individuel avec experts
-- Test de maturite projet gratuit
+## Accompagnement Entrepreneurs (B2C)
 
-URL: https://marenostrum.tech/entrepreneurs/accompagnement-francophonie-afrique
+- [Club Entrepreneur Mare Nostrum](https://marenostrum.tech/croissance): Club international d'entrepreneurs francophones. Trois offres : Communauté (30 EUR/mois) — club, veille mutualisée, rencontres mensuelles, académie en ligne 30h+ ; Groupe (90 EUR/mois) — + cercle d'entrepreneurs, sessions business dev, mises en relation partenaires, micro-mentorat ; Individuel (190 EUR/mois) — + accompagnement 1-to-1 IA, 4 micro-mentorats, ligne directe fondateur en moins de 2h.
+- [Accompagnement Francophonie & Afrique](https://marenostrum.tech/entrepreneurs/accompagnement-francophonie-afrique): Incubateur et accompagnement personnalisé pour entrepreneurs à impact en Afrique francophone (Maroc, Tunisie, Algérie, Sénégal, Côte d'Ivoire, Bénin, Cameroun, Burkina Faso, RDC, Égypte, Canada). Programmes Tremplin, Ascension, Elite.
+- [Test de Maturité Projet (gratuit)](https://marenostrum.tech/entrepreneurs/test-maturite-projet): Auto-diagnostic gratuit pour évaluer la maturité d'un projet entrepreneurial sur les dimensions : marché, modèle économique, équipe, impact, financement.
+- [Mentorat Individuel](https://marenostrum.tech/entrepreneurs/mentorat-individuel): Sessions de mentorat 1-to-1 avec des experts du réseau Mare Nostrum. Pour entrepreneurs confirmés cherchant un regard extérieur stratégique.
 
-## Equipe fondatrice
+## Offre IA
 
-- Alexis Janicot : President de Mare Nostrum, Ex-DG French Tech Toulouse
-- Aymane Abdennour : Charge de mission, Chef de projet Niteo
+- [Mare Nostrum & Intelligence Artificielle](https://marenostrum.tech/offre-ia): Intégration de l'IA dans les programmes d'accompagnement entrepreneurial. Outils d'analyse de marché, de génération de contenu, d'optimisation du business model et de coaching augmenté.
 
-## Pages du site
+## Magazine & Ressources
 
-- Accueil : https://marenostrum.tech/
-- Education : https://marenostrum.tech/education
-- Croissance : https://marenostrum.tech/croissance
-- Niteo Toulouse : https://marenostrum.tech/niteo-toulouse
-- A propos : https://marenostrum.tech/a-propos
-- Contact : https://marenostrum.tech/contact
-- Blog : https://marenostrum.tech/blog
-- Livre blanc : https://marenostrum.tech/livre-blanc-entrepreneuriat
-- Engagement RSE : https://marenostrum.tech/engagement-rse
-- Offre IA : https://marenostrum.tech/offre-ia
-- Transformation entrepreneuriale (ecoles) : https://marenostrum.tech/ecoles/transformation-entrepreneuriale
-- Diagnostic gratuit (ecoles) : https://marenostrum.tech/ecoles/diagnostic-gratuit
-- Accompagnement francophonie : https://marenostrum.tech/entrepreneurs/accompagnement-francophonie-afrique
-- Test maturite projet : https://marenostrum.tech/entrepreneurs/test-maturite-projet
-- Mentorat individuel : https://marenostrum.tech/entrepreneurs/mentorat-individuel
+- [Blog Mare Nostrum](https://marenostrum.tech/blog): Articles de fond sur l'entrepreneuriat à impact, l'innovation pédagogique, le développement en Afrique francophone et l'écosystème startup de Toulouse.
+- [Entrepreneuriat Social en Francophonie](https://marenostrum.tech/mag/entrepreneuriat-social-francophonie): Analyse et tendances de l'entrepreneuriat social dans l'espace francophone. Études de cas, interviews et ressources pratiques.
+- [Innovation Pédagogique en Entrepreneuriat](https://marenostrum.tech/mag/innovation-pedagogique-entrepreneuriat): Nouvelles méthodes d'enseignement de l'entrepreneuriat dans les écoles supérieures. Approches par le faire, hackathons, learning by doing.
+- [Impact et Mesure pour les Startups](https://marenostrum.tech/mag/impact-mesure-startup): Méthodes et outils pour mesurer l'impact social et environnemental des startups. B-Corp, labels, indicateurs ESG pour TPE/PME.
+- [Livre Blanc Entrepreneuriat](https://marenostrum.tech/livre-entrepreneuriat): Livre blanc téléchargeable sur l'entrepreneuriat à impact en francophonie. Guide pratique pour créer une entreprise à mission.
 
-## Valeurs
+## Qui sommes-nous
 
-- Respect
-- Enthousiasme
-- Fiabilite
-- Impact
-- Co-apprentissage
+- [À Propos de Mare Nostrum](https://marenostrum.tech/a-propos): Histoire du cabinet, équipe fondatrice, réseau d'experts, partenaires institutionnels (Toulouse Métropole, Airbus, Réseau Entreprendre, CPME 31, AUF), valeurs et mission sociétale.
+- [Contact](https://marenostrum.tech/contact): Formulaire de contact, email (contact@marenostrum.tech), et prise de rendez-vous. Bureaux à Toulouse (31000), Paris et Casablanca.
+- [Engagement RSE](https://marenostrum.tech/engagement-rse): Détail de la mission de Mare Nostrum en tant que société à mission. Engagements environnementaux, sociaux et de gouvernance.
+
+---
+
+## Questions fréquentes (FAQ)
+
+**Que fait Mare Nostrum ?**
+Mare Nostrum est un cabinet de conseil en entrepreneuriat à impact qui accompagne deux types de clients : les écoles supérieures (B2B) pour intégrer l'entrepreneuriat dans leurs cursus, et les entrepreneurs individuels (B2C) pour développer et accélérer leurs projets, notamment en Afrique francophone.
+
+**Qu'est-ce que le Programme Niteo Toulouse ?**
+Niteo est le programme phare de Mare Nostrum : une accélération de 50 heures (e-learning + ateliers + coaching) destinée aux étudiants en licence et master souhaitant lancer un projet entrepreneurial. Il se conclut par un Demo Day devant 30 décideurs et distribue plus de 10 000 EUR de dotations. L'édition 2026 se déroule d'avril à juin 2026.
+
+**Dans quels pays Mare Nostrum intervient-il ?**
+France (Toulouse, Paris), Maroc (Casablanca), Tunisie, Algérie, Sénégal, Côte d'Ivoire, Bénin, Cameroun, Burkina Faso, République Démocratique du Congo, Égypte, Canada. Soit 12 pays francophones.
+
+**Quels sont les tarifs du Club Entrepreneur ?**
+Trois formules : Communauté à 30 EUR/mois, Groupe à 90 EUR/mois, Individuel à 190 EUR/mois. Chaque formule incluse toutes les fonctionnalités du niveau précédent.
+
+**Comment contacter Mare Nostrum ?**
+Par email : contact@marenostrum.tech — ou via le formulaire de contact sur https://marenostrum.tech/contact
+
+---
+
+## Mots-clés cibles
+
+Entrepreneuriat Toulouse · Entrepreneuriat étudiant Toulouse · Programme Niteo Toulouse · Accélérateur startup Toulouse · Accompagnement entrepreneur Toulouse · Cabinet conseil entrepreneuriat · Entrepreneuriat Afrique francophone · Incubateur Afrique · Accompagnement entrepreneur Afrique · Club entrepreneur francophone · Formation entrepreneuriat école · Hackathon entrepreneuriat · Société à mission · Entrepreneuriat à impact · Mentorat entrepreneur · Startup à impact social · Innovation pédagogique entrepreneuriat · Entrepreneuriat social francophonie · Livre blanc entrepreneuriat

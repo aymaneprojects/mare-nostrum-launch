@@ -76,7 +76,7 @@ Fonts: `font-sans` = DM Sans (body), `font-editorial` = Fraunces (display headin
 ### Deployment
 - Render static site: `npm install && npm run build`, publishes `./dist`, all routes rewrite to `/index.html` (see `render.yaml`).
 - GitHub remote: `origin` → `https://github.com/aymaneprojects/mare-nostrum-launch`.
-- The Lovable platform also syncs to this repo; commits pushed here are reflected in Lovable.
+
 
 ### Path alias
 `@/` resolves to `./src/` (configured in `vite.config.ts` and `tsconfig.app.json`).

@@ -201,7 +201,7 @@ Vérifier que partout on a EXACTEMENT:
 
 ---
 
-## ✨ ACTIONS IMMÉDIATES LOVABLE (À IMPLÉMENTER MAINTENANT)
+## ✨ ACTIONS IMMÉDIATES (À IMPLÉMENTER MAINTENANT)
 
 1. **Créer page Contact** avec Schema ContactPage
 2. **Enrichir FAQ** avec questions "Mare Nostrum"

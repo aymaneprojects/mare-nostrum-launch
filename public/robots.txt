@@ -98,11 +98,13 @@ Disallow: /private/
 Disallow: /_
 Disallow: /node_modules/
 
-# LLMs.txt - Pour les AI crawlers
-# https://marenostrum.tech/llms.txt
+# Ressources pour crawlers IA et LLM
+# LLMs : https://marenostrum.tech/llms.txt
+# Pages : https://marenostrum.tech/pages.md
 
 # Sitemaps
 Sitemap: https://marenostrum.tech/sitemap.xml
+Sitemap: https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/sitemap
 
 # Host canonique
 Host: https://marenostrum.tech

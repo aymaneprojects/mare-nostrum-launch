@@ -52,9 +52,9 @@ Deno.serve(async (req) => {
       { loc: "https://marenostrum.tech/mag/innovation-pedagogique-entrepreneuriat", priority: "0.7", changefreq: "monthly" },
       { loc: "https://marenostrum.tech/mag/impact-mesure-startup", priority: "0.7", changefreq: "monthly" },
       // Legal
-      { loc: "https://marenostrum.tech/mentions-legales", priority: "0.3", changefreq: "yearly" },
-      { loc: "https://marenostrum.tech/confidentialite", priority: "0.3", changefreq: "yearly" },
-      { loc: "https://marenostrum.tech/cgu", priority: "0.3", changefreq: "yearly" },
+      { loc: "https://marenostrum.tech/mentions-legales", priority: "0.3", changefreq: "yearly", lastmod: "2025-01-01" },
+      { loc: "https://marenostrum.tech/confidentialite", priority: "0.3", changefreq: "yearly", lastmod: "2025-01-01" },
+      { loc: "https://marenostrum.tech/cgu", priority: "0.3", changefreq: "yearly", lastmod: "2025-01-01" },
     ];
 
     // Build XML
@@ -66,7 +66,7 @@ Deno.serve(async (req) => {
     for (const page of staticPages) {
       xml += `  <url>
     <loc>${page.loc}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${page.lastmod ?? today}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
   </url>
