@@ -197,7 +197,7 @@ const Croissance = () => {
       tooltip: "Bénéficie de mises en relation directes avec des partenaires de Mare Nostrum à votre demande (plus de 100 partenaires clés dans l'écosystème)"
     },
     {
-      label: "1 micro-mentorat (visio-galère)",
+      label: "1 micro-mentorat (session de tutorat personnalisé)",
       tooltip: "Profite d'une visio individualisée, chaque mois, avec un accompagnateur pendant 20 minutes qui vous permets de débloquer une problématique clé"
     }
   ];
@@ -526,6 +526,7 @@ const Croissance = () => {
                   </div>
                 )}
                 <p className="text-xs text-accent font-semibold">1 micro-mentorat offert dès votre arrivée</p>
+                <p className="text-xs text-muted-foreground mt-1">Pas de frais d'entrée · Sans engagement</p>
               </div>
 
               <div className="bg-muted/50 rounded-sm p-3 mb-6">
@@ -569,6 +570,7 @@ const Croissance = () => {
                   </div>
                 )}
                 <p className="text-xs font-semibold opacity-95">Pré-diagnostic offert — valeur 300€</p>
+                <p className="text-xs opacity-70 mt-1">Pas de frais d'entrée · Sans engagement</p>
               </div>
 
               <div className="bg-white/10 backdrop-blur-sm rounded-sm p-3 mb-6">
@@ -606,6 +608,7 @@ const Croissance = () => {
                   </div>
                 )}
                 <p className="text-xs text-accent font-semibold">1 tutorat personnalisé offert dès J+1</p>
+                <p className="text-xs text-muted-foreground mt-1">Pas de frais d'entrée · Sans engagement</p>
               </div>
 
               <div className="bg-muted/50 rounded-sm p-3 mb-6">
