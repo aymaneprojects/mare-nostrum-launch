@@ -10,21 +10,22 @@ Tout ce qui concerne le Club Mare Nostrum — offres, pricing, Stripe, parcours 
 - `src/components/TestimonialCard.tsx` — témoignages réutilisables
 
 ## Pricing (current)
-| Offre       | France | Congo-Brazzaville |
-|-------------|--------|-------------------|
-| Communauté  | 30€    | 24€               |
-| Groupe      | 90€    | 74€               |
-| Individuel  | 190€   | 184€              |
+| Offre       | France mensuel | France annuel | Congo mensuel | Congo annuel |
+|-------------|----------------|---------------|---------------|--------------|
+| Communauté  | 30€            | 288€          | 10 000 XOF    | 100 000 XOF  |
+| Groupe      | 90€            | 864€          | 30 000 XOF    | 300 000 XOF  |
+| Individuel  | 190€           | 1 728€        | 80 000 XOF    | 800 000 XOF  |
 
-## Stripe links (hardcoded)
-- Communauté France : `https://buy.stripe.com/00w3cx3W2bDr5Me6MO67S08`
-- Communauté Congo  : `https://buy.stripe.com/dRmaEZ78e4aZ3E61su67S04`
-- Individuel France : `https://buy.stripe.com/bJe5kF64a0YNgqS4EG67S0a`
-- Individuel Congo  : `https://buy.stripe.com/6oUaEZ8cidLzeiK9Z067S07`
-- Groupe dialog uses `groupeStripeLinks.france` / `groupeStripeLinks.congo_brazzaville`
-
-## Active tasks
-- Stripe API: user wants programmatic price/product creation (pending API key)
+## Stripe integration (Embedded Checkout)
+- Aucun lien `buy.stripe.com` — paiement 100% intégré dans le site
+- Edge function : `supabase/functions/create-checkout-session/index.ts`
+  - Reçoit : offer / location / billing / prenom / email / entreprise / stade
+  - Retourne : `clientSecret` (session Stripe embedded)
+- Composant : `src/components/ClubOnboarding.tsx`
+  - 2 étapes info + formulaire Stripe via `EmbeddedCheckoutProvider`
+- Clé publique Stripe : `VITE_STRIPE_PUBLIC_KEY` dans `.env`
+- Clé secrète Stripe : `STRIPE_API` dans `.env` (utilisée uniquement côté edge function)
+- Retour après paiement : `/club?success=true` → toast confirmation
 
 ## Rules
 - LocationType = "france" | "congo_brazzaville" (never revert to toulouse/afrique)

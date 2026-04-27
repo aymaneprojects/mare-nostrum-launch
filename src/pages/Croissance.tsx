@@ -3,7 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { TrendingUp, Users, Award, Zap, MessageSquare, Calendar, FileText, CheckCircle2, ArrowRight, Clock, Brain, Target, Flame, Info } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
@@ -11,6 +11,7 @@ import TestimonialCard from "@/components/TestimonialCard";
 import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
+import ClubOnboarding, { type Offer } from "@/components/ClubOnboarding";
 import atelierRose from "@/assets/atelier-rose.png";
 import neoEntrepreneurElite from "@/assets/neo-entrepreneur-elite.png";
 
@@ -59,22 +60,33 @@ const FeatureWithTooltipLight = ({ feature }: { feature: OfferFeature }) => (
   </TooltipProvider>
 );
 
+const MONTHLY = {
+  france:            { communaute: 30,    groupe: 90,    individuel: 190   },
+  congo_brazzaville: { communaute: 10000, groupe: 30000, individuel: 80000 },
+};
+const ANNUAL = {
+  france:            { communaute: 288,    groupe: 864,    individuel: 1728   },
+  congo_brazzaville: { communaute: 100000, groupe: 300000, individuel: 800000 },
+};
+
 const Croissance = () => {
   const location = useLocation();
+  const { toast } = useToast();
   const [selectedLocation, setSelectedLocation] = useState<LocationType>("france");
   const [selectedBilling, setSelectedBilling] = useState<"monthly" | "annual">("monthly");
-  const [showGroupeDialog, setShowGroupeDialog] = useState(false);
+  const [onboardingOffer, setOnboardingOffer] = useState<Offer | null>(null);
 
-  const monthlyPrices = {
-    france: { communaute: 30, groupe: 90, individuel: 190 },
-    congo_brazzaville: { communaute: 24, groupe: 74, individuel: 184 },
-  };
+  const openOnboarding = (offer: Offer) => setOnboardingOffer(offer);
 
   const getPrice = (offer: "communaute" | "groupe" | "individuel") => {
-    const m = monthlyPrices[selectedLocation][offer];
-    if (selectedBilling === "monthly") return `${m}€`;
-    if (selectedLocation === "france") return `${Math.round(m * 12 * 0.8)}€`;
-    return `${m * 10}€`;
+    if (selectedLocation === "france") {
+      const amount = selectedBilling === "monthly" ? MONTHLY.france[offer] : ANNUAL.france[offer];
+      return `${amount}€`;
+    }
+    const amount = selectedBilling === "monthly"
+      ? MONTHLY.congo_brazzaville[offer]
+      : ANNUAL.congo_brazzaville[offer];
+    return `${amount.toLocaleString("fr-FR")} XOF`;
   };
 
   const getPricePeriod = () => selectedBilling === "monthly" ? "/mois" : "/an";
@@ -82,8 +94,8 @@ const Croissance = () => {
   type PriceDetail = { equiv: string; badge: string; saving: string | null };
   const getPriceDetail = (offer: "communaute" | "groupe" | "individuel"): PriceDetail | null => {
     if (selectedBilling === "monthly") return null;
-    const m = monthlyPrices[selectedLocation][offer];
     if (selectedLocation === "france") {
+      const m = MONTHLY.france[offer];
       return {
         equiv: `soit ${Math.round(m * 0.8)}€/mois`,
         badge: "-20%",
@@ -311,16 +323,15 @@ const Croissance = () => {
     }
   }, [location]);
 
-  const groupeStripeLinks = {
-    france: {
-      financement: "https://buy.stripe.com/28E7sNakqcHvgqSdbc67S09",
-      ia: "https://buy.stripe.com/28E7sNakqcHvgqSdbc67S09"
-    },
-    congo_brazzaville: {
-      financement: "https://buy.stripe.com/28EbJ32RY4aZa2u6MO67S06",
-      ia: "https://buy.stripe.com/28EbJ32RY4aZa2u6MO67S06"
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get("success") === "true") {
+      toast({
+        title: "Bienvenue dans le Club !",
+        description: "Ton abonnement est actif. Tu vas recevoir un email de confirmation.",
+      });
     }
-  };
+  }, [location.search]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -510,10 +521,8 @@ const Croissance = () => {
                 ))}
               </ul>
 
-              <Button asChild className="w-full mt-auto">
-                <a href={selectedLocation === "france" ? "https://buy.stripe.com/00w3cx3W2bDr5Me6MO67S08" : "https://buy.stripe.com/dRmaEZ78e4aZ3E61su67S04"} target="_blank" rel="noopener noreferrer">
-                  Rejoindre Communauté
-                </a>
+              <Button className="w-full mt-auto" onClick={() => openOnboarding("communaute")}>
+                Rejoindre Communauté
               </Button>
             </div>
 
@@ -555,7 +564,7 @@ const Croissance = () => {
                 ))}
               </ul>
 
-              <Button className="w-full bg-white text-primary hover:bg-white/90 mt-auto" onClick={() => setShowGroupeDialog(true)}>
+              <Button className="w-full bg-white text-primary hover:bg-white/90 mt-auto" onClick={() => openOnboarding("groupe")}>
                 Rejoindre Groupe
               </Button>
             </div>
@@ -592,10 +601,8 @@ const Croissance = () => {
                 ))}
               </ul>
 
-              <Button asChild variant="default" className="w-full mt-auto">
-                <a href={selectedLocation === "france" ? "https://buy.stripe.com/bJe5kF64a0YNgqS4EG67S0a" : "https://buy.stripe.com/6oUaEZ8cidLzeiK9Z067S07"} target="_blank" rel="noopener noreferrer">
-                  Rejoindre Individuel
-                </a>
+              <Button variant="default" className="w-full mt-auto" onClick={() => openOnboarding("individuel")}>
+                Rejoindre Individuel
               </Button>
             </div>
           </div>
@@ -648,10 +655,18 @@ const Croissance = () => {
                   );
                 })}
                 <tr style={{ borderTop: '2px solid hsl(222 44% 25% / 0.12)' }}>
-                  <td className="py-4 px-4 font-bold text-foreground">Prix mensuel — France</td>
-                  <td className="py-4 px-4 text-center font-bold text-primary">30€</td>
-                  <td className="py-4 px-4 text-center font-bold text-primary-foreground rounded-b-sm" style={{ background: 'hsl(222 44% 25%)' }}>90€</td>
-                  <td className="py-4 px-4 text-center font-bold text-primary">190€</td>
+                  <td className="py-4 px-4 font-bold text-foreground">
+                    Prix mensuel — {selectedLocation === "france" ? "France" : "Rép. du Congo"}
+                  </td>
+                  <td className="py-4 px-4 text-center font-bold text-primary">
+                    {selectedLocation === "france" ? "30€" : "10 000 XOF"}
+                  </td>
+                  <td className="py-4 px-4 text-center font-bold text-primary-foreground rounded-b-sm" style={{ background: 'hsl(222 44% 25%)' }}>
+                    {selectedLocation === "france" ? "90€" : "30 000 XOF"}
+                  </td>
+                  <td className="py-4 px-4 text-center font-bold text-primary">
+                    {selectedLocation === "france" ? "190€" : "80 000 XOF"}
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -669,31 +684,16 @@ const Croissance = () => {
         </div>
       </section>
 
-      {/* Groupe Diagnostic Dialog */}
-      <Dialog open={showGroupeDialog} onOpenChange={setShowGroupeDialog}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-xl font-bold text-center">Choisissez votre pré-diagnostic offert</DialogTitle>
-            <DialogDescription className="text-center text-muted-foreground">
-              En rejoignant l'offre Groupe, vous bénéficiez d'un pré-diagnostic gratuit. Quel domaine souhaitez-vous explorer ?
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-4 mt-4">
-            <Button asChild size="lg" className="w-full h-auto py-4 flex flex-col gap-1">
-              <a href={selectedLocation === "france" ? groupeStripeLinks.france.financement : groupeStripeLinks.congo_brazzaville.financement} target="_blank" rel="noopener noreferrer">
-                <span className="font-bold text-base">Pré-diagnostic Financement</span>
-                <span className="text-xs opacity-80 font-normal">Identifiez les leviers de financement adaptés à votre projet</span>
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="w-full h-auto py-4 flex flex-col gap-1">
-              <a href={selectedLocation === "france" ? groupeStripeLinks.france.ia : groupeStripeLinks.congo_brazzaville.ia} target="_blank" rel="noopener noreferrer">
-                <span className="font-bold text-base">Pré-diagnostic IA</span>
-                <span className="text-xs opacity-80 font-normal">Découvrez comment l'IA peut accélérer votre activité</span>
-              </a>
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+      {/* Onboarding + Stripe Embedded Checkout */}
+      {onboardingOffer && (
+        <ClubOnboarding
+          open={onboardingOffer !== null}
+          onClose={() => setOnboardingOffer(null)}
+          offer={onboardingOffer}
+          location={selectedLocation}
+          billing={selectedBilling}
+        />
+      )}
 
       {/* Section 3 : Résultats Concrets */}
       <section className="py-16 md:py-24 bg-background" aria-label="Résultats et statistiques d'accompagnement entrepreneur">
