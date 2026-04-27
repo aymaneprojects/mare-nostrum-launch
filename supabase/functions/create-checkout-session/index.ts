@@ -70,10 +70,16 @@ serve(async (req) => {
     const interval = billing === "monthly" ? "month" : "year";
     const billingLabel = billing === "monthly" ? "mensuel" : "annuel";
 
-    // Pré-créer un customer pour y attacher prénom + entreprise
+    const COUNTRY_CODES: Record<Location, string> = {
+      france: "FR",
+      congo_brazzaville: "CG",
+    };
+
+    // Pré-créer un customer avec pays pour automatic_tax (évite customer_update)
     const customer = await stripe.customers.create({
       email,
       name: [prenom, entreprise].filter(Boolean).join(" — ") || prenom,
+      address: { country: COUNTRY_CODES[location] },
       metadata: {
         prenom,
         entreprise: entreprise ?? "",
@@ -103,7 +109,6 @@ serve(async (req) => {
         quantity: 1,
       }],
       automatic_tax: { enabled: true },
-      customer_update: { address: "auto", name: "auto" },
       phone_number_collection: { enabled: true },
       allow_promotion_codes: true,
       return_url: "https://marenostrum.tech/club?session_id={CHECKOUT_SESSION_ID}",
