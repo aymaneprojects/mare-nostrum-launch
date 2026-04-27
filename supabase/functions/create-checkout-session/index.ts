@@ -87,6 +87,7 @@ serve(async (req) => {
         location,
         billing,
       },
+      allow_promotion_codes: true,
       return_url: "https://marenostrum.tech/club?success=true",
     });
 
