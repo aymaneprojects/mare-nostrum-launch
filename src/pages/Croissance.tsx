@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { TrendingUp, Users, Award, Zap, MessageSquare, Calendar, FileText, CheckCircle2, ArrowRight, Clock, Brain, Target, Flame, Info } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -23,41 +23,49 @@ interface OfferFeature {
 }
 
 const FeatureWithTooltip = ({ feature }: { feature: OfferFeature }) => (
-  <TooltipProvider delayDuration={200}>
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <li className="flex items-start space-x-3 cursor-help group/item">
-          <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-          <span className="text-sm text-muted-foreground group-hover/item:text-foreground transition-colors flex items-center gap-1.5">
-            {feature.label}
-            <Info className="h-3.5 w-3.5 text-muted-foreground/50 flex-shrink-0" />
-          </span>
-        </li>
-      </TooltipTrigger>
-      <TooltipContent side="top" className="max-w-xs text-sm z-[100]">
-        {feature.tooltip}
-      </TooltipContent>
-    </Tooltip>
-  </TooltipProvider>
+  <li className="flex items-start space-x-3">
+    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+    <span className="text-sm text-muted-foreground flex items-center gap-1.5 flex-wrap">
+      {feature.label}
+      <Popover>
+        <PopoverTrigger asChild>
+          <button
+            type="button"
+            className="inline-flex items-center justify-center w-4 h-4 rounded-full text-muted-foreground/50 hover:text-primary active:scale-90 transition-all flex-shrink-0"
+            aria-label={`En savoir plus : ${feature.label}`}
+          >
+            <Info className="h-3.5 w-3.5" />
+          </button>
+        </PopoverTrigger>
+        <PopoverContent side="top" className="max-w-xs text-sm z-[100]">
+          {feature.tooltip}
+        </PopoverContent>
+      </Popover>
+    </span>
+  </li>
 );
 
 const FeatureWithTooltipLight = ({ feature }: { feature: OfferFeature }) => (
-  <TooltipProvider delayDuration={200}>
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <li className="flex items-start space-x-3 cursor-help group/item">
-          <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
-          <span className="text-sm opacity-95 group-hover/item:opacity-100 transition-opacity flex items-center gap-1.5">
-            {feature.label}
-            <Info className="h-3.5 w-3.5 opacity-50 flex-shrink-0" />
-          </span>
-        </li>
-      </TooltipTrigger>
-      <TooltipContent side="top" className="max-w-xs text-sm z-[100]">
-        {feature.tooltip}
-      </TooltipContent>
-    </Tooltip>
-  </TooltipProvider>
+  <li className="flex items-start space-x-3">
+    <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
+    <span className="text-sm opacity-95 flex items-center gap-1.5 flex-wrap">
+      {feature.label}
+      <Popover>
+        <PopoverTrigger asChild>
+          <button
+            type="button"
+            className="inline-flex items-center justify-center w-4 h-4 rounded-full opacity-50 hover:opacity-100 active:scale-90 transition-all flex-shrink-0"
+            aria-label={`En savoir plus : ${feature.label}`}
+          >
+            <Info className="h-3.5 w-3.5 text-white" />
+          </button>
+        </PopoverTrigger>
+        <PopoverContent side="top" className="max-w-xs text-sm z-[100]">
+          {feature.tooltip}
+        </PopoverContent>
+      </Popover>
+    </span>
+  </li>
 );
 
 const MONTHLY = {
