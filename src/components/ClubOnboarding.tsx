@@ -1,13 +1,13 @@
 import { useState, useCallback, useMemo, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from "@stripe/react-stripe-js";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogClose } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 import {
-  ArrowRight, ArrowLeft, Loader2, CheckCircle2,
+  ArrowRight, ArrowLeft, Loader2, CheckCircle2, X,
   User, Briefcase, CreditCard, Download, MessageSquare, Sparkles, PartyPopper,
 } from "lucide-react";
 
@@ -162,13 +162,23 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
           max-sm:left-0 max-sm:top-0 max-sm:translate-x-0 max-sm:translate-y-0
           max-sm:w-full max-sm:h-[100dvh] max-sm:max-w-none max-sm:max-h-none max-sm:rounded-none
           sm:mx-auto sm:max-h-[92dvh] overflow-hidden
+          [&>button:last-child]:hidden
           ${phase === "payment" ? "sm:max-w-2xl" : "sm:max-w-lg"}`}
       >
         {/* ── Header ────────────────────────────────────────── */}
-        <div className={`${headerBg} px-6 py-5 shrink-0 transition-colors duration-500`}>
+        <div className={`${headerBg} px-6 py-5 shrink-0 transition-colors duration-500 relative`}>
           <DialogTitle className="sr-only">{headerTitle}</DialogTitle>
           <p className="text-xs text-white/60 uppercase tracking-widest mb-1">{headerSub}</p>
-          <h2 className="font-editorial italic text-xl text-white">{headerTitle}</h2>
+          <h2 className="font-editorial italic text-xl text-white pr-10">{headerTitle}</h2>
+          {phase !== "payment" && (
+            <button
+              onClick={handleClose}
+              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 active:bg-white/30 transition-colors"
+              aria-label="Fermer"
+            >
+              <X className="h-4 w-4 text-white" />
+            </button>
+          )}
         </div>
 
         {/* ── Stepper unifié 6 étapes ───────────────────────── */}
