@@ -75,7 +75,6 @@ serve(async (req) => {
       ui_mode: "embedded",
       mode: "subscription",
       customer_email: email,
-      automatic_tax: { enabled: true },
       metadata: {
         prenom,
         entreprise: entreprise ?? "",
