@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { X, Phone, Mail, User, MapPin, Loader2, CheckCircle2, Sparkles } from "lucide-react";
+import { X, Phone, Mail, User, MapPin, Loader2, CheckCircle2, Sparkles, Shield } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -27,6 +27,7 @@ export default function ExitIntentPopup() {
   const [email, setEmail]     = useState("");
   const [phone, setPhone]     = useState("");
   const [zone, setZone]       = useState("");
+  const [rgpd, setRgpd]       = useState(false);
   const [loading, setLoading] = useState(false);
   const [sent, setSent]       = useState(false);
   const [error, setError]     = useState("");
@@ -39,7 +40,7 @@ export default function ExitIntentPopup() {
 
   const handleClose = () => { setVisible(false); markDismissed(); };
 
-  const valid = prenom.trim() !== "" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && zone !== "";
+  const valid = prenom.trim() !== "" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && zone !== "" && rgpd;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,7 +97,7 @@ export default function ExitIntentPopup() {
 
           <h2 id="ep-title" className="font-editorial italic text-3xl text-white leading-tight mb-2">
             Attendez !<br />
-            <span className="text-[hsl(var(--mn-turquoise))]">–10%</span> le premier mois
+            <span className="text-[hsl(var(--mn-turquoise))]">–50%</span> le premier mois
           </h2>
           <p className="text-sm text-white/60 leading-relaxed">
             Remplis le formulaire — ton code promo personnalisé t'est envoyé par email instantanément.
@@ -111,8 +112,7 @@ export default function ExitIntentPopup() {
               <div>
                 <p className="font-semibold text-xl text-foreground mb-1">Vérifie ta boîte mail !</p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Ton code promo –10% vient d'être envoyé à <strong className="text-foreground">{email}</strong>.<br />
-                  On te contacte aussi sous 24h.
+                  Ton code promo –50% vient d'être envoyé à <strong className="text-foreground">{email}</strong>.
                 </p>
               </div>
               <Button onClick={handleClose} className="mt-2">Fermer</Button>
@@ -187,6 +187,20 @@ export default function ExitIntentPopup() {
               </div>
 
               {error && <p className="text-xs text-destructive">{error}</p>}
+
+              <label className="flex items-start gap-2.5 cursor-pointer group">
+                <input
+                  type="checkbox"
+                  checked={rgpd}
+                  onChange={e => setRgpd(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 rounded border border-border accent-[hsl(var(--mn-turquoise))] cursor-pointer"
+                  required
+                />
+                <span className="text-[11px] text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
+                  <Shield className="inline h-3 w-3 mr-1 text-[hsl(var(--mn-turquoise))]" />
+                  J'accepte d'être contacté par Mare Nostrum pour activer mon offre. <span className="font-medium text-foreground">Requis *</span>
+                </span>
+              </label>
 
               <Button
                 type="submit"

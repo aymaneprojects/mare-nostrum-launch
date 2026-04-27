@@ -41,10 +41,10 @@ const handler = async (req: Request): Promise<Response> => {
 
     // ── Créer le code promo dans Stripe ───────────────────────────────────────
     const coupon = await stripe.coupons.create({
-      percent_off: 10,
-      duration: "once",           // appliqué uniquement sur la première facture
+      percent_off: 50,
+      duration: "once",
       max_redemptions: 1,
-      name: `–10% premier mois — ${prenom}`,
+      name: `–50% premier mois — ${prenom}`,
     });
 
     await stripe.promotionCodes.create({
@@ -57,17 +57,15 @@ const handler = async (req: Request): Promise<Response> => {
     // ── Email au visiteur ──────────────────────────────────────────────────────
     await sendEmail(
       email,
-      `Ton code promo –10% — Club Mare Nostrum`,
+      `Ton code promo –50% — Club Mare Nostrum`,
       `
         <p>Bonjour ${prenom},</p>
 
         <p>Voici ton code promo personnalisé : <strong>${promoCode}</strong></p>
 
-        <p>Il te donne <strong>–10% sur ton premier mois</strong> d'abonnement au Club Mare Nostrum. Entre-le au moment du paiement sur <a href="https://marenostrum.tech/croissance">marenostrum.tech/croissance</a>.</p>
+        <p>Il te donne <strong>–50% sur ton premier mois</strong> d'abonnement au Club Mare Nostrum. Entre-le au moment du paiement sur <a href="https://marenostrum.tech/club">marenostrum.tech/club</a>.</p>
 
         <p>Ce code est valable 30 jours et utilisable une seule fois.</p>
-
-        <p>Notre équipe te contacte sous 24h pour répondre à tes questions.</p>
 
         <p>Cordialement,<br>L'équipe Mare Nostrum</p>
 
@@ -91,7 +89,7 @@ ${phone ? `<p><strong>Téléphone :</strong> ${phone}</p>` : ""}
 <p><strong>Zone :</strong> ${zoneLabel}</p>
 <p><strong>Code promo généré :</strong> <code style="font-size:18px;font-weight:bold;">${promoCode}</code></p>
 <hr/>
-<p><small>Lead capturé via le popup –10% sur marenostrum.tech</small></p>
+<p><small>Lead capturé via le popup –50% sur marenostrum.tech</small></p>
       `.trim()
     );
 
