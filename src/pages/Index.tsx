@@ -206,18 +206,6 @@ const Index = () => {
           { name: "Accueil", url: "https://marenostrum.tech/" }
         ]}
       />
-      {/* Niteo Promotion Banner */}
-      <div className="bg-primary text-primary-foreground py-2 px-4">
-        <div className="container mx-auto flex items-center justify-center gap-3 md:gap-6 flex-wrap">
-          <span className="text-xs md:text-sm font-semibold uppercase tracking-wider opacity-90">Nouveau programme entrepreneuriat <span className="inline-block mx-1.5 w-1 h-1 rounded-full bg-primary-foreground/40 align-middle"></span> Toulouse</span>
-          <span className="hidden md:inline text-primary-foreground/40">|</span>
-          <span className="text-xs md:text-sm opacity-80">Étudiant(e), jeune diplômé(e) ? Transforme ton idée en projet concret en 50h chrono <span className="inline-block mx-1 w-1 h-1 rounded-full bg-secondary align-middle"></span> 100% gratuit</span>
-          <a href="https://niteo.marenostrum.tech" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-bold text-xs md:text-sm h-7 md:h-8 px-3 md:px-4 rounded-sm bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-colors">
-            Candidater
-            <ArrowRight className="h-3.5 w-3.5" />
-          </a>
-        </div>
-      </div>
       <Header />
 
 
