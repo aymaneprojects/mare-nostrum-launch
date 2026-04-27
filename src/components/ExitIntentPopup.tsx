@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef } from "react";
-import { X, Copy, Check, Phone, Mail, User, MapPin, Loader2, CheckCircle2, Sparkles, Tag } from "lucide-react";
+import { useEffect, useState } from "react";
+import { X, Phone, Mail, User, MapPin, Loader2, CheckCircle2, Sparkles } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -21,24 +21,15 @@ function markDismissed() {
   try { localStorage.setItem(STORAGE_KEY, String(Date.now())); } catch {}
 }
 
-function generateCode(prenom: string): string {
-  const base = prenom.trim().toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 8) || "CLUB";
-  const rand = Math.floor(1000 + Math.random() * 9000);
-  return `${base}-${rand}`;
-}
-
 export default function ExitIntentPopup() {
-  const [visible, setVisible]     = useState(false);
-  const [prenom, setPrenom]       = useState("");
-  const [email, setEmail]         = useState("");
-  const [phone, setPhone]         = useState("");
-  const [zone, setZone]           = useState("");
-  const [promoCode, setPromoCode] = useState("");
-  const [copied, setCopied]       = useState(false);
-  const [loading, setLoading]     = useState(false);
-  const [sent, setSent]           = useState(false);
-  const [error, setError]         = useState("");
-  const codeRef = useRef<string>("");
+  const [visible, setVisible] = useState(false);
+  const [prenom, setPrenom]   = useState("");
+  const [email, setEmail]     = useState("");
+  const [phone, setPhone]     = useState("");
+  const [zone, setZone]       = useState("");
+  const [loading, setLoading] = useState(false);
+  const [sent, setSent]       = useState(false);
+  const [error, setError]     = useState("");
 
   useEffect(() => {
     if (isDismissed()) return;
@@ -46,23 +37,7 @@ export default function ExitIntentPopup() {
     return () => clearTimeout(id);
   }, []);
 
-  useEffect(() => {
-    if (prenom.trim().length >= 2 && !codeRef.current) {
-      const code = generateCode(prenom);
-      codeRef.current = code;
-      setPromoCode(code);
-    }
-  }, [prenom]);
-
   const handleClose = () => { setVisible(false); markDismissed(); };
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(promoCode);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {}
-  };
 
   const valid = prenom.trim() !== "" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && zone !== "";
 
@@ -72,15 +47,8 @@ export default function ExitIntentPopup() {
     setLoading(true);
     setError("");
     try {
-      const { error: fnError } = await supabase.functions.invoke("send-contact-notification", {
-        body: {
-          name: prenom,
-          email,
-          phone: phone || undefined,
-          type: "Club — Popup 10% premier mois",
-          message: `Code promo personnalisé généré : ${promoCode}. Demande de rappel via popup offre spéciale.`,
-          country: zone === "france" ? "France" : "Afrique francophone",
-        },
+      const { error: fnError } = await supabase.functions.invoke("send-promo-code", {
+        body: { prenom, email, phone: phone || undefined, zone },
       });
       if (fnError) throw new Error(fnError.message);
       setSent(true);
@@ -102,12 +70,11 @@ export default function ExitIntentPopup() {
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
       onClick={handleClose}
     >
-      {/* Carte modale */}
       <div
         className="w-full max-w-md bg-background rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 fade-in duration-300"
         onClick={e => e.stopPropagation()}
       >
-        {/* ── Header marketing ── */}
+        {/* ── Header ── */}
         <div className="relative bg-[hsl(var(--mn-nuit))] px-7 py-7 overflow-hidden">
           <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full bg-[hsl(var(--mn-turquoise))]/20 blur-2xl pointer-events-none" />
           <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-full bg-[hsl(var(--mn-ocre))]/15 blur-2xl pointer-events-none" />
@@ -132,7 +99,7 @@ export default function ExitIntentPopup() {
             <span className="text-[hsl(var(--mn-turquoise))]">–10%</span> le premier mois
           </h2>
           <p className="text-sm text-white/60 leading-relaxed">
-            Remplis le formulaire, on génère ton code promo personnel et on te rappelle sous 24h pour le valider.
+            Remplis le formulaire — ton code promo personnalisé t'est envoyé par email instantanément.
           </p>
         </div>
 
@@ -142,39 +109,16 @@ export default function ExitIntentPopup() {
             <div className="flex flex-col items-center text-center gap-4 py-4">
               <CheckCircle2 className="h-12 w-12 text-[hsl(var(--mn-turquoise))]" strokeWidth={1.5} />
               <div>
-                <p className="font-semibold text-xl text-foreground mb-1">C'est dans la boîte !</p>
-                <p className="text-sm text-muted-foreground">
-                  Ton code <strong className="text-foreground font-mono">{promoCode}</strong> est réservé.<br />
-                  On te contacte dans les 24h.
+                <p className="font-semibold text-xl text-foreground mb-1">Vérifie ta boîte mail !</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Ton code promo –10% vient d'être envoyé à <strong className="text-foreground">{email}</strong>.<br />
+                  On te contacte aussi sous 24h.
                 </p>
               </div>
               <Button onClick={handleClose} className="mt-2">Fermer</Button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-3" noValidate>
-              {/* Code promo — apparaît dès que le prénom est saisi */}
-              {promoCode && (
-                <div className="flex items-center justify-between gap-3 bg-[hsl(var(--mn-turquoise))]/10 border border-[hsl(var(--mn-turquoise))]/30 rounded-lg px-4 py-3 mb-1">
-                  <div className="flex items-center gap-2">
-                    <Tag className="h-4 w-4 text-[hsl(var(--mn-turquoise))] shrink-0" />
-                    <div>
-                      <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Ton code promo</p>
-                      <p className="font-mono font-bold text-lg text-foreground tracking-widest">{promoCode}</p>
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={handleCopy}
-                    className="flex items-center gap-1.5 text-xs font-semibold text-[hsl(var(--mn-turquoise))] hover:opacity-70 transition-opacity shrink-0 cursor-pointer"
-                  >
-                    {copied
-                      ? <><Check className="h-3.5 w-3.5" />Copié</>
-                      : <><Copy className="h-3.5 w-3.5" />Copier</>
-                    }
-                  </button>
-                </div>
-              )}
-
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
                   <Label htmlFor="ep-prenom" className="text-xs text-muted-foreground">Prénom *</Label>
@@ -249,13 +193,13 @@ export default function ExitIntentPopup() {
                 disabled={!valid || loading}
               >
                 {loading
-                  ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Envoi…</>
-                  : "Réserver mon appel — obtenir mon code"
+                  ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" />Envoi en cours…</>
+                  : "Recevoir mon code promo par email"
                 }
               </Button>
 
               <p className="text-[10px] text-muted-foreground text-center">
-                Pas de spam. Rappel unique sous 24h pour activer ton offre.
+                Pas de spam. Ton code arrive immédiatement dans ta boîte mail.
               </p>
             </form>
           )}
