@@ -220,7 +220,6 @@ const Index = () => {
             <h1 className="font-editorial italic text-3xl md:text-6xl font-semibold text-primary-foreground mb-4 md:mb-6 leading-[1.05]" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>De l'idée à l'entreprise à impact — avec les bons experts à tes côtés.</h1>
             <p className="text-base md:text-xl text-primary-foreground/75 mb-8 md:mb-12 max-w-2xl mx-auto" style={{ lineHeight: '1.65' }}>
               Mare Nostrum accompagne les écoles et les entrepreneurs francophones.
-              135+ experts · 12 pays · 95% de satisfaction.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-6 md:mb-8 px-4">
