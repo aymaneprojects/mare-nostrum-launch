@@ -52,6 +52,25 @@ const BlogArticle = () => {
   const { data: article, isLoading, error } = useBlogArticle(slug);
   const { data: relatedArticles = [] } = useRelatedArticles(article?.category, article?.id);
 
+  // OG article tags — doit être avant tout return conditionnel (Rules of Hooks)
+  useEffect(() => {
+    if (!article) return;
+    const setMeta = (property: string, content: string) => {
+      let el = document.querySelector(`meta[property="${property}"]`);
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute("property", property);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", content);
+    };
+    setMeta("og:article:published_time", article.published_at);
+    setMeta("og:article:modified_time", article.updated_at || article.published_at);
+    setMeta("og:article:section", article.category);
+    setMeta("og:article:author", article.author);
+    setMeta("og:locale", "fr_FR");
+  }, [article]);
+
   // État de chargement
   if (isLoading) {
     return (
@@ -105,24 +124,6 @@ const BlogArticle = () => {
 
   const articleUrl = `https://marenostrum.tech/blog/${article.slug}`;
   const cleanExcerpt = article.excerpt.replace(/<[^>]*>/g, "").substring(0, 155);
-
-  // OG article tags — non gérés par SEOHead
-  useEffect(() => {
-    const setMeta = (property: string, content: string) => {
-      let el = document.querySelector(`meta[property="${property}"]`);
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute("property", property);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
-    setMeta("og:article:published_time", article.published_at);
-    setMeta("og:article:modified_time", article.updated_at || article.published_at);
-    setMeta("og:article:section", article.category);
-    setMeta("og:article:author", article.author);
-    setMeta("og:locale", "fr_FR");
-  }, [article.published_at, article.updated_at, article.category, article.author]);
 
   const articleSchema = {
     "@context": "https://schema.org",
