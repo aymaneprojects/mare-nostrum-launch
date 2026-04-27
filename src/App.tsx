@@ -21,6 +21,7 @@ import EngagementRSE from "./pages/EngagementRSE";
 import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
 import CGU from "./pages/CGU";
+import BienvenuClub from "./pages/BienvenuClub";
 import CGV from "./pages/CGV";
 import Confidentialite from "./pages/Confidentialite";
 import NotFound from "./pages/NotFound";
@@ -82,6 +83,7 @@ const AppContent = () => {
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/cgu" element={<CGU />} />
         <Route path="/cgv" element={<CGV />} />
+        <Route path="/bienvenu-club" element={<BienvenuClub />} />
         <Route path="/confidentialite" element={<Confidentialite />} />
         
         {/* SILO 1: Écoles (B2B) */}
