@@ -247,8 +247,13 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                 </span>
               </div>
 
+              {/* Préavis */}
+              <p className="text-xs text-muted-foreground">
+                Abonnement reconductible tacitement. Un préavis de <strong>3 mois</strong> est requis pour résilier.
+              </p>
+
               {/* CGV */}
-              <label className="flex items-start gap-2.5 cursor-pointer group">
+              <label className="flex items-start gap-2.5 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={cgvAccepted}
