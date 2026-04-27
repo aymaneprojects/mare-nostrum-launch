@@ -179,7 +179,8 @@ export default function ExitIntentPopup() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="france">France</SelectItem>
-                      <SelectItem value="afrique">Afrique francophone</SelectItem>
+                      <SelectItem value="congo">République du Congo</SelectItem>
+                      <SelectItem value="autre">Autre pays</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>

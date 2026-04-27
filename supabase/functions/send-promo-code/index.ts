@@ -32,7 +32,7 @@ const handler = async (req: Request): Promise<Response> => {
     const { prenom, email, phone, zone } = await req.json();
 
     const promoCode = generateCode(prenom);
-    const zoneLabel = zone === "france" ? "France" : "Afrique francophone";
+    const zoneLabel = zone === "france" ? "France" : zone === "congo" ? "République du Congo" : "Autre pays";
 
     // ── Email au visiteur ──────────────────────────────────────────────────────
     await sendEmail(
