@@ -196,6 +196,7 @@
 | Siège social | Toulouse, France (31000) |
 | Email | contact@marenostrum.tech |
 | Sitemap statique | https://marenostrum.tech/sitemap.xml |
-| Sitemap dynamique (blog) | https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/sitemap |
+| Sitemap dynamique (blog) | https://oivxznyzijtoylwfigyq.supabase.co/functions/v1/sitemap |
+| LLMs complet (blog inclus) | https://oivxznyzijtoylwfigyq.supabase.co/functions/v1/llms-full |
 | Robots | https://marenostrum.tech/robots.txt |
 | LLMs | https://marenostrum.tech/llms.txt |

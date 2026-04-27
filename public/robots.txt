@@ -99,7 +99,8 @@ Disallow: /_
 Disallow: /node_modules/
 
 # Ressources pour crawlers IA et LLM
-# LLMs : https://marenostrum.tech/llms.txt
+# LLMs (résumé) : https://marenostrum.tech/llms.txt
+# LLMs (complet + articles) : https://oivxznyzijtoylwfigyq.supabase.co/functions/v1/llms-full
 # Pages : https://marenostrum.tech/pages.md
 
 # Sitemaps

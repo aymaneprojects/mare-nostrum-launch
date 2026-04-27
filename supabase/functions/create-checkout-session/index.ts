@@ -70,9 +70,12 @@ serve(async (req) => {
     const interval = billing === "monthly" ? "month" : "year";
     const billingLabel = billing === "monthly" ? "mensuel" : "annuel";
 
-    const customer = await stripe.customers.create({
-      email,
-      name: [prenom, entreprise].filter(Boolean).join(" — ") || prenom,
+    // Metadata on the session — no pre-created customer so Google Pay / Apple Pay work
+    const session = await stripe.checkout.sessions.create({
+      ui_mode: "embedded",
+      mode: "subscription",
+      customer_email: email,
+      automatic_tax: { enabled: true },
       metadata: {
         prenom,
         entreprise: entreprise ?? "",
@@ -81,14 +84,6 @@ serve(async (req) => {
         location,
         billing,
       },
-    });
-
-    const session = await stripe.checkout.sessions.create({
-      ui_mode: "embedded",
-      mode: "subscription",
-      customer: customer.id,
-      automatic_tax: { enabled: true },
-      customer_update: { address: "auto" },
       line_items: [{
         price_data: {
           currency,

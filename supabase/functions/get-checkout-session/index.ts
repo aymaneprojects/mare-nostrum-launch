@@ -26,20 +26,18 @@ serve(async (req) => {
       });
     }
 
-    const session = await stripe.checkout.sessions.retrieve(sessionId, {
-      expand: ["customer"],
-    });
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
 
     const paid = session.payment_status === "paid";
-    const customer = session.customer as Stripe.Customer | null;
+    const meta = session.metadata ?? {};
 
     return new Response(JSON.stringify({
       paid,
-      prenom:   customer?.metadata?.prenom   ?? "",
+      prenom:   meta.prenom   ?? "",
       email:    session.customer_details?.email ?? "",
-      offer:    customer?.metadata?.offer    ?? "",
-      location: customer?.metadata?.location ?? "",
-      billing:  customer?.metadata?.billing  ?? "",
+      offer:    meta.offer    ?? "",
+      location: meta.location ?? "",
+      billing:  meta.billing  ?? "",
     }), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
