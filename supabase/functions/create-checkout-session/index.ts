@@ -87,6 +87,8 @@ serve(async (req) => {
       ui_mode: "embedded",
       mode: "subscription",
       customer: customer.id,
+      automatic_tax: { enabled: true },
+      customer_update: { address: "auto" },
       line_items: [{
         price_data: {
           currency,

@@ -1,10 +1,11 @@
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, Calendar, User, Clock, Share2, Loader2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import SEOHead from "@/components/SEOHead";
+import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import { useBlogArticle, useRelatedArticles } from "@/hooks/useBlogArticles";
 import { useToast } from "@/hooks/use-toast";
 
@@ -102,54 +103,98 @@ const BlogArticle = () => {
   const wordCount = article.content.split(/\s+/).length;
   const readingTime = Math.ceil(wordCount / wordsPerMinute);
 
-  // Schema Article pour SEO
+  const articleUrl = `https://marenostrum.tech/blog/${article.slug}`;
+  const cleanExcerpt = article.excerpt.replace(/<[^>]*>/g, "").substring(0, 155);
+
+  // OG article tags — non gérés par SEOHead
+  useEffect(() => {
+    const setMeta = (property: string, content: string) => {
+      let el = document.querySelector(`meta[property="${property}"]`);
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute("property", property);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", content);
+    };
+    setMeta("og:article:published_time", article.published_at);
+    setMeta("og:article:modified_time", article.updated_at || article.published_at);
+    setMeta("og:article:section", article.category);
+    setMeta("og:article:author", article.author);
+    setMeta("og:locale", "fr_FR");
+  }, [article.published_at, article.updated_at, article.category, article.author]);
+
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
+    "@id": articleUrl,
     "headline": article.title,
-    "description": article.excerpt,
-    "image": article.image,
+    "description": cleanExcerpt,
+    "url": articleUrl,
+    "image": {
+      "@type": "ImageObject",
+      "url": article.image,
+      "width": 1200,
+      "height": 630
+    },
     "datePublished": article.published_at,
     "dateModified": article.updated_at || article.published_at,
+    "inLanguage": "fr-FR",
     "author": {
-      "@type": "Organization",
+      "@type": "Person",
       "name": article.author,
-      "url": "https://marenostrum.tech"
+      "url": "https://marenostrum.tech/a-propos"
     },
     "publisher": {
       "@type": "Organization",
       "name": "Mare Nostrum",
+      "@id": "https://marenostrum.tech/#organization",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://marenostrum.tech/logo.png"
+        "url": "https://marenostrum.tech/logo.png",
+        "width": 512,
+        "height": 512
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://marenostrum.tech/blog/${article.slug}`
+      "@id": articleUrl
     },
     "articleSection": article.category,
     "wordCount": wordCount,
-    "timeRequired": `PT${readingTime}M`
+    "timeRequired": `PT${readingTime}M`,
+    "keywords": `${article.category}, entrepreneuriat francophone, ${article.title.split(" ").slice(0, 6).join(", ")}`,
+    "isPartOf": {
+      "@type": "Blog",
+      "@id": "https://marenostrum.tech/blog",
+      "name": "Blog Mare Nostrum"
+    }
   };
 
-  // Breadcrumb schema
-  const breadcrumbSchema = [
-    { name: "Accueil", url: "https://marenostrum.tech" },
-    { name: "Blog", url: "https://marenostrum.tech/blog" },
-    { name: article.title, url: `https://marenostrum.tech/blog/${article.slug}` }
-  ];
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://marenostrum.tech" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://marenostrum.tech/blog" },
+      { "@type": "ListItem", "position": 3, "name": article.title, "item": articleUrl }
+    ]
+  };
+
+  // Mots-clés spécifiques à l'article
+  const titleWords = article.title.toLowerCase().replace(/[^a-zA-ZÀ-ÿ\s]/g, "").split(/\s+/).filter(w => w.length > 4).slice(0, 5);
+  const articleKeywords = [article.category.toLowerCase(), "entrepreneuriat", "mare nostrum", ...titleWords].join(", ");
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SEOHead 
+      <EnhancedSEOHead
+        disableAutoEnhancement={true}
         title={`${article.title} | Blog Entrepreneuriat Mare Nostrum`}
-        description={article.excerpt.substring(0, 155)}
-        keywords={`${article.category.toLowerCase()}, entrepreneuriat, business, startup, ${article.title.toLowerCase().split(' ').slice(0, 5).join(', ')}`}
+        description={cleanExcerpt}
+        keywords={articleKeywords}
         image={article.image}
         type="article"
-        structuredData={articleSchema}
-        breadcrumbSchema={breadcrumbSchema}
+        structuredData={[articleSchema, breadcrumbSchema]}
       />
       <Header />
 

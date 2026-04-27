@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import SEOHead from "@/components/SEOHead";
+import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import { useBlogArticles, BlogArticle } from "@/hooks/useBlogArticles";
 
 const ARTICLES_PER_PAGE = 9;
@@ -71,14 +71,24 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SEOHead 
+      <EnhancedSEOHead
         title="Blog Entrepreneuriat Etudiant & Impact - Mare Nostrum | Conseils Toulouse Afrique"
         description="Blog Mare Nostrum : guides pratiques entrepreneuriat etudiant, creation entreprise, financement, business plan, pitch. Ressources gratuites pour entrepreneurs a impact Toulouse et Afrique francophone."
         keywords="blog entrepreneuriat, entrepreneuriat etudiant, creer entreprise etudiant, statut juridique entrepreneur, financement projet etudiant, business plan, conseils entrepreneur, entrepreneuriat toulouse, entrepreneuriat afrique, mare nostrum blog"
-        breadcrumbSchema={[
-          { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "Blog", url: "https://marenostrum.tech/blog" }
-        ]}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "@id": "https://marenostrum.tech/blog",
+          "name": "Blog Entrepreneuriat Mare Nostrum",
+          "description": "Guides pratiques et ressources pour entrepreneurs en France et en Afrique francophone",
+          "url": "https://marenostrum.tech/blog",
+          "inLanguage": "fr-FR",
+          "publisher": {
+            "@type": "Organization",
+            "@id": "https://marenostrum.tech/#organization",
+            "name": "Mare Nostrum"
+          }
+        }}
       />
       <Header />
 
