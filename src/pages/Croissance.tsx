@@ -83,6 +83,26 @@ const Croissance = () => {
   const [selectedLocation, setSelectedLocation] = useState<LocationType>("france");
   const [selectedBilling, setSelectedBilling] = useState<"monthly" | "annual">("monthly");
   const [onboardingOffer, setOnboardingOffer] = useState<Offer | null>(null);
+  const [restoredCheckout, setRestoredCheckout] = useState<{ prenom: string; email: string } | null>(null);
+
+  // Restore state after Stripe redirect
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("checkout") === "complete") {
+      const saved = sessionStorage.getItem("mn_checkout");
+      if (saved) {
+        try {
+          const data = JSON.parse(saved);
+          setSelectedLocation(data.location ?? "france");
+          setSelectedBilling(data.billing ?? "monthly");
+          setOnboardingOffer(data.offer ?? null);
+          setRestoredCheckout({ prenom: data.prenom ?? "", email: data.email ?? "" });
+          sessionStorage.removeItem("mn_checkout");
+        } catch {}
+      }
+      window.history.replaceState({}, "", window.location.pathname);
+    }
+  }, []);
 
   const openOnboarding = (offer: Offer) => setOnboardingOffer(offer);
 
@@ -679,10 +699,13 @@ const Croissance = () => {
       {onboardingOffer && (
         <ClubOnboarding
           open={onboardingOffer !== null}
-          onClose={() => setOnboardingOffer(null)}
+          onClose={() => { setOnboardingOffer(null); setRestoredCheckout(null); }}
           offer={onboardingOffer}
           location={selectedLocation}
           billing={selectedBilling}
+          initialPhase={restoredCheckout ? "success" : undefined}
+          initialPrenom={restoredCheckout?.prenom}
+          initialEmail={restoredCheckout?.email}
         />
       )}
 

@@ -50,6 +50,9 @@ interface Props {
   offer: Offer;
   location: LocationType;
   billing: Billing;
+  initialPhase?: Phase;
+  initialPrenom?: string;
+  initialEmail?: string;
 }
 
 const FORM_STEPS = [
@@ -69,10 +72,10 @@ const postStepIndex: Record<Phase, number> = {
   step1: -1, step2: -1, loading: -1, payment: -1,
 };
 
-export default function ClubOnboarding({ open, onClose, offer, location, billing }: Props) {
-  const [phase, setPhase]               = useState<Phase>("step1");
-  const [prenom, setPrenom]             = useState("");
-  const [email, setEmail]               = useState("");
+export default function ClubOnboarding({ open, onClose, offer, location, billing, initialPhase, initialPrenom, initialEmail }: Props) {
+  const [phase, setPhase]               = useState<Phase>(initialPhase ?? "step1");
+  const [prenom, setPrenom]             = useState(initialPrenom ?? "");
+  const [email, setEmail]               = useState(initialEmail ?? "");
   const [entreprise, setEntreprise]     = useState("");
   const [stade, setStade]               = useState("");
   const [error, setError]               = useState("");
@@ -97,6 +100,8 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   const handleStartPayment = async () => {
     setPhase("loading");
     setError("");
+    // Persist state so post-redirect restoration works
+    sessionStorage.setItem("mn_checkout", JSON.stringify({ offer, location, billing, prenom, email }));
     try {
       const { data, error: fnError } = await supabase.functions.invoke("create-checkout-session", {
         body: { offer, location, billing, prenom, email, entreprise, stade },
@@ -112,6 +117,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   };
 
   const handleComplete = useCallback(() => {
+    sessionStorage.removeItem("mn_checkout"); // no redirect happened
     setPhase("success");
   }, []);
 
