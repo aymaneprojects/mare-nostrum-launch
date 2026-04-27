@@ -1,16 +1,15 @@
 import { useState, useCallback } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from "@stripe/react-stripe-js";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 import { ArrowRight, ArrowLeft, Loader2, CheckCircle2, User, Briefcase, CreditCard } from "lucide-react";
 
-const stripePromise = import.meta.env.VITE_STRIPE_PUBLIC_KEY
-  ? loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY)
-  : null;
+const stripeKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY as string | undefined;
+const stripePromise = stripeKey?.startsWith("pk_") ? loadStripe(stripeKey) : null;
 
 export type Offer = "communaute" | "groupe" | "individuel";
 export type LocationType = "france" | "congo_brazzaville";
@@ -106,10 +105,13 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
       >
         {/* Header */}
         <div className="bg-primary px-6 py-5">
+          <DialogTitle className="sr-only">
+            Rejoindre l'offre {OFFER_LABELS[offer]} — Club Mare Nostrum
+          </DialogTitle>
           <p className="text-xs text-primary-foreground/60 uppercase tracking-widest mb-1">
             Club Mare Nostrum
           </p>
-          <h2 className="font-editorial italic text-xl text-primary-foreground">
+          <h2 className="font-editorial italic text-xl text-primary-foreground" aria-hidden="true">
             Rejoindre l'offre {OFFER_LABELS[offer]}
           </h2>
         </div>
