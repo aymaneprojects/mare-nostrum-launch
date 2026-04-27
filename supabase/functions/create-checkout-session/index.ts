@@ -38,6 +38,13 @@ const CURRENCIES: Record<Location, string> = {
   congo_brazzaville: "xof",
 };
 
+// txcd_20030000 = services digitaux, txcd_20060044 = formation/éducation
+const TAX_CODES: Record<Offer, string> = {
+  communaute: "txcd_20030000",
+  groupe:     "txcd_20060044",
+  individuel: "txcd_20060044",
+};
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -88,6 +95,7 @@ serve(async (req) => {
           product_data: {
             name: `Club Mare Nostrum — ${OFFER_NAMES[offer]}`,
             description: `Abonnement ${billingLabel} — Club Entrepreneur Mare Nostrum`,
+            tax_code: TAX_CODES[offer],
           },
           unit_amount: amount,
           tax_behavior: "inclusive",
