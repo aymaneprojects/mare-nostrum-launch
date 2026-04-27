@@ -77,6 +77,8 @@ serve(async (req) => {
       },
     });
 
+    const isFrance = location === "france";
+
     const session = await stripe.checkout.sessions.create({
       ui_mode: "embedded",
       mode: "subscription",
@@ -88,13 +90,16 @@ serve(async (req) => {
           product_data: {
             name: `Club Mare Nostrum — ${OFFER_NAMES[offer]}`,
             description: `Abonnement ${billingLabel} — Club Entrepreneur Mare Nostrum`,
+            tax_code: "txcd_20030000",
           },
           unit_amount: amount,
-          tax_behavior: "inclusive",
+          tax_behavior: isFrance ? "inclusive" : "exclusive",
           recurring: { interval },
         },
         quantity: 1,
       }],
+      automatic_tax: { enabled: isFrance },
+      tax_id_collection: { enabled: isFrance },
       phone_number_collection: { enabled: true },
       allow_promotion_codes: true,
       return_url: "https://marenostrum.tech/club?session_id={CHECKOUT_SESSION_ID}",
