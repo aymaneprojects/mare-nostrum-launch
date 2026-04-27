@@ -102,6 +102,8 @@ serve(async (req) => {
         },
         quantity: 1,
       }],
+      automatic_tax: { enabled: location === "france" },
+      tax_id_collection: { enabled: location === "france" },
       phone_number_collection: { enabled: true },
       allow_promotion_codes: true,
       return_url: "https://marenostrum.tech/club?session_id={CHECKOUT_SESSION_ID}",
