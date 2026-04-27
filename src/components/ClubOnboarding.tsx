@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from "@stripe/react-stripe-js";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -119,6 +119,26 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   }, []);
 
   const fetchClientSecret = useCallback(() => Promise.resolve(clientSecret), [clientSecret]);
+
+  // Memoize options so EmbeddedCheckoutProvider never remounts due to a new object reference
+  const checkoutOptions = useMemo(() => ({
+    fetchClientSecret,
+    onComplete: handleComplete,
+  }), [fetchClientSecret, handleComplete]);
+
+  // Fallback: poll session status in case onComplete doesn't fire (some banks / mobile)
+  useEffect(() => {
+    if (phase !== "payment" || !clientSecret) return;
+    const sessionId = clientSecret.split("_secret_")[0];
+    const id = window.setInterval(async () => {
+      const { data } = await supabase.functions.invoke("get-checkout-session", { body: { sessionId } });
+      if (data?.paid) {
+        clearInterval(id);
+        setPhase("success");
+      }
+    }, 3000);
+    return () => clearInterval(id);
+  }, [phase, clientSecret]);
   const step1Valid = prenom.trim() !== "" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   /* ─── Header dynamique selon phase ─────────────────────── */
@@ -332,7 +352,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
           {/* Stripe Embedded Checkout */}
           {phase === "payment" && clientSecret && stripePromise && (
             <div className="mt-2">
-              <EmbeddedCheckoutProvider stripe={stripePromise} options={{ fetchClientSecret, onComplete: handleComplete }}>
+              <EmbeddedCheckoutProvider stripe={stripePromise} options={checkoutOptions}>
                 <EmbeddedCheckout />
               </EmbeddedCheckoutProvider>
             </div>
