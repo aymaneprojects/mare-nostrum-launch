@@ -88,7 +88,9 @@ serve(async (req) => {
           currency,
           product_data: {
             name: `Club Mare Nostrum — ${OFFER_NAMES[offer]}`,
-            description: `Abonnement ${billingLabel} — Club Entrepreneur Mare Nostrum`,
+            description: currency === "eur"
+              ? `Abonnement ${billingLabel} — Club Entrepreneur Mare Nostrum · Prix TTC (TVA 20% incluse)`
+              : `Abonnement ${billingLabel} — Club Entrepreneur Mare Nostrum`,
             tax_code: TAX_CODES[offer],
           },
           unit_amount: amount,
