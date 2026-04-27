@@ -100,12 +100,12 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   return (
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent
-        className={`p-0 overflow-hidden transition-all duration-300 mx-3 sm:mx-auto ${
-          phase === "payment" ? "sm:max-w-2xl" : "sm:max-w-lg"
-        }`}
+        className={`p-0 flex flex-col transition-all duration-300 mx-3 sm:mx-auto
+          max-h-[92dvh] overflow-hidden
+          ${phase === "payment" ? "sm:max-w-2xl" : "sm:max-w-lg"}`}
       >
-        {/* Header */}
-        <div className="bg-primary px-6 py-5">
+        {/* Header — fixe */}
+        <div className="bg-primary px-6 py-5 shrink-0">
           <DialogTitle className="sr-only">
             Rejoindre l'offre {OFFER_LABELS[offer]} — Club Mare Nostrum
           </DialogTitle>
@@ -119,7 +119,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
 
         {/* Step indicator — masqué pendant le paiement */}
         {phase !== "payment" && (
-          <div className="flex items-center justify-center gap-0 px-8 pt-5 pb-1">
+          <div className="flex items-center justify-center gap-0 px-8 pt-5 pb-1 shrink-0">
             {STEPS.map((s, i) => {
               const Icon = s.icon;
               const active = stepIndex === i;
@@ -150,8 +150,8 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
           </div>
         )}
 
-        {/* Body */}
-        <div className="px-6 pb-6 pt-3">
+        {/* Body — scrollable */}
+        <div className="flex-1 overflow-y-auto px-6 pb-6 pt-3">
 
           {/* Étape 1 : Prénom + email */}
           {phase === "step1" && (
