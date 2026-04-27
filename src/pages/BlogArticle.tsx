@@ -183,8 +183,13 @@ const BlogArticle = () => {
   };
 
   // Mots-clés spécifiques à l'article
-  const titleWords = article.title.toLowerCase().replace(/[^a-zA-ZÀ-ÿ\s]/g, "").split(/\s+/).filter(w => w.length > 4).slice(0, 5);
-  const articleKeywords = [article.category.toLowerCase(), "entrepreneuriat", "mare nostrum", ...titleWords].join(", ");
+  const titleWords = article.title.toLowerCase().replace(/[^a-zA-ZÀ-ÿ\s]/g, "").split(/\s+/).filter(w => w.length > 4).slice(0, 6);
+  const articleKeywords = [
+    article.category.toLowerCase(),
+    "entrepreneuriat", "créer son entreprise", "entrepreneur francophone",
+    "mare nostrum toulouse", "accompagnement entrepreneurial",
+    ...titleWords,
+  ].join(", ");
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -316,34 +321,42 @@ const BlogArticle = () => {
         <section className="py-12 md:py-16 bg-secondary/30">
           <div className="container mx-auto px-4">
             <h2 className="text-2xl font-bold text-foreground mb-8 text-center">
-              Articles similaires
+              Continuer à lire
             </h2>
-            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {relatedArticles.map((related) => (
-                <Link
-                  key={related.id}
-                  to={`/blog/${related.slug}`}
-                  className="group bg-card border border-border rounded-sm overflow-hidden hover:shadow-lg transition-shadow"
-                >
-                  <div className="h-40 overflow-hidden">
-                    <img
-                      src={optimizeImageUrl(related.image, 400)}
-                      alt={related.title}
-                      loading="lazy"
-                      decoding="async"
-                      width={400}
-                      height={267}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <Badge variant="secondary" className="mb-2">{related.category}</Badge>
-                    <h3 className="font-semibold text-foreground line-clamp-2 group-hover:text-primary transition-colors">
-                      {related.title}
-                    </h3>
-                  </div>
-                </Link>
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {relatedArticles.map((related) => {
+                const cleanRelatedExcerpt = related.excerpt?.replace(/<[^>]*>/g, "").substring(0, 90);
+                return (
+                  <Link
+                    key={related.id}
+                    to={`/blog/${related.slug}`}
+                    className="group bg-card border border-border rounded-sm overflow-hidden hover:shadow-md transition-all duration-200 flex flex-col"
+                  >
+                    <div className="h-44 overflow-hidden bg-secondary/50 shrink-0">
+                      {related.image && (
+                        <img
+                          src={optimizeImageUrl(related.image, 400)}
+                          alt={related.title}
+                          loading="lazy"
+                          decoding="async"
+                          width={400}
+                          height={176}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      )}
+                    </div>
+                    <div className="p-4 flex flex-col flex-1">
+                      <Badge variant="outline" className="mb-2 w-fit text-xs">{related.category}</Badge>
+                      <h3 className="font-semibold text-sm text-foreground line-clamp-2 group-hover:text-primary transition-colors mb-2">
+                        {related.title}
+                      </h3>
+                      {cleanRelatedExcerpt && (
+                        <p className="text-xs text-muted-foreground line-clamp-2 mt-auto">{cleanRelatedExcerpt}</p>
+                      )}
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>

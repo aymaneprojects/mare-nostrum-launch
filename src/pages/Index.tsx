@@ -217,7 +217,7 @@ const Index = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mn-eyebrow-light mb-5">Cabinet de conseil · depuis Toulouse, dans tout l'espace francophone</div>
-            <h1 className="font-editorial italic text-3xl md:text-6xl font-semibold text-primary-foreground mb-4 md:mb-6 leading-[1.05]" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>De l'idée à l'entreprise à impact — avec les bons experts à tes côtés.</h1>
+            <h1 className="font-editorial italic text-3xl md:text-6xl font-semibold text-primary-foreground mb-4 md:mb-6 leading-[1.05]" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>De l'idée à l'entreprise à impact avec les bons experts à tes côtés.</h1>
             <p className="text-base md:text-xl text-primary-foreground/75 mb-8 md:mb-12 max-w-2xl mx-auto" style={{ lineHeight: '1.65' }}>
               Mare Nostrum accompagne les écoles et les entrepreneurs francophones.
             </p>

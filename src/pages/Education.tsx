@@ -162,7 +162,7 @@ const Education = () => {
         ctas={
           <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
             <Link to="/contact">
-              Intégrez l'entrepreneuriat dans votre projet pédagogique
+              Demander un programme sur mesure
               <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
             </Link>
           </Button>
@@ -388,7 +388,7 @@ const Education = () => {
           <div className="mt-12 text-center">
             <Button asChild size="lg">
               <Link to="/niteo-toulouse">
-                Découvrir le Programme Niteo Toulouse 2026
+                Découvrir Niteo 2026
                 <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
               </Link>
             </Button>

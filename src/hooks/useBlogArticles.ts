@@ -63,14 +63,15 @@ export const useBlogArticle = (slug: string | undefined) => {
   });
 };
 
-// Récupérer les articles similaires (même catégorie)
+// Récupérer les articles similaires : même catégorie en priorité, complété par d'autres catégories
 export const useRelatedArticles = (category: string | undefined, excludeId: string | undefined) => {
   return useQuery({
     queryKey: ["related-articles", category, excludeId],
     queryFn: async () => {
       if (!category) return [];
 
-      const { data, error } = await supabase
+      // 1. Articles de la même catégorie
+      const { data: sameCategory } = await supabase
         .from("blog_articles")
         .select("id, title, slug, excerpt, category, image, published_at")
         .eq("category", category)
@@ -79,12 +80,21 @@ export const useRelatedArticles = (category: string | undefined, excludeId: stri
         .order("published_at", { ascending: false })
         .limit(3);
 
-      if (error) {
-        console.error("Error fetching related articles:", error);
-        throw error;
-      }
+      const results = sameCategory ?? [];
+      if (results.length >= 3) return results as BlogArticle[];
 
-      return data as BlogArticle[];
+      // 2. Compléter avec d'autres catégories si moins de 3
+      const existingIds = [excludeId || "", ...results.map(a => a.id)];
+      const { data: others } = await supabase
+        .from("blog_articles")
+        .select("id, title, slug, excerpt, category, image, published_at")
+        .eq("is_published", true)
+        .neq("category", category)
+        .not("id", "in", `(${existingIds.join(",")})`)
+        .order("published_at", { ascending: false })
+        .limit(3 - results.length);
+
+      return [...results, ...(others ?? [])] as BlogArticle[];
     },
     enabled: !!category,
   });
