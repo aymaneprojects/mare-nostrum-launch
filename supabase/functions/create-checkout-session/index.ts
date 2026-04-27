@@ -97,7 +97,7 @@ serve(async (req) => {
             tax_code: TAX_CODES[offer],
           },
           unit_amount: amount,
-          tax_behavior: currency === "eur" ? "inclusive" : "exclusive",
+          tax_behavior: "inclusive",
           recurring: { interval },
         },
         quantity: 1,
