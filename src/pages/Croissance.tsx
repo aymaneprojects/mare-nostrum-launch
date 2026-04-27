@@ -12,6 +12,7 @@ import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import ClubOnboarding, { type Offer } from "@/components/ClubOnboarding";
+import { supabase } from "@/integrations/supabase/client";
 import atelierRose from "@/assets/atelier-rose.png";
 import neoEntrepreneurElite from "@/assets/neo-entrepreneur-elite.png";
 
@@ -85,23 +86,22 @@ const Croissance = () => {
   const [onboardingOffer, setOnboardingOffer] = useState<Offer | null>(null);
   const [restoredCheckout, setRestoredCheckout] = useState<{ prenom: string; email: string } | null>(null);
 
-  // Restore state after Stripe redirect
+  // Restore onboarding after Stripe redirect (3DS / redirect-based payment)
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    if (params.get("checkout") === "complete") {
-      const saved = sessionStorage.getItem("mn_checkout");
-      if (saved) {
-        try {
-          const data = JSON.parse(saved);
-          setSelectedLocation(data.location ?? "france");
-          setSelectedBilling(data.billing ?? "monthly");
-          setOnboardingOffer(data.offer ?? null);
-          setRestoredCheckout({ prenom: data.prenom ?? "", email: data.email ?? "" });
-          sessionStorage.removeItem("mn_checkout");
-        } catch {}
-      }
-      window.history.replaceState({}, "", window.location.pathname);
-    }
+    const sessionId = params.get("session_id");
+    if (!sessionId) return;
+
+    window.history.replaceState({}, "", window.location.pathname);
+
+    supabase.functions.invoke("get-checkout-session", { body: { sessionId } })
+      .then(({ data, error }) => {
+        if (error || !data?.paid) return;
+        setSelectedLocation((data.location as LocationType) || "france");
+        setSelectedBilling(data.billing as "monthly" | "annual" || "monthly");
+        setOnboardingOffer((data.offer as Offer) || null);
+        setRestoredCheckout({ prenom: data.prenom || "", email: data.email || "" });
+      });
   }, []);
 
   const openOnboarding = (offer: Offer) => setOnboardingOffer(offer);

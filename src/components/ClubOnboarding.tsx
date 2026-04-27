@@ -100,8 +100,6 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   const handleStartPayment = async () => {
     setPhase("loading");
     setError("");
-    // Persist state so post-redirect restoration works
-    sessionStorage.setItem("mn_checkout", JSON.stringify({ offer, location, billing, prenom, email }));
     try {
       const { data, error: fnError } = await supabase.functions.invoke("create-checkout-session", {
         body: { offer, location, billing, prenom, email, entreprise, stade },
@@ -117,7 +115,6 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   };
 
   const handleComplete = useCallback(() => {
-    sessionStorage.removeItem("mn_checkout"); // no redirect happened
     setPhase("success");
   }, []);
 
