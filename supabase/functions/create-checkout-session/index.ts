@@ -95,7 +95,7 @@ serve(async (req) => {
       }],
       phone_number_collection: { enabled: true },
       allow_promotion_codes: true,
-      return_url: "https://marenostrum.tech/bienvenu-club?session_id={CHECKOUT_SESSION_ID}",
+      return_url: "https://marenostrum.tech/club",
     });
 
     return new Response(JSON.stringify({ clientSecret: session.client_secret }), {
