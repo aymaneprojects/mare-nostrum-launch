@@ -60,6 +60,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   const [stade, setStade]           = useState("");
   const [error, setError]           = useState("");
   const [clientSecret, setClientSecret] = useState("");
+  const [cgvAccepted, setCgvAccepted] = useState(false);
 
   const price = (billing === "monthly" ? MONTHLY_PRICES : ANNUAL_PRICES)[location][offer];
   const period = billing === "monthly" ? "/mois" : "/an";
@@ -68,7 +69,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   const handleClose = () => {
     setPhase("step1");
     setPrenom(""); setEmail(""); setEntreprise(""); setStade("");
-    setError(""); setClientSecret("");
+    setError(""); setClientSecret(""); setCgvAccepted(false);
     onClose();
   };
 
@@ -246,6 +247,29 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                 </span>
               </div>
 
+              {/* CGV */}
+              <label className="flex items-start gap-2.5 cursor-pointer group">
+                <input
+                  type="checkbox"
+                  checked={cgvAccepted}
+                  onChange={e => setCgvAccepted(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 rounded border border-border accent-primary cursor-pointer"
+                />
+                <span className="text-xs text-muted-foreground leading-relaxed">
+                  J'ai lu et j'accepte les{" "}
+                  <a
+                    href="/cgv"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline underline-offset-2 hover:text-primary/80"
+                    onClick={e => e.stopPropagation()}
+                  >
+                    conditions générales de vente
+                  </a>
+                  {" "}de Mare Nostrum.
+                </span>
+              </label>
+
               {error && <p className="text-sm text-destructive">{error}</p>}
 
               <div className="flex gap-3">
@@ -254,7 +278,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                 </Button>
                 <Button
                   className="flex-1"
-                  disabled={!stade}
+                  disabled={!stade || !cgvAccepted}
                   onClick={handleStartPayment}
                 >
                   <CreditCard className="mr-2 h-4 w-4" />

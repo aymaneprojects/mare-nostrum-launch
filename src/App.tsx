@@ -20,6 +20,7 @@ import EngagementRSE from "./pages/EngagementRSE";
 import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
 import CGU from "./pages/CGU";
+import CGV from "./pages/CGV";
 import Confidentialite from "./pages/Confidentialite";
 import NotFound from "./pages/NotFound";
 import Healthz from "./pages/Healthz";
@@ -78,6 +79,7 @@ const AppContent = () => {
         <Route path="/livre-entrepreneuriat" element={<LivreEntrepreneuriat />} />
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/cgu" element={<CGU />} />
+        <Route path="/cgv" element={<CGV />} />
         <Route path="/confidentialite" element={<Confidentialite />} />
         
         {/* SILO 1: Écoles (B2B) */}
