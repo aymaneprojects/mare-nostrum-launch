@@ -103,7 +103,6 @@ serve(async (req) => {
         quantity: 1,
       }],
       automatic_tax: { enabled: location === "france" },
-      tax_id_collection: { enabled: location === "france" },
       customer_update: { address: "auto", name: "auto" },
       phone_number_collection: { enabled: true },
       allow_promotion_codes: true,
