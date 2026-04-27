@@ -192,10 +192,10 @@ const NiteoToulouse = () => {
               <span className="text-primary-foreground font-medium text-sm md:text-base">Édition Toulouse 2026</span>
             </div>
             <h1 className="text-3xl md:text-6xl font-bold text-primary-foreground mb-4 md:mb-6">
-              Niteo by Mare Nostrum
+              50h pour passer de l'idée à l'entreprise
             </h1>
             <p className="text-lg md:text-2xl text-primary-foreground/90 mb-8 md:mb-12">
-              Accélérez l'insertion professionnelle de vos étudiants entrepreneurs avec un programme de 50h pour cycles licence et master
+              Le programme d'accélération entrepreneuriale pour étudiants en licence et master — Demo Day, 10 000€ de dotations, 30 décideurs
             </p>
             <Button asChild size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto">
               <Link to="/contact">

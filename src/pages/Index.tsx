@@ -216,11 +216,11 @@ const Index = () => {
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 22% 18%, hsl(181 67% 54% / 0.20) 0%, transparent 52%), radial-gradient(ellipse at 80% 88%, hsl(228 56% 8% / 0.75) 0%, transparent 58%)' }}></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="mn-eyebrow-light mb-5">Cabinet de conseil · Toulouse · Paris · Casablanca</div>
-            <h1 className="font-editorial italic text-3xl md:text-6xl font-semibold text-primary-foreground mb-4 md:mb-6 leading-[1.05]" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>Sécurisons la trajectoire et l'impact des néo-entrepreneurs.</h1>
+            <div className="mn-eyebrow-light mb-5">Cabinet de conseil · depuis Toulouse, dans tout l'espace francophone</div>
+            <h1 className="font-editorial italic text-3xl md:text-6xl font-semibold text-primary-foreground mb-4 md:mb-6 leading-[1.05]" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>De l'idée à l'entreprise à impact — avec les bons experts à tes côtés.</h1>
             <p className="text-base md:text-xl text-primary-foreground/75 mb-8 md:mb-12 max-w-2xl mx-auto" style={{ lineHeight: '1.65' }}>
-              Mare Nostrum accompagne les écoles et les entrepreneurs à impact.
-              De l'idée à la croissance.
+              Mare Nostrum accompagne les écoles et les entrepreneurs francophones.
+              135+ experts · 12 pays · 95% de satisfaction.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-6 md:mb-8 px-4">
@@ -239,7 +239,7 @@ const Index = () => {
             </div>
 
             <p className="text-xs md:text-sm text-primary-foreground/70">
-              Implanté à Toulouse, Paris et Casablanca – francophonie, innovation et impact
+              Depuis Toulouse, dans tout l'espace francophone — innovation et impact
             </p>
           </div>
         </div>

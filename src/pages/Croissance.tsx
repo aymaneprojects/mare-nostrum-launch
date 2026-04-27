@@ -398,9 +398,9 @@ const Croissance = () => {
 
       {/* Hero Section */}
       <PageHero
-        badgeContent="Club Entrepreneur Mare Nostrum — Toulouse, Paris, Casablanca"
-        title="Accompagnement entrepreneur à Toulouse et en Afrique francophone"
-        subtitle="Mentorat, réseau international et intelligence artificielle pour doubler votre activité et votre impact — dès 30€ par mois"
+        badgeContent="Club Entrepreneur Mare Nostrum · depuis Toulouse, dans tout l'espace francophone"
+        title="Le club qui fait passer ton activité au niveau supérieur"
+        subtitle="Mentorat, réseau international et intelligence artificielle — 50% de nos membres se rémunèrent en moins de 2 ans. Dès 30€/mois."
         size="lg"
         ctas={
           <Button size="lg" variant="secondary" className="w-full sm:w-auto" onClick={() => {
@@ -531,7 +531,7 @@ const Croissance = () => {
 
               <div className="bg-muted/50 rounded-sm p-3 mb-6">
                 <p className="text-xs text-muted-foreground text-center">
-                  Vous lancez votre activité et sortez de l'isolement (0-12 mois, pré-revenu)
+                  Tu lances ton activité et sors de l'isolement (0-12 mois, pré-revenu)
                 </p>
               </div>
 
@@ -575,7 +575,7 @@ const Croissance = () => {
 
               <div className="bg-white/10 backdrop-blur-sm rounded-sm p-3 mb-6">
                 <p className="text-xs text-center opacity-90">
-                  Vous avez vos premiers clients et voulez accélérer (1K-10K€ MRR)
+                  Tu as tes premiers clients et veux accélérer (1K-10K€ MRR)
                 </p>
               </div>
 
@@ -613,7 +613,7 @@ const Croissance = () => {
 
               <div className="bg-muted/50 rounded-sm p-3 mb-6">
                 <p className="text-xs text-muted-foreground text-center">
-                  Vous structurez votre croissance, chaque décision compte (10K€+ MRR)
+                  Tu structures ta croissance, chaque décision compte (10K€+ MRR)
                 </p>
               </div>
 
