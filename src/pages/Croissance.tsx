@@ -488,17 +488,8 @@ const Croissance = () => {
             Survole chaque avantage pour en savoir plus
           </p>
 
-          {/* Selectors: country + billing */}
+          {/* Selector: billing only — location auto-detected */}
           <div className="flex flex-col items-center gap-5 mb-12">
-            <div className="flex flex-wrap justify-center gap-3">
-              <Button variant={selectedLocation === "france" ? "default" : "outline"} onClick={() => setSelectedLocation("france")} size="default">
-                France
-              </Button>
-              <Button variant={selectedLocation === "congo_brazzaville" ? "default" : "outline"} onClick={() => setSelectedLocation("congo_brazzaville")} size="default">
-                République du Congo
-              </Button>
-            </div>
-
             <div className="flex items-center gap-1 bg-background border border-border rounded-full p-1 shadow-sm">
               <button
                 onClick={() => setSelectedBilling("monthly")}
