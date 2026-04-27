@@ -86,7 +86,6 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   const isPostPayment = ["success", "kit", "slack"].includes(phase);
 
   const handleClose = () => {
-    if (phase === "payment") return; // bloquer fermeture pendant paiement
     setPhase("step1");
     setPrenom(""); setEmail(""); setEntreprise(""); setStade("");
     setError(""); setClientSecret(""); setCgvAccepted(false); setKitClicked(false);
@@ -170,15 +169,13 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
           <DialogTitle className="sr-only">{headerTitle}</DialogTitle>
           <p className="text-xs text-white/60 uppercase tracking-widest mb-1">{headerSub}</p>
           <h2 className="font-editorial italic text-xl text-white pr-10">{headerTitle}</h2>
-          {phase !== "payment" && (
-            <button
-              onClick={handleClose}
-              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 active:bg-white/30 transition-colors"
-              aria-label="Fermer"
-            >
-              <X className="h-4 w-4 text-white" />
-            </button>
-          )}
+          <button
+            onClick={handleClose}
+            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 active:bg-white/30 transition-colors"
+            aria-label="Fermer"
+          >
+            <X className="h-4 w-4 text-white" />
+          </button>
         </div>
 
         {/* ── Stepper unifié 6 étapes ───────────────────────── */}
