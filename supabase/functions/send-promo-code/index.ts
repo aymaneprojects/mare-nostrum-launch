@@ -1,6 +1,11 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import Stripe from "https://esm.sh/stripe@14.21.0?target=deno";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+const stripe = new Stripe(Deno.env.get("STRIPE_API")!, {
+  apiVersion: "2024-06-20",
+  httpClient: Stripe.createFetchHttpClient(),
+});
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -33,6 +38,21 @@ const handler = async (req: Request): Promise<Response> => {
 
     const promoCode = generateCode(prenom);
     const zoneLabel = zone === "france" ? "France" : zone === "congo" ? "République du Congo" : "Autre pays";
+
+    // ── Créer le code promo dans Stripe ───────────────────────────────────────
+    const coupon = await stripe.coupons.create({
+      percent_off: 10,
+      duration: "once",           // appliqué uniquement sur la première facture
+      max_redemptions: 1,
+      name: `–10% premier mois — ${prenom}`,
+    });
+
+    await stripe.promotionCodes.create({
+      coupon: coupon.id,
+      code: promoCode,
+      max_redemptions: 1,
+      expires_at: Math.floor(Date.now() / 1000) + 30 * 24 * 60 * 60, // 30 jours
+    });
 
     // ── Email au visiteur ──────────────────────────────────────────────────────
     await sendEmail(
