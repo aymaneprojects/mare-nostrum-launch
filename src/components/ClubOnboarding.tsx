@@ -55,21 +55,18 @@ interface Props {
   initialEmail?: string;
 }
 
-const FORM_STEPS = [
-  { icon: User,       label: "Toi"        },
-  { icon: Briefcase,  label: "Ton projet" },
-  { icon: CreditCard, label: "Paiement"   },
+const ALL_STEPS = [
+  { icon: User,          label: "Toi"       },
+  { icon: Briefcase,     label: "Projet"    },
+  { icon: CreditCard,    label: "Paiement"  },
+  { icon: PartyPopper,   label: "Bienvenue" },
+  { icon: Download,      label: "Kit"       },
+  { icon: MessageSquare, label: "Slack"     },
 ];
 
-const POST_STEPS = [
-  { label: "Bienvenue" },
-  { label: "Kit"       },
-  { label: "Slack"     },
-];
-
-const postStepIndex: Record<Phase, number> = {
-  success: 0, kit: 1, slack: 2,
-  step1: -1, step2: -1, loading: -1, payment: -1,
+const phaseToStep: Record<Phase, number> = {
+  step1: 0, step2: 1, loading: 2, payment: 2,
+  success: 3, kit: 4, slack: 5,
 };
 
 export default function ClubOnboarding({ open, onClose, offer, location, billing, initialPhase, initialPrenom, initialEmail }: Props) {
@@ -83,10 +80,9 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   const [cgvAccepted, setCgvAccepted]   = useState(false);
   const [kitClicked, setKitClicked]     = useState(false);
 
-  const price  = (billing === "monthly" ? MONTHLY_PRICES : ANNUAL_PRICES)[location][offer];
-  const period = billing === "monthly" ? "/mois" : "/an";
-  const formStepIndex = phase === "step1" ? 0 : phase === "step2" ? 1 : 2;
-
+  const price       = (billing === "monthly" ? MONTHLY_PRICES : ANNUAL_PRICES)[location][offer];
+  const period      = billing === "monthly" ? "/mois" : "/an";
+  const currentStep = phaseToStep[phase];
   const isPostPayment = ["success", "kit", "slack"].includes(phase);
 
   const handleClose = () => {
@@ -175,56 +171,33 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
           <h2 className="font-editorial italic text-xl text-white">{headerTitle}</h2>
         </div>
 
-        {/* ── Indicateur étapes formulaire ──────────────────── */}
-        {!isPostPayment && phase !== "payment" && (
-          <div className="flex items-center justify-center gap-0 px-8 pt-5 pb-1 shrink-0">
-            {FORM_STEPS.map((s, i) => {
+        {/* ── Stepper unifié 6 étapes ───────────────────────── */}
+        {phase !== "loading" && (
+          <div className="flex items-center justify-center px-4 pt-4 pb-1 shrink-0">
+            {ALL_STEPS.map((s, i) => {
               const Icon   = s.icon;
-              const active = formStepIndex === i;
-              const done   = formStepIndex > i;
+              const active = currentStep === i;
+              const done   = currentStep > i;
               return (
                 <div key={i} className="flex items-center">
-                  <div className="flex flex-col items-center gap-1">
-                    <div className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
-                      done ? "bg-accent text-white" : active ? "bg-primary text-white" : "bg-muted text-muted-foreground"
+                  <div className="flex flex-col items-center gap-0.5">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                      done   ? "bg-accent text-white" :
+                      active ? "bg-primary text-white" :
+                               "bg-muted text-muted-foreground"
                     }`}>
-                      {done ? <CheckCircle2 className="h-4 w-4" /> : <Icon className="h-4 w-4" />}
+                      {done ? <CheckCircle2 className="h-3.5 w-3.5" /> : <Icon className="h-3.5 w-3.5" />}
                     </div>
-                    <span className={`text-[10px] font-medium ${active ? "text-primary" : "text-muted-foreground"}`}>
+                    <span className={`hidden sm:block text-[9px] font-medium leading-tight ${
+                      active ? "text-primary" : "text-muted-foreground"
+                    }`}>
                       {s.label}
                     </span>
                   </div>
-                  {i < FORM_STEPS.length - 1 && (
-                    <div className={`w-14 h-0.5 mx-2 mb-4 rounded-full ${formStepIndex > i ? "bg-accent" : "bg-border"}`} />
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        )}
-
-        {/* ── Indicateur étapes post-paiement ───────────────── */}
-        {isPostPayment && (
-          <div className="flex items-center justify-center gap-0 px-8 pt-5 pb-1 shrink-0">
-            {POST_STEPS.map((s, i) => {
-              const active = postStepIndex[phase] === i;
-              const done   = postStepIndex[phase] > i;
-              return (
-                <div key={i} className="flex items-center">
-                  <div className="flex flex-col items-center gap-1">
-                    <div className={`w-9 h-9 rounded-full flex items-center justify-center transition-all ${
-                      done ? "bg-accent text-white" : active ? "bg-primary text-white" : "bg-muted text-muted-foreground"
-                    }`}>
-                      {done ? <CheckCircle2 className="h-4 w-4" /> : (
-                        <span className="text-xs font-bold">{i + 1}</span>
-                      )}
-                    </div>
-                    <span className={`text-[10px] font-medium ${active ? "text-primary" : "text-muted-foreground"}`}>
-                      {s.label}
-                    </span>
-                  </div>
-                  {i < POST_STEPS.length - 1 && (
-                    <div className={`w-14 h-0.5 mx-2 mb-4 rounded-full ${postStepIndex[phase] > i ? "bg-accent" : "bg-border"}`} />
+                  {i < ALL_STEPS.length - 1 && (
+                    <div className={`w-6 md:w-8 h-0.5 mx-1 rounded-full transition-all duration-300 ${
+                      currentStep > i ? "bg-accent" : "bg-border"
+                    }`} />
                   )}
                 </div>
               );
