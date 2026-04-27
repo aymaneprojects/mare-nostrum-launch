@@ -18,6 +18,38 @@ import neoEntrepreneurElite from "@/assets/neo-entrepreneur-elite.png";
 
 type LocationType = "france" | "congo_brazzaville";
 
+function ClubCounter() {
+  const [count, setCount]       = useState<number | null>(null);
+  const [displayed, setDisplayed] = useState(0);
+
+  useEffect(() => {
+    supabase.functions.invoke("get-club-count")
+      .then(({ data }) => { if (data?.count != null) setCount(data.count); })
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    if (count === null) return;
+    if (count === 0) { setDisplayed(0); return; }
+    let start = 0;
+    const step = Math.ceil(count / 40);
+    const id = window.setInterval(() => {
+      start += step;
+      if (start >= count) { setDisplayed(count); clearInterval(id); }
+      else setDisplayed(start);
+    }, 30);
+    return () => clearInterval(id);
+  }, [count]);
+
+  if (count === null) return null;
+
+  return (
+    <p className="mt-4 text-sm font-medium text-accent">
+      Aujourd'hui, le Club compte <span className="text-lg font-bold tabular-nums">{displayed}</span> entrepreneur{displayed > 1 ? "s" : ""} actif{displayed > 1 ? "s" : ""}
+    </p>
+  );
+}
+
 interface OfferFeature {
   label: string;
   tooltip: string;
@@ -465,6 +497,7 @@ const Croissance = () => {
               <p className="text-muted-foreground mt-2">
                 Le Club Mare Nostrum est là pour t'aider à passer TES caps et à renforcer la performance de ton modèle économique.
               </p>
+              <ClubCounter />
             </div>
           </div>
         </div>
