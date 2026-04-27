@@ -81,6 +81,7 @@ serve(async (req) => {
       ui_mode: "embedded",
       mode: "subscription",
       customer: customer.id,
+      payment_method_types: ["card"],
       line_items: [{
         price_data: {
           currency,
