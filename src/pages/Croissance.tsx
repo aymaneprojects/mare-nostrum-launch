@@ -12,7 +12,6 @@ import SEOHead from "@/components/SEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import ClubOnboarding, { type Offer } from "@/components/ClubOnboarding";
-import ExitIntentPopup from "@/components/ExitIntentPopup";
 import { supabase } from "@/integrations/supabase/client";
 import atelierRose from "@/assets/atelier-rose.png";
 import neoEntrepreneurElite from "@/assets/neo-entrepreneur-elite.png";
@@ -845,7 +844,6 @@ const Croissance = () => {
       </section>
 
       <Footer />
-      <ExitIntentPopup />
     </div>
   );
 };

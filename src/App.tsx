@@ -7,6 +7,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import { usePrefetchBlog } from "@/hooks/usePrefetchBlog";
 import ChatBot from "@/components/ChatBot";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
 import BottomNav from "@/components/BottomNav";
 import CookieBanner from "@/components/CookieBanner";
 import Index from "./pages/Index";
@@ -66,6 +67,7 @@ const AppContent = () => {
       <ChatBot />
       <BottomNav />
       <CookieBanner />
+      <ExitIntentPopup />
       
       <Routes>
         <Route path="/" element={<Index />} />
