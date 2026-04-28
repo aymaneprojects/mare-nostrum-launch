@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Calendar, User, Clock, Globe, TrendingUp, Users, Lightbulb, Target } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEOHead from "@/components/SEOHead";
+import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 const EntrepreneuriatSocialFrancophonie = () => {
@@ -29,16 +29,12 @@ const EntrepreneuriatSocialFrancophonie = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SEOHead
+      <EnhancedSEOHead
         title="L'Entrepreneuriat Social en Francophonie : Vision et Perspectives 2025 - Mare Nostrum"
         description="Analyse approfondie de l'entrepreneuriat social dans l'espace francophone. Tendances, acteurs clés et opportunités pour les entrepreneurs à impact en Afrique et Europe."
         keywords="entrepreneuriat social francophonie, startup impact afrique, économie sociale solidaire, entrepreneur social, innovation sociale francophone"
         structuredData={articleSchema}
-        breadcrumbSchema={[
-          { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "Magazine", url: "https://marenostrum.tech/mag/entrepreneuriat-social-francophonie" },
-          { name: "Entrepreneuriat Social Francophonie", url: "https://marenostrum.tech/mag/entrepreneuriat-social-francophonie" }
-        ]}
+        
       />
       <Header />
 

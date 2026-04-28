@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import TestimonialCard from "@/components/TestimonialCard";
-import SEOHead from "@/components/SEOHead";
+import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import ylookProgramme from "@/assets/ylook-programme.jpg";
@@ -145,13 +145,7 @@ const Education = () => {
     answer: "Nous commençons par un rendez-vous de découverte pour comprendre vos besoins, puis établissons un diagnostic personnalisé. Ensuite, nous vous proposons un programme sur-mesure que nous déployons avec votre équipe pédagogique."
   }];
   return <div className="min-h-screen flex flex-col">
-      <SEOHead title="Education Entrepreneuriale Etudiants Toulouse - Mare Nostrum | Programmes Ecoles Universites" description="Mare Nostrum Education : programmes d'entrepreneuriat etudiant a Toulouse, Paris, Casablanca. Fresque de l'esprit d'entreprendre, ateliers, hackathons, programme Niteo. 53% creation entreprise, +95% satisfaction. Expert entrepreneuriat etudiant." keywords="education entrepreneuriale toulouse, entrepreneuriat etudiant, entrepreneuriat etudiant toulouse, formation entrepreneuriat etudiant, programmes ecoles entrepreneuriat, ateliers entrepreneuriat toulouse, hackathon entrepreneuriat etudiant, enseignement superieur toulouse, Niteo, programme Niteo, fresque entrepreneuriat, entrepreneuriat afrique, formation entrepreneur etudiant, entrepreneuriat universite, entrepreneuriat ecole de commerce" structuredData={educationSchema} faqSchema={educationFaqs} breadcrumbSchema={[{
-      name: "Accueil",
-      url: "https://marenostrum.tech/"
-    }, {
-      name: "Éducation",
-      url: "https://marenostrum.tech/education"
-    }]} />
+      <EnhancedSEOHead title="Education Entrepreneuriale Etudiants Toulouse - Mare Nostrum | Programmes Ecoles Universites" description="Mare Nostrum Education : programmes d'entrepreneuriat etudiant a Toulouse, Paris, Casablanca. Fresque de l'esprit d'entreprendre, ateliers, hackathons, programme Niteo. 53% creation entreprise, +95% satisfaction. Expert entrepreneuriat etudiant." keywords="education entrepreneuriale toulouse, entrepreneuriat etudiant, entrepreneuriat etudiant toulouse, formation entrepreneuriat etudiant, programmes ecoles entrepreneuriat, ateliers entrepreneuriat toulouse, hackathon entrepreneuriat etudiant, enseignement superieur toulouse, Niteo, programme Niteo, fresque entrepreneuriat, entrepreneuriat afrique, formation entrepreneur etudiant, entrepreneuriat universite, entrepreneuriat ecole de commerce" structuredData={educationSchema} faqSchema={educationFaqs}  />
       <Header />
 
 

@@ -9,7 +9,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { useToast } from "@/hooks/use-toast";
-import SEOHead from "@/components/SEOHead";
+import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 const Contact = () => {
   const {
     toast
@@ -109,14 +109,11 @@ const Contact = () => {
     }));
   };
   return <div className="min-h-screen flex flex-col">
-      <SEOHead 
+      <EnhancedSEOHead 
         title="Contact Mare Nostrum - Cabinet Conseil Entrepreneuriat | Toulouse Paris Casablanca" 
         description="Contactez Mare Nostrum pour votre projet entrepreneurial. Bureaux Toulouse +33 6 17 35 81 67, Paris, Casablanca +212 694 995 785. Rendez-vous gratuit. Réponse sous 48h maximum." 
         keywords="contact mare nostrum, rendez-vous conseil, toulouse, paris, casablanca, accompagnement entrepreneuriat, conseil gratuit"
-        breadcrumbSchema={[
-          { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "Contact", url: "https://marenostrum.tech/contact" }
-        ]}
+        
       />
       <Header />
 

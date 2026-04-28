@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Globe, Users, Rocket, CheckCircle2, ArrowRight, MapPin, Sparkles, Target } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEOHead from "@/components/SEOHead";
+import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 
@@ -50,16 +50,13 @@ const AccompagnementFrancophonie = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SEOHead
+      <EnhancedSEOHead
         title="Incubateur Entrepreneurs Toulouse & Afrique | Accompagnement Francophonie - Mare Nostrum"
         description="Incubateur d'entrepreneurs a impact a Toulouse et en Afrique francophone. Programmes Tremplin, Ascension, Elite. Accompagnement personnalise, mentorat, financement. Mare Nostrum, expert entrepreneuriat Toulouse et Afrique."
         keywords="incubateur toulouse, entrepreneuriat toulouse, entrepreneuriat afrique, accompagnement entrepreneur toulouse, startup impact toulouse, incubateur afrique, entrepreneur afrique francophone, mentorat entrepreneur toulouse, accompagnement startup afrique, incubateur casablanca, creation entreprise toulouse, accelerateur toulouse"
         structuredData={pageSchema}
         faqSchema={faqs}
-        breadcrumbSchema={[
-          { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "Entrepreneurs", url: "https://marenostrum.tech/entrepreneurs/accompagnement-francophonie-afrique" }
-        ]}
+        
       />
       <Header />
 

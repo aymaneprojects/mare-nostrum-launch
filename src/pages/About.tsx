@@ -4,7 +4,7 @@ import { Globe, Heart, Users, Target, Lightbulb, ArrowRight } from "lucide-react
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
-import SEOHead from "@/components/SEOHead";
+import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -30,14 +30,11 @@ import neoEntrepreneurEliteImg from "@/assets/neo-entrepreneur-elite.png";
 import francophonieScientiqueImg from "@/assets/francophonie-scientifique.png";
 const About = () => {
   return <div className="min-h-screen flex flex-col">
-      <SEOHead 
+      <EnhancedSEOHead 
         title="A propos Mare Nostrum - Expert Entrepreneuriat Toulouse & Afrique | Niteo" 
         description="Mare Nostrum, societe a mission fondee en 2023 a Toulouse. Createurs du programme Niteo. 24 entreprises, 17+ projets etudiants accompagnes. 135+ experts, 2000 ans experience. Entrepreneuriat Toulouse, Afrique, francophonie." 
         keywords="mare nostrum, a propos, equipe, entrepreneuriat toulouse, niteo toulouse, programme niteo, entrepreneuriat afrique, societe a mission, toulouse, cabinet conseil, entrepreneuriat impact, francophonie, afrique, maghreb, incubateur toulouse" 
-        breadcrumbSchema={[
-          { name: "Accueil", url: "https://marenostrum.tech/" }, 
-          { name: "À propos", url: "https://marenostrum.tech/a-propos" }
-        ]}
+        
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Organization",

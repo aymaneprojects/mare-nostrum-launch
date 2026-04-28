@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, GraduationCap, Users, Lightbulb, Trophy, BookOpen, Calendar, Star, Briefcase, Target, Clock, Award, Mic } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEOHead from "@/components/SEOHead";
+import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 
@@ -170,16 +170,13 @@ const NiteoToulouse = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SEOHead
+      <EnhancedSEOHead
         title="Niteo Toulouse 2026 - Programme Entrepreneuriat Etudiant | Mare Nostrum"
         description="Niteo Toulouse 2026 : programme d'acceleration entrepreneuriale de 50h pour etudiants. E-learning, ateliers, coaching individuel, Demo Day devant 30 decideurs. +10 000 EUR de dotations. Par Mare Nostrum, expert entrepreneuriat Toulouse."
         keywords="Niteo, Niteo Toulouse, programme Niteo, Niteo 2026, entrepreneuriat toulouse, programme entrepreneuriat etudiant toulouse, acceleration startup etudiant toulouse, mare nostrum toulouse, demo day toulouse, incubateur etudiant toulouse, entrepreneuriat etudiant toulouse, creation entreprise etudiant, startup etudiante toulouse, mare nostrum niteo"
         structuredData={niteoSchema}
         faqSchema={niteoFaqs}
-        breadcrumbSchema={[
-          { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "Niteo Toulouse", url: "https://marenostrum.tech/niteo-toulouse" },
-        ]}
+        
       />
       <Header />
 

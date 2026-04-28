@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Calendar, User, Clock, BookOpen, Lightbulb, Users, Target, Zap } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEOHead from "@/components/SEOHead";
+import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 const InnovationPedagogiqueEntrepreneuriat = () => {
@@ -29,16 +29,12 @@ const InnovationPedagogiqueEntrepreneuriat = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SEOHead
+      <EnhancedSEOHead
         title="Innovation Pédagogique et Entrepreneuriat : Nouvelles Approches - Mare Nostrum"
         description="Découvrez les méthodes pédagogiques innovantes qui révolutionnent l'enseignement de l'entrepreneuriat : design thinking, learning by doing, approches expérientielles."
         keywords="innovation pédagogique, enseignement entrepreneuriat, design thinking éducation, learning by doing, pédagogie active, formation entrepreneur"
         structuredData={articleSchema}
-        breadcrumbSchema={[
-          { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "Magazine", url: "https://marenostrum.tech/mag/innovation-pedagogique-entrepreneuriat" },
-          { name: "Innovation Pédagogique", url: "https://marenostrum.tech/mag/innovation-pedagogique-entrepreneuriat" }
-        ]}
+        
       />
       <Header />
 

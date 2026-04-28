@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowLeft, CheckCircle2, Sparkles, Rocket, Users } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEOHead from "@/components/SEOHead";
+import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 const questions = [
@@ -170,16 +170,12 @@ const TestMaturiteProjet = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SEOHead
+      <EnhancedSEOHead
         title="Test Maturité Projet Entrepreneurial | Évaluation Gratuite 5 min - Mare Nostrum"
         description="Évaluez la maturité de votre projet entrepreneurial en 5 minutes. Test gratuit pour découvrir le programme d'accompagnement adapté à votre situation."
         keywords="test projet entrepreneurial, évaluation startup, maturité projet, diagnostic entrepreneur, quiz entrepreneuriat"
         structuredData={pageSchema}
-        breadcrumbSchema={[
-          { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "Entrepreneurs", url: "https://marenostrum.tech/entrepreneurs/accompagnement-francophonie-afrique" },
-          { name: "Test maturité", url: "https://marenostrum.tech/entrepreneurs/test-maturite-projet" }
-        ]}
+        
       />
       <Header />
 

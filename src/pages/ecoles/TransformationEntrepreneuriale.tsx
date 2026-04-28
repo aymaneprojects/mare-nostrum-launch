@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { GraduationCap, Users, Lightbulb, CheckCircle2, ArrowRight, Clock, Target, Zap } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEOHead from "@/components/SEOHead";
+import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 
@@ -49,16 +49,13 @@ const TransformationEntrepreneuriale = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SEOHead
+      <EnhancedSEOHead
         title="Programmes d'Entrepreneuriat pour Écoles | Alternative Agile à Pépite - Mare Nostrum"
         description="Intégrez l'entrepreneuriat dans votre établissement avec des programmes sur-mesure. Alternative agile aux dispositifs traditionnels. Diagnostic gratuit en 30 min."
         keywords="programme entrepreneuriat école, formation entrepreneuriale université, alternative pépite, accompagnement étudiant entrepreneur, sensibilisation entrepreneuriat"
         structuredData={pageSchema}
         faqSchema={faqs}
-        breadcrumbSchema={[
-          { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "Écoles", url: "https://marenostrum.tech/ecoles/transformation-entrepreneuriale" }
-        ]}
+        
       />
       <Header />
 

@@ -13,7 +13,7 @@ import { BookOpen, Download, GraduationCap, Target, Users, Loader2 } from "lucid
 import { Checkbox } from "@/components/ui/checkbox";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEOHead from "@/components/SEOHead";
+import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import livreBlancCover from "@/assets/livre-blanc-cover.png";
 const formSchema = z.object({
   firstName: z.string().trim().min(2, {
@@ -128,14 +128,11 @@ const LivreEntrepreneuriat = () => {
     }
   };
   return <div className="min-h-screen flex flex-col">
-      <SEOHead 
+      <EnhancedSEOHead 
         title="Livre Blanc Pedagogie Entrepreneuriale 2025 - Mare Nostrum Toulouse" 
         description="Telechargez le Livre Blanc Mare Nostrum sur la Pedagogie Entrepreneuriale 2025. Meilleures pratiques pour integrer l'entrepreneuriat etudiant dans votre ecole ou universite. Guide gratuit." 
         keywords="livre blanc entrepreneuriat, pedagogie entrepreneuriale, education entrepreneuriale, formation entrepreneuriat ecole, entrepreneuriat etudiant, innovation pedagogique, mare nostrum livre blanc"
-        breadcrumbSchema={[
-          { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "Livre Blanc", url: "https://marenostrum.tech/livre-entrepreneuriat" }
-        ]}
+        
       />
       <Header />
       

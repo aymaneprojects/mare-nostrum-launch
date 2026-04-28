@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Users, CheckCircle2, ArrowRight, Calendar, MessageSquare, Target, Clock } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEOHead from "@/components/SEOHead";
+import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 
@@ -67,17 +67,13 @@ const MentoratIndividuel = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SEOHead
+      <EnhancedSEOHead
         title="Mentorat Entrepreneur Individuel | Séances 1-to-1 Expert - Mare Nostrum"
         description="Bénéficiez de séances de mentorat individuelles avec des entrepreneurs expérimentés. Accompagnement personnalisé pour débloquer vos challenges et accélérer votre projet."
         keywords="mentorat entrepreneur, coaching startup, accompagnement individuel, mentor business, conseil entrepreneur"
         structuredData={pageSchema}
         faqSchema={faqs}
-        breadcrumbSchema={[
-          { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "Entrepreneurs", url: "https://marenostrum.tech/entrepreneurs/accompagnement-francophonie-afrique" },
-          { name: "Mentorat individuel", url: "https://marenostrum.tech/entrepreneurs/mentorat-individuel" }
-        ]}
+        
       />
       <Header />
 

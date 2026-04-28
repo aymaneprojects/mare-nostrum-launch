@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { CheckCircle2, ArrowRight, Clock, Target, Users } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEOHead from "@/components/SEOHead";
+import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import { supabase } from "@/integrations/supabase/client";
@@ -102,17 +102,13 @@ const DiagnosticGratuit = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SEOHead
+      <EnhancedSEOHead
         title="Diagnostic Entrepreneuriat École Gratuit | Évaluation 30 min - Mare Nostrum"
         description="Demandez votre diagnostic gratuit de 30 minutes. Identifiez les meilleures opportunités pour intégrer l'entrepreneuriat dans votre établissement. Sans engagement."
         keywords="diagnostic entrepreneuriat école, évaluation programme entrepreneurial, audit pédagogique gratuit, conseil formation entrepreneuriale"
         structuredData={pageSchema}
         faqSchema={faqs}
-        breadcrumbSchema={[
-          { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "Écoles", url: "https://marenostrum.tech/ecoles/transformation-entrepreneuriale" },
-          { name: "Diagnostic gratuit", url: "https://marenostrum.tech/ecoles/diagnostic-gratuit" }
-        ]}
+        
       />
       <Header />
 

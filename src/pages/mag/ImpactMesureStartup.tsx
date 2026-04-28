@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Calendar, User, Clock, BarChart3, Target, TrendingUp, CheckCircle2, PieChart } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEOHead from "@/components/SEOHead";
+import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 const ImpactMesureStartup = () => {
@@ -29,16 +29,12 @@ const ImpactMesureStartup = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SEOHead
+      <EnhancedSEOHead
         title="Mesurer l'Impact Social de sa Startup : Guide Complet - Mare Nostrum"
         description="Comment mesurer l'impact social de votre startup ? Découvrez les frameworks, KPIs et méthodologies pour quantifier votre contribution au bien commun."
         keywords="mesure impact social, KPIs startup impact, théorie du changement, SROI, indicateurs impact, reporting ESG, entreprise à mission"
         structuredData={articleSchema}
-        breadcrumbSchema={[
-          { name: "Accueil", url: "https://marenostrum.tech/" },
-          { name: "Magazine", url: "https://marenostrum.tech/mag/impact-mesure-startup" },
-          { name: "Mesure d'Impact", url: "https://marenostrum.tech/mag/impact-mesure-startup" }
-        ]}
+        
       />
       <Header />
 
