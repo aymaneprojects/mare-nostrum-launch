@@ -41,6 +41,8 @@ import EntrepreneuriatSocialFrancophonie from "./pages/mag/EntrepreneuriatSocial
 import InnovationPedagogiqueEntrepreneuriat from "./pages/mag/InnovationPedagogiqueEntrepreneuriat";
 import ImpactMesureStartup from "./pages/mag/ImpactMesureStartup";
 import NiteoToulouse from "./pages/NiteoToulouse";
+import Newsletter from "./pages/Newsletter";
+import Unsubscribed from "./pages/Unsubscribed";
 
 const queryClient = new QueryClient();
 
@@ -103,6 +105,10 @@ const AppContent = () => {
         {/* Niteo */}
         <Route path="/niteo-toulouse" element={<NiteoToulouse />} />
         
+        {/* ITER Newsletter */}
+        <Route path="/newsletter" element={<Newsletter />} />
+        <Route path="/unsubscribed" element={<Unsubscribed />} />
+
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
