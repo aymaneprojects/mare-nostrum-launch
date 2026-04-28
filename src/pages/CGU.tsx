@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
+import { Button } from "@/components/ui/button";
 
 const CGU = () => {
   return (
@@ -125,6 +128,26 @@ const CGU = () => {
             </p>
           </div>
         </main>
+
+        <section className="relative overflow-hidden py-16 md:py-20" style={{ background: 'linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)' }}>
+          <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, hsl(181 67% 54% / 0.055) 22px 23px)' }}></div>
+          <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 70% 30%, hsl(181 67% 54% / 0.18) 0%, transparent 52%), radial-gradient(ellipse at 15% 80%, hsl(228 56% 8% / 0.65) 0%, transparent 55%)' }}></div>
+          <div className="container mx-auto px-4 text-center relative z-10">
+            <div className="mn-eyebrow-light mb-5">Travaillons ensemble</div>
+            <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold mb-6 text-primary-foreground" style={{ letterSpacing: '-0.015em' }}>
+              Prêt à construire l'avenir ensemble ?
+            </h2>
+            <p className="text-lg text-primary-foreground/75 mb-8 max-w-2xl mx-auto" style={{ lineHeight: '1.65' }}>
+              Rejoignez les écoles et entrepreneurs qui transforment leurs ambitions en réalité
+            </p>
+            <Button asChild size="lg" variant="secondary">
+              <Link to="/contact">
+                Contactez-nous maintenant
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </section>
 
         <Footer />
       </div>
