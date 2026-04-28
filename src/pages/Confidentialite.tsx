@@ -22,12 +22,12 @@ const Confidentialite = () => {
             <section>
               <h2 className="text-2xl font-semibold text-foreground mt-8 mb-4">1. Responsable du traitement</h2>
               <p>
-                Le responsable du traitement des données personnelles collectées sur le site marenostrum.fr est :
+                Le responsable du traitement des données personnelles collectées sur le site marenostrum.tech est :
               </p>
               <ul className="list-none space-y-2">
                 <li><strong>Mare Nostrum</strong></li>
                 <li>17 Rue Rémusat, 31000 Toulouse, France</li>
-                <li>Email : contact@marenostrum.fr</li>
+                <li>Email : contact@marenostrum.tech</li>
                 <li>Téléphone : +33 5 34 61 41 62</li>
               </ul>
             </section>
@@ -134,7 +134,7 @@ const Confidentialite = () => {
                 <li><strong>Droit de retirer votre consentement :</strong> À tout moment</li>
               </ul>
               <p className="mt-4">
-                Pour exercer vos droits, contactez-nous à : <strong>contact@marenostrum.fr</strong>
+                Pour exercer vos droits, contactez-nous à : <strong>contact@marenostrum.tech</strong>
               </p>
               <p className="mt-2">
                 Vous disposez également du droit d'introduire une réclamation auprès de la CNIL 
@@ -198,7 +198,7 @@ const Confidentialite = () => {
                 vous pouvez contacter notre Délégué à la Protection des Données :
               </p>
               <ul className="list-none space-y-2">
-                <li>Email : dpo@marenostrum.fr</li>
+                <li>Email : dpo@marenostrum.tech</li>
                 <li>Courrier : Mare Nostrum - DPO, 17 Rue Rémusat, 31000 Toulouse, France</li>
               </ul>
             </section>

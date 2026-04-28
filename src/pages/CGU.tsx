@@ -23,7 +23,7 @@ const CGU = () => {
               <h2 className="text-2xl font-semibold text-foreground mt-8 mb-4">1. Objet et acceptation des CGU</h2>
               <p>
                 Les présentes Conditions Générales d'Utilisation (CGU) définissent les règles d'accès et d'utilisation 
-                des services proposés par Mare Nostrum sur le site marenostrum.fr. En accédant et en utilisant ce site, 
+                des services proposés par Mare Nostrum sur le site marenostrum.tech. En accédant et en utilisant ce site,
                 vous acceptez sans réserve les présentes CGU.
               </p>
             </section>
@@ -114,7 +114,7 @@ const CGU = () => {
                 Pour toute question relative aux présentes CGU, vous pouvez nous contacter :
               </p>
               <ul className="list-none space-y-2">
-                <li>Par email : contact@marenostrum.fr</li>
+                <li>Par email : contact@marenostrum.tech</li>
                 <li>Par téléphone : +33 5 34 61 41 62</li>
                 <li>Par courrier : 17 Rue Rémusat, 31000 Toulouse, France</li>
               </ul>
