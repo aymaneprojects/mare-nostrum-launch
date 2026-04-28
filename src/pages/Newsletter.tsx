@@ -29,7 +29,7 @@ const Newsletter = () => {
   };
 
   return (
-    <div style={{ minHeight: "100vh", background: "#EEF2F7", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "2rem 1rem", fontFamily: "'DM Sans', Helvetica, Arial, sans-serif" }}>
+    <div style={{ minHeight: "100vh", background: "hsl(40, 38%, 94%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "2rem 1rem", fontFamily: "'DM Sans', Helvetica, Arial, sans-serif" }}>
 
       <div style={{ width: "100%", maxWidth: 520, borderRadius: 0, overflow: "hidden", boxShadow: "0 18px 40px -22px rgba(36,51,93,0.28)" }}>
 
