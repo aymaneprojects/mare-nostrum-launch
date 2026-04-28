@@ -195,7 +195,7 @@ const NiteoToulouse = () => {
               50h pour passer de l'idée à l'entreprise
             </h1>
             <p className="text-lg md:text-2xl text-primary-foreground/90 mb-8 md:mb-12">
-              Le programme d'accélération entrepreneuriale pour étudiants en licence et master — Demo Day, 10 000€ de dotations, 30 décideurs
+              Le programme d'accélération entrepreneuriale pour étudiants en licence et master : Demo Day, 10 000€ de dotations, 30 décideurs
             </p>
             <Button asChild size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto">
               <Link to="/contact">

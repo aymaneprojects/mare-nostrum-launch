@@ -166,7 +166,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   const headerSub =
     phase === "success" ? "Paiement confirmé ✓" :
     phase === "kit"     ? "Étape 1 sur 2" :
-    phase === "slack"   ? "Étape 2 sur 2 — Dernière étape !" :
+    phase === "slack"   ? "Étape 2 sur 2 · Dernière étape !" :
                           "Club Mare Nostrum";
 
   const headerTitle =

@@ -91,7 +91,7 @@ export default function ExitIntentPopup() {
           <div className="flex items-center gap-2 mb-3">
             <Sparkles className="h-4 w-4 text-[hsl(var(--mn-turquoise))]" />
             <span className="text-xs font-bold uppercase tracking-widest text-[hsl(var(--mn-turquoise))]">
-              Offre exclusive — places limitées
+              Offre exclusive · places limitées
             </span>
           </div>
 

@@ -428,7 +428,7 @@ const Croissance = () => {
       <PageHero
         badgeContent="Club Entrepreneur Mare Nostrum · depuis Toulouse, dans tout l'espace francophone"
         title="Le club qui fait passer ton activité au niveau supérieur"
-        subtitle="Mentorat, réseau international et intelligence artificielle — 50% de nos membres se rémunèrent en moins de 2 ans. Dès 30€/mois."
+        subtitle="Mentorat, réseau international et intelligence artificielle. 50% de nos membres se rémunèrent en moins de 2 ans. Dès 30€/mois."
         size="lg"
         ctas={
           <Button size="lg" variant="secondary" className="w-full sm:w-auto" onClick={() => {
@@ -508,7 +508,7 @@ const Croissance = () => {
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Choisissez votre niveau</div>
           <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-4 text-foreground">
-            Nos offres d'accompagnement entrepreneur — Toulouse et Afrique
+            Nos offres d'accompagnement entrepreneur, Toulouse et Afrique
           </h2>
           <p className="text-center text-muted-foreground mb-4 max-w-3xl mx-auto">
             Choisis le niveau d'accompagnement qui te correspond
@@ -709,7 +709,7 @@ const Croissance = () => {
                 })}
                 <tr style={{ borderTop: '2px solid hsl(222 44% 25% / 0.12)' }}>
                   <td className="py-3 px-2 md:py-4 md:px-4 font-bold text-foreground">
-                    Prix mensuel — {selectedLocation === "france" ? "France" : "Rép. du Congo"}
+                    Prix mensuel · {selectedLocation === "france" ? "France" : "Rép. du Congo"}
                   </td>
                   <td className="py-3 px-2 md:py-4 md:px-4 text-center font-bold text-primary">
                     {selectedLocation === "france" ? "30€" : "10 000 XOF"}
@@ -848,7 +848,7 @@ const Croissance = () => {
         </div>
       </section>
 
-      <FAQSection title="FAQ — Réponses à vos objections les plus courantes" faqs={croissanceFaqs} />
+      <FAQSection title="FAQ : Réponses à vos objections les plus courantes" faqs={croissanceFaqs} />
 
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-accent via-primary to-primary">

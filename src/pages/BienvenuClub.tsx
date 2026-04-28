@@ -39,7 +39,7 @@ const BienvenuClub = () => {
   return (
     <>
       <SEOHead
-        title="Bienvenue au Club — Mare Nostrum"
+        title="Bienvenue au Club | Mare Nostrum"
         description="Félicitations, tu fais partie du Club Mare Nostrum."
         noindex={true}
       />
