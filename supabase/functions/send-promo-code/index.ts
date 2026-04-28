@@ -51,7 +51,7 @@ const handler = async (req: Request): Promise<Response> => {
       coupon: coupon.id,
       code: promoCode,
       max_redemptions: 1,
-      expires_at: Math.floor(Date.now() / 1000) + 30 * 24 * 60 * 60, // 30 jours
+      expires_at: Math.floor(Date.now() / 1000) + 24 * 60 * 60, // 24 heures
     });
 
     // ── Email au visiteur ──────────────────────────────────────────────────────
@@ -65,7 +65,7 @@ const handler = async (req: Request): Promise<Response> => {
 
         <p>Il te donne <strong>–50% sur ton premier mois</strong> d'abonnement au Club Mare Nostrum. Entre-le au moment du paiement sur <a href="https://marenostrum.tech/club">marenostrum.tech/club</a>.</p>
 
-        <p>Ce code est valable 30 jours et utilisable une seule fois.</p>
+        <p>⚠️ Ce code est valable <strong>24 heures</strong> et utilisable une seule fois.</p>
 
         <p>Cordialement,<br>L'équipe Mare Nostrum</p>
 
