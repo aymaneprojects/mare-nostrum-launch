@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mare Nostrum · Newsletter</title>
+  <link rel="icon" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:ital,wght@1,600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --nuit:      hsl(222, 44%, 25%);
+      --ink:       hsl(228, 56%, 13%);
+      --turquoise: hsl(181, 67%, 54%);
+      --ivory:     hsl(40, 38%, 94%);
+      --ocre:      hsl(36, 78%, 45%);
+      --muted:     hsl(224, 14%, 50%);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--ivory);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 32px hsl(222 44% 25% / 0.12);
+      width: 100%;
+      max-width: 460px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      background: linear-gradient(135deg, var(--nuit) 0%, var(--ink) 100%);
+      padding: 2rem 2rem 1.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(135deg, transparent 0 22px, hsl(181 67% 54% / 0.06) 22px 23px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+
+    .logo img {
+      height: 36px;
+      width: auto;
+    }
+
+    .eyebrow {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--turquoise);
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+
+    .card-header h1 {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: white;
+      line-height: 1.2;
+      position: relative;
+    }
+
+    .card-body {
+      padding: 2rem;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1.75rem;
+    }
+
+    .field {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      border: 1.5px solid hsl(222 44% 25% / 0.18);
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--ink);
+      background: white;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--turquoise);
+      box-shadow: 0 0 0 3px hsl(181 67% 54% / 0.15);
+    }
+
+    input::placeholder {
+      color: var(--muted);
+      opacity: 0.7;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 0.8rem 1.5rem;
+      background: var(--turquoise);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: filter 0.15s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn:hover { filter: brightness(1.06); }
+    .btn:active { transform: scale(0.98); }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--ink);
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      display: none;
+    }
+    .btn.loading .spinner { display: block; }
+    .btn.loading .btn-text { display: none; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .alert {
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    .alert.success {
+      background: hsl(181 67% 54% / 0.12);
+      color: hsl(181, 50%, 25%);
+      border: 1px solid hsl(181 67% 54% / 0.3);
+      display: block;
+    }
+
+    .alert.error {
+      background: hsl(0 70% 54% / 0.08);
+      color: hsl(0, 60%, 35%);
+      border: 1px solid hsl(0 70% 54% / 0.2);
+      display: block;
+    }
+
+    .success-view {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      display: none;
+    }
+
+    .success-icon {
+      width: 56px;
+      height: 56px;
+      background: hsl(181 67% 54% / 0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+
+    .success-view h2 {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .success-view p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-header">
+    <div class="logo">
+      <img src="/logo.jpg" alt="Mare Nostrum" />
+    </div>
+    <div class="eyebrow">Communauté</div>
+    <h1>Rejoins la newsletter Mare Nostrum</h1>
+  </div>
+
+  <div id="form-view">
+    <div class="card-body">
+      <p class="subtitle">Actualités, ressources et opportunités pour les entrepreneurs de la francophonie.</p>
+
+      <form id="newsletter-form" novalidate>
+        <div class="field">
+          <label for="nom">Nom et prénom *</label>
+          <input type="text" id="nom" name="nom" placeholder="Marie Dupont" required autocomplete="name" />
+        </div>
+
+        <div class="field">
+          <label for="email">Adresse email *</label>
+          <input type="email" id="email" name="email" placeholder="marie@example.com" required autocomplete="email" />
+        </div>
+
+        <div class="field">
+          <label for="projet">Nom de ton projet</label>
+          <input type="text" id="projet" name="projet" placeholder="Mon projet / Ma startup" autocomplete="off" />
+        </div>
+
+        <button type="submit" class="btn" id="submit-btn">
+          <span class="btn-text">S'inscrire →</span>
+          <span class="spinner"></span>
+        </button>
+
+        <div class="alert" id="alert"></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="success-view" id="success-view">
+    <div class="success-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="hsl(181, 60%, 40%)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+    <h2>Bienvenue dans la communauté !</h2>
+    <p>Tu es bien inscrit(e). On se retrouve très bientôt dans ta boîte mail.</p>
+  </div>
+</div>
+
+<script>
+  const FUNCTION_URL = "https://oivxznyzijtoylwfigyq.supabase.co/functions/v1/newsletter-signup";
+  const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9pdnh6bnl6aWp0b3lsd2ZpZ3lxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU3NDkwNzksImV4cCI6MjA2MTMyNTA3OX0.C0HXlDT43p_WYbIAfvVf5tPfLCFRiqULI4rVbfIDrFs";
+
+  document.getElementById("newsletter-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const btn    = document.getElementById("submit-btn");
+    const alert  = document.getElementById("alert");
+    const nom    = document.getElementById("nom").value.trim();
+    const email  = document.getElementById("email").value.trim();
+    const projet = document.getElementById("projet").value.trim();
+
+    alert.className = "alert";
+    alert.textContent = "";
+
+    if (!nom) { showError("Merci d'indiquer ton nom et prénom."); return; }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError("Merci d'indiquer une adresse email valide."); return;
+    }
+
+    btn.classList.add("loading");
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(FUNCTION_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${ANON_KEY}`,
+        },
+        body: JSON.stringify({ nom, email, projet }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.error ?? "Erreur serveur");
+
+      document.getElementById("form-view").style.display = "none";
+      document.getElementById("success-view").style.display = "block";
+
+    } catch (err) {
+      showError("Une erreur est survenue. Réessaie dans quelques instants.");
+    } finally {
+      btn.classList.remove("loading");
+      btn.disabled = false;
+    }
+  });
+
+  function showError(msg) {
+    const alert = document.getElementById("alert");
+    alert.textContent = msg;
+    alert.className = "alert error";
+  }
+</script>
+
+</body>
+</html>
