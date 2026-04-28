@@ -18,7 +18,6 @@ async function countRecords(): Promise<number> {
     const url = new URL(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`);
     url.searchParams.set("view", VIEW_ID);
     url.searchParams.set("pageSize", "100");
-    url.searchParams.set("fields[]", "Name");
     if (offset) url.searchParams.set("offset", offset);
 
     const res = await fetch(url.toString(), {
