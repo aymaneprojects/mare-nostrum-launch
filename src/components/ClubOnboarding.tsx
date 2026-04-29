@@ -243,7 +243,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
               <div className="space-y-3">
                 <div className="space-y-1.5">
                   <Label htmlFor="prenom">Prénom *</Label>
-                  <Input id="prenom" placeholder="Aymane" value={prenom}
+                  <Input id="prenom" placeholder="Prénom" value={prenom}
                     onChange={e => setPrenom(e.target.value)}
                     onKeyDown={e => e.key === "Enter" && step1Valid && setPhase("step2")} autoFocus />
                 </div>

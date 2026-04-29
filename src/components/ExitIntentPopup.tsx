@@ -126,7 +126,7 @@ export default function ExitIntentPopup() {
                     <User className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 pointer-events-none" />
                     <Input
                       id="ep-prenom"
-                      placeholder="Aymane"
+                      placeholder="Prénom"
                       value={prenom}
                       onChange={e => setPrenom(e.target.value)}
                       className="pl-8 h-9 text-sm"
