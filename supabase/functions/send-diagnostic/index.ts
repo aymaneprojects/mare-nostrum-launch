@@ -45,12 +45,11 @@ function buildEmailHtml(nom: string, projet: string, scores: Record<string, numb
 
   const rows = AXES.map(a => {
     const s = scores[a.key] ?? 0;
-    const c = comments[a.key] || "—";
     const barWidth = (s / 5) * 100;
     return `
       <tr>
-        <td style="padding:12px 16px; border-bottom:1px solid #EEF0F4; font-size:13px; color:#24335D; font-weight:600; width:40%">${a.label}</td>
-        <td style="padding:12px 16px; border-bottom:1px solid #EEF0F4; width:20%">
+        <td style="padding:12px 16px; border-bottom:1px solid #EEF0F4; font-size:13px; color:#24335D; font-weight:600; width:60%">${a.label}</td>
+        <td style="padding:12px 16px; border-bottom:1px solid #EEF0F4; width:40%">
           <div style="display:flex;align-items:center;gap:8px">
             <div style="flex:1;height:6px;background:#EEF0F4;border-radius:999px;overflow:hidden">
               <div style="height:100%;width:${barWidth}%;background:#3BD9DB;border-radius:999px"></div>
@@ -58,7 +57,6 @@ function buildEmailHtml(nom: string, projet: string, scores: Record<string, numb
             <span style="font-size:13px;font-weight:700;color:#24335D;min-width:28px">${s}/5</span>
           </div>
         </td>
-        <td style="padding:12px 16px; border-bottom:1px solid #EEF0F4; font-size:12px; color:#6C7591">${c}</td>
       </tr>`;
   }).join("");
 
@@ -102,17 +100,11 @@ function buildEmailHtml(nom: string, projet: string, scores: Record<string, numb
           <tr style="background:#F8F9FB">
             <th style="padding:10px 16px;text-align:left;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#6C7591;font-weight:700">Axe</th>
             <th style="padding:10px 16px;text-align:left;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#6C7591;font-weight:700">Note</th>
-            <th style="padding:10px 16px;text-align:left;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#6C7591;font-weight:700">Commentaire</th>
           </tr>
         </thead>
         <tbody>${rows}</tbody>
       </table>
 
-      ${remarques ? `
-      <div style="background:#F8F9FB;border-left:3px solid #3BD9DB;padding:16px 20px;margin-bottom:28px">
-        <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#6C7591;font-weight:700;margin-bottom:8px">Remarques générales</div>
-        <div style="font-size:14px;color:#0F1733;line-height:1.7">${remarques}</div>
-      </div>` : ""}
 
       <!-- recommendation -->
       <div style="border:1.5px solid #24335D;padding:24px;margin-bottom:32px">
