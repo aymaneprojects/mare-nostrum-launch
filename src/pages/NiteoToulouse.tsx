@@ -476,7 +476,7 @@ const NiteoToulouse = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 title={partner.alt}
-                className="flex items-center justify-center h-16 md:h-20 grayscale hover:grayscale-0 transition-all duration-300"
+                className="flex items-center justify-center h-16 md:h-20 cursor-pointer grayscale hover:grayscale-0 transition-all duration-300"
               >
                 <img src={partner.src} alt={partner.alt} className="max-h-full max-w-[140px] md:max-w-[160px] object-contain" />
               </a>
