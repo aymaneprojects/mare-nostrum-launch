@@ -3,22 +3,24 @@ import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 
 const Newsletter = () => {
-  const [nom, setNom]       = useState("");
-  const [email, setEmail]   = useState("");
-  const [projet, setProjet] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [errorMsg, setErrorMsg] = useState("");
+  const [nom, setNom]             = useState("");
+  const [email, setEmail]         = useState("");
+  const [projet, setProjet]       = useState("");
+  const [telephone, setTelephone] = useState("");
+  const [rgpd, setRgpd]           = useState(false);
+  const [status, setStatus]       = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg]   = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!nom.trim() || !email.trim()) return;
+    if (!nom.trim() || !email.trim() || !rgpd) return;
 
     setStatus("loading");
     setErrorMsg("");
 
     try {
       const { error } = await supabase.functions.invoke("newsletter-signup", {
-        body: { nom: nom.trim(), email: email.trim(), projet: projet.trim() },
+        body: { nom: nom.trim(), email: email.trim(), projet: projet.trim(), telephone: telephone.trim(), rgpd },
       });
       if (error) throw error;
       setStatus("success");
@@ -134,7 +136,7 @@ const Newsletter = () => {
                   />
                 </div>
 
-                <div style={{ marginBottom: 24 }}>
+                <div style={{ marginBottom: 18 }}>
                   <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#24335D", marginBottom: 6, letterSpacing: "0.3px" }}>
                     Nom de ton projet
                   </label>
@@ -147,6 +149,35 @@ const Newsletter = () => {
                     onFocus={e => { e.target.style.borderColor = "#24335D"; e.target.style.boxShadow = "0 0 0 3px rgba(36,51,93,0.1)"; }}
                     onBlur={e => { e.target.style.borderColor = "#E3E8F1"; e.target.style.boxShadow = "none"; }}
                   />
+                </div>
+
+                <div style={{ marginBottom: 18 }}>
+                  <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#24335D", marginBottom: 6, letterSpacing: "0.3px" }}>
+                    Numéro de téléphone
+                  </label>
+                  <input
+                    type="tel"
+                    value={telephone}
+                    onChange={e => setTelephone(e.target.value)}
+                    placeholder="+33 6 00 00 00 00"
+                    style={{ width: "100%", padding: "11px 14px", border: "1.5px solid #E3E8F1", borderRadius: 0, fontFamily: "'DM Sans', Helvetica, Arial, sans-serif", fontSize: 15, color: "#0F1733", outline: "none", boxSizing: "border-box" }}
+                    onFocus={e => { e.target.style.borderColor = "#24335D"; e.target.style.boxShadow = "0 0 0 3px rgba(36,51,93,0.1)"; }}
+                    onBlur={e => { e.target.style.borderColor = "#E3E8F1"; e.target.style.boxShadow = "none"; }}
+                  />
+                </div>
+
+                <div style={{ marginBottom: 24, display: "flex", alignItems: "flex-start", gap: 10 }}>
+                  <input
+                    type="checkbox"
+                    id="rgpd"
+                    checked={rgpd}
+                    onChange={e => setRgpd(e.target.checked)}
+                    required
+                    style={{ marginTop: 2, width: 16, height: 16, flexShrink: 0, accentColor: "#24335D", cursor: "pointer" }}
+                  />
+                  <label htmlFor="rgpd" style={{ fontSize: 13, color: "#6C7591", lineHeight: 1.55, cursor: "pointer" }}>
+                    J'accepte que mes données soient utilisées par Mare Nostrum pour m'envoyer la newsletter ITER et des informations liées à l'entrepreneuriat. Conformément au RGPD, je peux exercer mes droits à tout moment en écrivant à <span style={{ color: "#24335D", fontWeight: 600 }}>contact@marenostrum.tech</span>. *
+                  </label>
                 </div>
 
                 {errorMsg && (

@@ -13,7 +13,7 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: cors });
 
   try {
-    const { nom, email, projet } = await req.json();
+    const { nom, email, projet, telephone, rgpd } = await req.json();
 
     if (!nom || !email) {
       return new Response(JSON.stringify({ error: "nom et email requis" }), {
@@ -31,7 +31,9 @@ serve(async (req) => {
         fields: {
           "Prénom / Nom": nom,
           "Mail": email,
-          "Input CTA Site web": projet ?? "",
+          "Structure 2": projet ?? "",
+          "Téléphone": telephone ?? "",
+          "confidentialité": rgpd === true,
           "Lead Type": "Lead Froid",
         },
       }),
