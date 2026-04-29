@@ -2,7 +2,7 @@ import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 
 const AIRTABLE_API_KEY = Deno.env.get("AIRTABLE_API_KEY");
 const BASE_ID  = "appZ8ykNuUOv89ou0";
-const TABLE_ID = Deno.env.get("AIRTABLE_NEWSLETTER_TABLE") ?? "Newsletter";
+const TABLE_ID = "tblocqquF4OXgXveO";
 
 const cors = {
   "Access-Control-Allow-Origin": "*",
@@ -29,9 +29,9 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         fields: {
-          "Nom": nom,
-          "Email": email,
-          "Projet": projet ?? "",
+          "Prénom / Nom": nom,
+          "Mail": email,
+          "Input CTA Site web": projet ?? "",
         },
       }),
     });
