@@ -197,13 +197,11 @@ const Diagnostic = () => {
 
         {/* ── cover ─────────────────────────────────────────── */}
         {step === -1 && (
-          <section className="flex-1 flex items-center py-16 md:py-24" style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}>
-            <div className="container mx-auto px-4">
+          <section className="relative flex-1 flex items-center py-16 md:py-24 overflow-hidden" style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}>
+            <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(135deg, transparent 0 22px, hsl(181 67% 54% / 0.055) 22px 23px)" }} />
+            <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 22% 18%, hsl(181 67% 54% / 0.20) 0%, transparent 52%), radial-gradient(ellipse at 80% 88%, hsl(228 56% 8% / 0.75) 0%, transparent 58%)" }} />
+            <div className="container mx-auto px-4 relative">
               <div className="max-w-2xl mx-auto text-center">
-                <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 mb-6">
-                  <Target className="h-4 w-4 text-accent" />
-                  <span className="text-primary-foreground/90 text-sm font-medium">Diagnostic gratuit · 3 minutes</span>
-                </div>
                 <h1 className="font-editorial italic text-4xl md:text-5xl font-semibold text-primary-foreground mb-4 leading-tight">
                   Où en est vraiment votre projet ?
                 </h1>
