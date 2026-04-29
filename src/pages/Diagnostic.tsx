@@ -212,7 +212,7 @@ const Diagnostic = () => {
                   onClick={() => setStep(0)}
                   size="lg"
                   variant="secondary"
-                  className="font-bold text-base px-8"
+                  className="font-bold text-base px-8 w-full sm:w-auto"
                 >
                   Démarrer le diagnostic <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -251,7 +251,7 @@ const Diagnostic = () => {
                       <button
                         key={i}
                         onClick={() => selectAnswer(q.key, c.score)}
-                        className={`w-full text-left flex items-center gap-4 px-5 py-4 border rounded-sm transition-all duration-150 cursor-pointer group
+                        className={`w-full text-left flex items-center gap-3 px-4 sm:px-5 py-4 border rounded-sm transition-all duration-150 cursor-pointer group
                           ${selected
                             ? "border-primary bg-primary/5"
                             : "border-border bg-card hover:border-primary/40 hover:bg-secondary/30"
@@ -289,7 +289,7 @@ const Diagnostic = () => {
           <section className="flex-1 flex items-center py-12 bg-background">
             <div className="container mx-auto px-4">
               <div className="max-w-md mx-auto">
-                <div className="bg-card border border-border rounded-sm shadow-md p-8">
+                <div className="bg-card border border-border rounded-sm shadow-md p-6 md:p-8">
 
                   {/* score teaser */}
                   <div className="flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 border border-accent/20 mx-auto mb-6">
@@ -347,7 +347,7 @@ const Diagnostic = () => {
               <div className="max-w-lg mx-auto">
 
                 {/* score header */}
-                <div className={`bg-gradient-to-br ${reco.color} rounded-sm p-8 text-center text-primary-foreground mb-6`}>
+                <div className={`bg-gradient-to-br ${reco.color} rounded-sm p-6 md:p-8 text-center text-primary-foreground mb-6`}>
                   <div className="text-primary-foreground/70 text-xs font-semibold tracking-widest uppercase mb-3">Votre score</div>
                   <div className="font-editorial italic text-6xl font-semibold mb-1">
                     {totalScore}<span className="text-3xl font-normal text-primary-foreground/60">/{MAX_SCORE}</span>
@@ -364,7 +364,7 @@ const Diagnostic = () => {
                       <div key={q.key} className={`flex items-center gap-4 px-5 py-3.5 ${i < QUESTIONS.length - 1 ? "border-b border-border" : ""}`}>
                         <div className="flex-1 min-w-0">
                           <div className="text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-0.5">{q.eyebrow}</div>
-                          <div className="text-sm text-foreground truncate">{choice?.label ?? "—"}</div>
+                          <div className="text-sm text-foreground line-clamp-2">{choice?.label ?? "—"}</div>
                         </div>
                         <div className="flex gap-1 flex-shrink-0">
                           {[1,2,3,4].map(v => (
