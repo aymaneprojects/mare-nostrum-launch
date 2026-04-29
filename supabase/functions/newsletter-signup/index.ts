@@ -32,6 +32,7 @@ serve(async (req) => {
           "Prénom / Nom": nom,
           "Mail": email,
           "Input CTA Site web": projet ?? "",
+          "Lead Type": "Lead Froid",
         },
       }),
     });
