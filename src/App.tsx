@@ -43,6 +43,7 @@ import ImpactMesureStartup from "./pages/mag/ImpactMesureStartup";
 import NiteoToulouse from "./pages/NiteoToulouse";
 import Newsletter from "./pages/Newsletter";
 import Unsubscribed from "./pages/Unsubscribed";
+import Diagnostic from "./pages/Diagnostic";
 
 const queryClient = new QueryClient();
 
@@ -108,6 +109,7 @@ const AppContent = () => {
         {/* ITER Newsletter */}
         <Route path="/newsletter" element={<Newsletter />} />
         <Route path="/unsubscribed" element={<Unsubscribed />} />
+        <Route path="/diagnostic" element={<Diagnostic />} />
 
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
