@@ -159,7 +159,7 @@ const Newsletter = () => {
                     type="tel"
                     value={telephone}
                     onChange={e => setTelephone(e.target.value)}
-                    placeholder="+33 6 00 00 00 00"
+                    placeholder="Numéro de téléphone"
                     style={{ width: "100%", padding: "11px 14px", border: "1.5px solid #E3E8F1", borderRadius: 0, fontFamily: "'DM Sans', Helvetica, Arial, sans-serif", fontSize: 15, color: "#0F1733", outline: "none", boxSizing: "border-box" }}
                     onFocus={e => { e.target.style.borderColor = "#24335D"; e.target.style.boxShadow = "0 0 0 3px rgba(36,51,93,0.1)"; }}
                     onBlur={e => { e.target.style.borderColor = "#E3E8F1"; e.target.style.boxShadow = "none"; }}
