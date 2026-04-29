@@ -141,21 +141,21 @@ const NiteoToulouse = () => {
   ];
 
   const partners = [
-    { src: partnerToulouseMetropole, alt: "Toulouse Métropole" },
-    { src: partnerAuf, alt: "AUF - Agence Universitaire de la Francophonie" },
-    { src: partnerAirbusDev, alt: "Airbus Développement" },
-    { src: partnerBanqueInnovation, alt: "Banque de l'Innovation by CA31" },
-    { src: partnerCreditMutuel, alt: "Crédit Mutuel" },
-    { src: partnerReseauEntreprendre, alt: "Réseau Entreprendre Occitanie Garonne" },
-    { src: partnerCpme31, alt: "CPME 31 Haute-Garonne" },
-    { src: partnerEntreprisesMission, alt: "Communauté des Entreprises à Mission" },
-    { src: partnerEdc, alt: "Entrepreneurs et Dirigeants Chrétiens" },
-    { src: partnerBdd, alt: "Bras Droit des Dirigeants" },
-    { src: partnerMoovjee, alt: "Moovjee" },
-    { src: partnerVenture, alt: "Ventury Avocats & EY" },
-    { src: partnerTouleco, alt: "Touléco" },
-    { src: partnerRoselab, alt: "Rose Lab" },
-    { src: partnerToulouseWay, alt: "Toulouse Way" },
+    { src: partnerToulouseMetropole, alt: "Toulouse Métropole", href: "https://metropole.toulouse.fr/" },
+    { src: partnerAuf, alt: "AUF - Agence Universitaire de la Francophonie", href: "https://www.auf.org/" },
+    { src: partnerAirbusDev, alt: "Airbus Développement", href: "https://www.airbus.com/en/sustainability/airbus-foundation" },
+    { src: partnerBanqueInnovation, alt: "Banque de l'Innovation by CA31", href: "https://www.ca-toulouse31.fr/" },
+    { src: partnerCreditMutuel, alt: "Crédit Mutuel", href: "https://www.creditmutuel.fr/" },
+    { src: partnerReseauEntreprendre, alt: "Réseau Entreprendre Occitanie Garonne", href: "https://www.reseau-entreprendre.org/occitanie-garonne/" },
+    { src: partnerCpme31, alt: "CPME 31 Haute-Garonne", href: "https://www.cpme31.fr/" },
+    { src: partnerEntreprisesMission, alt: "Communauté des Entreprises à Mission", href: "https://entreprisesamission.org/" },
+    { src: partnerEdc, alt: "Entrepreneurs et Dirigeants Chrétiens", href: "https://www.lesedc.org/" },
+    { src: partnerBdd, alt: "Bras Droit des Dirigeants", href: "https://www.brasdroitdesdirigeants.com/" },
+    { src: partnerMoovjee, alt: "Moovjee", href: "https://www.moovjee.fr/" },
+    { src: partnerVenture, alt: "Ventury Avocats & EY", href: "https://www.ventury-avocats.fr/" },
+    { src: partnerTouleco, alt: "Touléco", href: "https://www.touleco.tv/" },
+    { src: partnerRoselab, alt: "Rose Lab", href: "https://roselab.eu/" },
+    { src: partnerToulouseWay, alt: "Toulouse Way", href: "https://www.toulouseway.org/" },
   ];
 
   const timeline = [
@@ -470,9 +470,16 @@ const NiteoToulouse = () => {
           </p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 max-w-5xl mx-auto">
             {partners.map((partner) => (
-              <div key={partner.alt} className="flex items-center justify-center h-16 md:h-20 grayscale hover:grayscale-0 transition-all duration-300">
+              <a
+                key={partner.alt}
+                href={partner.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={partner.alt}
+                className="flex items-center justify-center h-16 md:h-20 grayscale hover:grayscale-0 transition-all duration-300"
+              >
                 <img src={partner.src} alt={partner.alt} className="max-h-full max-w-[140px] md:max-w-[160px] object-contain" />
-              </div>
+              </a>
             ))}
           </div>
         </div>
