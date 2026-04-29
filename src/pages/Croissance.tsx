@@ -18,15 +18,9 @@ import neoEntrepreneurElite from "@/assets/neo-entrepreneur-elite.png";
 
 type LocationType = "france" | "congo_brazzaville";
 
-const CLUB_MAX = 500;
-const RING_R   = 52;
-const RING_C   = 2 * Math.PI * RING_R;
-
 function ClubCounter() {
   const [count, setCount]         = useState<number | null>(null);
   const [displayed, setDisplayed] = useState(0);
-  const prefersReduced = typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   useEffect(() => {
     supabase.functions.invoke("get-club-count")
@@ -36,125 +30,23 @@ function ClubCounter() {
 
   useEffect(() => {
     if (count === null) return;
-    if (count === 0 || prefersReduced) { setDisplayed(count); return; }
-    let frame = 0;
-    const totalFrames = 80;
+    if (count === 0) { setDisplayed(0); return; }
+    let start = 0;
+    const step = Math.ceil(count / 40);
     const id = window.setInterval(() => {
-      frame++;
-      const ease = 1 - Math.pow(1 - frame / totalFrames, 3);
-      const val = Math.round(ease * count);
-      setDisplayed(val);
-      if (frame >= totalFrames) { setDisplayed(count); clearInterval(id); }
-    }, 18);
+      start += step;
+      if (start >= count) { setDisplayed(count); clearInterval(id); }
+      else setDisplayed(start);
+    }, 30);
     return () => clearInterval(id);
   }, [count]);
 
-  const fillRatio  = count !== null ? Math.min(displayed / CLUB_MAX, 1) : 0;
-  const dashOffset = RING_C * (1 - fillRatio);
-  const pct        = Math.round(fillRatio * 100);
-
-  if (count === null) return (
-    <div style={{ width: 260, height: 96, borderRadius: 16, margin: "16px auto 0", background: "rgba(36,51,93,0.06)" }} />
-  );
+  if (count === null) return null;
 
   return (
-    <>
-      <style>{`
-        @keyframes mn-live   { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.45;transform:scale(.8)} }
-        @keyframes mn-shimmer{ 0%{background-position:200% center} 100%{background-position:-200% center} }
-        @media(prefers-reduced-motion:reduce){.mn-live,.mn-shimmer{animation:none!important}}
-      `}</style>
-
-      <div style={{
-        display: "inline-flex", flexDirection: "column", alignItems: "center",
-        marginTop: 20,
-        background: "linear-gradient(145deg, hsl(222,44%,22%) 0%, hsl(222,44%,14%) 100%)",
-        borderRadius: 20, padding: "28px 36px 24px",
-        border: "1px solid rgba(56,214,201,0.22)",
-        boxShadow: "0 0 0 1px rgba(36,51,93,0.08), 0 20px 40px -12px rgba(15,23,51,0.55), 0 0 40px -10px rgba(56,214,201,0.18)",
-        position: "relative", overflow: "hidden",
-      }}>
-        {/* subtle grid texture */}
-        <div style={{ position:"absolute",inset:0, backgroundImage:"radial-gradient(rgba(191,212,238,0.04) 1px,transparent 1px)", backgroundSize:"22px 22px", pointerEvents:"none" }} />
-
-        {/* live pill */}
-        <div style={{ display:"flex", alignItems:"center", gap:6, marginBottom:18, position:"relative",
-          background:"rgba(34,197,94,0.12)", border:"1px solid rgba(34,197,94,0.25)",
-          borderRadius:99, padding:"4px 12px" }}>
-          <span className="mn-live" style={{ width:7, height:7, borderRadius:"50%", background:"#22C55E",
-            animation:"mn-live 1.8s ease-in-out infinite", flexShrink:0 }} />
-          <span style={{ fontSize:9, fontWeight:700, letterSpacing:"2.4px", textTransform:"uppercase", color:"rgba(134,239,172,0.9)" }}>
-            En direct
-          </span>
-        </div>
-
-        {/* ring + number */}
-        <div style={{ position:"relative", width:136, height:136, marginBottom:14 }}>
-          <svg width="136" height="136" viewBox="0 0 136 136" style={{ transform:"rotate(-90deg)" }} aria-hidden="true">
-            <defs>
-              <linearGradient id="mn-ring-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="hsl(181,67%,54%)" />
-                <stop offset="100%" stopColor="hsl(181,67%,72%)" />
-              </linearGradient>
-              <filter id="mn-glow">
-                <feGaussianBlur stdDeviation="3" result="blur" />
-                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-            </defs>
-            {/* track */}
-            <circle cx="68" cy="68" r={RING_R} fill="none" stroke="rgba(191,212,238,0.08)" strokeWidth="9"/>
-            {/* progress */}
-            <circle cx="68" cy="68" r={RING_R} fill="none"
-              stroke="url(#mn-ring-grad)" strokeWidth="9" strokeLinecap="round"
-              strokeDasharray={RING_C} strokeDashoffset={dashOffset}
-              filter="url(#mn-glow)"
-              style={{ transition: prefersReduced ? "none" : "stroke-dashoffset 0.02s linear" }}
-            />
-          </svg>
-
-          {/* centered number */}
-          <div style={{ position:"absolute", inset:0, display:"flex", flexDirection:"column",
-            alignItems:"center", justifyContent:"center", gap:1 }}>
-            <span style={{ fontFamily:"'Fraunces',Georgia,serif", fontWeight:600, fontSize:44,
-              color:"#FFFFFF", lineHeight:1, letterSpacing:"-2px", fontVariantNumeric:"tabular-nums" }}>
-              {displayed}
-            </span>
-            <span style={{ fontSize:9, fontWeight:700, letterSpacing:"2px", textTransform:"uppercase",
-              color:"hsl(181,67%,60%)" }}>
-              membres
-            </span>
-          </div>
-        </div>
-
-        {/* label */}
-        <p style={{ fontSize:13, fontWeight:500, color:"rgba(191,212,238,0.8)", textAlign:"center",
-          margin:"0 0 16px", lineHeight:1.45, maxWidth:200 }}>
-          entrepreneur{displayed !== 1 ? "s" : ""} actif{displayed !== 1 ? "s" : ""} dans le Club
-        </p>
-
-        {/* capacity bar */}
-        <div style={{ width:"100%", display:"flex", flexDirection:"column", gap:6 }}>
-          <div style={{ height:5, background:"rgba(191,212,238,0.08)", borderRadius:99, overflow:"hidden" }}>
-            <div className="mn-shimmer" style={{
-              height:"100%", width:`${pct}%`, borderRadius:99,
-              background:"linear-gradient(90deg,hsl(181,67%,40%),hsl(181,67%,62%),hsl(181,67%,40%))",
-              backgroundSize:"200% auto",
-              animation: prefersReduced ? "none" : "mn-shimmer 2.4s linear infinite",
-              boxShadow:"0 0 10px hsl(181,67%,54%)",
-              transition: prefersReduced ? "none" : "width 0.02s linear",
-            }} />
-          </div>
-          <div style={{ display:"flex", justifyContent:"space-between" }}>
-            <span style={{ fontSize:10, color:"rgba(191,212,238,0.4)", fontWeight:600 }}>
-              {displayed} / {CLUB_MAX} places
-            </span>
-            <span style={{ fontSize:10, color:"hsl(181,67%,54%)", fontWeight:700 }}>
-              {pct}% rempli
-            </span>
-          </div>
-        </div>
-      </div>
-    </>
+    <p className="mt-4 text-sm font-medium text-accent">
+      Aujourd'hui, le Club compte <span className="text-lg font-bold tabular-nums">{displayed}</span> entrepreneur{displayed > 1 ? "s" : ""} actif{displayed > 1 ? "s" : ""}
+    </p>
   );
 }
 
