@@ -44,6 +44,7 @@ import NiteoToulouse from "./pages/NiteoToulouse";
 import Newsletter from "./pages/Newsletter";
 import Unsubscribed from "./pages/Unsubscribed";
 import Diagnostic from "./pages/Diagnostic";
+import Partenaires from "./pages/Partenaires";
 
 const queryClient = new QueryClient();
 
@@ -110,6 +111,7 @@ const AppContent = () => {
         <Route path="/newsletter" element={<Newsletter />} />
         <Route path="/unsubscribed" element={<Unsubscribed />} />
         <Route path="/diagnostic" element={<Diagnostic />} />
+        <Route path="/a-propos/partenaire" element={<Partenaires />} />
 
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
