@@ -72,12 +72,15 @@ const Header = () => {
                 />
               </Link>
             ))}
-            <Button asChild variant="outline" size="sm" className="ml-3">
-              <Link to="/club#offres">Rejoindre le Club</Link>
-            </Button>
-            <Button asChild size="sm">
-              <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
-            </Button>
+            {["/education", "/niteo-toulouse"].includes(location.pathname) ? (
+              <Button asChild size="sm" className="ml-3">
+                <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
+              </Button>
+            ) : (
+              <Button asChild variant="outline" size="sm" className="ml-3">
+                <Link to="/club#offres">Rejoindre le Club</Link>
+              </Button>
+            )}
           </div>
 
           {/* Mobile — hamburger */}
@@ -146,12 +149,15 @@ const Header = () => {
 
         {/* CTAs */}
         <div className="px-4 pb-10 pt-3 space-y-2.5 border-t border-border shrink-0">
-          <Button asChild variant="outline" className="w-full h-11">
-            <Link to="/club#offres">Rejoindre le Club</Link>
-          </Button>
-          <Button asChild className="w-full h-11">
-            <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
-          </Button>
+          {["/education", "/niteo-toulouse"].includes(location.pathname) ? (
+            <Button asChild className="w-full h-11">
+              <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
+            </Button>
+          ) : (
+            <Button asChild variant="outline" className="w-full h-11">
+              <Link to="/club#offres">Rejoindre le Club</Link>
+            </Button>
+          )}
         </div>
       </div>
     </>

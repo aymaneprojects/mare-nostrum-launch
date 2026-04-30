@@ -423,7 +423,7 @@ const Croissance = () => {
 
       {/* Hero Section */}
       <PageHero
-        badgeContent="Club Entrepreneur Mare Nostrum · depuis Toulouse, dans tout l'espace francophone"
+        eyebrow="Club Entrepreneur Mare Nostrum · depuis Toulouse, dans tout l'espace francophone"
         title="Le club qui fait passer ton activité au niveau supérieur"
         subtitle="Mentorat, réseau international et intelligence artificielle. 50% de nos membres se rémunèrent en moins de 2 ans. Dès 30€/mois."
         size="lg"

@@ -4,12 +4,11 @@ interface PageHeroProps {
   eyebrow?: string;
   title: string;
   subtitle?: string;
-  badgeContent?: ReactNode;
   ctas?: ReactNode;
   size?: "sm" | "md" | "lg";
 }
 
-const PageHero = ({ eyebrow, title, subtitle, badgeContent, ctas, size = "md" }: PageHeroProps) => {
+const PageHero = ({ eyebrow, title, subtitle, ctas, size = "md" }: PageHeroProps) => {
   const py = size === "sm" ? "py-12 md:py-20" : size === "lg" ? "py-20 md:py-36" : "py-16 md:py-28";
 
   return (
@@ -30,11 +29,6 @@ const PageHero = ({ eyebrow, title, subtitle, badgeContent, ctas, size = "md" }:
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {badgeContent && (
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 md:px-6 py-2 mb-4 md:mb-6">
-              <span className="text-primary-foreground font-medium text-sm md:text-base">{badgeContent}</span>
-            </div>
-          )}
           {eyebrow && <div className="mn-eyebrow-light mb-4">{eyebrow}</div>}
           <h1
             className="font-editorial italic text-3xl md:text-5xl lg:text-6xl font-semibold text-primary-foreground mb-4 md:mb-6 leading-[1.05]"
