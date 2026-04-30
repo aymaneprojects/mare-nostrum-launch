@@ -60,7 +60,7 @@ const SCHOOLS = [
   { src: schoolComue,    alt: "Université Fédérale Toulouse Midi-Pyrénées",       href: "https://www.univ-toulouse.fr/" },
   { src: school3A,       alt: "École 3A",                                         href: "https://www.ecole3a.edu/" },
   { src: schoolEfap,     alt: "EFAP Toulouse",                                    href: "https://www.efap.com/" },
-  { src: schoolEsct,     alt: "TBS Education",                                    href: "https://www.tbs-education.com/" },
+  { src: schoolEsct,     alt: "ESCT Toulouse",                                    href: "https://esct.fr/centres-de-formation/toulouse/" },
   { src: schoolIcam,     alt: "ICAM Toulouse",                                    href: "https://www.icam.fr/" },
   { src: schoolIcd,      alt: "ICD Business School",                              href: "https://www.icd-bs.com/" },
   { src: schoolIct,      alt: "Institut Catholique de Toulouse",                  href: "https://www.ict-toulouse.fr/" },
@@ -161,24 +161,23 @@ const Partenaires = () => (
     </section>
 
     {/* CTA */}
-    <section
-      className="py-16 md:py-20"
-      style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}
-    >
-      <div className="container mx-auto px-4 text-center">
-        <div className="mn-eyebrow-light mb-4">Rejoindre l'écosystème</div>
-        <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-primary-foreground mb-4">
-          Vous souhaitez devenir partenaire ?
-        </h2>
-        <p className="text-primary-foreground/70 text-base mb-8 max-w-xl mx-auto leading-relaxed">
-          Parlons de votre structure et de la façon dont nous pouvons construire ensemble un impact durable sur l'entrepreneuriat francophone.
-        </p>
-        <a
-          href="/contact"
-          className="inline-block px-8 py-4 bg-accent text-primary font-bold text-sm tracking-wide uppercase hover:bg-accent/90 transition-colors duration-200"
-        >
-          Nous contacter →
-        </a>
+    <section className="py-16 md:py-24 bg-background border-t border-border">
+      <div className="container mx-auto px-4">
+        <div className="max-w-5xl mx-auto text-center">
+          <div className="mn-eyebrow-turquoise mb-3">Rejoindre l'écosystème</div>
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+            Vous souhaitez devenir partenaire ?
+          </h2>
+          <p className="text-muted-foreground mb-10 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+            Parlons de votre structure et de la façon dont nous pouvons construire ensemble un impact durable sur l'entrepreneuriat francophone.
+          </p>
+          <a
+            href="/contact"
+            className="inline-block px-8 py-4 bg-primary text-primary-foreground font-bold text-sm tracking-wide uppercase hover:bg-primary/90 transition-colors duration-200"
+          >
+            Nous contacter →
+          </a>
+        </div>
       </div>
     </section>
 
