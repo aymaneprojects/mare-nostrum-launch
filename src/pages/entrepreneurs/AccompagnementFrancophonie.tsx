@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Globe, Users, Rocket, CheckCircle2, ArrowRight, MapPin, Sparkles, Target } from "lucide-react";
+import { Globe, Users, Rocket, CheckCircle2, ArrowRight, Sparkles, Target } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
@@ -64,10 +64,7 @@ const AccompagnementFrancophonie = () => {
       <section className="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-16 md:py-32">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 md:px-6 py-2 mb-4 md:mb-6">
-              <MapPin className="h-4 w-4 text-primary-foreground" />
-              <span className="text-primary-foreground font-medium text-sm md:text-base">Toulouse - Casablanca</span>
-            </div>
+            <div className="mn-eyebrow-light mb-4 md:mb-6">Toulouse · Casablanca</div>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-4 md:mb-6">
               Incubateur pour Entrepreneurs à Impact
             </h1>

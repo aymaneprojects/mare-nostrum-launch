@@ -246,10 +246,7 @@ const NiteoCandidature = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <img src={logoNiteo} alt="Logo Niteo Toulouse 2026" className="h-20 md:h-32 mx-auto mb-6" />
-            <div className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm rounded-full px-5 py-2 mb-6">
-              <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-              <span className="text-primary-foreground font-semibold text-sm">Gratuit · Places limitées</span>
-            </div>
+            <div className="mn-eyebrow-light mb-6">Gratuit · Places limitées</div>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
               Apprends à transformer ton idée en projet qui génère des revenus
             </h1>

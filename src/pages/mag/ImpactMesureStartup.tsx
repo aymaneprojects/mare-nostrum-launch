@@ -48,9 +48,7 @@ const ImpactMesureStartup = () => {
                 { label: "Mesure d'Impact", href: "/mag/impact-mesure-startup" }
               ]}
             />
-            <div className="inline-block bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
-              <span className="text-primary-foreground font-medium text-sm">Thought Leadership</span>
-            </div>
+            <div className="mn-eyebrow-light mb-6">Thought Leadership</div>
             <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-6">
               Mesurer l'Impact Social de sa Startup : Guide Complet des Méthodes et Frameworks
             </h1>

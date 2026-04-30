@@ -63,9 +63,7 @@ const TransformationEntrepreneuriale = () => {
       <section className="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-16 md:py-32">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block bg-white/10 backdrop-blur-sm rounded-full px-4 md:px-6 py-2 mb-4 md:mb-6">
-              <span className="text-primary-foreground font-medium text-sm md:text-base">Mare Nostrum pour les Écoles</span>
-            </div>
+            <div className="mn-eyebrow-light mb-4 md:mb-6">Mare Nostrum pour les Écoles</div>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-4 md:mb-6">
               Programmes d'Entrepreneuriat pour Écoles
             </h1>

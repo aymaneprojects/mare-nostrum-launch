@@ -185,9 +185,7 @@ const NiteoToulouse = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <img src={logoNiteo} alt="Logo Niteo 2026" className="h-24 md:h-36 mx-auto mb-6 md:mb-8" />
-            <div className="inline-block bg-white/10 backdrop-blur-sm rounded-full px-4 md:px-6 py-2 mb-4 md:mb-6">
-              <span className="text-primary-foreground font-medium text-sm md:text-base">Édition Toulouse 2026</span>
-            </div>
+            <div className="mn-eyebrow-light mb-4 md:mb-6">Édition Toulouse 2026</div>
             <h1 className="text-3xl md:text-6xl font-bold text-primary-foreground mb-4 md:mb-6">
               50h pour passer de l'idée à l'entreprise
             </h1>
