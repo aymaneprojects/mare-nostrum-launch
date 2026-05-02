@@ -17,7 +17,7 @@ const QUESTIONS = [
     eyebrow: "Équipe",
     question: "Vous portez ce projet seul·e ou avec d'autres personnes ?",
     choices: [
-      { label: "Tout·e seul·e — pour l'instant, c'est moi qui fais tout", score: 1 },
+      { label: "Tout·e seul·e, c'est moi qui fais tout pour l'instant", score: 1 },
       { label: "À plusieurs, mais on n'a pas vraiment réparti qui fait quoi", score: 2 },
       { label: "Une équipe en place, chacun·e sait ce qu'il a à faire", score: 3 },
       { label: "Une équipe complète, on couvre tous les sujets et ça tourne bien", score: 4 },
@@ -28,7 +28,7 @@ const QUESTIONS = [
     eyebrow: "Vos clients",
     question: "Vous savez vraiment qui sont vos clients et combien ils sont ?",
     choices: [
-      { label: "Pas encore — c'est surtout une intuition", score: 1 },
+      { label: "Pas encore, c'est surtout une intuition", score: 1 },
       { label: "J'en ai parlé autour de moi mais rien de plus poussé", score: 2 },
       { label: "J'ai une bonne idée des clients possibles et de leurs besoins", score: 3 },
       { label: "J'ai chiffré combien ils sont et identifié leurs profils précis", score: 4 },
@@ -59,7 +59,7 @@ const QUESTIONS = [
   {
     key: "bm",
     eyebrow: "Vos revenus",
-    question: "Vous savez comment vous allez gagner de l'argent — et ça marche déjà ?",
+    question: "Vous savez comment vous allez gagner de l'argent, et ça marche déjà ?",
     choices: [
       { label: "Je n'ai pas encore vraiment réfléchi à comment je gagnerai ma vie", score: 1 },
       { label: "J'ai une idée, mais je n'ai pas encore vendu", score: 2 },
@@ -74,7 +74,7 @@ const QUESTIONS = [
     choices: [
       { label: "Non, j'avance au feeling", score: 1 },
       { label: "J'ai des idées en tête, mais rien d'écrit", score: 2 },
-      { label: "J'ai un plan — sauf que tout me semble urgent en même temps", score: 3 },
+      { label: "J'ai un plan, mais tout me semble urgent en même temps", score: 3 },
       { label: "J'ai 2 ou 3 priorités claires et je sais comment les atteindre", score: 4 },
     ],
   },
