@@ -14,68 +14,68 @@ import { supabase } from "@/integrations/supabase/client";
 const QUESTIONS = [
   {
     key: "equipe",
-    eyebrow: "Équipe",
-    question: "Comment est organisée votre équipe aujourd'hui ?",
+    eyebrow: "Équipe & expertises",
+    question: "Votre équipe a-t-elle les compétences pour exécuter votre stratégie ?",
     choices: [
-      { label: "Je travaille seul(e) pour l'instant", score: 1 },
-      { label: "J'ai des associés mais les rôles ne sont pas encore définis", score: 2 },
-      { label: "L'équipe est en place avec des responsabilités claires", score: 3 },
-      { label: "Équipe solide, expertises complémentaires et bonne cohésion", score: 4 },
+      { label: "Je porte le projet seul·e — toutes les compétences clés reposent sur moi", score: 1 },
+      { label: "J'ai des associé·e·s mais nos rôles et expertises se chevauchent encore", score: 2 },
+      { label: "Équipe en place, rôles clairs et expertises complémentaires", score: 3 },
+      { label: "Équipe complète, expertises rares maîtrisées en interne, dynamique solide", score: 4 },
     ],
   },
   {
     key: "marche",
     eyebrow: "Marché",
-    question: "Avez-vous validé que vos clients ont réellement ce problème ?",
+    question: "Connaissez-vous précisément le marché sur lequel vous jouez ?",
     choices: [
-      { label: "Pas encore — c'est une conviction personnelle", score: 1 },
-      { label: "J'ai eu quelques retours informels autour de moi", score: 2 },
-      { label: "J'ai mené des entretiens clients et confirmé le besoin", score: 3 },
-      { label: "Marché prouvé — j'ai des clients ou des pré-commandes", score: 4 },
+      { label: "Pas vraiment — c'est une intuition basée sur mon expérience", score: 1 },
+      { label: "Quelques retours informels mais ni taille, ni segmentation chiffrée", score: 2 },
+      { label: "Marché segmenté, taille estimée, dynamiques de croissance comprises", score: 3 },
+      { label: "Marché cartographié : taille, segments, croissance et référence marché identifiées", score: 4 },
     ],
   },
   {
     key: "offre",
-    eyebrow: "Offre",
-    question: "Comment vous positionnez-vous face à ce qui existe déjà ?",
+    eyebrow: "Différenciation",
+    question: "Votre offre est-elle vraiment difficile à copier ?",
     choices: [
-      { label: "Je n'ai pas encore analysé la concurrence", score: 1 },
+      { label: "Je n'ai pas encore analysé sérieusement la concurrence", score: 1 },
       { label: "Mon offre ressemble à ce qui existe, sans angle clair", score: 2 },
-      { label: "J'ai un angle différenciant identifié et formulé", score: 3 },
-      { label: "Ma différenciation est prouvée et reconnue par mes clients", score: 4 },
+      { label: "Différenciation formulée et reconnue par mes premiers clients", score: 3 },
+      { label: "Avantage concurrentiel structurel, prouvé et difficile à reproduire", score: 4 },
     ],
   },
   {
     key: "financier",
-    eyebrow: "Finances",
-    question: "Quelle est votre visibilité financière sur les 12 prochains mois ?",
+    eyebrow: "Pilotage financier",
+    question: "Maîtrisez-vous les chiffres qui pilotent votre projet ?",
     choices: [
-      { label: "Aucune projection pour l'instant", score: 1 },
-      { label: "J'ai une idée approximative des chiffres", score: 2 },
-      { label: "J'ai un prévisionnel mais il manque de précision", score: 3 },
-      { label: "Prévisionnel solide avec hypothèses testées et point d'équilibre connu", score: 4 },
+      { label: "Pas de prévisionnel — j'avance sans visibilité chiffrée", score: 1 },
+      { label: "Idée approximative des revenus et des coûts", score: 2 },
+      { label: "Prévisionnel construit avec hypothèses identifiées", score: 3 },
+      { label: "Scénarios testés, point d'équilibre connu, runway clair sur 12 mois", score: 4 },
     ],
   },
   {
     key: "bm",
-    eyebrow: "Business model",
-    question: "Comment générez-vous (ou allez-vous générer) vos revenus ?",
+    eyebrow: "Modèle économique",
+    question: "Votre modèle économique est-il validé par le marché ?",
     choices: [
-      { label: "Je n'ai pas encore défini comment je vais gagner de l'argent", score: 1 },
-      { label: "J'ai une idée de modèle mais je ne l'ai pas encore testé", score: 2 },
-      { label: "Modèle défini, premières ventes réalisées", score: 3 },
-      { label: "Modèle validé avec revenus récurrents ou en forte croissance", score: 4 },
+      { label: "Modèle pas encore défini ou jamais confronté au réel", score: 1 },
+      { label: "Modèle théorique, sans validation client", score: 2 },
+      { label: "Premières ventes réalisées, modèle en cours d'optimisation", score: 3 },
+      { label: "Modèle prouvé : revenus récurrents ou en forte croissance", score: 4 },
     ],
   },
   {
     key: "strategie",
     eyebrow: "Stratégie",
-    question: "Avez-vous un plan d'action concret pour les 6 prochains mois ?",
+    question: "Savez-vous ce qui fera la différence sur votre marché ?",
     choices: [
-      { label: "Non, j'avance au fil de l'eau", score: 1 },
-      { label: "J'ai des idées en tête mais rien de formalisé", score: 2 },
-      { label: "Plan écrit mais peu priorisé", score: 3 },
-      { label: "Feuille de route claire avec jalons, priorités et ressources allouées", score: 4 },
+      { label: "Je ne sais pas encore ce qui fait gagner dans mon secteur", score: 1 },
+      { label: "J'ai des intuitions mais aucune stratégie formalisée", score: 2 },
+      { label: "Facteurs clés identifiés, plan d'action priorisé sur 6 mois", score: 3 },
+      { label: "Stratégie claire, ressources allouées, capacités déployées", score: 4 },
     ],
   },
   {
@@ -83,21 +83,21 @@ const QUESTIONS = [
     eyebrow: "Impact",
     question: "Votre projet crée-t-il de la valeur au-delà du profit ?",
     choices: [
-      { label: "Ce n'est pas ma priorité pour l'instant", score: 1 },
-      { label: "J'y pense mais rien n'est formalisé", score: 2 },
-      { label: "Un impact positif est intégré à ma vision", score: 3 },
-      { label: "Impact mesurable, au cœur de mon modèle et de mes décisions", score: 4 },
+      { label: "Ce n'est pas un sujet pour moi aujourd'hui", score: 1 },
+      { label: "J'y pense, sans démarche structurée", score: 2 },
+      { label: "Impact intégré à ma vision et à ma communication", score: 3 },
+      { label: "Impact mesurable, structurant pour le modèle et les décisions", score: 4 },
     ],
   },
   {
     key: "pitch",
-    eyebrow: "Pitch",
-    question: "Pouvez-vous convaincre un inconnu de l'intérêt de votre projet en 2 minutes ?",
+    eyebrow: "Formulation",
+    question: "Savez-vous formuler votre stratégie de façon claire et convaincante ?",
     choices: [
-      { label: "Je galère encore à l'expliquer clairement", score: 1 },
-      { label: "Je peux l'expliquer mais ce n'est pas toujours convaincant", score: 2 },
-      { label: "Mon pitch est rodé et les gens comprennent vite", score: 3 },
-      { label: "Je convaincs systématiquement, avec un support professionnel", score: 4 },
+      { label: "J'ai du mal à expliquer simplement ce que je fais", score: 1 },
+      { label: "Je l'explique mais je ne convaincs pas toujours", score: 2 },
+      { label: "Pitch rodé, support propre, retours positifs réguliers", score: 3 },
+      { label: "Je convaincs systématiquement, avec preuves et alignement marché", score: 4 },
     ],
   },
 ];
@@ -189,7 +189,7 @@ const Diagnostic = () => {
     <div className="min-h-screen bg-background">
       <EnhancedSEOHead
         title="Diagnostic projet gratuit — Club Mare Nostrum"
-        description="Testez la solidité de votre projet en 3 minutes. Recevez votre score et une recommandation d'accompagnement personnalisée."
+        description="8 questions pour évaluer la maturité de votre projet en 3 minutes. Identifiez vos forces, vos angles morts et trouvez l'offre Club adaptée à votre stade."
       />
       <Header />
 
@@ -202,11 +202,14 @@ const Diagnostic = () => {
             <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 22% 18%, hsl(181 67% 54% / 0.20) 0%, transparent 52%), radial-gradient(ellipse at 80% 88%, hsl(228 56% 8% / 0.75) 0%, transparent 58%)" }} />
             <div className="container mx-auto px-4 relative">
               <div className="max-w-2xl mx-auto text-center">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] font-bold tracking-[0.18em] uppercase mb-6">
+                  <Target className="h-3 w-3" /> Diagnostic projet · Club Mare Nostrum
+                </div>
                 <h1 className="font-editorial italic text-4xl md:text-5xl font-semibold text-primary-foreground mb-4 leading-tight">
                   Où en est vraiment votre projet ?
                 </h1>
-                <p className="text-primary-foreground/75 text-lg mb-10 leading-relaxed max-w-xl mx-auto">
-                  8 questions pour évaluer honnêtement vos forces et vos angles morts. Recevez un diagnostic personnalisé et une recommandation d'accompagnement.
+                <p className="text-primary-foreground/75 text-lg mb-8 leading-relaxed max-w-xl mx-auto">
+                  8 questions pour évaluer honnêtement la maturité de votre projet : marché, modèle, stratégie, équipe. Recevez un diagnostic personnalisé et l'offre Club adaptée à votre stade.
                 </p>
                 <Button
                   onClick={() => setStep(0)}
@@ -214,9 +217,24 @@ const Diagnostic = () => {
                   variant="secondary"
                   className="font-bold text-base px-8 w-full sm:w-auto"
                 >
-                  Démarrer le diagnostic <ArrowRight className="ml-2 h-4 w-4" />
+                  Démarrer mon diagnostic <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-                <p className="text-primary-foreground/40 text-xs mt-4">Gratuit · Sans engagement · Résultats par email</p>
+                <p className="text-primary-foreground/55 text-xs mt-4">3 minutes · 100% gratuit · Diagnostic détaillé envoyé par email</p>
+
+                <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mt-10 pt-8 border-t border-primary-foreground/10 max-w-md mx-auto">
+                  <div className="flex items-center gap-1.5 text-primary-foreground/60 text-xs">
+                    <span className="font-editorial italic font-bold text-accent text-base">135+</span>
+                    <span>experts</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-primary-foreground/60 text-xs">
+                    <span className="font-editorial italic font-bold text-accent text-base">12</span>
+                    <span>pays</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-primary-foreground/60 text-xs">
+                    <span className="font-editorial italic font-bold text-accent text-base">95%</span>
+                    <span>satisfaction</span>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
