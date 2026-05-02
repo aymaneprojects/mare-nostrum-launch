@@ -7,14 +7,14 @@
   <!-- =============================================
        Mare Nostrum — Sitemap statique
        Site : https://marenostrum.tech
-       Dernière mise à jour : 2026-04-27
+       Dernière mise à jour : 2026-05-02
        Sitemap dynamique (blog) : https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/sitemap
        ============================================= -->
 
   <!-- ── PRIORITÉ MAXIMALE ── -->
   <url>
     <loc>https://marenostrum.tech/</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -22,7 +22,7 @@
   <!-- ── PAGES PHARES (0.95) ── -->
   <url>
     <loc>https://marenostrum.tech/niteo-toulouse</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
@@ -30,25 +30,25 @@
   <!-- ── OFFRES PRINCIPALES (0.9) ── -->
   <url>
     <loc>https://marenostrum.tech/education</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://marenostrum.tech/croissance</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://marenostrum.tech/ecoles/transformation-entrepreneuriale</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://marenostrum.tech/entrepreneurs/accompagnement-francophonie-afrique</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -56,43 +56,43 @@
   <!-- ── OFFRES SECONDAIRES (0.8) ── -->
   <url>
     <loc>https://marenostrum.tech/offre-ia</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://marenostrum.tech/blog</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://marenostrum.tech/contact</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://marenostrum.tech/livre-entrepreneuriat</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://marenostrum.tech/ecoles/diagnostic-gratuit</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://marenostrum.tech/entrepreneurs/test-maturite-projet</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://marenostrum.tech/entrepreneurs/mentorat-individuel</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -100,7 +100,7 @@
   <!-- ── PAGES ÉDITORIALES (0.7) ── -->
   <url>
     <loc>https://marenostrum.tech/a-propos</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
