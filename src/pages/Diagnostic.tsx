@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowRight, ArrowLeft, CheckCircle2, Target } from "lucide-react";
+import { ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
@@ -202,9 +202,7 @@ const Diagnostic = () => {
             <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 22% 18%, hsl(181 67% 54% / 0.20) 0%, transparent 52%), radial-gradient(ellipse at 80% 88%, hsl(228 56% 8% / 0.75) 0%, transparent 58%)" }} />
             <div className="container mx-auto px-4 relative">
               <div className="max-w-2xl mx-auto text-center">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] font-bold tracking-[0.18em] uppercase mb-6">
-                  <Target className="h-3 w-3" /> Diagnostic projet · Club Mare Nostrum
-                </div>
+                <div className="mn-eyebrow-light mb-6">Diagnostic projet · Club Mare Nostrum</div>
                 <h1 className="font-editorial italic text-4xl md:text-5xl font-semibold text-primary-foreground mb-4 leading-tight">
                   Où en est vraiment votre projet ?
                 </h1>
