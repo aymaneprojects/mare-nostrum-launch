@@ -189,7 +189,7 @@ const Diagnostic = () => {
     <div className="min-h-screen bg-background">
       <EnhancedSEOHead
         title="Diagnostic projet gratuit — Club Mare Nostrum"
-        description="8 questions pour évaluer la maturité de votre projet en 3 minutes. Identifiez vos forces, vos angles morts et trouvez l'offre Club adaptée à votre stade."
+        description="Un parcours en 8 étapes pour explorer la maturité de votre projet en 3 minutes. Révélez vos forces, vos angles morts et l'offre Club adaptée à votre stade."
       />
       <Header />
 
@@ -209,7 +209,7 @@ const Diagnostic = () => {
                   Où en est vraiment votre projet ?
                 </h1>
                 <p className="text-primary-foreground/75 text-lg mb-8 leading-relaxed max-w-xl mx-auto">
-                  8 questions pour évaluer honnêtement la maturité de votre projet : marché, modèle, stratégie, équipe. Recevez un diagnostic personnalisé et l'offre Club adaptée à votre stade.
+                  Un parcours en 8 étapes pour explorer honnêtement la maturité de votre projet : marché, modèle, stratégie, équipe. À l'arrivée, votre diagnostic personnalisé et l'offre Club adaptée à votre stade.
                 </p>
                 <Button
                   onClick={() => setStep(0)}
@@ -249,7 +249,7 @@ const Diagnostic = () => {
                 {/* header */}
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">
-                    {step + 1} / {QUESTIONS.length}
+                    Étape {step + 1} / {QUESTIONS.length}
                   </span>
                   <span className="text-xs font-semibold text-accent tracking-wider uppercase">{q.eyebrow}</span>
                 </div>
@@ -294,7 +294,7 @@ const Diagnostic = () => {
                     onClick={() => setStep(s => s - 1)}
                     className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors mt-6 cursor-pointer"
                   >
-                    <ArrowLeft className="h-3.5 w-3.5" /> Question précédente
+                    <ArrowLeft className="h-3.5 w-3.5" /> Étape précédente
                   </button>
                 )}
               </div>
