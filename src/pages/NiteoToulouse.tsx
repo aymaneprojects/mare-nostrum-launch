@@ -192,10 +192,10 @@ const NiteoToulouse = () => {
             <p className="text-lg md:text-2xl text-primary-foreground/90 mb-8 md:mb-12">
               Le programme d'accélération entrepreneuriale pour étudiants en licence et master : Demo Day, 10 000€ de dotations, 30 décideurs
             </p>
-            <Button asChild size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto">
+            <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
               <Link to="/contact">
                 Rejoindre Niteo 2026
-                <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>
@@ -496,10 +496,10 @@ const NiteoToulouse = () => {
             <p className="text-xl text-primary-foreground/90 mb-8">
               Faites de votre établissement un acteur clé de l'entrepreneuriat étudiant à Toulouse
             </p>
-            <Button asChild size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto">
+            <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
               <Link to="/contact">
                 Rejoindre Niteo 2026
-                <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <p className="mt-6 text-primary-foreground/70 text-sm">

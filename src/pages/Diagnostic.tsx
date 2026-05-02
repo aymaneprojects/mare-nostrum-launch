@@ -213,9 +213,9 @@ const Diagnostic = () => {
                   onClick={() => setStep(0)}
                   size="lg"
                   variant="secondary"
-                  className="font-bold text-base px-8 w-full sm:w-auto"
+                  className="w-full sm:w-auto"
                 >
-                  Démarrer mon diagnostic <ArrowRight className="ml-2 h-4 w-4" />
+                  Démarrer mon diagnostic <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <p className="text-primary-foreground/55 text-xs mt-4">3 minutes · 100% gratuit · Diagnostic détaillé envoyé par email</p>
 
@@ -342,10 +342,12 @@ const Diagnostic = () => {
                   <Button
                     onClick={submit}
                     disabled={!nom.trim() || !email.trim() || submitting}
-                    className="w-full mt-6 rounded-sm font-bold"
+                    className="w-full mt-6"
                     size="lg"
                   >
-                    {submitting ? "Envoi en cours…" : "Voir mes résultats →"}
+                    {submitting ? "Envoi en cours…" : (
+                      <>Voir mes résultats <ArrowRight className="ml-2 h-5 w-5" /></>
+                    )}
                   </Button>
                   <p className="text-xs text-muted-foreground/60 text-center mt-3">
                     Vos données restent confidentielles. Aucun spam.
@@ -399,9 +401,9 @@ const Diagnostic = () => {
                     Club {reco.tier} · {reco.price}
                   </div>
                   <p className="text-primary-foreground/80 text-sm leading-relaxed mb-5">{reco.desc}</p>
-                  <Button asChild variant="secondary" className="w-full font-bold">
+                  <Button asChild size="lg" variant="secondary" className="w-full">
                     <Link to={reco.href}>
-                      Rejoindre le Club {reco.tier} <ArrowRight className="ml-2 h-4 w-4" />
+                      Rejoindre le Club {reco.tier} <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                   </Button>
                 </div>

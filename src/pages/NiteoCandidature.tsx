@@ -230,7 +230,7 @@ const NiteoCandidature = () => {
             <span className="text-primary-foreground/40">|</span>
             <span className="text-accent text-xs font-semibold">Candidature hors délai · Accepté en liste d'attente</span>
           </div>
-          <Button onClick={scrollToCTA} size="sm" variant="secondary" className="font-bold shadow-md hover:shadow-lg transition-shadow">
+          <Button onClick={scrollToCTA} size="sm" variant="secondary" className="shadow-md hover:shadow-lg transition-shadow">
             Je candidate
             <ArrowRight className="ml-1 h-4 w-4" />
           </Button>
@@ -273,7 +273,7 @@ const NiteoCandidature = () => {
               ))}
             </div>
 
-            <Button onClick={scrollToCTA} size="lg" variant="secondary" className="text-lg font-bold px-10 py-6 shadow-lg hover:shadow-xl transition-shadow">
+            <Button onClick={scrollToCTA} size="lg" variant="secondary" className="shadow-lg hover:shadow-xl transition-shadow">
               Je candidate à Niteo 2026
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
@@ -537,7 +537,7 @@ const NiteoCandidature = () => {
           <p className="text-sm text-primary-foreground/60 mb-8">
             Tout dossier incomplet sera éliminé.
           </p>
-          <Button onClick={scrollToCTA} size="lg" variant="secondary" className="text-lg font-bold px-12 py-6 shadow-xl hover:shadow-2xl transition-shadow">
+          <Button onClick={scrollToCTA} size="lg" variant="secondary" className="shadow-xl hover:shadow-2xl transition-shadow">
             Candidate MAINTENANT
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>

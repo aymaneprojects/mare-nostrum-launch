@@ -90,10 +90,10 @@ const OffreIA = () => {
             <p className="text-lg md:text-2xl text-primary-foreground/90 mb-8 md:mb-12">
               Transformez votre entreprise grâce à l'intelligence artificielle. De la formation aux solutions sur mesure, nous vous accompagnons.
             </p>
-            <Button asChild size="lg" variant="secondary" className="text-base md:text-lg w-full sm:w-auto">
+            <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
               <Link to="/contact">
                 Discuter de votre projet
-                <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>
@@ -267,7 +267,7 @@ const OffreIA = () => {
               Discutons de vos besoins et définissons ensemble comment l'intelligence artificielle 
               peut accélérer votre développement entrepreneurial.
             </p>
-            <Button asChild size="lg" variant="secondary" className="text-lg">
+            <Button asChild size="lg" variant="secondary">
               <Link to="/contact">
                 Prendre rendez-vous
                 <ArrowRight className="ml-2 h-5 w-5" />
