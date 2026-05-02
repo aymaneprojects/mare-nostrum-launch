@@ -14,90 +14,90 @@ import { supabase } from "@/integrations/supabase/client";
 const QUESTIONS = [
   {
     key: "equipe",
-    eyebrow: "Équipe & expertises",
-    question: "Votre équipe a-t-elle les compétences pour exécuter votre stratégie ?",
+    eyebrow: "Équipe",
+    question: "Vous portez ce projet seul·e ou avec d'autres personnes ?",
     choices: [
-      { label: "Je porte le projet seul·e — toutes les compétences clés reposent sur moi", score: 1 },
-      { label: "J'ai des associé·e·s mais nos rôles et expertises se chevauchent encore", score: 2 },
-      { label: "Équipe en place, rôles clairs et expertises complémentaires", score: 3 },
-      { label: "Équipe complète, expertises rares maîtrisées en interne, dynamique solide", score: 4 },
+      { label: "Tout·e seul·e — pour l'instant, c'est moi qui fais tout", score: 1 },
+      { label: "À plusieurs, mais on n'a pas vraiment réparti qui fait quoi", score: 2 },
+      { label: "Une équipe en place, chacun·e sait ce qu'il a à faire", score: 3 },
+      { label: "Une équipe complète, on couvre tous les sujets et ça tourne bien", score: 4 },
     ],
   },
   {
     key: "marche",
-    eyebrow: "Marché",
-    question: "Connaissez-vous précisément le marché sur lequel vous jouez ?",
+    eyebrow: "Vos clients",
+    question: "Vous savez vraiment qui sont vos clients et combien ils sont ?",
     choices: [
-      { label: "Pas vraiment — c'est une intuition basée sur mon expérience", score: 1 },
-      { label: "Quelques retours informels mais ni taille, ni segmentation chiffrée", score: 2 },
-      { label: "Marché segmenté, taille estimée, dynamiques de croissance comprises", score: 3 },
-      { label: "Marché cartographié : taille, segments, croissance et référence marché identifiées", score: 4 },
+      { label: "Pas encore — c'est surtout une intuition", score: 1 },
+      { label: "J'en ai parlé autour de moi mais rien de plus poussé", score: 2 },
+      { label: "J'ai une bonne idée des clients possibles et de leurs besoins", score: 3 },
+      { label: "J'ai chiffré combien ils sont et identifié leurs profils précis", score: 4 },
     ],
   },
   {
     key: "offre",
-    eyebrow: "Différenciation",
-    question: "Votre offre est-elle vraiment difficile à copier ?",
+    eyebrow: "Votre différence",
+    question: "Si quelqu'un voulait copier votre projet demain, ce serait facile ?",
     choices: [
-      { label: "Je n'ai pas encore analysé sérieusement la concurrence", score: 1 },
-      { label: "Mon offre ressemble à ce qui existe, sans angle clair", score: 2 },
-      { label: "Différenciation formulée et reconnue par mes premiers clients", score: 3 },
-      { label: "Avantage concurrentiel structurel, prouvé et difficile à reproduire", score: 4 },
+      { label: "Honnêtement, je n'ai pas trop regardé ce que font les autres", score: 1 },
+      { label: "Mon offre ressemble à ce qui existe déjà", score: 2 },
+      { label: "J'ai un petit truc en plus que mes clients ont remarqué", score: 3 },
+      { label: "Très difficile : ce que je fais est unique et reconnu", score: 4 },
     ],
   },
   {
     key: "financier",
-    eyebrow: "Pilotage financier",
-    question: "Maîtrisez-vous les chiffres qui pilotent votre projet ?",
+    eyebrow: "Vos chiffres",
+    question: "Vous savez combien votre projet va coûter et rapporter cette année ?",
     choices: [
-      { label: "Pas de prévisionnel — j'avance sans visibilité chiffrée", score: 1 },
-      { label: "Idée approximative des revenus et des coûts", score: 2 },
-      { label: "Prévisionnel construit avec hypothèses identifiées", score: 3 },
-      { label: "Scénarios testés, point d'équilibre connu, runway clair sur 12 mois", score: 4 },
+      { label: "Pas du tout, j'avance sans chiffres", score: 1 },
+      { label: "Une idée approximative, mais rien d'écrit", score: 2 },
+      { label: "J'ai posé un budget avec mes hypothèses", score: 3 },
+      { label: "Je sais quand je serai rentable et combien de temps ma trésorerie tient", score: 4 },
     ],
   },
   {
     key: "bm",
-    eyebrow: "Modèle économique",
-    question: "Votre modèle économique est-il validé par le marché ?",
+    eyebrow: "Vos revenus",
+    question: "Vous savez comment vous allez gagner de l'argent — et ça marche déjà ?",
     choices: [
-      { label: "Modèle pas encore défini ou jamais confronté au réel", score: 1 },
-      { label: "Modèle théorique, sans validation client", score: 2 },
-      { label: "Premières ventes réalisées, modèle en cours d'optimisation", score: 3 },
-      { label: "Modèle prouvé : revenus récurrents ou en forte croissance", score: 4 },
+      { label: "Je n'ai pas encore vraiment réfléchi à comment je gagnerai ma vie", score: 1 },
+      { label: "J'ai une idée, mais je n'ai pas encore vendu", score: 2 },
+      { label: "J'ai déjà fait mes premières ventes et j'ajuste au fur et à mesure", score: 3 },
+      { label: "Je vends régulièrement, et ça progresse bien", score: 4 },
     ],
   },
   {
     key: "strategie",
-    eyebrow: "Stratégie",
-    question: "Savez-vous ce qui fera la différence sur votre marché ?",
+    eyebrow: "Vos priorités",
+    question: "Vous savez quoi faire en priorité dans les 6 prochains mois ?",
     choices: [
-      { label: "Je ne sais pas encore ce qui fait gagner dans mon secteur", score: 1 },
-      { label: "J'ai des intuitions mais aucune stratégie formalisée", score: 2 },
-      { label: "Facteurs clés identifiés, plan d'action priorisé sur 6 mois", score: 3 },
-      { label: "Stratégie claire, ressources allouées, capacités déployées", score: 4 },
+      { label: "Non, j'avance au feeling", score: 1 },
+      { label: "J'ai des idées en tête, mais rien d'écrit", score: 2 },
+      { label: "J'ai un plan — sauf que tout me semble urgent en même temps", score: 3 },
+      { label: "J'ai 2 ou 3 priorités claires et je sais comment les atteindre", score: 4 },
     ],
   },
   {
     key: "esg",
-    eyebrow: "Impact",
-    question: "Votre projet crée-t-il de la valeur au-delà du profit ?",
+    eyebrow: "Votre impact",
+    question: "Votre projet a-t-il un impact positif sur la société ou l'environnement ?",
     choices: [
-      { label: "Ce n'est pas un sujet pour moi aujourd'hui", score: 1 },
-      { label: "J'y pense, sans démarche structurée", score: 2 },
-      { label: "Impact intégré à ma vision et à ma communication", score: 3 },
-      { label: "Impact mesurable, structurant pour le modèle et les décisions", score: 4 },
+      { label: "Pour l'instant, ce n'est pas mon sujet", score: 1 },
+      { label: "J'y pense, mais ce n'est pas concret", score: 2 },
+      { label: "Oui, c'est un vrai sujet pour moi et ça se voit dans mon projet", score: 3 },
+      { label: "Mon impact est mesuré et c'est au cœur de ce que je fais", score: 4 },
     ],
   },
   {
     key: "pitch",
-    eyebrow: "Formulation",
-    question: "Savez-vous formuler votre stratégie de façon claire et convaincante ?",
+    eyebrow: "Votre pitch",
+    question: "Vous arrivez à expliquer votre projet simplement, en 2 minutes ?",
     choices: [
-      { label: "J'ai du mal à expliquer simplement ce que je fais", score: 1 },
-      { label: "Je l'explique mais je ne convaincs pas toujours", score: 2 },
-      { label: "Pitch rodé, support propre, retours positifs réguliers", score: 3 },
-      { label: "Je convaincs systématiquement, avec preuves et alignement marché", score: 4 },
+      { label: "J'ai encore du mal à être clair·e quand on me demande", score: 1 },
+      { label: "Je l'explique, mais on ne comprend pas toujours du premier coup", score: 2 },
+      { label: "Mon pitch est rodé, les gens accrochent vite", score: 3 },
+      { label: "Je convaincs presque à chaque fois, et j'ai un support qui suit", score: 4 },
     ],
   },
 ];
@@ -189,7 +189,7 @@ const Diagnostic = () => {
     <div className="min-h-screen bg-background">
       <EnhancedSEOHead
         title="Diagnostic projet gratuit — Club Mare Nostrum"
-        description="Un parcours en 8 étapes pour explorer la maturité de votre projet en 3 minutes. Révélez vos forces, vos angles morts et l'offre Club adaptée à votre stade."
+        description="8 étapes simples pour faire le point sur votre projet en 3 minutes. À la fin, votre rapport personnalisé et l'offre Club faite pour vous."
       />
       <Header />
 
@@ -207,7 +207,7 @@ const Diagnostic = () => {
                   Où en est vraiment votre projet ?
                 </h1>
                 <p className="text-primary-foreground/75 text-lg mb-8 leading-relaxed max-w-xl mx-auto">
-                  Un parcours en 8 étapes pour explorer honnêtement la maturité de votre projet : marché, modèle, stratégie, équipe. À l'arrivée, votre diagnostic personnalisé et l'offre Club adaptée à votre stade.
+                  8 étapes simples pour faire le point sur votre projet : votre équipe, vos clients, vos chiffres, vos priorités. À la fin, on vous envoie votre rapport personnalisé et on vous indique l'offre Club faite pour vous.
                 </p>
                 <Button
                   onClick={() => setStep(0)}
@@ -312,10 +312,10 @@ const Diagnostic = () => {
                     <span className="font-editorial italic text-2xl font-bold text-primary">{totalScore}</span>
                   </div>
                   <h2 className="font-editorial italic text-2xl font-semibold text-foreground text-center mb-2">
-                    Votre diagnostic est prêt.
+                    Bravo, c'est terminé !
                   </h2>
                   <p className="text-muted-foreground text-sm text-center mb-8 leading-relaxed">
-                    Entrez vos informations pour recevoir votre score détaillé et votre recommandation d'accompagnement.
+                    Plus qu'à laisser vos coordonnées et on vous envoie tout de suite votre rapport complet : votre score sur chaque sujet, ce qui est solide, ce qu'il faut renforcer, et l'offre Club faite pour vous.
                   </p>
 
                   <div className="space-y-4">
