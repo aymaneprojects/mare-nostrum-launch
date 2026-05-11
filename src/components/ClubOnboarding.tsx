@@ -24,7 +24,7 @@ export type Billing      = "monthly" | "annual";
 const OFFER_LABELS: Record<Offer, string> = {
   communaute: "Communauté",
   groupe:     "Groupe",
-  individuel: "Individuel",
+  individuel: "Personnalisé",
 };
 
 const MONTHLY_PRICES: Record<LocationType, Record<Offer, number>> = {

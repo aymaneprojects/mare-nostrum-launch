@@ -26,7 +26,7 @@ const SCORE_LABELS = ["", "Insuffisant", "Faible", "Moyen", "Bon", "Excellent"];
 function clubReco(score: number) {
   if (score <= 20) return { tier: "Communauté", price: "30 €/mois", desc: "Votre projet est en phase d'idéation. Le Club Communauté vous apporte le réseau, les ressources et les bases solides pour avancer." };
   if (score <= 30) return { tier: "Groupe",     price: "90 €/mois", desc: "Votre projet est en phase de structuration. Le Club Groupe vous aide à affiner votre offre et valider votre marché." };
-  return             { tier: "Individuel",  price: "190 €/mois", desc: "Votre projet est prêt à accélérer. Le Club Individuel vous offre un accompagnement stratégique personnalisé." };
+  return             { tier: "Personnalisé",  price: "190 €/mois", desc: "Votre projet est prêt à accélérer. Le Club Personnalisé vous offre un accompagnement stratégique sur-mesure." };
 }
 
 function buildResume(scores: Record<string, number>, comments: Record<string, string>, totalScore: number, noteGlobale: number): string {

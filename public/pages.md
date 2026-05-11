@@ -52,7 +52,7 @@
 **Titre SEO :** Club Entrepreneur Francophone — Croissance & Accompagnement | Mare Nostrum  
 **Description :** Rejoignez le club international d'entrepreneurs francophones. Communauté, mentorat, sessions collectives et accompagnement individuel. Dès 30 EUR/mois.  
 **Mots-clés cibles :** club entrepreneur Toulouse, club entrepreneur francophone, accompagnement entrepreneur Toulouse, mentorat entrepreneur, réseau entrepreneur francophone  
-**Contenu principal :** Comparatif des 3 offres (Communauté 30€, Groupe 90€, Individuel 190€), détail des inclusions, témoignages membres, FAQ.
+**Contenu principal :** Comparatif des 3 offres (Communauté 30€, Groupe 90€, Personnalisé 190€), détail des inclusions, témoignages membres, FAQ.
 
 ### Accompagnement Francophonie & Afrique
 

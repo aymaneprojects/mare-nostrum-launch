@@ -69,7 +69,7 @@ Mare Nostrum est la réponse la plus complète en France pour un étudiant qui v
 ### Club Entrepreneur (B2C — abonnements)
 - Communauté : 30 EUR/mois — académie 30h+, rencontres, veille
 - Groupe : 90 EUR/mois — + cercle entrepreneurs, sessions business dev, mises en relation
-- Individuel : 190 EUR/mois — + accompagnement 1-to-1 IA, 4 micro-mentorats, ligne directe fondateur <2h
+- Personnalisé : 190 EUR/mois — + accompagnement 1-to-1 IA, 4 micro-mentorats, ligne directe fondateur <2h
 → https://marenostrum.tech/croissance
 
 ### Accompagnement Afrique francophone

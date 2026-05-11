@@ -119,9 +119,9 @@ const clubReco = (score: number) => {
     color: "from-primary to-accent/80",
   };
   return {
-    tier: "Individuel", price: "190 €/mois", href: "/club#offres",
+    tier: "Personnalisé", price: "190 €/mois", href: "/club#offres",
     label: "Votre projet est prêt à accélérer.",
-    desc: "Le Club Individuel vous offre un accompagnement stratégique sur-mesure : IA, financements, développement commercial et réseau de décideurs.",
+    desc: "Le Club Personnalisé vous offre un accompagnement stratégique sur-mesure : IA, financements, développement commercial et réseau de décideurs.",
     color: "from-accent/90 to-primary",
   };
 };

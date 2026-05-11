@@ -318,12 +318,12 @@ const Croissance = () => {
           },
           {
             "@type": "Offer",
-            "name": "Individuel",
-            "description": "Tout de Groupe + accompagnement individuel IA, 4 micro-mentorats par mois, ligne directe avec le fondateur Mare Nostrum pour réponse en moins de 2h.",
+            "name": "Personnalisé",
+            "description": "Tout de Groupe + accompagnement 1-to-1 IA, 4 micro-mentorats par mois, ligne directe avec le fondateur Mare Nostrum pour réponse en moins de 2h.",
             "price": "190",
             "priceCurrency": "EUR",
             "priceSpecification": { "@type": "UnitPriceSpecification", "price": "190.00", "priceCurrency": "EUR", "unitText": "MONTH" },
-            "itemOffered": { "@type": "Service", "name": "Individuel", "category": "Offre premium entrepreneur" }
+            "itemOffered": { "@type": "Service", "name": "Personnalisé", "category": "Offre premium entrepreneur" }
           }
         ]
       }
@@ -361,7 +361,7 @@ const Croissance = () => {
     },
     {
       question: "J'ai peur que ce soit trop général, pas adapté à mon projet.",
-      answer: "Chaque membre bénéficie d'un accompagnement selon son niveau et ses besoins. Communauté pour rompre l'isolement et poser les bases solides. Groupe pour structurer la croissance et affiner l'offre. Individuel pour un accompagnement stratégique personnalisé sur l'IA, les financements ou le développement. Nos experts connaissent le quotidien des entrepreneurs — on parle concret, pas théorie."
+      answer: "Chaque membre bénéficie d'un accompagnement selon son niveau et ses besoins. Communauté pour rompre l'isolement et poser les bases solides. Groupe pour structurer la croissance et affiner l'offre. Personnalisé pour un accompagnement stratégique sur-mesure sur l'IA, les financements ou le développement. Nos experts connaissent le quotidien des entrepreneurs — on parle concret, pas théorie."
     },
     {
       question: "Je suis déjà accompagné ailleurs.",
@@ -412,7 +412,7 @@ const Croissance = () => {
     <div className="min-h-screen flex flex-col">
       <EnhancedSEOHead
         title="Club Entrepreneur Toulouse & Afrique | Accompagnement Startup dès 30€/mois - Mare Nostrum"
-        description="Rejoignez le Club Entrepreneur Mare Nostrum à Toulouse. 3 offres : Communauté 30€, Groupe 90€, Individuel 190€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans. Mentorat, réseau, IA. Toulouse, Paris, Casablanca, Afrique francophone."
+        description="Rejoignez le Club Entrepreneur Mare Nostrum à Toulouse. 3 offres : Communauté 30€, Groupe 90€, Personnalisé 190€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans. Mentorat, réseau, IA. Toulouse, Paris, Casablanca, Afrique francophone."
         keywords="club entrepreneur toulouse, accompagnement entrepreneur toulouse, mentorat startup toulouse, accompagnement entrepreneur afrique, club entrepreneur francophone, incubateur toulouse, croissance entreprise toulouse, réseau entrepreneur toulouse, coaching entrepreneur, accompagnement startup francophonie, entrepreneuriat toulouse, entrepreneuriat afrique"
         structuredData={croissanceSchema}
         faqSchema={croissanceFaqs}
@@ -618,10 +618,10 @@ const Croissance = () => {
               </Button>
             </div>
 
-            {/* Individuel */}
+            {/* Personnalisé */}
             <div className="bg-card border-2 border-border rounded-sm p-6 md:p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col h-full">
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold mb-2 text-foreground">Individuel</h3>
+                <h3 className="text-2xl font-bold mb-2 text-foreground">Personnalisé</h3>
                 <div className="text-4xl font-bold text-primary mb-1">
                   {getPrice("individuel")}
                   <span className="text-lg font-normal text-muted-foreground"> {getPricePeriod()}</span>
@@ -666,7 +666,7 @@ const Croissance = () => {
                   <th className="text-left py-2 px-2 md:py-3 md:px-4 text-muted-foreground font-medium" style={{ width: '40%' }}></th>
                   <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Communauté</th>
                   <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-primary-foreground rounded-t-sm" style={{ background: 'hsl(222 44% 25%)' }}>Groupe</th>
-                  <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Individuel</th>
+                  <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Personnalisé</th>
                 </tr>
               </thead>
               <tbody>
@@ -833,10 +833,10 @@ const Croissance = () => {
             </div>
 
             <div className="group relative overflow-hidden rounded-sm shadow-lg hover:shadow-2xl transition-all">
-              <img src={neoEntrepreneurElite} alt="Journée de business développement avec néo-entrepreneurs dans l'offre Individuel Mare Nostrum Toulouse" loading="lazy" width="600" height="400" className="w-full h-[220px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
+              <img src={neoEntrepreneurElite} alt="Journée de business développement avec néo-entrepreneurs dans l'offre Personnalisé Mare Nostrum Toulouse" loading="lazy" width="600" height="400" className="w-full h-[220px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
-                  <h3 className="text-xl font-bold mb-2">Offre Individuel</h3>
+                  <h3 className="text-xl font-bold mb-2">Offre Personnalisé</h3>
                   <p className="text-sm">Accompagnement premium avec nos néo-entrepreneurs</p>
                 </div>
               </div>
