@@ -258,7 +258,7 @@ const Croissance = () => {
       "@context": "https://schema.org",
       "@type": "Service",
       "name": "Club Entrepreneur Mare Nostrum - Accompagnement Startup Toulouse & Afrique",
-      "url": "https://marenostrum.tech/croissance",
+      "url": "https://marenostrum.tech/club",
       "description": "Club d'accompagnement pour entrepreneurs francophones à impact. Mentorat, réseau, IA, formation. 3 offres dès 30€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans.",
       "provider": {
         "@type": "Organization",
@@ -332,7 +332,7 @@ const Croissance = () => {
       "@context": "https://schema.org",
       "@type": "WebPage",
       "name": "Club Entrepreneur Toulouse & Afrique - Mare Nostrum",
-      "url": "https://marenostrum.tech/croissance",
+      "url": "https://marenostrum.tech/club",
       "description": "Club d'accompagnement entrepreneur à Toulouse et en Afrique francophone. Mentorat, réseau, IA dès 30€/mois.",
       "isPartOf": { "@type": "WebSite", "name": "Mare Nostrum", "url": "https://marenostrum.tech" },
       "speakable": {

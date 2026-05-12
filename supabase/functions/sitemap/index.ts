@@ -33,7 +33,7 @@ Deno.serve(async (req) => {
       { loc: "https://marenostrum.tech/", priority: "1.0", changefreq: "weekly" },
       { loc: "https://marenostrum.tech/niteo-toulouse", priority: "0.95", changefreq: "weekly" },
       { loc: "https://marenostrum.tech/education", priority: "0.9", changefreq: "weekly" },
-      { loc: "https://marenostrum.tech/croissance", priority: "0.9", changefreq: "weekly" },
+      { loc: "https://marenostrum.tech/club", priority: "0.9", changefreq: "weekly" },
       { loc: "https://marenostrum.tech/offre-ia", priority: "0.8", changefreq: "weekly" },
       { loc: "https://marenostrum.tech/contact", priority: "0.8", changefreq: "monthly" },
       { loc: "https://marenostrum.tech/a-propos", priority: "0.7", changefreq: "monthly" },

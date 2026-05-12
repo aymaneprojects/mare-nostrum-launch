@@ -2,5 +2,8 @@
 /healthz  https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/healthz  200
 /api/healthz  https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/healthz  200
 
+# Legacy URL — canonical is /club
+/croissance  /club  301!
+
 # SPA fallback
 /*  /index.html  200
