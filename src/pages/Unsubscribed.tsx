@@ -88,7 +88,7 @@ const Unsubscribed = () => {
               </div>
 
               <Link
-                to="/newsletter"
+                to="/iter"
                 style={{ display: "block", padding: "16px", background: "#24335D", color: "#FFFFFF", fontWeight: 700, fontSize: 14, letterSpacing: "0.4px", textDecoration: "none", marginBottom: 14 }}
               >
                 Me réinscrire à ITER →

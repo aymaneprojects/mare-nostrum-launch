@@ -97,10 +97,10 @@ const Newsletter = () => {
               </div>
 
               <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 600, fontSize: 24, color: "#24335D", letterSpacing: "-0.3px", margin: "14px 0 8px", lineHeight: 1.25 }}>
-                12 étapes pour faire décoller ton projet.
+                Transforme ton idée utile en entreprise solide.
               </div>
               <p style={{ fontSize: 15, color: "#6C7591", lineHeight: 1.65, margin: "0 0 28px" }}>
-                ITER est une séquence email de 12 semaines — ressources, outils et défis concrets pour les entrepreneurs de la francophonie.
+                ITER, c'est la lettre hebdomadaire de Mare Nostrum. Reçois gratuitement des méthodes, des ressources et des outils pratiques pour avancer concrètement.
               </p>
 
               <form onSubmit={handleSubmit} noValidate>
@@ -196,7 +196,7 @@ const Newsletter = () => {
                       <svg style={{ animation: "spin 0.6s linear infinite" }} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="10" strokeOpacity="0.3" /><path d="M12 2a10 10 0 0 1 10 10" /></svg>
                       Inscription en cours…
                     </>
-                  ) : "Rejoindre ITER · 12 étapes gratuites →"}
+                  ) : "Rejoindre ITER gratuitement →"}
                 </button>
               </form>
             </>

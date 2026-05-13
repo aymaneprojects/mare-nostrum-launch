@@ -107,7 +107,7 @@ const AppContent = () => {
         <Route path="/niteo-toulouse" element={<NiteoToulouse />} />
         
         {/* ITER Newsletter */}
-        <Route path="/newsletter" element={<Newsletter />} />
+        <Route path="/iter" element={<Newsletter />} />
         <Route path="/unsubscribed" element={<Unsubscribed />} />
         <Route path="/diagnostic" element={<Diagnostic />} />
         <Route path="/a-propos/partenaire" element={<Partenaires />} />
