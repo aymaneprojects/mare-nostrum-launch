@@ -35,15 +35,15 @@ const handler = async (req: Request): Promise<Response> => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          typecast: true,
           fields: {
             "Prénom / Nom":        name,
             "Mail":                email,
             "Téléphone":           phone ?? "",
-            "Pays":                country ?? "",
             "Segment":             SEGMENT_MAP[type] ?? type ?? "",
             "Lead Type":           "Lead Froid",
             "Expérience":          "Formulaire site web",
-            "Message-contenu":     message ?? "",
+            "Commentaires libres": message ?? "",
             "confidentialité":     true,
             "Input CTA Site web":  "Contact",
           },
