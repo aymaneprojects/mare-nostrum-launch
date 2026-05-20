@@ -206,15 +206,9 @@ const Contact = () => {
                     <p className="text-muted-foreground mb-3 text-xs md:text-sm">Réservez un créneau directement avec notre équipe</p>
                     <div className="flex flex-col gap-2">
                       <Button asChild variant="outline" size="sm" className="w-full text-xs md:text-sm">
-                        <a href="https://calendly.com/aymane-marenostrum/30min" target="_blank" rel="noopener noreferrer">
+                        <a href="https://meet.marenostrum.tech/romeo" target="_blank" rel="noopener noreferrer">
                           <Calendar className="mr-2 h-3 w-3 md:h-4 md:w-4" />
-                          RDV avec Aymane
-                        </a>
-                      </Button>
-                      <Button asChild variant="outline" size="sm" className="w-full text-xs md:text-sm">
-                        <a href="https://calendly.com/marenostrumtech/rdv-alexis" target="_blank" rel="noopener noreferrer">
-                          <Calendar className="mr-2 h-3 w-3 md:h-4 md:w-4" />
-                          RDV avec Alexis
+                          Prendre rendez-vous
                         </a>
                       </Button>
                     </div>
