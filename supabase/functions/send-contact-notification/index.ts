@@ -43,7 +43,7 @@ const handler = async (req: Request): Promise<Response> => {
             "Pays de résidence":   country ?? "",
             "Segment":             SEGMENT_MAP[type] ?? type ?? "",
             "Lead Type":           "Lead Froid",
-            "Expérience":          "Formulaire site web",
+            "Expérience":          "Formulaire de contact ",
             "Commentaires libres": message ?? "",
             "confidentialité":     true,
             "Input CTA Site web":  "Contact",
@@ -63,7 +63,8 @@ const handler = async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: "Mare Nostrum <no-reply@marenostrum.tech>",
-        to: ["contact@marenostrum.tech"],
+        to: ["romeo@marenostrum.tech"],
+        cc: ["aymane@marenostrum.tech", "alexis@marenostrum.tech"],
         subject: `Nouveau message de ${name} — ${SEGMENT_MAP[type] ?? type}`,
         html: `
           <h2>Nouveau message de contact</h2>

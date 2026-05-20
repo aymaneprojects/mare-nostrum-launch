@@ -28,14 +28,16 @@ serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        typecast: true,
         fields: {
-          "Prénom / Nom": nom,
-          "Mail": email,
+          "Prénom / Nom":        nom,
+          "Mail":                email,
           "Structure principal": projet ?? "",
-          "Téléphone": telephone ?? "",
-          "confidentialité": rgpd === true,
-          "Input CTA Site web": "ITER",
-          "Lead Type": "Lead Froid",
+          "Téléphone":           telephone ?? "",
+          "confidentialité":     rgpd === true,
+          "Expérience":          "Inscription newsletter",
+          "Input CTA Site web":  "ITER",
+          "Lead Type":           "Lead Froid",
         },
       }),
     });
