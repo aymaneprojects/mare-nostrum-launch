@@ -40,6 +40,7 @@ const handler = async (req: Request): Promise<Response> => {
             "Prénom / Nom":        name,
             "Mail":                email,
             "Téléphone":           phone ?? "",
+            "Pays de résidence":   country ?? "",
             "Segment":             SEGMENT_MAP[type] ?? type ?? "",
             "Lead Type":           "Lead Froid",
             "Expérience":          "Formulaire site web",
