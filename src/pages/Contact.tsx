@@ -290,6 +290,7 @@ const Contact = () => {
                       <SelectItem value="Côte d'Ivoire">Côte d'Ivoire</SelectItem>
                       <SelectItem value="Bénin">Bénin</SelectItem>
                       <SelectItem value="Cameroun">Cameroun</SelectItem>
+                      <SelectItem value="République du Congo">République du Congo</SelectItem>
                       <SelectItem value="Canada">Canada</SelectItem>
                       <SelectItem value="Autre">Autre</SelectItem>
                     </SelectContent>

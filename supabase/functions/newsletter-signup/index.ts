@@ -31,9 +31,10 @@ serve(async (req) => {
         fields: {
           "Prénom / Nom": nom,
           "Mail": email,
-          "Structure 2": projet ?? "",
+          "Structure principal": projet ?? "",
           "Téléphone": telephone ?? "",
           "confidentialité": rgpd === true,
+          "Input CTA Site web": "ITER",
           "Lead Type": "Lead Froid",
         },
       }),
