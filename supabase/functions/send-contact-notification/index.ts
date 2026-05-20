@@ -44,7 +44,7 @@ const handler = async (req: Request): Promise<Response> => {
             "Segment":             SEGMENT_MAP[type] ?? type ?? "",
             "Lead Type":           "Lead Froid",
             "Expérience":          "Formulaire de contact ",
-            "Commentaires libres": message ?? "",
+            "Contact - contenue du message": message ?? "",
             "confidentialité":     true,
             "Input CTA Site web":  "Contact",
           },
