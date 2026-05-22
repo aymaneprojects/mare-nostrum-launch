@@ -38,9 +38,10 @@ const CURRENCIES: Record<Location, string> = {
   congo_brazzaville: "xof",
 };
 
-// txcd_20030000 = services digitaux, txcd_20060044 = formation/éducation
+// France: TVA-exempt (formation professionnelle continue, art. 261-4-4a CGI + DREETS Occitanie)
+// Export: 0% TVA à l'export — txcd_20060044 = formation/éducation
 const TAX_CODES: Record<Offer, string> = {
-  communaute: "txcd_20030000",
+  communaute: "txcd_20060044",
   groupe:     "txcd_20060044",
   individuel: "txcd_20060044",
 };
@@ -70,12 +71,15 @@ serve(async (req) => {
     const interval = billing === "monthly" ? "month" : "year";
     const billingLabel = billing === "monthly" ? "mensuel" : "annuel";
 
-    // Metadata on the session — no pre-created customer so Google Pay / Apple Pay work
+    const isFrance = location === "france";
+
+    // France : exonéré TVA (formation professionnelle continue, art. 261-4-4a CGI)
+    // Export : TVA 0% à l'export — automatic_tax détecte la localisation du client
     const session = await stripe.checkout.sessions.create({
       ui_mode: "embedded",
       mode: "subscription",
       customer_email: email,
-      automatic_tax: { enabled: true },
+      ...(isFrance ? {} : { automatic_tax: { enabled: true } }),
       metadata: {
         prenom,
         entreprise: entreprise ?? "",
@@ -90,10 +94,10 @@ serve(async (req) => {
           product_data: {
             name: `Club Mare Nostrum — ${OFFER_NAMES[offer]}`,
             description: `Abonnement ${billingLabel} — Club Entrepreneur Mare Nostrum`,
-            tax_code: TAX_CODES[offer],
+            ...(isFrance ? {} : { tax_code: TAX_CODES[offer] }),
           },
           unit_amount: amount,
-          tax_behavior: "inclusive",
+          tax_behavior: "exclusive",
           recurring: { interval },
         },
         quantity: 1,
