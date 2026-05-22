@@ -74,7 +74,6 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   const [prenom, setPrenom]             = useState(initialPrenom ?? "");
   const [email, setEmail]               = useState(initialEmail ?? "");
   const [entreprise, setEntreprise]     = useState("");
-  const [stade, setStade]               = useState("");
   const [error, setError]               = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [cgvAccepted, setCgvAccepted]   = useState(false);
@@ -105,7 +104,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
 
   const handleClose = () => {
     setPhase("step1");
-    setPrenom(""); setEmail(""); setEntreprise(""); setStade("");
+    setPrenom(""); setEmail(""); setEntreprise("");
     setError(""); setClientSecret(""); setCgvAccepted(false); setKitClicked(false);
     onClose();
   };
@@ -115,7 +114,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
     setError("");
     try {
       const { data, error: fnError } = await supabase.functions.invoke("create-checkout-session", {
-        body: { offer, location, billing, prenom, email, entreprise, stade },
+        body: { offer, location, billing, prenom, email, entreprise },
       });
       if (fnError) throw new Error(fnError.message);
       if (!data?.clientSecret) throw new Error("Réponse invalide du serveur.");
@@ -266,32 +265,9 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
               <p className="text-sm text-muted-foreground">Parle-nous de ton projet.</p>
               <div className="space-y-3">
                 <div className="space-y-1.5">
-                  <Label htmlFor="entreprise">
-                    Entreprise / Projet
-                    <span className="text-muted-foreground text-xs ml-1">(optionnel)</span>
-                  </Label>
+                  <Label htmlFor="entreprise">Entreprise / Projet *</Label>
                   <Input id="entreprise" placeholder="Nom de ton projet ou entreprise"
-                    value={entreprise} onChange={e => setEntreprise(e.target.value)} />
-                </div>
-                <div className="space-y-2">
-                  <Label>Ton stade *</Label>
-                  <div className="grid gap-2">
-                    {[
-                      { val: "ideation",        label: "Idéation / Lancement", sub: "0–12 mois, pré-revenu" },
-                      { val: "premiers-clients", label: "Premiers clients",      sub: "1K–10K€ MRR"          },
-                      { val: "croissance",       label: "Croissance",            sub: "10K€+ MRR"            },
-                    ].map(opt => (
-                      <button key={opt.val} type="button" onClick={() => setStade(opt.val)}
-                        className={`text-left px-4 py-2.5 rounded-sm border text-sm transition-all cursor-pointer ${
-                          stade === opt.val
-                            ? "border-primary bg-primary/5 text-primary font-semibold"
-                            : "border-border hover:border-primary/40"
-                        }`}>
-                        <span className="font-medium">{opt.label}</span>
-                        <span className="text-xs text-muted-foreground ml-2">{opt.sub}</span>
-                      </button>
-                    ))}
-                  </div>
+                    value={entreprise} onChange={e => setEntreprise(e.target.value)} autoFocus />
                 </div>
               </div>
 
@@ -334,7 +310,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                 <Button variant="outline" onClick={() => setPhase("step1")} className="flex-none">
                   <ArrowLeft className="h-4 w-4" />
                 </Button>
-                <Button className="flex-1" disabled={!stade || !cgvAccepted} onClick={handleStartPayment}>
+                <Button className="flex-1" disabled={!entreprise.trim() || !cgvAccepted} onClick={handleStartPayment}>
                   <CreditCard className="mr-2 h-4 w-4" />
                   Passer au paiement
                 </Button>
