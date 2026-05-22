@@ -11,11 +11,11 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-type Offer = "communaute" | "groupe" | "individuel";
+type Offer    = "communaute" | "groupe" | "individuel";
 type Location = "france" | "congo_brazzaville";
-type Billing = "monthly" | "annual";
+type Billing  = "monthly" | "annual";
 
-// EUR in cents, XOF is zero-decimal (face value)
+// EUR en centimes, XOF est zero-decimal
 const PRICES: Record<Location, Record<Billing, Record<Offer, number>>> = {
   france: {
     monthly: { communaute: 3000,   groupe: 9000,   individuel: 19000  },
@@ -29,12 +29,12 @@ const PRICES: Record<Location, Record<Billing, Record<Offer, number>>> = {
 
 const OFFER_NAMES: Record<Offer, string> = {
   communaute: "Communauté",
-  groupe: "Groupe",
+  groupe:     "Groupe",
   individuel: "Personnalisé",
 };
 
 const CURRENCIES: Record<Location, string> = {
-  france: "eur",
+  france:            "eur",
   congo_brazzaville: "xof",
 };
 
@@ -43,62 +43,70 @@ const TAX_RATE_FR_FORMATION = "txr_1TZv2WRtzJviITg0a9uhLZHZ"; // 0%  — Exonér
 const TAX_RATE_FR_20        = "txr_1TZv7YRtzJviITg0BxVVs14X"; // 20% — TVA services digitaux France
 const TAX_RATE_EXPORT       = "txr_1TZv2WRtzJviITg0Dd3ZXPaZ"; // 0%  — TVA à l'export art. 262 I CGI
 
-// IDs facture Stripe — France par offre, international unifié
-const INVOICE_IDS_FR: Record<Offer, string> = {
+// Références internes facture (stockées en metadata Stripe)
+const INVOICE_REF_FR: Record<Offer, string> = {
   communaute: "inrtem_1TZv63RtzJviITg0y2KK0DoH",
   groupe:     "inrtem_1TZukIRtzJviITg0ZPPC9xLv",
   individuel: "inrtem_1TZukIRtzJviITg0ZPPC9xLv",
 };
-const INVOICE_ID_EXPORT = "inrtem_1TZunVRtzJviITg0YK8HfB4s";
+const INVOICE_REF_EXPORT = "inrtem_1TZunVRtzJviITg0YK8HfB4s";
 
-// Communauté = service digital (TVA 20% FR) — Groupe/Personnalisé = formation (TVA 0% FR)
+// Communauté = service digital (20% TVA FR) — Groupe/Personnalisé = formation (0% FR)
 function getTaxRate(offer: Offer, isFrance: boolean): string {
   if (!isFrance) return TAX_RATE_EXPORT;
   return offer === "communaute" ? TAX_RATE_FR_20 : TAX_RATE_FR_FORMATION;
 }
 
 serve(async (req) => {
-  if (req.method === "OPTIONS") {
-    return new Response(null, { headers: corsHeaders });
-  }
+  if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
     const { offer, location, billing, prenom, email, entreprise, stade } = await req.json() as {
-      offer: Offer;
-      location: Location;
-      billing: Billing;
-      prenom: string;
-      email: string;
-      entreprise?: string;
-      stade?: string;
+      offer: Offer; location: Location; billing: Billing;
+      prenom: string; email: string; entreprise?: string; stade?: string;
     };
 
     if (!offer || !location || !billing || !prenom || !email) {
       throw new Error("Champs obligatoires manquants.");
     }
 
-    const isFrance = location === "france";
-    const taxRate  = getTaxRate(offer, isFrance);
+    const isFrance     = location === "france";
+    const currency     = CURRENCIES[location];
+    const amount       = PRICES[location][billing][offer];
+    const interval     = billing === "monthly" ? "month" : "year";
+    const billingLabel = billing === "monthly" ? "mensuel" : "annuel";
+    const taxRate      = getTaxRate(offer, isFrance);
+    const invoiceRef   = isFrance ? INVOICE_REF_FR[offer] : INVOICE_REF_EXPORT;
 
     const session = await stripe.checkout.sessions.create({
-      ui_mode: "embedded",
-      mode: "subscription",
+      ui_mode:        "embedded",
+      mode:           "subscription",
       customer_email: email,
       metadata: {
         prenom,
-        entreprise: entreprise ?? "",
-        stade: stade ?? "",
+        entreprise:  entreprise ?? "",
+        stade:       stade ?? "",
         offer,
         location,
         billing,
+        invoice_ref: invoiceRef,
       },
       line_items: [{
-        price:     isFrance ? INVOICE_IDS_FR[offer] : INVOICE_ID_EXPORT,
+        price_data: {
+          currency,
+          product_data: {
+            name:        `Club Mare Nostrum — ${OFFER_NAMES[offer]}`,
+            description: `Abonnement ${billingLabel} — Club Entrepreneur Mare Nostrum`,
+          },
+          unit_amount:  amount,
+          tax_behavior: "exclusive",
+          recurring:    { interval },
+        },
         tax_rates: [taxRate],
         quantity:  1,
       }],
       phone_number_collection: { enabled: true },
-      allow_promotion_codes: true,
+      allow_promotion_codes:   true,
       return_url: "https://marenostrum.tech/club?session_id={CHECKOUT_SESSION_ID}",
     });
 
