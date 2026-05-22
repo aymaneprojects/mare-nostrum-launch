@@ -38,20 +38,19 @@ const CURRENCIES: Record<Location, string> = {
   congo_brazzaville: "xof",
 };
 
-// Taux TVA explicites — affichés sur facture et checkout
+// Taux TVA — affichés sur facture et checkout
 const TAX_RATE_FR_FORMATION = "txr_1TZv2WRtzJviITg0a9uhLZHZ"; // 0%  — Exonération formation art. 261-4-4a CGI
 const TAX_RATE_FR_20        = "txr_1TZv7YRtzJviITg0BxVVs14X"; // 20% — TVA services digitaux France
 const TAX_RATE_EXPORT       = "txr_1TZv2WRtzJviITg0Dd3ZXPaZ"; // 0%  — TVA à l'export art. 262 I CGI
 
-// Références internes facture (stockées en metadata Stripe)
-const INVOICE_REF_FR: Record<Offer, string> = {
+// Modèles de facture (Invoice Rendering Templates)
+const INVOICE_TPL_FR: Record<Offer, string> = {
   communaute: "inrtem_1TZv63RtzJviITg0y2KK0DoH",
   groupe:     "inrtem_1TZukIRtzJviITg0ZPPC9xLv",
   individuel: "inrtem_1TZukIRtzJviITg0ZPPC9xLv",
 };
-const INVOICE_REF_EXPORT = "inrtem_1TZunVRtzJviITg0YK8HfB4s";
+const INVOICE_TPL_EXPORT = "inrtem_1TZunVRtzJviITg0YK8HfB4s";
 
-// Communauté = service digital (20% TVA FR) — Groupe/Personnalisé = formation (0% FR)
 function getTaxRate(offer: Offer, isFrance: boolean): string {
   if (!isFrance) return TAX_RATE_EXPORT;
   return offer === "communaute" ? TAX_RATE_FR_20 : TAX_RATE_FR_FORMATION;
@@ -76,12 +75,24 @@ serve(async (req) => {
     const interval     = billing === "monthly" ? "month" : "year";
     const billingLabel = billing === "monthly" ? "mensuel" : "annuel";
     const taxRate      = getTaxRate(offer, isFrance);
-    const invoiceRef   = isFrance ? INVOICE_REF_FR[offer] : INVOICE_REF_EXPORT;
+    const invoiceTpl   = isFrance ? INVOICE_TPL_FR[offer] : INVOICE_TPL_EXPORT;
+
+    // Trouver ou créer le customer avec le bon modèle de facture
+    const existing = await stripe.customers.list({ email, limit: 1 });
+    const customer = existing.data.length > 0
+      ? await stripe.customers.update(existing.data[0].id, {
+          invoice_settings: { rendering_options: { template: invoiceTpl } },
+        })
+      : await stripe.customers.create({
+          email,
+          name: prenom,
+          invoice_settings: { rendering_options: { template: invoiceTpl } },
+        });
 
     const session = await stripe.checkout.sessions.create({
-      ui_mode:        "embedded",
-      mode:           "subscription",
-      customer_email: email,
+      ui_mode:  "embedded",
+      mode:     "subscription",
+      customer: customer.id,
       metadata: {
         prenom,
         entreprise: entreprise ?? "",
@@ -89,13 +100,6 @@ serve(async (req) => {
         offer,
         location,
         billing,
-      },
-      subscription_data: {
-        invoice_settings: {
-          rendering: {
-            invoice_pdf: { template: invoiceRef },
-          },
-        },
       },
       line_items: [{
         price_data: {
