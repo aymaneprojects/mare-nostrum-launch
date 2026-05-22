@@ -43,12 +43,13 @@ const TAX_RATE_FR_FORMATION = "txr_1TZv2WRtzJviITg0a9uhLZHZ"; // 0%  — Exonér
 const TAX_RATE_FR_20        = "txr_1TZv7YRtzJviITg0BxVVs14X"; // 20% — TVA services digitaux France
 const TAX_RATE_EXPORT       = "txr_1TZv2WRtzJviITg0Dd3ZXPaZ"; // 0%  — TVA à l'export art. 262 I CGI
 
-// IDs facture Stripe par offre
-const INVOICE_IDS: Record<Offer, string> = {
+// IDs facture Stripe — France par offre, international unifié
+const INVOICE_IDS_FR: Record<Offer, string> = {
   communaute: "inrtem_1TZv63RtzJviITg0y2KK0DoH",
   groupe:     "inrtem_1TZukIRtzJviITg0ZPPC9xLv",
   individuel: "inrtem_1TZukIRtzJviITg0ZPPC9xLv",
 };
+const INVOICE_ID_EXPORT = "inrtem_1TZunVRtzJviITg0YK8HfB4s";
 
 // Communauté = service digital (TVA 20% FR) — Groupe/Personnalisé = formation (TVA 0% FR)
 function getTaxRate(offer: Offer, isFrance: boolean): string {
@@ -92,9 +93,9 @@ serve(async (req) => {
         billing,
       },
       line_items: [{
-        price:      INVOICE_IDS[offer],
-        tax_rates:  [taxRate],
-        quantity:   1,
+        price:     isFrance ? INVOICE_IDS_FR[offer] : INVOICE_ID_EXPORT,
+        tax_rates: [taxRate],
+        quantity:  1,
       }],
       phone_number_collection: { enabled: true },
       allow_promotion_codes: true,
