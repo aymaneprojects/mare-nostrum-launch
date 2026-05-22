@@ -84,12 +84,18 @@ serve(async (req) => {
       customer_email: email,
       metadata: {
         prenom,
-        entreprise:  entreprise ?? "",
-        stade:       stade ?? "",
+        entreprise: entreprise ?? "",
+        stade:      stade ?? "",
         offer,
         location,
         billing,
-        invoice_ref: invoiceRef,
+      },
+      subscription_data: {
+        invoice_settings: {
+          rendering: {
+            invoice_pdf: { template: invoiceRef },
+          },
+        },
       },
       line_items: [{
         price_data: {
