@@ -32,7 +32,7 @@ serve(async (req) => {
         fields: {
           "Prénom / Nom":        nom,
           "Mail":                email,
-          "Structure principal": projet ?? "",
+          "Structure 2":         projet ?? "",
           "Téléphone":           telephone ?? "",
           "confidentialité":     rgpd === true,
           "Expérience":          "Inscription newsletter",
