@@ -17,13 +17,15 @@ const stripePromise = stripeKey?.startsWith("pk_") ? loadStripe(stripeKey) : nul
 type Phase = "form" | "loading" | "payment" | "confirming" | "success" | "error";
 
 const ROLES = [
-  "Coach",
+  "Invité",
+  "Membre du jury",
+  "Décideur / Entrepreneur",
+  "Investisseur",
+  "Coach / Mentor",
+  "Expert",
   "Partenaire institutionnel",
   "Partenaire privé",
-  "Entrepreneur en résidence",
-  "Expert",
-  "Parrain / Marraine",
-  "Jury",
+  "Presse / Média",
   "Autre",
 ];
 
