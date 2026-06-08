@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import NiteoHeader from "@/components/NiteoHeader";
 import { CheckCircle2, Calendar, MapPin, Clock, ArrowRight, Loader2, Trophy, Users } from "lucide-react";
 import logoNiteo from "@/assets/niteo/logo-niteo-2026.png";
 
@@ -78,11 +78,11 @@ export default function NiteoReservation() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      <NiteoHeader />
 
       {/* Hero */}
       <section
-        className="relative py-16 md:py-24 overflow-hidden"
+        className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden"
         style={{
           background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)",
           backgroundImage: [

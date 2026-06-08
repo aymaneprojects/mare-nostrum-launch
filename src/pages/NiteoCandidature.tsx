@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import StructuredData from "@/components/StructuredData";
 import Footer from "@/components/Footer";
+import NiteoHeader from "@/components/NiteoHeader";
 
 import logoNiteo from "@/assets/niteo/logo-niteo-2026.png";
 import bertrandSerp from "@/assets/niteo/bertrand-serp.png";
@@ -222,21 +223,7 @@ const NiteoCandidature = () => {
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <StructuredData data={structuredData} />
 
-      {/* Sticky CTA bar */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-primary/90 backdrop-blur-xl border-b border-primary-foreground/5 shadow-[0_4px_30px_-4px_rgba(0,0,0,0.3)]">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <img src={logoNiteo} alt="Niteo" className="h-14" />
-          <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-3">
-            <span className="text-primary-foreground/90 text-sm font-semibold tracking-[0.3em] uppercase">Toulouse</span>
-            <span className="text-primary-foreground/40">|</span>
-            <span className="text-accent text-xs font-semibold">Candidature hors délai · Accepté en liste d'attente</span>
-          </div>
-          <Button onClick={scrollToCTA} size="sm" variant="secondary" className="shadow-md hover:shadow-lg transition-shadow">
-            Je candidate
-            <ArrowRight className="ml-1 h-4 w-4" />
-          </Button>
-        </div>
-      </div>
+      <NiteoHeader />
 
       {/* ===== HERO ===== */}
       <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-primary via-primary to-accent overflow-hidden">
