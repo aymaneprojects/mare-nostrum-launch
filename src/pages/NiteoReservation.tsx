@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
-import Footer from "@/components/Footer";
 import NiteoHeader from "@/components/NiteoHeader";
 import { CheckCircle2, Calendar, MapPin, Clock, ArrowRight, Loader2, Trophy, Users } from "lucide-react";
 import logoNiteo from "@/assets/niteo/logo-niteo-2026.png";
@@ -356,7 +355,6 @@ export default function NiteoReservation() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

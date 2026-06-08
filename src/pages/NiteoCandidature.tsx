@@ -4,7 +4,6 @@ import { ArrowRight, CheckCircle2, GraduationCap, Users, Lightbulb, Trophy, Book
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import StructuredData from "@/components/StructuredData";
-import Footer from "@/components/Footer";
 import NiteoHeader from "@/components/NiteoHeader";
 
 import logoNiteo from "@/assets/niteo/logo-niteo-2026.png";
@@ -556,7 +555,6 @@ const NiteoCandidature = () => {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 };
