@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle2, GraduationCap, Users, Lightbulb, Trophy, BookOpen, Calendar, Target, Clock, Award, Mic, Rocket, Globe, Briefcase, Star, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import StructuredData from "@/components/StructuredData";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 import logoNiteo from "@/assets/niteo/logo-niteo-2026.png";
 import bertrandSerp from "@/assets/niteo/bertrand-serp.png";
@@ -217,28 +220,12 @@ const NiteoCandidature = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      {/* SEO */}
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
       <StructuredData data={structuredData} />
-      
-      {/* Sticky CTA bar */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-primary/90 backdrop-blur-xl border-b border-primary-foreground/5 shadow-[0_4px_30px_-4px_rgba(0,0,0,0.3)]">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <img src={logoNiteo} alt="Niteo" className="h-14" />
-          <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-3">
-            <span className="text-primary-foreground/90 text-sm font-semibold tracking-[0.3em] uppercase">Toulouse</span>
-            <span className="text-primary-foreground/40">|</span>
-            <span className="text-accent text-xs font-semibold">Candidature hors délai · Accepté en liste d'attente</span>
-          </div>
-          <Button onClick={scrollToCTA} size="sm" variant="secondary" className="shadow-md hover:shadow-lg transition-shadow">
-            Je candidate
-            <ArrowRight className="ml-1 h-4 w-4" />
-          </Button>
-        </div>
-      </div>
+      <Header />
 
       {/* ===== HERO ===== */}
-      <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-primary via-primary to-accent overflow-hidden">
+      <section className="relative py-16 md:py-24 bg-gradient-to-br from-primary via-primary to-accent overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 w-72 h-72 bg-accent rounded-full blur-3xl" />
           <div className="absolute bottom-10 right-10 w-96 h-96 bg-primary-foreground rounded-full blur-3xl" />
@@ -503,6 +490,30 @@ const NiteoCandidature = () => {
         </div>
       </section>
 
+      {/* ===== DEMO DAY — COACHS & PARTENAIRES ===== */}
+      <section className="py-16 md:py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto rounded-sm border border-border overflow-hidden shadow-sm">
+            <div className="p-8 md:p-10" style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}>
+              <div className="mn-eyebrow-light mb-3">Mardi 16 juin 2026</div>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                Coaches, partenaires, experts — réservez votre présence au Demo Day
+              </h2>
+              <p className="text-white/75 mb-6 text-sm leading-relaxed">
+                Accueil café · Pitchs devant jury · Remise des prix · Cocktail jusqu'à 19h30<br />
+                Résidence Baragnon, Toulouse · 14h – 19h30
+              </p>
+              <Link to="/reservation">
+                <Button variant="secondary" className="shadow-lg">
+                  Réserver ma présence — 25 €
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ===== FAQ ===== */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
@@ -544,19 +555,7 @@ const NiteoCandidature = () => {
         </div>
       </section>
 
-      {/* Footer minimal */}
-      <footer className="bg-primary py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-primary-foreground/60 text-sm">
-            Niteo est un programme de{" "}
-            <a href="https://marenostrum.tech" className="text-primary-foreground/80 underline hover:text-primary-foreground">Mare Nostrum</a>
-            {" · "}Cabinet de conseil en entrepreneuriat à impact
-          </p>
-          <p className="text-primary-foreground/40 text-xs mt-2">
-            Toulouse · Paris · Casablanca
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
