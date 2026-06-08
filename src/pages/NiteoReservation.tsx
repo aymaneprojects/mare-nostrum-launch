@@ -120,60 +120,6 @@ export default function NiteoReservation() {
         </div>
       </section>
 
-      {/* Programme de la journée */}
-      <section className="py-12 md:py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-10" style={{ color: "hsl(var(--mn-ink))" }}>
-              Programme de la journée
-            </h2>
-            <div className="space-y-3 mb-10">
-              {[
-                { time: "14h00", label: "Accueil café + keynote d'ouverture" },
-                { time: "14h30", label: "Session de pitchs devant jury" },
-                { time: "17h00", label: "Délibération du jury et pause networking" },
-                { time: "17h30", label: "Annonce des lauréats et remise des prix" },
-                { time: "18h00", label: "Photo finale puis cocktail" },
-                { time: "19h30", label: "Fin de l'événement" },
-              ].map((step, i) => (
-                <div key={i} className="flex items-center gap-4 p-4 rounded-sm border border-border bg-card">
-                  <div className="text-sm font-bold tabular-nums w-14 flex-shrink-0" style={{ color: "hsl(var(--mn-turquoise))" }}>
-                    {step.time}
-                  </div>
-                  <div className="text-sm text-foreground">{step.label}</div>
-                </div>
-              ))}
-            </div>
-            <div className="p-4 rounded-sm border border-border/50 bg-secondary/30 text-sm text-muted-foreground text-center">
-              Vous pouvez venir sur toute la durée (14h – 19h30) ou seulement de 17h30 à 19h30 pour la remise des prix et le cocktail.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="py-8 bg-secondary/30 border-y border-border">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-center gap-8">
-            {[
-              { icon: <Users className="h-5 w-5" />, value: "30+", label: "décideurs présents" },
-              { icon: <Trophy className="h-5 w-5" />, value: "+10 000 €", label: "de dotations" },
-              { icon: <CheckCircle2 className="h-5 w-5" />, value: "95", label: "projets accompagnés" },
-            ].map((s, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-sm flex items-center justify-center" style={{ background: "hsl(var(--mn-turquoise) / 0.12)", color: "hsl(var(--mn-turquoise))" }}>
-                  {s.icon}
-                </div>
-                <div>
-                  <div className="font-bold text-lg" style={{ color: "hsl(var(--mn-nuit))" }}>{s.value}</div>
-                  <div className="text-xs text-muted-foreground">{s.label}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Réservation */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
@@ -297,6 +243,60 @@ export default function NiteoReservation() {
               </div>
             )}
 
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="py-8 bg-secondary/30 border-y border-border">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap justify-center gap-8">
+            {[
+              { icon: <Users className="h-5 w-5" />, value: "30+", label: "décideurs présents" },
+              { icon: <Trophy className="h-5 w-5" />, value: "+10 000 €", label: "de dotations" },
+              { icon: <CheckCircle2 className="h-5 w-5" />, value: "95", label: "projets accompagnés" },
+            ].map((s, i) => (
+              <div key={i} className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-sm flex items-center justify-center" style={{ background: "hsl(var(--mn-turquoise) / 0.12)", color: "hsl(var(--mn-turquoise))" }}>
+                  {s.icon}
+                </div>
+                <div>
+                  <div className="font-bold text-lg" style={{ color: "hsl(var(--mn-nuit))" }}>{s.value}</div>
+                  <div className="text-xs text-muted-foreground">{s.label}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Programme de la journée */}
+      <section className="py-12 md:py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-10" style={{ color: "hsl(var(--mn-ink))" }}>
+              Programme de la journée
+            </h2>
+            <div className="space-y-3 mb-10">
+              {[
+                { time: "14h00", label: "Accueil café + keynote d'ouverture" },
+                { time: "14h30", label: "Session de pitchs devant jury" },
+                { time: "17h00", label: "Délibération du jury et pause networking" },
+                { time: "17h30", label: "Annonce des lauréats et remise des prix" },
+                { time: "18h00", label: "Photo finale puis cocktail" },
+                { time: "19h30", label: "Fin de l'événement" },
+              ].map((step, i) => (
+                <div key={i} className="flex items-center gap-4 p-4 rounded-sm border border-border bg-card">
+                  <div className="text-sm font-bold tabular-nums w-14 flex-shrink-0" style={{ color: "hsl(var(--mn-turquoise))" }}>
+                    {step.time}
+                  </div>
+                  <div className="text-sm text-foreground">{step.label}</div>
+                </div>
+              ))}
+            </div>
+            <div className="p-4 rounded-sm border border-border/50 bg-secondary/30 text-sm text-muted-foreground text-center">
+              Vous pouvez venir sur toute la durée (14h – 19h30) ou seulement de 17h30 à 19h30 pour la remise des prix et le cocktail.
+            </div>
           </div>
         </div>
       </section>
