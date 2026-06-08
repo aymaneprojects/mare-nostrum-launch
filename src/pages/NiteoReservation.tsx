@@ -102,8 +102,8 @@ export default function NiteoReservation() {
             Demo Day Niteo Toulouse 2026
           </h1>
           <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-            Réservez votre présence à la journée de pitchs étudiants devant 30 décideurs toulousains.
-            Cocktail, remise des prix et networking.
+            Venez assister aux pitchs des étudiants entrepreneurs en tant qu'invité.
+            Remise des prix, cocktail et networking.
           </p>
           <div className="flex flex-wrap justify-center gap-6">
             {[
