@@ -80,9 +80,9 @@ export default function NiteoReservation() {
     <div className="min-h-screen flex flex-col">
       <NiteoHeader />
 
-      {/* Hero */}
+      {/* Hero 2 colonnes */}
       <section
-        className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden"
+        className="relative pt-24 pb-12 md:pt-28 md:pb-16 overflow-hidden"
         style={{
           background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)",
           backgroundImage: [
@@ -91,31 +91,117 @@ export default function NiteoReservation() {
           ].join(", "),
         }}
       >
+        {/* Glow gauche */}
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{ background: "radial-gradient(ellipse at 20% 50%, hsl(181 67% 54% / 0.18) 0%, transparent 55%)" }}
+          style={{ background: "radial-gradient(ellipse at 15% 60%, hsl(181 67% 54% / 0.16) 0%, transparent 52%)" }}
         />
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <img src={logoNiteo} alt="Niteo Toulouse 2026" className="h-20 mx-auto mb-6" />
-          <div className="mn-eyebrow-light mb-4">Mardi 16 juin 2026</div>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">
-            Demo Day Niteo Toulouse 2026
-          </h1>
-          <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-            Venez assister aux pitchs des étudiants entrepreneurs en tant qu'invité.
-            Remise des prix, cocktail et networking.
-          </p>
-          <div className="flex flex-wrap justify-center gap-6">
-            {[
-              { icon: <Calendar className="h-5 w-5" />, text: "16 juin 2026" },
-              { icon: <Clock className="h-5 w-5" />, text: "14h – 19h30" },
-              { icon: <MapPin className="h-5 w-5" />, text: "Résidence Baragnon, Toulouse" },
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-sm px-4 py-2 text-white/90 text-sm font-medium">
-                {item.icon}
-                {item.text}
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+            {/* ── Colonne gauche ── */}
+            <div>
+              <img src={logoNiteo} alt="Niteo Toulouse 2026" className="h-16 md:h-20 mb-6" />
+              <div className="mn-eyebrow-light mb-4">Mardi 16 juin 2026</div>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+                Demo Day<br />Niteo Toulouse 2026
+              </h1>
+              <p className="text-base md:text-lg text-white/75 mb-8 max-w-md leading-relaxed">
+                Venez assister aux pitchs des étudiants entrepreneurs en tant qu'invité.
+                Remise des prix, cocktail et networking.
+              </p>
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3">
+                {[
+                  { icon: <Calendar className="h-4 w-4 flex-shrink-0" />, text: "16 juin 2026" },
+                  { icon: <Clock className="h-4 w-4 flex-shrink-0" />, text: "14h – 19h30" },
+                  { icon: <MapPin className="h-4 w-4 flex-shrink-0" />, text: "Résidence Baragnon" },
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-2 px-4 py-2 rounded-sm text-sm font-medium text-white/90"
+                    style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }}
+                  >
+                    <span style={{ color: "hsl(181 67% 54%)" }}>{item.icon}</span>
+                    {item.text}
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* ── Colonne droite — Programme (glassmorphism) ── */}
+            <div
+              className="rounded-xl p-6 md:p-8"
+              style={{
+                background: "rgba(255,255,255,0.06)",
+                backdropFilter: "blur(18px)",
+                WebkitBackdropFilter: "blur(18px)",
+                border: "1px solid rgba(255,255,255,0.13)",
+                boxShadow: "0 8px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08)",
+              }}
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-1 h-6 rounded-full" style={{ background: "hsl(181 67% 54%)" }} />
+                <span className="text-white font-semibold text-sm tracking-widest uppercase">Programme de la journée</span>
+              </div>
+
+              {/* Timeline */}
+              <div className="relative">
+                {/* Ligne verticale */}
+                <div
+                  className="absolute left-[19px] top-2 bottom-2 w-px"
+                  style={{ background: "linear-gradient(to bottom, hsl(181 67% 54% / 0.6), hsl(181 67% 54% / 0.1))" }}
+                />
+
+                <div className="space-y-0">
+                  {[
+                    { time: "14h00", label: "Accueil café & keynote d'ouverture", highlight: false },
+                    { time: "14h30", label: "Session de pitchs devant jury", highlight: false },
+                    { time: "17h00", label: "Délibération du jury & pause networking", highlight: false },
+                    { time: "17h30", label: "Annonce des lauréats & remise des prix", highlight: true },
+                    { time: "18h00", label: "Photo de groupe & cocktail", highlight: false },
+                    { time: "19h30", label: "Fin de l'événement", highlight: false },
+                  ].map((step, i, arr) => (
+                    <div key={i} className="flex items-start gap-4 group">
+                      {/* Dot */}
+                      <div className="flex-shrink-0 relative z-10 mt-1">
+                        <div
+                          className="w-[10px] h-[10px] rounded-full mt-[5px] transition-transform duration-200 group-hover:scale-125"
+                          style={{
+                            background: step.highlight ? "hsl(181 67% 54%)" : "rgba(255,255,255,0.25)",
+                            boxShadow: step.highlight ? "0 0 8px hsl(181 67% 54% / 0.6)" : "none",
+                            marginLeft: "15px",
+                          }}
+                        />
+                      </div>
+                      {/* Content */}
+                      <div className={`pb-5 ${i === arr.length - 1 ? "pb-0" : ""}`}>
+                        <span
+                          className="text-xs font-bold tabular-nums block mb-0.5"
+                          style={{ color: "hsl(181 67% 54%)" }}
+                        >
+                          {step.time}
+                        </span>
+                        <span
+                          className={`text-sm leading-snug ${step.highlight ? "font-semibold text-white" : "text-white/70"}`}
+                        >
+                          {step.label}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Note en bas */}
+              <div
+                className="mt-6 pt-5 text-xs text-white/50 leading-relaxed"
+                style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+              >
+                Présence possible sur toute la durée (14h–19h30) ou uniquement à partir de 17h30 pour la remise des prix et le cocktail.
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -266,37 +352,6 @@ export default function NiteoReservation() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Programme de la journée */}
-      <section className="py-12 md:py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-10" style={{ color: "hsl(var(--mn-ink))" }}>
-              Programme de la journée
-            </h2>
-            <div className="space-y-3 mb-10">
-              {[
-                { time: "14h00", label: "Accueil café + keynote d'ouverture" },
-                { time: "14h30", label: "Session de pitchs devant jury" },
-                { time: "17h00", label: "Délibération du jury et pause networking" },
-                { time: "17h30", label: "Annonce des lauréats et remise des prix" },
-                { time: "18h00", label: "Photo finale puis cocktail" },
-                { time: "19h30", label: "Fin de l'événement" },
-              ].map((step, i) => (
-                <div key={i} className="flex items-center gap-4 p-4 rounded-sm border border-border bg-card">
-                  <div className="text-sm font-bold tabular-nums w-14 flex-shrink-0" style={{ color: "hsl(var(--mn-turquoise))" }}>
-                    {step.time}
-                  </div>
-                  <div className="text-sm text-foreground">{step.label}</div>
-                </div>
-              ))}
-            </div>
-            <div className="p-4 rounded-sm border border-border/50 bg-secondary/30 text-sm text-muted-foreground text-center">
-              Vous pouvez venir sur toute la durée (14h – 19h30) ou seulement de 17h30 à 19h30 pour la remise des prix et le cocktail.
-            </div>
           </div>
         </div>
       </section>
