@@ -40,6 +40,7 @@ serve(async (req) => {
         },
         quantity: 1,
       }],
+      allow_promotion_codes: true,
       return_url: "https://niteo.marenostrum.tech/reservation?session_id={CHECKOUT_SESSION_ID}",
     });
 
