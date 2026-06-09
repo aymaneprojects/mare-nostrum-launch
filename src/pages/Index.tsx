@@ -9,6 +9,7 @@ import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import FAQSection from "@/components/FAQSection";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import StatsSection from "@/components/StatsSection";
 import hufLogo from "@/assets/partners/huf.png";
 import bidayaLogo from "@/assets/partners/bidaya.png";
 import toulouseWayLogo from "@/assets/partners/toulouse-way.png";
@@ -357,129 +358,7 @@ const Index = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-turquoise text-center mb-4">Résultats</div>
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
-            Pourquoi nous choisir
-          </h2>
-          
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            plugins={[
-              Autoplay({
-                delay: 3000,
-              }),
-            ]}
-            className="w-full max-w-6xl mx-auto"
-          >
-            <CarouselContent className="-ml-4">
-              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border border-nuit/12 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                  <div className="font-editorial font-semibold text-5xl text-nuit mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>24</div>
-                  <div className="mn-stat-label">Entreprises</div>
-                  <div className="text-sm text-muted-foreground">accompagnées</div>
-                </div>
-              </CarouselItem>
-              
-              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border border-turquoise/20 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                  <div className="font-editorial font-semibold text-5xl text-turquoise mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>17+</div>
-                  <div className="mn-stat-label">Projets étudiants</div>
-                  <div className="text-sm text-muted-foreground">accompagnés</div>
-                </div>
-              </CarouselItem>
-              
-              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border border-nuit/12 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                  <div className="font-editorial font-semibold text-5xl text-nuit mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>70%</div>
-                  <div className="mn-stat-label">Entreprises à impact</div>
-                  <div className="text-sm text-muted-foreground">17 organisations</div>
-                </div>
-              </CarouselItem>
-              
-              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border border-turquoise/20 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                  <div className="font-editorial font-semibold text-5xl text-turquoise mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>93%</div>
-                  <div className="mn-stat-label">Prise de décision</div>
-                  <div className="text-sm text-muted-foreground">accélérée</div>
-                </div>
-              </CarouselItem>
-              
-              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border border-turquoise/20 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                  <div className="font-editorial font-semibold text-5xl text-turquoise mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>95%</div>
-                  <div className="mn-stat-label">Satisfaction</div>
-                  <div className="text-sm text-muted-foreground">satisfaits/très satisfaits</div>
-                </div>
-              </CarouselItem>
-              
-              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border border-nuit/12 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                  <div className="font-editorial font-semibold text-5xl text-nuit mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>55%</div>
-                  <div className="mn-stat-label">Projet à temps plein</div>
-                  <div className="text-sm text-muted-foreground">avec satisfaction</div>
-                </div>
-              </CarouselItem>
-              
-              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border border-nuit/12 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                  <div className="font-editorial font-semibold text-5xl text-nuit mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>210+</div>
-                  <div className="mn-stat-label">Mises en relation</div>
-                  <div className="text-sm text-muted-foreground">professionnelles</div>
-                </div>
-              </CarouselItem>
-              
-              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border border-turquoise/20 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                  <div className="font-editorial font-semibold text-5xl text-turquoise mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>32</div>
-                  <div className="mn-stat-label">Projets collaboratifs</div>
-                  <div className="text-sm text-muted-foreground">initiés</div>
-                </div>
-              </CarouselItem>
-              
-              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border border-nuit/12 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                  <div className="font-editorial font-semibold text-5xl text-nuit mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>135+</div>
-                  <div className="mn-stat-label">Experts</div>
-                  <div className="text-sm text-muted-foreground">mobilisables</div>
-                </div>
-              </CarouselItem>
-              
-              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border border-turquoise/20 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                  <div className="font-editorial font-semibold text-5xl text-turquoise mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>2000</div>
-                  <div className="mn-stat-label">Années d'expérience</div>
-                  <div className="text-sm text-muted-foreground">cumulées experts</div>
-                </div>
-              </CarouselItem>
-              
-              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border border-nuit/12 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                  <div className="font-editorial font-semibold text-5xl text-nuit mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>358h</div>
-                  <div className="mn-stat-label">Formation</div>
-                  <div className="text-sm text-muted-foreground">dispensées</div>
-                </div>
-              </CarouselItem>
-              
-              <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-card border border-turquoise/20 rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                  <div className="font-editorial font-semibold text-5xl text-turquoise mb-0" style={{ letterSpacing: '-0.025em', lineHeight: '1' }}>12</div>
-                  <div className="mn-stat-label">Pays</div>
-                  <div className="text-sm text-muted-foreground">d'intervention</div>
-                </div>
-              </CarouselItem>
-            </CarouselContent>
-          </Carousel>
-          
-          <p className="text-center text-sm text-muted-foreground mt-8">
-            France • Maroc • Tunisie • Algérie • Sénégal • Côte d'Ivoire • Bénin • Cameroun • Burkina Faso • RD Congo • Égypte • Canada
-          </p>
-        </div>
-      </section>
+      <StatsSection />
 
       {/* Testimonials */}
       <section className="py-12 md:py-24 bg-secondary/30">

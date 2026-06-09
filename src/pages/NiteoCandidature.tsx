@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle2, GraduationCap, Users, Lightbulb, Trophy, BookOpen, Calendar, Target, Clock, Award, Mic, Rocket, Globe, Briefcase, Star, ChevronRight } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { ArrowRight, CheckCircle2, GraduationCap, Users, Lightbulb, Trophy, BookOpen, Calendar, Target, Clock, Award, Mic, Rocket, Globe, Briefcase, Star, ChevronRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import StructuredData from "@/components/StructuredData";
@@ -40,6 +41,88 @@ import partnerRoselab from "@/assets/niteo/roselab.png";
 import partnerToulouseWay from "@/assets/niteo/toulouse-way.png";
 
 const CTA_URL = "https://airtable.com/appZ8ykNuUOv89ou0/shrxZTmKppjTEHTjE";
+
+function NiteoNotify() {
+  const [email, setEmail]   = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setStatus("loading");
+    const { error } = await supabase.functions.invoke("newsletter-signup", {
+      body: { nom: email.split("@")[0], email, projet: "Niteo 4ème édition" },
+    });
+    setStatus(error ? "error" : "done");
+  };
+
+  return (
+    <section
+      className="py-16 md:py-20 relative overflow-hidden"
+      style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}
+    >
+      {/* Glow */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at 50% 100%, hsl(181 67% 54% / 0.15) 0%, transparent 60%)" }} />
+      {/* Stripe */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ backgroundImage: "repeating-linear-gradient(135deg, transparent 0 22px, hsl(181 67% 54% / 0.04) 22px 23px)" }} />
+
+      <div className="container mx-auto px-4 relative z-10 text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-turquoise/30 bg-turquoise/10 mb-6">
+          <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-pulse" style={{ color: "hsl(181 67% 54%)" }} />
+          <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "hsl(181 67% 54%)" }}>
+            4ème édition · Coming Soon
+          </span>
+        </div>
+
+        <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+          Soyez notifié(e) pour la 4ème édition
+        </h2>
+        <p className="text-white/60 text-sm mb-8 max-w-md mx-auto">
+          Candidatures ouvertes en priorité aux inscrits. Gratuit, 50h, Demo Day.
+        </p>
+
+        {status === "done" ? (
+          <div className="flex items-center justify-center gap-2 text-sm font-medium" style={{ color: "hsl(181 67% 54%)" }}>
+            <CheckCircle2 className="h-5 w-5" />
+            C'est noté — on vous prévient en premier !
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <input
+              ref={inputRef}
+              type="email"
+              required
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              placeholder="votre@email.fr"
+              className="flex-1 h-11 rounded-sm px-4 text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-turquoise/60 transition-colors"
+              style={{ minHeight: "44px" }}
+            />
+            <Button
+              type="submit"
+              size="sm"
+              disabled={status === "loading"}
+              className="h-11 px-6 font-semibold shrink-0 cursor-pointer"
+              style={{ background: "hsl(181 67% 54%)", color: "hsl(228 56% 13%)", minHeight: "44px" }}
+            >
+              {status === "loading" ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <>Me notifier <ArrowRight className="ml-1 h-4 w-4" /></>
+              )}
+            </Button>
+          </form>
+        )}
+        {status === "error" && (
+          <p className="text-red-400 text-xs mt-3">Une erreur est survenue, réessayez.</p>
+        )}
+      </div>
+    </section>
+  );
+}
 
 const CountdownTimer = ({ targetDate }: { targetDate: Date }) => {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, mins: 0, secs: 0 });
@@ -272,6 +355,9 @@ const NiteoCandidature = () => {
           </div>
         </div>
       </section>
+
+      {/* ===== NOTIFY — 4ème édition ===== */}
+      <NiteoNotify />
 
       {/* ===== POUR QUI ===== */}
       <section className="py-16 md:py-24 bg-background">
