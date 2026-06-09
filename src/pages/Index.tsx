@@ -10,6 +10,7 @@ import FAQSection from "@/components/FAQSection";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import StatsSection from "@/components/StatsSection";
+import { useFadeIn } from "@/hooks/useFadeIn";
 import hufLogo from "@/assets/partners/huf.png";
 import bidayaLogo from "@/assets/partners/bidaya.png";
 import toulouseWayLogo from "@/assets/partners/toulouse-way.png";
@@ -22,6 +23,10 @@ import imaginationsFertilesLogo from "@/assets/partners/imaginations-fertiles.pn
 import emergingBusinessLogo from "@/assets/partners/emerging-business.png";
 import moovjeeLogo from "@/assets/partners/moovjee.png";
 const Index = () => {
+  const fadeHero        = useFadeIn(0);
+  const fadeServices    = useFadeIn(0);
+  const fadeTestimonials= useFadeIn(100);
+  const fadeCTA         = useFadeIn(0);
   const homePageSchema = [
     {
       "@context": "https://schema.org",
@@ -262,7 +267,7 @@ const Index = () => {
       </section>
 
       {/* Who We Are */}
-      <section className="py-12 md:py-24 bg-background">
+      <section ref={fadeServices as React.RefObject<HTMLElement>} className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="mn-eyebrow-turquoise text-center mb-4">À propos</div>
@@ -361,7 +366,7 @@ const Index = () => {
       <StatsSection />
 
       {/* Testimonials */}
-      <section className="py-12 md:py-24 bg-secondary/30">
+      <section ref={fadeTestimonials as React.RefObject<HTMLElement>} className="py-12 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-4">Témoignages</div>
           <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
@@ -510,7 +515,7 @@ const Index = () => {
       <FAQSection faqs={faqs} />
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden py-16 md:py-20" style={{ background: 'linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)' }}>
+      <section ref={fadeCTA as React.RefObject<HTMLElement>} className="relative overflow-hidden py-16 md:py-20" style={{ background: 'linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)' }}>
         <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, hsl(181 67% 54% / 0.055) 22px 23px)' }}></div>
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 70% 30%, hsl(181 67% 54% / 0.18) 0%, transparent 52%), radial-gradient(ellipse at 15% 80%, hsl(228 56% 8% / 0.65) 0%, transparent 55%)' }}></div>
         <div className="container mx-auto px-4 text-center relative z-10">

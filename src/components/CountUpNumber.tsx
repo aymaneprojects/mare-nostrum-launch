@@ -7,19 +7,23 @@ interface Props {
   className?: string;
 }
 
+const prefersReducedMotion =
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 export default function CountUpNumber({ value, inView, duration = 1400, className }: Props) {
   const suffix = value.replace(/[0-9]/g, "");
   const target  = parseInt(value.replace(/\D/g, ""), 10);
-  const [count, setCount] = useState(0);
-  const [done, setDone]   = useState(false);
+  const [count, setCount] = useState(prefersReducedMotion ? target : 0);
+  const [done, setDone]   = useState(prefersReducedMotion);
 
   useEffect(() => {
-    if (!inView || done) return;
+    if (!inView || done || prefersReducedMotion) return;
     setDone(true);
     const start = performance.now();
     const tick = (now: number) => {
       const progress = Math.min((now - start) / duration, 1);
-      const eased    = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      const eased    = 1 - Math.pow(1 - progress, 3);
       setCount(Math.round(eased * target));
       if (progress < 1) requestAnimationFrame(tick);
     };

@@ -85,8 +85,8 @@ function NiteoNotify() {
         </p>
 
         {status === "done" ? (
-          <div className="flex items-center justify-center gap-2 text-sm font-medium" style={{ color: "hsl(181 67% 54%)" }}>
-            <CheckCircle2 className="h-5 w-5" />
+          <div role="status" aria-live="polite" className="flex items-center justify-center gap-2 text-sm font-medium" style={{ color: "hsl(181 67% 54%)" }}>
+            <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
             C'est noté — on vous prévient en premier !
           </div>
         ) : (
@@ -514,7 +514,7 @@ const NiteoCandidature = () => {
 
           {/* Parrain */}
           <div className="max-w-md mx-auto mb-12 text-center">
-            <img src={bertrandSerp} alt="Bertrand Serp, parrain Niteo 2026" className="w-28 h-28 rounded-full object-cover mx-auto mb-4 border-4 border-accent" />
+            <img src={bertrandSerp} alt="Bertrand Serp, parrain Niteo 2026" className="w-28 h-28 rounded-full object-cover mx-auto mb-4 border-4 border-accent" loading="lazy" />
             <h3 className="text-xl font-bold text-foreground">Bertrand Serp</h3>
             <p className="text-accent font-semibold mb-1">Parrain Niteo 2026</p>
             <p className="text-sm text-muted-foreground">Vice-Président Toulouse Métropole en charge du numérique</p>
@@ -526,7 +526,7 @@ const NiteoCandidature = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
               {teamMareNostrum.map((m, i) => (
                 <div key={i} className="text-center">
-                  <img src={m.photo} alt={m.name} className="w-20 h-20 rounded-full object-cover mx-auto mb-3 border-2 border-border" />
+                  <img src={m.photo} alt={m.name} className="w-20 h-20 rounded-full object-cover mx-auto mb-3 border-2 border-border" loading="lazy" />
                   <h4 className="font-bold text-sm text-foreground">{m.name}</h4>
                   <p className="text-xs text-muted-foreground">{m.role}</p>
                 </div>
@@ -540,7 +540,7 @@ const NiteoCandidature = () => {
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto">
               {coachs.map((m, i) => (
                 <div key={i} className="text-center">
-                  <img src={m.photo} alt={m.name} className="w-20 h-20 rounded-full object-cover mx-auto mb-3 border-2 border-border" />
+                  <img src={m.photo} alt={m.name} className="w-20 h-20 rounded-full object-cover mx-auto mb-3 border-2 border-border" loading="lazy" />
                   <h4 className="font-bold text-sm text-foreground">{m.name}</h4>
                   <p className="text-xs text-muted-foreground">{m.role}</p>
                 </div>
@@ -554,7 +554,7 @@ const NiteoCandidature = () => {
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto">
               {experts.map((m, i) => (
                 <div key={i} className="text-center">
-                  <img src={m.photo} alt={m.name} className="w-20 h-20 rounded-full object-cover mx-auto mb-3 border-2 border-border" />
+                  <img src={m.photo} alt={m.name} className="w-20 h-20 rounded-full object-cover mx-auto mb-3 border-2 border-border" loading="lazy" />
                   <h4 className="font-bold text-sm text-foreground">{m.name}</h4>
                   <p className="text-xs text-muted-foreground">{m.role}</p>
                 </div>
@@ -573,7 +573,7 @@ const NiteoCandidature = () => {
           <div className="grid grid-cols-3 md:grid-cols-5 gap-8 max-w-5xl mx-auto items-center">
             {partners.map((p, i) => (
               <div key={i} className="flex items-center justify-center p-4 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
-                <img src={p.src} alt={p.alt} className="max-h-16 w-auto object-contain" loading="lazy" />
+                <img src={p.src} alt={p.alt} className="max-h-16 w-auto object-contain" loading="lazy" decoding="async" />
               </div>
             ))}
           </div>

@@ -208,13 +208,13 @@ export default function NiteoReservation() {
       {/* Réservation */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-xl mx-auto">
+          <div className="max-w-xl mx-auto" aria-live="polite" aria-atomic="true">
 
             {/* PHASE: SUCCESS */}
             {phase === "success" && (
               <div className="text-center py-12">
                 <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style={{ background: "hsl(var(--mn-turquoise) / 0.12)" }}>
-                  <CheckCircle2 className="h-10 w-10" style={{ color: "hsl(var(--mn-turquoise))" }} />
+                  <CheckCircle2 className="h-10 w-10" aria-hidden="true" style={{ color: "hsl(var(--mn-turquoise))" }} />
                 </div>
                 <h2 className="text-2xl font-bold mb-3" style={{ color: "hsl(var(--mn-ink))" }}>
                   Votre présence est confirmée !
