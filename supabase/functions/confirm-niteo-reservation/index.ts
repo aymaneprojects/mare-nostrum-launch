@@ -47,7 +47,7 @@ serve(async (req) => {
 
 <p>Votre réservation au Demo Day Niteo Toulouse 2026 est confirmée.</p>
 
-<p>Confirmez la date du <strong>mardi 16 juin 2026</strong> dans votre agenda, à la <strong>résidence Baragnon</strong> pour le Demo Day. Si vous ne pouvez être présent(e), vous pouvez nous indiquer la personne de votre organisation qui vous représentera en répondant à cet email.</p>
+<p>Confirmez la date du <strong>mardi 16 juin 2026</strong> dans votre agenda, à la <strong>résidence Baragnon</strong> pour le Demo Day. Si vous ne pouvez être présent(e), vous pouvez nous indiquer la personne de votre organisation qui vous représentera en écrivant à <a href="mailto:niteo@marenostrum.tech">niteo@marenostrum.tech</a>.</p>
 
 <p>Voici les horaires :</p>
 <ul>
