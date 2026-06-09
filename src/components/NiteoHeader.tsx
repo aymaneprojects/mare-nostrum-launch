@@ -15,17 +15,14 @@ export default function NiteoHeader() {
         <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-3">
           <span className="text-primary-foreground/90 text-sm font-semibold tracking-[0.3em] uppercase">Toulouse</span>
           <span className="text-primary-foreground/40">|</span>
-          <span className="text-accent text-xs font-semibold hidden sm:inline">Candidature hors délai · Accepté en liste d'attente</span>
+          <span className="text-accent text-xs font-semibold hidden sm:inline">4ème édition · Coming Soon</span>
         </div>
-        <Button
-          size="sm"
-          variant="secondary"
-          className="shadow-md hover:shadow-lg transition-shadow"
-          onClick={() => window.open(CTA_URL, "_blank", "noopener,noreferrer")}
-        >
-          Je candidate
-          <ArrowRight className="ml-1 h-4 w-4" />
-        </Button>
+        <Link to="/reservation">
+          <Button size="sm" variant="secondary" className="shadow-md hover:shadow-lg transition-shadow">
+            Réserver ma place
+            <ArrowRight className="ml-1 h-4 w-4" />
+          </Button>
+        </Link>
       </div>
     </div>
   );

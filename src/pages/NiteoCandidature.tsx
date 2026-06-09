@@ -233,7 +233,7 @@ const NiteoCandidature = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <img src={logoNiteo} alt="Logo Niteo Toulouse 2026" className="h-20 md:h-32 mx-auto mb-6" />
-            <div className="mn-eyebrow-light mb-6">Gratuit · Places limitées</div>
+            <div className="mn-eyebrow-light mb-6">4ème édition · Toulouse</div>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
               Apprends à transformer ton idée en projet qui génère des revenus
             </h1>
@@ -241,7 +241,7 @@ const NiteoCandidature = () => {
               Étudiants et jeunes diplômés : développe tes soft skills, structure ton business et teste ton marché en 50h chrono.
             </p>
             <p className="text-base text-primary-foreground/70 mb-10 max-w-2xl mx-auto">
-              Tu ne sais pas par où commencer ? Ce n'est pas grave, tant que l'entrepreneuriat t'intéresse, c'est le plus important. Niteo t'accompagne de l'idée au pitch devant 30 décideurs toulousains.
+              La 4ème édition de Niteo arrive bientôt. En attendant, viens assister au Demo Day de l'édition en cours le 16 juin 2026.
             </p>
 
             {/* Stats */}
@@ -260,11 +260,15 @@ const NiteoCandidature = () => {
               ))}
             </div>
 
-            <Button onClick={scrollToCTA} size="lg" variant="secondary" className="shadow-lg hover:shadow-xl transition-shadow">
-              Je candidate à Niteo 2026
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <p className="text-primary-foreground/60 text-sm mt-4">Candidatures ouvertes jusqu'au 2 avril 2026</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link to="/reservation">
+                <Button size="lg" variant="secondary" className="shadow-lg hover:shadow-xl transition-shadow">
+                  Réserver ma place au Demo Day
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+            </div>
+            <p className="text-primary-foreground/60 text-sm mt-4">4ème édition — coming soon</p>
           </div>
         </div>
       </section>
@@ -537,21 +541,20 @@ const NiteoCandidature = () => {
       <section className="py-20 md:py-28 bg-gradient-to-br from-primary to-accent">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-6">
-            Prêt(e) à vivre l'aventure ?
+            La 4ème édition arrive bientôt
           </h2>
           <p className="text-lg text-primary-foreground/80 mb-2 max-w-xl mx-auto">
-            Rejoins les 95 projets déjà accompagnés.
+            95 projets déjà accompagnés · 4 éditions · Toulouse
           </p>
-          <p className="text-base text-primary-foreground/70 mb-4 max-w-xl mx-auto">
-            Candidatures ouvertes jusqu'au 2 avril 2026. Places limitées.
+          <p className="text-base text-primary-foreground/70 mb-10 max-w-xl mx-auto">
+            En attendant, viens assister au Demo Day de l'édition actuelle le 16 juin 2026 à la Résidence Baragnon.
           </p>
-          <p className="text-sm text-primary-foreground/60 mb-8">
-            Tout dossier incomplet sera éliminé.
-          </p>
-          <Button onClick={scrollToCTA} size="lg" variant="secondary" className="shadow-xl hover:shadow-2xl transition-shadow">
-            Candidate MAINTENANT
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          <Link to="/reservation">
+            <Button size="lg" variant="secondary" className="shadow-xl hover:shadow-2xl transition-shadow">
+              Réserver ma place au Demo Day — 25 €
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
         </div>
       </section>
 
