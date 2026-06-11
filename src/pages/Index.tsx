@@ -197,7 +197,7 @@ const Index = () => {
     },
     {
       question: "Quels résultats obtenez-vous avec vos clients ?",
-      answer: "Nous avons accompagné 24 entreprises (70% à impact) et 17+ projets étudiants. Plus de 80% de satisfaction clients, 210+ mises en relation professionnelles, 32 projets collaboratifs initiés. Notre réseau mobilise 135+ experts avec 2000 années d'expérience cumulées dans 12 pays."
+      answer: "Nous avons accompagné 80+ entrepreneurs et 30+ écoles partenaires (70% de projets à impact). Plus de 95% de satisfaction clients, 210+ mises en relation professionnelles, 32 projets collaboratifs initiés. Notre réseau mobilise 135+ experts avec 2000 années d'expérience cumulées dans 12 pays."
     }
   ];
 
@@ -221,7 +221,10 @@ const Index = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mn-eyebrow-light mb-5">depuis Toulouse, dans tout l'espace francophone</div>
-            <h1 className="font-editorial italic text-3xl md:text-6xl font-semibold text-primary-foreground mb-4 md:mb-6 leading-[1.05]" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>De l'idée à l'entreprise à impact avec les bons experts à tes côtés.</h1>
+            <p className="text-base md:text-xl font-semibold text-primary-foreground/80 mb-4 max-w-2xl mx-auto" style={{ letterSpacing: '0.01em' }}>
+              Vous bâtissez un service ou un produit utile pour demain&nbsp;?
+            </p>
+            <h1 className="font-editorial italic text-3xl md:text-6xl font-semibold text-primary-foreground mb-4 md:mb-6 leading-[1.05]" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>Nous traçons la voie de votre <span style={{ color: 'hsl(181 67% 54%)' }}>projet</span> vers ses <span style={{ color: 'hsl(181 67% 54%)' }}>sources de revenus</span>.</h1>
             <p className="text-base md:text-xl text-primary-foreground/75 mb-8 md:mb-12 max-w-2xl mx-auto" style={{ lineHeight: '1.65' }}>
               Mare Nostrum accompagne les écoles et les entrepreneurs francophones.
             </p>
@@ -236,7 +239,7 @@ const Index = () => {
               <Button asChild size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-primary w-full sm:w-auto">
                 <Link to="/club">
                   <TrendingUp className="mr-2 h-4 md:h-5 w-4 md:w-5" />
-                  Je suis entrepreneur
+                  Rejoindre l'équipage
                 </Link>
               </Button>
             </div>
@@ -252,7 +255,8 @@ const Index = () => {
           <div className="flex flex-wrap justify-center items-center gap-x-6 md:gap-x-10 gap-y-2.5">
             {[
               { icon: ShieldCheck, label: "Société à Mission" },
-              { icon: Star, label: "95% satisfaction clients" },
+              { icon: Users, label: "80+ entrepreneurs" },
+              { icon: Star, label: "30+ écoles partenaires" },
               { icon: Users, label: "135+ experts actifs" },
               { icon: MapPin, label: "12 pays d'intervention" },
               { icon: Award, label: "Soutenu par la Région Occitanie" },
@@ -330,11 +334,11 @@ const Index = () => {
                 <div className="relative z-10">
                   <div className="mn-eyebrow-light mb-4">Mare Nostrum Éducation</div>
                   <GraduationCap className="h-12 w-12 md:h-14 md:w-14 text-white mb-5" />
-                  <h3 className="text-xl md:text-2xl font-semibold text-white mb-3" style={{ letterSpacing: '-0.01em' }}>
-                    Éducation
+                  <h3 className="text-xl md:text-2xl font-semibold text-white mb-2" style={{ letterSpacing: '-0.01em' }}>
+                    Le cap de l'esprit d'entreprendre
                   </h3>
                   <p className="text-sm md:text-base text-white/75">
-                    L'esprit d'entreprendre de demain au cœur de votre établissement aujourd'hui
+                    De la sensibilisation à la professionnalisation, y compris la pré-incubation.
                   </p>
                 </div>
               </Link>
@@ -349,11 +353,11 @@ const Index = () => {
                 <div className="relative z-10">
                   <div className="mn-eyebrow-light mb-4">Mare Nostrum Croissance</div>
                   <TrendingUp className="h-12 w-12 md:h-14 md:w-14 text-white mb-5" />
-                  <h3 className="text-xl md:text-2xl font-semibold text-white mb-3" style={{ letterSpacing: '-0.01em' }}>
-                    Croissance
+                  <h3 className="text-xl md:text-2xl font-semibold text-white mb-2" style={{ letterSpacing: '-0.01em' }}>
+                    Le Quai des Entrepreneurs
                   </h3>
                   <p className="text-sm md:text-base text-white/75">
-                    Sécurisez votre passage à l'échelle avec un accompagnement rigoureux et humain
+                    Vos premiers outils d'IA, vos partenaires &amp; clients, dans un seul espace digital.
                   </p>
                 </div>
               </Link>

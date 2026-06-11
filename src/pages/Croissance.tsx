@@ -423,15 +423,15 @@ const Croissance = () => {
 
       {/* Hero Section */}
       <PageHero
-        eyebrow="Club Entrepreneur Mare Nostrum · depuis Toulouse, dans tout l'espace francophone"
-        title="Le club qui fait passer ton activité au niveau supérieur"
-        subtitle="Mentorat, réseau international et intelligence artificielle. 50% de nos membres se rémunèrent en moins de 2 ans. Dès 30€/mois."
+        eyebrow="Le Quai des Entrepreneurs · depuis Toulouse, dans tout l'espace francophone"
+        title="Plongez dans Mare Nostrum"
+        subtitle="Vos premiers outils d'IA, vos partenaires & clients, dans un seul espace digital. 50% de nos membres se rémunèrent en moins de 2 ans. Dès 30€/mois."
         size="lg"
         ctas={
           <Button size="lg" variant="secondary" className="w-full sm:w-auto" onClick={() => {
             document.getElementById('offres')?.scrollIntoView({ behavior: 'smooth' });
           }}>
-            Rejoindre le Club Entrepreneur
+            Rejoindre l'équipage
           </Button>
         }
       />
@@ -570,7 +570,7 @@ const Croissance = () => {
               </ul>
 
               <Button className="w-full mt-auto" onClick={() => openOnboarding("communaute")}>
-                Rejoindre le Club
+                Rejoindre l'équipage
               </Button>
             </div>
 
@@ -614,7 +614,7 @@ const Croissance = () => {
               </ul>
 
               <Button className="w-full bg-white text-primary hover:bg-white/90 mt-auto" onClick={() => openOnboarding("groupe")}>
-                Rejoindre le Club
+                Rejoindre l'équipage
               </Button>
             </div>
 
@@ -652,7 +652,7 @@ const Croissance = () => {
               </ul>
 
               <Button variant="default" className="w-full mt-auto" onClick={() => openOnboarding("individuel")}>
-                Rejoindre le Club
+                Rejoindre l'équipage
               </Button>
             </div>
           </div>

@@ -4,18 +4,18 @@ import CountUpNumber from "@/components/CountUpNumber";
 import { useInView } from "@/hooks/useInView";
 
 const STATS = [
-  { value: "24",   label: "Entreprises",        sub: "accompagnées",           color: "nuit"      },
-  { value: "17+",  label: "Projets étudiants",  sub: "accompagnés",            color: "turquoise" },
-  { value: "70%",  label: "Entreprises à impact",sub: "17 organisations",      color: "nuit"      },
-  { value: "93%",  label: "Prise de décision",  sub: "accélérée",              color: "turquoise" },
-  { value: "95%",  label: "Satisfaction",        sub: "satisfaits/très satisfaits", color: "turquoise" },
-  { value: "55%",  label: "Projet à temps plein",sub: "avec satisfaction",     color: "nuit"      },
-  { value: "210+", label: "Mises en relation",  sub: "professionnelles",       color: "nuit"      },
-  { value: "32",   label: "Projets collaboratifs",sub: "initiés",              color: "turquoise" },
-  { value: "135+", label: "Experts",             sub: "mobilisables",          color: "nuit"      },
-  { value: "2000", label: "Années d'expérience", sub: "cumulées experts",      color: "turquoise" },
-  { value: "358h", label: "Formation",           sub: "dispensées",            color: "nuit"      },
-  { value: "12",   label: "Pays",                sub: "d'intervention",        color: "turquoise" },
+  { value: "80+",  label: "Entrepreneurs",       sub: "accompagnés",               color: "nuit"      },
+  { value: "30+",  label: "Écoles partenaires",  sub: "réseau éducatif",           color: "turquoise" },
+  { value: "135+", label: "Experts",             sub: "mobilisables",              color: "nuit"      },
+  { value: "12",   label: "Pays",                sub: "d'intervention",            color: "turquoise" },
+  { value: "95%",  label: "Satisfaction",        sub: "satisfaits/très satisfaits",color: "nuit"      },
+  { value: "70%",  label: "Entreprises à impact",sub: "de nos accompagnés",        color: "turquoise" },
+  { value: "210+", label: "Mises en relation",   sub: "professionnelles",          color: "nuit"      },
+  { value: "358h", label: "Formation",           sub: "dispensées",                color: "turquoise" },
+  { value: "2000", label: "Années d'expérience", sub: "cumulées experts",          color: "nuit"      },
+  { value: "32",   label: "Projets collaboratifs",sub: "initiés",                  color: "turquoise" },
+  { value: "93%",  label: "Prise de décision",   sub: "accélérée",                 color: "nuit"      },
+  { value: "55%",  label: "Projet à temps plein",sub: "avec satisfaction",         color: "turquoise" },
 ];
 
 export default function StatsSection() {
@@ -24,7 +24,7 @@ export default function StatsSection() {
   return (
     <section ref={ref as React.RefObject<HTMLElement>} className="py-12 md:py-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="mn-eyebrow-turquoise text-center mb-4">Résultats</div>
+        <div className="mn-eyebrow-turquoise text-center mb-4">L'équipage en chiffres</div>
         <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
           Pourquoi nous choisir
         </h2>
