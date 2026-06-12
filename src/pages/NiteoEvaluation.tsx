@@ -247,12 +247,12 @@ export default function NiteoEvaluation() {
                   <Label htmlFor="juryCode" className="text-sm font-medium">Code jury</Label>
                   <Input
                     id="juryCode" value={juryCode}
-                    onChange={(e) => setJuryCode(e.target.value)}
+                    onChange={(e) => setJuryCode(e.target.value.toUpperCase())}
                     autoCapitalize="characters" autoComplete="off" autoCorrect="off" spellCheck={false}
                     required
                     className="text-center font-mono text-xl tracking-[0.3em] h-14 rounded-xl"
                     style={{ fontSize: 20 }}
-                    placeholder="NITEO-XX"
+                    placeholder="ENTREZ VOTRE CODE"
                   />
                 </div>
                 {error && (
