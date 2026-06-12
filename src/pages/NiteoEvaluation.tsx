@@ -179,7 +179,7 @@ export default function NiteoEvaluation() {
                 Grille d'évaluation jury
               </h1>
               <p className="text-muted-foreground mb-8 text-sm">
-                Saisissez le code qui vous a été attribué pour accéder à votre formulaire.
+                Saisissez le code affiché durant l'événement.
               </p>
               <form onSubmit={handleCodeSubmit} className="space-y-5">
                 <div className="space-y-1.5">
@@ -188,7 +188,7 @@ export default function NiteoEvaluation() {
                     id="code"
                     value={code}
                     onChange={(e) => setCode(e.target.value.toUpperCase())}
-                    placeholder="NITEO-01"
+                    placeholder=""
                     required
                     className="text-center font-mono text-lg tracking-widest"
                   />
