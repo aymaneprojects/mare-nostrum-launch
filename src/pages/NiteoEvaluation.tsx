@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle2, Loader2, Star, ChevronRight, UserPlus } from "lucide-react";
-import NiteoHeader from "@/components/NiteoHeader";
 
 const AXES = [
   { key: "equipe",       label: "Équipe",                    desc: "État d'esprit, couverture des fonctions clés, expertises techniques, leadership…" },
@@ -21,19 +20,20 @@ const AXES = [
 function StarRating({ value, onChange }: { value: number; onChange: (v: number) => void }) {
   const [hover, setHover] = useState(0);
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-2 items-center">
       {[1, 2, 3, 4, 5].map((star) => (
         <button key={star} type="button" onClick={() => onChange(star)}
           onMouseEnter={() => setHover(star)} onMouseLeave={() => setHover(0)}
-          className="focus:outline-none cursor-pointer" aria-label={`${star} étoile${star > 1 ? "s" : ""}`}>
-          <Star className="h-8 w-8 transition-colors duration-150"
+          className="focus:outline-none cursor-pointer p-1 -m-1 touch-manipulation"
+          aria-label={`${star} étoile${star > 1 ? "s" : ""}`}>
+          <Star className="h-9 w-9 transition-colors duration-150"
             fill={(hover || value) >= star ? "hsl(181 67% 54%)" : "none"}
             stroke={(hover || value) >= star ? "hsl(181 67% 54%)" : "hsl(224 14% 50%)"}
             strokeWidth={1.5} />
         </button>
       ))}
       {value > 0 && (
-        <span className="ml-2 text-sm font-semibold self-center" style={{ color: "hsl(181 67% 54%)" }}>
+        <span className="ml-1 text-base font-bold" style={{ color: "hsl(181 67% 54%)" }}>
           {value}/5
         </span>
       )}
@@ -134,7 +134,7 @@ export default function NiteoEvaluation() {
     setComments((p) => ({ ...p, [key]: { ...(p[key] ?? { positif: "", amelio: "" }), [field]: val } }));
 
   const Card = ({ children }: { children: React.ReactNode }) => (
-    <div className="bg-card border border-border rounded-sm p-8 shadow-sm">{children}</div>
+    <div className="bg-card border border-border rounded-xl p-5 shadow-sm">{children}</div>
   );
   const Eyebrow = () => (
     <div className="mn-eyebrow-turquoise mb-3">Demo Day · 16 juin 2026</div>
@@ -142,9 +142,8 @@ export default function NiteoEvaluation() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <NiteoHeader />
-      <main className="flex-1 pt-24 pb-16">
-        <div className="container mx-auto px-4 max-w-2xl">
+      <main className="flex-1 pt-6 pb-10 px-4">
+        <div className="w-full max-w-lg mx-auto">
 
           {/* ── CODE */}
           {phase === "code" && (
@@ -191,10 +190,10 @@ export default function NiteoEvaluation() {
                 {jures.map((j) => (
                   <button key={j.id} onClick={() => handleSelect(j)}
                     disabled={loading}
-                    className="w-full flex items-center justify-between px-4 py-3 rounded-sm border border-border bg-background hover:border-turquoise/50 hover:bg-turquoise/5 transition-all duration-150 text-left cursor-pointer"
+                    className="w-full flex items-center justify-between px-4 py-4 rounded-xl border border-border bg-background active:bg-turquoise/10 transition-all duration-150 text-left cursor-pointer touch-manipulation"
                   >
-                    <span className="font-medium text-sm" style={{ color: "hsl(var(--mn-ink))" }}>{j.nom}</span>
-                    <ChevronRight className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                    <span className="font-medium text-base" style={{ color: "hsl(var(--mn-ink))" }}>{j.nom}</span>
+                    <ChevronRight className="h-5 w-5 text-muted-foreground flex-shrink-0" />
                   </button>
                 ))}
               </div>
@@ -293,7 +292,7 @@ export default function NiteoEvaluation() {
               </Card>
 
               {/* Sélection projet */}
-              <div className="bg-card border border-border rounded-sm p-6 space-y-3">
+              <div className="bg-card border border-border rounded-xl p-4 space-y-3">
                 <Label htmlFor="projet" className="text-base font-semibold">Projet évalué *</Label>
                 <select id="projet" value={projet} onChange={(e) => setProjet(e.target.value)} required
                   className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
@@ -304,22 +303,22 @@ export default function NiteoEvaluation() {
 
               {/* Axes */}
               {AXES.map((axe) => (
-                <div key={axe.key} className="bg-card border border-border rounded-sm p-6 space-y-4">
+                <div key={axe.key} className="bg-card border border-border rounded-xl p-4 space-y-3">
                   <div>
-                    <h3 className="font-semibold text-base" style={{ color: "hsl(var(--mn-ink))" }}>{axe.label}</h3>
-                    <p className="text-xs text-muted-foreground mt-0.5">{axe.desc}</p>
+                    <h3 className="font-semibold text-sm" style={{ color: "hsl(var(--mn-ink))" }}>{axe.label}</h3>
+                    <p className="text-xs text-muted-foreground mt-0.5 leading-snug">{axe.desc}</p>
                   </div>
                   <StarRating value={notes[axe.key] ?? 0} onChange={(v) => setNote(axe.key, v)} />
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                    <div className="space-y-1.5">
+                  <div className="space-y-2 pt-1">
+                    <div className="space-y-1">
                       <Label className="text-xs font-medium text-green-700">Points positifs</Label>
-                      <Textarea rows={3} value={comments[axe.key]?.positif ?? ""}
+                      <Textarea rows={2} value={comments[axe.key]?.positif ?? ""}
                         onChange={(e) => setComment(axe.key, "positif", e.target.value)}
                         placeholder="Ce qui fonctionne bien…" className="text-sm resize-none" />
                     </div>
-                    <div className="space-y-1.5">
+                    <div className="space-y-1">
                       <Label className="text-xs font-medium text-orange-700">Points à améliorer</Label>
-                      <Textarea rows={3} value={comments[axe.key]?.amelio ?? ""}
+                      <Textarea rows={2} value={comments[axe.key]?.amelio ?? ""}
                         onChange={(e) => setComment(axe.key, "amelio", e.target.value)}
                         placeholder="Ce qui peut être amélioré…" className="text-sm resize-none" />
                     </div>
@@ -328,14 +327,14 @@ export default function NiteoEvaluation() {
               ))}
 
               {/* Remarques générales */}
-              <div className="bg-card border border-border rounded-sm p-6 space-y-3">
+              <div className="bg-card border border-border rounded-xl p-4 space-y-3">
                 <Label className="text-base font-semibold">Remarques générales</Label>
                 <Textarea rows={4} value={general} onChange={(e) => setGeneral(e.target.value)}
                   placeholder="Observations globales sur le projet…" className="text-sm resize-none" />
               </div>
 
               {/* Score + Soumettre */}
-              <div className="bg-card border border-border rounded-sm p-6">
+              <div className="bg-card border border-border rounded-xl p-4">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-sm text-muted-foreground">
                     Note totale ({Object.keys(notes).length}/{AXES.length} axes notés)
