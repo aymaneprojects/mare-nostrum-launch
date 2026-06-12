@@ -51,17 +51,18 @@ serve(async (req) => {
     // ── Action 2 : sélection d'un juré existant par son recordId
     if (action === "select") {
       const res  = await fetch(
-        `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}/${recordId}?fields[]=Pr%C3%A9nom%20%2F%20Nom&fields[]=CODE+JURY+NITEO+`,
+        `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}/${recordId}`,
         { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } }
       );
       const data = await res.json();
       if (data.error) throw new Error("Juré introuvable.");
 
-      return new Response(JSON.stringify({
-        ok: true,
-        nomJure: (data.fields["Prénom / Nom"] ?? "").trim(),
-        codeJure: (data.fields["CODE JURY NITEO "] ?? "").trim(),
-      }), { status: 200, headers: { ...cors, "Content-Type": "application/json" } });
+      const nomJure  = (data.fields["Prénom / Nom"] ?? "").trim();
+      const codeJure = (data.fields["CODE JURY NITEO "] ?? "").trim();
+
+      return new Response(JSON.stringify({ ok: true, nomJure, codeJure }), {
+        status: 200, headers: { ...cors, "Content-Type": "application/json" },
+      });
     }
 
     // ── Action 3 : créer un nouveau juré (code inconnu)

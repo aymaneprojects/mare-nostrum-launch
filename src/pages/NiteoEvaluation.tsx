@@ -51,6 +51,7 @@ export default function NiteoEvaluation() {
   const [phase, setPhase]       = useState<Phase>("code");
   const [eventCode, setEventCode] = useState("");
   const [jures, setJures]       = useState<Jure[]>([]);
+  const [search, setSearch]     = useState("");
   const [nomJure, setNomJure]   = useState("");
   const [codeJure, setCodeJure] = useState("");
   const [nom, setNom]           = useState("");
@@ -181,8 +182,19 @@ export default function NiteoEvaluation() {
               <p className="text-muted-foreground mb-6 text-sm">
                 Sélectionnez votre nom dans la liste.
               </p>
+              <div className="mb-4">
+                <Input
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Rechercher votre prénom ou nom…"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  spellCheck={false}
+                  className="text-base"
+                />
+              </div>
               <div className="space-y-2 mb-6">
-                {jures.map((j) => (
+                {jures.filter(j => j.nom.toLowerCase().includes(search.toLowerCase())).map((j) => (
                   <button key={j.id} onClick={() => handleSelect(j)}
                     disabled={loading}
                     className="w-full flex items-center justify-between px-4 py-4 rounded-xl border border-border bg-background active:bg-turquoise/10 transition-all duration-150 text-left cursor-pointer touch-manipulation"
