@@ -18,23 +18,34 @@ const AXES = [
   { key: "synthese",     label: "Synthèse",                   desc: "Cohérence de la vision globale, pertinence du plan d'action à 3–6 mois, call to action final…" },
 ];
 
+const TURQUOISE = "hsl(181 67% 54%)";
+const INK       = "hsl(var(--mn-ink))";
+const NUIT      = "hsl(var(--mn-nuit))";
+
 function StarRating({ value, onChange }: { value: number; onChange: (v: number) => void }) {
   const [hover, setHover] = useState(0);
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex gap-1 items-center">
       {[1, 2, 3, 4, 5].map((star) => (
-        <button key={star} type="button" onClick={() => onChange(star)}
-          onMouseEnter={() => setHover(star)} onMouseLeave={() => setHover(0)}
-          className="focus:outline-none cursor-pointer p-1 -m-1 touch-manipulation"
-          aria-label={`${star} étoile${star > 1 ? "s" : ""}`}>
-          <Star className="h-9 w-9 transition-colors duration-150"
-            fill={(hover || value) >= star ? "hsl(181 67% 54%)" : "none"}
-            stroke={(hover || value) >= star ? "hsl(181 67% 54%)" : "hsl(224 14% 50%)"}
-            strokeWidth={1.5} />
+        <button
+          key={star} type="button"
+          onClick={() => onChange(star)}
+          onMouseEnter={() => setHover(star)}
+          onMouseLeave={() => setHover(0)}
+          className="focus:outline-none touch-manipulation active:scale-90 transition-transform"
+          style={{ padding: "6px", margin: "-6px 2px" }}
+          aria-label={`${star} étoile${star > 1 ? "s" : ""}`}
+        >
+          <Star
+            className="h-10 w-10 transition-colors duration-100"
+            fill={(hover || value) >= star ? TURQUOISE : "none"}
+            stroke={(hover || value) >= star ? TURQUOISE : "hsl(224 14% 75%)"}
+            strokeWidth={1.5}
+          />
         </button>
       ))}
       {value > 0 && (
-        <span className="ml-1 text-base font-bold" style={{ color: "hsl(181 67% 54%)" }}>
+        <span className="ml-2 text-base font-bold tabular-nums" style={{ color: TURQUOISE }}>
           {value}/5
         </span>
       )}
@@ -44,14 +55,28 @@ function StarRating({ value, onChange }: { value: number; onChange: (v: number) 
 
 function StarDisplay({ value }: { value: number }) {
   return (
-    <div className="flex gap-1 items-center shrink-0">
+    <div className="flex gap-0.5 items-center shrink-0">
       {[1, 2, 3, 4, 5].map((star) => (
-        <Star key={star} className="h-4 w-4"
-          fill={value >= star ? "hsl(181 67% 54%)" : "none"}
-          stroke={value >= star ? "hsl(181 67% 54%)" : "hsl(224 14% 50%)"}
+        <Star key={star} className="h-3.5 w-3.5"
+          fill={value >= star ? TURQUOISE : "none"}
+          stroke={value >= star ? TURQUOISE : "hsl(224 14% 70%)"}
           strokeWidth={1.5} />
       ))}
-      <span className="ml-1 text-sm font-bold" style={{ color: "hsl(181 67% 54%)" }}>{value}/5</span>
+      <span className="ml-1 text-xs font-bold tabular-nums" style={{ color: TURQUOISE }}>{value}/5</span>
+    </div>
+  );
+}
+
+function StepDots({ current }: { current: number }) {
+  return (
+    <div className="flex justify-center gap-2 mb-5">
+      {[1, 2, 3, 4].map((s) => (
+        <div key={s} className="rounded-full transition-all duration-300"
+          style={{
+            width: s === current ? 20 : 8, height: 8,
+            background: s === current ? TURQUOISE : "hsl(224 14% 80%)",
+          }} />
+      ))}
     </div>
   );
 }
@@ -61,24 +86,28 @@ type Notes    = Record<string, number>;
 type Comments = Record<string, { positif: string; amelio: string }>;
 type Jure     = { id: string; nom: string; code: string };
 
+const PHASE_STEP: Record<Phase, number> = {
+  code: 1, liste: 2, register: 2, form: 3, confirm: 4, loading: 4, next: 4,
+};
+
 export default function NiteoEvaluation() {
-  const [phase, setPhase]           = useState<Phase>("code");
-  const [juryCode, setJuryCode]     = useState("");
-  const [jures, setJures]           = useState<Jure[]>([]);
+  const [phase, setPhase]               = useState<Phase>("code");
+  const [juryCode, setJuryCode]         = useState("");
+  const [jures, setJures]               = useState<Jure[]>([]);
   const [selectedJure, setSelectedJure] = useState<Jure | null>(null);
-  const [nomJure, setNomJure]       = useState("");
-  const [codeJure, setCodeJure]     = useState("");
-  const [nom, setNom]               = useState("");
-  const [prenom, setPrenom]         = useState("");
-  const [email, setEmail]           = useState("");
-  const [telephone, setTel]         = useState("");
-  const [projet, setProjet]         = useState("");
-  const [lastProjet, setLastProjet] = useState("");
-  const [notes, setNotes]           = useState<Notes>({});
-  const [comments, setComments]     = useState<Comments>({});
-  const [error, setError]           = useState("");
-  const [loading, setLoading]       = useState(false);
-  const [projets, setProjets]       = useState<string[]>([]);
+  const [nomJure, setNomJure]           = useState("");
+  const [codeJure, setCodeJure]         = useState("");
+  const [nom, setNom]                   = useState("");
+  const [prenom, setPrenom]             = useState("");
+  const [email, setEmail]               = useState("");
+  const [telephone, setTel]             = useState("");
+  const [projet, setProjet]             = useState("");
+  const [lastProjet, setLastProjet]     = useState("");
+  const [notes, setNotes]               = useState<Notes>({});
+  const [comments, setComments]         = useState<Comments>({});
+  const [error, setError]               = useState("");
+  const [loading, setLoading]           = useState(false);
+  const [projets, setProjets]           = useState<string[]>([]);
   const [projetsEvalues, setProjetsEvalues] = useState<string[]>([]);
 
   useEffect(() => {
@@ -88,6 +117,7 @@ export default function NiteoEvaluation() {
 
   const projetsRestants = projets.filter((p) => !projetsEvalues.includes(p));
   const totalNote       = Object.values(notes).reduce((s, v) => s + v, 0);
+  const axesNotes       = Object.keys(notes).length;
   const allFilled       = AXES.every((a) => (notes[a.key] ?? 0) > 0) && projet;
 
   const fetchEvalues = async (nom: string) => {
@@ -97,25 +127,20 @@ export default function NiteoEvaluation() {
     setProjetsEvalues(data?.projetsEvalues ?? []);
   };
 
-  // ── Étape 1 : valider le code jury → afficher tous les jurés avec ce code
   const handleCodeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
-    setLoading(true);
+    setError(""); setLoading(true);
     const { data, error: fnErr } = await supabase.functions.invoke("verify-jury-code", {
       body: { action: "validate", code: juryCode.trim().toUpperCase() },
     });
     setLoading(false);
-    if (fnErr || data?.error) { setError("Code introuvable. Vérifiez votre code jury."); return; }
-    if (!data.valid) { setError("Code introuvable. Vérifiez votre code jury."); return; }
+    if (fnErr || data?.error || !data?.valid) { setError("Code introuvable. Vérifiez votre code jury."); return; }
     setJures(data.jures ?? []);
     setPhase("liste");
   };
 
-  // ── Étape 2a : sélectionner son nom dans la liste
   const handleSelect = async (jure: Jure) => {
-    setError("");
-    setLoading(true);
+    setError(""); setLoading(true);
     const { data, error: fnErr } = await supabase.functions.invoke("verify-jury-code", {
       body: { action: "select", recordId: jure.id },
     });
@@ -127,11 +152,9 @@ export default function NiteoEvaluation() {
     setPhase("form");
   };
 
-  // ── Étape 2b : inscription (nom pas dans la liste) — même code attribué
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
-    setLoading(true);
+    setError(""); setLoading(true);
     const { data, error: fnErr } = await supabase.functions.invoke("verify-jury-code", {
       body: { action: "register", nom, prenom, email, telephone, code: juryCode.trim().toUpperCase() },
     });
@@ -143,16 +166,12 @@ export default function NiteoEvaluation() {
     setPhase("form");
   };
 
-  // ── Étape 3 : valider le formulaire → écran de confirmation
   const handleGoConfirm = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!allFilled) { setError("Veuillez noter tous les axes et choisir un projet."); return; }
-    setError("");
-    setPhase("confirm");
+    if (!allFilled) { setError("Notez tous les axes et choisissez un projet."); return; }
+    setError(""); setPhase("confirm");
   };
 
-
-  // ── Étape 4 : confirmer et envoyer
   const handleConfirmedSubmit = async () => {
     setPhase("loading");
     const { data, error: fnErr } = await supabase.functions.invoke("submit-niteo-evaluation", {
@@ -160,22 +179,16 @@ export default function NiteoEvaluation() {
     });
     if (fnErr || data?.error) {
       setError(data?.error ?? fnErr?.message ?? "Erreur serveur.");
-      setPhase("form");
-      return;
+      setPhase("form"); return;
     }
     setLastProjet(projet);
     setProjetsEvalues((prev) => [...prev, projet]);
-    setProjet("");
-    setNotes({});
-    setComments({});
+    setProjet(""); setNotes({}); setComments({});
     setPhase("next");
   };
 
   const startProject = (p: string) => {
-    setProjet(p);
-    setNotes({});
-    setComments({});
-    setError("");
+    setProjet(p); setNotes({}); setComments({}); setError("");
     setPhase("form");
   };
 
@@ -184,35 +197,64 @@ export default function NiteoEvaluation() {
     setComments((p) => ({ ...p, [key]: { ...(p[key] ?? { positif: "", amelio: "" }), [field]: val } }));
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <main className="flex-1 pt-6 pb-10 px-4">
+    <div className="min-h-screen bg-background" style={{ paddingBottom: "env(safe-area-inset-bottom, 16px)" }}>
+
+      {/* ── Bandeau top */}
+      <div className="sticky top-0 z-10 border-b border-border bg-card/90 backdrop-blur-sm px-4 py-3 flex items-center justify-between">
+        <div>
+          <p className="text-xs font-semibold tracking-widest uppercase" style={{ color: TURQUOISE }}>
+            Niteo · Demo Day
+          </p>
+          <p className="text-[11px] text-muted-foreground">16 juin 2026</p>
+        </div>
+        {nomJure && (
+          <div className="text-right">
+            <p className="text-xs font-medium" style={{ color: INK }}>{nomJure}</p>
+            <p className="text-[11px] text-muted-foreground">
+              {projetsEvalues.length}/{projets.length} projet{projets.length > 1 ? "s" : ""}
+            </p>
+          </div>
+        )}
+      </div>
+
+      <main className="px-4 pt-5 pb-10">
         <div className="w-full max-w-lg mx-auto">
+
+          {phase !== "form" && phase !== "loading" && (
+            <StepDots current={PHASE_STEP[phase]} />
+          )}
 
           {/* ── CODE */}
           {phase === "code" && (
-            <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
-              <div className="mn-eyebrow-turquoise mb-3">Demo Day · 16 juin 2026</div>
-              <h1 className="text-2xl font-bold mb-2" style={{ color: "hsl(var(--mn-ink))" }}>
-                Grille d'évaluation jury
+            <div className="bg-card border border-border rounded-2xl p-6 shadow-sm">
+              <h1 className="text-2xl font-bold mb-1" style={{ color: INK }}>
+                Grille d'évaluation
               </h1>
-              <p className="text-muted-foreground mb-8 text-sm">
+              <p className="text-muted-foreground mb-7 text-sm leading-relaxed">
                 Saisissez le code jury qui vous a été attribué.
               </p>
-              <form onSubmit={handleCodeSubmit} className="space-y-5">
-                <div className="space-y-1.5">
-                  <Label htmlFor="juryCode">Code jury</Label>
-                  <Input id="juryCode" value={juryCode}
+              <form onSubmit={handleCodeSubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="juryCode" className="text-sm font-medium">Code jury</Label>
+                  <Input
+                    id="juryCode" value={juryCode}
                     onChange={(e) => setJuryCode(e.target.value)}
-                    autoCapitalize="characters"
-                    autoComplete="off"
-                    autoCorrect="off"
-                    spellCheck={false}
-                    required className="text-center font-mono text-lg tracking-widest" />
+                    autoCapitalize="characters" autoComplete="off" autoCorrect="off" spellCheck={false}
+                    required
+                    className="text-center font-mono text-xl tracking-[0.3em] h-14 rounded-xl"
+                    style={{ fontSize: 20 }}
+                    placeholder="NITEO-XX"
+                  />
                 </div>
-                {error && <p className="text-sm text-destructive">{error}</p>}
-                <Button type="submit" className="w-full" disabled={loading || !juryCode}
-                  style={{ background: "hsl(var(--mn-turquoise))", color: "hsl(var(--mn-ink))" }}>
-                  {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
+                {error && (
+                  <div className="rounded-xl bg-destructive/10 border border-destructive/20 px-4 py-3">
+                    <p className="text-sm text-destructive font-medium">{error}</p>
+                  </div>
+                )}
+                <Button type="submit" className="w-full h-13 rounded-xl text-base font-semibold touch-manipulation"
+                  disabled={loading || !juryCode}
+                  style={{ background: TURQUOISE, color: INK, height: 52 }}>
+                  {loading ? <Loader2 className="h-5 w-5 animate-spin mr-2" /> : null}
                   Continuer
                 </Button>
               </form>
@@ -221,39 +263,45 @@ export default function NiteoEvaluation() {
 
           {/* ── LISTE */}
           {phase === "liste" && (
-            <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
-              <div className="mn-eyebrow-turquoise mb-3">Demo Day · 16 juin 2026</div>
-              <h1 className="text-2xl font-bold mb-2" style={{ color: "hsl(var(--mn-ink))" }}>
-                Qui êtes-vous ?
-              </h1>
+            <div className="bg-card border border-border rounded-2xl p-6 shadow-sm">
+              <h1 className="text-2xl font-bold mb-1" style={{ color: INK }}>Qui êtes-vous ?</h1>
               <p className="text-muted-foreground mb-6 text-sm">
                 Sélectionnez votre nom dans la liste.
               </p>
-              <div className="space-y-4 mb-6">
+              <div className="space-y-3 mb-5">
                 <select
                   defaultValue=""
                   onChange={(e) => {
                     const jure = jures.find((j) => j.id === e.target.value);
                     setSelectedJure(jure ?? null);
                   }}
-                  className="w-full h-12 rounded-xl border border-input bg-background px-3 text-base focus:outline-none focus:ring-2 focus:ring-ring"
+                  className="w-full rounded-xl border border-input bg-background px-4 text-base focus:outline-none focus:ring-2 focus:ring-ring touch-manipulation"
+                  style={{ height: 52, fontSize: 16 }}
                 >
                   <option value="" disabled>Sélectionnez votre nom…</option>
                   {[...jures].sort((a, b) => a.nom.localeCompare(b.nom, "fr")).map((j) => (
                     <option key={j.id} value={j.id}>{j.nom}</option>
                   ))}
                 </select>
-                <Button className="w-full" disabled={!selectedJure || loading}
+                <Button
+                  className="w-full rounded-xl text-base font-semibold touch-manipulation"
+                  disabled={!selectedJure || loading}
                   onClick={() => selectedJure && handleSelect(selectedJure)}
-                  style={{ background: "hsl(var(--mn-turquoise))", color: "hsl(var(--mn-ink))" }}>
-                  {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
+                  style={{ background: TURQUOISE, color: INK, height: 52 }}
+                >
+                  {loading ? <Loader2 className="h-5 w-5 animate-spin mr-2" /> : null}
                   Continuer
                 </Button>
               </div>
-              {error && <p className="text-sm text-destructive mb-3">{error}</p>}
+              {error && (
+                <div className="rounded-xl bg-destructive/10 border border-destructive/20 px-4 py-3 mb-4">
+                  <p className="text-sm text-destructive font-medium">{error}</p>
+                </div>
+              )}
               <div className="pt-4 border-t border-border">
                 <p className="text-sm text-muted-foreground mb-3">Votre nom n'est pas dans la liste ?</p>
-                <Button variant="outline" className="w-full" onClick={() => setPhase("register")}>
+                <Button variant="outline" className="w-full rounded-xl touch-manipulation" style={{ height: 48 }}
+                  onClick={() => setPhase("register")}>
                   <UserPlus className="h-4 w-4 mr-2" />
                   Je ne suis pas dans la liste
                 </Button>
@@ -263,41 +311,49 @@ export default function NiteoEvaluation() {
 
           {/* ── REGISTER */}
           {phase === "register" && (
-            <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
-              <div className="mn-eyebrow-turquoise mb-3">Demo Day · 16 juin 2026</div>
-              <h1 className="text-2xl font-bold mb-2" style={{ color: "hsl(var(--mn-ink))" }}>
-                Vos informations
-              </h1>
-              <p className="text-muted-foreground mb-8 text-sm">
-                Renseignez vos coordonnées — le code <strong>{juryCode}</strong> vous sera attribué.
+            <div className="bg-card border border-border rounded-2xl p-6 shadow-sm">
+              <h1 className="text-2xl font-bold mb-1" style={{ color: INK }}>Vos informations</h1>
+              <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
+                Renseignez vos coordonnées — le code <strong className="font-mono">{juryCode}</strong> vous sera attribué.
               </p>
-              <form onSubmit={handleRegister} className="space-y-5">
-                <div className="grid grid-cols-2 gap-4">
+              <form onSubmit={handleRegister} className="space-y-4">
+                <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-1.5">
-                    <Label htmlFor="prenom">Prénom *</Label>
-                    <Input id="prenom" value={prenom} onChange={(e) => setPrenom(e.target.value)} required />
+                    <Label htmlFor="prenom" className="text-sm">Prénom *</Label>
+                    <Input id="prenom" value={prenom} onChange={(e) => setPrenom(e.target.value)}
+                      required className="rounded-xl" style={{ height: 48, fontSize: 16 }} />
                   </div>
                   <div className="space-y-1.5">
-                    <Label htmlFor="nom">Nom *</Label>
-                    <Input id="nom" value={nom} onChange={(e) => setNom(e.target.value)} required />
+                    <Label htmlFor="nom" className="text-sm">Nom *</Label>
+                    <Input id="nom" value={nom} onChange={(e) => setNom(e.target.value)}
+                      required className="rounded-xl" style={{ height: 48, fontSize: 16 }} />
                   </div>
                 </div>
                 <div className="space-y-1.5">
-                  <Label htmlFor="email">Email *</Label>
-                  <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required placeholder="votre@email.com" />
+                  <Label htmlFor="email" className="text-sm">Email *</Label>
+                  <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}
+                    required placeholder="votre@email.com"
+                    className="rounded-xl" style={{ height: 48, fontSize: 16 }} />
                 </div>
                 <div className="space-y-1.5">
-                  <Label htmlFor="tel">Téléphone *</Label>
-                  <Input id="tel" type="tel" value={telephone} onChange={(e) => setTel(e.target.value)} required placeholder="+33 6 00 00 00 00" />
+                  <Label htmlFor="tel" className="text-sm">Téléphone *</Label>
+                  <Input id="tel" type="tel" value={telephone} onChange={(e) => setTel(e.target.value)}
+                    required placeholder="+33 6 00 00 00 00"
+                    className="rounded-xl" style={{ height: 48, fontSize: 16 }} />
                 </div>
-                {error && <p className="text-sm text-destructive">{error}</p>}
-                <Button type="submit" className="w-full" disabled={loading || !prenom || !nom || !email || !telephone}
-                  style={{ background: "hsl(var(--mn-turquoise))", color: "hsl(var(--mn-ink))" }}>
-                  {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
+                {error && (
+                  <div className="rounded-xl bg-destructive/10 border border-destructive/20 px-4 py-3">
+                    <p className="text-sm text-destructive font-medium">{error}</p>
+                  </div>
+                )}
+                <Button type="submit" className="w-full rounded-xl text-base font-semibold touch-manipulation"
+                  disabled={loading || !prenom || !nom || !email || !telephone}
+                  style={{ background: TURQUOISE, color: INK, height: 52 }}>
+                  {loading ? <Loader2 className="h-5 w-5 animate-spin mr-2" /> : null}
                   Accéder à la grille
                 </Button>
                 <button type="button" onClick={() => setPhase("liste")}
-                  className="w-full text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  className="w-full text-sm text-muted-foreground py-3 touch-manipulation active:opacity-60 transition-opacity">
                   ← Retour à la liste
                 </button>
               </form>
@@ -306,159 +362,219 @@ export default function NiteoEvaluation() {
 
           {/* ── LOADING */}
           {phase === "loading" && (
-            <div className="text-center py-24">
-              <Loader2 className="h-10 w-10 animate-spin mx-auto mb-4" style={{ color: "hsl(var(--mn-turquoise))" }} />
-              <p className="text-muted-foreground">Enregistrement en cours…</p>
+            <div className="flex flex-col items-center justify-center py-32 gap-4">
+              <Loader2 className="h-12 w-12 animate-spin" style={{ color: TURQUOISE }} />
+              <p className="text-muted-foreground font-medium">Enregistrement en cours…</p>
             </div>
           )}
 
           {/* ── FORM */}
           {phase === "form" && (
-            <form onSubmit={handleGoConfirm} className="space-y-6">
-              <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
-                <div className="mn-eyebrow-turquoise mb-3">Demo Day · 16 juin 2026</div>
-                <h1 className="text-2xl font-bold mb-1" style={{ color: "hsl(var(--mn-ink))" }}>
-                  Bonjour, {nomJure.split(" ")[0]} !
-                </h1>
-                {projetsEvalues.length > 0 && (
-                  <p className="text-sm text-muted-foreground mt-1">
-                    {projetsEvalues.length} projet{projetsEvalues.length > 1 ? "s" : ""} évalué{projetsEvalues.length > 1 ? "s" : ""} · {projetsRestants.length} restant{projetsRestants.length > 1 ? "s" : ""}
-                  </p>
-                )}
+            <form onSubmit={handleGoConfirm} className="space-y-4">
+
+              {/* Header juré + progression */}
+              <div className="bg-card border border-border rounded-2xl px-5 py-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h1 className="text-lg font-bold" style={{ color: INK }}>
+                      Bonjour, {nomJure.split(" ")[0]} !
+                    </h1>
+                    <p className="text-xs text-muted-foreground mt-0.5">
+                      {projetsEvalues.length > 0
+                        ? `${projetsEvalues.length} évalué${projetsEvalues.length > 1 ? "s" : ""} · ${projetsRestants.length} restant${projetsRestants.length !== 1 ? "s" : ""}`
+                        : "Choisissez un projet pour commencer"}
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-end gap-1">
+                    {projets.length > 0 && (
+                      <div className="flex gap-1">
+                        {projets.map((p) => (
+                          <div key={p} className="h-2 w-2 rounded-full"
+                            style={{ background: projetsEvalues.includes(p) ? TURQUOISE : "hsl(224 14% 82%)" }} />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
 
               {/* Sélection projet */}
-              <div className="bg-card border border-border rounded-xl p-4 space-y-3">
-                <Label htmlFor="projet" className="text-base font-semibold">Projet à évaluer *</Label>
+              <div className="bg-card border border-border rounded-2xl p-4 space-y-2">
+                <Label htmlFor="projet" className="text-sm font-semibold" style={{ color: INK }}>
+                  Projet à évaluer *
+                </Label>
                 <select id="projet" value={projet} onChange={(e) => setProjet(e.target.value)} required
-                  className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
+                  className="w-full rounded-xl border border-input bg-background px-4 text-sm focus:outline-none focus:ring-2 focus:ring-ring touch-manipulation"
+                  style={{ height: 48, fontSize: 16 }}>
                   <option value="">Sélectionnez le projet…</option>
                   {projetsRestants.map((p) => <option key={p} value={p}>{p}</option>)}
                 </select>
                 {projetsEvalues.length > 0 && (
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs text-muted-foreground pt-1">
                     Déjà évalués : {projetsEvalues.join(", ")}
                   </p>
                 )}
               </div>
 
               {/* Axes */}
-              {AXES.map((axe) => (
-                <div key={axe.key} className="bg-card border border-border rounded-xl p-4 space-y-3">
-                  <div>
-                    <h3 className="font-semibold text-sm" style={{ color: "hsl(var(--mn-ink))" }}>{axe.label}</h3>
-                    <p className="text-xs text-muted-foreground mt-0.5 leading-snug">{axe.desc}</p>
+              {AXES.map((axe, i) => (
+                <div key={axe.key} className="bg-card border border-border rounded-2xl p-4 space-y-3">
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <span className="text-[10px] font-bold rounded-full px-1.5 py-0.5 tabular-nums"
+                          style={{ background: "hsl(181 67% 54% / 0.15)", color: TURQUOISE }}>
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <h3 className="font-semibold text-sm" style={{ color: INK }}>{axe.label}</h3>
+                      </div>
+                      <p className="text-xs text-muted-foreground leading-snug">{axe.desc}</p>
+                    </div>
+                    {(notes[axe.key] ?? 0) > 0 && (
+                      <div className="shrink-0">
+                        <span className="text-base font-bold tabular-nums" style={{ color: TURQUOISE }}>
+                          {notes[axe.key]}/5
+                        </span>
+                      </div>
+                    )}
                   </div>
-                  <StarRating value={notes[axe.key] ?? 0} onChange={(v) => setNote(axe.key, v)} />
+
+                  <div className="py-1">
+                    <StarRating value={notes[axe.key] ?? 0} onChange={(v) => setNote(axe.key, v)} />
+                  </div>
+
                   <div className="space-y-2 pt-1">
                     <div className="space-y-1">
-                      <Label className="text-xs font-medium text-green-700">Points positifs</Label>
+                      <Label className="text-xs font-semibold" style={{ color: "#15803d" }}>
+                        Points positifs
+                      </Label>
                       <Textarea rows={2} value={comments[axe.key]?.positif ?? ""}
                         onChange={(e) => setComment(axe.key, "positif", e.target.value)}
-                        placeholder="Ce qui fonctionne bien…" className="text-sm resize-none" />
+                        placeholder="Ce qui fonctionne bien…"
+                        className="text-sm resize-none rounded-xl" style={{ fontSize: 16 }} />
                     </div>
                     <div className="space-y-1">
-                      <Label className="text-xs font-medium text-orange-700">Points à améliorer</Label>
+                      <Label className="text-xs font-semibold" style={{ color: "#c2410c" }}>
+                        Points à améliorer
+                      </Label>
                       <Textarea rows={2} value={comments[axe.key]?.amelio ?? ""}
                         onChange={(e) => setComment(axe.key, "amelio", e.target.value)}
-                        placeholder="Ce qui peut être amélioré…" className="text-sm resize-none" />
+                        placeholder="Ce qui peut être amélioré…"
+                        className="text-sm resize-none rounded-xl" style={{ fontSize: 16 }} />
                     </div>
                   </div>
                 </div>
               ))}
 
-              {/* Score + Soumettre */}
-              <div className="bg-card border border-border rounded-xl p-4">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm text-muted-foreground">
-                    Note totale ({Object.keys(notes).length}/{AXES.length} axes notés)
-                  </span>
-                  <span className="text-2xl font-bold font-editorial" style={{ color: "hsl(var(--mn-nuit))" }}>
-                    {totalNote}<span className="text-base font-normal text-muted-foreground">/45</span>
-                  </span>
+              {/* Score + CTA sticky */}
+              <div className="sticky bottom-4 z-10">
+                <div className="bg-card border border-border rounded-2xl p-4 shadow-lg">
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                      <p className="text-xs text-muted-foreground">{axesNotes}/{AXES.length} axes notés</p>
+                      <p className="text-2xl font-bold tabular-nums" style={{ color: NUIT }}>
+                        {totalNote}<span className="text-sm font-normal text-muted-foreground">/45</span>
+                      </p>
+                    </div>
+                    {/* Barre de progression */}
+                    <div className="flex gap-1 flex-wrap justify-end max-w-[120px]">
+                      {AXES.map((a) => (
+                        <div key={a.key} className="h-1.5 w-1.5 rounded-full transition-colors duration-200"
+                          style={{ background: (notes[a.key] ?? 0) > 0 ? TURQUOISE : "hsl(224 14% 82%)" }} />
+                      ))}
+                    </div>
+                  </div>
+                  {error && (
+                    <div className="rounded-xl bg-destructive/10 border border-destructive/20 px-3 py-2 mb-3">
+                      <p className="text-xs text-destructive font-medium">{error}</p>
+                    </div>
+                  )}
+                  <Button type="submit" className="w-full rounded-xl text-base font-semibold touch-manipulation"
+                    disabled={!allFilled}
+                    style={{ background: allFilled ? TURQUOISE : undefined, color: allFilled ? INK : undefined, height: 52 }}>
+                    Vérifier avant d'envoyer →
+                  </Button>
+                  {!allFilled && (
+                    <p className="text-xs text-center text-muted-foreground mt-2">
+                      Notez les {AXES.length - axesNotes} axe{AXES.length - axesNotes > 1 ? "s" : ""} restant{AXES.length - axesNotes > 1 ? "s" : ""} et choisissez un projet.
+                    </p>
+                  )}
                 </div>
-                {error && <p className="text-sm text-destructive mb-3">{error}</p>}
-                <Button type="submit" className="w-full" disabled={!allFilled}
-                  style={{ background: "hsl(var(--mn-turquoise))", color: "hsl(var(--mn-ink))" }}>
-                  Vérifier avant d'envoyer →
-                </Button>
-                {!allFilled && (
-                  <p className="text-xs text-center text-muted-foreground mt-2">
-                    Notez tous les axes et choisissez un projet pour continuer.
-                  </p>
-                )}
               </div>
             </form>
           )}
 
           {/* ── CONFIRM */}
           {phase === "confirm" && (
-            <div className="space-y-4">
-              <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
-                <div className="mn-eyebrow-turquoise mb-2">Récapitulatif</div>
-                <h2 className="text-xl font-bold mb-1" style={{ color: "hsl(var(--mn-ink))" }}>
-                  Êtes-vous sûr(e) ?
-                </h2>
-                <p className="text-muted-foreground text-sm">
-                  Vérifiez vos notes — une fois envoyées, elles ne peuvent plus être modifiées.
+            <div className="space-y-3">
+              <div className="bg-card border border-border rounded-2xl p-5 shadow-sm">
+                <div className="mn-eyebrow-turquoise mb-2 text-xs">Récapitulatif</div>
+                <h2 className="text-xl font-bold mb-1" style={{ color: INK }}>Êtes-vous sûr(e) ?</h2>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Une fois envoyées, les notes ne peuvent plus être modifiées.
                 </p>
-                <div className="mt-4 flex items-center gap-2">
-                  <span className="text-sm text-muted-foreground">Projet :</span>
-                  <span className="font-semibold text-sm">{projet}</span>
-                </div>
-                <div className="mt-2 flex items-center gap-2">
-                  <span className="text-sm text-muted-foreground">Note totale :</span>
-                  <span className="font-bold" style={{ color: "hsl(var(--mn-turquoise))" }}>{totalNote}/45</span>
+                <div className="mt-4 flex flex-wrap gap-4">
+                  <div>
+                    <p className="text-xs text-muted-foreground">Projet</p>
+                    <p className="font-semibold text-sm" style={{ color: INK }}>{projet}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Note totale</p>
+                    <p className="font-bold text-lg tabular-nums" style={{ color: TURQUOISE }}>{totalNote}/45</p>
+                  </div>
                 </div>
               </div>
 
               {AXES.map((axe) => (
-                <div key={axe.key} className="bg-card border border-border rounded-xl px-4 py-3">
-                  <div className="flex items-start justify-between gap-3 mb-1">
-                    <p className="font-semibold text-sm" style={{ color: "hsl(var(--mn-ink))" }}>{axe.label}</p>
+                <div key={axe.key} className="bg-card border border-border rounded-2xl px-4 py-3">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <p className="font-semibold text-sm truncate flex-1" style={{ color: INK }}>{axe.label}</p>
                     <StarDisplay value={notes[axe.key] ?? 0} />
                   </div>
                   {comments[axe.key]?.positif && (
-                    <p className="text-xs mt-1" style={{ color: "#15803d" }}>+ {comments[axe.key].positif}</p>
+                    <p className="text-xs mt-1 leading-snug" style={{ color: "#15803d" }}>
+                      + {comments[axe.key].positif}
+                    </p>
                   )}
                   {comments[axe.key]?.amelio && (
-                    <p className="text-xs mt-0.5" style={{ color: "#c2410c" }}>△ {comments[axe.key].amelio}</p>
+                    <p className="text-xs mt-0.5 leading-snug" style={{ color: "#c2410c" }}>
+                      △ {comments[axe.key].amelio}
+                    </p>
                   )}
                 </div>
               ))}
 
-              <div className="bg-card border border-border rounded-xl p-4 space-y-3">
-                <Button className="w-full" onClick={handleConfirmedSubmit}
-                  style={{ background: "hsl(var(--mn-turquoise))", color: "hsl(var(--mn-ink))" }}>
+              <div className="bg-card border border-border rounded-2xl p-4 space-y-3">
+                <Button className="w-full rounded-xl text-base font-semibold touch-manipulation"
+                  onClick={handleConfirmedSubmit}
+                  style={{ background: TURQUOISE, color: INK, height: 52 }}>
                   Confirmer et envoyer
                 </Button>
                 <button type="button" onClick={() => setPhase("form")}
-                  className="w-full text-sm text-muted-foreground hover:text-foreground transition-colors py-1">
+                  className="w-full text-sm text-muted-foreground py-3 touch-manipulation active:opacity-60 transition-opacity">
                   ← Modifier mon évaluation
                 </button>
               </div>
             </div>
           )}
 
-          {/* ── NEXT (après envoi) */}
+          {/* ── NEXT */}
           {phase === "next" && (
             <div className="space-y-4">
-              <div className="bg-card border border-border rounded-xl p-6 shadow-sm text-center">
+              <div className="bg-card border border-border rounded-2xl p-6 shadow-sm text-center">
                 <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-                  style={{ background: "hsl(var(--mn-turquoise) / 0.12)" }}>
-                  <CheckCircle2 className="h-8 w-8" style={{ color: "hsl(var(--mn-turquoise))" }} />
+                  style={{ background: "hsl(181 67% 54% / 0.12)" }}>
+                  <CheckCircle2 className="h-8 w-8" style={{ color: TURQUOISE }} />
                 </div>
-                <h2 className="text-xl font-bold mb-1" style={{ color: "hsl(var(--mn-ink))" }}>
-                  Évaluation enregistrée !
-                </h2>
+                <h2 className="text-xl font-bold mb-1" style={{ color: INK }}>Évaluation envoyée !</h2>
                 <p className="text-muted-foreground text-sm">
-                  Merci <strong>{nomJure.split(" ")[0]}</strong> — <strong>« {lastProjet} »</strong> a bien été transmis.
+                  <strong>« {lastProjet} »</strong> bien transmis. Merci {nomJure.split(" ")[0]} !
                 </p>
               </div>
 
               {projetsRestants.length > 0 ? (
-                <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
-                  <h3 className="font-semibold mb-1" style={{ color: "hsl(var(--mn-ink))" }}>
+                <div className="bg-card border border-border rounded-2xl p-5 shadow-sm">
+                  <h3 className="font-semibold mb-1" style={{ color: INK }}>
                     Projets restants à évaluer
                   </h3>
                   <p className="text-sm text-muted-foreground mb-4">
@@ -467,20 +583,21 @@ export default function NiteoEvaluation() {
                   <div className="space-y-2">
                     {projetsRestants.map((p) => (
                       <button key={p} onClick={() => startProject(p)}
-                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl border border-border bg-background hover:bg-accent transition-colors cursor-pointer touch-manipulation">
+                        className="w-full flex items-center justify-between px-4 rounded-xl border border-border bg-background active:bg-accent transition-colors cursor-pointer touch-manipulation"
+                        style={{ height: 52 }}>
                         <span className="font-medium text-sm">{p}</span>
-                        <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                        <ChevronRight className="h-4 w-4 text-muted-foreground shrink-0" />
                       </button>
                     ))}
                   </div>
                 </div>
               ) : (
-                <div className="bg-card border border-border rounded-xl p-8 text-center shadow-sm">
-                  <div className="text-3xl mb-3">🎉</div>
-                  <h3 className="font-bold text-lg mb-2" style={{ color: "hsl(var(--mn-ink))" }}>
+                <div className="bg-card border border-border rounded-2xl p-8 text-center shadow-sm">
+                  <div className="text-4xl mb-4">🎉</div>
+                  <h3 className="font-bold text-lg mb-2" style={{ color: INK }}>
                     Tous les projets évalués !
                   </h3>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     Vous avez évalué l'ensemble des finalistes. Merci pour votre contribution, {nomJure.split(" ")[0]} !
                   </p>
                 </div>
