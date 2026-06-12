@@ -30,7 +30,7 @@ serve(async (req) => {
     const nomJure = (juryData.records[0].fields["Prénom / Nom"] ?? "").trim();
 
     // Anti-doublon : vérifier que ce juré n'a pas déjà noté ce projet
-    const dupFormula = encodeURIComponent(`AND({Code Juré} = "${code.trim().toUpperCase()}", {Projet} = "${projet}")`);
+    const dupFormula = encodeURIComponent(`AND({Nom Juré} = "${nomJure}", {Projet} = "${projet}")`);
     const dupRes = await fetch(
       `https://api.airtable.com/v0/${BASE_ID}/${EVAL_TABLE}?filterByFormula=${dupFormula}&maxRecords=1`,
       { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } }
@@ -40,7 +40,7 @@ serve(async (req) => {
 
     // Construire l'enregistrement Airtable
     const fields: Record<string, unknown> = {
-      "Code Juré":  code.trim().toUpperCase(),
+      "Code Juré":  nomJure,
       "Nom Juré":   nomJure,
       "Projet":     projet,
       "Édition":    "2026",
