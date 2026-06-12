@@ -65,6 +65,7 @@ export default function NiteoEvaluation() {
   const [phase, setPhase]           = useState<Phase>("code");
   const [juryCode, setJuryCode]     = useState("");
   const [jures, setJures]           = useState<Jure[]>([]);
+  const [selectedJure, setSelectedJure] = useState<Jure | null>(null);
   const [nomJure, setNomJure]       = useState("");
   const [codeJure, setCodeJure]     = useState("");
   const [nom, setNom]               = useState("");
@@ -235,7 +236,7 @@ export default function NiteoEvaluation() {
                   defaultValue=""
                   onChange={(e) => {
                     const jure = jures.find((j) => j.id === e.target.value);
-                    if (jure) handleSelect(jure);
+                    setSelectedJure(jure ?? null);
                   }}
                   className="w-full h-12 rounded-xl border border-input bg-background px-3 text-base focus:outline-none focus:ring-2 focus:ring-ring"
                 >
@@ -244,13 +245,14 @@ export default function NiteoEvaluation() {
                     <option key={j.id} value={j.id}>{j.nom}</option>
                   ))}
                 </select>
+                <Button className="w-full" disabled={!selectedJure || loading}
+                  onClick={() => selectedJure && handleSelect(selectedJure)}
+                  style={{ background: "hsl(var(--mn-turquoise))", color: "hsl(var(--mn-ink))" }}>
+                  {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
+                  Continuer
+                </Button>
               </div>
               {error && <p className="text-sm text-destructive mb-3">{error}</p>}
-              {loading && (
-                <div className="flex justify-center py-2">
-                  <Loader2 className="h-5 w-5 animate-spin" style={{ color: "hsl(var(--mn-turquoise))" }} />
-                </div>
-              )}
               <div className="pt-4 border-t border-border">
                 <p className="text-sm text-muted-foreground mb-3">Votre nom n'est pas dans la liste ?</p>
                 <Button variant="outline" className="w-full" onClick={() => setPhase("register")}>
