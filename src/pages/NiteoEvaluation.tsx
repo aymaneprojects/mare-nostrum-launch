@@ -156,7 +156,7 @@ export default function NiteoEvaluation() {
   const handleConfirmedSubmit = async () => {
     setPhase("loading");
     const { data, error: fnErr } = await supabase.functions.invoke("submit-niteo-evaluation", {
-      body: { code: codeJure, projet, notes, commentaires: { ...comments, general } },
+      body: { nomJure, code: codeJure, projet, notes, commentaires: { ...comments, general } },
     });
     if (fnErr || data?.error) {
       setError(data?.error ?? fnErr?.message ?? "Erreur serveur.");

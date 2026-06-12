@@ -51,18 +51,23 @@ serve(async (req) => {
     }
 
     // ── Action par défaut : soumettre une évaluation
-    const { code, projet, notes, commentaires } = body;
-    if (!code || !projet) throw new Error("Code et projet obligatoires.");
+    const { nomJure: nomJureBody, code, projet, notes, commentaires } = body;
+    if (!projet) throw new Error("Projet obligatoire.");
 
-    // Vérifier que le code est valide + récupérer le nom
-    const formula = encodeURIComponent(`{CODE JURY NITEO } = "${code.trim().toUpperCase()}"`);
-    const juryRes = await fetch(
-      `https://api.airtable.com/v0/${BASE_ID}/${JURY_TABLE}?filterByFormula=${formula}&fields[]=Pr%C3%A9nom%20%2F%20Nom&maxRecords=1`,
-      { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } }
-    );
-    const juryData = await juryRes.json();
-    if (!juryData.records?.length) throw new Error("Code jury invalide.");
-    const nomJure = (juryData.records[0].fields["Prénom / Nom"] ?? "").trim();
+    // Utiliser le nom passé directement (plus fiable que la recherche par code quand le code est partagé)
+    let nomJure = (nomJureBody ?? "").trim();
+    if (!nomJure) {
+      // Fallback : chercher par code si le nom n'est pas fourni
+      if (!code) throw new Error("Nom ou code obligatoire.");
+      const formula = encodeURIComponent(`{CODE JURY NITEO } = "${code.trim().toUpperCase()}"`);
+      const juryRes = await fetch(
+        `https://api.airtable.com/v0/${BASE_ID}/${JURY_TABLE}?filterByFormula=${formula}&fields[]=Pr%C3%A9nom%20%2F%20Nom&maxRecords=1`,
+        { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } }
+      );
+      const juryData = await juryRes.json();
+      if (!juryData.records?.length) throw new Error("Code jury invalide.");
+      nomJure = (juryData.records[0].fields["Prénom / Nom"] ?? "").trim();
+    }
 
     // Anti-doublon : vérifier que ce juré n'a pas déjà noté ce projet
     const dupFormula = encodeURIComponent(`AND({Nom Juré} = "${nomJure}", {Projet} = "${projet}")`);
