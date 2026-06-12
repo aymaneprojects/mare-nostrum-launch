@@ -7,14 +7,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle2, Loader2, Star, ChevronRight, UserPlus } from "lucide-react";
 
 const AXES = [
-  { key: "equipe",       label: "Équipe",                    desc: "État d'esprit, couverture des fonctions clés, expertises techniques, leadership…" },
-  { key: "marche",       label: "Potentiel du marché",       desc: "Problématique, intérêt des clients, taille du marché, time to market…" },
-  { key: "offre",        label: "Caractéristiques de l'offre", desc: "Pertinence de la solution, potentiel de différenciation, niveau d'innovation…" },
-  { key: "financiers",   label: "Éléments financiers",       desc: "Potentiel de croissance du CA et de rentabilité à moyen terme…" },
-  { key: "bm",           label: "Business Model",            desc: "Hypothèses économiques, stratégie marketing, facilité d'accès aux clients…" },
-  { key: "strategie",    label: "Stratégie du projet",       desc: "Vision globale, pertinence du plan d'action à 3–6 mois, partenariats…" },
-  { key: "esg",          label: "Impact ESG",                desc: "Utilité territoriale, sociale et environnementale, limites planétaires…" },
-  { key: "presentation", label: "Qualité de la présentation", desc: "Originalité du discours, clarté, support, tenue vestimentaire…" },
+  { key: "marche",       label: "Potentiel du marché",        desc: "Problématique identifiée, intérêt et traction des premiers clients, taille du marché, time to market, opportunité de marché, mode d'accès aux clients…" },
+  { key: "valeur",       label: "Proposition de valeur",      desc: "Pertinence de la solution, caractéristiques de l'offre, potentiel de différenciation, stratégie marketing…" },
+  { key: "bm",           label: "Business Model",             desc: "Hypothèses économiques, stratégie marketing, facilité d'accès aux clients…" },
+  { key: "robustesse",   label: "Robustesse",                 desc: "Potentiel de croissance du CA et de rentabilité à moyen terme, plan d'investissement initial, roadmap de financement, maîtrise du pilotage financier, cohérence des hypothèses économiques…" },
+  { key: "innovation",   label: "Innovation",                 desc: "Niveau d'innovation, intensité des barrières à l'entrée, capacité à créer un actif valorisable et protégeable…" },
+  { key: "impact",       label: "Impact territorial",         desc: "Utilité territoriale, sociale et environnementale, prise en compte des limites planétaires, engagement local et intérêt pour le territoire…" },
+  { key: "leadership",   label: "Leadership",                 desc: "Posture entrepreneuriale du porteur de projet, qualité de la dynamique managériale, état d'esprit entrepreneurial, couverture des compétences clés…" },
+  { key: "presentation", label: "Qualité de la présentation", desc: "Originalité du discours, clarté, préparation et fluidité du pitch, qualité des supports, tenue vestimentaire…" },
+  { key: "synthese",     label: "Synthèse",                   desc: "Cohérence de la vision globale, pertinence du plan d'action à 3–6 mois, call to action final…" },
 ];
 
 function StarRating({ value, onChange }: { value: number; onChange: (v: number) => void }) {

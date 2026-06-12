@@ -48,15 +48,22 @@ serve(async (req) => {
       "Remarques générales": commentaires?.general ?? "",
     };
 
-    const axes = ["Équipe", "Marché", "Offre", "Financiers", "Business Model", "Stratégie", "ESG", "Présentation"];
-    const keys = ["equipe", "marche", "offre", "financiers", "bm", "strategie", "esg", "presentation"];
+    const axes = [
+      { key: "marche",       label: "Potentiel du marché"   },
+      { key: "valeur",       label: "Proposition de valeur" },
+      { key: "bm",           label: "Business Model"        },
+      { key: "robustesse",   label: "Robustesse"            },
+      { key: "innovation",   label: "Innovation"            },
+      { key: "impact",       label: "Impact territorial"    },
+      { key: "leadership",   label: "Leadership"            },
+      { key: "presentation", label: "Présentation"          },
+      { key: "synthese",     label: "Synthèse"              },
+    ];
 
-    axes.forEach((axe, i) => {
-      const key = keys[i];
-      const label = axe === "Business Model" ? "BM" : axe === "Présentation" ? "Présentation" : axe;
-      fields[`Note ${axe}`]        = notes?.[key] ?? 0;
-      fields[`Points+ ${label}`]   = commentaires?.[key]?.positif ?? "";
-      fields[`Amélio. ${label}`]   = commentaires?.[key]?.amelio ?? "";
+    axes.forEach(({ key, label }) => {
+      fields[`Note ${label}`]    = notes?.[key] ?? 0;
+      fields[`Points+ ${label}`] = commentaires?.[key]?.positif ?? "";
+      fields[`Amélio. ${label}`] = commentaires?.[key]?.amelio ?? "";
     });
 
     const createRes = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${EVAL_TABLE}`, {
