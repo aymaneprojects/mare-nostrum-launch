@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle2, Loader2, Star, ChevronRight, UserPlus } from "lucide-react";
+import { CheckCircle2, Loader2, Star, UserPlus } from "lucide-react";
 
 const AXES = [
   { key: "marche",       label: "Potentiel du marché",        desc: "Problématique identifiée, intérêt et traction des premiers clients, taille du marché, time to market, opportunité de marché, mode d'accès aux clients…" },
@@ -51,7 +51,6 @@ export default function NiteoEvaluation() {
   const [phase, setPhase]       = useState<Phase>("code");
   const [eventCode, setEventCode] = useState("");
   const [jures, setJures]       = useState<Jure[]>([]);
-  const [search, setSearch]     = useState("");
   const [nomJure, setNomJure]   = useState("");
   const [codeJure, setCodeJure] = useState("");
   const [nom, setNom]           = useState("");
@@ -182,27 +181,20 @@ export default function NiteoEvaluation() {
               <p className="text-muted-foreground mb-6 text-sm">
                 Sélectionnez votre nom dans la liste.
               </p>
-              <div className="mb-4">
-                <Input
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Rechercher votre prénom ou nom…"
-                  autoComplete="off"
-                  autoCorrect="off"
-                  spellCheck={false}
-                  className="text-base"
-                />
-              </div>
-              <div className="space-y-2 mb-6">
-                {jures.filter(j => j.nom.toLowerCase().includes(search.toLowerCase())).map((j) => (
-                  <button key={j.id} onClick={() => handleSelect(j)}
-                    disabled={loading}
-                    className="w-full flex items-center justify-between px-4 py-4 rounded-xl border border-border bg-background active:bg-turquoise/10 transition-all duration-150 text-left cursor-pointer touch-manipulation"
-                  >
-                    <span className="font-medium text-base" style={{ color: "hsl(var(--mn-ink))" }}>{j.nom}</span>
-                    <ChevronRight className="h-5 w-5 text-muted-foreground flex-shrink-0" />
-                  </button>
-                ))}
+              <div className="space-y-4 mb-6">
+                <select
+                  defaultValue=""
+                  onChange={(e) => {
+                    const jure = jures.find(j => j.id === e.target.value);
+                    if (jure) handleSelect(jure);
+                  }}
+                  className="w-full h-12 rounded-xl border border-input bg-background px-3 text-base focus:outline-none focus:ring-2 focus:ring-ring"
+                >
+                  <option value="" disabled>Sélectionnez votre nom…</option>
+                  {[...jures].sort((a, b) => a.nom.localeCompare(b.nom, "fr")).map((j) => (
+                    <option key={j.id} value={j.id}>{j.nom}</option>
+                  ))}
+                </select>
               </div>
               {error && <p className="text-sm text-destructive mb-3">{error}</p>}
               {loading && <div className="flex justify-center py-2"><Loader2 className="h-5 w-5 animate-spin" style={{ color: "hsl(var(--mn-turquoise))" }} /></div>}
