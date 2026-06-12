@@ -80,7 +80,7 @@ serve(async (req) => {
 
     // Construire l'enregistrement avec les noms de colonnes exacts
     const fields: Record<string, unknown> = {
-      "Code Juré":  nomJure,
+      "Code Juré":  (code ?? "").trim().toUpperCase(),
       "Nom Juré":   nomJure,
       "Projet":     projet,
       "Édition":    "2026",
