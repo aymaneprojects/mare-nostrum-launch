@@ -18,32 +18,52 @@ serve(async (req) => {
   try {
     const { action, code, recordId, nom, prenom, email, telephone } = await req.json();
 
-    // ── Action 1 : valider le code événement → retourner la liste des jurés
+    // ── Action 1 : valider le code → code événement OU code jury individuel
     if (action === "validate") {
-      if (!code || code.trim().toUpperCase() !== EVENT_CODE.toUpperCase()) {
+      const codeUpper = (code ?? "").trim().toUpperCase();
+
+      // Cas 1 : code événement global → retourner toute la liste
+      if (codeUpper === EVENT_CODE.toUpperCase()) {
+        const formula = encodeURIComponent(`{CODE JURY NITEO } != ""`);
+        const fields  = `fields[]=Pr%C3%A9nom%20%2F%20Nom&fields[]=CODE+JURY+NITEO+`;
+        const res     = await fetch(
+          `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}?filterByFormula=${formula}&${fields}&maxRecords=200`,
+          { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } }
+        );
+        const data = await res.json();
+
+        const jures = (data.records ?? [])
+          .map((r: any) => ({
+            id:   r.id,
+            nom:  (r.fields["Prénom / Nom"] ?? "").trim(),
+            code: (r.fields["CODE JURY NITEO "] ?? "").trim(),
+          }))
+          .filter((j: any) => j.nom);
+
+        return new Response(JSON.stringify({ valid: true, jures }), {
+          status: 200, headers: { ...cors, "Content-Type": "application/json" },
+        });
+      }
+
+      // Cas 2 : code jury individuel → authentification directe
+      const formula = encodeURIComponent(`{CODE JURY NITEO } = "${codeUpper}"`);
+      const res     = await fetch(
+        `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}?filterByFormula=${formula}&maxRecords=1`,
+        { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } }
+      );
+      const data = await res.json();
+
+      if (!data.records?.length) {
         return new Response(JSON.stringify({ valid: false }), {
           status: 200, headers: { ...cors, "Content-Type": "application/json" },
         });
       }
 
-      // Récupérer tous les jurés qui ont un code attribué
-      const formula = encodeURIComponent(`{CODE JURY NITEO } != ""`);
-      const fields  = `fields[]=Pr%C3%A9nom%20%2F%20Nom&fields[]=CODE+JURY+NITEO+`;
-      const res     = await fetch(
-        `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}?filterByFormula=${formula}&${fields}&maxRecords=200`,
-        { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } }
-      );
-      const data = await res.json();
+      const record   = data.records[0];
+      const nomJure  = (record.fields["Prénom / Nom"] ?? "").trim();
+      const codeJure = (record.fields["CODE JURY NITEO "] ?? "").trim();
 
-      const jures = (data.records ?? [])
-        .map((r: any) => ({
-          id:   r.id,
-          nom:  (r.fields["Prénom / Nom"] ?? "").trim(),
-          code: (r.fields["CODE JURY NITEO "] ?? "").trim(),
-        }))
-        .filter((j: any) => j.nom);
-
-      return new Response(JSON.stringify({ valid: true, jures }), {
+      return new Response(JSON.stringify({ valid: true, directAuth: true, nomJure, codeJure }), {
         status: 200, headers: { ...cors, "Content-Type": "application/json" },
       });
     }

@@ -73,7 +73,7 @@ export default function NiteoEvaluation() {
   const totalNote  = Object.values(notes).reduce((s, v) => s + v, 0);
   const allFilled  = AXES.every((a) => (notes[a.key] ?? 0) > 0) && projet;
 
-  // ── Étape 1 : valider le code événement
+  // ── Étape 1 : valider le code (événement ou individuel)
   const handleCodeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -84,6 +84,13 @@ export default function NiteoEvaluation() {
     setLoading(false);
     if (fnErr || data?.error) { setError("Code incorrect."); return; }
     if (!data.valid) { setError("Code incorrect."); return; }
+    // Code jury individuel → authentification directe, pas de dropdown
+    if (data.directAuth) {
+      setNomJure(data.nomJure);
+      setCodeJure(data.codeJure);
+      setPhase("form");
+      return;
+    }
     setJures(data.jures ?? []);
     setPhase("liste");
   };
