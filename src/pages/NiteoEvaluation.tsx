@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle2, Loader2, Star, UserPlus, ChevronRight } from "lucide-react";
+import logoNiteo from "@/assets/niteo/logo-niteo-2026.png";
 
 const AXES = [
   { key: "marche",       label: "Potentiel du marché",        desc: "Problématique identifiée, intérêt et traction des premiers clients, taille du marché, time to market, opportunité de marché, mode d'accès aux clients…" },
@@ -199,22 +200,37 @@ export default function NiteoEvaluation() {
   return (
     <div className="min-h-screen bg-background" style={{ paddingBottom: "env(safe-area-inset-bottom, 16px)" }}>
 
-      {/* ── Bandeau top */}
-      <div className="sticky top-0 z-10 border-b border-border bg-card/90 backdrop-blur-sm px-4 py-3 flex items-center justify-between">
-        <div>
-          <p className="text-xs font-semibold tracking-widest uppercase" style={{ color: TURQUOISE }}>
-            Niteo · Demo Day
-          </p>
-          <p className="text-[11px] text-muted-foreground">16 juin 2026</p>
-        </div>
-        {nomJure && (
-          <div className="text-right">
-            <p className="text-xs font-medium" style={{ color: INK }}>{nomJure}</p>
-            <p className="text-[11px] text-muted-foreground">
-              {projetsEvalues.length}/{projets.length} projet{projets.length > 1 ? "s" : ""}
-            </p>
+      {/* ── Navbar style NiteoHeader */}
+      <div className="sticky top-0 z-50 bg-primary/90 backdrop-blur-xl border-b border-primary-foreground/5 shadow-[0_4px_30px_-4px_rgba(0,0,0,0.3)]">
+        <div className="h-16 px-4 flex items-center justify-between relative">
+          {/* Logo */}
+          <img src={logoNiteo} alt="Niteo" className="h-12" />
+
+          {/* Centre */}
+          <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2">
+            <span className="text-primary-foreground/90 text-xs font-semibold tracking-[0.25em] uppercase">
+              Jury
+            </span>
+            <span className="text-primary-foreground/40 text-xs">|</span>
+            <span className="text-primary-foreground/60 text-xs font-medium hidden sm:inline">
+              16 juin 2026
+            </span>
           </div>
-        )}
+
+          {/* Droite : nom + progression */}
+          {nomJure ? (
+            <div className="text-right">
+              <p className="text-xs font-semibold text-primary-foreground/90 truncate max-w-[110px]">
+                {nomJure.split(" ")[0]}
+              </p>
+              <p className="text-[11px] text-primary-foreground/50">
+                {projetsEvalues.length}/{projets.length || "?"} projet{projets.length !== 1 ? "s" : ""}
+              </p>
+            </div>
+          ) : (
+            <div className="w-[70px]" />
+          )}
+        </div>
       </div>
 
       <main className="px-4 pt-5 pb-10">
