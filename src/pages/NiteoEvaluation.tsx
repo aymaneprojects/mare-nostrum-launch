@@ -133,12 +133,6 @@ export default function NiteoEvaluation() {
   const setComment = (key: string, field: "positif" | "amelio", val: string) =>
     setComments((p) => ({ ...p, [key]: { ...(p[key] ?? { positif: "", amelio: "" }), [field]: val } }));
 
-  const Card = ({ children }: { children: React.ReactNode }) => (
-    <div className="bg-card border border-border rounded-xl p-5 shadow-sm">{children}</div>
-  );
-  const Eyebrow = () => (
-    <div className="mn-eyebrow-turquoise mb-3">Demo Day · 16 juin 2026</div>
-  );
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -147,8 +141,8 @@ export default function NiteoEvaluation() {
 
           {/* ── CODE */}
           {phase === "code" && (
-            <Card>
-              <Eyebrow />
+            <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
+              <div className="mn-eyebrow-turquoise mb-3">Demo Day · 16 juin 2026</div>
               <h1 className="text-2xl font-bold mb-2" style={{ color: "hsl(var(--mn-ink))" }}>
                 Grille d'évaluation jury
               </h1>
@@ -173,13 +167,13 @@ export default function NiteoEvaluation() {
                   Continuer
                 </Button>
               </form>
-            </Card>
+            </div>
           )}
 
           {/* ── LISTE */}
           {phase === "liste" && (
-            <Card>
-              <Eyebrow />
+            <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
+              <div className="mn-eyebrow-turquoise mb-3">Demo Day · 16 juin 2026</div>
               <h1 className="text-2xl font-bold mb-2" style={{ color: "hsl(var(--mn-ink))" }}>
                 Qui êtes-vous ?
               </h1>
@@ -206,13 +200,13 @@ export default function NiteoEvaluation() {
                   Je ne suis pas dans la liste
                 </Button>
               </div>
-            </Card>
+            </div>
           )}
 
           {/* ── REGISTER */}
           {phase === "register" && (
-            <Card>
-              <Eyebrow />
+            <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
+              <div className="mn-eyebrow-turquoise mb-3">Demo Day · 16 juin 2026</div>
               <h1 className="text-2xl font-bold mb-2" style={{ color: "hsl(var(--mn-ink))" }}>
                 Vos informations
               </h1>
@@ -249,7 +243,7 @@ export default function NiteoEvaluation() {
                   ← Retour à la liste
                 </button>
               </form>
-            </Card>
+            </div>
           )}
 
           {/* ── LOADING */}
@@ -284,12 +278,12 @@ export default function NiteoEvaluation() {
           {/* ── FORM */}
           {phase === "form" && (
             <form onSubmit={handleSubmit} className="space-y-6">
-              <Card>
-                <Eyebrow />
+              <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
+                <div className="mn-eyebrow-turquoise mb-3">Demo Day · 16 juin 2026</div>
                 <h1 className="text-2xl font-bold mb-1" style={{ color: "hsl(var(--mn-ink))" }}>
                   Bonjour, {nomJure.split(" ")[0]} 👋
                 </h1>
-              </Card>
+              </div>
 
               {/* Sélection projet */}
               <div className="bg-card border border-border rounded-xl p-4 space-y-3">
