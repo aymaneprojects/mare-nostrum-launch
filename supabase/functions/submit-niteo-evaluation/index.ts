@@ -2,7 +2,7 @@ import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 
 const AIRTABLE_API_KEY = Deno.env.get("AIRTABLE_API_KEY")!;
 const BASE_ID          = "appZ8ykNuUOv89ou0";
-const EVAL_TABLE       = "tbl5DuUDcyNDtasvG"; // Evaluations Niteo 2026
+const EVAL_TABLE       = "tbl5DuUDcyNDtasvG"; // Evaluation Niteo
 const JURY_TABLE       = "tblocqquF4OXgXveO"; // BASE DE PRODUCTION
 
 const cors = {
@@ -43,6 +43,7 @@ serve(async (req) => {
       "Code Juré":  code.trim().toUpperCase(),
       "Nom Juré":   nomJure,
       "Projet":     projet,
+      "Édition":    "2026",
       "Soumis le":  new Date().toISOString(),
       "Remarques générales": commentaires?.general ?? "",
     };
