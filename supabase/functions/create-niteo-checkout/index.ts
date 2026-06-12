@@ -34,12 +34,11 @@ serve(async (req) => {
           currency: "eur",
           product_data: {
             name: "Invitation Demo Day Niteo Toulouse 2026",
-            description: "Réservation présence Demo Day – 16 juin 2026, 14h-19h, Résidence Baragnon, Toulouse",
+            description: "Réservation présence Demo Day – 16 juin 2026, 14h–19h30, Résidence Baragnon, Toulouse · 20,83 € HT + TVA 20 % = 25,00 € TTC",
           },
           unit_amount: 2500,
           tax_behavior: "inclusive",
         },
-        tax_rates: ["txr_1TZv7YRtzJviITg0BxVVs14X"],
         quantity: 1,
       }],
       allow_promotion_codes: true,

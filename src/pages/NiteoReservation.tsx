@@ -257,7 +257,7 @@ export default function NiteoReservation() {
                   Réservez votre place
                 </h2>
                 <p className="text-center text-muted-foreground mb-8">
-                  25 € · Paiement sécurisé · Invitation nominative
+                  25 € TTC <span className="text-xs">(20,83 € HT + TVA 20 %)</span> · Paiement sécurisé · Invitation nominative
                 </p>
                 <form onSubmit={handleSubmit} className="space-y-5 bg-card border border-border rounded-sm p-8 shadow-sm">
                   <div className="grid grid-cols-2 gap-4">
@@ -298,11 +298,11 @@ export default function NiteoReservation() {
                     className="w-full"
                     style={{ background: "hsl(var(--mn-turquoise))", color: "hsl(var(--mn-ink))" }}
                   >
-                    Réserver ma place — 25 €
+                    Réserver ma place — 25 € TTC
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                   <p className="text-xs text-center text-muted-foreground">
-                    Paiement sécurisé par Stripe · Invitation personnelle et nominative
+                    Paiement sécurisé par Stripe · 20,83 € HT + TVA 20 % · Invitation personnelle et nominative
                   </p>
                 </form>
               </>
