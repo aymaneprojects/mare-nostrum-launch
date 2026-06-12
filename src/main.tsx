@@ -10,6 +10,7 @@ const isNiteoSubdomain = window.location.hostname === "niteo.marenostrum.tech";
 if (isNiteoSubdomain) {
   const NiteoCandidature = lazy(() => import("./pages/NiteoCandidature.tsx"));
   const NiteoReservation = lazy(() => import("./pages/NiteoReservation.tsx"));
+  const NiteoEvaluation  = lazy(() => import("./pages/NiteoEvaluation.tsx"));
   const queryClient = new QueryClient();
 
   createRoot(document.getElementById("root")!).render(
@@ -19,6 +20,7 @@ if (isNiteoSubdomain) {
           <Routes>
             <Route path="/" element={<NiteoCandidature />} />
             <Route path="/reservation" element={<NiteoReservation />} />
+            <Route path="/evaluation" element={<NiteoEvaluation />} />
             <Route path="*" element={<NiteoCandidature />} />
           </Routes>
         </Suspense>
