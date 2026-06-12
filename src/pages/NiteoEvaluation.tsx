@@ -89,7 +89,7 @@ function StarRating({
   );
 }
 
-type Phase = "code" | "form" | "loading" | "success" | "error";
+type Phase = "code" | "register" | "form" | "loading" | "success";
 
 type Notes = Record<string, number>;
 type Comments = Record<string, { positif: string; amelio: string }>;
@@ -97,13 +97,17 @@ type Comments = Record<string, { positif: string; amelio: string }>;
 export default function NiteoEvaluation() {
   const [phase, setPhase]       = useState<Phase>("code");
   const [code, setCode]         = useState("");
+  const [nom, setNom]           = useState("");
+  const [prenom, setPrenom]     = useState("");
+  const [email, setEmail]       = useState("");
+  const [telephone, setTel]     = useState("");
   const [nomJure, setNomJure]   = useState("");
   const [projet, setProjet]     = useState("");
   const [notes, setNotes]       = useState<Notes>({});
   const [comments, setComments] = useState<Comments>({});
   const [general, setGeneral]   = useState("");
   const [error, setError]       = useState("");
-  const [codeLoading, setCodeLoading] = useState(false);
+  const [loading, setLoading]   = useState(false);
   const [projets, setProjets]   = useState<string[]>([]);
 
   useEffect(() => {
@@ -114,39 +118,55 @@ export default function NiteoEvaluation() {
   const totalNote = Object.values(notes).reduce((s, v) => s + v, 0);
   const allFilled = AXES.every((a) => (notes[a.key] ?? 0) > 0) && projet;
 
-  // ── Validation du code
+  // ── Étape 1 : vérification code + nom/prénom
   const handleCodeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    setCodeLoading(true);
+    setLoading(true);
     const { data, error: fnErr } = await supabase.functions.invoke("verify-jury-code", {
-      body: { code: code.trim().toUpperCase() },
+      body: { code: code.trim().toUpperCase(), nom, prenom },
     });
-    setCodeLoading(false);
-    if (fnErr || !data?.valid) {
-      setError("Code invalide. Vérifiez votre invitation.");
+    setLoading(false);
+    if (fnErr || data?.error) {
+      setError(data?.error ?? "Erreur serveur.");
       return;
     }
-    setNomJure(data.nom);
+    if (data.found) {
+      // Personne déjà dans la base → vote direct
+      setNomJure(data.nomJure || `${prenom} ${nom}`.trim());
+      setPhase("form");
+    } else {
+      // Code inconnu → demander email + téléphone
+      setPhase("register");
+    }
+  };
+
+  // ── Étape 2 : enregistrement (email + téléphone)
+  const handleRegister = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+    const { data, error: fnErr } = await supabase.functions.invoke("verify-jury-code", {
+      body: { code: code.trim().toUpperCase(), nom, prenom, email, telephone },
+    });
+    setLoading(false);
+    if (fnErr || data?.error) {
+      setError(data?.error ?? "Erreur lors de l'enregistrement.");
+      return;
+    }
+    setNomJure(data.nomJure || `${prenom} ${nom}`.trim());
     setPhase("form");
   };
 
-  // ── Soumission de l'évaluation
+  // ── Étape 3 : soumission évaluation
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!allFilled) { setError("Veuillez noter tous les axes et choisir un projet."); return; }
     setError("");
     setPhase("loading");
-
     const { error: fnErr } = await supabase.functions.invoke("submit-niteo-evaluation", {
-      body: {
-        code: code.trim().toUpperCase(),
-        projet,
-        notes,
-        commentaires: { ...comments, general },
-      },
+      body: { code: code.trim().toUpperCase(), projet, notes, commentaires: { ...comments, general } },
     });
-
     if (fnErr) {
       setError(fnErr.message ?? "Erreur serveur.");
       setPhase("form");
@@ -183,24 +203,80 @@ export default function NiteoEvaluation() {
               </p>
               <form onSubmit={handleCodeSubmit} className="space-y-5">
                 <div className="space-y-1.5">
-                  <Label htmlFor="code">Code juré</Label>
+                  <Label htmlFor="code">Code événement</Label>
                   <Input
                     id="code"
                     value={code}
                     onChange={(e) => setCode(e.target.value.toUpperCase())}
-                    placeholder=""
                     required
                     className="text-center font-mono text-lg tracking-widest"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="prenom">Prénom *</Label>
+                    <Input id="prenom" value={prenom} onChange={(e) => setPrenom(e.target.value)} required />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="nom">Nom *</Label>
+                    <Input id="nom" value={nom} onChange={(e) => setNom(e.target.value)} required />
+                  </div>
+                </div>
+                {error && <p className="text-sm text-destructive">{error}</p>}
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={loading || !code || !prenom || !nom}
+                  style={{ background: "hsl(var(--mn-turquoise))", color: "hsl(var(--mn-ink))" }}
+                >
+                  {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
+                  Continuer
+                </Button>
+              </form>
+            </div>
+          )}
+
+          {/* ── PHASE: REGISTER */}
+          {phase === "register" && (
+            <div className="bg-card border border-border rounded-sm p-8 shadow-sm">
+              <div className="mn-eyebrow-turquoise mb-3">Demo Day · 16 juin 2026</div>
+              <h1 className="text-2xl font-bold mb-2" style={{ color: "hsl(var(--mn-ink))" }}>
+                Quelques informations
+              </h1>
+              <p className="text-muted-foreground mb-8 text-sm">
+                Pour finaliser votre accès, renseignez votre email et votre numéro de téléphone.
+              </p>
+              <form onSubmit={handleRegister} className="space-y-5">
+                <div className="space-y-1.5">
+                  <Label htmlFor="email">Email *</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    placeholder="votre@email.com"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="tel">Téléphone *</Label>
+                  <Input
+                    id="tel"
+                    type="tel"
+                    value={telephone}
+                    onChange={(e) => setTel(e.target.value)}
+                    required
+                    placeholder="+33 6 00 00 00 00"
                   />
                 </div>
                 {error && <p className="text-sm text-destructive">{error}</p>}
                 <Button
                   type="submit"
                   className="w-full"
-                  disabled={codeLoading || !code}
+                  disabled={loading || !email || !telephone}
                   style={{ background: "hsl(var(--mn-turquoise))", color: "hsl(var(--mn-ink))" }}
                 >
-                  {codeLoading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
+                  {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
                   Accéder à la grille
                 </Button>
               </form>
