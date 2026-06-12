@@ -41,6 +41,7 @@ import EntrepreneuriatSocialFrancophonie from "./pages/mag/EntrepreneuriatSocial
 import InnovationPedagogiqueEntrepreneuriat from "./pages/mag/InnovationPedagogiqueEntrepreneuriat";
 import ImpactMesureStartup from "./pages/mag/ImpactMesureStartup";
 import NiteoToulouse from "./pages/NiteoToulouse";
+import NiteoEvaluation from "./pages/NiteoEvaluation";
 import Newsletter from "./pages/Newsletter";
 import Unsubscribed from "./pages/Unsubscribed";
 import Diagnostic from "./pages/Diagnostic";
@@ -105,6 +106,7 @@ const AppContent = () => {
         
         {/* Niteo */}
         <Route path="/niteo-toulouse" element={<NiteoToulouse />} />
+        <Route path="/niteo-evaluation" element={<NiteoEvaluation />} />
         
         {/* ITER Newsletter */}
         <Route path="/iter" element={<Newsletter />} />
