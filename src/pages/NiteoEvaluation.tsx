@@ -78,7 +78,7 @@ export default function NiteoEvaluation() {
     setError("");
     setLoading(true);
     const { data, error: fnErr } = await supabase.functions.invoke("verify-jury-code", {
-      body: { action: "validate", code: eventCode.trim() },
+      body: { action: "validate", code: eventCode.trim().toUpperCase() },
     });
     setLoading(false);
     if (fnErr || data?.error) { setError("Code incorrect."); return; }
@@ -160,7 +160,11 @@ export default function NiteoEvaluation() {
                 <div className="space-y-1.5">
                   <Label htmlFor="eventCode">Code événement</Label>
                   <Input id="eventCode" value={eventCode}
-                    onChange={(e) => setEventCode(e.target.value.toUpperCase())}
+                    onChange={(e) => setEventCode(e.target.value)}
+                    autoCapitalize="characters"
+                    autoComplete="off"
+                    autoCorrect="off"
+                    spellCheck={false}
                     required className="text-center font-mono text-lg tracking-widest" />
                 </div>
                 {error && <p className="text-sm text-destructive">{error}</p>}
