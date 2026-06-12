@@ -10,13 +10,48 @@ const cors = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+const AXES = [
+  { key: "marche",       label: "Potentiel du marché"   },
+  { key: "valeur",       label: "Proposition de valeur" },
+  { key: "bm",           label: "Business Model"        },
+  { key: "robustesse",   label: "Robustesse"            },
+  { key: "innovation",   label: "Innovation"            },
+  { key: "impact",       label: "Impact territorial"    },
+  { key: "leadership",   label: "Leadership"            },
+  { key: "presentation", label: "Présentation"          },
+  { key: "synthese",     label: "Synthèse"              },
+];
+
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: cors });
 
   try {
     const body = await req.json();
-    const { code, projet, notes, commentaires } = body;
+    const { action } = body;
 
+    // ── Action : récupérer les projets déjà évalués par un juré
+    if (action === "get-evaluated") {
+      const { nomJure } = body;
+      if (!nomJure) throw new Error("nomJure obligatoire.");
+
+      const formula = encodeURIComponent(`{Nom Juré} = "${nomJure.trim()}"`);
+      const res = await fetch(
+        `https://api.airtable.com/v0/${BASE_ID}/${EVAL_TABLE}?filterByFormula=${formula}&fields[]=Projet&maxRecords=100`,
+        { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } }
+      );
+      const data = await res.json();
+      const projetsEvalues: string[] = (data.records ?? [])
+        .map((r: any) => (r.fields["Projet"] ?? "").trim())
+        .filter(Boolean);
+
+      return new Response(JSON.stringify({ projetsEvalues }), {
+        status: 200,
+        headers: { ...cors, "Content-Type": "application/json" },
+      });
+    }
+
+    // ── Action par défaut : soumettre une évaluation
+    const { code, projet, notes, commentaires } = body;
     if (!code || !projet) throw new Error("Code et projet obligatoires.");
 
     // Vérifier que le code est valide + récupérer le nom
@@ -48,19 +83,7 @@ serve(async (req) => {
       "Remarques générales": commentaires?.general ?? "",
     };
 
-    const axes = [
-      { key: "marche",       label: "Potentiel du marché"   },
-      { key: "valeur",       label: "Proposition de valeur" },
-      { key: "bm",           label: "Business Model"        },
-      { key: "robustesse",   label: "Robustesse"            },
-      { key: "innovation",   label: "Innovation"            },
-      { key: "impact",       label: "Impact territorial"    },
-      { key: "leadership",   label: "Leadership"            },
-      { key: "presentation", label: "Présentation"          },
-      { key: "synthese",     label: "Synthèse"              },
-    ];
-
-    axes.forEach(({ key, label }) => {
+    AXES.forEach(({ key, label }) => {
       fields[`Note ${label}`]    = notes?.[key] ?? 0;
       fields[`Points+ ${label}`] = commentaires?.[key]?.positif ?? "";
       fields[`Amélio. ${label}`] = commentaires?.[key]?.amelio ?? "";

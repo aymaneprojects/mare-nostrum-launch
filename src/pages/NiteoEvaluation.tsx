@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle2, Loader2, Star, UserPlus } from "lucide-react";
+import { CheckCircle2, Loader2, Star, UserPlus, ChevronRight } from "lucide-react";
 
 const AXES = [
   { key: "marche",       label: "Potentiel du marché",        desc: "Problématique identifiée, intérêt et traction des premiers clients, taille du marché, time to market, opportunité de marché, mode d'accès aux clients…" },
@@ -42,55 +42,72 @@ function StarRating({ value, onChange }: { value: number; onChange: (v: number) 
   );
 }
 
-type Phase = "code" | "liste" | "register" | "form" | "loading" | "success";
+function StarDisplay({ value }: { value: number }) {
+  return (
+    <div className="flex gap-1 items-center shrink-0">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <Star key={star} className="h-4 w-4"
+          fill={value >= star ? "hsl(181 67% 54%)" : "none"}
+          stroke={value >= star ? "hsl(181 67% 54%)" : "hsl(224 14% 50%)"}
+          strokeWidth={1.5} />
+      ))}
+      <span className="ml-1 text-sm font-bold" style={{ color: "hsl(181 67% 54%)" }}>{value}/5</span>
+    </div>
+  );
+}
+
+type Phase = "code" | "liste" | "register" | "form" | "confirm" | "loading" | "next";
 type Notes    = Record<string, number>;
 type Comments = Record<string, { positif: string; amelio: string }>;
 type Jure     = { id: string; nom: string; code: string };
 
 export default function NiteoEvaluation() {
-  const [phase, setPhase]       = useState<Phase>("code");
-  const [eventCode, setEventCode] = useState("");
-  const [jures, setJures]       = useState<Jure[]>([]);
-  const [nomJure, setNomJure]   = useState("");
-  const [codeJure, setCodeJure] = useState("");
-  const [nom, setNom]           = useState("");
-  const [prenom, setPrenom]     = useState("");
-  const [email, setEmail]       = useState("");
-  const [telephone, setTel]     = useState("");
-  const [projet, setProjet]     = useState("");
-  const [notes, setNotes]       = useState<Notes>({});
-  const [comments, setComments] = useState<Comments>({});
-  const [general, setGeneral]   = useState("");
-  const [error, setError]       = useState("");
-  const [loading, setLoading]   = useState(false);
-  const [projets, setProjets]   = useState<string[]>([]);
+  const [phase, setPhase]           = useState<Phase>("code");
+  const [juryCode, setJuryCode]     = useState("");
+  const [jures, setJures]           = useState<Jure[]>([]);
+  const [nomJure, setNomJure]       = useState("");
+  const [codeJure, setCodeJure]     = useState("");
+  const [nom, setNom]               = useState("");
+  const [prenom, setPrenom]         = useState("");
+  const [email, setEmail]           = useState("");
+  const [telephone, setTel]         = useState("");
+  const [projet, setProjet]         = useState("");
+  const [lastProjet, setLastProjet] = useState("");
+  const [notes, setNotes]           = useState<Notes>({});
+  const [comments, setComments]     = useState<Comments>({});
+  const [general, setGeneral]       = useState("");
+  const [error, setError]           = useState("");
+  const [loading, setLoading]       = useState(false);
+  const [projets, setProjets]       = useState<string[]>([]);
+  const [projetsEvalues, setProjetsEvalues] = useState<string[]>([]);
 
   useEffect(() => {
     supabase.functions.invoke("get-niteo-projects")
       .then(({ data }) => { if (data?.projets) setProjets(data.projets); });
   }, []);
 
-  const totalNote  = Object.values(notes).reduce((s, v) => s + v, 0);
-  const allFilled  = AXES.every((a) => (notes[a.key] ?? 0) > 0) && projet;
+  const projetsRestants = projets.filter((p) => !projetsEvalues.includes(p));
+  const totalNote       = Object.values(notes).reduce((s, v) => s + v, 0);
+  const allFilled       = AXES.every((a) => (notes[a.key] ?? 0) > 0) && projet;
 
-  // ── Étape 1 : valider le code (événement ou individuel)
+  const fetchEvalues = async (nom: string) => {
+    const { data } = await supabase.functions.invoke("submit-niteo-evaluation", {
+      body: { action: "get-evaluated", nomJure: nom },
+    });
+    setProjetsEvalues(data?.projetsEvalues ?? []);
+  };
+
+  // ── Étape 1 : valider le code jury → afficher tous les jurés avec ce code
   const handleCodeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setLoading(true);
     const { data, error: fnErr } = await supabase.functions.invoke("verify-jury-code", {
-      body: { action: "validate", code: eventCode.trim().toUpperCase() },
+      body: { action: "validate", code: juryCode.trim().toUpperCase() },
     });
     setLoading(false);
-    if (fnErr || data?.error) { setError("Code incorrect."); return; }
-    if (!data.valid) { setError("Code incorrect."); return; }
-    // Code jury individuel → authentification directe, pas de dropdown
-    if (data.directAuth) {
-      setNomJure(data.nomJure);
-      setCodeJure(data.codeJure);
-      setPhase("form");
-      return;
-    }
+    if (fnErr || data?.error) { setError("Code introuvable. Vérifiez votre code jury."); return; }
+    if (!data.valid) { setError("Code introuvable. Vérifiez votre code jury."); return; }
     setJures(data.jures ?? []);
     setPhase("liste");
   };
@@ -102,45 +119,70 @@ export default function NiteoEvaluation() {
     const { data, error: fnErr } = await supabase.functions.invoke("verify-jury-code", {
       body: { action: "select", recordId: jure.id },
     });
-    setLoading(false);
-    if (fnErr || data?.error) { setError("Erreur de sélection."); return; }
+    if (fnErr || data?.error) { setError("Erreur de sélection."); setLoading(false); return; }
+    await fetchEvalues(data.nomJure);
     setNomJure(data.nomJure);
     setCodeJure(data.codeJure);
+    setLoading(false);
     setPhase("form");
   };
 
-  // ── Étape 2b : inscription (nom pas dans la liste)
+  // ── Étape 2b : inscription (nom pas dans la liste) — même code attribué
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setLoading(true);
     const { data, error: fnErr } = await supabase.functions.invoke("verify-jury-code", {
-      body: { action: "register", nom, prenom, email, telephone },
+      body: { action: "register", nom, prenom, email, telephone, code: juryCode.trim().toUpperCase() },
     });
-    setLoading(false);
-    if (fnErr || data?.error) { setError(data?.error ?? "Erreur lors de l'inscription."); return; }
+    if (fnErr || data?.error) { setError(data?.error ?? "Erreur lors de l'inscription."); setLoading(false); return; }
+    await fetchEvalues(data.nomJure);
     setNomJure(data.nomJure);
     setCodeJure(data.codeJure);
+    setLoading(false);
     setPhase("form");
   };
 
-  // ── Étape 3 : soumettre l'évaluation
-  const handleSubmit = async (e: React.FormEvent) => {
+  // ── Étape 3 : valider le formulaire → écran de confirmation
+  const handleGoConfirm = (e: React.FormEvent) => {
     e.preventDefault();
     if (!allFilled) { setError("Veuillez noter tous les axes et choisir un projet."); return; }
     setError("");
+    setPhase("confirm");
+  };
+
+  // ── Étape 4 : confirmer et envoyer
+  const handleConfirmedSubmit = async () => {
     setPhase("loading");
-    const { error: fnErr } = await supabase.functions.invoke("submit-niteo-evaluation", {
+    const { data, error: fnErr } = await supabase.functions.invoke("submit-niteo-evaluation", {
       body: { code: codeJure, projet, notes, commentaires: { ...comments, general } },
     });
-    if (fnErr) { setError(fnErr.message ?? "Erreur serveur."); setPhase("form"); return; }
-    setPhase("success");
+    if (fnErr || data?.error) {
+      setError(data?.error ?? fnErr?.message ?? "Erreur serveur.");
+      setPhase("form");
+      return;
+    }
+    setLastProjet(projet);
+    setProjetsEvalues((prev) => [...prev, projet]);
+    setProjet("");
+    setNotes({});
+    setComments({});
+    setGeneral("");
+    setPhase("next");
+  };
+
+  const startProject = (p: string) => {
+    setProjet(p);
+    setNotes({});
+    setComments({});
+    setGeneral("");
+    setError("");
+    setPhase("form");
   };
 
   const setNote    = (key: string, val: number) => setNotes((p) => ({ ...p, [key]: val }));
   const setComment = (key: string, field: "positif" | "amelio", val: string) =>
     setComments((p) => ({ ...p, [key]: { ...(p[key] ?? { positif: "", amelio: "" }), [field]: val } }));
-
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -155,13 +197,13 @@ export default function NiteoEvaluation() {
                 Grille d'évaluation jury
               </h1>
               <p className="text-muted-foreground mb-8 text-sm">
-                Saisissez le code affiché durant l'événement.
+                Saisissez le code jury qui vous a été attribué.
               </p>
               <form onSubmit={handleCodeSubmit} className="space-y-5">
                 <div className="space-y-1.5">
-                  <Label htmlFor="eventCode">Code événement</Label>
-                  <Input id="eventCode" value={eventCode}
-                    onChange={(e) => setEventCode(e.target.value)}
+                  <Label htmlFor="juryCode">Code jury</Label>
+                  <Input id="juryCode" value={juryCode}
+                    onChange={(e) => setJuryCode(e.target.value)}
                     autoCapitalize="characters"
                     autoComplete="off"
                     autoCorrect="off"
@@ -169,7 +211,7 @@ export default function NiteoEvaluation() {
                     required className="text-center font-mono text-lg tracking-widest" />
                 </div>
                 {error && <p className="text-sm text-destructive">{error}</p>}
-                <Button type="submit" className="w-full" disabled={loading || !eventCode}
+                <Button type="submit" className="w-full" disabled={loading || !juryCode}
                   style={{ background: "hsl(var(--mn-turquoise))", color: "hsl(var(--mn-ink))" }}>
                   {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
                   Continuer
@@ -192,7 +234,7 @@ export default function NiteoEvaluation() {
                 <select
                   defaultValue=""
                   onChange={(e) => {
-                    const jure = jures.find(j => j.id === e.target.value);
+                    const jure = jures.find((j) => j.id === e.target.value);
                     if (jure) handleSelect(jure);
                   }}
                   className="w-full h-12 rounded-xl border border-input bg-background px-3 text-base focus:outline-none focus:ring-2 focus:ring-ring"
@@ -204,7 +246,11 @@ export default function NiteoEvaluation() {
                 </select>
               </div>
               {error && <p className="text-sm text-destructive mb-3">{error}</p>}
-              {loading && <div className="flex justify-center py-2"><Loader2 className="h-5 w-5 animate-spin" style={{ color: "hsl(var(--mn-turquoise))" }} /></div>}
+              {loading && (
+                <div className="flex justify-center py-2">
+                  <Loader2 className="h-5 w-5 animate-spin" style={{ color: "hsl(var(--mn-turquoise))" }} />
+                </div>
+              )}
               <div className="pt-4 border-t border-border">
                 <p className="text-sm text-muted-foreground mb-3">Votre nom n'est pas dans la liste ?</p>
                 <Button variant="outline" className="w-full" onClick={() => setPhase("register")}>
@@ -223,7 +269,7 @@ export default function NiteoEvaluation() {
                 Vos informations
               </h1>
               <p className="text-muted-foreground mb-8 text-sm">
-                Renseignez vos coordonnées pour accéder à la grille.
+                Renseignez vos coordonnées — le code <strong>{juryCode}</strong> vous sera attribué.
               </p>
               <form onSubmit={handleRegister} className="space-y-5">
                 <div className="grid grid-cols-2 gap-4">
@@ -266,45 +312,34 @@ export default function NiteoEvaluation() {
             </div>
           )}
 
-          {/* ── SUCCESS */}
-          {phase === "success" && (
-            <div className="text-center py-16 bg-card border border-border rounded-sm p-8">
-              <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
-                style={{ background: "hsl(var(--mn-turquoise) / 0.12)" }}>
-                <CheckCircle2 className="h-10 w-10" style={{ color: "hsl(var(--mn-turquoise))" }} />
-              </div>
-              <h2 className="text-2xl font-bold mb-3" style={{ color: "hsl(var(--mn-ink))" }}>
-                Évaluation enregistrée !
-              </h2>
-              <p className="text-muted-foreground mb-6">
-                Merci <strong>{nomJure}</strong>. Votre évaluation de <strong>« {projet} »</strong> a bien été transmise.
-              </p>
-              <Button variant="outline" onClick={() => {
-                setProjet(""); setNotes({}); setComments({}); setGeneral(""); setError(""); setPhase("form");
-              }}>
-                Évaluer un autre projet
-              </Button>
-            </div>
-          )}
-
           {/* ── FORM */}
           {phase === "form" && (
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleGoConfirm} className="space-y-6">
               <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
                 <div className="mn-eyebrow-turquoise mb-3">Demo Day · 16 juin 2026</div>
                 <h1 className="text-2xl font-bold mb-1" style={{ color: "hsl(var(--mn-ink))" }}>
-                  Bonjour, {nomJure.split(" ")[0]} 👋
+                  Bonjour, {nomJure.split(" ")[0]} !
                 </h1>
+                {projetsEvalues.length > 0 && (
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {projetsEvalues.length} projet{projetsEvalues.length > 1 ? "s" : ""} évalué{projetsEvalues.length > 1 ? "s" : ""} · {projetsRestants.length} restant{projetsRestants.length > 1 ? "s" : ""}
+                  </p>
+                )}
               </div>
 
               {/* Sélection projet */}
               <div className="bg-card border border-border rounded-xl p-4 space-y-3">
-                <Label htmlFor="projet" className="text-base font-semibold">Projet évalué *</Label>
+                <Label htmlFor="projet" className="text-base font-semibold">Projet à évaluer *</Label>
                 <select id="projet" value={projet} onChange={(e) => setProjet(e.target.value)} required
                   className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
                   <option value="">Sélectionnez le projet…</option>
-                  {projets.map((p) => <option key={p} value={p}>{p}</option>)}
+                  {projetsRestants.map((p) => <option key={p} value={p}>{p}</option>)}
                 </select>
+                {projetsEvalues.length > 0 && (
+                  <p className="text-xs text-muted-foreground">
+                    Déjà évalués : {projetsEvalues.join(", ")}
+                  </p>
+                )}
               </div>
 
               {/* Axes */}
@@ -346,21 +381,125 @@ export default function NiteoEvaluation() {
                     Note totale ({Object.keys(notes).length}/{AXES.length} axes notés)
                   </span>
                   <span className="text-2xl font-bold font-editorial" style={{ color: "hsl(var(--mn-nuit))" }}>
-                    {totalNote}<span className="text-base font-normal text-muted-foreground">/40</span>
+                    {totalNote}<span className="text-base font-normal text-muted-foreground">/45</span>
                   </span>
                 </div>
                 {error && <p className="text-sm text-destructive mb-3">{error}</p>}
                 <Button type="submit" className="w-full" disabled={!allFilled}
                   style={{ background: "hsl(var(--mn-turquoise))", color: "hsl(var(--mn-ink))" }}>
-                  Soumettre mon évaluation
+                  Vérifier avant d'envoyer →
                 </Button>
                 {!allFilled && (
                   <p className="text-xs text-center text-muted-foreground mt-2">
-                    Notez tous les axes et choisissez un projet pour soumettre.
+                    Notez tous les axes et choisissez un projet pour continuer.
                   </p>
                 )}
               </div>
             </form>
+          )}
+
+          {/* ── CONFIRM */}
+          {phase === "confirm" && (
+            <div className="space-y-4">
+              <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
+                <div className="mn-eyebrow-turquoise mb-2">Récapitulatif</div>
+                <h2 className="text-xl font-bold mb-1" style={{ color: "hsl(var(--mn-ink))" }}>
+                  Êtes-vous sûr(e) ?
+                </h2>
+                <p className="text-muted-foreground text-sm">
+                  Vérifiez vos notes — une fois envoyées, elles ne peuvent plus être modifiées.
+                </p>
+                <div className="mt-4 flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground">Projet :</span>
+                  <span className="font-semibold text-sm">{projet}</span>
+                </div>
+                <div className="mt-2 flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground">Note totale :</span>
+                  <span className="font-bold" style={{ color: "hsl(var(--mn-turquoise))" }}>{totalNote}/45</span>
+                </div>
+              </div>
+
+              {AXES.map((axe) => (
+                <div key={axe.key} className="bg-card border border-border rounded-xl px-4 py-3">
+                  <div className="flex items-start justify-between gap-3 mb-1">
+                    <p className="font-semibold text-sm" style={{ color: "hsl(var(--mn-ink))" }}>{axe.label}</p>
+                    <StarDisplay value={notes[axe.key] ?? 0} />
+                  </div>
+                  {comments[axe.key]?.positif && (
+                    <p className="text-xs mt-1" style={{ color: "#15803d" }}>+ {comments[axe.key].positif}</p>
+                  )}
+                  {comments[axe.key]?.amelio && (
+                    <p className="text-xs mt-0.5" style={{ color: "#c2410c" }}>△ {comments[axe.key].amelio}</p>
+                  )}
+                </div>
+              ))}
+
+              {general && (
+                <div className="bg-card border border-border rounded-xl p-4">
+                  <p className="text-xs font-medium text-muted-foreground mb-1">Remarques générales</p>
+                  <p className="text-sm">{general}</p>
+                </div>
+              )}
+
+              <div className="bg-card border border-border rounded-xl p-4 space-y-3">
+                <Button className="w-full" onClick={handleConfirmedSubmit}
+                  style={{ background: "hsl(var(--mn-turquoise))", color: "hsl(var(--mn-ink))" }}>
+                  Confirmer et envoyer
+                </Button>
+                <button type="button" onClick={() => setPhase("form")}
+                  className="w-full text-sm text-muted-foreground hover:text-foreground transition-colors py-1">
+                  ← Modifier mon évaluation
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* ── NEXT (après envoi) */}
+          {phase === "next" && (
+            <div className="space-y-4">
+              <div className="bg-card border border-border rounded-xl p-6 shadow-sm text-center">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+                  style={{ background: "hsl(var(--mn-turquoise) / 0.12)" }}>
+                  <CheckCircle2 className="h-8 w-8" style={{ color: "hsl(var(--mn-turquoise))" }} />
+                </div>
+                <h2 className="text-xl font-bold mb-1" style={{ color: "hsl(var(--mn-ink))" }}>
+                  Évaluation enregistrée !
+                </h2>
+                <p className="text-muted-foreground text-sm">
+                  Merci <strong>{nomJure.split(" ")[0]}</strong> — <strong>« {lastProjet} »</strong> a bien été transmis.
+                </p>
+              </div>
+
+              {projetsRestants.length > 0 ? (
+                <div className="bg-card border border-border rounded-xl p-5 shadow-sm">
+                  <h3 className="font-semibold mb-1" style={{ color: "hsl(var(--mn-ink))" }}>
+                    Projets restants à évaluer
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {projetsRestants.length} projet{projetsRestants.length > 1 ? "s" : ""} à noter
+                  </p>
+                  <div className="space-y-2">
+                    {projetsRestants.map((p) => (
+                      <button key={p} onClick={() => startProject(p)}
+                        className="w-full flex items-center justify-between px-4 py-3 rounded-xl border border-border bg-background hover:bg-accent transition-colors cursor-pointer touch-manipulation">
+                        <span className="font-medium text-sm">{p}</span>
+                        <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="bg-card border border-border rounded-xl p-8 text-center shadow-sm">
+                  <div className="text-3xl mb-3">🎉</div>
+                  <h3 className="font-bold text-lg mb-2" style={{ color: "hsl(var(--mn-ink))" }}>
+                    Tous les projets évalués !
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    Vous avez évalué l'ensemble des finalistes. Merci pour votre contribution, {nomJure.split(" ")[0]} !
+                  </p>
+                </div>
+              )}
+            </div>
           )}
 
         </div>

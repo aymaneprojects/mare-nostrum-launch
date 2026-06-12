@@ -4,9 +4,6 @@ const AIRTABLE_API_KEY = Deno.env.get("AIRTABLE_API_KEY")!;
 const BASE_ID          = "appZ8ykNuUOv89ou0";
 const TABLE_ID         = "tblocqquF4OXgXveO"; // BASE DE PRODUCTION
 
-// Code événement affiché sur écran pendant le Demo Day
-const EVENT_CODE = Deno.env.get("NITEO_EVENT_CODE") ?? "NITEO2026";
-
 const cors = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -18,37 +15,15 @@ serve(async (req) => {
   try {
     const { action, code, recordId, nom, prenom, email, telephone } = await req.json();
 
-    // ── Action 1 : valider le code → code événement OU code jury individuel
+    // ── Action 1 : valider un code jury → retourner tous les jurés qui l'ont
     if (action === "validate") {
       const codeUpper = (code ?? "").trim().toUpperCase();
+      if (!codeUpper) throw new Error("Code manquant.");
 
-      // Cas 1 : code événement global → retourner toute la liste
-      if (codeUpper === EVENT_CODE.toUpperCase()) {
-        const formula = encodeURIComponent(`{CODE JURY NITEO } != ""`);
-        const fields  = `fields[]=Pr%C3%A9nom%20%2F%20Nom&fields[]=CODE+JURY+NITEO+`;
-        const res     = await fetch(
-          `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}?filterByFormula=${formula}&${fields}&maxRecords=200`,
-          { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } }
-        );
-        const data = await res.json();
-
-        const jures = (data.records ?? [])
-          .map((r: any) => ({
-            id:   r.id,
-            nom:  (r.fields["Prénom / Nom"] ?? "").trim(),
-            code: (r.fields["CODE JURY NITEO "] ?? "").trim(),
-          }))
-          .filter((j: any) => j.nom);
-
-        return new Response(JSON.stringify({ valid: true, jures }), {
-          status: 200, headers: { ...cors, "Content-Type": "application/json" },
-        });
-      }
-
-      // Cas 2 : code jury individuel → authentification directe
       const formula = encodeURIComponent(`{CODE JURY NITEO } = "${codeUpper}"`);
+      const fields  = `fields[]=Pr%C3%A9nom%20%2F%20Nom&fields[]=CODE+JURY+NITEO+`;
       const res     = await fetch(
-        `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}?filterByFormula=${formula}&maxRecords=1`,
+        `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}?filterByFormula=${formula}&${fields}&maxRecords=200`,
         { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } }
       );
       const data = await res.json();
@@ -59,11 +34,15 @@ serve(async (req) => {
         });
       }
 
-      const record   = data.records[0];
-      const nomJure  = (record.fields["Prénom / Nom"] ?? "").trim();
-      const codeJure = (record.fields["CODE JURY NITEO "] ?? "").trim();
+      const jures = data.records
+        .map((r: any) => ({
+          id:   r.id,
+          nom:  (r.fields["Prénom / Nom"] ?? "").trim(),
+          code: (r.fields["CODE JURY NITEO "] ?? "").trim(),
+        }))
+        .filter((j: any) => j.nom);
 
-      return new Response(JSON.stringify({ valid: true, directAuth: true, nomJure, codeJure }), {
+      return new Response(JSON.stringify({ valid: true, jures }), {
         status: 200, headers: { ...cors, "Content-Type": "application/json" },
       });
     }
@@ -85,28 +64,29 @@ serve(async (req) => {
       });
     }
 
-    // ── Action 3 : créer un nouveau juré (code inconnu)
+    // ── Action 3 : créer un nouveau juré avec le même code que le groupe
     if (action === "register") {
       const nomComplet = `${(prenom ?? "").trim()} ${(nom ?? "").trim()}`.trim();
-      // Générer un code unique basé sur le timestamp
-      const newCode = `NITEO-NEW-${Date.now().toString(36).toUpperCase()}`;
+      const codeJure   = (code ?? "").trim().toUpperCase();
+      if (!nomComplet) throw new Error("Nom et prénom obligatoires.");
+      if (!codeJure)   throw new Error("Code manquant.");
 
       const createRes = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`, {
         method: "POST",
         headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, "Content-Type": "application/json" },
         body: JSON.stringify({
           fields: {
-            "Prénom / Nom":    nomComplet,
-            "Mail":            email ?? "",
-            "Téléphone":       telephone ?? "",
-            "CODE JURY NITEO ": newCode,
+            "Prénom / Nom":     nomComplet,
+            "Mail":             email ?? "",
+            "Téléphone":        telephone ?? "",
+            "CODE JURY NITEO ": codeJure,
           },
         }),
       });
       const created = await createRes.json();
       if (created.error) throw new Error(created.error.message ?? "Erreur création.");
 
-      return new Response(JSON.stringify({ ok: true, nomJure: nomComplet, codeJure: newCode }), {
+      return new Response(JSON.stringify({ ok: true, nomJure: nomComplet, codeJure }), {
         status: 200, headers: { ...cors, "Content-Type": "application/json" },
       });
     }
