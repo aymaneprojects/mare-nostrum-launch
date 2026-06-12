@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,12 +7,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle2, Loader2, Star } from "lucide-react";
 import NiteoHeader from "@/components/NiteoHeader";
 
-// ── Projets en compétition (à mettre à jour avant le Demo Day)
-const PROJETS = [
-  "Projet A",
-  "Projet B",
-  "Projet C",
-];
 
 const AXES = [
   {
@@ -110,6 +104,12 @@ export default function NiteoEvaluation() {
   const [general, setGeneral]   = useState("");
   const [error, setError]       = useState("");
   const [codeLoading, setCodeLoading] = useState(false);
+  const [projets, setProjets]   = useState<string[]>([]);
+
+  useEffect(() => {
+    supabase.functions.invoke("get-niteo-projects")
+      .then(({ data }) => { if (data?.projets) setProjets(data.projets); });
+  }, []);
 
   const totalNote = Object.values(notes).reduce((s, v) => s + v, 0);
   const allFilled = AXES.every((a) => (notes[a.key] ?? 0) > 0) && projet;
@@ -273,7 +273,7 @@ export default function NiteoEvaluation() {
                   className="w-full h-10 rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                 >
                   <option value="">Sélectionnez le projet…</option>
-                  {PROJETS.map((p) => (
+                  {projets.map((p) => (
                     <option key={p} value={p}>{p}</option>
                   ))}
                 </select>
