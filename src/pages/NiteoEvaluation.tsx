@@ -76,7 +76,6 @@ export default function NiteoEvaluation() {
   const [lastProjet, setLastProjet] = useState("");
   const [notes, setNotes]           = useState<Notes>({});
   const [comments, setComments]     = useState<Comments>({});
-  const [general, setGeneral]       = useState("");
   const [error, setError]           = useState("");
   const [loading, setLoading]       = useState(false);
   const [projets, setProjets]       = useState<string[]>([]);
@@ -152,11 +151,12 @@ export default function NiteoEvaluation() {
     setPhase("confirm");
   };
 
+
   // ── Étape 4 : confirmer et envoyer
   const handleConfirmedSubmit = async () => {
     setPhase("loading");
     const { data, error: fnErr } = await supabase.functions.invoke("submit-niteo-evaluation", {
-      body: { nomJure, code: codeJure, projet, notes, commentaires: { ...comments, general } },
+      body: { nomJure, code: codeJure, projet, notes, commentaires: { ...comments } },
     });
     if (fnErr || data?.error) {
       setError(data?.error ?? fnErr?.message ?? "Erreur serveur.");
@@ -168,7 +168,6 @@ export default function NiteoEvaluation() {
     setProjet("");
     setNotes({});
     setComments({});
-    setGeneral("");
     setPhase("next");
   };
 
@@ -176,7 +175,6 @@ export default function NiteoEvaluation() {
     setProjet(p);
     setNotes({});
     setComments({});
-    setGeneral("");
     setError("");
     setPhase("form");
   };
@@ -369,13 +367,6 @@ export default function NiteoEvaluation() {
                 </div>
               ))}
 
-              {/* Remarques générales */}
-              <div className="bg-card border border-border rounded-xl p-4 space-y-3">
-                <Label className="text-base font-semibold">Remarques générales</Label>
-                <Textarea rows={4} value={general} onChange={(e) => setGeneral(e.target.value)}
-                  placeholder="Observations globales sur le projet…" className="text-sm resize-none" />
-              </div>
-
               {/* Score + Soumettre */}
               <div className="bg-card border border-border rounded-xl p-4">
                 <div className="flex items-center justify-between mb-4">
@@ -435,13 +426,6 @@ export default function NiteoEvaluation() {
                   )}
                 </div>
               ))}
-
-              {general && (
-                <div className="bg-card border border-border rounded-xl p-4">
-                  <p className="text-xs font-medium text-muted-foreground mb-1">Remarques générales</p>
-                  <p className="text-sm">{general}</p>
-                </div>
-              )}
 
               <div className="bg-card border border-border rounded-xl p-4 space-y-3">
                 <Button className="w-full" onClick={handleConfirmedSubmit}

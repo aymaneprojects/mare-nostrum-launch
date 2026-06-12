@@ -10,16 +10,17 @@ const cors = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+// Colonnes exactes dans Airtable
 const AXES = [
-  { key: "marche",       label: "Potentiel du marché"   },
-  { key: "valeur",       label: "Proposition de valeur" },
-  { key: "bm",           label: "Business Model"        },
-  { key: "robustesse",   label: "Robustesse"            },
-  { key: "innovation",   label: "Innovation"            },
-  { key: "impact",       label: "Impact territorial"    },
-  { key: "leadership",   label: "Leadership"            },
-  { key: "presentation", label: "Présentation"          },
-  { key: "synthese",     label: "Synthèse"              },
+  { key: "marche",       noteCol: "Note Potentiel du marché",   plusCol: "Points+ Potentiel du marché",   amelioCol: "Amélio. Potentiel du marché"   },
+  { key: "valeur",       noteCol: "Note Proposition de valeur", plusCol: "Points+ Proposition de valeur", amelioCol: "Amélio. Proposition de valeur" },
+  { key: "bm",           noteCol: "Note Business Model",        plusCol: "Points+ BM",                    amelioCol: "Amélio. BM"                    },
+  { key: "robustesse",   noteCol: "Note Robustesse",            plusCol: "Points+ Robustesse",            amelioCol: "Amélio. Robustesse"            },
+  { key: "innovation",   noteCol: "Note Innovation",            plusCol: "Points+ Innovation",            amelioCol: "Amélio. Innovation"            },
+  { key: "impact",       noteCol: "Note Impact territorial",    plusCol: "Points+ Impact territorial",    amelioCol: "Amélio. Impact territorial"    },
+  { key: "leadership",   noteCol: "Note Leadership",            plusCol: "Points+ Leadership",            amelioCol: "Amélio. Leadership"            },
+  { key: "presentation", noteCol: "Note Présentation",          plusCol: "Points+ Présentation",          amelioCol: "Amélio. Présentation"          },
+  { key: "synthese",     noteCol: "Note Synthèse",              plusCol: "Points+ Synthèse",              amelioCol: "Amélio. Synthèse"              },
 ];
 
 serve(async (req) => {
@@ -54,10 +55,9 @@ serve(async (req) => {
     const { nomJure: nomJureBody, code, projet, notes, commentaires } = body;
     if (!projet) throw new Error("Projet obligatoire.");
 
-    // Utiliser le nom passé directement (plus fiable que la recherche par code quand le code est partagé)
+    // Utiliser le nom passé directement (fiable même quand le code est partagé)
     let nomJure = (nomJureBody ?? "").trim();
     if (!nomJure) {
-      // Fallback : chercher par code si le nom n'est pas fourni
       if (!code) throw new Error("Nom ou code obligatoire.");
       const formula = encodeURIComponent(`{CODE JURY NITEO } = "${code.trim().toUpperCase()}"`);
       const juryRes = await fetch(
@@ -69,7 +69,7 @@ serve(async (req) => {
       nomJure = (juryData.records[0].fields["Prénom / Nom"] ?? "").trim();
     }
 
-    // Anti-doublon : vérifier que ce juré n'a pas déjà noté ce projet
+    // Anti-doublon
     const dupFormula = encodeURIComponent(`AND({Nom Juré} = "${nomJure}", {Projet} = "${projet}")`);
     const dupRes = await fetch(
       `https://api.airtable.com/v0/${BASE_ID}/${EVAL_TABLE}?filterByFormula=${dupFormula}&maxRecords=1`,
@@ -78,20 +78,19 @@ serve(async (req) => {
     const dupData = await dupRes.json();
     if (dupData.records?.length) throw new Error("Vous avez déjà évalué ce projet.");
 
-    // Construire l'enregistrement Airtable
+    // Construire l'enregistrement avec les noms de colonnes exacts
     const fields: Record<string, unknown> = {
       "Code Juré":  nomJure,
       "Nom Juré":   nomJure,
       "Projet":     projet,
       "Édition":    "2026",
       "Soumis le":  new Date().toISOString(),
-      "Remarques générales": commentaires?.general ?? "",
     };
 
-    AXES.forEach(({ key, label }) => {
-      fields[`Note ${label}`]    = notes?.[key] ?? 0;
-      fields[`Points+ ${label}`] = commentaires?.[key]?.positif ?? "";
-      fields[`Amélio. ${label}`] = commentaires?.[key]?.amelio ?? "";
+    AXES.forEach(({ key, noteCol, plusCol, amelioCol }) => {
+      fields[noteCol]   = notes?.[key] ?? 0;
+      fields[plusCol]   = commentaires?.[key]?.positif ?? "";
+      fields[amelioCol] = commentaires?.[key]?.amelio ?? "";
     });
 
     const createRes = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${EVAL_TABLE}`, {
