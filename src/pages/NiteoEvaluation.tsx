@@ -201,30 +201,23 @@ export default function NiteoEvaluation() {
     <div className="min-h-screen bg-background" style={{ paddingBottom: "env(safe-area-inset-bottom, 16px)" }}>
 
       {/* ── Navbar style NiteoHeader */}
-      <div className="sticky top-0 z-50 bg-primary/90 backdrop-blur-xl border-b border-primary-foreground/5 shadow-[0_4px_30px_-4px_rgba(0,0,0,0.3)]">
+      {/* ── Navbar style NiteoHeader */}
+      <div className="sticky top-0 z-50 backdrop-blur-xl border-b border-white/5 shadow-[0_4px_30px_-4px_rgba(0,0,0,0.3)]"
+        style={{ background: "hsl(222 44% 20%)" }}>
         <div className="h-16 px-4 flex items-center justify-between relative">
-          {/* Logo */}
           <img src={logoNiteo} alt="Niteo" className="h-12" />
 
-          {/* Centre */}
-          <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2">
-            <span className="text-primary-foreground/90 text-xs font-semibold tracking-[0.25em] uppercase">
-              Jury
-            </span>
-            <span className="text-primary-foreground/40 text-xs">|</span>
-            <span className="text-primary-foreground/60 text-xs font-medium hidden sm:inline">
-              16 juin 2026
-            </span>
+          <div className="absolute left-1/2 -translate-x-1/2">
+            <span className="text-white/80 text-xs font-semibold tracking-[0.3em] uppercase">Jury</span>
           </div>
 
-          {/* Droite : nom + progression */}
           {nomJure ? (
             <div className="text-right">
-              <p className="text-xs font-semibold text-primary-foreground/90 truncate max-w-[110px]">
+              <p className="text-xs font-semibold text-white/90 truncate max-w-[110px]">
                 {nomJure.split(" ")[0]}
               </p>
-              <p className="text-[11px] text-primary-foreground/50">
-                {projetsEvalues.length}/{projets.length || "?"} projet{projets.length !== 1 ? "s" : ""}
+              <p className="text-[11px] text-white/50">
+                {projetsEvalues.length}/{projets.length || "?"} évalué{projetsEvalues.length !== 1 ? "s" : ""}
               </p>
             </div>
           ) : (
@@ -563,8 +556,8 @@ export default function NiteoEvaluation() {
               <div className="bg-card border border-border rounded-2xl p-4 space-y-3">
                 <Button className="w-full rounded-xl text-base font-semibold touch-manipulation"
                   onClick={handleConfirmedSubmit}
-                  style={{ background: TURQUOISE, color: INK, height: 52 }}>
-                  Confirmer et envoyer
+                  style={{ background: TURQUOISE, color: INK, height: 52, fontWeight: 600 }}>
+                  Confirmer et envoyer →
                 </Button>
                 <button type="button" onClick={() => setPhase("form")}
                   className="w-full text-sm text-muted-foreground py-3 touch-manipulation active:opacity-60 transition-opacity">
