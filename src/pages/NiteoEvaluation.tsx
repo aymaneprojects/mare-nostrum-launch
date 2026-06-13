@@ -8,15 +8,15 @@ import { CheckCircle2, Loader2, Star, UserPlus, ChevronRight } from "lucide-reac
 import logoNiteo from "@/assets/niteo/logo-niteo-2026.png";
 
 const AXES = [
-  { key: "marche",       label: "Potentiel du marché",        desc: "Problématique identifiée, intérêt et traction des premiers clients, taille du marché, time to market, opportunité de marché, mode d'accès aux clients…" },
-  { key: "valeur",       label: "Proposition de valeur",      desc: "Pertinence de la solution, caractéristiques de l'offre, potentiel de différenciation, stratégie marketing…" },
-  { key: "bm",           label: "Business Model",             desc: "Hypothèses économiques, stratégie marketing, facilité d'accès aux clients…" },
-  { key: "robustesse",   label: "Robustesse",                 desc: "Potentiel de croissance du CA et de rentabilité à moyen terme, plan d'investissement initial, roadmap de financement, maîtrise du pilotage financier, cohérence des hypothèses économiques…" },
-  { key: "innovation",   label: "Innovation",                 desc: "Niveau d'innovation, intensité des barrières à l'entrée, capacité à créer un actif valorisable et protégeable…" },
-  { key: "impact",       label: "Impact territorial",         desc: "Utilité territoriale, sociale et environnementale, prise en compte des limites planétaires, engagement local et intérêt pour le territoire…" },
-  { key: "leadership",   label: "Leadership",                 desc: "Posture entrepreneuriale du porteur de projet, qualité de la dynamique managériale, état d'esprit entrepreneurial, couverture des compétences clés…" },
-  { key: "presentation", label: "Qualité de la présentation", desc: "Originalité du discours, clarté, préparation et fluidité du pitch, qualité des supports, tenue vestimentaire…" },
-  { key: "synthese",     label: "Synthèse",                   desc: "Cohérence de la vision globale, pertinence du plan d'action à 3–6 mois, call to action final…" },
+  { key: "marche",       label: "Potentiel du marché",        desc: "Problématique identifiée, intérêt et traction des premiers clients, taille du marché, time to market, opportunité de marché, mode d'accès aux clients." },
+  { key: "valeur",       label: "Proposition de valeur",      desc: "Pertinence de la solution, caractéristiques de l'offre, potentiel de différenciation, stratégie marketing." },
+  { key: "bm",           label: "Business Model",             desc: "Hypothèses économiques, stratégie marketing, facilité d'accès aux clients." },
+  { key: "robustesse",   label: "Robustesse",                 desc: "Potentiel de croissance du CA et de rentabilité à moyen terme, plan d'investissement initial, roadmap de financement, maîtrise du pilotage financier, cohérence des hypothèses économiques." },
+  { key: "innovation",   label: "Innovation",                 desc: "Niveau d'innovation, intensité des barrières à l'entrée, capacité à créer un actif valorisable et protégeable." },
+  { key: "impact",       label: "Impact territorial",         desc: "Utilité territoriale, sociale et environnementale, prise en compte des limites planétaires, engagement local et intérêt pour le territoire." },
+  { key: "leadership",   label: "Leadership",                 desc: "Posture entrepreneuriale du porteur de projet, qualité de la dynamique managériale, état d'esprit entrepreneurial, couverture des compétences clés." },
+  { key: "presentation", label: "Qualité de la présentation", desc: "Originalité du discours, clarté, préparation et fluidité du pitch, qualité des supports, tenue vestimentaire." },
+  { key: "synthese",     label: "Synthèse",                   desc: "Cohérence de la vision globale, pertinence du plan d'action à 3–6 mois, call to action final." },
 ];
 
 const TURQUOISE = "hsl(181 67% 54%)";
