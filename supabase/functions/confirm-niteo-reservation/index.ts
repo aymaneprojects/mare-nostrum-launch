@@ -26,9 +26,23 @@ serve(async (req) => {
     const session = await stripe.checkout.sessions.retrieve(session_id);
     if (session.payment_status !== "paid") throw new Error("Paiement non confirmé");
 
+    // Idempotence : si la session a déjà été confirmée, on retourne sans renvoyer l'email
+    if (session.metadata?.confirmed === "true") {
+      const fullNameIdempotent = `${session.metadata?.prenom ?? ""} ${session.metadata?.nom ?? ""}`.trim();
+      return new Response(JSON.stringify({ success: true, name: fullNameIdempotent, already: true }), {
+        status: 200,
+        headers: { ...cors, "Content-Type": "application/json" },
+      });
+    }
+
     const { nom, prenom, organisation, role } = session.metadata ?? {};
     const email    = session.customer_details?.email ?? "";
     const fullName = `${prenom ?? ""} ${nom ?? ""}`.trim();
+
+    // Marquer la session comme traitée (idempotence) — avant l'email pour éviter toute race condition
+    await stripe.checkout.sessions.update(session_id, {
+      metadata: { ...session.metadata, confirmed: "true" },
+    });
 
     // Email de confirmation à l'invité
     await fetch("https://api.resend.com/emails", {
