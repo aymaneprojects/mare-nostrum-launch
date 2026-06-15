@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle2, Loader2, Star, UserPlus, ChevronRight } from "lucide-react";
+import { CheckCircle2, Loader2, Star, UserPlus, ChevronRight, Search, Check } from "lucide-react";
 import logoNiteo from "@/assets/niteo/logo-niteo-2026.png";
 
 const AXES = [
@@ -96,6 +96,7 @@ export default function NiteoEvaluation() {
   const [juryCode, setJuryCode]         = useState("");
   const [jures, setJures]               = useState<Jure[]>([]);
   const [selectedJure, setSelectedJure] = useState<Jure | null>(null);
+  const [searchJure, setSearchJure]     = useState("");
   const [nomJure, setNomJure]           = useState("");
   const [codeJure, setCodeJure]         = useState("");
   const [nom, setNom]                   = useState("");
@@ -272,52 +273,101 @@ export default function NiteoEvaluation() {
           )}
 
           {/* ── LISTE */}
-          {phase === "liste" && (
-            <div className="bg-card border border-border rounded-2xl p-6 shadow-sm">
-              <h1 className="text-2xl font-bold mb-1" style={{ color: INK }}>Qui êtes-vous ?</h1>
-              <p className="text-muted-foreground mb-6 text-sm">
-                Sélectionnez votre nom dans la liste.
-              </p>
-              <div className="space-y-3 mb-5">
-                <select
-                  defaultValue=""
-                  onChange={(e) => {
-                    const jure = jures.find((j) => j.id === e.target.value);
-                    setSelectedJure(jure ?? null);
-                  }}
-                  className="w-full rounded-xl border border-input bg-background px-4 text-base focus:outline-none focus:ring-2 focus:ring-ring touch-manipulation"
-                  style={{ height: 52, fontSize: 16 }}
-                >
-                  <option value="" disabled>Sélectionnez votre nom…</option>
-                  {[...jures].sort((a, b) => a.nom.localeCompare(b.nom, "fr")).map((j) => (
-                    <option key={j.id} value={j.id}>{j.nom}</option>
-                  ))}
-                </select>
+          {phase === "liste" && (() => {
+            const juresTries = [...jures].sort((a, b) => a.nom.localeCompare(b.nom, "fr"));
+            const filtres = juresTries.filter((j) =>
+              j.nom.toLowerCase().includes(searchJure.toLowerCase())
+            );
+            return (
+              <div className="bg-card border border-border rounded-2xl p-6 shadow-sm">
+                <h1 className="text-2xl font-bold mb-1" style={{ color: INK }}>Qui êtes-vous ?</h1>
+                <p className="text-muted-foreground mb-5 text-sm">
+                  Recherchez et sélectionnez votre nom.
+                </p>
+
+                {/* Champ de recherche */}
+                <div className="relative mb-3">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+                  <Input
+                    value={searchJure}
+                    onChange={(e) => { setSearchJure(e.target.value); setSelectedJure(null); }}
+                    placeholder="Rechercher votre nom…"
+                    className="pl-9 rounded-xl"
+                    style={{ height: 48, fontSize: 16 }}
+                    autoComplete="off"
+                    autoCorrect="off"
+                    spellCheck={false}
+                  />
+                  {searchJure && (
+                    <button
+                      type="button"
+                      onClick={() => { setSearchJure(""); setSelectedJure(null); }}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                      style={{ fontSize: 18, lineHeight: 1 }}
+                    >
+                      ×
+                    </button>
+                  )}
+                </div>
+
+                {/* Liste filtrée */}
+                <div className="space-y-1.5 mb-4 overflow-y-auto" style={{ maxHeight: 240 }}>
+                  {filtres.length === 0 ? (
+                    <p className="text-center text-sm text-muted-foreground py-6">
+                      Aucun résultat pour « {searchJure} »
+                    </p>
+                  ) : filtres.map((j) => {
+                    const isSelected = selectedJure?.id === j.id;
+                    return (
+                      <button
+                        key={j.id}
+                        type="button"
+                        onClick={() => setSelectedJure(isSelected ? null : j)}
+                        className="w-full flex items-center justify-between px-4 rounded-xl border transition-all duration-150 touch-manipulation text-left"
+                        style={{
+                          height: 52,
+                          borderColor: isSelected ? TURQUOISE : "hsl(var(--border))",
+                          background: isSelected ? "hsl(181 67% 54% / 0.10)" : "transparent",
+                        }}
+                      >
+                        <span className="font-medium text-sm" style={{ color: isSelected ? TURQUOISE : INK }}>
+                          {j.nom}
+                        </span>
+                        {isSelected && (
+                          <Check className="h-4 w-4 shrink-0" style={{ color: TURQUOISE }} />
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {error && (
+                  <div className="rounded-xl bg-destructive/10 border border-destructive/20 px-4 py-3 mb-3">
+                    <p className="text-sm text-destructive font-medium">{error}</p>
+                  </div>
+                )}
+
                 <Button
-                  className="w-full rounded-xl text-base font-semibold touch-manipulation"
+                  className="w-full rounded-xl text-base font-semibold touch-manipulation mb-4"
                   disabled={!selectedJure || loading}
                   onClick={() => selectedJure && handleSelect(selectedJure)}
                   style={{ background: TURQUOISE, color: INK, height: 52 }}
                 >
                   {loading ? <Loader2 className="h-5 w-5 animate-spin mr-2" /> : null}
-                  Continuer
+                  {selectedJure ? `Continuer en tant que ${selectedJure.nom.split(" ")[0]}` : "Continuer"}
                 </Button>
-              </div>
-              {error && (
-                <div className="rounded-xl bg-destructive/10 border border-destructive/20 px-4 py-3 mb-4">
-                  <p className="text-sm text-destructive font-medium">{error}</p>
+
+                <div className="pt-4 border-t border-border">
+                  <p className="text-sm text-muted-foreground mb-3">Votre nom n'est pas dans la liste ?</p>
+                  <Button variant="outline" className="w-full rounded-xl touch-manipulation" style={{ height: 48 }}
+                    onClick={() => setPhase("register")}>
+                    <UserPlus className="h-4 w-4 mr-2" />
+                    Je ne suis pas dans la liste
+                  </Button>
                 </div>
-              )}
-              <div className="pt-4 border-t border-border">
-                <p className="text-sm text-muted-foreground mb-3">Votre nom n'est pas dans la liste ?</p>
-                <Button variant="outline" className="w-full rounded-xl touch-manipulation" style={{ height: 48 }}
-                  onClick={() => setPhase("register")}>
-                  <UserPlus className="h-4 w-4 mr-2" />
-                  Je ne suis pas dans la liste
-                </Button>
               </div>
-            </div>
-          )}
+            );
+          })()}
 
           {/* ── REGISTER */}
           {phase === "register" && (
