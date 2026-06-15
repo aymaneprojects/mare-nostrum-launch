@@ -150,7 +150,7 @@ const Education = () => {
 
 
       <PageHero
-        badgeContent="Mare Nostrum Éducation"
+        eyebrow="Mare Nostrum Éducation"
         title="Transformez vos étudiants en entrepreneurs, programmes clés en main"
         subtitle="Ateliers, hackathons, formations longues et programme Niteo. 55% de nos étudiants créent leur entreprise, +95% de satisfaction."
         ctas={

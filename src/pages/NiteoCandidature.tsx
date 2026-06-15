@@ -151,7 +151,61 @@ const CountdownTimer = ({ targetDate }: { targetDate: Date }) => {
   );
 };
 
+const SEO = {
+  title: "Niteo Toulouse 2026 · Programme d'entrepreneuriat étudiant gratuit | Mare Nostrum",
+  description: "Niteo Toulouse : programme gratuit de 50h pour étudiants et jeunes diplômés. Coaching individuel, e-learning, ateliers collectifs et Demo Day devant 30 décideurs. +10 000 € de dotations. Candidatures ouvertes en liste d'attente.",
+  keywords: "Niteo, Niteo Toulouse, Niteo 2026, programme Niteo, entrepreneuriat étudiant Toulouse, entrepreneuriat étudiant, incubateur étudiant Toulouse, accélérateur étudiant, programme gratuit entrepreneuriat, Demo Day Toulouse, Mare Nostrum, soft skills entrepreneuriat, jeunes diplômés Toulouse, startup étudiante, créer son entreprise étudiant",
+  canonical: "https://niteo.marenostrum.tech/",
+  image: "https://marenostrum.tech/favicon.png",
+};
+
+const useNiteoSEO = () => {
+  useEffect(() => {
+    document.title = SEO.title;
+    document.documentElement.lang = "fr";
+
+    const setMeta = (key: string, value: string, asProperty = false) => {
+      const attr = asProperty ? "property" : "name";
+      let el = document.querySelector(`meta[${attr}="${key}"]`);
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute(attr, key);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", value);
+    };
+
+    setMeta("description", SEO.description);
+    setMeta("keywords", SEO.keywords);
+    setMeta("robots", "index, follow, max-image-preview:large, max-snippet:-1");
+    setMeta("googlebot", "index, follow, max-snippet:-1, max-image-preview:large");
+
+    setMeta("og:type", "website", true);
+    setMeta("og:url", SEO.canonical, true);
+    setMeta("og:title", SEO.title, true);
+    setMeta("og:description", SEO.description, true);
+    setMeta("og:image", SEO.image, true);
+    setMeta("og:locale", "fr_FR", true);
+    setMeta("og:site_name", "Niteo Toulouse · Mare Nostrum", true);
+
+    setMeta("twitter:card", "summary_large_image");
+    setMeta("twitter:url", SEO.canonical);
+    setMeta("twitter:title", SEO.title);
+    setMeta("twitter:description", SEO.description);
+    setMeta("twitter:image", SEO.image);
+
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute("href", SEO.canonical);
+  }, []);
+};
+
 const NiteoCandidature = () => {
+  useNiteoSEO();
   const structuredData = [
     {
       "@context": "https://schema.org",

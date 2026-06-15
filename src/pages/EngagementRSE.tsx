@@ -14,7 +14,7 @@ const EngagementRSE = () => {
         eyebrow="Société à mission depuis septembre 2025"
         title="Nos engagements RSE"
         subtitle="Un engagement porté par la gouvernance de l'entreprise"
-        eyebrow="Impact Score 2025 : 79/100 · Top 5% en Occitanie"
+        
       />
 
       {/* Introduction */}
