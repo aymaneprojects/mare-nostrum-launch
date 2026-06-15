@@ -52,7 +52,7 @@ serve(async (req) => {
     }
 
     // ── Action par défaut : soumettre une évaluation
-    const { nomJure: nomJureBody, code, projet, notes, commentaires } = body;
+    const { nomJure: nomJureBody, code, projet, notes, commentaires, accepteRecontact } = body;
     if (!projet) throw new Error("Projet obligatoire.");
 
     // Utiliser le nom passé directement (fiable même quand le code est partagé)
@@ -83,8 +83,9 @@ serve(async (req) => {
       "Code Juré":  (code ?? "").trim().toUpperCase(),
       "Nom Juré":   nomJure,
       "Projet":     projet,
-      "Édition":    "2026",
-      "Soumis le":  new Date().toISOString(),
+      "Édition":            "2026",
+      "Soumis le":          new Date().toISOString(),
+      "Accepte recontact":  accepteRecontact === true,
     };
 
     AXES.forEach(({ key, noteCol, plusCol, amelioCol }) => {

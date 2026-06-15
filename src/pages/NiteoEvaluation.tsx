@@ -106,6 +106,7 @@ export default function NiteoEvaluation() {
   const [lastProjet, setLastProjet]     = useState("");
   const [notes, setNotes]               = useState<Notes>({});
   const [comments, setComments]         = useState<Comments>({});
+  const [accepteRecontact, setAccepteRecontact] = useState<boolean | null>(null);
   const [error, setError]               = useState("");
   const [loading, setLoading]           = useState(false);
   const [projets, setProjets]           = useState<string[]>([]);
@@ -119,7 +120,7 @@ export default function NiteoEvaluation() {
   const projetsRestants = projets.filter((p) => !projetsEvalues.includes(p));
   const totalNote       = Object.values(notes).reduce((s, v) => s + v, 0);
   const axesNotes       = Object.keys(notes).length;
-  const allFilled       = AXES.every((a) => (notes[a.key] ?? 0) > 0) && projet;
+  const allFilled       = AXES.every((a) => (notes[a.key] ?? 0) > 0) && projet && accepteRecontact !== null;
 
   const fetchEvalues = async (nom: string) => {
     const { data } = await supabase.functions.invoke("submit-niteo-evaluation", {
@@ -176,7 +177,7 @@ export default function NiteoEvaluation() {
   const handleConfirmedSubmit = async () => {
     setPhase("loading");
     const { data, error: fnErr } = await supabase.functions.invoke("submit-niteo-evaluation", {
-      body: { nomJure, code: codeJure, projet, notes, commentaires: { ...comments } },
+      body: { nomJure, code: codeJure, projet, notes, commentaires: { ...comments }, accepteRecontact },
     });
     if (fnErr || data?.error) {
       setError(data?.error ?? fnErr?.message ?? "Erreur serveur.");
@@ -184,7 +185,7 @@ export default function NiteoEvaluation() {
     }
     setLastProjet(projet);
     setProjetsEvalues((prev) => [...prev, projet]);
-    setProjet(""); setNotes({}); setComments({});
+    setProjet(""); setNotes({}); setComments({}); setAccepteRecontact(null);
     setPhase("next");
   };
 
@@ -475,6 +476,30 @@ export default function NiteoEvaluation() {
                 </div>
               ))}
 
+              {/* Question recontact */}
+              <div className="bg-card border border-border rounded-2xl p-4 space-y-3">
+                <p className="text-sm font-semibold" style={{ color: INK }}>
+                  Acceptez-vous d'être recontacté(e) par le candidat ? *
+                </p>
+                <div className="flex gap-3">
+                  {[{ val: true, label: "Oui" }, { val: false, label: "Non" }].map(({ val, label }) => (
+                    <button
+                      key={label} type="button"
+                      onClick={() => setAccepteRecontact(val)}
+                      className="flex-1 rounded-xl border text-sm font-semibold transition-all duration-150 touch-manipulation"
+                      style={{
+                        height: 48,
+                        borderColor: accepteRecontact === val ? TURQUOISE : "hsl(var(--border))",
+                        background: accepteRecontact === val ? `hsl(181 67% 54% / 0.12)` : "transparent",
+                        color: accepteRecontact === val ? TURQUOISE : "hsl(var(--muted-foreground))",
+                      }}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               {/* Score + CTA sticky */}
               <div className="sticky bottom-4 z-10">
                 <div className="bg-card border border-border rounded-2xl p-4 shadow-lg">
@@ -530,6 +555,12 @@ export default function NiteoEvaluation() {
                   <div>
                     <p className="text-xs text-muted-foreground">Note totale</p>
                     <p className="font-bold text-lg tabular-nums" style={{ color: TURQUOISE }}>{totalNote}/45</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Recontact candidat</p>
+                    <p className="font-semibold text-sm" style={{ color: accepteRecontact ? TURQUOISE : INK }}>
+                      {accepteRecontact ? "Oui" : "Non"}
+                    </p>
                   </div>
                 </div>
               </div>
