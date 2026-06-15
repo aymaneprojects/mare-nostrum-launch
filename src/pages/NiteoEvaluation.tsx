@@ -528,17 +528,20 @@ export default function NiteoEvaluation() {
 
               {/* Score + CTA sticky */}
               <div className="sticky bottom-4 z-10">
-                <div className="bg-card border border-border rounded-2xl p-4 shadow-lg space-y-3">
+                <div className="bg-card border border-border rounded-2xl p-3 shadow-lg space-y-2.5">
 
-                  {/* Score */}
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xs text-muted-foreground">{axesNotes}/{AXES.length} axes notés</p>
-                      <p className="text-2xl font-bold tabular-nums" style={{ color: NUIT }}>
-                        {totalNote}<span className="text-sm font-normal text-muted-foreground">/45</span>
-                      </p>
+                  {/* Ligne 1 : score + points progression */}
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-baseline gap-1 min-w-0">
+                      <span className="text-xl font-bold tabular-nums leading-none" style={{ color: NUIT }}>
+                        {totalNote}
+                      </span>
+                      <span className="text-xs text-muted-foreground">/45</span>
+                      <span className="text-xs text-muted-foreground ml-1">
+                        · {axesNotes}/{AXES.length} axes
+                      </span>
                     </div>
-                    <div className="flex gap-1 flex-wrap justify-end max-w-[120px]">
+                    <div className="flex gap-1 flex-wrap justify-end shrink-0" style={{ maxWidth: 96 }}>
                       {AXES.map((a) => (
                         <div key={a.key} className="h-1.5 w-1.5 rounded-full transition-colors duration-200"
                           style={{ background: (notes[a.key] ?? 0) > 0 ? TURQUOISE : "hsl(224 14% 82%)" }} />
@@ -546,19 +549,21 @@ export default function NiteoEvaluation() {
                     </div>
                   </div>
 
-                  {/* Question recontact */}
-                  <div className="border-t border-border pt-3">
-                    <p className="text-xs font-semibold mb-2" style={{ color: INK }}>
-                      Acceptez-vous d'être recontacté(e) par le candidat ? *
+                  {/* Ligne 2 : recontact */}
+                  <div className="flex items-center gap-2 border-t border-border pt-2.5">
+                    <p className="text-xs font-medium leading-snug min-w-0 flex-1" style={{ color: INK }}>
+                      Recontact candidat ?
                     </p>
-                    <div className="flex gap-2">
+                    <div className="flex gap-1.5 shrink-0">
                       {[{ val: true, label: "Oui" }, { val: false, label: "Non" }].map(({ val, label }) => (
                         <button
                           key={label} type="button"
                           onClick={() => setAccepteRecontact(val)}
-                          className="flex-1 rounded-xl border text-sm font-semibold transition-all duration-150 touch-manipulation"
+                          className="rounded-lg border text-sm font-semibold transition-all duration-150 touch-manipulation"
                           style={{
-                            height: 44,
+                            height: 36,
+                            width: 52,
+                            flexShrink: 0,
                             borderColor: accepteRecontact === val ? TURQUOISE : "hsl(var(--border))",
                             background: accepteRecontact === val ? "hsl(181 67% 54% / 0.12)" : "transparent",
                             color: accepteRecontact === val ? TURQUOISE : "hsl(var(--muted-foreground))",
@@ -575,15 +580,15 @@ export default function NiteoEvaluation() {
                       <p className="text-xs text-destructive font-medium">{error}</p>
                     </div>
                   )}
-                  <Button type="submit" className="w-full rounded-xl text-base font-semibold touch-manipulation"
+                  <Button type="submit" className="w-full rounded-xl text-sm font-semibold touch-manipulation"
                     disabled={!allFilled}
-                    style={{ background: allFilled ? TURQUOISE : undefined, color: allFilled ? INK : undefined, height: 52 }}>
+                    style={{ background: allFilled ? TURQUOISE : undefined, color: allFilled ? INK : undefined, height: 48 }}>
                     Vérifier avant d'envoyer →
                   </Button>
                   {!allFilled && (
-                    <p className="text-xs text-center text-muted-foreground mt-1">
+                    <p className="text-xs text-center text-muted-foreground">
                       {AXES.length - axesNotes > 0
-                        ? `Notez les ${AXES.length - axesNotes} axe${AXES.length - axesNotes > 1 ? "s" : ""} restant${AXES.length - axesNotes > 1 ? "s" : ""} et choisissez un projet.`
+                        ? `${AXES.length - axesNotes} axe${AXES.length - axesNotes > 1 ? "s" : ""} restant${AXES.length - axesNotes > 1 ? "s" : ""}`
                         : accepteRecontact === null
                           ? "Répondez à la question de recontact."
                           : "Choisissez un projet."}
