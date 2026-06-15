@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Globe, Heart, Users, Target, Lightbulb, ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import MaritimeIcon from "@/components/MaritimeIcon";
 import PageHero from "@/components/PageHero";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
@@ -206,65 +207,21 @@ const About = () => {
           <div className="mn-eyebrow-turquoise text-center mb-3">Ce qui nous guide</div>
           <h2 className="font-editorial italic text-2xl md:text-4xl font-semibold text-center mb-8 md:mb-12 text-foreground">Nos valeurs</h2>
           <div className="max-w-4xl mx-auto space-y-6 md:space-y-8">
-            <div className="flex items-start space-x-3 md:space-x-4 p-4 md:p-6 bg-card border border-border rounded-sm">
-              <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-primary/10 shape-hex flex items-center justify-center">
-                <Target className="h-5 w-5 md:h-6 md:w-6 text-primary" />
+            {([
+              { icon: "handshake"  as const, title: "Respect",          text: "Nous plaçons l'humain au centre de nos actions et respectons la diversité des parcours et des cultures." },
+              { icon: "lighthouse" as const, title: "Enthousiasme",     text: "Nous croyons en la force de l'énergie positive et de la passion pour transformer les projets en réalités." },
+              { icon: "anchor"     as const, title: "Fiabilité",        text: "Nos clients peuvent compter sur nous. Nous tenons nos engagements avec rigueur et professionnalisme." },
+              { icon: "sailboat"   as const, title: "Impact",           text: "Chacune de nos actions vise un impact concret et mesurable sur les entrepreneurs et les écoles que nous accompagnons." },
+              { icon: "buoy"       as const, title: "Co-apprentissage", text: "Nous grandissons ensemble avec nos clients et notre réseau. L'intelligence collective est au cœur de notre approche." },
+            ]).map(v => (
+              <div key={v.title} className="flex items-start gap-4 md:gap-5 p-4 md:p-6 bg-card border border-border rounded-sm">
+                <MaritimeIcon name={v.icon} size={52} className="flex-shrink-0 mt-0.5" />
+                <div>
+                  <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">{v.title}</h3>
+                  <p className="text-sm md:text-base text-muted-foreground">{v.text}</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">Respect</h3>
-                <p className="text-sm md:text-base text-muted-foreground">
-                  Nous plaçons l'humain au centre de nos actions et respectons la diversité des parcours et des cultures.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-4 p-6 bg-card border border-border rounded-sm">
-              <div className="flex-shrink-0 w-12 h-12 bg-accent/10 shape-hex flex items-center justify-center">
-                <Lightbulb className="h-6 w-6 text-accent" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2 text-foreground">Enthousiasme</h3>
-                <p className="text-muted-foreground">
-                  Nous croyons en la force de l'énergie positive et de la passion pour transformer les projets en réalités.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-4 p-6 bg-card border border-border rounded-sm">
-              <div className="flex-shrink-0 w-12 h-12 bg-primary/10 shape-hex flex items-center justify-center">
-                <Target className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2 text-foreground">Fiabilité</h3>
-                <p className="text-muted-foreground">
-                  Nos clients peuvent compter sur nous. Nous tenons nos engagements avec rigueur et professionnalisme.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-4 p-6 bg-card border border-border rounded-sm">
-              <div className="flex-shrink-0 w-12 h-12 bg-accent/10 shape-hex flex items-center justify-center">
-                <Target className="h-6 w-6 text-accent" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2 text-foreground">Impact</h3>
-                <p className="text-muted-foreground">
-                  Chacune de nos actions vise un impact concret et mesurable sur les entrepreneurs et les écoles que nous accompagnons.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-4 p-6 bg-card border border-border rounded-sm">
-              <div className="flex-shrink-0 w-12 h-12 bg-primary/10 shape-hex flex items-center justify-center">
-                <Users className="h-6 w-6 text-primary" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2 text-foreground">Co-apprentissage</h3>
-                <p className="text-muted-foreground">
-                  Nous grandissons ensemble avec nos clients et notre réseau. L'intelligence collective est au cœur de notre approche.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

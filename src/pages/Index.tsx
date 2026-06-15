@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, GraduationCap, TrendingUp, Users, Target, Lightbulb, Globe, ShieldCheck, Star, Award, MapPin } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import MaritimeIcon from "@/components/MaritimeIcon";
 import StatCard from "@/components/StatCard";
 import TestimonialCard from "@/components/TestimonialCard";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
@@ -333,7 +334,7 @@ const Index = () => {
                 <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 20% 20%, hsl(181 67% 54% / 0.18) 0%, transparent 60%)' }}></div>
                 <div className="relative z-10">
                   <div className="mn-eyebrow-light mb-4">Mare Nostrum Éducation</div>
-                  <GraduationCap className="h-12 w-12 md:h-14 md:w-14 text-white mb-5" />
+                  <MaritimeIcon name="sailboat" size={60} className="mb-5" />
                   <h3 className="text-xl md:text-2xl font-semibold text-white mb-2" style={{ letterSpacing: '-0.01em' }}>
                     Le cap de l'esprit d'entreprendre
                   </h3>
@@ -352,7 +353,7 @@ const Index = () => {
                 <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.10) 0%, transparent 55%)' }}></div>
                 <div className="relative z-10">
                   <div className="mn-eyebrow-light mb-4">Mare Nostrum Croissance</div>
-                  <TrendingUp className="h-12 w-12 md:h-14 md:w-14 text-white mb-5" />
+                  <MaritimeIcon name="wheel" size={60} className="mb-5" />
                   <h3 className="text-xl md:text-2xl font-semibold text-white mb-2" style={{ letterSpacing: '-0.01em' }}>
                     Le Quai des Entrepreneurs
                   </h3>
@@ -474,35 +475,21 @@ const Index = () => {
           </h2>
           <div className="max-w-4xl mx-auto">
             <div className="space-y-6">
-              {[{
-              step: "1",
-              title: "Rendez-vous de découverte",
-              description: "Échangeons sur vos besoins et vos objectifs"
-            }, {
-              step: "2",
-              title: "Diagnostic personnalisé",
-              description: "École ou entreprise, nous analysons votre situation"
-            }, {
-              step: "3",
-              title: "Proposition sur mesure",
-              description: "Programme ou offre adaptée à vos enjeux"
-            }, {
-              step: "4",
-              title: "Lancement & accompagnement",
-              description: "Mise en œuvre avec notre équipe d'experts"
-            }, {
-              step: "5",
-              title: "Évaluation d'impact",
-              description: "Mesure des résultats et ajustements continus"
-            }].map(item => <div key={item.step} className="flex items-start gap-6 p-6 bg-card border border-nuit/12 rounded-sm hover:shadow-md hover:border-nuit/25 transition-all duration-200">
-                  <div className="flex-shrink-0 w-12 pt-0.5 text-right">
-                    <span className="font-editorial font-semibold select-none" style={{ fontSize: '2.75rem', lineHeight: '1', letterSpacing: '-0.02em', color: 'hsl(222 44% 25% / 0.20)' }}>{item.step.padStart(2, '0')}</span>
-                  </div>
+              {([
+                { icon: "telescope" as const,  title: "Rendez-vous de découverte",  description: "Échangeons sur vos besoins et vos objectifs" },
+                { icon: "map"       as const,  title: "Diagnostic personnalisé",    description: "École ou entreprise, nous analysons votre situation" },
+                { icon: "anchor"    as const,  title: "Proposition sur mesure",     description: "Programme ou offre adaptée à vos enjeux" },
+                { icon: "lighthouse"as const,  title: "Lancement & accompagnement", description: "Mise en œuvre avec notre équipe d'experts" },
+                { icon: "buoy"      as const,  title: "Évaluation d'impact",        description: "Mesure des résultats et ajustements continus" },
+              ]).map(item => (
+                <div key={item.title} className="flex items-start gap-6 p-6 bg-card border border-nuit/12 rounded-sm hover:shadow-md hover:border-nuit/25 transition-all duration-200">
+                  <MaritimeIcon name={item.icon} size={52} className="flex-shrink-0 mt-0.5 opacity-90" />
                   <div>
                     <h3 className="text-xl font-semibold mb-2 text-foreground">{item.title}</h3>
                     <p className="text-muted-foreground">{item.description}</p>
                   </div>
-                </div>)}
+                </div>
+              ))}
             </div>
             <div className="text-center mt-12">
               <Button asChild size="lg">
