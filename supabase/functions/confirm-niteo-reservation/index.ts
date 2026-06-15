@@ -76,7 +76,7 @@ L'équipe Niteo / Mare Nostrum</p>
     });
 
     // Sauvegarde Airtable
-    await fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}`, {
+    const airtableRes = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${AIRTABLE_API_KEY}`,
@@ -92,9 +92,14 @@ L'équipe Niteo / Mare Nostrum</p>
           "Statut":           "Payé",
           "Montant":          "25 EUR",
           "Session Stripe":   session_id,
+          "Réservé le":       new Date().toISOString(),
         },
       }),
     });
+    const airtableData = await airtableRes.json();
+    if (airtableData.error) {
+      console.error("Airtable error:", airtableData.error);
+    }
 
     return new Response(JSON.stringify({ success: true, name: fullName }), {
       status: 200,

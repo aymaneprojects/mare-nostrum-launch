@@ -41,6 +41,7 @@ serve(async (req) => {
         tax_rates: ["txr_1ThQagRtzJviITg0tG4Ltwzo"],
         quantity: 1,
       }],
+      invoice_creation: { enabled: true },
       allow_promotion_codes: true,
       return_url: "https://niteo.marenostrum.tech/reservation?session_id={CHECKOUT_SESSION_ID}",
     });
