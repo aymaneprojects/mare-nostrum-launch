@@ -94,15 +94,21 @@ serve(async (req) => {
       fields[amelioCol] = commentaires?.[key]?.amelio ?? "";
     });
 
-    const createRes = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${EVAL_TABLE}`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${AIRTABLE_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ fields }),
-    });
-    const createData = await createRes.json();
+    const airtablePost = async (f: Record<string, unknown>) =>
+      fetch(`https://api.airtable.com/v0/${BASE_ID}/${EVAL_TABLE}`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ fields: f }),
+      }).then((r) => r.json());
+
+    let createData = await airtablePost(fields);
+
+    // Si la colonne "Accepte recontact" n'existe pas encore dans Airtable, on retry sans elle
+    if (createData.error?.type === "UNKNOWN_FIELD_NAME" || createData.error?.message?.includes("Accepte recontact")) {
+      const { "Accepte recontact": _dropped, ...fieldsWithout } = fields as any;
+      createData = await airtablePost(fieldsWithout);
+    }
+
     if (createData.error) throw new Error(createData.error.message ?? "Erreur Airtable.");
 
     return new Response(JSON.stringify({ success: true, id: createData.id }), {
