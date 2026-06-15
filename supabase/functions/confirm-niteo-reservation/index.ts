@@ -9,7 +9,7 @@ const stripe = new Stripe(Deno.env.get("STRIPE_API")!, {
 const RESEND_API_KEY   = Deno.env.get("RESEND_API_KEY");
 const AIRTABLE_API_KEY = Deno.env.get("AIRTABLE_API_KEY");
 const BASE_ID          = "appZ8ykNuUOv89ou0";
-const TABLE_NAME       = "Réservations Demo Day";
+const TABLE_ID         = "tblocqquF4OXgXveO"; // BASE DE PRODUCTION
 
 const cors = {
   "Access-Control-Allow-Origin": "*",
@@ -75,30 +75,43 @@ L'équipe Niteo / Mare Nostrum</p>
       }),
     });
 
-    // Sauvegarde Airtable
-    const airtableRes = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_NAME)}`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${AIRTABLE_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        typecast: true,
-        fields: {
-          "Nom complet":      fullName,
-          "Email":            email,
-          "Organisation":     organisation ?? "",
-          "Rôle":             role ?? "",
-          "Statut":           "Payé",
-          "Montant":          "25 EUR",
-          "Session Stripe":   session_id,
-          "Réservé le":       new Date().toISOString(),
-        },
-      }),
-    });
-    const airtableData = await airtableRes.json();
-    if (airtableData.error) {
-      console.error("Airtable error:", airtableData.error);
+    // Sauvegarde dans BASE DE PRODUCTION
+    // Vérifie si la personne existe déjà (par email)
+    const formula   = encodeURIComponent(`{Mail} = "${email}"`);
+    const existRes  = await fetch(
+      `https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}?filterByFormula=${formula}&maxRecords=1`,
+      { headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}` } }
+    );
+    const existData = await existRes.json();
+
+    const fields = {
+      "Prénom / Nom":     fullName,
+      "Mail":             email,
+      "Structure 2":      organisation ?? "",
+      "Rôle individuel":  role ?? "",
+      "STRIPE PAIEMENT":  "Payé",
+      "CODE JURY NITEO ": "NITEO2026",
+    };
+
+    if (existData.records?.length > 0) {
+      // Met à jour le record existant
+      const recordId = existData.records[0].id;
+      const patchRes = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}/${recordId}`, {
+        method: "PATCH",
+        headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ typecast: true, fields }),
+      });
+      const patchData = await patchRes.json();
+      if (patchData.error) console.error("Airtable PATCH error:", patchData.error);
+    } else {
+      // Crée un nouveau record
+      const postRes = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${AIRTABLE_API_KEY}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ typecast: true, fields }),
+      });
+      const postData = await postRes.json();
+      if (postData.error) console.error("Airtable POST error:", postData.error);
     }
 
     return new Response(JSON.stringify({ success: true, name: fullName }), {
