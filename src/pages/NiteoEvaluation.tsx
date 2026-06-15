@@ -552,7 +552,7 @@ export default function NiteoEvaluation() {
                   {/* Ligne 2 : recontact */}
                   <div className="flex items-center gap-2 border-t border-border pt-2.5">
                     <p className="text-xs font-medium leading-snug min-w-0 flex-1" style={{ color: INK }}>
-                      Souhaitez-vous être recontacté(e) ?
+                      Souhaitez-vous être recontacté(e) par ce candidat ?
                     </p>
                     <div className="flex gap-1.5 shrink-0">
                       {[{ val: true, label: "Oui" }, { val: false, label: "Non" }].map(({ val, label }) => (
