@@ -544,10 +544,10 @@ const Education = () => {
                   Planifions un rendez-vous pour discuter de vos besoins
                 </p>
                 <Button asChild variant="secondary" className="w-full">
-                  <Link to="/contact">
+                  <a href="https://meet.marenostrum.tech/rdv-equipe" target="_blank" rel="noopener noreferrer">
                     Planifier un rendez-vous
                     <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
+                  </a>
                 </Button>
               </div>
 

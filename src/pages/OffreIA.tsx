@@ -268,10 +268,10 @@ const OffreIA = () => {
               peut accélérer votre développement entrepreneurial.
             </p>
             <Button asChild size="lg" variant="secondary">
-              <Link to="/contact">
+              <a href="https://meet.marenostrum.tech/rdv-equipe" target="_blank" rel="noopener noreferrer">
                 Prendre rendez-vous
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
+              </a>
             </Button>
           </div>
         </div>
