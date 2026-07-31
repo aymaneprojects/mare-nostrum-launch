@@ -6,9 +6,9 @@ import logo from "@/assets/logo.png";
 
 const navLinks = [
   { to: "/",                  label: "Accueil",          Icon: Home           },
-  { to: "/education",         label: "Offre Éducation",  Icon: GraduationCap  },
-  { to: "/club",              label: "Offre Club",       Icon: Users          },
-  { to: "/engagement-rse",    label: "Engagement RSE",   Icon: Leaf           },
+  { to: "/education",         label: "Éducation",        Icon: GraduationCap  },
+  { to: "/club",              label: "Club",             Icon: Users          },
+  { to: "/engagement-rse",    label: "RSE",              Icon: Leaf           },
   { to: "/blog",              label: "Blog",             Icon: BookOpen       },
   { to: "/a-propos",          label: "À propos",         Icon: Info           },
   { to: "/contact",           label: "Contact",          Icon: Mail           },
@@ -25,59 +25,60 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [isMenuOpen]);
 
-  // Close on route change
   useEffect(() => { setIsMenuOpen(false); }, [location.pathname]);
 
   const isActive = (path: string) => location.pathname === path;
 
   return (
     <>
-      <header
-        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-          scrolled
-            ? "bg-background/95 backdrop-blur-xl border-b border-primary/10 shadow-soft"
-            : "bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/70 border-b border-transparent"
-        }`}
-      >
-        <nav className="container mx-auto flex h-14 md:h-16 items-center justify-between px-3 md:px-4">
-          <Link to="/" className="flex items-center space-x-2 group">
+      {/* Wrapper sticky — transparent, laisse passer les clics sur les zones vides */}
+      <header className="sticky top-0 z-50 w-full px-4 md:px-6 pt-4 pb-2 pointer-events-none">
+        <nav
+          className={`pointer-events-auto mx-auto flex h-12 md:h-14 max-w-7xl items-center justify-between px-3 md:px-5 rounded-full transition-all duration-300 ${
+            scrolled
+              ? "bg-background/97 backdrop-blur-2xl shadow-lg border border-primary/12"
+              : "bg-background/85 backdrop-blur-xl shadow-md border border-primary/10"
+          }`}
+        >
+          {/* Logo */}
+          <Link to="/" className="flex items-center group shrink-0">
             <img
               src={logo}
               alt="Mare Nostrum"
-              className="h-11 md:h-14 w-auto transition-transform duration-300 group-hover:scale-105"
+              className="h-9 md:h-10 w-auto transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-5 lg:space-x-7">
+          {/* Desktop nav links */}
+          <div className="hidden md:flex items-center gap-0.5 lg:gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className={`relative text-[13px] font-medium transition-colors duration-200 hover:text-primary group ${
-                  isActive(link.to) ? "text-primary" : "text-foreground/75"
+                className={`px-3 py-1.5 text-[13px] font-medium rounded-full transition-all duration-200 ${
+                  isActive(link.to)
+                    ? "bg-primary/10 text-primary"
+                    : "text-foreground/65 hover:text-foreground hover:bg-muted/80"
                 }`}
               >
                 {link.label}
-                <span
-                  className={`absolute -bottom-1.5 left-0 h-0.5 bg-accent transition-all duration-300 ${
-                    isActive(link.to) ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
-                />
               </Link>
             ))}
+          </div>
+
+          {/* CTA desktop */}
+          <div className="hidden md:flex items-center shrink-0">
             {["/education", "/niteo-toulouse"].includes(location.pathname) ? (
-              <Button asChild size="sm" className="ml-3">
+              <Button asChild size="sm" className="rounded-full text-[13px] h-9 px-5">
                 <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
               </Button>
             ) : (
-              <Button asChild variant="outline" size="sm" className="ml-3">
+              <Button asChild size="sm" className="rounded-full text-[13px] h-9 px-5" style={{ background: "hsl(222 44% 25%)", color: "#fff" }}>
                 <Link to="/club#offres">Rejoindre le Club</Link>
               </Button>
             )}
@@ -85,7 +86,7 @@ const Header = () => {
 
           {/* Mobile — hamburger */}
           <button
-            className="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-muted/60 active:scale-90 transition-transform duration-150 text-primary"
+            className="md:hidden w-9 h-9 flex items-center justify-center rounded-full bg-muted/60 active:scale-90 transition-transform duration-150 text-primary"
             onClick={() => setIsMenuOpen(true)}
             aria-label="Ouvrir le menu"
           >
@@ -95,7 +96,6 @@ const Header = () => {
       </header>
 
       {/* ── Mobile slide-over panel ─────────────────────────────── */}
-      {/* Backdrop */}
       <div
         className={`fixed inset-0 z-[60] md:hidden bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
           isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
@@ -104,7 +104,6 @@ const Header = () => {
         aria-hidden="true"
       />
 
-      {/* Panel */}
       <div
         className={`fixed top-0 right-0 bottom-0 z-[70] md:hidden w-[82vw] max-w-[340px]
           bg-background flex flex-col shadow-2xl
@@ -150,11 +149,11 @@ const Header = () => {
         {/* CTAs */}
         <div className="px-4 pb-10 pt-3 space-y-2.5 border-t border-border shrink-0">
           {["/education", "/niteo-toulouse"].includes(location.pathname) ? (
-            <Button asChild className="w-full h-11">
+            <Button asChild className="w-full h-11 rounded-full">
               <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
             </Button>
           ) : (
-            <Button asChild variant="outline" className="w-full h-11">
+            <Button asChild className="w-full h-11 rounded-full" style={{ background: "hsl(222 44% 25%)", color: "#fff" }}>
               <Link to="/club#offres">Rejoindre le Club</Link>
             </Button>
           )}

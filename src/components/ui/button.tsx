@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
  * - link     : underline editorial
  */
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-xs font-semibold uppercase tracking-[0.12em] ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -29,13 +29,13 @@ const buttonVariants = cva(
         ghost:
           "bg-transparent text-primary hover:bg-primary/5 hover:text-primary",
         link:
-          "text-primary underline-offset-4 hover:underline normal-case tracking-normal text-sm",
+          "text-primary underline-offset-4 hover:underline text-sm",
       },
       size: {
-        default: "h-11 px-6 py-3",
-        sm: "h-9 px-4 text-[11px]",
-        lg: "h-12 px-8 text-sm",
-        icon: "h-11 w-11",
+        default: "h-10 px-5",
+        sm: "h-9 px-4 text-[13px]",
+        lg: "h-11 px-7",
+        icon: "h-10 w-10",
       },
     },
     defaultVariants: {
