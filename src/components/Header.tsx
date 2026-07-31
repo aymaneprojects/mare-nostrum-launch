@@ -4,14 +4,20 @@ import { Menu, X, Home, GraduationCap, Users, Leaf, BookOpen, Info, Mail } from 
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
-const navLinks = [
-  { to: "/",                  label: "Accueil",          Icon: Home           },
+// Desktop : sans "Accueil" (le logo sert de lien home)
+const desktopLinks = [
   { to: "/education",         label: "Éducation",        Icon: GraduationCap  },
   { to: "/club",              label: "Club",             Icon: Users          },
   { to: "/engagement-rse",    label: "RSE",              Icon: Leaf           },
   { to: "/blog",              label: "Blog",             Icon: BookOpen       },
   { to: "/a-propos",          label: "À propos",         Icon: Info           },
   { to: "/contact",           label: "Contact",          Icon: Mail           },
+];
+
+// Mobile : avec "Accueil"
+const navLinks = [
+  { to: "/",                  label: "Accueil",          Icon: Home           },
+  ...desktopLinks,
 ];
 
 const Header = () => {
@@ -39,11 +45,12 @@ const Header = () => {
       {/* Wrapper sticky — transparent, laisse passer les clics sur les zones vides */}
       <header className="sticky top-0 z-50 w-full px-4 md:px-6 pt-4 pb-2 pointer-events-none">
         <nav
-          className={`pointer-events-auto mx-auto flex h-12 md:h-14 max-w-7xl items-center justify-between px-3 md:px-5 rounded-full transition-all duration-300 ${
+          className={`pointer-events-auto mx-auto flex h-12 md:h-14 max-w-7xl items-center justify-between px-3 md:px-5 rounded-full transition-all duration-300 border ${
             scrolled
-              ? "bg-background/97 backdrop-blur-2xl shadow-lg border border-primary/12"
-              : "bg-background/85 backdrop-blur-xl shadow-md border border-primary/10"
+              ? "bg-white/98 backdrop-blur-2xl shadow-xl border-gray-200/70"
+              : "bg-white/92 backdrop-blur-xl shadow-lg border-gray-200/50"
           }`}
+          style={{ WebkitBackdropFilter: "blur(20px)" }}
         >
           {/* Logo */}
           <Link to="/" className="flex items-center group shrink-0">
@@ -56,14 +63,14 @@ const Header = () => {
 
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-0.5 lg:gap-1">
-            {navLinks.map((link) => (
+            {desktopLinks.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
                 className={`px-3 py-1.5 text-[13px] font-medium rounded-full transition-all duration-200 ${
                   isActive(link.to)
                     ? "bg-primary/10 text-primary"
-                    : "text-foreground/65 hover:text-foreground hover:bg-muted/80"
+                    : "text-foreground/70 hover:text-foreground hover:bg-gray-100"
                 }`}
               >
                 {link.label}
