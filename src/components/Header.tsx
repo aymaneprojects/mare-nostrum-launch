@@ -45,12 +45,16 @@ const Header = () => {
       {/* Wrapper sticky — transparent, laisse passer les clics sur les zones vides */}
       <header className="sticky top-0 z-50 w-full px-4 md:px-6 pt-4 pb-2 pointer-events-none">
         <nav
-          className={`pointer-events-auto mx-auto flex h-12 md:h-14 max-w-7xl items-center justify-between px-3 md:px-5 rounded-full transition-all duration-300 border ${
-            scrolled
-              ? "bg-white/98 backdrop-blur-2xl shadow-xl border-gray-200/70"
-              : "bg-white/92 backdrop-blur-xl shadow-lg border-gray-200/50"
-          }`}
-          style={{ WebkitBackdropFilter: "blur(20px)" }}
+          className="pointer-events-auto mx-auto flex h-12 md:h-14 max-w-7xl items-center justify-between px-3 md:px-5 rounded-full transition-all duration-300"
+          style={{
+            backgroundColor: scrolled ? "rgba(255,255,255,0.98)" : "rgba(255,255,255,0.93)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            border: "1px solid rgba(200,210,220,0.6)",
+            boxShadow: scrolled
+              ? "0 8px 32px rgba(0,0,0,0.14), 0 2px 8px rgba(0,0,0,0.08)"
+              : "0 4px 20px rgba(0,0,0,0.10), 0 1px 6px rgba(0,0,0,0.06)",
+          }}
         >
           {/* Logo */}
           <Link to="/" className="flex items-center group shrink-0">
