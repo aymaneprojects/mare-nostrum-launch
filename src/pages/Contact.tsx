@@ -22,7 +22,8 @@ const Contact = () => {
     phone: "",
     country: "",
     type: "",
-    message: ""
+    message: "",
+    website: "", // honeypot — doit rester vide
   });
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,7 +90,8 @@ const Contact = () => {
         phone: "",
         country: "",
         type: "",
-        message: ""
+        message: "",
+        website: "",
       });
     } catch (error) {
       console.error("Error:", error);
@@ -254,6 +256,11 @@ const Contact = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot anti-bot — ne pas modifier */}
+                <div style={{ position: "absolute", left: "-9999px", top: "-9999px", width: "1px", height: "1px", overflow: "hidden" }} aria-hidden="true">
+                  <label htmlFor="website">Ne pas remplir</label>
+                  <input id="website" name="website" type="text" value={formData.website} onChange={e => handleChange("website", e.target.value)} tabIndex={-1} autoComplete="off" />
+                </div>
                 <div>
                   <Label htmlFor="name">Nom complet *</Label>
                   <Input id="name" type="text" required value={formData.name} onChange={e => handleChange("name", e.target.value)} placeholder="Votre nom" className="mt-2" />
