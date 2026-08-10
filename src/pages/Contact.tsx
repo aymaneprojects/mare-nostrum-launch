@@ -113,7 +113,7 @@ const Contact = () => {
   return <div className="min-h-screen flex flex-col">
       <EnhancedSEOHead 
         title="Contact Mare Nostrum - Cabinet Conseil Entrepreneuriat | Toulouse Paris Casablanca" 
-        description="Contactez Mare Nostrum pour votre projet entrepreneurial. Bureaux Toulouse +33 6 17 35 81 67, Paris, Casablanca +212 694 995 785. Rendez-vous gratuit. Réponse sous 48h maximum." 
+        description="Contactez Mare Nostrum pour votre projet entrepreneurial. Bureaux Toulouse, Paris, Casablanca. Rendez-vous gratuit. Réponse sous 48h maximum."
         keywords="contact mare nostrum, rendez-vous conseil, toulouse, paris, casablanca, accompagnement entrepreneuriat, conseil gratuit"
         
       />
@@ -188,10 +188,6 @@ const Contact = () => {
                     <a href="mailto:maroc@marenostrum.tech" className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors text-sm md:text-base">
                       <Mail className="h-4 w-4 flex-shrink-0" />
                       <span className="break-all">maroc@marenostrum.tech</span>
-                    </a>
-                    <a href="tel:+212694995785" className="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors text-sm md:text-base">
-                      <Phone className="h-4 w-4 flex-shrink-0" />
-                      +212 694 995 785
                     </a>
                   </div>
                 </div>

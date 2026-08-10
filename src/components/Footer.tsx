@@ -74,16 +74,7 @@ const Footer = () => {
                   href="tel:+33617358167"
                   className="text-primary-foreground/75 hover:text-accent transition-colors"
                 >
-                  +33 6 17 35 81 67 (France)
-                </a>
-              </li>
-              <li className="flex items-center space-x-2.5">
-                <Phone className="h-4 w-4 text-accent shrink-0" />
-                <a
-                  href="tel:+212694995785"
-                  className="text-primary-foreground/75 hover:text-accent transition-colors"
-                >
-                  +212 6 94 99 57 85 (Maroc)
+                  +33 6 17 35 81 67
                 </a>
               </li>
               <li className="flex items-center space-x-2.5">
