@@ -1,7 +1,11 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@14.21.0?target=deno";
 
-const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+const RESEND_API_KEY  = Deno.env.get("RESEND_API_KEY");
+const AIRTABLE_KEY    = Deno.env.get("AIRTABLE_API_KEY");
+const AIRTABLE_BASE   = "appZ8ykNuUOv89ou0";
+const AIRTABLE_TABLE  = "tblocqquF4OXgXveO";
+
 const stripe = new Stripe(Deno.env.get("STRIPE_API")!, {
   apiVersion: "2024-06-20",
   httpClient: Stripe.createFetchHttpClient(),
@@ -76,6 +80,37 @@ const handler = async (req: Request): Promise<Response> => {
         <p><a href="mailto:contact@marenostrum.tech">contact@marenostrum.tech</a></p>
       `.trim()
     );
+
+    // ── Stockage Airtable ─────────────────────────────────────────────────────
+    try {
+      const zoneToCountry: Record<string, string> = {
+        france: "France",
+        congo:  "République du Congo",
+        autre:  "Autre pays",
+      };
+      await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`, {
+        method: "POST",
+        headers: {
+          Authorization:  `Bearer ${AIRTABLE_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          typecast: true,
+          fields: {
+            "Prénom / Nom":       prenom,
+            "Mail":               email,
+            "Téléphone":          phone ?? "",
+            "Pays de résidence":  zoneToCountry[zone] ?? zone ?? "",
+            "Lead Type":          "Lead Chaud",
+            "Expérience":         "Code promo site web",
+            "Input CTA Site web": "Popup promo -50%",
+            "confidentialité":    true,
+          },
+        }),
+      });
+    } catch (atErr) {
+      console.error("Airtable error (non-blocking):", atErr);
+    }
 
     // ── Notification interne ───────────────────────────────────────────────────
     await sendEmail(
