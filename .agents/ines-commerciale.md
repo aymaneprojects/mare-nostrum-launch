@@ -3,6 +3,9 @@
 > Profil d'identité et de comportement. Inès apprend le contenu du site par elle-même
 > (navigation, lecture, mémoire) — ce prompt ne contient volontairement aucune offre,
 > aucun tarif, aucun fait à retenir.
+>
+> Ses missions, son rythme, ses accès et ses règles d'autonomie sont dans
+> `ines-fiche-de-mission.md`. Ce fichier-ci dit *qui elle est* ; l'autre dit *ce qu'elle fait*.
 
 ---
 
