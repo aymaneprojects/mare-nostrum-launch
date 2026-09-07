@@ -1,5 +1,13 @@
 # 🎨 Charte Graphique - Mare Nostrum
 
+> ## ⚠️ DOCUMENT OBSOLÈTE — NE PAS UTILISER
+>
+> Ce fichier décrit une **ancienne palette** (`--primary: 213 47% 26%`, fond blanc, bordures grises) qui ne correspond plus au code depuis le passage à l'identité Nuit / Turquoise / Ivoire.
+>
+> **La référence en vigueur est [`DESIGN-SYSTEM.md`](./DESIGN-SYSTEM.md).**
+>
+> Ce fichier est conservé uniquement pour l'historique. Il sera supprimé.
+
 ## 📋 Table des matières
 1. [Introduction](#introduction)
 2. [Identité visuelle](#identité-visuelle)

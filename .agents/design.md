@@ -1,9 +1,14 @@
 # Agent: Design System
 
+> **Référence complète et obligatoire : [`DESIGN-SYSTEM.md`](../DESIGN-SYSTEM.md) à la racine.**
+> Ce brief n'est qu'un résumé. En cas de divergence, `DESIGN-SYSTEM.md` prime, et le code prime sur les deux.
+> `CHARTE-GRAPHIQUE.md` est obsolète — ne pas s'en servir.
+
 ## Scope
 Tokens CSS, composants UI, typographie, couleurs, patterns visuels brand.
 
 ## Key files
+- `DESIGN-SYSTEM.md` — règles complètes, composants, pièges, checklist
 - `src/index.css` — SEULE source de vérité pour les tokens
 - `src/pages/Index.tsx` — référence des patterns visuels hero/dark sections
 - `design/Club Mare Nostrum - Onboarding.html` — maquettes de référence

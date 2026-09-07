@@ -176,6 +176,10 @@ Tu dois obtenir `200`. Un `404` signifie que le bloc `try_files` a sauté.
 
 ### Couleurs et design
 
+**Le document de référence est `DESIGN-SYSTEM.md` à la racine du dépôt.** Il couvre les tokens, la typographie, les composants (`Button`, `PageHero`, `MaritimeIcon`, cartes, chips), le pattern des sections sombres, le mouvement, l'accessibilité, les pièges connus et une checklist de livraison. Lis-le en entier avant de toucher à une page. Ce qui suit n'en est que le résumé.
+
+`CHARTE-GRAPHIQUE.md` est un document plus ancien qui décrit une palette qui n'est plus celle du code — ne t'en sers pas.
+
 Toutes les couleurs sont des variables CSS HSL dans `src/index.css`. Les tokens de marque priment sur les tokens shadcn dès qu'il s'agit d'exprimer l'identité :
 
 | Token | Valeur | Usage |
@@ -373,6 +377,7 @@ Tant que ce n'est pas fait, les certificats sont auto-signés et le navigateur a
 
 ### B. Dette technique, à traiter quand tu auras le temps
 
+- **146 couleurs brutes** (`text-white`, hex, `gray-*`…) subsistent dans `src/`, en contradiction avec le design system — 70 d'entre elles dans `Newsletter.tsx` et `Unsubscribed.tsx`. À migrer vers les tokens (`DESIGN-SYSTEM.md` §1), page par page, sans mélanger avec une autre tâche.
 - Le bundle principal fait **1,2 Mo** (326 Ko compressés). Vite le signale à chaque build. Découpage par `import()` dynamique à prévoir.
 - `src/pages/BienvenuClub.tsx` n'est référencée nulle part — code mort probable, à confirmer avant suppression.
 - Plusieurs images dépassent 1 Mo (jusqu'à 2,7 Mo). Conversion en WebP à envisager.

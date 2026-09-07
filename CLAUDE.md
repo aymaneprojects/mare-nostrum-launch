@@ -12,7 +12,7 @@ Before working on any feature, read the relevant brief from `.agents/`:
 | Écoles, Niteo, B2B     | `.agents/education.md`|
 | Blog, articles, mag    | `.agents/mag.md`      |
 | SEO, meta, schema      | `.agents/seo.md`      |
-| Design, CSS, tokens    | `.agents/design.md`   |
+| Design, CSS, tokens    | `DESIGN-SYSTEM.md` (référence complète) puis `.agents/design.md` |
 | Supabase, functions    | `.agents/backend.md`  |
 
 Only read the brief(s) relevant to the task — not all of them. This keeps context tight and saves tokens.
@@ -56,6 +56,8 @@ Every page uses `<EnhancedSEOHead>` (not the bare `<SEOHead>`). It automatically
 - Migrations live in `supabase/migrations/`.
 
 ### Design system
+**Read `DESIGN-SYSTEM.md` before any UI work.** It is the single authoritative reference (tokens, typography, components, dark-section pattern, motion, a11y, known pitfalls, delivery checklist) and is derived from the code. `CHARTE-GRAPHIQUE.md` is obsolete and must not be used.
+
 All colors are HSL CSS custom properties defined in `src/index.css`. Never use Tailwind color utilities directly (e.g. `text-white`, `bg-blue-500`).
 
 Mare Nostrum brand tokens (always prefer these over shadcn semantic tokens when expressing brand identity):
