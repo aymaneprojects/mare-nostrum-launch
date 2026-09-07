@@ -150,9 +150,9 @@ const Education = () => {
 
 
       <PageHero
-        eyebrow="Mare Nostrum Éducation"
-        title="Transformez vos étudiants en entrepreneurs, programmes clés en main"
-        subtitle="Ateliers, hackathons, formations longues et programme Niteo. 55% de nos étudiants créent leur entreprise, +95% de satisfaction."
+        eyebrow="Centre de formation de Mare Nostrum"
+        title="Se former pour créer, diriger et faire grandir son entreprise."
+        subtitle="Organisme de formation certifié Qualiopi, basé à Toulouse et actif dans l'espace francophone. Nous formons celles et ceux qui entreprennent, et les organisations qui les accompagnent."
         ctas={
           <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
             <Link to="/contact">
