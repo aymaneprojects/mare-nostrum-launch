@@ -142,6 +142,22 @@ Le site **n'a pas de déploiement automatique**. Il était auparavant sur Render
 ./deploy-vps.sh
 ```
 
+### ⚠️ Toujours builder depuis ta machine, jamais sur le serveur
+
+Cet incident a déjà eu lieu le 7 septembre 2026 et a mis le site **entièrement en écran blanc**.
+
+Le build Vite intègre les variables `VITE_*` du fichier `.env` **au moment du build**. Ce fichier n'est pas dans Git. Si tu clones le dépôt sur le serveur et que tu lances `npm run build` là-bas, ces variables sont vides : le client Supabase reçoit `undefined` comme URL, plante au chargement du module, et React ne monte jamais. Résultat : page blanche sur tout le site, sans aucune erreur nginx — les fichiers sont servis correctement, c'est le JavaScript qui s'effondre dans le navigateur.
+
+Le diagnostic en une commande, à lancer sur le serveur :
+
+```bash
+grep -c oivxznyzijtoylwfigyq /home/marenostrum/htdocs/www.marenostrum.tech/assets/index-*.js
+```
+
+`0` = build cassé, sans les clés. `1` = build sain.
+
+Un `.env` de secours contenant **uniquement** les variables publiques `VITE_SUPABASE_*` a été déposé dans `/root/mare-nostrum-launch/.env` pour amortir une récidive. Ne t'y fie pas : le flux normal reste **modifier en local → tester → commiter → pousser → `./deploy-vps.sh` depuis ta machine**. Le clone `/root/mare-nostrum-launch/` sur le serveur n'a pas non plus d'identifiants GitHub : un commit fait là-bas reste prisonnier de la machine.
+
 Pour **chacun** des deux domaines, le script enchaîne : `npm run build`, un `rsync` de `dist/`, la correction des permissions (dossiers 755, fichiers 644), puis une vérification HTTP qui interrompt tout si la réponse n'est pas `200`.
 
 Si tu vérifies à la main, le SNI impose de passer par `--resolve` — sinon nginx sert le vhost par défaut et tu obtiens une erreur TLS trompeuse qui n'a rien à voir avec ton déploiement :
@@ -295,6 +311,10 @@ systemctl reload nginx
 ### Toutes les pages sauf l'accueil renvoient 404
 
 Le bloc `try_files` a disparu du vhost. Remets-le (section 4), `nginx -t`, puis recharge.
+
+### Écran blanc sur tout le site, nginx ne signale rien
+
+Le build a été fait sans le `.env` — presque toujours parce que quelqu'un a lancé `npm run build` sur le serveur. Vérifie avec le `grep` de la section 5 : si le résultat est `0`, rebuilde depuis ta machine et relance `./deploy-vps.sh`. Ne cherche pas du côté de nginx, les fichiers sont servis correctement ; c'est le JavaScript qui plante dans le navigateur.
 
 ### Un déploiement a cassé le site
 
