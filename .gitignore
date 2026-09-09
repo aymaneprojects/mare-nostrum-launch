@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Générés par scripts/generate-cards.mjs (prebuild)
+public/vcards/
+public/qr/

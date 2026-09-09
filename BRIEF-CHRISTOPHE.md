@@ -267,6 +267,16 @@ Les leads sont qualifiés par les colonnes `Lead Type`, `Expérience` et `Input 
 
 Les écritures Airtable sont volontairement non bloquantes : si Airtable tombe, l'e-mail part quand même.
 
+### Cartes de visite digitales (`/equipe`)
+
+Chaque membre de l'équipe a une fiche `/equipe/<slug>` avec un bouton « Ajouter à mes contacts » et un QR code. Le système est entièrement statique.
+
+- **Source unique :** `src/data/team.json`. Ajouter un collègue = ajouter une entrée (slug, prénom, nom, titre, bureau, e-mail, téléphone, WhatsApp, LinkedIn, photo) et déposer son portrait dans `src/assets/team/<photo>.png`. Un champ vide est simplement masqué.
+- **Génération :** `scripts/generate-cards.mjs` produit `public/vcards/*.vcf` (contacts) et `public/qr/*.png|svg`. Il tourne automatiquement avant chaque `npm run build` (hook `prebuild`), ou à la main avec `npm run cards`. Ces dossiers sont ignorés par Git : ne les commite pas.
+- **Côté serveur :** les deux vhosts nginx déclarent `text/vcard` pour `.vcf`. Sans ça, iPhone télécharge un fichier au lieu d'ouvrir la fiche contact. Si tu recrées un vhost, remets ce bloc.
+- **Piège :** le lien « Ajouter à mes contacts » ne doit **pas** porter l'attribut `download` — c'est justement ce qui permet à iOS d'ouvrir Contacts directement. Les liens de QR code, eux, le portent volontairement.
+- Pense à ajouter la nouvelle fiche dans `public/sitemap.xml`.
+
 ### Anti-spam
 
 Le formulaire de contact a subi une vague de spam (2 envois toutes les 3 h). Trois défenses sont en place dans `send-contact-notification` :

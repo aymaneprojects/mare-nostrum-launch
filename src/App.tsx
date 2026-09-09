@@ -45,6 +45,8 @@ import Newsletter from "./pages/Newsletter";
 import Unsubscribed from "./pages/Unsubscribed";
 import Diagnostic from "./pages/Diagnostic";
 import Partenaires from "./pages/Partenaires";
+import Equipe from "./pages/Equipe";
+import CarteContact from "./pages/CarteContact";
 
 const queryClient = new QueryClient();
 
@@ -111,6 +113,8 @@ const AppContent = () => {
         <Route path="/unsubscribed" element={<Unsubscribed />} />
         <Route path="/diagnostic" element={<Diagnostic />} />
         <Route path="/a-propos/partenaire" element={<Partenaires />} />
+        <Route path="/equipe" element={<Equipe />} />
+        <Route path="/equipe/:slug" element={<CarteContact />} />
 
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />

@@ -1,0 +1,93 @@
+[
+  {
+    "slug": "alexis-janicot",
+    "prenom": "Alexis",
+    "nom": "Janicot",
+    "titre": "Fondateur et Dirigeant",
+    "bureau": "Toulouse",
+    "email": "alexis@marenostrum.tech",
+    "telephone": "+33617358167",
+    "whatsapp": "+33617358167",
+    "linkedin": "",
+    "photo": "alexis-janicot",
+    "bio": ""
+  },
+  {
+    "slug": "aymane-abdennour",
+    "prenom": "Aymane",
+    "nom": "Abdennour",
+    "titre": "Chargé de mission entrepreneuriat junior",
+    "bureau": "Toulouse",
+    "email": "aymane@marenostrum.tech",
+    "telephone": "",
+    "whatsapp": "",
+    "linkedin": "",
+    "photo": "aymane-abdennour",
+    "bio": ""
+  },
+  {
+    "slug": "romeo-masip",
+    "prenom": "Roméo",
+    "nom": "Masip",
+    "titre": "Commercial Junior",
+    "bureau": "Toulouse",
+    "email": "",
+    "telephone": "",
+    "whatsapp": "",
+    "linkedin": "",
+    "photo": "romeo-masip",
+    "bio": ""
+  },
+  {
+    "slug": "khalid-ezzemani",
+    "prenom": "Khalid",
+    "nom": "Ezzemani",
+    "titre": "Co-Fondateur",
+    "bureau": "Casablanca",
+    "email": "",
+    "telephone": "",
+    "whatsapp": "",
+    "linkedin": "",
+    "photo": "khalid-ezzemani",
+    "bio": ""
+  },
+  {
+    "slug": "alain-janicot",
+    "prenom": "Alain",
+    "nom": "Janicot",
+    "titre": "Co-Fondateur",
+    "bureau": "Paris",
+    "email": "",
+    "telephone": "",
+    "whatsapp": "",
+    "linkedin": "",
+    "photo": "alain-janicot",
+    "bio": ""
+  },
+  {
+    "slug": "frederique-bertelet",
+    "prenom": "Frédérique",
+    "nom": "Bertelet",
+    "titre": "Ingénieur pédagogique",
+    "bureau": "Toulouse",
+    "email": "",
+    "telephone": "",
+    "whatsapp": "",
+    "linkedin": "",
+    "photo": "frederique-bertelet",
+    "bio": ""
+  },
+  {
+    "slug": "diane-moulins",
+    "prenom": "Diane",
+    "nom": "Moulins",
+    "titre": "Chef de projet Nitéo",
+    "bureau": "Toulouse",
+    "email": "",
+    "telephone": "",
+    "whatsapp": "",
+    "linkedin": "",
+    "photo": "diane-moulins",
+    "bio": ""
+  }
+]

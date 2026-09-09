@@ -105,6 +105,54 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://marenostrum.tech/equipe</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://marenostrum.tech/equipe/alexis-janicot</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://marenostrum.tech/equipe/aymane-abdennour</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://marenostrum.tech/equipe/romeo-masip</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://marenostrum.tech/equipe/khalid-ezzemani</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://marenostrum.tech/equipe/alain-janicot</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://marenostrum.tech/equipe/frederique-bertelet</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://marenostrum.tech/equipe/diane-moulins</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://marenostrum.tech/mag/entrepreneuriat-social-francophonie</loc>
     <lastmod>2026-04-01</lastmod>
     <changefreq>monthly</changefreq>
