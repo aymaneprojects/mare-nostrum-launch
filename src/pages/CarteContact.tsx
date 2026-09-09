@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
 import {
-  getMember, getPortrait, fullName, initials, cardUrl, vcardPath, qrPath,
+  getMember, getPortrait, fullName, initials, cardUrl, canonicalUrl, vcardPath, qrPath,
   formatPhone, telHref, whatsappHref, SITE_URL, TEAM_VCARD_PATH,
 } from "@/data/team";
 
@@ -51,7 +51,7 @@ const CarteContact = () => {
     givenName: member.prenom,
     familyName: member.nom,
     jobTitle: member.titre,
-    url,
+    url: canonicalUrl(member),
     ...(member.email ? { email: member.email } : {}),
     ...(member.telephone ? { telephone: member.telephone } : {}),
     ...(member.linkedin ? { sameAs: [member.linkedin] } : {}),
@@ -77,6 +77,8 @@ const CarteContact = () => {
       <StructuredData data={personSchema} />
       <Header />
 
+      {/* Chatbot et popup promo sont désactivés sur cette page (voir App.tsx) :
+          la personne qui scanne doit voir la carte, rien d'autre. */}
       <main className="flex-1">
         {/* Bandeau sombre — pattern hero du design system */}
         <section
@@ -191,6 +193,7 @@ const CarteContact = () => {
             <p className="text-sm text-muted-foreground mt-4">
               À scanner avec l'appareil photo du téléphone : la fiche s'ouvre, le contact s'enregistre.
             </p>
+            <p className="font-mono text-sm text-foreground mt-2 break-all">{url.replace(/^https?:\/\/(www\.)?/, "")}</p>
             <div className="flex flex-col sm:flex-row gap-2 justify-center mt-4">
               <Button asChild variant="outline" size="sm">
                 <a href={qrPath(member, "png")} download={`qr-${member.slug}.png`}>Télécharger en PNG</a>

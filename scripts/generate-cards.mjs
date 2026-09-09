@@ -90,7 +90,7 @@ function vcard(m) {
     lines.push(`URL;TYPE=LinkedIn:${m.linkedin}`);
     lines.push(`X-SOCIALPROFILE;TYPE=linkedin:${m.linkedin}`); // reconnu par iOS / macOS
   }
-  lines.push(`NOTE:${esc(`Fiche contact : ${SITE}/equipe/${m.slug}`)}`);
+  lines.push(`NOTE:${esc(`Fiche contact : ${SITE}/${m.alias}`)}`);
   lines.push("END:VCARD");
   return lines.map(fold).join("\r\n") + "\r\n";
 }
@@ -106,14 +106,17 @@ async function main() {
 
   const seen = new Set();
   for (const m of team) {
-    for (const field of ["slug", "prenom", "nom"]) {
+    for (const field of ["slug", "alias", "prenom", "nom"]) {
       if (!m[field]) throw new Error(`team.json : champ "${field}" manquant pour ${JSON.stringify(m)}`);
     }
-    if (!/^[a-z0-9-]+$/.test(m.slug)) throw new Error(`team.json : slug invalide "${m.slug}" (minuscules, chiffres, tirets)`);
-    if (seen.has(m.slug)) throw new Error(`team.json : slug en double "${m.slug}"`);
-    seen.add(m.slug);
+    for (const field of ["slug", "alias"]) {
+      if (!/^[a-z0-9-]+$/.test(m[field])) throw new Error(`team.json : ${field} invalide "${m[field]}" (minuscules, chiffres, tirets)`);
+      if (seen.has(m[field])) throw new Error(`team.json : ${field} en double "${m[field]}"`);
+      seen.add(m[field]);
+    }
 
-    const url = `${SITE}/equipe/${m.slug}`;
+    // Le QR encode l'adresse courte : moins de caractères, un code plus lisible.
+    const url = `${SITE}/${m.alias}`;
     writeFileSync(join(vcardDir, `${m.slug}.vcf`), vcard(m), "utf8");
     await QRCode.toFile(join(qrDir, `${m.slug}.png`), url, { ...QR_OPTIONS, width: 1024 });
     writeFileSync(join(qrDir, `${m.slug}.svg`), await QRCode.toString(url, { ...QR_OPTIONS, type: "svg" }), "utf8");

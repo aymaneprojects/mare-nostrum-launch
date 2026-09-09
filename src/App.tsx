@@ -47,6 +47,7 @@ import Diagnostic from "./pages/Diagnostic";
 import Partenaires from "./pages/Partenaires";
 import Equipe from "./pages/Equipe";
 import CarteContact from "./pages/CarteContact";
+import CarteAlias from "./pages/CarteAlias";
 
 const queryClient = new QueryClient();
 
@@ -66,15 +67,19 @@ const AppContent = () => {
     );
   }
   
+  // Cartes de visite (/equipe et /equipe/<slug>) : ni chatbot ni popup promo.
+  // Ce sont des pages qu'on scanne en rendez-vous, pas des pages de conversion.
+  const quiet = location.pathname === "/equipe" || /^\/equipe\/[^/]+$/.test(location.pathname);
+
   return (
     <>
       <ScrollToTop />
       <ScrollToTopButton />
-      <ChatBot />
+      {!quiet && <ChatBot />}
       <BottomNav />
       <CookieBanner />
-      <ExitIntentPopup />
-      
+      {!quiet && <ExitIntentPopup />}
+
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/education" element={<Education />} />
@@ -117,6 +122,10 @@ const AppContent = () => {
         <Route path="/equipe/:slug" element={<CarteContact />} />
 
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+        {/* Adresses courtes des cartes de visite (/alexis, /aymane…). Les routes
+            statiques ci-dessus restent prioritaires : React Router classe les
+            segments fixes avant les segments dynamiques. */}
+        <Route path="/:alias" element={<CarteAlias />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

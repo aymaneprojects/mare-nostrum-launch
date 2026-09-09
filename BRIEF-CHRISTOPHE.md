@@ -271,7 +271,9 @@ Les écritures Airtable sont volontairement non bloquantes : si Airtable tombe, 
 
 Chaque membre de l'équipe a une fiche `/equipe/<slug>` avec un bouton « Ajouter à mes contacts » et un QR code. Le système est entièrement statique.
 
-- **Source unique :** `src/data/team.json`. Ajouter un collègue = ajouter une entrée (slug, prénom, nom, titre, bureau, e-mail, téléphone, WhatsApp, LinkedIn, photo) et déposer son portrait dans `src/assets/team/<photo>.png`. Un champ vide est simplement masqué.
+- **Source unique :** `src/data/team.json`. Ajouter un collègue = ajouter une entrée (slug, alias, prénom, nom, titre, bureau, e-mail, téléphone, WhatsApp, LinkedIn, photo) et déposer son portrait dans `src/assets/team/<photo>.png`. Un champ vide est simplement masqué.
+- **Adresses courtes :** le champ `alias` donne une URL à la racine — `marenostrum.tech/alexis`, `/aymane`… — qui redirige vers la fiche. C'est cette adresse courte que les QR codes encodent. La route `/:alias` est déclarée en dernier dans `App.tsx` ; un alias ne doit jamais reprendre le nom d'une route existante (`club`, `blog`, `contact`…), le script de génération ne le vérifie pas.
+- **Sur ces pages, ni chatbot ni popup promo** : c'est volontaire, géré dans `App.tsx` par la variable `quiet`. Ce sont des pages qu'on scanne en rendez-vous.
 - **Génération :** `scripts/generate-cards.mjs` produit `public/vcards/*.vcf` (contacts) et `public/qr/*.png|svg`. Il tourne automatiquement avant chaque `npm run build` (hook `prebuild`), ou à la main avec `npm run cards`. Ces dossiers sont ignorés par Git : ne les commite pas.
 - **Côté serveur :** les deux vhosts nginx déclarent `text/vcard` pour `.vcf`. Sans ça, iPhone télécharge un fichier au lieu d'ouvrir la fiche contact. Si tu recrées un vhost, remets ce bloc.
 - **Piège :** le lien « Ajouter à mes contacts » ne doit **pas** porter l'attribut `download` — c'est justement ce qui permet à iOS d'ouvrir Contacts directement. Les liens de QR code, eux, le portent volontairement.

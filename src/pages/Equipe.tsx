@@ -8,7 +8,7 @@ import StructuredData from "@/components/StructuredData";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import {
-  team, getPortrait, fullName, initials, cardUrl, vcardPath,
+  team, getPortrait, fullName, initials, canonicalUrl, vcardPath,
   SITE_URL, TEAM_VCARD_PATH, TEAM_QR_PATH,
 } from "@/data/team";
 
@@ -24,7 +24,7 @@ const Equipe = () => {
         "@type": "Person",
         name: fullName(m),
         jobTitle: m.titre,
-        url: cardUrl(m),
+        url: canonicalUrl(m),
         worksFor: { "@type": "Organization", name: "Mare Nostrum", url: SITE_URL },
       },
     })),

@@ -1,6 +1,7 @@
 [
   {
     "slug": "alexis-janicot",
+    "alias": "alexis",
     "prenom": "Alexis",
     "nom": "Janicot",
     "titre": "Fondateur et Dirigeant",
@@ -14,9 +15,10 @@
   },
   {
     "slug": "aymane-abdennour",
+    "alias": "aymane",
     "prenom": "Aymane",
     "nom": "Abdennour",
-    "titre": "Chargé de mission entrepreneuriat junior",
+    "titre": "Fondateur de Veluo by Mare Nostrum",
     "bureau": "Toulouse",
     "email": "aymane@marenostrum.tech",
     "telephone": "+33777345056",
@@ -27,6 +29,7 @@
   },
   {
     "slug": "romeo-masip",
+    "alias": "romeo",
     "prenom": "Roméo",
     "nom": "Masip",
     "titre": "Commercial Junior",
@@ -40,6 +43,7 @@
   },
   {
     "slug": "khalid-ezzemani",
+    "alias": "khalid",
     "prenom": "Khalid",
     "nom": "Ezzemani",
     "titre": "Co-Fondateur",
@@ -53,6 +57,7 @@
   },
   {
     "slug": "alain-janicot",
+    "alias": "alain",
     "prenom": "Alain",
     "nom": "Janicot",
     "titre": "Co-Fondateur",
@@ -66,6 +71,7 @@
   },
   {
     "slug": "frederique-bertelet",
+    "alias": "frederique",
     "prenom": "Frédérique",
     "nom": "Bertelet",
     "titre": "Ingénieur pédagogique",
@@ -79,6 +85,7 @@
   },
   {
     "slug": "diane-moulins",
+    "alias": "diane",
     "prenom": "Diane",
     "nom": "Moulins",
     "titre": "Chef de projet Nitéo",
