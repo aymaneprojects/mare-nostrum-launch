@@ -10,10 +10,8 @@ import teamJson from "./team.json";
 export type Bureau = "Toulouse" | "Paris" | "Casablanca";
 
 export interface TeamMember {
-  /** Identifiant d'URL de la fiche : minuscules, chiffres, tirets. Ex. "alexis-janicot" */
+  /** Identifiant d'URL de la fiche, en pratique le prénom : "alexis" → marenostrum.tech/equipe/alexis. Minuscules, chiffres, tirets, unique. */
   slug: string;
-  /** Adresse courte à la racine du site, ex. "alexis" → marenostrum.tech/alexis. Unique, ne doit pas être une route existante. */
-  alias: string;
   prenom: string;
   nom: string;
   titre: string;
@@ -45,18 +43,15 @@ export function getPortrait(photo: string): string | undefined {
   return hit?.[1];
 }
 
-export const getMember = (slug: string): TeamMember | undefined => team.find((m) => m.slug === slug);
-export const getMemberByAlias = (alias: string): TeamMember | undefined =>
-  team.find((m) => m.alias === alias.toLowerCase());
+export const getMember = (slug: string): TeamMember | undefined =>
+  team.find((m) => m.slug === slug.toLowerCase());
 
 export const fullName = (m: TeamMember) => `${m.prenom} ${m.nom}`;
 
 export const initials = (m: TeamMember) => `${m.prenom.charAt(0)}${m.nom.charAt(0)}`.toUpperCase();
 
-/** Adresse courte, à partager et à encoder dans le QR : marenostrum.tech/alexis */
-export const cardUrl = (m: TeamMember) => `${SITE_URL}/${m.alias}`;
-/** Adresse canonique de la page (SEO, schéma) */
-export const canonicalUrl = (m: TeamMember) => `${SITE_URL}/equipe/${m.slug}`;
+/** Adresse de la fiche — partagée, encodée dans le QR, utilisée dans les schémas. */
+export const cardUrl = (m: TeamMember) => `${SITE_URL}/equipe/${m.slug}`;
 export const vcardPath = (m: TeamMember) => `/vcards/${m.slug}.vcf`;
 export const qrPath = (m: TeamMember, ext: "png" | "svg" = "png") => `/qr/${m.slug}.${ext}`;
 

@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
 import {
-  getMember, getPortrait, fullName, initials, cardUrl, canonicalUrl, vcardPath, qrPath,
+  getMember, getPortrait, fullName, initials, cardUrl, vcardPath, qrPath,
   formatPhone, telHref, whatsappHref, SITE_URL, TEAM_VCARD_PATH,
 } from "@/data/team";
 
@@ -51,7 +51,7 @@ const CarteContact = () => {
     givenName: member.prenom,
     familyName: member.nom,
     jobTitle: member.titre,
-    url: canonicalUrl(member),
+    url,
     ...(member.email ? { email: member.email } : {}),
     ...(member.telephone ? { telephone: member.telephone } : {}),
     ...(member.linkedin ? { sameAs: [member.linkedin] } : {}),

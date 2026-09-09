@@ -1,7 +1,6 @@
 [
   {
-    "slug": "alexis-janicot",
-    "alias": "alexis",
+    "slug": "alexis",
     "prenom": "Alexis",
     "nom": "Janicot",
     "titre": "Fondateur et Dirigeant",
@@ -14,8 +13,7 @@
     "bio": ""
   },
   {
-    "slug": "aymane-abdennour",
-    "alias": "aymane",
+    "slug": "aymane",
     "prenom": "Aymane",
     "nom": "Abdennour",
     "titre": "Fondateur de Veluo by Mare Nostrum",
@@ -28,8 +26,7 @@
     "bio": ""
   },
   {
-    "slug": "romeo-masip",
-    "alias": "romeo",
+    "slug": "romeo",
     "prenom": "Roméo",
     "nom": "Masip",
     "titre": "Commercial Junior",
@@ -42,8 +39,7 @@
     "bio": ""
   },
   {
-    "slug": "khalid-ezzemani",
-    "alias": "khalid",
+    "slug": "khalid",
     "prenom": "Khalid",
     "nom": "Ezzemani",
     "titre": "Co-Fondateur",
@@ -56,8 +52,7 @@
     "bio": ""
   },
   {
-    "slug": "alain-janicot",
-    "alias": "alain",
+    "slug": "alain",
     "prenom": "Alain",
     "nom": "Janicot",
     "titre": "Co-Fondateur",
@@ -70,8 +65,7 @@
     "bio": ""
   },
   {
-    "slug": "frederique-bertelet",
-    "alias": "frederique",
+    "slug": "frederique",
     "prenom": "Frédérique",
     "nom": "Bertelet",
     "titre": "Ingénieur pédagogique",
@@ -84,8 +78,7 @@
     "bio": ""
   },
   {
-    "slug": "diane-moulins",
-    "alias": "diane",
+    "slug": "diane",
     "prenom": "Diane",
     "nom": "Moulins",
     "titre": "Chef de projet Nitéo",

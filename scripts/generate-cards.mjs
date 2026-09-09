@@ -16,7 +16,7 @@
  * Pour ajouter un collègue : une entrée dans team.json, un portrait dans
  * src/assets/team/<photo>.png, puis `npm run cards`. Rien d'autre.
  */
-import { readFileSync, mkdirSync, writeFileSync } from "node:fs";
+import { readFileSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import QRCode from "qrcode";
@@ -90,7 +90,7 @@ function vcard(m) {
     lines.push(`URL;TYPE=LinkedIn:${m.linkedin}`);
     lines.push(`X-SOCIALPROFILE;TYPE=linkedin:${m.linkedin}`); // reconnu par iOS / macOS
   }
-  lines.push(`NOTE:${esc(`Fiche contact : ${SITE}/${m.alias}`)}`);
+  lines.push(`NOTE:${esc(`Fiche contact : ${SITE}/equipe/${m.slug}`)}`);
   lines.push("END:VCARD");
   return lines.map(fold).join("\r\n") + "\r\n";
 }
@@ -101,22 +101,22 @@ async function main() {
   const team = JSON.parse(readFileSync(join(ROOT, "src/data/team.json"), "utf8"));
   const vcardDir = join(ROOT, "public/vcards");
   const qrDir = join(ROOT, "public/qr");
+  // Repartir de zéro : un membre renommé ou retiré ne doit pas laisser de fichier orphelin.
+  rmSync(vcardDir, { recursive: true, force: true });
+  rmSync(qrDir, { recursive: true, force: true });
   mkdirSync(vcardDir, { recursive: true });
   mkdirSync(qrDir, { recursive: true });
 
   const seen = new Set();
   for (const m of team) {
-    for (const field of ["slug", "alias", "prenom", "nom"]) {
+    for (const field of ["slug", "prenom", "nom"]) {
       if (!m[field]) throw new Error(`team.json : champ "${field}" manquant pour ${JSON.stringify(m)}`);
     }
-    for (const field of ["slug", "alias"]) {
-      if (!/^[a-z0-9-]+$/.test(m[field])) throw new Error(`team.json : ${field} invalide "${m[field]}" (minuscules, chiffres, tirets)`);
-      if (seen.has(m[field])) throw new Error(`team.json : ${field} en double "${m[field]}"`);
-      seen.add(m[field]);
-    }
+    if (!/^[a-z0-9-]+$/.test(m.slug)) throw new Error(`team.json : slug invalide "${m.slug}" (minuscules, chiffres, tirets)`);
+    if (seen.has(m.slug)) throw new Error(`team.json : slug en double "${m.slug}"`);
+    seen.add(m.slug);
 
-    // Le QR encode l'adresse courte : moins de caractères, un code plus lisible.
-    const url = `${SITE}/${m.alias}`;
+    const url = `${SITE}/equipe/${m.slug}`;
     writeFileSync(join(vcardDir, `${m.slug}.vcf`), vcard(m), "utf8");
     await QRCode.toFile(join(qrDir, `${m.slug}.png`), url, { ...QR_OPTIONS, width: 1024 });
     writeFileSync(join(qrDir, `${m.slug}.svg`), await QRCode.toString(url, { ...QR_OPTIONS, type: "svg" }), "utf8");
