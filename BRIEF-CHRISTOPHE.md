@@ -226,14 +226,16 @@ Avant de travailler sur une fonctionnalité, lis le brief correspondant dans `.a
 
 ### Edge functions Supabase
 
-23 fonctions dans `supabase/functions/`. Déploiement d'une fonction :
+24 fonctions dans `supabase/functions/`. Déploiement d'une fonction :
 
 ```bash
-SUPABASE_ACCESS_TOKEN=<token> npx supabase@1.207.9 functions deploy <nom> \
-  --project-ref oivxznyzijtoylwfigyq --no-verify-jwt
+SUPABASE_ACCESS_TOKEN=<token> npx supabase@2 functions deploy <nom> \
+  --project-ref oivxznyzijtoylwfigyq --no-verify-jwt --use-api
 ```
 
-Le flag `--no-verify-jwt` est nécessaire : les visiteurs ne sont pas authentifiés.
+Le flag `--no-verify-jwt` est nécessaire : les visiteurs ne sont pas authentifiés. Le flag `--use-api` fait empaqueter la fonction par Supabase : **sans lui, le CLI exige Docker** (et la version 1.x du CLI échoue sur une machine sans Docker).
+
+> **Attention, base partagée.** Le projet Supabase contient aussi une dizaine de tables créées par une autre application (`profiles`, `groups`, `engagements`, `chat_sessions`…), absentes des migrations de ce dépôt. Ne les modifie pas, et ne lance jamais de migration « de nettoyage » sur le schéma `public`.
 
 Correspondance page → fonction :
 
@@ -266,6 +268,36 @@ Les leads sont qualifiés par les colonnes `Lead Type`, `Expérience` et `Input 
 **Piège Airtable :** l'API renvoie `UNKNOWN_FIELD_NAME` si une colonne n'existe pas, et l'écriture entière échoue. Les fonctions récentes gèrent ça en réessayant sans le champ fautif. **Renommer une colonne dans Airtable casse silencieusement l'écriture** — préviens le client de ne jamais renommer une colonne sans te le dire. Renommer une *vue*, en revanche, est sans effet.
 
 Les écritures Airtable sont volontairement non bloquantes : si Airtable tombe, l'e-mail part quand même.
+
+### Live conférence (`/live`)
+
+Outil d'interaction avec la salle pendant un événement, en trois modes : **question ouverte** (réponses libres affichées à l'écran), **sondage** (résultats en barres) et **mur de questions** (messages triés par likes). Premier usage du temps réel Supabase dans le projet.
+
+| Page | Pour qui | Rôle |
+|---|---|---|
+| `/live` | équipe | créer un événement (clé Mare Nostrum) ou retrouver une régie |
+| `/live/MN-XXXX` | public, sur téléphone via le QR | rejoindre avec prénom + emoji, puis participer |
+| `/live/MN-XXXX/ecran` | vidéoprojecteur | QR d'accueil, puis rendu en direct de l'activité |
+| `/live/MN-XXXX/regie` | animateur (code animateur) | créer, lancer, terminer, masquer, exporter en CSV |
+
+**Architecture.**
+- **Données** : 7 tables `live_*`, migration `supabase/migrations/20260917120000_live_events.sql`.
+- **Écritures du public** : directement en base, sous RLS. Les garde-fous sont dans les policies et les contraintes : activité active uniquement, un vote et un like par participant, un message toutes les 5 s, 280 caractères, prénom cohérent avec le participant.
+- **Actions de l'animateur** : passent par l'edge function `live-admin`, qui revérifie le code animateur à chaque appel.
+- **Temps réel** : `postgres_changes` sur `live_items`, `live_messages` et `live_votes`. Hook générique : `src/hooks/useLiveTable.ts`.
+
+**Secrets (Supabase).** `LIVE_CREATE_KEY` est la clé d'équipe qui autorise la création d'événements. `LIVE_ADMIN_PEPPER` est concaténé au code animateur avant hachage. **Ne change jamais le pepper** : tous les codes animateurs existants deviendraient invalides. Pour changer la clé d'équipe :
+
+```bash
+SUPABASE_ACCESS_TOKEN=<token> npx supabase@2 secrets set LIVE_CREATE_KEY=<nouvelle-clé> --project-ref oivxznyzijtoylwfigyq
+```
+
+**Pièges à connaître.**
+- Les codes animateurs sont stockés hachés dans `live_event_secrets` (RLS sans policy, privilèges révoqués). **Un code perdu ne se récupère pas** : la page de création le dit, et c'est voulu.
+- Les messages masqués restent lisibles publiquement. C'est indispensable : sinon la mise à jour `hidden → true` n'est jamais diffusée en temps réel et l'écran ne les retire pas. Le filtrage se fait côté client.
+- Les téléphones n'écoutent **pas** les votes, seuls l'écran et la régie le font. Ne l'ajoute pas : avec 300 personnes, chaque vote déclencherait 300 notifications inutiles.
+- Le CSS global force la couleur de tous les `h1`–`h4`. Sur les pages sombres du module, chaque titre porte `text-primary-foreground` explicitement, sinon il devient invisible.
+- **Capacité** : une connexion temps réel par téléphone ouvert. Vérifie le plan Supabase avant un événement de plus de 150 personnes (Free : 200 connexions simultanées, Pro : 500).
 
 ### Cartes de visite digitales (`/equipe`)
 

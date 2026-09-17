@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -48,6 +49,12 @@ import Partenaires from "./pages/Partenaires";
 import Equipe from "./pages/Equipe";
 import CarteContact from "./pages/CarteContact";
 
+// Live conférence : chargées à la demande (QR code + temps réel), hors du bundle du site vitrine.
+const LiveHome = lazy(() => import("./pages/live/LiveHome"));
+const LivePublic = lazy(() => import("./pages/live/LivePublic"));
+const LiveScreen = lazy(() => import("./pages/live/LiveScreen"));
+const LiveRegie = lazy(() => import("./pages/live/LiveRegie"));
+
 const queryClient = new QueryClient();
 
 // Composant qui gère le prefetch des données
@@ -68,15 +75,18 @@ const AppContent = () => {
   
   // Cartes de visite (/equipe et /equipe/<slug>) : ni chatbot ni popup promo.
   // Ce sont des pages qu'on scanne en rendez-vous, pas des pages de conversion.
-  const quiet = location.pathname === "/equipe" || /^\/equipe\/[^/]+$/.test(location.pathname);
+  // Live conférence (/live…) : écrans plein cadre projetés ou utilisés au téléphone
+  // pendant un événement. Aucun élément global ne doit s'y superposer.
+  const isLive = location.pathname === "/live" || location.pathname.startsWith("/live/");
+  const quiet = isLive || location.pathname === "/equipe" || /^\/equipe\/[^/]+$/.test(location.pathname);
 
   return (
     <>
       <ScrollToTop />
-      <ScrollToTopButton />
+      {!isLive && <ScrollToTopButton />}
       {!quiet && <ChatBot />}
-      <BottomNav />
-      <CookieBanner />
+      {!isLive && <BottomNav />}
+      {!isLive && <CookieBanner />}
       {!quiet && <ExitIntentPopup />}
 
       <Routes>
@@ -119,6 +129,12 @@ const AppContent = () => {
         <Route path="/a-propos/partenaire" element={<Partenaires />} />
         <Route path="/equipe" element={<Equipe />} />
         <Route path="/equipe/:slug" element={<CarteContact />} />
+
+        {/* Live conférence */}
+        <Route path="/live" element={<Suspense fallback={null}><LiveHome /></Suspense>} />
+        <Route path="/live/:code" element={<Suspense fallback={null}><LivePublic /></Suspense>} />
+        <Route path="/live/:code/ecran" element={<Suspense fallback={null}><LiveScreen /></Suspense>} />
+        <Route path="/live/:code/regie" element={<Suspense fallback={null}><LiveRegie /></Suspense>} />
 
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
