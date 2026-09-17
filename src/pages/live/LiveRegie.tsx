@@ -19,6 +19,7 @@ import logo from "@/assets/logo.png";
 import { supabase } from "@/integrations/supabase/client";
 import { useLiveEvent } from "@/hooks/useLiveEvent";
 import { useLiveMessages } from "@/hooks/useLiveMessages";
+import { useParticipantCount } from "@/hooks/useParticipantCount";
 import { forgetAdminCode, liveAdmin, LiveAdminError, loadAdminCode, saveAdminCode } from "@/lib/live/admin";
 import { downloadCsv, toCsv } from "@/lib/live/csv";
 import { groupWords } from "@/lib/live/words";
@@ -139,7 +140,7 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
   const [composerOpen, setComposerOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
-  const [participants, setParticipants] = useState<number | null>(null);
+  const participants = useParticipantCount(event.id, 10_000);
   const [exporting, setExporting] = useState(false);
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [editingTitle, setEditingTitle] = useState(false);
@@ -164,18 +165,6 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
     () => items.find((i) => i.id === selectedId) ?? activeItem ?? activeWall ?? items[0] ?? null,
     [items, selectedId, activeItem, activeWall],
   );
-
-  // Nombre de participants (table non diffusée en temps réel : rafraîchi toutes les 10 s).
-  useEffect(() => {
-    let cancelled = false;
-    const load = async () => {
-      const { count } = await supabase.from("live_participants").select("id", { count: "exact", head: true }).eq("event_id", event.id);
-      if (!cancelled && count !== null) setParticipants(count);
-    };
-    void load();
-    const timer = window.setInterval(load, 10_000);
-    return () => { cancelled = true; window.clearInterval(timer); };
-  }, [event.id]);
 
   const run = async <T,>(key: string, action: Parameters<typeof liveAdmin>[0], body: Record<string, unknown>, success?: string): Promise<T | null> => {
     setBusy(key);

@@ -5,7 +5,9 @@ import LiveShell from "@/components/live/LiveShell";
 import LiveQrCode from "@/components/live/LiveQrCode";
 import ActivityDisplay from "@/components/live/ActivityDisplay";
 import FullscreenButton from "@/components/live/FullscreenButton";
+import ParticipantCount from "@/components/live/ParticipantCount";
 import { useLiveEvent } from "@/hooks/useLiveEvent";
+import { useParticipantCount } from "@/hooks/useParticipantCount";
 import { liveUrls } from "@/lib/live/types";
 
 /**
@@ -16,6 +18,7 @@ import { liveUrls } from "@/lib/live/types";
 const LiveScreen = () => {
   const { code } = useParams();
   const { event, status, screenItems, activeWall, publicCode } = useLiveEvent(code);
+  const participants = useParticipantCount(event?.id);
 
   const urls = liveUrls(publicCode);
   const seo = <EnhancedSEOHead title="Écran live — Mare Nostrum" description="Écran de salle Mare Nostrum Live." noindex />;
@@ -43,6 +46,7 @@ const LiveScreen = () => {
             </h1>
             <p className="mt-8 text-xl text-primary-foreground/70 md:text-2xl">Scannez le QR code ou rendez-vous sur</p>
             <p className="mt-2 font-mono text-3xl font-semibold text-accent md:text-4xl">{urls.display}</p>
+            <ParticipantCount count={participants} variant="hero" className="mt-8" />
           </div>
           <LiveQrCode value={urls.public} size={320} className="shrink-0" />
         </div>
@@ -57,6 +61,7 @@ const LiveScreen = () => {
   const corner = (
     <div className="flex items-center gap-4">
       <div className="hidden text-right lg:block">
+        <ParticipantCount count={participants} className="mb-1.5" />
         {wallInCorner ? (
           <p className="flex items-center justify-end gap-1.5 text-sm text-accent">
             <MessagesSquare className="h-4 w-4" aria-hidden />
