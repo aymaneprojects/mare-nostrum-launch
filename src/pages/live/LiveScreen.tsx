@@ -48,7 +48,7 @@ const LiveScreen = () => {
             <p className="mt-2 font-mono text-3xl font-semibold text-accent md:text-4xl">{urls.display}</p>
             <ParticipantCount count={participants} variant="hero" className="mt-8" />
           </div>
-          <LiveQrCode value={urls.public} size={320} className="shrink-0" />
+          <LiveQrCode value={urls.public} size={320} className="shrink-0" expandable caption={urls.display} />
         </div>
         <FullscreenButton className="fixed bottom-5 right-5" />
       </LiveShell>
@@ -72,7 +72,7 @@ const LiveScreen = () => {
         )}
         <p className="font-mono text-lg font-semibold text-primary-foreground">{urls.display}</p>
       </div>
-      <LiveQrCode value={urls.public} size={wallInCorner ? 112 : 96} />
+      <LiveQrCode value={urls.public} size={wallInCorner ? 112 : 96} expandable caption={urls.display} />
     </div>
   );
 

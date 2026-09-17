@@ -221,10 +221,32 @@ serve(async (req) => {
       case "delete_item": {
         const event = await authorize(body.public_code, body.admin_code);
         const target = await ownItem(event.id, body.item_id);
-        // Une activité lancée contient des réponses : on ne la supprime pas.
-        if (target.status !== "draft") throw new HttpError("Seul un brouillon peut être supprimé.");
+        // Les réponses et les votes partent en cascade : la régie prévient avant.
+        const { count: answers } = await supabase
+          .from("live_messages").select("id", { count: "exact", head: true }).eq("item_id", target.id);
+        const { count: votes } = await supabase
+          .from("live_votes").select("id", { count: "exact", head: true }).eq("item_id", target.id);
         must(await supabase.from("live_items").delete().eq("id", target.id));
-        return json({ deleted: target.id });
+        // Si l'écran affichait cette activité, on le remet en automatique.
+        if ((event.screen_items ?? []).includes(target.id)) {
+          const rest = (event.screen_items ?? []).filter((id) => id !== target.id);
+          must(await supabase.from("live_events").update({ screen_items: rest }).eq("id", event.id));
+        }
+        return json({ deleted: target.id, answers: answers ?? 0, votes: votes ?? 0 });
+      }
+
+      case "delete_participant": {
+        const event = await authorize(body.public_code, body.admin_code);
+        const participantId = str(body.participant_id, "participant_id", 64);
+        const participant = must(await supabase
+          .from("live_participants").select("id, first_name").eq("id", participantId).eq("event_id", event.id).maybeSingle());
+        if (!participant) throw new HttpError("Participant introuvable.", 404);
+
+        // Tout ce que la personne a envoyé part avec elle (cascade en base).
+        const { count: answers } = await supabase
+          .from("live_messages").select("id", { count: "exact", head: true }).eq("participant_id", participantId);
+        must(await supabase.from("live_participants").delete().eq("id", participantId));
+        return json({ deleted: participantId, first_name: participant.first_name, answers: answers ?? 0 });
       }
 
       case "get_notes": {

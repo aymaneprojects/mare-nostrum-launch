@@ -296,6 +296,10 @@ Outil d'interaction avec la salle pendant un événement, en trois modes : **que
 SUPABASE_ACCESS_TOKEN=<token> npx supabase@2 secrets set LIVE_CREATE_KEY=<nouvelle-clé> --project-ref oivxznyzijtoylwfigyq
 ```
 
+**Comportement de l'écran de salle.** Il suit, dans l'ordre : l'affichage imposé par la régie (« À l'écran » / « Côte à côte »), sinon la question en cours, sinon le mur s'il est ouvert, sinon **le QR code en grand**. Le retour au QR dès qu'une question est terminée est voulu : il laisse les retardataires rejoindre. Pour garder un résultat affiché après l'avoir terminé, l'animateur le fige avec « À l'écran ». Le QR est cliquable partout : il s'ouvre en plein écran.
+
+**Suppressions.** L'animateur peut supprimer une activité (avec ses réponses) et un participant (avec ses messages, votes et « j'aime »). Tout part en cascade côté base. Le déclencheur `trg_live_likes_drop` (migration `20260918140000`) fait redescendre `like_count` quand des « j'aime » disparaissent — sans lui, les compteurs resteraient figés trop haut.
+
 **Pièges à connaître.**
 - Les codes animateurs sont stockés hachés dans `live_event_secrets` (RLS sans policy, privilèges révoqués). **Un code perdu ne se récupère pas** : la page de création le dit, et c'est voulu.
 - Les messages masqués restent lisibles publiquement. C'est indispensable : sinon la mise à jour `hidden → true` n'est jamais diffusée en temps réel et l'écran ne les retire pas. Le filtrage se fait côté client.

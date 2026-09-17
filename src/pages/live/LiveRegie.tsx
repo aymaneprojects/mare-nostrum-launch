@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import ItemComposer, { type ItemDraft } from "@/components/live/ItemComposer";
+import ParticipantsDialog from "@/components/live/ParticipantsDialog";
 import ActivityDisplay from "@/components/live/ActivityDisplay";
 import AuthorChip from "@/components/live/AuthorChip";
 import LiveQrCode from "@/components/live/LiveQrCode";
@@ -138,6 +139,7 @@ interface RegieBoardProps {
 const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, screenItems, onEventChanged, onLogout }: RegieBoardProps) => {
   const publicCode = event.public_code;
   const [composerOpen, setComposerOpen] = useState(false);
+  const [peopleOpen, setPeopleOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
   const participants = useParticipantCount(event.id, 10_000);
@@ -271,7 +273,14 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
             )}
             <p className="flex flex-wrap items-center gap-x-3 text-xs text-muted-foreground">
               <span className="font-mono">{publicCode}</span>
-              <span className="inline-flex items-center gap-1"><Users className="h-3.5 w-3.5" />{participants ?? "…"} participant{(participants ?? 0) > 1 ? "s" : ""}</span>
+              <button
+                type="button"
+                onClick={() => setPeopleOpen(true)}
+                className="inline-flex items-center gap-1 underline-offset-2 hover:text-foreground hover:underline"
+              >
+                <Users className="h-3.5 w-3.5" aria-hidden />
+                {participants ?? "…"} participant{(participants ?? 0) > 1 ? "s" : ""}
+              </button>
               {activeWall && <span className="inline-flex items-center gap-1 text-foreground"><MessagesSquare className="h-3.5 w-3.5" />Mur ouvert</span>}
               {event.status === "closed" && <span className="rounded-full bg-muted px-2 py-0.5">Événement clôturé</span>}
             </p>
@@ -390,21 +399,22 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
                           <Columns2 className="mr-1 h-3.5 w-3.5" />Côte à côte
                         </Button>
                       )}
-                      {item.status === "draft" && (
-                        <Button
-                          size="sm"
-                          className="ml-auto h-8 w-8 p-0"
-                          variant="ghost"
-                          disabled={busy !== null}
-                          aria-label="Supprimer le brouillon"
-                          onClick={async () => {
-                            if (!window.confirm("Supprimer ce brouillon ?")) return;
-                            if (await run(`delete-${item.id}`, "delete_item", { item_id: item.id }, "Brouillon supprimé")) setSelectedId(null);
-                          }}
-                        >
-                          <Trash2 className="h-3.5 w-3.5" />
-                        </Button>
-                      )}
+                      <Button
+                        size="sm"
+                        className="ml-auto h-8 w-8 p-0 text-muted-foreground hover:text-destructive"
+                        variant="ghost"
+                        disabled={busy !== null}
+                        aria-label={`Supprimer l'activité « ${item.prompt} »`}
+                        onClick={async () => {
+                          const warning = item.status === "draft"
+                            ? `Supprimer ce brouillon ?\n\n« ${item.prompt} »`
+                            : `Supprimer « ${item.prompt} » ET toutes les réponses déjà reçues ?\n\nCette suppression est définitive.`;
+                          if (!window.confirm(warning)) return;
+                          if (await run(`delete-${item.id}`, "delete_item", { item_id: item.id }, "Activité supprimée")) setSelectedId(null);
+                        }}
+                      >
+                        <Trash2 className="h-3.5 w-3.5" />
+                      </Button>
                     </div>
                   </div>
                 </li>
@@ -414,7 +424,7 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
 
           <div className="space-y-3 rounded-lg border border-border bg-card p-4">
             <div className="flex items-center gap-4">
-              <LiveQrCode value={urls.public} size={84} className="shadow-none" />
+              <LiveQrCode value={urls.public} size={84} className="shadow-none" expandable caption={urls.display} />
               <div className="min-w-0 text-sm">
                 <p className="text-muted-foreground">Lien public</p>
                 <p className="break-all font-mono text-foreground">{urls.display}</p>
@@ -467,6 +477,19 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
       </div>
 
       <ItemComposer open={composerOpen} onOpenChange={setComposerOpen} onCreate={createItem} />
+
+      <ParticipantsDialog
+        open={peopleOpen}
+        onOpenChange={setPeopleOpen}
+        eventId={event.id}
+        onDelete={async (p) => {
+          if (!window.confirm(`Supprimer ${p.first_name} ${p.emoji} ?\n\nSes réponses, ses votes et ses « j'aime » seront effacés.`)) return false;
+          const res = await run<{ answers: number }>(`del-participant-${p.id}`, "delete_participant", { participant_id: p.id });
+          if (!res) return false;
+          toast.success(res.answers ? `${p.first_name} supprimé, ${res.answers} message(s) effacé(s)` : `${p.first_name} supprimé`);
+          return true;
+        }}
+      />
     </div>
   );
 };

@@ -86,6 +86,17 @@ export function useLiveEvent(code: string | undefined, { realtime = true }: Opti
     return closed[0] ?? null;
   }, [items, activeItem]);
 
+  /**
+   * Ce que montre l'écran de salle, par ordre de priorité :
+   * 1. l'affichage imposé par la régie (« À l'écran » / « Côte à côte »),
+   * 2. la question en cours,
+   * 3. le mur, s'il est ouvert et qu'aucune question ne tourne,
+   * 4. sinon rien : l'écran revient au QR code en grand.
+   *
+   * Le retour au QR dès qu'une question est terminée est voulu : il laisse les
+   * retardataires rejoindre. Pour garder un résultat affiché après l'avoir
+   * terminé, l'animateur le fige avec « À l'écran ».
+   */
   const screenItems = useMemo<LiveItem[]>(() => {
     const pinned = (event?.screen_items ?? [])
       .map((id) => items.find((i) => i.id === id))
@@ -93,8 +104,8 @@ export function useLiveEvent(code: string | undefined, { realtime = true }: Opti
     if (pinned.length) return pinned;
     if (activeItem) return [activeItem];
     if (activeWall) return [activeWall];
-    return lastItem ? [lastItem] : [];
-  }, [event?.screen_items, items, activeItem, activeWall, lastItem]);
+    return [];
+  }, [event?.screen_items, items, activeItem, activeWall]);
 
   return {
     publicCode, event, status, items, itemsReady,
