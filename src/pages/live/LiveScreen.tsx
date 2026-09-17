@@ -1,25 +1,21 @@
 import { useParams } from "react-router-dom";
-import { Loader2 } from "lucide-react";
+import { Loader2, MessagesSquare } from "lucide-react";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import LiveShell from "@/components/live/LiveShell";
 import LiveQrCode from "@/components/live/LiveQrCode";
-import AnswerFeed from "@/components/live/AnswerFeed";
-import PollBars from "@/components/live/PollBars";
-import WallBoard from "@/components/live/WallBoard";
+import ActivityDisplay from "@/components/live/ActivityDisplay";
 import FullscreenButton from "@/components/live/FullscreenButton";
 import { useLiveEvent } from "@/hooks/useLiveEvent";
-import { useLiveMessages } from "@/hooks/useLiveMessages";
-import { useLiveVotes } from "@/hooks/useLiveVotes";
-import { KIND_LABEL, liveUrls, type LiveKind } from "@/lib/live/types";
+import { liveUrls } from "@/lib/live/types";
 
-/** Écran de salle (vidéoprojecteur) : QR pour rejoindre et rendu en direct de l'activité. */
+/**
+ * Écran de salle (vidéoprojecteur). Affiche ce que la régie a choisi : une activité
+ * en plein écran, ou deux côte à côte. Tant que le mur de questions est ouvert, son
+ * QR code reste en coin d'écran.
+ */
 const LiveScreen = () => {
   const { code } = useParams();
-  const { event, status, lastItem, publicCode } = useLiveEvent(code);
-
-  const kind = lastItem?.kind as LiveKind | undefined;
-  const { visible } = useLiveMessages(kind === "open" || kind === "wall" ? lastItem?.id : null, kind);
-  const { results, total } = useLiveVotes(kind === "poll" ? lastItem?.id : null, lastItem?.options ?? []);
+  const { event, status, screenItems, activeWall, publicCode } = useLiveEvent(code);
 
   const urls = liveUrls(publicCode);
   const seo = <EnhancedSEOHead title="Écran live — Mare Nostrum" description="Écran de salle Mare Nostrum Live." noindex />;
@@ -31,18 +27,8 @@ const LiveScreen = () => {
     return <LiveShell>{seo}<div className="flex flex-1 items-center justify-center text-2xl text-primary-foreground/70">Événement introuvable.</div></LiveShell>;
   }
 
-  const joinCorner = (
-    <div className="flex items-center gap-4">
-      <div className="hidden text-right lg:block">
-        <p className="text-sm text-primary-foreground/60">Participez sur</p>
-        <p className="font-mono text-lg font-semibold">{urls.display}</p>
-      </div>
-      <LiveQrCode value={urls.public} size={96} />
-    </div>
-  );
-
   // Rien n'a encore été lancé : grand écran d'accueil.
-  if (!lastItem || !kind) {
+  if (!screenItems.length) {
     return (
       <LiveShell title={event.title}>
         {seo}
@@ -65,35 +51,43 @@ const LiveScreen = () => {
     );
   }
 
-  const finished = lastItem.status === "closed";
+  const wallOnScreen = screenItems.some((i) => i.kind === "wall");
+  const wallInCorner = Boolean(activeWall) && !wallOnScreen;
+
+  const corner = (
+    <div className="flex items-center gap-4">
+      <div className="hidden text-right lg:block">
+        {wallInCorner ? (
+          <p className="flex items-center justify-end gap-1.5 text-sm text-accent">
+            <MessagesSquare className="h-4 w-4" aria-hidden />
+            Mur de questions ouvert
+          </p>
+        ) : (
+          <p className="text-sm text-primary-foreground/60">Participez sur</p>
+        )}
+        <p className="font-mono text-lg font-semibold text-primary-foreground">{urls.display}</p>
+      </div>
+      <LiveQrCode value={urls.public} size={wallInCorner ? 112 : 96} />
+    </div>
+  );
+
+  const pair = screenItems.length === 2;
 
   return (
-    <LiveShell title={event.title} aside={joinCorner}>
+    <LiveShell title={event.title} aside={corner}>
       {seo}
-      <div className="mx-auto w-full max-w-7xl flex-1 px-6 pb-20 md:px-10">
-        <div key={lastItem.id} className="animate-in fade-in duration-500">
-          <div className="mb-3 flex items-center gap-3">
-            <span className="mn-eyebrow-light">{KIND_LABEL[kind]}</span>
-            {finished ? (
-              <span className="rounded-full bg-primary-foreground/10 px-3 py-1 text-xs text-primary-foreground/70">Terminé</span>
-            ) : (
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/20 px-3 py-1 text-xs text-primary-foreground">
-                <span className="h-2 w-2 animate-pulse rounded-full bg-accent" aria-hidden />
-                En direct
-              </span>
-            )}
+      <div className={pair ? "w-full flex-1 px-6 pb-20 md:px-10" : "mx-auto w-full max-w-7xl flex-1 px-6 pb-20 md:px-10"}>
+        {pair ? (
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-0 lg:divide-x lg:divide-primary-foreground/10">
+            {screenItems.map((item, i) => (
+              <section key={item.id} className={i === 0 ? "lg:pr-10" : "lg:pl-10"}>
+                <ActivityDisplay item={item} variant="half" />
+              </section>
+            ))}
           </div>
-          <h1
-            className="mb-8 font-editorial text-4xl font-semibold italic leading-[1.1] text-primary-foreground md:mb-12 md:text-6xl"
-            style={{ letterSpacing: "-0.02em", textWrap: "balance" } as React.CSSProperties}
-          >
-            {lastItem.prompt}
-          </h1>
-
-          {kind === "open" && <AnswerFeed messages={visible.slice(0, 60)} />}
-          {kind === "poll" && <div className="max-w-5xl"><PollBars results={results} total={total} /></div>}
-          {kind === "wall" && <WallBoard messages={visible} />}
-        </div>
+        ) : (
+          <ActivityDisplay key={screenItems[0].id} item={screenItems[0]} variant="full" />
+        )}
       </div>
       <FullscreenButton className="fixed bottom-5 right-5" />
     </LiveShell>

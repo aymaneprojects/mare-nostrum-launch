@@ -7,7 +7,7 @@
  *
  * Secrets :
  *   LIVE_CREATE_KEY    clé de l'équipe, obligatoire pour créer un événement
- *   LIVE_ADMIN_PEPPER  optionnel, concaténé au code avant hachage
+ *   LIVE_ADMIN_PEPPER  concaténé au code avant hachage — ne jamais le changer
  */
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
@@ -27,6 +27,10 @@ class HttpError extends Error {
     this.status = status;
   }
 }
+
+const KINDS = ["open", "poll", "wall", "cloud", "rating"] as const;
+type Kind = typeof KINDS[number];
+const RATING_OPTIONS = ["1", "2", "3", "4", "5"];
 
 // Alphabet sans caractères ambigus (0/O, 1/I/L) : les codes se dictent et se recopient.
 const ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
@@ -58,34 +62,58 @@ const str = (v: unknown, field: string, max: number): string => {
   return s;
 };
 
+const optionalNote = (v: unknown): string | null => {
+  if (v === undefined || v === null) return null;
+  if (typeof v !== "string") throw new HttpError("Note invalide.");
+  const s = v.trim();
+  if (s.length > 4000) throw new HttpError("Note trop longue (4000 caractères max).");
+  return s;
+};
+
+const optionalDuration = (v: unknown): number | null => {
+  if (v === undefined || v === null || v === "" || v === 0) return null;
+  const n = Number(v);
+  if (!Number.isInteger(n) || n < 10 || n > 3600) throw new HttpError("Durée invalide (10 s à 1 h).");
+  return n;
+};
+
 const supabase = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+
+const must = <T>(res: { data: T; error: { message: string } | null }, status = 500): T => {
+  if (res.error) throw new HttpError(res.error.message, status);
+  return res.data;
+};
 
 /** Retrouve l'événement et vérifie le code animateur. */
 async function authorize(publicCode: unknown, adminCode: unknown) {
   const code = str(publicCode, "code événement", 16).toUpperCase();
   const admin = str(adminCode, "code animateur", 32);
 
-  const { data: event, error } = await supabase
-    .from("live_events").select("*").eq("public_code", code).maybeSingle();
-  if (error) throw new HttpError(error.message, 500);
+  const event = must(await supabase.from("live_events").select("*").eq("public_code", code).maybeSingle());
   if (!event) throw new HttpError("Événement introuvable.", 404);
 
-  const { data: secret, error: secretError } = await supabase
-    .from("live_event_secrets").select("admin_code_hash").eq("event_id", event.id).maybeSingle();
-  if (secretError) throw new HttpError(secretError.message, 500);
+  const secret = must(await supabase.from("live_event_secrets").select("admin_code_hash").eq("event_id", event.id).maybeSingle());
   if (!secret || !safeEqual(secret.admin_code_hash, await hashAdminCode(admin))) {
     throw new HttpError("Code animateur invalide.", 403);
   }
-  return event as { id: string; public_code: string; title: string; status: string };
+  return event as { id: string; public_code: string; title: string; status: string; screen_items: string[] };
 }
 
 /** Vérifie qu'un item appartient bien à l'événement autorisé. */
 async function ownItem(eventId: string, itemId: unknown) {
   const id = str(itemId, "item_id", 64);
-  const { data, error } = await supabase.from("live_items").select("*").eq("id", id).eq("event_id", eventId).maybeSingle();
-  if (error) throw new HttpError(error.message, 500);
-  if (!data) throw new HttpError("Activité introuvable.", 404);
-  return data;
+  const item = must(await supabase.from("live_items").select("*").eq("id", id).eq("event_id", eventId).maybeSingle());
+  if (!item) throw new HttpError("Activité introuvable.", 404);
+  return item;
+}
+
+async function upsertNote(itemId: string, note: string | null) {
+  if (note === null) return;
+  if (!note) {
+    must(await supabase.from("live_item_notes").delete().eq("item_id", itemId));
+    return;
+  }
+  must(await supabase.from("live_item_notes").upsert({ item_id: itemId, note, updated_at: new Date().toISOString() }));
 }
 
 serve(async (req) => {
@@ -131,10 +159,17 @@ serve(async (req) => {
         return json({ event });
       }
 
+      case "update_event": {
+        const event = await authorize(body.public_code, body.admin_code);
+        const title = str(body.title, "titre", 120);
+        const data = must(await supabase.from("live_events").update({ title }).eq("id", event.id).select("*").single());
+        return json({ event: data });
+      }
+
       case "create_item": {
         const event = await authorize(body.public_code, body.admin_code);
-        const kind = body.kind;
-        if (!["open", "poll", "wall"].includes(kind)) throw new HttpError("Type d'activité invalide.");
+        const kind = body.kind as Kind;
+        if (!KINDS.includes(kind)) throw new HttpError("Type d'activité invalide.");
         const prompt = str(body.prompt, "question", 300);
 
         let options: string[] = [];
@@ -145,17 +180,60 @@ serve(async (req) => {
             .map((o: string) => o.trim().slice(0, 120));
           if (options.length < 2 || options.length > 10) throw new HttpError("Un sondage a entre 2 et 10 options.");
         }
+        if (kind === "rating") options = RATING_OPTIONS;
 
-        const { data: last } = await supabase
+        const last = must(await supabase
           .from("live_items").select("position").eq("event_id", event.id)
-          .order("position", { ascending: false }).limit(1).maybeSingle();
+          .order("position", { ascending: false }).limit(1).maybeSingle());
 
-        const { data: item, error } = await supabase
+        const item = must(await supabase
           .from("live_items")
-          .insert({ event_id: event.id, kind, prompt, options, position: (last?.position ?? 0) + 1 })
-          .select("*").single();
-        if (error) throw new HttpError(error.message, 500);
+          .insert({
+            event_id: event.id,
+            kind,
+            prompt,
+            options,
+            position: (last?.position ?? 0) + 1,
+            duration_seconds: optionalDuration(body.duration_seconds),
+            show_authors: kind === "cloud" && body.show_authors === true,
+          })
+          .select("*").single());
+
+        await upsertNote(item.id, optionalNote(body.note));
         return json({ item });
+      }
+
+      case "update_item": {
+        const event = await authorize(body.public_code, body.admin_code);
+        const target = await ownItem(event.id, body.item_id);
+        const patch: Record<string, unknown> = {};
+        if (body.prompt !== undefined) patch.prompt = str(body.prompt, "question", 300);
+        if (body.duration_seconds !== undefined) patch.duration_seconds = optionalDuration(body.duration_seconds);
+        if (body.show_authors !== undefined) patch.show_authors = target.kind === "cloud" && body.show_authors === true;
+        let item = target;
+        if (Object.keys(patch).length) {
+          item = must(await supabase.from("live_items").update(patch).eq("id", target.id).select("*").single());
+        }
+        if (body.note !== undefined) await upsertNote(target.id, optionalNote(body.note) ?? "");
+        return json({ item });
+      }
+
+      case "delete_item": {
+        const event = await authorize(body.public_code, body.admin_code);
+        const target = await ownItem(event.id, body.item_id);
+        // Une activité lancée contient des réponses : on ne la supprime pas.
+        if (target.status !== "draft") throw new HttpError("Seul un brouillon peut être supprimé.");
+        must(await supabase.from("live_items").delete().eq("id", target.id));
+        return json({ deleted: target.id });
+      }
+
+      case "get_notes": {
+        const event = await authorize(body.public_code, body.admin_code);
+        const items = must(await supabase.from("live_items").select("id").eq("event_id", event.id)) ?? [];
+        const ids = items.map((i: { id: string }) => i.id);
+        if (!ids.length) return json({ notes: {} });
+        const rows = must(await supabase.from("live_item_notes").select("item_id, note").in("item_id", ids)) ?? [];
+        return json({ notes: Object.fromEntries(rows.map((r: { item_id: string; note: string }) => [r.item_id, r.note])) });
       }
 
       case "activate": {
@@ -163,52 +241,74 @@ serve(async (req) => {
         const target = await ownItem(event.id, body.item_id);
         if (target.status === "active") return json({ item: target });
 
-        // Une seule activité active par événement (index unique partiel) :
-        // on clôture l'actuelle avant d'activer la cible.
+        // Une activité active hors mur, un mur actif : on ne ferme que l'activité de même famille.
         const now = new Date().toISOString();
-        const { error: closeError } = await supabase
+        let closeQuery = supabase
           .from("live_items").update({ status: "closed", closed_at: now })
           .eq("event_id", event.id).eq("status", "active");
-        if (closeError) throw new HttpError(closeError.message, 500);
+        closeQuery = target.kind === "wall" ? closeQuery.eq("kind", "wall") : closeQuery.neq("kind", "wall");
+        must(await closeQuery);
 
-        const { data: item, error } = await supabase
+        const item = must(await supabase
           .from("live_items").update({ status: "active", activated_at: now, closed_at: null })
-          .eq("id", target.id).select("*").single();
-        if (error) throw new HttpError(error.message, 500);
+          .eq("id", target.id).select("*").single());
+
+        // Lancer une question remet l'écran en automatique : il montre la question en cours.
+        if (target.kind !== "wall" && event.screen_items.length) {
+          must(await supabase.from("live_events").update({ screen_items: [] }).eq("id", event.id));
+        }
         return json({ item });
       }
 
       case "close": {
         const event = await authorize(body.public_code, body.admin_code);
         const target = await ownItem(event.id, body.item_id);
-        const { data: item, error } = await supabase
+        const item = must(await supabase
           .from("live_items").update({ status: "closed", closed_at: new Date().toISOString() })
-          .eq("id", target.id).select("*").single();
-        if (error) throw new HttpError(error.message, 500);
+          .eq("id", target.id).select("*").single());
         return json({ item });
+      }
+
+      case "set_screen": {
+        const event = await authorize(body.public_code, body.admin_code);
+        const ids: unknown = body.item_ids;
+        if (!Array.isArray(ids) || ids.length > 2) throw new HttpError("L'écran affiche au plus deux activités.");
+        const unique = [...new Set(ids.map((id) => str(id, "item_id", 64)))];
+        for (const id of unique) {
+          const item = await ownItem(event.id, id);
+          if (item.status === "draft") throw new HttpError("Une activité en brouillon ne peut pas être affichée.");
+        }
+        const data = must(await supabase.from("live_events").update({ screen_items: unique }).eq("id", event.id).select("*").single());
+        return json({ event: data });
       }
 
       case "hide_message": {
         const event = await authorize(body.public_code, body.admin_code);
         const messageId = str(body.message_id, "message_id", 64);
-        const { data: message, error: readError } = await supabase
-          .from("live_messages").select("id, item_id").eq("id", messageId).maybeSingle();
-        if (readError) throw new HttpError(readError.message, 500);
+        const message = must(await supabase.from("live_messages").select("id, item_id").eq("id", messageId).maybeSingle());
         if (!message) throw new HttpError("Message introuvable.", 404);
         await ownItem(event.id, message.item_id);
-
-        const { data, error } = await supabase
-          .from("live_messages").update({ hidden: body.hidden !== false })
-          .eq("id", messageId).select("*").single();
-        if (error) throw new HttpError(error.message, 500);
+        const data = must(await supabase
+          .from("live_messages").update({ hidden: body.hidden !== false }).eq("id", messageId).select("*").single());
         return json({ message: data });
+      }
+
+      case "hide_messages": {
+        // Masquer un mot du nuage = masquer toutes les propositions correspondantes d'un coup.
+        const event = await authorize(body.public_code, body.admin_code);
+        const itemId = str(body.item_id, "item_id", 64);
+        await ownItem(event.id, itemId);
+        const ids: unknown = body.message_ids;
+        if (!Array.isArray(ids) || !ids.length || ids.length > 500) throw new HttpError("Liste de messages invalide.");
+        const data = must(await supabase
+          .from("live_messages").update({ hidden: body.hidden !== false })
+          .eq("item_id", itemId).in("id", ids.map((id) => str(id, "message_id", 64))).select("id"));
+        return json({ updated: data?.length ?? 0 });
       }
 
       case "close_event": {
         const event = await authorize(body.public_code, body.admin_code);
-        const { data, error } = await supabase
-          .from("live_events").update({ status: "closed" }).eq("id", event.id).select("*").single();
-        if (error) throw new HttpError(error.message, 500);
+        const data = must(await supabase.from("live_events").update({ status: "closed" }).eq("id", event.id).select("*").single());
         return json({ event: data });
       }
 

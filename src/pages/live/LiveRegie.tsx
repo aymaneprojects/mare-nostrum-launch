@@ -2,34 +2,33 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "sonner";
 import {
-  BarChart3, Copy, Download, Eye, EyeOff, ExternalLink, KeyRound, Loader2, LogOut,
-  MessageSquareText, MessagesSquare, Monitor, Play, Plus, Square, Users,
+  Check, Columns2, Copy, Download, Eye, EyeOff, FileText, KeyRound, Loader2, LogOut,
+  MessagesSquare, Monitor, MonitorPlay, Pencil, Play, Plus, RotateCcw, Square, Timer, Trash2, UserRound, Users,
 } from "lucide-react";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import ItemComposer from "@/components/live/ItemComposer";
-import AnswerFeed from "@/components/live/AnswerFeed";
-import PollBars from "@/components/live/PollBars";
+import { Textarea } from "@/components/ui/textarea";
+import ItemComposer, { type ItemDraft } from "@/components/live/ItemComposer";
+import ActivityDisplay from "@/components/live/ActivityDisplay";
 import AuthorChip from "@/components/live/AuthorChip";
 import LiveQrCode from "@/components/live/LiveQrCode";
+import { KIND_ICON } from "@/components/live/kindIcons";
 import logo from "@/assets/logo.png";
 import { supabase } from "@/integrations/supabase/client";
 import { useLiveEvent } from "@/hooks/useLiveEvent";
 import { useLiveMessages } from "@/hooks/useLiveMessages";
-import { useLiveVotes } from "@/hooks/useLiveVotes";
 import { forgetAdminCode, liveAdmin, LiveAdminError, loadAdminCode, saveAdminCode } from "@/lib/live/admin";
 import { downloadCsv, toCsv } from "@/lib/live/csv";
-import { KIND_LABEL, liveUrls, STATUS_LABEL, type LiveItem, type LiveKind } from "@/lib/live/types";
+import { groupWords } from "@/lib/live/words";
+import { authorOf, KIND_LABEL, liveUrls, STATUS_LABEL, type LiveEvent, type LiveItem, type LiveKind } from "@/lib/live/types";
 import { cn } from "@/lib/utils";
-
-const KIND_ICON: Record<LiveKind, typeof BarChart3> = { open: MessageSquareText, poll: BarChart3, wall: MessagesSquare };
 
 const LiveRegie = () => {
   const { code } = useParams();
-  const { event, status, items, activeItem, publicCode, reloadEvent } = useLiveEvent(code);
+  const live = useLiveEvent(code);
+  const { event, status, publicCode } = live;
 
   const [adminCode, setAdminCode] = useState("");
   const [authorized, setAuthorized] = useState(false);
@@ -109,14 +108,13 @@ const LiveRegie = () => {
   return (
     <RegieBoard
       seo={seo}
-      publicCode={publicCode}
       adminCode={adminCode}
-      eventId={event.id}
-      eventTitle={event.title}
-      eventStatus={event.status}
-      items={items}
-      activeItem={activeItem}
-      onEventChanged={reloadEvent}
+      event={event}
+      items={live.items}
+      activeItem={live.activeItem}
+      activeWall={live.activeWall}
+      screenItems={live.screenItems}
+      onEventChanged={live.reloadEvent}
       onLogout={() => { forgetAdminCode(publicCode); setAuthorized(false); setAdminCode(""); }}
     />
   );
@@ -126,57 +124,68 @@ const LiveRegie = () => {
 
 interface RegieBoardProps {
   seo: React.ReactNode;
-  publicCode: string;
   adminCode: string;
-  eventId: string;
-  eventTitle: string;
-  eventStatus: string;
+  event: LiveEvent;
   items: LiveItem[];
   activeItem: LiveItem | null;
+  activeWall: LiveItem | null;
+  screenItems: LiveItem[];
   onEventChanged: () => void;
   onLogout: () => void;
 }
 
-const RegieBoard = ({ seo, publicCode, adminCode, eventId, eventTitle, eventStatus, items, activeItem, onEventChanged, onLogout }: RegieBoardProps) => {
+const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, screenItems, onEventChanged, onLogout }: RegieBoardProps) => {
+  const publicCode = event.public_code;
   const [composerOpen, setComposerOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
   const [participants, setParticipants] = useState<number | null>(null);
   const [exporting, setExporting] = useState(false);
+  const [notes, setNotes] = useState<Record<string, string>>({});
+  const [editingTitle, setEditingTitle] = useState(false);
+  const [titleDraft, setTitleDraft] = useState(event.title);
 
   const urls = liveUrls(publicCode);
-  const creds = { public_code: publicCode, admin_code: adminCode };
+  const creds = useMemo(() => ({ public_code: publicCode, admin_code: adminCode }), [publicCode, adminCode]);
+  const pinned = event.screen_items ?? [];
+  const onScreen = new Set(screenItems.map((i) => i.id));
 
-  // Suit l'activité en direct, sauf si l'animateur en consulte une autre.
+  const loadNotes = useCallback(async () => {
+    try {
+      const res = await liveAdmin<{ notes: Record<string, string> }>("get_notes", creds);
+      setNotes(res.notes ?? {});
+    } catch { /* notes indisponibles : la régie reste utilisable */ }
+  }, [creds]);
+
+  useEffect(() => { void loadNotes(); }, [loadNotes]);
+
+  // Suit l'activité en cours, sauf si l'animateur en consulte une autre.
   const selected = useMemo(
-    () => items.find((i) => i.id === selectedId) ?? activeItem ?? items[items.length - 1] ?? null,
-    [items, selectedId, activeItem],
+    () => items.find((i) => i.id === selectedId) ?? activeItem ?? activeWall ?? items[0] ?? null,
+    [items, selectedId, activeItem, activeWall],
   );
-  const kind = selected?.kind as LiveKind | undefined;
-  const { all, visible } = useLiveMessages(kind === "open" || kind === "wall" ? selected?.id : null, kind);
-  const { results, total } = useLiveVotes(kind === "poll" ? selected?.id : null, selected?.options ?? []);
 
   // Nombre de participants (table non diffusée en temps réel : rafraîchi toutes les 10 s).
   useEffect(() => {
     let cancelled = false;
     const load = async () => {
-      const { count } = await supabase.from("live_participants").select("id", { count: "exact", head: true }).eq("event_id", eventId);
+      const { count } = await supabase.from("live_participants").select("id", { count: "exact", head: true }).eq("event_id", event.id);
       if (!cancelled && count !== null) setParticipants(count);
     };
     void load();
     const timer = window.setInterval(load, 10_000);
     return () => { cancelled = true; window.clearInterval(timer); };
-  }, [eventId]);
+  }, [event.id]);
 
-  const run = async (key: string, action: Parameters<typeof liveAdmin>[0], body: Record<string, unknown>, success?: string) => {
+  const run = async <T,>(key: string, action: Parameters<typeof liveAdmin>[0], body: Record<string, unknown>, success?: string): Promise<T | null> => {
     setBusy(key);
     try {
-      await liveAdmin(action, { ...creds, ...body });
+      const res = await liveAdmin<T>(action, { ...creds, ...body });
       if (success) toast.success(success);
-      return true;
+      return res;
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Action impossible.");
-      return false;
+      return null;
     } finally {
       setBusy(null);
     }
@@ -191,6 +200,13 @@ const RegieBoard = ({ seo, publicCode, adminCode, eventId, eventTitle, eventStat
     }
   };
 
+  const showAlone = (item: LiveItem) => run(`screen-${item.id}`, "set_screen", { item_ids: [item.id] }, "Affiché à l'écran");
+  const showBeside = (item: LiveItem) => {
+    const other = screenItems.find((i) => i.id !== item.id);
+    if (!other) return showAlone(item);
+    return run(`beside-${item.id}`, "set_screen", { item_ids: [other.id, item.id] }, "Affichés côte à côte");
+  };
+
   const exportCsv = async () => {
     setExporting(true);
     try {
@@ -202,7 +218,7 @@ const RegieBoard = ({ seo, publicCode, adminCode, eventId, eventTitle, eventStat
       const [{ data: messages }, { data: votes }, { data: people }] = await Promise.all([
         supabase.from("live_messages").select("*").in("item_id", itemIds),
         supabase.from("live_votes").select("*").in("item_id", itemIds),
-        supabase.from("live_participants").select("id, first_name, emoji").eq("event_id", eventId),
+        supabase.from("live_participants").select("id, first_name, emoji").eq("event_id", event.id),
       ]);
       const byId = new Map((people ?? []).map((p) => [p.id, p]));
       const itemById = new Map(items.map((i) => [i.id, i]));
@@ -211,13 +227,14 @@ const RegieBoard = ({ seo, publicCode, adminCode, eventId, eventTitle, eventStat
       for (const m of messages ?? []) {
         const it = itemById.get(m.item_id);
         if (!it) continue;
-        rows.push([it.position, KIND_LABEL[it.kind as LiveKind], it.prompt, m.created_at, m.author_name, m.author_emoji, m.body, it.kind === "wall" ? m.like_count : "", m.hidden ? "oui" : "non"]);
+        const author = authorOf(m);
+        rows.push([it.position, KIND_LABEL[it.kind as LiveKind], it.prompt, m.created_at, author.name, m.anonymous ? "" : author.emoji, m.body, it.kind === "wall" ? m.like_count : "", m.hidden ? "oui" : "non"]);
       }
       for (const v of votes ?? []) {
         const it = itemById.get(v.item_id);
         if (!it) continue;
         const p = byId.get(v.participant_id);
-        rows.push([it.position, KIND_LABEL.poll, it.prompt, v.created_at, p?.first_name ?? "", p?.emoji ?? "", it.options[v.option_index] ?? "", "", "non"]);
+        rows.push([it.position, KIND_LABEL[it.kind as LiveKind], it.prompt, v.created_at, p?.first_name ?? "", p?.emoji ?? "", it.options[v.option_index] ?? "", "", "non"]);
       }
       rows.sort((a, b) => (Number(a[0]) - Number(b[0])) || String(a[3]).localeCompare(String(b[3])));
 
@@ -229,6 +246,15 @@ const RegieBoard = ({ seo, publicCode, adminCode, eventId, eventTitle, eventStat
     }
   };
 
+  const createItem = async (draft: ItemDraft) => {
+    const res = await run<{ item: LiveItem }>("create", "create_item", { ...draft }, "Activité créée en brouillon");
+    if (!res) throw new Error("création refusée");
+    setSelectedId(res.item.id);
+    if (draft.note) void loadNotes();
+  };
+
+  const screenLabel = pinned.length === 2 ? "Deux activités côte à côte" : pinned.length === 1 ? "Affichage choisi" : screenItems.length ? "Automatique" : "Accueil (QR code)";
+
   return (
     <div className="min-h-screen bg-background">
       {seo}
@@ -237,16 +263,36 @@ const RegieBoard = ({ seo, publicCode, adminCode, eventId, eventTitle, eventStat
         <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-4 gap-y-3 px-4 py-3 md:px-6">
           <img src={logo} alt="Mare Nostrum" className="h-8 w-auto" />
           <div className="min-w-0 flex-1">
-            <p className="truncate font-semibold text-foreground">{eventTitle}</p>
+            {editingTitle ? (
+              <form
+                className="flex items-center gap-2"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  if (await run("title", "update_event", { title: titleDraft }, "Titre modifié")) { setEditingTitle(false); onEventChanged(); }
+                }}
+              >
+                <Input value={titleDraft} onChange={(e) => setTitleDraft(e.target.value.slice(0, 120))} className="h-8" autoFocus aria-label="Titre de l'événement" />
+                <Button type="submit" size="icon" className="h-8 w-8 shrink-0" aria-label="Enregistrer le titre"><Check className="h-4 w-4" /></Button>
+              </form>
+            ) : (
+              <button type="button" onClick={() => { setTitleDraft(event.title); setEditingTitle(true); }} className="group flex max-w-full items-center gap-2 text-left" aria-label="Renommer l'événement">
+                <span className="truncate font-semibold text-foreground">{event.title}</span>
+                <Pencil className="h-3.5 w-3.5 shrink-0 text-muted-foreground opacity-40 transition-opacity group-hover:opacity-100" aria-hidden />
+              </button>
+            )}
             <p className="flex flex-wrap items-center gap-x-3 text-xs text-muted-foreground">
               <span className="font-mono">{publicCode}</span>
               <span className="inline-flex items-center gap-1"><Users className="h-3.5 w-3.5" />{participants ?? "…"} participant{(participants ?? 0) > 1 ? "s" : ""}</span>
-              {eventStatus === "closed" && <Badge variant="secondary">Événement clôturé</Badge>}
+              {activeWall && <span className="inline-flex items-center gap-1 text-foreground"><MessagesSquare className="h-3.5 w-3.5" />Mur ouvert</span>}
+              {event.status === "closed" && <span className="rounded-full bg-muted px-2 py-0.5">Événement clôturé</span>}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <Button asChild variant="outline" size="sm">
-              <a href={urls.screen} target="_blank" rel="noopener noreferrer"><Monitor className="mr-1.5 h-4 w-4" />Ouvrir l'écran</a>
+              <a href={urls.screen} target="_blank" rel="noopener noreferrer"><Monitor className="mr-1.5 h-4 w-4" />Écran</a>
+            </Button>
+            <Button asChild variant="outline" size="sm">
+              <a href={urls.conducteur} target="_blank" rel="noopener noreferrer"><FileText className="mr-1.5 h-4 w-4" />Conducteur</a>
             </Button>
             <Button variant="outline" size="sm" onClick={() => copy(urls.public, "Lien public")}>
               <Copy className="mr-1.5 h-4 w-4" />Lien public
@@ -257,28 +303,49 @@ const RegieBoard = ({ seo, publicCode, adminCode, eventId, eventTitle, eventStat
             <Button variant="ghost" size="icon" onClick={onLogout} aria-label="Quitter la régie"><LogOut className="h-4 w-4" /></Button>
           </div>
         </div>
+
+        {/* Ce que montre l'écran de salle */}
+        <div className="border-t border-border bg-secondary/40">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-3 gap-y-2 px-4 py-2 text-sm md:px-6">
+            <MonitorPlay className="h-4 w-4 text-primary" aria-hidden />
+            <span className="font-medium text-foreground">Écran de salle :</span>
+            <span className="text-muted-foreground">{screenLabel}</span>
+            {screenItems.map((i) => (
+              <span key={i.id} className="max-w-[16rem] truncate rounded-full bg-card px-3 py-0.5 text-xs text-foreground ring-1 ring-border">
+                {KIND_LABEL[i.kind as LiveKind]} · {i.prompt}
+              </span>
+            ))}
+            {pinned.length > 0 && (
+              <Button variant="ghost" size="sm" className="ml-auto h-7" disabled={busy !== null} onClick={() => run("screen-auto", "set_screen", { item_ids: [] }, "Écran en automatique")}>
+                <RotateCcw className="mr-1 h-3.5 w-3.5" />Revenir en automatique
+              </Button>
+            )}
+          </div>
+        </div>
       </header>
 
-      <div className="mx-auto grid max-w-7xl gap-6 px-4 py-6 md:px-6 lg:grid-cols-[380px_1fr]">
-        {/* Activités */}
+      <div className="mx-auto grid max-w-7xl gap-6 px-4 py-6 md:px-6 lg:grid-cols-[400px_1fr]">
+        {/* Déroulé */}
         <aside className="space-y-3">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-foreground">Activités</h2>
-            <Button size="sm" onClick={() => setComposerOpen(true)} disabled={eventStatus === "closed"}>
-              <Plus className="mr-1 h-4 w-4" />Nouvelle
+            <h2 className="text-lg font-semibold text-foreground">Déroulé</h2>
+            <Button size="sm" onClick={() => setComposerOpen(true)} disabled={event.status === "closed"}>
+              <Plus className="mr-1 h-4 w-4" />Activité
             </Button>
           </div>
 
           {!items.length && (
             <div className="rounded-lg border border-dashed border-border p-6 text-center text-sm text-muted-foreground">
-              Aucune activité. Créez une question ouverte, un sondage ou un mur de questions.
+              Aucune activité. Créez un nuage de mots, une question, un sondage, une note de satisfaction ou un mur.
             </div>
           )}
 
           <ol className="space-y-2">
-            {items.map((item) => {
-              const Icon = KIND_ICON[item.kind as LiveKind];
+            {items.map((item, index) => {
+              const kind = item.kind as LiveKind;
+              const Icon = KIND_ICON[kind];
               const isSelected = selected?.id === item.id;
+              const displayed = onScreen.has(item.id);
               return (
                 <li key={item.id}>
                   <div
@@ -289,8 +356,12 @@ const RegieBoard = ({ seo, publicCode, adminCode, eventId, eventTitle, eventStat
                   >
                     <button type="button" onClick={() => setSelectedId(item.id)} className="block w-full text-left">
                       <div className="mb-1 flex items-center gap-2 text-xs text-muted-foreground">
-                        <Icon className="h-3.5 w-3.5" />
-                        {KIND_LABEL[item.kind as LiveKind]}
+                        <span className="font-mono">{index + 1}.</span>
+                        <Icon className="h-3.5 w-3.5" aria-hidden />
+                        {KIND_LABEL[kind]}
+                        {item.duration_seconds && <span className="inline-flex items-center gap-0.5"><Timer className="h-3 w-3" aria-hidden />{item.duration_seconds} s</span>}
+                        {item.show_authors && <span className="inline-flex items-center gap-0.5" title="Prénoms visibles en régie"><UserRound className="h-3 w-3" aria-label="Prénoms visibles en régie" /></span>}
+                        {displayed && <span className="inline-flex items-center gap-0.5 text-primary" title="Affiché à l'écran"><Monitor className="h-3 w-3" aria-label="Affiché à l'écran" /></span>}
                         <span
                           className={cn(
                             "ml-auto rounded-full px-2 py-0.5 text-[11px] font-medium",
@@ -302,19 +373,47 @@ const RegieBoard = ({ seo, publicCode, adminCode, eventId, eventTitle, eventStat
                       </div>
                       <p className="line-clamp-2 text-sm text-foreground">{item.prompt}</p>
                     </button>
-                    <div className="mt-2.5 flex gap-2">
+
+                    <div className="mt-2.5 flex flex-wrap gap-1.5">
                       {item.status !== "active" ? (
                         <Button
                           size="sm"
+                          className="h-8"
                           variant={item.status === "draft" ? "default" : "outline"}
-                          disabled={busy !== null || eventStatus === "closed"}
-                          onClick={async () => { if (await run(`activate-${item.id}`, "activate", { item_id: item.id })) setSelectedId(null); }}
+                          disabled={busy !== null || event.status === "closed"}
+                          onClick={async () => { if (await run(`activate-${item.id}`, "activate", { item_id: item.id })) setSelectedId(item.id); }}
                         >
-                          {busy === `activate-${item.id}` ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <><Play className="mr-1 h-3.5 w-3.5" />{item.status === "closed" ? "Relancer" : "Lancer"}</>}
+                          {busy === `activate-${item.id}` ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <><Play className="mr-1 h-3.5 w-3.5" />{item.status === "closed" ? "Relancer" : kind === "wall" ? "Ouvrir" : "Lancer"}</>}
                         </Button>
                       ) : (
-                        <Button size="sm" variant="outline" disabled={busy !== null} onClick={() => run(`close-${item.id}`, "close", { item_id: item.id })}>
-                          {busy === `close-${item.id}` ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <><Square className="mr-1 h-3.5 w-3.5" />Terminer</>}
+                        <Button size="sm" className="h-8" variant="outline" disabled={busy !== null} onClick={() => run(`close-${item.id}`, "close", { item_id: item.id })}>
+                          {busy === `close-${item.id}` ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <><Square className="mr-1 h-3.5 w-3.5" />{kind === "wall" ? "Fermer" : "Terminer"}</>}
+                        </Button>
+                      )}
+
+                      {item.status !== "draft" && !(displayed && screenItems.length === 1) && (
+                        <Button size="sm" className="h-8" variant="ghost" disabled={busy !== null} onClick={() => showAlone(item)}>
+                          <Monitor className="mr-1 h-3.5 w-3.5" />À l'écran
+                        </Button>
+                      )}
+                      {item.status !== "draft" && !displayed && screenItems.length >= 1 && (
+                        <Button size="sm" className="h-8" variant="ghost" disabled={busy !== null} onClick={() => showBeside(item)}>
+                          <Columns2 className="mr-1 h-3.5 w-3.5" />Côte à côte
+                        </Button>
+                      )}
+                      {item.status === "draft" && (
+                        <Button
+                          size="sm"
+                          className="ml-auto h-8 w-8 p-0"
+                          variant="ghost"
+                          disabled={busy !== null}
+                          aria-label="Supprimer le brouillon"
+                          onClick={async () => {
+                            if (!window.confirm("Supprimer ce brouillon ?")) return;
+                            if (await run(`delete-${item.id}`, "delete_item", { item_id: item.id }, "Brouillon supprimé")) setSelectedId(null);
+                          }}
+                        >
+                          <Trash2 className="h-3.5 w-3.5" />
                         </Button>
                       )}
                     </div>
@@ -329,12 +428,10 @@ const RegieBoard = ({ seo, publicCode, adminCode, eventId, eventTitle, eventStat
               <LiveQrCode value={urls.public} size={84} className="shadow-none" />
               <div className="min-w-0 text-sm">
                 <p className="text-muted-foreground">Lien public</p>
-                <a href={urls.public} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 break-all font-mono text-foreground hover:text-primary">
-                  {urls.display}<ExternalLink className="h-3 w-3 shrink-0" />
-                </a>
+                <p className="break-all font-mono text-foreground">{urls.display}</p>
               </div>
             </div>
-            {eventStatus !== "closed" && (
+            {event.status !== "closed" && (
               <Button
                 variant="ghost"
                 size="sm"
@@ -353,73 +450,177 @@ const RegieBoard = ({ seo, publicCode, adminCode, eventId, eventTitle, eventStat
 
         {/* Détail de l'activité sélectionnée */}
         <section className="min-w-0 space-y-5">
-          {!selected || !kind ? (
+          {!selected ? (
             <div className="rounded-lg border border-dashed border-border p-12 text-center text-muted-foreground">
               Sélectionnez ou créez une activité.
             </div>
           ) : (
-            <>
-              <div>
-                <div className="mn-eyebrow-turquoise mb-1">{KIND_LABEL[kind]} · {STATUS_LABEL[selected.status]}</div>
-                <h2 className="font-editorial text-2xl font-semibold italic text-foreground md:text-3xl">{selected.prompt}</h2>
-              </div>
-
-              {/* Aperçu identique à l'écran de salle */}
-              <div className="rounded-xl p-5 md:p-6" style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}>
-                <div className="mn-eyebrow-light mb-4">Aperçu écran</div>
-                {kind === "poll" && <PollBars results={results} total={total} variant="compact" />}
-                {kind === "open" && <AnswerFeed messages={visible.slice(0, 12)} variant="compact" emptyLabel="Pas encore de réponse." />}
-                {kind === "wall" && <AnswerFeed messages={visible.slice(0, 6)} variant="compact" emptyLabel="Pas encore de message." />}
-              </div>
-
-              {(kind === "open" || kind === "wall") && (
-                <div>
-                  <h3 className="mb-3 flex items-baseline gap-2 font-semibold text-foreground">
-                    Modération
-                    <span className="text-sm font-normal text-muted-foreground">
-                      {all.length} message{all.length > 1 ? "s" : ""}{all.length - visible.length > 0 ? ` · ${all.length - visible.length} masqué${all.length - visible.length > 1 ? "s" : ""}` : ""}
-                    </span>
-                  </h3>
-                  <ul className="divide-y divide-border rounded-lg border border-border bg-card">
-                    {!all.length && <li className="p-4 text-sm text-muted-foreground">Rien pour l'instant.</li>}
-                    {all.map((m) => (
-                      <li key={m.id} className={cn("flex items-start gap-3 p-3", m.hidden && "opacity-50")}>
-                        <div className="min-w-0 flex-1">
-                          <p className={cn("break-words text-sm text-foreground", m.hidden && "line-through")}>{m.body}</p>
-                          <div className="mt-1 flex items-center gap-3 text-xs text-muted-foreground">
-                            <AuthorChip name={m.author_name} emoji={m.author_emoji} className="text-xs" />
-                            {kind === "wall" && <span>♥ {m.like_count}</span>}
-                            <span>{new Date(m.created_at).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}</span>
-                          </div>
-                        </div>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          disabled={busy !== null}
-                          onClick={() => run(`hide-${m.id}`, "hide_message", { message_id: m.id, hidden: !m.hidden })}
-                          aria-label={m.hidden ? "Réafficher le message" : "Masquer le message"}
-                        >
-                          {busy === `hide-${m.id}` ? <Loader2 className="h-4 w-4 animate-spin" /> : m.hidden ? <><Eye className="mr-1 h-4 w-4" />Afficher</> : <><EyeOff className="mr-1 h-4 w-4" />Masquer</>}
-                        </Button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </>
+            <ItemDetail
+              key={selected.id}
+              item={selected}
+              note={notes[selected.id] ?? ""}
+              busy={busy}
+              onSaveNote={async (note) => {
+                if (await run(`note-${selected.id}`, "update_item", { item_id: selected.id, note }, "Note enregistrée")) {
+                  setNotes((prev) => ({ ...prev, [selected.id]: note }));
+                  return true;
+                }
+                return false;
+              }}
+              onHide={(ids, hidden) =>
+                ids.length === 1
+                  ? run(`hide-${ids[0]}`, "hide_message", { message_id: ids[0], hidden })
+                  : run(`hide-${ids[0]}`, "hide_messages", { item_id: selected.id, message_ids: ids, hidden })
+              }
+            />
           )}
         </section>
       </div>
 
-      <ItemComposer
-        open={composerOpen}
-        onOpenChange={setComposerOpen}
-        onCreate={async ({ kind: k, prompt, options }) => {
-          const ok = await run("create", "create_item", { kind: k, prompt, options }, "Activité créée en brouillon");
-          if (!ok) throw new Error("création refusée");
-        }}
-      />
+      <ItemComposer open={composerOpen} onOpenChange={setComposerOpen} onCreate={createItem} />
     </div>
+  );
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+
+interface ItemDetailProps {
+  item: LiveItem;
+  note: string;
+  busy: string | null;
+  onSaveNote: (note: string) => Promise<boolean>;
+  onHide: (messageIds: string[], hidden: boolean) => Promise<unknown>;
+}
+
+const ItemDetail = ({ item, note, busy, onSaveNote, onHide }: ItemDetailProps) => {
+  const kind = item.kind as LiveKind;
+  const hasMessages = kind === "open" || kind === "wall" || kind === "cloud";
+  const { all, visible } = useLiveMessages(hasMessages ? item.id : null, kind);
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(note);
+  const words = useMemo(() => (kind === "cloud" ? groupWords(all) : []), [all, kind]);
+
+  useEffect(() => { if (!editing) setDraft(note); }, [note, editing]);
+
+  return (
+    <>
+      <div>
+        <div className="mn-eyebrow-turquoise mb-1">{KIND_LABEL[kind]} · {STATUS_LABEL[item.status]}</div>
+        <h2 className="font-editorial text-2xl font-semibold italic text-foreground md:text-3xl">{item.prompt}</h2>
+      </div>
+
+      {/* Note privée de l'animateur */}
+      <div className="rounded-lg border border-ocre/30 bg-ocre/5 p-4">
+        <div className="mb-2 flex items-center justify-between">
+          <span className="text-xs font-semibold uppercase tracking-wider text-ocre">Note animateur</span>
+          {!editing && (
+            <Button variant="ghost" size="sm" className="h-7" onClick={() => setEditing(true)}>
+              <Pencil className="mr-1 h-3.5 w-3.5" />{note ? "Modifier" : "Ajouter"}
+            </Button>
+          )}
+        </div>
+        {editing ? (
+          <div className="space-y-2">
+            <Textarea value={draft} onChange={(e) => setDraft(e.target.value.slice(0, 4000))} rows={6} autoFocus aria-label="Note animateur" />
+            <div className="flex justify-end gap-2">
+              <Button variant="outline" size="sm" onClick={() => { setDraft(note); setEditing(false); }}>Annuler</Button>
+              <Button size="sm" disabled={busy !== null} onClick={async () => { if (await onSaveNote(draft.trim())) setEditing(false); }}>Enregistrer</Button>
+            </div>
+          </div>
+        ) : note ? (
+          <p className="whitespace-pre-line text-sm leading-relaxed text-foreground">{note}</p>
+        ) : (
+          <p className="text-sm text-muted-foreground">Aucune note.</p>
+        )}
+      </div>
+
+      {/* Aperçu identique à l'écran de salle */}
+      <div className="rounded-xl p-5 md:p-6" style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}>
+        <div className="mn-eyebrow-light mb-4">Aperçu</div>
+        {item.status === "draft" ? (
+          <p className="py-6 text-center text-sm text-primary-foreground/60">Brouillon : rien à afficher avant le lancement.</p>
+        ) : (
+          <ActivityDisplay item={item} variant="compact" showHeader={false} />
+        )}
+      </div>
+
+      {/* Nuage : mots, prénoms, masquage */}
+      {kind === "cloud" && item.status !== "draft" && (
+        <div>
+          <h3 className="mb-3 flex items-baseline gap-2 font-semibold text-foreground">
+            Mots proposés
+            <span className="text-sm font-normal text-muted-foreground">{words.length} mot{words.length > 1 ? "s" : ""} · {all.length} proposition{all.length > 1 ? "s" : ""}</span>
+          </h3>
+          {item.show_authors && (
+            <p className="mb-3 text-xs text-muted-foreground">Prénoms visibles ici uniquement. Repérez un mot, appelez la personne, passez-lui le micro.</p>
+          )}
+          <ul className="divide-y divide-border rounded-lg border border-border bg-card">
+            {!words.length && <li className="p-4 text-sm text-muted-foreground">Rien pour l'instant.</li>}
+            {words.map((w) => {
+              const hidden = w.messages.every((m) => m.hidden);
+              return (
+                <li key={w.key} className={cn("flex items-start gap-3 p-3", hidden && "opacity-50")}>
+                  <span className="w-8 shrink-0 text-right font-semibold tabular-nums text-foreground">{w.count}</span>
+                  <div className="min-w-0 flex-1">
+                    <p className={cn("font-medium text-foreground", hidden && "line-through")}>{w.label}</p>
+                    {item.show_authors && (
+                      <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1">
+                        {w.messages.map((m) => <AuthorChip key={m.id} {...authorOf(m)} className="text-xs text-muted-foreground" />)}
+                      </div>
+                    )}
+                  </div>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    disabled={busy !== null}
+                    onClick={() => onHide(w.messages.map((m) => m.id), !hidden)}
+                    aria-label={hidden ? `Réafficher « ${w.label} »` : `Masquer « ${w.label} »`}
+                  >
+                    {hidden ? <><Eye className="mr-1 h-4 w-4" />Afficher</> : <><EyeOff className="mr-1 h-4 w-4" />Masquer</>}
+                  </Button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+
+      {/* Question ouverte et mur : modération message par message */}
+      {(kind === "open" || kind === "wall") && item.status !== "draft" && (
+        <div>
+          <h3 className="mb-3 flex items-baseline gap-2 font-semibold text-foreground">
+            Modération
+            <span className="text-sm font-normal text-muted-foreground">
+              {all.length} message{all.length > 1 ? "s" : ""}{all.length - visible.length > 0 ? ` · ${all.length - visible.length} masqué${all.length - visible.length > 1 ? "s" : ""}` : ""}
+            </span>
+          </h3>
+          <ul className="divide-y divide-border rounded-lg border border-border bg-card">
+            {!all.length && <li className="p-4 text-sm text-muted-foreground">Rien pour l'instant.</li>}
+            {all.map((m) => (
+              <li key={m.id} className={cn("flex items-start gap-3 p-3", m.hidden && "opacity-50")}>
+                <div className="min-w-0 flex-1">
+                  <p className={cn("break-words text-sm text-foreground", m.hidden && "line-through")}>{m.body}</p>
+                  <div className="mt-1 flex items-center gap-3 text-xs text-muted-foreground">
+                    <AuthorChip {...authorOf(m)} className="text-xs" />
+                    {kind === "wall" && <span>♥ {m.like_count}</span>}
+                    <span>{new Date(m.created_at).toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" })}</span>
+                  </div>
+                </div>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  disabled={busy !== null}
+                  onClick={() => onHide([m.id], !m.hidden)}
+                  aria-label={m.hidden ? "Réafficher le message" : "Masquer le message"}
+                >
+                  {m.hidden ? <><Eye className="mr-1 h-4 w-4" />Afficher</> : <><EyeOff className="mr-1 h-4 w-4" />Masquer</>}
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -280,11 +280,15 @@ Outil d'interaction avec la salle pendant un événement, en trois modes : **que
 | `/live/MN-XXXX/ecran` | vidéoprojecteur | QR d'accueil, puis rendu en direct de l'activité |
 | `/live/MN-XXXX/regie` | animateur (code animateur) | créer, lancer, terminer, masquer, exporter en CSV |
 
+**Cinq types d'activité.** Question ouverte, **nuage de mots**, sondage, **note de satisfaction (1 à 5)** et mur de questions. Le mur est le seul à pouvoir rester ouvert **en parallèle** d'une autre activité : les téléphones affichent alors deux onglets. L'écran de salle peut montrer une activité, ou **deux côte à côte** (comparer deux nuages).
+
 **Architecture.**
-- **Données** : 7 tables `live_*`, migration `supabase/migrations/20260917120000_live_events.sql`.
-- **Écritures du public** : directement en base, sous RLS. Les garde-fous sont dans les policies et les contraintes : activité active uniquement, un vote et un like par participant, un message toutes les 5 s, 280 caractères, prénom cohérent avec le participant.
+- **Données** : 8 tables `live_*`, migrations `20260917120000_live_events.sql` puis `20260918100000_live_cloud_rating_wall.sql`.
+- **Écritures du public** : directement en base, sous RLS. Les garde-fous sont dans les policies et les contraintes : activité active uniquement, un vote et un like par participant, un message toutes les 5 s (2 s pour un mot de nuage), 280 caractères (40 pour un nuage), 3 mots maximum par personne et par nuage, prénom cohérent avec le participant, participant du bon événement.
 - **Actions de l'animateur** : passent par l'edge function `live-admin`, qui revérifie le code animateur à chaque appel.
-- **Temps réel** : `postgres_changes` sur `live_items`, `live_messages` et `live_votes`. Hook générique : `src/hooks/useLiveTable.ts`.
+- **Temps réel** : `postgres_changes` sur `live_events`, `live_items`, `live_messages` et `live_votes`. Hook générique : `src/hooks/useLiveTable.ts`.
+- **Les téléphones n'ouvrent AUCUNE connexion temps réel** : ils interrogent la base toutes les 4 à 20 secondes (`PHONE_POLL_MS` dans `src/lib/live/types.ts`). C'est délibéré, voir « Capacité » plus bas. Seuls l'écran et la régie sont en temps réel instantané.
+- **Notes d'animation** : table `live_item_notes`, sans policy, lisible uniquement via `live-admin`. Elles s'affichent en régie et dans le conducteur imprimable (`/live/<code>/conducteur`).
 
 **Secrets (Supabase).** `LIVE_CREATE_KEY` est la clé d'équipe qui autorise la création d'événements. `LIVE_ADMIN_PEPPER` est concaténé au code animateur avant hachage. **Ne change jamais le pepper** : tous les codes animateurs existants deviendraient invalides. Pour changer la clé d'équipe :
 
@@ -297,7 +301,10 @@ SUPABASE_ACCESS_TOKEN=<token> npx supabase@2 secrets set LIVE_CREATE_KEY=<nouvel
 - Les messages masqués restent lisibles publiquement. C'est indispensable : sinon la mise à jour `hidden → true` n'est jamais diffusée en temps réel et l'écran ne les retire pas. Le filtrage se fait côté client.
 - Les téléphones n'écoutent **pas** les votes, seuls l'écran et la régie le font. Ne l'ajoute pas : avec 300 personnes, chaque vote déclencherait 300 notifications inutiles.
 - Le CSS global force la couleur de tous les `h1`–`h4`. Sur les pages sombres du module, chaque titre porte `text-primary-foreground` explicitement, sinon il devient invisible.
-- **Capacité** : une connexion temps réel par téléphone ouvert. Vérifie le plan Supabase avant un événement de plus de 150 personnes (Free : 200 connexions simultanées, Pro : 500).
+- **Ne remets pas de condition sur `document.visibilityState` autour des rechargements périodiques.** Un onglet peut être affiché et pourtant déclaré « masqué » par le navigateur (fenêtre non focalisée, écran de salle sur un second moniteur) : la page se fige alors sans erreur. Le navigateur ralentit déjà seul les minuteurs en arrière-plan.
+- **L'anonymat du mur est un anonymat de salle**, pas un anonymat technique : le nom n'est ni stocké ni affiché, mais l'identifiant du participant reste sur la ligne. Ne le présente jamais comme un anonymat fort.
+- Le nuage regroupe les mots sans tenir compte des accents ni de la casse, mais **affiche la graphie la plus fréquemment saisie** : c'est ce qui permet à « l'IA » de ne pas devenir « l'ia » (`src/lib/live/words.ts`).
+- **Capacité — le point le plus important.** Le projet Supabase est sur l'offre **gratuite : 200 connexions temps réel simultanées et 100 évènements par seconde**. C'est pour ça que les téléphones interrogent la base au lieu de s'abonner. Si tu remets les téléphones en temps réel, une salle de plus de 200 personnes cassera en pleine conférence. Pour lever la limite, il faut passer le projet en offre Pro (500 connexions).
 
 ### Cartes de visite digitales (`/equipe`)
 

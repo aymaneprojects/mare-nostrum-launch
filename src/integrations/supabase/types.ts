@@ -382,6 +382,7 @@ export type Database = {
           created_at: string
           id: string
           public_code: string
+          screen_items: string[]
           status: string
           title: string
         }
@@ -389,6 +390,7 @@ export type Database = {
           created_at?: string
           id?: string
           public_code: string
+          screen_items?: string[]
           status?: string
           title: string
         }
@@ -396,46 +398,79 @@ export type Database = {
           created_at?: string
           id?: string
           public_code?: string
+          screen_items?: string[]
           status?: string
           title?: string
         }
         Relationships: []
+      }
+      live_item_notes: {
+        Row: {
+          item_id: string
+          note: string
+          updated_at: string
+        }
+        Insert: {
+          item_id: string
+          note: string
+          updated_at?: string
+        }
+        Update: {
+          item_id?: string
+          note?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "live_item_notes_item_id_fkey"
+            columns: ["item_id"]
+            isOneToOne: true
+            referencedRelation: "live_items"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       live_items: {
         Row: {
           activated_at: string | null
           closed_at: string | null
           created_at: string
+          duration_seconds: number | null
           event_id: string
           id: string
           kind: string
           options: string[]
           position: number
           prompt: string
+          show_authors: boolean
           status: string
         }
         Insert: {
           activated_at?: string | null
           closed_at?: string | null
           created_at?: string
+          duration_seconds?: number | null
           event_id: string
           id?: string
           kind: string
           options?: string[]
           position?: number
           prompt: string
+          show_authors?: boolean
           status?: string
         }
         Update: {
           activated_at?: string | null
           closed_at?: string | null
           created_at?: string
+          duration_seconds?: number | null
           event_id?: string
           id?: string
           kind?: string
           options?: string[]
           position?: number
           prompt?: string
+          show_authors?: boolean
           status?: string
         }
         Relationships: [
@@ -483,6 +518,7 @@ export type Database = {
       }
       live_messages: {
         Row: {
+          anonymous: boolean
           author_emoji: string
           author_name: string
           body: string
@@ -494,6 +530,7 @@ export type Database = {
           participant_id: string
         }
         Insert: {
+          anonymous?: boolean
           author_emoji: string
           author_name: string
           body: string
@@ -505,6 +542,7 @@ export type Database = {
           participant_id: string
         }
         Update: {
+          anonymous?: boolean
           author_emoji?: string
           author_name?: string
           body?: string

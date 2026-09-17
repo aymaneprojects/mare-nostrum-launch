@@ -2,13 +2,18 @@ import { useMemo } from "react";
 import { useLiveTable } from "@/hooks/useLiveTable";
 import type { LiveKind, LiveMessage } from "@/lib/live/types";
 
+interface Options {
+  /** Téléphone : interrogation périodique au lieu du temps réel. */
+  pollMs?: number;
+}
+
 /**
- * Messages d'une activité (réponses ouvertes ou mur), en temps réel.
- * Tri : plus récents d'abord pour une question ouverte ; plus likés puis plus
- * récents pour un mur. `all` inclut les messages masqués (régie), `visible` non.
+ * Messages d'une activité (réponses ouvertes, mots de nuage ou mur).
+ * Tri : plus likés puis plus récents pour un mur ; plus récents sinon.
+ * `all` inclut les messages masqués (régie), `visible` non.
  */
-export function useLiveMessages(itemId: string | null | undefined, kind: LiveKind | undefined) {
-  const { rows, ready } = useLiveTable({ table: "live_messages", column: "item_id", value: itemId });
+export function useLiveMessages(itemId: string | null | undefined, kind: LiveKind | undefined, { pollMs }: Options = {}) {
+  const { rows, ready, refetch } = useLiveTable({ table: "live_messages", column: "item_id", value: itemId, pollMs });
 
   const all = useMemo<LiveMessage[]>(() => {
     const list = [...rows.values()];
@@ -20,5 +25,5 @@ export function useLiveMessages(itemId: string | null | undefined, kind: LiveKin
 
   const visible = useMemo(() => all.filter((m) => !m.hidden), [all]);
 
-  return { all, visible, ready };
+  return { all, visible, ready, refetch };
 }

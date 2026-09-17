@@ -8,8 +8,8 @@ export interface PollResult {
 }
 
 /**
- * Résultats d'un sondage en temps réel. À réserver à l'écran de salle et à la
- * régie : les téléphones n'écoutent pas les votes (trafic inutile).
+ * Résultats d'un sondage ou d'une note de satisfaction, en temps réel.
+ * Réservé à l'écran de salle et à la régie : les téléphones n'écoutent pas les votes.
  */
 export function useLiveVotes(itemId: string | null | undefined, options: string[] = []) {
   const { rows, ready } = useLiveTable({ table: "live_votes", column: "item_id", value: itemId });
@@ -25,6 +25,8 @@ export function useLiveVotes(itemId: string | null | undefined, options: string[
       count: counts[i],
       pct: total ? Math.round((counts[i] / total) * 100) : 0,
     }));
-    return { results, total, ready };
+    // Moyenne sur l'échelle 1..n (utile pour la satisfaction).
+    const average = total ? counts.reduce((sum, c, i) => sum + c * (i + 1), 0) / total : 0;
+    return { results, total, average, ready };
   }, [rows, options, ready]);
 }

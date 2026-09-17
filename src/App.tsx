@@ -54,6 +54,7 @@ const LiveHome = lazy(() => import("./pages/live/LiveHome"));
 const LivePublic = lazy(() => import("./pages/live/LivePublic"));
 const LiveScreen = lazy(() => import("./pages/live/LiveScreen"));
 const LiveRegie = lazy(() => import("./pages/live/LiveRegie"));
+const LiveConducteur = lazy(() => import("./pages/live/LiveConducteur"));
 
 const queryClient = new QueryClient();
 
@@ -135,6 +136,7 @@ const AppContent = () => {
         <Route path="/live/:code" element={<Suspense fallback={null}><LivePublic /></Suspense>} />
         <Route path="/live/:code/ecran" element={<Suspense fallback={null}><LiveScreen /></Suspense>} />
         <Route path="/live/:code/regie" element={<Suspense fallback={null}><LiveRegie /></Suspense>} />
+        <Route path="/live/:code/conducteur" element={<Suspense fallback={null}><LiveConducteur /></Suspense>} />
 
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />

@@ -1,5 +1,5 @@
 import AuthorChip from "@/components/live/AuthorChip";
-import type { LiveMessage } from "@/lib/live/types";
+import { authorOf, type LiveMessage } from "@/lib/live/types";
 import { cn } from "@/lib/utils";
 
 interface AnswerFeedProps {
@@ -33,7 +33,7 @@ const AnswerFeed = ({ messages, variant = "screen", emptyLabel = "Les réponses 
           <p className={cn("break-words leading-snug text-primary-foreground", variant === "screen" ? "text-lg md:text-2xl" : "text-base")}>
             {m.body}
           </p>
-          <AuthorChip name={m.author_name} emoji={m.author_emoji} className="mt-3 text-primary-foreground/60" />
+          <AuthorChip {...authorOf(m)} className="mt-3 text-primary-foreground/60" />
         </li>
       ))}
     </ul>

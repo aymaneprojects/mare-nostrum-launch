@@ -4,56 +4,55 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import type { LiveIdentity } from "@/lib/live/identity";
-import { PG_RLS_VIOLATION } from "@/lib/live/types";
-
-const MAX = 280;
-const COOLDOWN_MS = 5_000;
+import { LIMITS, PG_RLS_VIOLATION } from "@/lib/live/types";
+import { cn } from "@/lib/utils";
 
 interface MessageComposerProps {
   itemId: string;
   identity: LiveIdentity;
   placeholder: string;
   submitLabel: string;
-  /** Appelé quand le serveur refuse l'identité (participant disparu) : on repropose l'inscription. */
-  onIdentityLost?: () => void;
+  /** Mur de questions : proposer de publier anonymement. */
+  allowAnonymous?: boolean;
+  /** Appelé après un envoi réussi (pour recharger la liste sans attendre). */
+  onPosted?: () => void;
 }
 
 /** Saisie d'une réponse ou d'un message du mur, avec compteur et anti-envoi répété. */
-const MessageComposer = ({ itemId, identity, placeholder, submitLabel, onIdentityLost }: MessageComposerProps) => {
+const MessageComposer = ({ itemId, identity, placeholder, submitLabel, allowAnonymous, onPosted }: MessageComposerProps) => {
   const [body, setBody] = useState("");
+  const [anonymous, setAnonymous] = useState(false);
   const [sending, setSending] = useState(false);
   const [feedback, setFeedback] = useState<{ tone: "ok" | "error"; text: string } | null>(null);
   const lastSent = useRef(0);
 
   const trimmed = body.trim();
-  const remaining = MAX - body.length;
+  const remaining = LIMITS.messageLength - body.length;
 
   const send = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!trimmed || sending) return;
 
-    const wait = COOLDOWN_MS - (Date.now() - lastSent.current);
+    const wait = LIMITS.messageCooldownMs - (Date.now() - lastSent.current);
     if (wait > 0) {
       setFeedback({ tone: "error", text: `Patientez ${Math.ceil(wait / 1000)} s avant un nouvel envoi.` });
       return;
     }
 
+    const anon = Boolean(allowAnonymous && anonymous);
     setSending(true);
     setFeedback(null);
     const { error } = await supabase.from("live_messages").insert({
       item_id: itemId,
       participant_id: identity.id,
-      author_name: identity.firstName,
-      author_emoji: identity.emoji,
+      author_name: anon ? "" : identity.firstName,
+      author_emoji: anon ? "" : identity.emoji,
       body: trimmed,
+      anonymous: anon,
     });
     setSending(false);
 
     if (error) {
-      if (error.code === "23503") {
-        onIdentityLost?.();
-        return;
-      }
       setFeedback({
         tone: "error",
         text: error.code === PG_RLS_VIOLATION
@@ -64,20 +63,45 @@ const MessageComposer = ({ itemId, identity, placeholder, submitLabel, onIdentit
     }
     lastSent.current = Date.now();
     setBody("");
-    setFeedback({ tone: "ok", text: "Envoyé ✓" });
+    setFeedback({ tone: "ok", text: anon ? "Envoyé anonymement ✓" : "Envoyé ✓" });
+    onPosted?.();
   };
 
   return (
     <form onSubmit={send} className="space-y-3">
       <Textarea
         value={body}
-        onChange={(e) => { setBody(e.target.value.slice(0, MAX)); setFeedback(null); }}
+        onChange={(e) => { setBody(e.target.value.slice(0, LIMITS.messageLength)); setFeedback(null); }}
         placeholder={placeholder}
         rows={3}
-        maxLength={MAX}
+        maxLength={LIMITS.messageLength}
         aria-label={placeholder}
         className="resize-none text-base text-foreground"
       />
+
+      {allowAnonymous && (
+        <div role="radiogroup" aria-label="Signature" className="grid grid-cols-2 gap-2 rounded-full bg-primary-foreground/[0.07] p-1">
+          {[
+            { value: false, label: `${identity.emoji} ${identity.firstName}` },
+            { value: true, label: "🕶️ Anonyme" },
+          ].map((opt) => (
+            <button
+              key={String(opt.value)}
+              type="button"
+              role="radio"
+              aria-checked={anonymous === opt.value}
+              onClick={() => setAnonymous(opt.value)}
+              className={cn(
+                "h-10 truncate rounded-full px-3 text-sm transition-colors",
+                anonymous === opt.value ? "bg-primary-foreground text-foreground" : "text-primary-foreground/70",
+              )}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+      )}
+
       <div className="flex items-center justify-between gap-3">
         <span
           role={feedback ? "status" : undefined}

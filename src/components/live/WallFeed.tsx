@@ -4,21 +4,23 @@ import AuthorChip from "@/components/live/AuthorChip";
 import MessageComposer from "@/components/live/MessageComposer";
 import { supabase } from "@/integrations/supabase/client";
 import { remember, remembered, type LiveIdentity } from "@/lib/live/identity";
-import { PG_UNIQUE_VIOLATION, type LiveItem, type LiveMessage } from "@/lib/live/types";
+import { authorOf, PG_UNIQUE_VIOLATION, type LiveItem, type LiveMessage } from "@/lib/live/types";
 import { cn } from "@/lib/utils";
 
 interface WallFeedProps {
   item: LiveItem;
   identity: LiveIdentity;
   messages: LiveMessage[];
-  onIdentityLost?: () => void;
+  /** Recharge la liste (le téléphone n'est pas en temps réel). */
+  onChanged?: () => void;
 }
 
-/** Mur de questions sur téléphone : poster, puis liker les questions des autres. */
-const WallFeed = ({ item, identity, messages, onIdentityLost }: WallFeedProps) => {
+/** Mur de questions sur téléphone : poster (signé ou anonyme), puis liker les questions des autres. */
+const WallFeed = ({ item, identity, messages, onChanged }: WallFeedProps) => {
   const [liked, setLiked] = useState<Set<string>>(() => new Set());
-  // Likes optimistes pas encore reflétés par le temps réel.
+  // Likes optimistes pas encore reflétés par le rechargement.
   const [pendingBump, setPendingBump] = useState<Record<string, number>>({});
+  const [myMessages, setMyMessages] = useState<Set<string>>(() => new Set());
 
   useEffect(() => setLiked(remembered("liked", item.id)), [item.id]);
 
@@ -33,7 +35,9 @@ const WallFeed = ({ item, identity, messages, onIdentityLost }: WallFeedProps) =
       }
       return next;
     });
-  }, [messages]);
+    // Repère ses propres messages (y compris anonymes) pour les marquer « vous ».
+    setMyMessages(new Set(messages.filter((m) => m.participant_id === identity.id).map((m) => m.id)));
+  }, [messages, identity.id]);
 
   const like = async (message: LiveMessage) => {
     if (liked.has(message.id)) return;
@@ -46,9 +50,9 @@ const WallFeed = ({ item, identity, messages, onIdentityLost }: WallFeedProps) =
 
     if (!error || error.code === PG_UNIQUE_VIOLATION) {
       remember("liked", item.id, message.id);
+      onChanged?.();
       return;
     }
-    if (error.code === "23503") onIdentityLost?.();
     // Échec réel : on annule l'optimisme.
     setLiked((prev) => {
       const next = new Set(prev);
@@ -67,35 +71,33 @@ const WallFeed = ({ item, identity, messages, onIdentityLost }: WallFeedProps) =
       <MessageComposer
         itemId={item.id}
         identity={identity}
-        placeholder="Votre question ou votre réaction…"
+        placeholder="Votre question, quand elle vous vient…"
         submitLabel="Publier"
-        onIdentityLost={onIdentityLost}
+        allowAnonymous
+        onPosted={onChanged}
       />
 
       <div>
         <div className="mn-eyebrow-light mb-3">
-          {messages.length ? `${messages.length} message${messages.length > 1 ? "s" : ""} · les plus aimés en premier` : "Aucun message pour l'instant"}
+          {messages.length ? `${messages.length} message${messages.length > 1 ? "s" : ""} · les plus aimés en premier` : "Aucune question pour l'instant"}
         </div>
         <ul className="space-y-3">
           {messages.map((m) => {
             const isLiked = liked.has(m.id);
             const count = Math.max(m.like_count, pendingBump[m.id] ?? 0);
-            const mine = m.participant_id === identity.id;
+            const author = authorOf(m);
+            const mine = myMessages.has(m.id);
             return (
               <li key={m.id} className="animate-in fade-in duration-300 rounded-2xl border border-primary-foreground/10 bg-primary-foreground/[0.07] p-4">
                 <p className="break-words text-base leading-snug text-primary-foreground">{m.body}</p>
                 <div className="mt-3 flex items-center justify-between gap-3">
-                  <AuthorChip
-                    name={mine ? `${m.author_name} (vous)` : m.author_name}
-                    emoji={m.author_emoji}
-                    className="text-primary-foreground/60"
-                  />
+                  <AuthorChip name={mine ? `${author.name} (vous)` : author.name} emoji={author.emoji} className="text-primary-foreground/60" />
                   <button
                     type="button"
                     onClick={() => like(m)}
                     disabled={isLiked}
                     aria-pressed={isLiked}
-                    aria-label={isLiked ? `Vous aimez ce message, ${count} like${count > 1 ? "s" : ""}` : `Aimer ce message, ${count} like${count > 1 ? "s" : ""}`}
+                    aria-label={isLiked ? `Vous aimez cette question, ${count} like${count > 1 ? "s" : ""}` : `Aimer cette question, ${count} like${count > 1 ? "s" : ""}`}
                     className={cn(
                       "inline-flex h-11 min-w-[4.5rem] items-center justify-center gap-1.5 rounded-full px-4 text-sm font-semibold tabular-nums transition-all duration-150",
                       isLiked

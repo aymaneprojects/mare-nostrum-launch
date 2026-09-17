@@ -1,14 +1,17 @@
 /**
- * Synchronise en temps réel les lignes d'une table live filtrées sur une colonne.
+ * Synchronise les lignes d'une table live filtrées sur une colonne.
  *
- * Ordre volontaire : on s'abonne d'abord, puis on charge l'état complet quand le
- * canal est SUBSCRIBED. Charger avant ferait perdre les lignes insérées entre
- * les deux. Le rechargement se refait à chaque ré-abonnement automatique (coupure
- * réseau) et quand l'onglet redevient visible (téléphone sorti de veille).
+ * Deux modes :
+ * - temps réel (écran, régie) : abonnement postgres_changes, puis chargement
+ *   complet quand le canal est SUBSCRIBED. Charger avant ferait perdre les lignes
+ *   insérées entre les deux. Le rechargement se refait à chaque ré-abonnement
+ *   automatique (coupure réseau). Les évènements reçus pendant un chargement sont
+ *   réappliqués par-dessus le résultat, pour qu'un like arrivé en cours de route
+ *   ne soit pas écrasé par un instantané plus ancien.
+ * - interrogation périodique (téléphones) : aucune connexion temps réel ouverte,
+ *   rechargement toutes les `pollMs` millisecondes tant que l'onglet est visible.
  *
- * Les évènements reçus pendant un chargement sont mis de côté puis réappliqués
- * par-dessus le résultat, pour qu'un like arrivé en cours de route ne soit pas
- * écrasé par un instantané plus ancien.
+ * Dans les deux cas, on recharge quand l'onglet redevient visible.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { RealtimePostgresChangesPayload } from "@supabase/supabase-js";
@@ -22,11 +25,15 @@ interface Options<T extends LiveTableName> {
   column: "event_id" | "item_id";
   /** Valeur du filtre. null/undefined = hook inactif. */
   value: string | null | undefined;
+  /** Si défini : pas de temps réel, rechargement à cet intervalle. */
+  pollMs?: number;
+  /** Filtre supplémentaire appliqué au chargement (mode interrogation uniquement). */
+  extraEq?: [string, string];
 }
 
 type WithId = { id: string };
 
-export function useLiveTable<T extends LiveTableName>({ table, column, value }: Options<T>) {
+export function useLiveTable<T extends LiveTableName>({ table, column, value, pollMs, extraEq }: Options<T>) {
   type Row = Tables<T>;
   const [rows, setRows] = useState<Map<string, Row>>(() => new Map());
   const [ready, setReady] = useState(false);
@@ -34,6 +41,8 @@ export function useLiveTable<T extends LiveTableName>({ table, column, value }: 
   const fetching = useRef(false);
   const buffer = useRef<Row[]>([]);
   const generation = useRef(0);
+  const extraCol = extraEq?.[0];
+  const extraVal = extraEq?.[1];
 
   const refetch = useCallback(async () => {
     if (!value) return;
@@ -41,10 +50,12 @@ export function useLiveTable<T extends LiveTableName>({ table, column, value }: 
     fetching.current = true;
     buffer.current = [];
 
-    const query = supabase.from(table).select("*") as unknown as {
-      eq: (col: string, val: string) => PromiseLike<{ data: Row[] | null; error: { message: string } | null }>;
-    };
-    const { data, error } = await query.eq(column, value);
+    type Query = {
+      eq: (col: string, val: string) => Query;
+    } & PromiseLike<{ data: Row[] | null; error: { message: string } | null }>;
+    let query = (supabase.from(table).select("*") as unknown as Query).eq(column, value);
+    if (extraCol && extraVal) query = query.eq(extraCol, extraVal);
+    const { data, error } = await query;
 
     // Un chargement plus récent a été lancé, ou le filtre a changé : on ignore.
     if (mine !== generation.current) return;
@@ -60,14 +71,39 @@ export function useLiveTable<T extends LiveTableName>({ table, column, value }: 
     buffer.current = [];
     setRows(next);
     setReady(true);
-  }, [table, column, value]);
+  }, [table, column, value, extraCol, extraVal]);
 
   useEffect(() => {
     setRows(new Map());
     setReady(false);
     if (!value) return;
 
-    // Suffixe aléatoire : deux composants de la même page peuvent écouter la même table.
+    const onVisible = () => {
+      if (document.visibilityState === "visible") void refetch();
+    };
+    document.addEventListener("visibilitychange", onVisible);
+
+    // Mode interrogation périodique.
+    if (pollMs) {
+      void refetch();
+      // Léger décalage aléatoire : 200 téléphones ne frappent pas la base à la même milliseconde.
+      const jitter = Math.floor(Math.random() * Math.min(1000, pollMs / 4));
+      let timer: number | undefined;
+      const start = window.setTimeout(() => {
+        // Pas de filtre sur la visibilité : le navigateur ralentit déjà les minuteurs
+        // des onglets en arrière-plan, et un onglet peut être « masqué » tout en étant
+        // affiché (fenêtre non focalisée, écran de salle en second moniteur…).
+        timer = window.setInterval(() => void refetch(), pollMs);
+      }, jitter);
+      return () => {
+        generation.current++;
+        window.clearTimeout(start);
+        if (timer) window.clearInterval(timer);
+        document.removeEventListener("visibilitychange", onVisible);
+      };
+    }
+
+    // Mode temps réel. Suffixe aléatoire : deux composants peuvent écouter la même table.
     const name = `${table}:${column}:${value}:${Math.random().toString(36).slice(2, 8)}`;
     const channel = supabase
       .channel(name)
@@ -75,7 +111,18 @@ export function useLiveTable<T extends LiveTableName>({ table, column, value }: 
         "postgres_changes",
         { event: "*", schema: "public", table, filter: `${column}=eq.${value}` },
         (payload: RealtimePostgresChangesPayload<Record<string, unknown>>) => {
-          if (payload.eventType === "DELETE") return;
+          if (payload.eventType === "DELETE") {
+            const oldId = (payload.old as Partial<WithId>)?.id;
+            if (oldId) {
+              setRows((prev) => {
+                if (!prev.has(oldId)) return prev;
+                const next = new Map(prev);
+                next.delete(oldId);
+                return next;
+              });
+            }
+            return;
+          }
           const row = payload.new as unknown as Row;
           if (fetching.current) buffer.current.push(row);
           setRows((prev) => {
@@ -89,17 +136,12 @@ export function useLiveTable<T extends LiveTableName>({ table, column, value }: 
         if (status === "SUBSCRIBED") void refetch();
       });
 
-    const onVisible = () => {
-      if (document.visibilityState === "visible") void refetch();
-    };
-    document.addEventListener("visibilitychange", onVisible);
-
     return () => {
       generation.current++;
       document.removeEventListener("visibilitychange", onVisible);
       void supabase.removeChannel(channel);
     };
-  }, [table, column, value, refetch]);
+  }, [table, column, value, pollMs, refetch]);
 
   return { rows, ready, refetch };
 }

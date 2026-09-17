@@ -1,6 +1,6 @@
 import { Heart } from "lucide-react";
 import AuthorChip from "@/components/live/AuthorChip";
-import type { LiveMessage } from "@/lib/live/types";
+import { authorOf, type LiveMessage } from "@/lib/live/types";
 import { cn } from "@/lib/utils";
 
 interface WallBoardProps {
@@ -24,7 +24,7 @@ const WallBoard = ({ messages, limit = 12 }: WallBoardProps) => {
           <p className="break-words text-2xl leading-snug text-primary-foreground md:text-4xl">{top.body}</p>
           <LikeCount count={top.like_count} large />
         </div>
-        <AuthorChip name={top.author_name} emoji={top.author_emoji} className="mt-4 text-primary-foreground/70 md:text-base" />
+        <AuthorChip {...authorOf(top)} className="mt-4 text-primary-foreground/70 md:text-base" />
       </article>
 
       {rest.length > 0 && (
@@ -35,7 +35,7 @@ const WallBoard = ({ messages, limit = 12 }: WallBoardProps) => {
                 <p className="break-words text-lg leading-snug text-primary-foreground md:text-xl">{m.body}</p>
                 <LikeCount count={m.like_count} />
               </div>
-              <AuthorChip name={m.author_name} emoji={m.author_emoji} className="mt-3 text-primary-foreground/60" />
+              <AuthorChip {...authorOf(m)} className="mt-3 text-primary-foreground/60" />
             </li>
           ))}
         </ul>

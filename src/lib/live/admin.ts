@@ -5,7 +5,10 @@
 import { supabase } from "@/integrations/supabase/client";
 
 export type AdminAction =
-  | "create_event" | "verify" | "create_item" | "activate" | "close" | "hide_message" | "close_event";
+  | "create_event" | "verify" | "update_event" | "close_event"
+  | "create_item" | "update_item" | "delete_item" | "get_notes"
+  | "activate" | "close" | "set_screen"
+  | "hide_message" | "hide_messages";
 
 const key = (publicCode: string) => `mn-live-admin:${publicCode.toUpperCase()}`;
 
