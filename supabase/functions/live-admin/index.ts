@@ -210,6 +210,20 @@ serve(async (req) => {
         if (body.prompt !== undefined) patch.prompt = str(body.prompt, "question", 300);
         if (body.duration_seconds !== undefined) patch.duration_seconds = optionalDuration(body.duration_seconds);
         if (body.show_authors !== undefined) patch.show_authors = target.kind === "cloud" && body.show_authors === true;
+        // Les options ne se modifient que sur un sondage (celles d'une note sont figées à 1..5).
+        if (body.options !== undefined && target.kind === "poll") {
+          if (!Array.isArray(body.options)) throw new HttpError("Options invalides.");
+          const options = body.options
+            .filter((o: unknown) => typeof o === "string" && o.trim())
+            .map((o: string) => o.trim().slice(0, 120));
+          if (options.length < 2 || options.length > 10) throw new HttpError("Un sondage a entre 2 et 10 options.");
+          // Retirer une option déjà votée fausserait les résultats affichés.
+          const { count: votes } = await supabase
+            .from("live_votes").select("id", { count: "exact", head: true })
+            .eq("item_id", target.id).gte("option_index", options.length);
+          if (votes) throw new HttpError("Des votes portent sur les options que vous retirez. Terminez et recréez le sondage.");
+          patch.options = options;
+        }
         let item = target;
         if (Object.keys(patch).length) {
           item = must(await supabase.from("live_items").update(patch).eq("id", target.id).select("*").single());

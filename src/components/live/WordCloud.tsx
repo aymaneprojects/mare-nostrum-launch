@@ -17,9 +17,27 @@ const SIZES = {
 };
 
 /**
+ * Palette du nuage : six teintes définies dans index.css, toutes contrastées à
+ * 4,5:1 minimum sur le dégradé sombre de l'écran de salle.
+ */
+const PALETTE_SIZE = 6;
+
+/**
+ * Couleur attribuée à partir du mot lui-même, et non de son rang : un mot garde
+ * donc sa couleur même quand les compteurs changent et que le nuage se réordonne.
+ */
+function colorIndex(key: string): number {
+  let hash = 2166136261;
+  for (let i = 0; i < key.length; i++) {
+    hash ^= key.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0) % PALETTE_SIZE;
+}
+
+/**
  * Nuage de mots : taille proportionnelle à la racine de la fréquence (un mot
- * cité 16 fois n'écrase pas tout le reste), mot le plus cité au centre, trois
- * premiers en turquoise.
+ * cité 16 fois n'écrase pas tout le reste), mot le plus cité au centre.
  */
 const WordCloud = ({ messages, variant = "screen", limit = 60 }: WordCloudProps) => {
   const words = useMemo(() => groupWords(messages).slice(0, limit), [messages, limit]);
@@ -34,7 +52,6 @@ const WordCloud = ({ messages, variant = "screen", limit = 60 }: WordCloudProps)
 
   const top = words[0].count;
   const { min, max } = SIZES[variant];
-  const ranked = new Map(words.map((w, i) => [w.key, i]));
 
   return (
     <div
@@ -47,20 +64,19 @@ const WordCloud = ({ messages, variant = "screen", limit = 60 }: WordCloudProps)
     >
       {centerOut(words).map((w) => {
         const weight = Math.sqrt(w.count / top);
-        const rank = ranked.get(w.key) ?? 99;
         return (
           <span
             key={w.key}
             role="listitem"
             aria-label={`${w.label}, ${w.count} fois`}
             title={`${w.count} fois`}
-            className={cn(
-              "animate-in fade-in zoom-in-90 duration-500 font-semibold tracking-tight transition-all",
-              rank < 3 ? "text-accent" : "text-primary-foreground",
-            )}
+            className="animate-in fade-in zoom-in-90 duration-500 font-semibold tracking-tight transition-all"
             style={{
               fontSize: `${(min + (max - min) * weight).toFixed(2)}rem`,
-              opacity: rank < 3 ? 1 : 0.55 + 0.45 * weight,
+              color: `hsl(var(--mn-cloud-${colorIndex(w.key) + 1}))`,
+              // La hiérarchie passe par la taille : l'opacité reste haute pour que
+              // les petits mots restent lisibles au fond d'une salle.
+              opacity: 0.8 + 0.2 * weight,
             }}
           >
             {w.label}

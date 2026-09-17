@@ -23,6 +23,17 @@ All colors MUST be HSL.
     --mn-ink: 228 56% 13%;
     --mn-muted: 224 14% 50%;
 
+    /* Palette des nuages de mots (écran de salle).
+       Six teintes contrastées, toutes vérifiées à 4,5:1 minimum sur le dégradé
+       nuit → encre. L'ocre de marque (36 78% 45%) est volontairement écarté ici :
+       à 4,0:1 il se noie dans le fond projeté. */
+    --mn-cloud-1: 40 38% 94%;   /* ivoire    */
+    --mn-cloud-2: 181 67% 54%;  /* turquoise */
+    --mn-cloud-3: 38 92% 65%;   /* ambre     */
+    --mn-cloud-4: 352 85% 72%;  /* corail    */
+    --mn-cloud-5: 265 85% 80%;  /* lavande   */
+    --mn-cloud-6: 152 60% 65%;  /* menthe    */
+
     --background: 40 38% 94%;          /* Ivory global */
     --foreground: 228 56% 13%;          /* Ink */
 

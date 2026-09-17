@@ -139,6 +139,7 @@ interface RegieBoardProps {
 const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, screenItems, onEventChanged, onLogout }: RegieBoardProps) => {
   const publicCode = event.public_code;
   const [composerOpen, setComposerOpen] = useState(false);
+  const [editing, setEditing] = useState<LiveItem | null>(null);
   const [peopleOpen, setPeopleOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [busy, setBusy] = useState<string | null>(null);
@@ -237,11 +238,23 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
     }
   };
 
-  const createItem = async (draft: ItemDraft) => {
+  const submitItem = async (draft: ItemDraft) => {
+    if (editing) {
+      const res = await run<{ item: LiveItem }>("edit", "update_item", { item_id: editing.id, ...draft }, "Activité modifiée");
+      if (!res) throw new Error("modification refusée");
+      void loadNotes();
+      return;
+    }
     const res = await run<{ item: LiveItem }>("create", "create_item", { ...draft }, "Activité créée en brouillon");
     if (!res) throw new Error("création refusée");
     setSelectedId(res.item.id);
     if (draft.note) void loadNotes();
+  };
+
+  /** Ouvre la fenêtre pré-remplie avec l'activité à modifier. */
+  const openEditor = (item: LiveItem) => {
+    setEditing(item);
+    setComposerOpen(true);
   };
 
   const screenLabel = pinned.length === 2 ? "Deux activités côte à côte" : pinned.length === 1 ? "Affichage choisi" : screenItems.length ? "Automatique" : "Accueil (QR code)";
@@ -327,7 +340,7 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
         <aside className="space-y-3">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold text-foreground">Déroulé</h2>
-            <Button size="sm" onClick={() => setComposerOpen(true)} disabled={event.status === "closed"}>
+            <Button size="sm" onClick={() => { setEditing(null); setComposerOpen(true); }} disabled={event.status === "closed"}>
               <Plus className="mr-1 h-4 w-4" />Activité
             </Button>
           </div>
@@ -459,6 +472,7 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
               item={selected}
               note={notes[selected.id] ?? ""}
               busy={busy}
+              onEdit={() => openEditor(selected)}
               onSaveNote={async (note) => {
                 if (await run(`note-${selected.id}`, "update_item", { item_id: selected.id, note }, "Note enregistrée")) {
                   setNotes((prev) => ({ ...prev, [selected.id]: note }));
@@ -476,7 +490,19 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
         </section>
       </div>
 
-      <ItemComposer open={composerOpen} onOpenChange={setComposerOpen} onCreate={createItem} />
+      <ItemComposer
+        open={composerOpen}
+        onOpenChange={(o) => { setComposerOpen(o); if (!o) setEditing(null); }}
+        initial={editing ? {
+          kind: editing.kind as LiveKind,
+          prompt: editing.prompt,
+          options: editing.options,
+          duration_seconds: editing.duration_seconds,
+          show_authors: editing.show_authors,
+          note: notes[editing.id] ?? "",
+        } : null}
+        onSubmit={submitItem}
+      />
 
       <ParticipantsDialog
         open={peopleOpen}
@@ -500,11 +526,12 @@ interface ItemDetailProps {
   item: LiveItem;
   note: string;
   busy: string | null;
+  onEdit: () => void;
   onSaveNote: (note: string) => Promise<boolean>;
   onHide: (messageIds: string[], hidden: boolean) => Promise<unknown>;
 }
 
-const ItemDetail = ({ item, note, busy, onSaveNote, onHide }: ItemDetailProps) => {
+const ItemDetail = ({ item, note, busy, onEdit, onSaveNote, onHide }: ItemDetailProps) => {
   const kind = item.kind as LiveKind;
   const hasMessages = kind === "open" || kind === "wall" || kind === "cloud";
   const { all, visible } = useLiveMessages(hasMessages ? item.id : null, kind);
@@ -516,9 +543,20 @@ const ItemDetail = ({ item, note, busy, onSaveNote, onHide }: ItemDetailProps) =
 
   return (
     <>
-      <div>
-        <div className="mn-eyebrow-turquoise mb-1">{KIND_LABEL[kind]} · {STATUS_LABEL[item.status]}</div>
-        <h2 className="font-editorial text-2xl font-semibold italic text-foreground md:text-3xl">{item.prompt}</h2>
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <div className="mn-eyebrow-turquoise mb-1">
+            {KIND_LABEL[kind]} · {STATUS_LABEL[item.status]}
+            {item.duration_seconds ? ` · ${item.duration_seconds} s` : ""}
+          </div>
+          <h2 className="font-editorial text-2xl font-semibold italic text-foreground md:text-3xl">{item.prompt}</h2>
+          {kind === "poll" && item.options.length > 0 && (
+            <p className="mt-1 text-sm text-muted-foreground">{item.options.join(" · ")}</p>
+          )}
+        </div>
+        <Button variant="outline" size="sm" className="shrink-0" onClick={onEdit}>
+          <Pencil className="mr-1.5 h-3.5 w-3.5" />Modifier
+        </Button>
       </div>
 
       {/* Note privée de l'animateur */}
