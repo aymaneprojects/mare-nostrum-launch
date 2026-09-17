@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { toast } from "sonner";
 import {
   Check, Columns2, Copy, Download, Eye, EyeOff, FileText, KeyRound, Loader2, LogOut,
-  MessagesSquare, Monitor, MonitorPlay, Pencil, Play, Plus, RotateCcw, Square, Timer, Trash2, UserRound, Users,
+  MessagesSquare, Monitor, MonitorPlay, Pencil, Play, Plus, RotateCcw, Square, Timer, Trash2, UserRound, Users, Eraser,
 } from "lucide-react";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import { Button } from "@/components/ui/button";
@@ -22,7 +22,7 @@ import { useLiveEvent } from "@/hooks/useLiveEvent";
 import { useLiveMessages } from "@/hooks/useLiveMessages";
 import { useParticipantCount } from "@/hooks/useParticipantCount";
 import { forgetAdminCode, liveAdmin, LiveAdminError, loadAdminCode, saveAdminCode } from "@/lib/live/admin";
-import { downloadCsv, toCsv } from "@/lib/live/csv";
+import { downloadXlsx, type Sheet } from "@/lib/live/xlsx";
 import { groupWords } from "@/lib/live/words";
 import { authorOf, KIND_LABEL, liveUrls, STATUS_LABEL, type LiveEvent, type LiveItem, type LiveKind } from "@/lib/live/types";
 import { cn } from "@/lib/utils";
@@ -199,40 +199,113 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
     return run(`beside-${item.id}`, "set_screen", { item_ids: [other.id, item.id] }, "Affichés côte à côte");
   };
 
-  const exportCsv = async () => {
+  /** Classeur Excel : une feuille de synthèse, puis le détail par nature de donnée. */
+  const exportExcel = async () => {
     setExporting(true);
     try {
       const itemIds = items.map((i) => i.id);
-      if (!itemIds.length) {
-        toast("Aucune activité à exporter.");
-        return;
-      }
-      const [{ data: messages }, { data: votes }, { data: people }] = await Promise.all([
-        supabase.from("live_messages").select("*").in("item_id", itemIds),
-        supabase.from("live_votes").select("*").in("item_id", itemIds),
-        supabase.from("live_participants").select("id, first_name, emoji").eq("event_id", event.id),
+      const [messagesRes, votesRes, peopleRes] = await Promise.all([
+        itemIds.length ? supabase.from("live_messages").select("*").in("item_id", itemIds) : Promise.resolve({ data: [] }),
+        itemIds.length ? supabase.from("live_votes").select("*").in("item_id", itemIds) : Promise.resolve({ data: [] }),
+        supabase.from("live_participants").select("id, first_name, emoji, created_at").eq("event_id", event.id),
       ]);
-      const byId = new Map((people ?? []).map((p) => [p.id, p]));
-      const itemById = new Map(items.map((i) => [i.id, i]));
+      const messages = messagesRes.data ?? [];
+      const votes = votesRes.data ?? [];
+      const people = peopleRes.data ?? [];
 
-      const rows: unknown[][] = [];
-      for (const m of messages ?? []) {
-        const it = itemById.get(m.item_id);
+      const byId = new Map(people.map((p) => [p.id, p]));
+      const heure = (iso: string) => new Date(iso).toLocaleString("fr-FR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit" });
+
+      // 1. Synthèse
+      const synthese: Sheet = {
+        name: "Synthèse",
+        widths: [6, 18, 60, 12, 12, 10, 10],
+        rows: [
+          ["Événement", event.title],
+          ["Code", publicCode],
+          ["Participants", people.length],
+          ["Export du", heure(new Date().toISOString())],
+          [],
+          ["N°", "Type", "Question", "Statut", "Réponses", "Votes", "J'aime"],
+          ...items.map((i) => {
+            const mine = messages.filter((m) => m.item_id === i.id);
+            return [
+              i.position,
+              KIND_LABEL[i.kind as LiveKind],
+              i.prompt,
+              STATUS_LABEL[i.status],
+              mine.length,
+              votes.filter((v) => v.item_id === i.id).length,
+              mine.reduce((sum, m) => sum + m.like_count, 0),
+            ];
+          }),
+        ],
+      };
+
+      // 2. Réponses et messages
+      const reponses: Sheet = {
+        name: "Réponses",
+        widths: [6, 18, 45, 18, 14, 8, 60, 10, 10],
+        rows: [["N°", "Type", "Question", "Horodatage", "Prénom", "Emoji", "Réponse", "J'aime", "Masqué"]],
+      };
+      for (const m of [...messages].sort((a, b) => a.created_at.localeCompare(b.created_at))) {
+        const it = items.find((i) => i.id === m.item_id);
         if (!it) continue;
         const author = authorOf(m);
-        rows.push([it.position, KIND_LABEL[it.kind as LiveKind], it.prompt, m.created_at, author.name, m.anonymous ? "" : author.emoji, m.body, it.kind === "wall" ? m.like_count : "", m.hidden ? "oui" : "non"]);
+        reponses.rows.push([
+          it.position, KIND_LABEL[it.kind as LiveKind], it.prompt, heure(m.created_at),
+          author.name, m.anonymous ? "" : author.emoji, m.body,
+          it.kind === "wall" ? m.like_count : "", m.hidden ? "oui" : "non",
+        ]);
       }
-      for (const v of votes ?? []) {
-        const it = itemById.get(v.item_id);
+
+      // 3. Votes (sondages et satisfaction)
+      const votesSheet: Sheet = {
+        name: "Votes",
+        widths: [6, 18, 45, 18, 14, 8, 25],
+        rows: [["N°", "Type", "Question", "Horodatage", "Prénom", "Emoji", "Réponse choisie"]],
+      };
+      for (const v of [...votes].sort((a, b) => a.created_at.localeCompare(b.created_at))) {
+        const it = items.find((i) => i.id === v.item_id);
         if (!it) continue;
         const p = byId.get(v.participant_id);
-        rows.push([it.position, KIND_LABEL[it.kind as LiveKind], it.prompt, v.created_at, p?.first_name ?? "", p?.emoji ?? "", it.options[v.option_index] ?? "", "", "non"]);
+        votesSheet.rows.push([
+          it.position, KIND_LABEL[it.kind as LiveKind], it.prompt, heure(v.created_at),
+          p?.first_name ?? "", p?.emoji ?? "", it.options[v.option_index] ?? String(v.option_index + 1),
+        ]);
       }
-      rows.sort((a, b) => (Number(a[0]) - Number(b[0])) || String(a[3]).localeCompare(String(b[3])));
 
-      const csv = toCsv(["activite_position", "type", "question", "horodatage", "prenom", "emoji", "valeur", "likes", "masque"], rows);
-      downloadCsv(`live-${publicCode}-${new Date().toISOString().slice(0, 10)}.csv`, csv);
-      toast.success(`${rows.length} ligne${rows.length > 1 ? "s" : ""} exportée${rows.length > 1 ? "s" : ""}`);
+      // 4. Nuages : mots regroupés, du plus cité au moins cité
+      const nuages: Sheet = {
+        name: "Nuages de mots",
+        widths: [6, 45, 30, 14],
+        rows: [["N°", "Question", "Mot", "Occurrences"]],
+      };
+      for (const it of items.filter((i) => i.kind === "cloud")) {
+        const visibles = messages.filter((m) => m.item_id === it.id && !m.hidden);
+        for (const w of groupWords(visibles)) nuages.rows.push([it.position, it.prompt, w.label, w.count]);
+      }
+
+      // 5. Participants
+      const participantsSheet: Sheet = {
+        name: "Participants",
+        widths: [14, 8, 18, 12, 10],
+        rows: [["Prénom", "Emoji", "Arrivé à", "Réponses", "Votes"]],
+      };
+      for (const p of [...people].sort((a, b) => a.created_at.localeCompare(b.created_at))) {
+        participantsSheet.rows.push([
+          p.first_name, p.emoji, heure(p.created_at),
+          messages.filter((m) => m.participant_id === p.id).length,
+          votes.filter((v) => v.participant_id === p.id).length,
+        ]);
+      }
+
+      const sheets = [synthese, reponses, votesSheet, nuages, participantsSheet].filter((s) => s.rows.length > 1 || s === synthese);
+      downloadXlsx(`live-${publicCode}-${new Date().toISOString().slice(0, 10)}.xlsx`, sheets);
+      toast.success(`Export Excel : ${messages.length} réponse(s), ${votes.length} vote(s), ${people.length} participant(s)`);
+    } catch (err) {
+      toast.error("Export impossible. Réessayez.");
+      console.error("[live] export", err);
     } finally {
       setExporting(false);
     }
@@ -308,8 +381,8 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
             <Button variant="outline" size="sm" onClick={() => copy(urls.public, "Lien public")}>
               <Copy className="mr-1.5 h-4 w-4" />Lien public
             </Button>
-            <Button variant="outline" size="sm" onClick={exportCsv} disabled={exporting}>
-              {exporting ? <Loader2 className="mr-1.5 h-4 w-4 animate-spin" /> : <Download className="mr-1.5 h-4 w-4" />}Exporter
+            <Button variant="outline" size="sm" onClick={exportExcel} disabled={exporting}>
+              {exporting ? <Loader2 className="mr-1.5 h-4 w-4 animate-spin" /> : <Download className="mr-1.5 h-4 w-4" />}Exporter (Excel)
             </Button>
             <Button variant="ghost" size="icon" onClick={onLogout} aria-label="Quitter la régie"><LogOut className="h-4 w-4" /></Button>
           </div>
@@ -443,6 +516,25 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
                 <p className="break-all font-mono text-foreground">{urls.display}</p>
               </div>
             </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="w-full text-muted-foreground hover:text-destructive"
+              disabled={busy !== null}
+              onClick={async () => {
+                if (!window.confirm(
+                  "Tout remettre à zéro ?\n\nToutes les réponses, tous les votes, tous les « j'aime » et tous les participants seront effacés, et les activités repasseront en brouillon.\n\nVos questions, vos notes et vos codes sont conservés.",
+                )) return;
+                const res = await run<{ participants: number; answers: number; votes: number }>("reset", "reset_event", {});
+                if (res) {
+                  toast.success(`Remis à zéro : ${res.answers} réponse(s), ${res.votes} vote(s), ${res.participants} participant(s) effacés`);
+                  setSelectedId(null);
+                  onEventChanged();
+                }
+              }}
+            >
+              <Eraser className="mr-1.5 h-4 w-4" />Tout remettre à zéro
+            </Button>
             {event.status !== "closed" && (
               <Button
                 variant="ghost"

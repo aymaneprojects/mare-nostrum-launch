@@ -342,6 +342,37 @@ serve(async (req) => {
         return json({ updated: data?.length ?? 0 });
       }
 
+      case "reset_event": {
+        // Efface tout ce qui a été produit (répétition, test) en gardant la
+        // séquence, les notes et les codes. Les activités repassent en brouillon.
+        const event = await authorize(body.public_code, body.admin_code);
+
+        const people = must(await supabase.from("live_participants").select("id").eq("event_id", event.id)) ?? [];
+        const items = must(await supabase.from("live_items").select("id").eq("event_id", event.id)) ?? [];
+        const itemIds = items.map((i: { id: string }) => i.id);
+
+        let answers = 0;
+        let votes = 0;
+        if (itemIds.length) {
+          const { count: a } = await supabase.from("live_messages").select("id", { count: "exact", head: true }).in("item_id", itemIds);
+          const { count: v } = await supabase.from("live_votes").select("id", { count: "exact", head: true }).in("item_id", itemIds);
+          answers = a ?? 0;
+          votes = v ?? 0;
+          // Les messages et votes des participants partent en cascade ; ceux
+          // rattachés à un item sans participant (cas impossible aujourd'hui,
+          // mais on ne veut pas de résidu) sont supprimés explicitement.
+          must(await supabase.from("live_messages").delete().in("item_id", itemIds));
+          must(await supabase.from("live_votes").delete().in("item_id", itemIds));
+          must(await supabase.from("live_items")
+            .update({ status: "draft", activated_at: null, closed_at: null })
+            .eq("event_id", event.id));
+        }
+        must(await supabase.from("live_participants").delete().eq("event_id", event.id));
+        must(await supabase.from("live_events").update({ status: "open", screen_items: [] }).eq("id", event.id));
+
+        return json({ reset: true, participants: people.length, answers, votes, items: itemIds.length });
+      }
+
       case "close_event": {
         const event = await authorize(body.public_code, body.admin_code);
         const data = must(await supabase.from("live_events").update({ status: "closed" }).eq("id", event.id).select("*").single());
