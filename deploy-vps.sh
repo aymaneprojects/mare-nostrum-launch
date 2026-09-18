@@ -35,7 +35,19 @@ fi
 
 # ── Garde-fou : ne jamais remplacer une version plus récente ─────────────────
 echo "==> Vérification de la version en ligne"
-live=$(run "curl -sk --http1.1 --resolve www.marenostrum.tech:443:127.0.0.1 https://www.marenostrum.tech/version.json" || true)
+# Lecture publique en HTTPS : ne dépend pas de SSH, donc un échec d'accès au
+# serveur ne peut pas faire sauter le contrôle en silence.
+http=$(curl -s -o /tmp/mn-live-version.json -w '%{http_code}' https://www.marenostrum.tech/version.json || echo "000")
+if [ "$http" = "200" ]; then
+  live=$(cat /tmp/mn-live-version.json)
+elif [ "$http" = "404" ]; then
+  live=""   # premier déploiement avec empreinte : rien à comparer
+else
+  echo "ABANDON : impossible de lire la version en ligne (HTTP $http)." >&2
+  [ "${FORCE:-0}" = "1" ] || exit 1
+  live=""
+fi
+rm -f /tmp/mn-live-version.json
 live_date=$(printf '%s' "$live" | sed -n 's/.*"commit_date": *"\([^"]*\)".*/\1/p')
 live_commit=$(printf '%s' "$live" | sed -n 's/.*"commit": *"\([^"]*\)".*/\1/p')
 local_date=$(git log -1 --format=%cI)
@@ -52,17 +64,20 @@ if [ -n "$(git status --porcelain --untracked-files=no -- src public index.html 
   fi
 fi
 
-if [ -n "$live_date" ]; then
-  # Comparaison en secondes depuis l'epoch (gère les fuseaux horaires des dates ISO).
-  live_s=$(date -d "$live_date" +%s 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%S%z" "$(echo "$live_date" | sed 's/:\([0-9][0-9]\)$/\1/')" +%s)
-  local_s=$(date -d "$local_date" +%s 2>/dev/null || date -j -f "%Y-%m-%dT%H:%M:%S%z" "$(echo "$local_date" | sed 's/:\([0-9][0-9]\)$/\1/')" +%s)
-  if [ "$local_s" -lt "$live_s" ] && [ "${FORCE:-0}" != "1" ]; then
-    echo "" >&2
-    echo "ABANDON : votre code ($local_commit) est PLUS ANCIEN que celui en ligne ($live_commit)." >&2
-    echo "Le déployer effacerait des fonctionnalités en production." >&2
-    echo "Récupérez d'abord la dernière version (git pull), puis relancez." >&2
-    exit 1
-  fi
+live_ts=$(printf '%s' "$live" | sed -n 's/.*"commit_ts": *\([0-9]*\).*/\1/p')
+local_ts=$(git log -1 --format=%ct)
+if [ -n "$live_ts" ] && [ "$local_ts" -lt "$live_ts" ] && [ "${FORCE:-0}" != "1" ]; then
+  echo "" >&2
+  echo "ABANDON : votre code ($local_commit) est PLUS ANCIEN que celui en ligne ($live_commit)." >&2
+  echo "Le déployer effacerait des fonctionnalités en production." >&2
+  echo "Récupérez d'abord la dernière version (git pull), puis relancez." >&2
+  exit 1
+fi
+
+if ! run true 2>/dev/null; then
+  echo "ABANDON : pas d'accès SSH à $SERVER (clé non autorisée ?)." >&2
+  echo "Installez votre clé une fois pour toutes : ssh-copy-id $SERVER" >&2
+  exit 1
 fi
 
 echo "==> Build de production"

@@ -25,6 +25,8 @@ const version = {
   commit: git("rev-parse --short HEAD") || "inconnu",
   // Date du commit (et non du build) : c'est elle qui dit si le code est récent.
   commit_date: git("log -1 --format=%cI") || null,
+  // Même date en secondes : comparable sans parser de format (utilisé par deploy-vps.sh).
+  commit_ts: Number(git("log -1 --format=%ct")) || 0,
   // Des fichiers modifiés non commités = build fait à partir d'un état qui n'existe nulle part ailleurs.
   dirty: git("status --porcelain --untracked-files=no -- src public index.html package.json") !== "",
   built_at: new Date().toISOString(),
