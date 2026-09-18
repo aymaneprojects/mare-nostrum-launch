@@ -35,6 +35,7 @@
 4. **Test** : scanne le QR avec ton téléphone, entre un prénom et un emoji, puis réponds à une question.
 5. **Remise à zéro** : clique sur **Tout remettre à zéro**. Toutes les réponses et tous les participants de test sont effacés. Les questions, les notes et les codes sont conservés.
 6. **Contrôle des questions** : vérifie chaque question avec **Modifier** (texte, minuteur, options, note animateur). Supprime les activités de test qui ne font pas partie du déroulé.
+   Pour changer l'ordre du déroulé, utilise les flèches **↑** et **↓** de chaque activité. Le conducteur et l'export suivent le nouvel ordre.
 7. **Conducteur** : imprime-le.
 8. **Wi-Fi** : vérifie la connexion de la salle. S'il y a un Wi-Fi invité, affiche son nom et son mot de passe à côté du QR.
 
