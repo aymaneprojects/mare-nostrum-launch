@@ -24,7 +24,7 @@ import { useParticipantCount } from "@/hooks/useParticipantCount";
 import { forgetAdminCode, liveAdmin, LiveAdminError, loadAdminCode, saveAdminCode } from "@/lib/live/admin";
 import { downloadXlsx, type Sheet } from "@/lib/live/xlsx";
 import { groupWords } from "@/lib/live/words";
-import { authorOf, KIND_LABEL, liveUrls, STATUS_LABEL, type LiveEvent, type LiveItem, type LiveKind } from "@/lib/live/types";
+import { authorOf, KIND_LABEL, liveUrls, STATUS_LABEL, type LiveEvent, type LiveItem, type LiveKind, type LiveMessage, type LiveVote } from "@/lib/live/types";
 import { cn } from "@/lib/utils";
 
 const LiveRegie = () => {
@@ -62,7 +62,7 @@ const LiveRegie = () => {
 
   const seo = <EnhancedSEOHead title="Régie live — Mare Nostrum" description="Régie de l'animateur Mare Nostrum Live." noindex />;
 
-  if (status === "loading") {
+  if (status === "loading" || status === "error") {
     return <Page>{seo}<div className="flex justify-center py-24"><Loader2 className="h-8 w-8 animate-spin text-muted-foreground" /></div></Page>;
   }
   if (status !== "ready" || !event) {
@@ -117,6 +117,7 @@ const LiveRegie = () => {
       activeWall={live.activeWall}
       screenItems={live.screenItems}
       onEventChanged={live.reloadEvent}
+      onItemsChanged={() => void live.refetchItems()}
       onLogout={() => { forgetAdminCode(publicCode); setAuthorized(false); setAdminCode(""); }}
     />
   );
@@ -133,10 +134,12 @@ interface RegieBoardProps {
   activeWall: LiveItem | null;
   screenItems: LiveItem[];
   onEventChanged: () => void;
+  /** Recharge les activités : les suppressions ne sont pas diffusées en temps réel. */
+  onItemsChanged: () => void;
   onLogout: () => void;
 }
 
-const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, screenItems, onEventChanged, onLogout }: RegieBoardProps) => {
+const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, screenItems, onEventChanged, onItemsChanged, onLogout }: RegieBoardProps) => {
   const publicCode = event.public_code;
   const [composerOpen, setComposerOpen] = useState(false);
   const [editing, setEditing] = useState<LiveItem | null>(null);
@@ -174,6 +177,9 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
     try {
       const res = await liveAdmin<T>(action, { ...creds, ...body });
       if (success) toast.success(success);
+      // Rattrape ce que le temps réel ne transmet pas (suppressions, remise à zéro).
+      onItemsChanged();
+      onEventChanged();
       return res;
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Action impossible.");
@@ -204,14 +210,26 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
     setExporting(true);
     try {
       const itemIds = items.map((i) => i.id);
-      const [messagesRes, votesRes, peopleRes] = await Promise.all([
-        itemIds.length ? supabase.from("live_messages").select("*").in("item_id", itemIds) : Promise.resolve({ data: [] }),
-        itemIds.length ? supabase.from("live_votes").select("*").in("item_id", itemIds) : Promise.resolve({ data: [] }),
-        supabase.from("live_participants").select("id, first_name, emoji, created_at").eq("event_id", event.id),
+      // PostgREST renvoie au plus 1000 lignes par requête : on pagine, sinon
+      // l'export d'une salle de 200 personnes serait tronqué sans avertissement.
+      const fetchAll = async <R,>(page: (from: number, to: number) => PromiseLike<{ data: R[] | null; error: { message: string } | null }>) => {
+        const out: R[] = [];
+        for (let from = 0; ; from += 1000) {
+          const { data, error } = await page(from, from + 999);
+          if (error) throw new Error(error.message);
+          out.push(...(data ?? []));
+          if ((data?.length ?? 0) < 1000) return out;
+        }
+      };
+      const [messages, votes, people] = await Promise.all([
+        itemIds.length
+          ? fetchAll((a, b) => supabase.from("live_messages").select("*").in("item_id", itemIds).order("id").range(a, b))
+          : Promise.resolve([] as LiveMessage[]),
+        itemIds.length
+          ? fetchAll((a, b) => supabase.from("live_votes").select("*").in("item_id", itemIds).order("id").range(a, b))
+          : Promise.resolve([] as LiveVote[]),
+        fetchAll((a, b) => supabase.from("live_participants").select("id, first_name, emoji, created_at").eq("event_id", event.id).order("id").range(a, b)),
       ]);
-      const messages = messagesRes.data ?? [];
-      const votes = votesRes.data ?? [];
-      const people = peopleRes.data ?? [];
 
       const byId = new Map(people.map((p) => [p.id, p]));
       const heure = (iso: string) => new Date(iso).toLocaleString("fr-FR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit" });

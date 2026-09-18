@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Timer } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { serverNow } from "@/lib/live/clock";
 
 interface CountdownProps {
   activatedAt: string | null;
@@ -14,13 +15,14 @@ interface CountdownProps {
 /**
  * Compte à rebours indicatif. Il n'arrête pas l'activité : l'animateur garde la
  * main et termine quand il le juge bon.
+ * Le décompte suit l'horloge du serveur (voir lib/live/clock.ts), pas celle de l'appareil.
  */
 const Countdown = ({ activatedAt, durationSeconds, active, size = "small", className }: CountdownProps) => {
-  const [now, setNow] = useState(() => Date.now());
+  const [now, setNow] = useState(() => serverNow());
 
   useEffect(() => {
     if (!active || !durationSeconds || !activatedAt) return;
-    const timer = window.setInterval(() => setNow(Date.now()), 250);
+    const timer = window.setInterval(() => setNow(serverNow()), 250);
     return () => window.clearInterval(timer);
   }, [active, durationSeconds, activatedAt]);
 

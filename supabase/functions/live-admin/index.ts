@@ -277,22 +277,9 @@ serve(async (req) => {
         const target = await ownItem(event.id, body.item_id);
         if (target.status === "active") return json({ item: target });
 
-        // Une activité active hors mur, un mur actif : on ne ferme que l'activité de même famille.
-        const now = new Date().toISOString();
-        let closeQuery = supabase
-          .from("live_items").update({ status: "closed", closed_at: now })
-          .eq("event_id", event.id).eq("status", "active");
-        closeQuery = target.kind === "wall" ? closeQuery.eq("kind", "wall") : closeQuery.neq("kind", "wall");
-        must(await closeQuery);
-
-        const item = must(await supabase
-          .from("live_items").update({ status: "active", activated_at: now, closed_at: null })
-          .eq("id", target.id).select("*").single());
-
-        // Lancer une question remet l'écran en automatique : il montre la question en cours.
-        if (target.kind !== "wall" && event.screen_items.length) {
-          must(await supabase.from("live_events").update({ screen_items: [] }).eq("id", event.id));
-        }
+        // Fermeture de l'activité en cours + lancement en une seule transaction,
+        // verrouillée par événement (voir migration 20260919090000_live_fixes.sql).
+        const item = must(await supabase.rpc("live_activate", { p_event_id: event.id, p_item_id: target.id }));
         return json({ item });
       }
 
@@ -384,7 +371,11 @@ serve(async (req) => {
     }
   } catch (err) {
     const status = err instanceof HttpError ? err.status : 400;
-    const message = err instanceof Error ? err.message : "Erreur inconnue.";
+    const raw = err instanceof Error ? err.message : "Erreur inconnue.";
+    // Messages Postgres bruts (anglais) → message compréhensible par l'animateur.
+    const message = /duplicate key|unique constraint/i.test(raw)
+      ? "Action déjà en cours depuis une autre régie. Rechargez la page puis réessayez."
+      : raw;
     return json({ error: message }, status);
   }
 });

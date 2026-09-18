@@ -62,8 +62,9 @@ const queryClient = new QueryClient();
 const AppContent = () => {
   const location = useLocation();
   const isHealthz = location.pathname === "/healthz";
-  
-  usePrefetchBlog();
+  const isLive = location.pathname === "/live" || location.pathname.startsWith("/live/");
+
+  usePrefetchBlog(!isLive);
   
   // Pour /healthz, afficher uniquement le JSON sans UI globale
   if (isHealthz) {
@@ -78,7 +79,6 @@ const AppContent = () => {
   // Ce sont des pages qu'on scanne en rendez-vous, pas des pages de conversion.
   // Live conférence (/live…) : écrans plein cadre projetés ou utilisés au téléphone
   // pendant un événement. Aucun élément global ne doit s'y superposer.
-  const isLive = location.pathname === "/live" || location.pathname.startsWith("/live/");
   const quiet = isLive || location.pathname === "/equipe" || /^\/equipe\/[^/]+$/.test(location.pathname);
 
   return (

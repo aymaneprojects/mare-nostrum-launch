@@ -2,6 +2,10 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useLiveTable } from "@/hooks/useLiveTable";
 import { PHONE_POLL_MS, type LiveEvent, type LiveItem } from "@/lib/live/types";
+import { syncServerClock } from "@/lib/live/clock";
+
+/** Délai avant de réessayer après une erreur réseau au chargement. */
+const RETRY_MS = 3_000;
 
 type LoadStatus = "loading" | "ready" | "notfound" | "error";
 
@@ -30,26 +34,37 @@ export function useLiveEvent(code: string | undefined, { realtime = true }: Opti
     const { data, error } = await supabase
       .from("live_events").select("*").eq("public_code", publicCode).maybeSingle();
     if (error) {
+      // Erreur réseau ≠ code inconnu : on garde l'état « prêt » s'il l'était, sinon « error » (nouvel essai plus bas).
       setStatus((s) => (s === "ready" ? s : "error"));
       return;
     }
-    setEvent(data);
+    // Même contenu = même objet : évite de relancer tous les effets qui dépendent de l'événement.
+    setEvent((prev) => (prev && data && JSON.stringify(prev) === JSON.stringify(data) ? prev : data));
     setStatus(data ? "ready" : "notfound");
   }, [publicCode]);
 
   useEffect(() => {
     setStatus("loading");
     void loadEvent();
+    void syncServerClock();
     const onVisible = () => {
       if (document.visibilityState === "visible") void loadEvent();
     };
     document.addEventListener("visibilitychange", onVisible);
-    const timer = realtime ? undefined : window.setInterval(() => void loadEvent(), PHONE_POLL_MS.event);
+    // Téléphones : interrogation. Écran/régie : resynchronisation de secours du temps réel.
+    const timer = window.setInterval(() => void loadEvent(), PHONE_POLL_MS.event);
     return () => {
       document.removeEventListener("visibilitychange", onVisible);
-      if (timer) window.clearInterval(timer);
+      window.clearInterval(timer);
     };
-  }, [loadEvent, realtime]);
+  }, [loadEvent]);
+
+  // Premier chargement en échec (réseau saturé pendant la ruée sur le QR) : on réessaie vite.
+  useEffect(() => {
+    if (status !== "error") return;
+    const retry = window.setTimeout(() => void loadEvent(), RETRY_MS);
+    return () => window.clearTimeout(retry);
+  }, [status, loadEvent]);
 
   // Écran et régie : l'événement lui-même en temps réel (titre, affichage imposé).
   const eventId = event?.id;

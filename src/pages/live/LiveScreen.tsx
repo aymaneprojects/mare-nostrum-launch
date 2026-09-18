@@ -8,6 +8,7 @@ import FullscreenButton from "@/components/live/FullscreenButton";
 import ParticipantCount from "@/components/live/ParticipantCount";
 import { useLiveEvent } from "@/hooks/useLiveEvent";
 import { useParticipantCount } from "@/hooks/useParticipantCount";
+import { useWakeLock } from "@/hooks/useWakeLock";
 import { liveUrls } from "@/lib/live/types";
 
 /**
@@ -18,12 +19,13 @@ import { liveUrls } from "@/lib/live/types";
 const LiveScreen = () => {
   const { code } = useParams();
   const { event, status, screenItems, activeWall, publicCode } = useLiveEvent(code);
+  useWakeLock();
   const participants = useParticipantCount(event?.id);
 
   const urls = liveUrls(publicCode);
   const seo = <EnhancedSEOHead title="Écran live — Mare Nostrum" description="Écran de salle Mare Nostrum Live." noindex />;
 
-  if (status === "loading") {
+  if (status === "loading" || status === "error") {
     return <LiveShell>{seo}<div className="flex flex-1 items-center justify-center"><Loader2 className="h-10 w-10 animate-spin text-primary-foreground/60" /></div></LiveShell>;
   }
   if (status !== "ready" || !event) {

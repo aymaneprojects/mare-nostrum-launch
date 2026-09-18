@@ -14,8 +14,9 @@ import Countdown from "@/components/live/Countdown";
 import { supabase } from "@/integrations/supabase/client";
 import { useLiveEvent } from "@/hooks/useLiveEvent";
 import { useLiveMessages } from "@/hooks/useLiveMessages";
-import { loadIdentity, saveIdentity, type LiveIdentity } from "@/lib/live/identity";
-import { KIND_LABEL, PG_UNIQUE_VIOLATION, PHONE_POLL_MS, type LiveItem, type LiveKind } from "@/lib/live/types";
+import { clearIdentity, loadIdentity, saveIdentity, type LiveIdentity } from "@/lib/live/identity";
+import { toast } from "sonner";
+import { KIND_LABEL, LIMITS, PHONE_POLL_MS, type LiveItem, type LiveKind } from "@/lib/live/types";
 import { cn } from "@/lib/utils";
 
 /**
@@ -31,28 +32,34 @@ const LivePublic = () => {
   const [identityChecked, setIdentityChecked] = useState(false);
   const [tab, setTab] = useState<"question" | "wall">("question");
 
-  // Identité mémorisée pour cet événement, recréée côté serveur si elle a disparu.
+  // Identité mémorisée pour cet événement : lue une seule fois par événement.
+  // Dépendre de l'id (et non de l'objet event, rechargé toutes les 20 s) évite de
+  // démonter la zone de saisie et d'effacer le texte en cours de frappe.
+  const eventId = event?.id;
   useEffect(() => {
-    if (!event) return;
-    const stored = loadIdentity(event.id);
-    setIdentity(stored);
-    setIdentityChecked(!stored);
-    if (!stored) return;
+    if (!eventId) return;
+    setIdentity(loadIdentity(eventId));
+    setIdentityChecked(true);
+  }, [eventId]);
 
+  // Contrôle périodique : si l'animateur a supprimé la personne ou remis l'événement
+  // à zéro, on revient au formulaire (sans recréer la personne en douce). Une erreur
+  // réseau, elle, ne fait jamais perdre l'identité.
+  const identityId = identity?.id;
+  useEffect(() => {
+    if (!eventId || !identityId) return;
     let cancelled = false;
-    (async () => {
-      const { data } = await supabase.from("live_participants").select("id").eq("id", stored.id).maybeSingle();
-      if (cancelled) return;
-      if (!data) {
-        const { error } = await supabase
-          .from("live_participants")
-          .insert({ id: stored.id, event_id: event.id, first_name: stored.firstName, emoji: stored.emoji });
-        if (error && error.code !== PG_UNIQUE_VIOLATION && !cancelled) setIdentity(null);
-      }
-      if (!cancelled) setIdentityChecked(true);
-    })();
-    return () => { cancelled = true; };
-  }, [event]);
+    const check = async () => {
+      const { data, error } = await supabase.from("live_participants").select("id").eq("id", identityId).maybeSingle();
+      if (cancelled || error || data) return;
+      clearIdentity(eventId);
+      setIdentity(null);
+      toast("Votre participation a été réinitialisée. Rejoignez à nouveau pour continuer.");
+    };
+    void check();
+    const timer = window.setInterval(() => void check(), PHONE_POLL_MS.event);
+    return () => { cancelled = true; window.clearInterval(timer); };
+  }, [eventId, identityId]);
 
   // Une nouvelle question qui démarre ramène sur l'onglet « question ».
   useEffect(() => {
@@ -63,19 +70,24 @@ const LivePublic = () => {
   const { visible: wallMessages, refetch: refetchWall } = useLiveMessages(
     showWall ? activeWall?.id : null,
     "wall",
-    { pollMs: PHONE_POLL_MS.wall },
+    { pollMs: PHONE_POLL_MS.wall, limit: LIMITS.phoneWallMessages },
   );
 
   const forgetIdentity = useCallback(() => {
-    if (!event) return;
-    try { localStorage.removeItem(`mn-live-participant:${event.id}`); } catch { /* ignore */ }
+    if (!eventId) return;
+    clearIdentity(eventId);
     setIdentity(null);
-  }, [event]);
+  }, [eventId]);
 
   const seo = <EnhancedSEOHead title="Live — Mare Nostrum" description="Participez en direct à l'événement Mare Nostrum." noindex />;
 
-  if (status === "loading") {
-    return <LiveShell>{seo}<Centered><Loader2 className="h-8 w-8 animate-spin text-primary-foreground/60" aria-label="Chargement" /></Centered></LiveShell>;
+  if (status === "loading" || status === "error") {
+    return (
+      <LiveShell>{seo}<Centered>
+        <Loader2 className="h-8 w-8 animate-spin text-primary-foreground/60" aria-label="Chargement" />
+        {status === "error" && <p className="mt-4 text-sm text-primary-foreground/70">Connexion en cours… nouvel essai automatique.</p>}
+      </Centered></LiveShell>
+    );
   }
 
   if (status !== "ready" || !event) {

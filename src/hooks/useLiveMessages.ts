@@ -5,6 +5,8 @@ import type { LiveKind, LiveMessage } from "@/lib/live/types";
 interface Options {
   /** Téléphone : interrogation périodique au lieu du temps réel. */
   pollMs?: number;
+  /** Téléphone, mur : seulement les N messages les plus likés puis les plus récents. */
+  limit?: number;
 }
 
 /**
@@ -12,8 +14,11 @@ interface Options {
  * Tri : plus likés puis plus récents pour un mur ; plus récents sinon.
  * `all` inclut les messages masqués (régie), `visible` non.
  */
-export function useLiveMessages(itemId: string | null | undefined, kind: LiveKind | undefined, { pollMs }: Options = {}) {
-  const { rows, ready, refetch } = useLiveTable({ table: "live_messages", column: "item_id", value: itemId, pollMs });
+export function useLiveMessages(itemId: string | null | undefined, kind: LiveKind | undefined, { pollMs, limit }: Options = {}) {
+  const { rows, ready, refetch } = useLiveTable({
+    table: "live_messages", column: "item_id", value: itemId, pollMs, limit,
+    orderBy: limit ? [{ column: "like_count", ascending: false }, { column: "created_at", ascending: false }] : undefined,
+  });
 
   const all = useMemo<LiveMessage[]>(() => {
     const list = [...rows.values()];

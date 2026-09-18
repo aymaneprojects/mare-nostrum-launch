@@ -12,6 +12,31 @@ export type Database = {
   __InternalSupabase: {
     PostgrestVersion: "14.5"
   }
+  graphql_public: {
+    Tables: {
+      [_ in never]: never
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      graphql: {
+        Args: {
+          extensions?: Json
+          operationName?: string
+          query?: string
+          variables?: Json
+        }
+        Returns: Json
+      }
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
   public: {
     Tables: {
       blog_articles: {
@@ -783,6 +808,30 @@ export type Database = {
       }
       is_admin: { Args: never; Returns: boolean }
       is_member_of: { Args: { p_group_id: string }; Returns: boolean }
+      live_activate: {
+        Args: { p_event_id: string; p_item_id: string }
+        Returns: {
+          activated_at: string | null
+          closed_at: string | null
+          created_at: string
+          duration_seconds: number | null
+          event_id: string
+          id: string
+          kind: string
+          options: string[]
+          position: number
+          prompt: string
+          show_authors: boolean
+          status: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "live_items"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      live_now: { Args: never; Returns: string }
     }
     Enums: {
       ai_status: "pending" | "validated" | "rejected"
@@ -914,6 +963,9 @@ export type CompositeTypes<
     : never
 
 export const Constants = {
+  graphql_public: {
+    Enums: {},
+  },
   public: {
     Enums: {
       ai_status: ["pending", "validated", "rejected"],

@@ -81,39 +81,26 @@
 
 ---
 
-## Bugs possibles repérés (revue de code du 18/09/2026)
+## Bugs repérés et corrigés (revue de code du 18/09/2026)
 
-Légende : **confirmé** = vérifié dans le code ; **plausible** = à tester avant la conférence.
-Chaque bug indique la parade côté animateur tant qu'il n'est pas corrigé.
+| # | Bug | Correction |
+|---|---|---|
+| 1 | Toutes les 20 s, la page téléphone effaçait le texte en cours de frappe | L'identité n'est lue qu'une fois par événement ; une erreur réseau ne la fait plus perdre. |
+| 2 | Export Excel tronqué à 1000 lignes par table | Export paginé ; une erreur de chargement fait échouer l'export au lieu de le tronquer sans rien dire. |
+| 3 | Les suppressions n'étaient pas diffusées à l'écran ni à la régie | L'écran et la régie se resynchronisent toutes les 15 s ; la régie recharge aussi après chaque action. |
+| 4 | Lancer une activité n'était pas atomique (erreur avec deux régies) | Fonction SQL `live_activate`, en une transaction verrouillée par événement ; message d'erreur en français. |
+| 5 | Un participant supprimé était recréé automatiquement | Il est renvoyé au formulaire. Il peut rejoindre sous un autre prénom (sans comptes, on ne peut pas bannir). |
+| 6 | Une erreur réseau affichait « Événement introuvable » | Affiche « Connexion en cours… » et réessaie toutes les 3 s. |
+| 7 | Pas de resynchronisation si le temps réel décrochait | Resynchronisation toutes les 15 s, et rechargement en cas d'erreur de canal. |
+| 8 | Minuteur faux si l'horloge de l'appareil dérive | Le minuteur suit l'heure du serveur. Il reste **indicatif** : c'est toi qui cliques sur **Terminer**. |
+| 9 | L'écran de salle pouvait passer en veille | Verrou anti-veille sur l'écran de salle (Chrome, Edge, Safari récents). Désactive quand même la veille du système. |
+| 10 | Charge des 220 téléphones | Le mur ne charge que 60 messages par téléphone, et le blog n'est plus préchargé sur `/live`. |
+| 11 | Délai anti-envoi commun à toutes les activités | Le délai est compté activité par activité ; les mots masqués ne comptent plus dans la limite de 3. |
+| 12 | Après une remise à zéro, les téléphones gardaient « Vote enregistré » | La mémoire locale des votes, likes et mots est effacée quand l'identité disparaît. |
+| 15 | Code animateur redemandé à chaque onglet | Mémorisé sur l'ordinateur jusqu'au clic sur « Quitter la régie ». |
 
-### Bloquants
+### Limites connues (non corrigées)
 
-| # | Bug | Statut | Ce qu'on voit en salle | Parade en attendant | Correctif technique |
-|---|---|---|---|---|---|
-| 1 | La page téléphone revérifie l'identité toutes les 20 s et démonte la zone de saisie | confirmé (`LivePublic.tsx:35-55`) | Le texte en cours de frappe (question ouverte, mur) **disparaît**. Après une micro-coupure réseau, la personne est renvoyée au formulaire d'inscription. | Aucune fiable. Dire « tapez court et envoyez vite ». | L'effet doit dépendre de `event?.id` et non de `event`. Ne jamais remettre `identityChecked` à false. |
-| 2 | L'export Excel est tronqué à 1000 lignes par table | confirmé (`LiveRegie.tsx:207-209`) | Il manque des réponses, votes ou mots dans l'export, sans avertissement. | Faire des captures de l'écran en fin de chaque question. | Paginer avec `.range()` jusqu'au dernier lot. |
-
-### Gênants
-
-| # | Bug | Statut | Ce qu'on voit en salle | Parade en attendant | Correctif technique |
-|---|---|---|---|---|---|
-| 3 | Les suppressions ne sont pas diffusées en temps réel | plausible (`useLiveTable.ts`) | L'activité supprimée reste affichée à l'écran. Les messages d'un participant supprimé restent visibles. | Après une suppression, recharger l'écran (F5). | Recharger les données après `delete_item`, `delete_participant` et `reset_event`. |
-| 4 | Lancer une activité n'est pas atomique | confirmé (`live-admin/index.ts:281-290`) | Flash du QR à chaque lancement. Avec deux régies ouvertes en même temps : erreur « duplicate key… ». | **Une seule régie ouverte.** | Fonction SQL `live_activate` en une transaction ; traduire l'erreur. |
-| 5 | Supprimer un participant ne l'exclut pas | confirmé (`LivePublic.tsx:44-51`) | Le téléphone recrée la personne dans les 20 s, et elle peut reposter. | Masquer ses messages un par un. | Marquer le participant comme banni au lieu de le supprimer. |
-| 6 | Un échec réseau au premier chargement affiche « Événement introuvable » | confirmé (`useLiveEvent.ts`, `LivePublic.tsx:81`) | Écran ou régie bloqués sur ce message. Téléphones : « Vérifiez le code » pendant la ruée sur le QR. | Recharger la page. Dire à la salle « si ça ne marche pas, rechargez ». | Distinguer erreur réseau et code inconnu ; réessayer automatiquement. |
-| 7 | Aucune resynchronisation si le temps réel décroche | plausible (`useLiveTable.ts:135-137`) | Barres de sondage ou nuage qui sous-comptent pendant un pic de votes. | Recharger l'écran avant de commenter les résultats. | Recharger les données toutes les 15 à 20 s et sur `CHANNEL_ERROR`. |
-| 8 | Le minuteur est seulement visuel et dépend de l'horloge de l'appareil | confirmé / plausible (`Countdown.tsx`) | « Temps écoulé » alors qu'on peut encore répondre. Décompte faux si l'horloge du PC dérive. | Cliquer sur **Terminer** à la main. Régler l'heure automatique sur le PC du vidéoprojecteur. | Corriger le décalage avec l'heure du serveur ; fermeture automatique en option. |
-| 9 | Pas de blocage de la veille de l'écran | plausible (`LiveScreen`) | Écran noir pendant une longue intervention. | Désactiver la veille et l'économiseur d'écran (voir « Avant la conférence »). | `navigator.wakeLock.request("screen")` sur l'écran de salle. |
-| 10 | Charge des 220 téléphones | plausible, à mesurer | Environ 110 requêtes/s. Le mur est relu en entier à chaque fois, ce qui pèse sur le quota de trafic gratuit (5 Go/mois). Le blog est aussi préchargé sur chaque téléphone. | Fermer le mur quand il ne sert plus. | Sélectionner seulement les colonnes utiles, limiter le mur à 50 messages, désactiver le préchargement du blog sur `/live`. |
-
-### Mineurs
-
-| # | Bug | Statut | Conséquence |
-|---|---|---|---|
-| 11 | Le délai anti-envoi de 5 s est commun à toutes les activités | confirmé (migration v2) | Poster sur le mur puis répondre à la question dans les 5 s est refusé, avec un message ambigu. Les mots masqués comptent dans la limite de 3. |
-| 12 | Après **Tout remettre à zéro**, les téléphones de test gardent leur état | confirmé | Ils affichent encore « Vote enregistré » ou « 3 mots proposés ». **Parade :** tester en navigation privée, ou vider les données du site sur ces téléphones. |
-| 13 | Compteur de participants gonflé | confirmé | Il compte toutes les identités créées : changements de prénom, navigateurs intégrés aux lecteurs de QR, reconnexions du bug n° 1. Une nouvelle identité peut aussi revoter. |
-| 14 | Identité perdue jamais détectée au vote | confirmé (`PollVote.tsx`, `RatingVote.tsx`) | Un participant supprimé voit « le sondage est peut-être terminé ». |
-| 15 | Code animateur gardé seulement dans l'onglet | confirmé / plausible (`lib/live/admin.ts`) | Il faut ressaisir le code si l'onglet de régie est fermé. Le **Conducteur** ouvert dans un nouvel onglet peut afficher « accès refusé ». **Parade :** l'imprimer la veille. |
-
-**Priorité de correction avant la conférence :** 1, 2 et 3 (correctifs courts), puis 4, 7 et 9.
+- **13. Compteur de participants gonflé.** Il compte chaque inscription, y compris un changement de prénom ou un autre navigateur. Considère-le comme un ordre de grandeur.
+- **14. Message trompeur après une suppression.** Un participant supprimé peut voir « activité terminée » pendant au plus 20 s, avant d'être renvoyé au formulaire.
+- **Revote.** Une personne peut revoter en rejoignant sous un autre prénom. C'est le prix d'une participation sans compte.

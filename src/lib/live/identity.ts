@@ -64,3 +64,20 @@ export function remembered(kind: "voted" | "liked", scope: string): Set<string> 
     return new Set();
   }
 }
+
+/**
+ * Oublie l'identité d'un événement ET la mémoire locale des votes, likes et mots.
+ * Sans cela, après une remise à zéro ou une suppression par l'animateur, le
+ * téléphone afficherait encore « Vote enregistré » sur des activités vierges.
+ */
+export function clearIdentity(eventId: string): void {
+  try {
+    localStorage.removeItem(key(eventId));
+    const stale: string[] = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (k && /^mn-live-(words|choice|voted|liked):/.test(k)) stale.push(k);
+    }
+    stale.forEach((k) => localStorage.removeItem(k));
+  } catch { /* stockage indisponible */ }
+}

@@ -1,6 +1,8 @@
 /**
  * Appels à l'edge function live-admin (actions de l'animateur).
- * Le code animateur est conservé pour la session du navigateur uniquement.
+ * Le code animateur est conservé sur cet appareil (localStorage) : fermer l'onglet
+ * de régie ou ouvrir le conducteur dans un nouvel onglet ne le redemande pas.
+ * « Quitter la régie » l'efface.
  */
 import { supabase } from "@/integrations/supabase/client";
 
@@ -13,13 +15,13 @@ export type AdminAction =
 const key = (publicCode: string) => `mn-live-admin:${publicCode.toUpperCase()}`;
 
 export function loadAdminCode(publicCode: string): string | null {
-  try { return sessionStorage.getItem(key(publicCode)); } catch { return null; }
+  try { return localStorage.getItem(key(publicCode)) ?? sessionStorage.getItem(key(publicCode)); } catch { return null; }
 }
 export function saveAdminCode(publicCode: string, adminCode: string): void {
-  try { sessionStorage.setItem(key(publicCode), adminCode); } catch { /* ignore */ }
+  try { localStorage.setItem(key(publicCode), adminCode); } catch { /* ignore */ }
 }
 export function forgetAdminCode(publicCode: string): void {
-  try { sessionStorage.removeItem(key(publicCode)); } catch { /* ignore */ }
+  try { localStorage.removeItem(key(publicCode)); sessionStorage.removeItem(key(publicCode)); } catch { /* ignore */ }
 }
 
 export class LiveAdminError extends Error {

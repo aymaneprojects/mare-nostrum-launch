@@ -32,6 +32,8 @@ export const LIMITS = {
   cloudWordsPerPerson: 3,
   messageCooldownMs: 5_000,
   cloudCooldownMs: 2_000,
+  /** Messages du mur chargés par un téléphone (les plus likés, puis les plus récents). */
+  phoneWallMessages: 60,
 };
 
 /**

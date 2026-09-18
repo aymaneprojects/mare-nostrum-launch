@@ -12,6 +12,11 @@
  *   rechargement toutes les `pollMs` millisecondes tant que l'onglet est visible.
  *
  * Dans les deux cas, on recharge quand l'onglet redevient visible.
+ *
+ * En temps réel, un rechargement complet a aussi lieu toutes les RESYNC_MS :
+ * les suppressions (DELETE) ne passent pas le filtre postgres_changes, et un
+ * pic de votes peut dépasser le quota de messages temps réel. Le rechargement
+ * rattrape ces deux cas sans intervention.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { RealtimePostgresChangesPayload } from "@supabase/supabase-js";
@@ -29,11 +34,17 @@ interface Options<T extends LiveTableName> {
   pollMs?: number;
   /** Filtre supplémentaire appliqué au chargement (mode interrogation uniquement). */
   extraEq?: [string, string];
+  /** Ne charger que les N premières lignes selon `orderBy` (téléphones : allège le trafic). */
+  limit?: number;
+  orderBy?: { column: string; ascending: boolean }[];
 }
 
 type WithId = { id: string };
 
-export function useLiveTable<T extends LiveTableName>({ table, column, value, pollMs, extraEq }: Options<T>) {
+const RESYNC_MS = 15_000;
+const PAGE = 1000; // plafond PostgREST par requête
+
+export function useLiveTable<T extends LiveTableName>({ table, column, value, pollMs, extraEq, limit, orderBy }: Options<T>) {
   type Row = Tables<T>;
   const [rows, setRows] = useState<Map<string, Row>>(() => new Map());
   const [ready, setReady] = useState(false);
@@ -43,6 +54,7 @@ export function useLiveTable<T extends LiveTableName>({ table, column, value, po
   const generation = useRef(0);
   const extraCol = extraEq?.[0];
   const extraVal = extraEq?.[1];
+  const orderKey = JSON.stringify(orderBy ?? []);
 
   const refetch = useCallback(async () => {
     if (!value) return;
@@ -50,12 +62,38 @@ export function useLiveTable<T extends LiveTableName>({ table, column, value, po
     fetching.current = true;
     buffer.current = [];
 
+    type Result = { data: Row[] | null; error: { message: string } | null };
     type Query = {
       eq: (col: string, val: string) => Query;
-    } & PromiseLike<{ data: Row[] | null; error: { message: string } | null }>;
-    let query = (supabase.from(table).select("*") as unknown as Query).eq(column, value);
-    if (extraCol && extraVal) query = query.eq(extraCol, extraVal);
-    const { data, error } = await query;
+      order: (col: string, opts: { ascending: boolean }) => Query;
+      range: (from: number, to: number) => PromiseLike<Result>;
+    } & PromiseLike<Result>;
+    const build = () => {
+      let query = (supabase.from(table).select("*") as unknown as Query).eq(column, value);
+      if (extraCol && extraVal) query = query.eq(extraCol, extraVal);
+      const order = JSON.parse(orderKey) as { column: string; ascending: boolean }[];
+      for (const o of order) query = query.order(o.column, { ascending: o.ascending });
+      // Ordre stable indispensable pour paginer sans doublon ni trou.
+      if (!limit) query = query.order("id", { ascending: true });
+      return query;
+    };
+
+    // Limite demandée : une seule requête. Sinon, pagination par lots de 1000.
+    let data: Row[] = [];
+    let error: Result["error"] = null;
+    if (limit) {
+      const res = await build().range(0, limit - 1);
+      data = res.data ?? [];
+      error = res.error;
+    } else {
+      for (let from = 0; ; from += PAGE) {
+        const res = await build().range(from, from + PAGE - 1);
+        if (res.error) { error = res.error; break; }
+        data = data.concat(res.data ?? []);
+        if ((res.data?.length ?? 0) < PAGE) break;
+        if (mine !== generation.current) return;
+      }
+    }
 
     // Un chargement plus récent a été lancé, ou le filtre a changé : on ignore.
     if (mine !== generation.current) return;
@@ -66,12 +104,12 @@ export function useLiveTable<T extends LiveTableName>({ table, column, value, po
       return;
     }
     const next = new Map<string, Row>();
-    for (const row of data ?? []) next.set((row as unknown as WithId).id, row);
+    for (const row of data) next.set((row as unknown as WithId).id, row);
     for (const row of buffer.current) next.set((row as unknown as WithId).id, row);
     buffer.current = [];
     setRows(next);
     setReady(true);
-  }, [table, column, value, extraCol, extraVal]);
+  }, [table, column, value, extraCol, extraVal, orderKey, limit]);
 
   useEffect(() => {
     setRows(new Map());
@@ -133,11 +171,15 @@ export function useLiveTable<T extends LiveTableName>({ table, column, value, po
         },
       )
       .subscribe((status) => {
-        if (status === "SUBSCRIBED") void refetch();
+        // SUBSCRIBED : premier abonnement ou ré-abonnement après coupure.
+        // CHANNEL_ERROR / TIMED_OUT : le client réessaie seul ; on recharge en attendant.
+        if (status === "SUBSCRIBED" || status === "CHANNEL_ERROR" || status === "TIMED_OUT") void refetch();
       });
+    const resync = window.setInterval(() => void refetch(), RESYNC_MS);
 
     return () => {
       generation.current++;
+      window.clearInterval(resync);
       document.removeEventListener("visibilitychange", onVisible);
       void supabase.removeChannel(channel);
     };
