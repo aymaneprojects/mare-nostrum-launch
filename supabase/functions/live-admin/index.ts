@@ -272,6 +272,24 @@ serve(async (req) => {
         return json({ notes: Object.fromEntries(rows.map((r: { item_id: string; note: string }) => [r.item_id, r.note])) });
       }
 
+      case "reorder": {
+        // Nouvel ordre complet des activités : positions renumérotées de 1 à n.
+        const event = await authorize(body.public_code, body.admin_code);
+        const ids: unknown = body.item_ids;
+        const items = must(await supabase.from("live_items").select("id").eq("event_id", event.id)) ?? [];
+        const known = new Set(items.map((i: { id: string }) => i.id));
+        if (
+          !Array.isArray(ids) || ids.length !== known.size || new Set(ids).size !== ids.length
+          || !ids.every((id) => typeof id === "string" && known.has(id))
+        ) {
+          throw new HttpError("La liste a changé entre-temps. Rechargez la page puis réessayez.");
+        }
+        await Promise.all(ids.map((id, index) =>
+          supabase.from("live_items").update({ position: index + 1 }).eq("id", id).then((res) => must(res)),
+        ));
+        return json({ ok: true });
+      }
+
       case "activate": {
         const event = await authorize(body.public_code, body.admin_code);
         const target = await ownItem(event.id, body.item_id);

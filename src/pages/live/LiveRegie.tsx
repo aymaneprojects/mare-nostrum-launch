@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "sonner";
 import {
-  Check, Columns2, Copy, Download, Eye, EyeOff, FileText, KeyRound, Loader2, LogOut,
+  ArrowDown, ArrowUp, Check, Columns2, Copy, Download, Eye, EyeOff, FileText, KeyRound, Loader2, LogOut,
   MessagesSquare, Monitor, MonitorPlay, Pencil, Play, Plus, RotateCcw, Square, Timer, Trash2, UserRound, Users, Eraser,
 } from "lucide-react";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
@@ -203,6 +203,15 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
     const other = screenItems.find((i) => i.id !== item.id);
     if (!other) return showAlone(item);
     return run(`beside-${item.id}`, "set_screen", { item_ids: [other.id, item.id] }, "Affichés côte à côte");
+  };
+
+  /** Déplace une activité d'un cran dans le déroulé (écran, téléphones et conducteur suivent). */
+  const move = (index: number, delta: -1 | 1) => {
+    const target = index + delta;
+    if (target < 0 || target >= items.length) return;
+    const ids = items.map((i) => i.id);
+    [ids[index], ids[target]] = [ids[target], ids[index]];
+    void run(`move-${ids[target]}`, "reorder", { item_ids: ids });
   };
 
   /** Classeur Excel : une feuille de synthèse, puis le détail par nature de donnée. */
@@ -503,9 +512,33 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
                           <Columns2 className="mr-1 h-3.5 w-3.5" />Côte à côte
                         </Button>
                       )}
+                      <div className="ml-auto flex gap-0.5">
+                        <Button
+                          size="sm"
+                          className="h-8 w-8 p-0 text-muted-foreground"
+                          variant="ghost"
+                          disabled={busy !== null || index === 0}
+                          aria-label={`Monter l'activité « ${item.prompt} »`}
+                          title="Monter"
+                          onClick={() => move(index, -1)}
+                        >
+                          <ArrowUp className="h-3.5 w-3.5" />
+                        </Button>
+                        <Button
+                          size="sm"
+                          className="h-8 w-8 p-0 text-muted-foreground"
+                          variant="ghost"
+                          disabled={busy !== null || index === items.length - 1}
+                          aria-label={`Descendre l'activité « ${item.prompt} »`}
+                          title="Descendre"
+                          onClick={() => move(index, 1)}
+                        >
+                          <ArrowDown className="h-3.5 w-3.5" />
+                        </Button>
+                      </div>
                       <Button
                         size="sm"
-                        className="ml-auto h-8 w-8 p-0 text-muted-foreground hover:text-destructive"
+                        className="h-8 w-8 p-0 text-muted-foreground hover:text-destructive"
                         variant="ghost"
                         disabled={busy !== null}
                         aria-label={`Supprimer l'activité « ${item.prompt} »`}
