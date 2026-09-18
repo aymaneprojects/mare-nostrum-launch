@@ -158,6 +158,17 @@ grep -c oivxznyzijtoylwfigyq /home/marenostrum/htdocs/www.marenostrum.tech/asset
 
 Un `.env` de secours contenant **uniquement** les variables publiques `VITE_SUPABASE_*` a été déposé dans `/root/mare-nostrum-launch/.env` pour amortir une récidive. Ne t'y fie pas : le flux normal reste **modifier en local → tester → commiter → pousser → `./deploy-vps.sh` depuis ta machine**. Le clone `/root/mare-nostrum-launch/` sur le serveur n'a pas non plus d'identifiants GitHub : un commit fait là-bas reste prisonnier de la machine.
 
+### ⚠️ Ne jamais déployer une copie périmée du code
+
+Deuxième incident, le 18 septembre 2026 : un build a été fait depuis le clone `/root/mare-nostrum-launch/`, resté figé au commit du 7 septembre, puis copié à la main dans les racines web. Onze jours de travail ont disparu de la production : le module `/live` (en pleine préparation d'une conférence) et les cartes de visite `/equipe/<prénom>`. Le travail fait sur le serveur a été récupéré et intégré au dépôt (commit `4aa787a`). Le clone du serveur a ensuite été resynchronisé sur `main`. Les modifications qu'il contenait sont conservées dans un `git stash`.
+
+Deux protections existent désormais :
+
+- **Chaque build embarque son empreinte** : `https://www.marenostrum.tech/version.json` indique le commit en ligne, sa date et si le build contenait des modifications non commitées. C'est la première chose à regarder quand une fonctionnalité « disparaît ».
+- **`./deploy-vps.sh` refuse de publier un code plus ancien** que celui en ligne. Il refuse aussi un build avec des modifications non commitées dans `src/`. `FORCE=1 ./deploy-vps.sh` contourne ces deux contrôles : ne l'utilise que pour un retour arrière volontaire, et préviens le client.
+
+La règle : **`git pull` avant de travailler, commit + push avant de déployer, et toujours déployer avec `./deploy-vps.sh`**. N'utilise jamais `rsync` ou `cp` à la main vers `/home/*/htdocs`.
+
 Pour **chacun** des deux domaines, le script enchaîne : `npm run build`, un `rsync` de `dist/`, la correction des permissions (dossiers 755, fichiers 644), puis une vérification HTTP qui interrompt tout si la réponse n'est pas `200`.
 
 Si tu vérifies à la main, le SNI impose de passer par `--resolve` — sinon nginx sert le vhost par défaut et tu obtiens une erreur TLS trompeuse qui n'a rien à voir avec ton déploiement :

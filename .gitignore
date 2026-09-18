@@ -27,3 +27,4 @@ dist-ssr
 # Générés par scripts/generate-cards.mjs (prebuild)
 public/vcards/
 public/qr/
+public/version.json

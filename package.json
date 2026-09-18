@@ -9,7 +9,7 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prebuild": "node scripts/generate-cards.mjs",
+    "prebuild": "node scripts/generate-cards.mjs && node scripts/write-version.mjs",
     "cards": "node scripts/generate-cards.mjs"
   },
   "dependencies": {
