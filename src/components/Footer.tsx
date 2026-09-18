@@ -30,7 +30,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/education" className="text-primary-foreground/75 hover:text-accent transition-colors">
-                  Offre Éducation
+                  Centre de formation
                 </Link>
               </li>
               <li>
@@ -110,7 +110,7 @@ const Footer = () => {
 
         <div className="mt-10 md:mt-14 pt-6 md:pt-8 border-t border-primary-foreground/15">
           <div className="flex flex-col md:flex-row justify-between items-center text-xs md:text-sm text-primary-foreground/55 gap-3 md:gap-0">
-            <p>© {new Date().getFullYear()} Mare Nostrum. Tous droits réservés.</p>
+            <p>© 2023-2026 Mare Nostrum SAS. Tous droits réservés. Développé par l'équipe avec 💙.</p>
             <div className="flex flex-wrap gap-x-4 gap-y-2">
               <Link to="/mentions-legales" className="hover:text-accent transition-colors">
                 Mentions légales

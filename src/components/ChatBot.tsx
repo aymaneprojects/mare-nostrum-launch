@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { X, Send, User, MessageCircle, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { supabase } from "@/integrations/supabase/client";
 interface Message {
   id: string;
   role: "user" | "assistant";
@@ -31,7 +32,7 @@ const TypingIndicator = () => (
 const welcomeMessage: Message = {
   id: "welcome",
   role: "assistant",
-  content: "Bonjour, je suis Brandy, votre assistante. Je suis là pour répondre à vos questions sur l'entrepreneuriat, les programmes éducatifs et l'accompagnement. Comment puis-je vous aider ?",
+  content: "Bonjour, je suis Inès, votre assistante. Je suis là pour répondre à vos questions sur l'entrepreneuriat, les programmes éducatifs et l'accompagnement. Comment puis-je vous aider ?",
   timestamp: new Date(),
 };
 
@@ -191,40 +192,44 @@ const ChatBot = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(
-        "https://n8n.srv1174483.hstgr.cloud/webhook/70b98a17-0409-4aa3-ad63-936b7e200e9f/chat",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          mode: "cors",
-          body: JSON.stringify({
-            message: userMessage.content,
-            sessionId: sessionId,
-          }),
-        }
-      );
+      // Envoyer le message au webhook
+      const { error: fnError } = await supabase.functions.invoke("chatbot-webhook", {
+        body: {
+          message: userMessage.content,
+          sessionId: sessionId,
+        },
+      });
 
-      const data = await response.json();
-      console.log("Webhook response:", data);
+      if (fnError) throw fnError;
 
-      // Handle different response formats from n8n
+      // Polling pour récupérer la réponse d'Inès (max 30 secondes)
       let assistantContent = "";
-      if (typeof data === "string") {
-        assistantContent = data;
-      } else if (data.output) {
-        assistantContent = data.output;
-      } else if (data.response) {
-        assistantContent = data.response;
-      } else if (data.message) {
-        assistantContent = data.message;
-      } else if (data.text) {
-        assistantContent = data.text;
-      } else if (Array.isArray(data) && data.length > 0) {
-        assistantContent = data[0].output || data[0].response || data[0].message || JSON.stringify(data[0]);
-      } else {
-        assistantContent = JSON.stringify(data);
+      let attempts = 0;
+      const maxAttempts = 30;
+      
+      while (attempts < maxAttempts) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        attempts++;
+        
+        const { data: historyData } = await supabase.functions.invoke(
+          `chatbot-webhook?action=history&sessionId=${sessionId}`,
+          { method: "GET" }
+        );
+        
+        if (historyData?.messages) {
+          const lastAssistantMsg = historyData.messages
+            .filter((m: any) => m.role === "assistant")
+            .pop();
+          
+          if (lastAssistantMsg && lastAssistantMsg.content !== "Merci pour ton message ! Inès va te répondre dès que possible. 💬") {
+            assistantContent = lastAssistantMsg.content;
+            break;
+          }
+        }
+      }
+      
+      if (!assistantContent) {
+        assistantContent = "Merci pour ton message ! Inès va te répondre dès que possible. 💬";
       }
 
       const assistantMessage: Message = {
@@ -301,7 +306,7 @@ const ChatBot = () => {
               <div>
                 <p className="font-medium text-sm text-foreground">Besoin d'aide ?</p>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Je suis Brandy, votre assistante. Posez-moi vos questions !
+                  Je suis Inès, votre assistante. Posez-moi vos questions !
                 </p>
               </div>
             </div>
@@ -310,7 +315,7 @@ const ChatBot = () => {
         </div>
       )}
 
-      {/* Chat Toggle Button - Brandy */}
+      {/* Chat Toggle Button - Inès */}
       <button
         onClick={() => isOpen ? setIsOpen(false) : handleOpenChat()}
         className={`fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-full shadow-lg
@@ -319,7 +324,7 @@ const ChatBot = () => {
             ? "bg-muted-foreground"
             : "bg-primary hover:bg-primary/90"
           }`}
-        aria-label={isOpen ? "Fermer le chat" : "Discuter avec Brandy"}
+        aria-label={isOpen ? "Fermer le chat" : "Discuter avec Inès"}
       >
         {isOpen ? (
           <X className="h-6 w-6 text-white" />
@@ -348,7 +353,7 @@ const ChatBot = () => {
                 <MessageCircle className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h3 className="font-semibold text-white">Brandy</h3>
+                <h3 className="font-semibold text-white">Inès</h3>
                 <p className="text-xs text-white/70">Assistante virtuelle</p>
               </div>
             </div>

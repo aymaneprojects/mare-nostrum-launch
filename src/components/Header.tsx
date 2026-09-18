@@ -6,7 +6,7 @@ import logo from "@/assets/logo.png";
 
 // Desktop : sans "Accueil" (le logo sert de lien home)
 const desktopLinks = [
-  { to: "/education",         label: "Éducation",        Icon: GraduationCap  },
+  { to: "/education",         label: "Centre de formation",        Icon: GraduationCap  },
   { to: "/club",              label: "Club",             Icon: Users          },
   { to: "/engagement-rse",    label: "RSE",              Icon: Leaf           },
   { to: "/blog",              label: "Blog",             Icon: BookOpen       },

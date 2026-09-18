@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { X, Phone, Mail, User, MapPin, Loader2, CheckCircle2, Sparkles, Shield } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,6 +10,9 @@ import { supabase } from "@/integrations/supabase/client";
 const STORAGE_KEY   = "mn_exit_popup_dismissed";
 const DELAY_MS      = 2 * 60 * 1000;
 const COOLDOWN_DAYS = 7;
+
+// Pages où le popup ne doit PAS s'afficher
+const EXCLUDED_PATHS = ["/education"];
 
 function isDismissed(): boolean {
   try {
@@ -22,6 +26,7 @@ function markDismissed() {
 }
 
 export default function ExitIntentPopup() {
+  const location = useLocation();
   const [visible, setVisible] = useState(false);
   const [prenom, setPrenom]   = useState("");
   const [email, setEmail]     = useState("");
@@ -32,11 +37,14 @@ export default function ExitIntentPopup() {
   const [sent, setSent]       = useState(false);
   const [error, setError]     = useState("");
 
+  // Ne pas afficher sur les pages exclues
+  const isExcludedPage = EXCLUDED_PATHS.some(path => location.pathname === path || location.pathname.startsWith(path + "/"));
+
   useEffect(() => {
-    if (isDismissed()) return;
+    if (isDismissed() || isExcludedPage) return;
     const id = window.setTimeout(() => setVisible(true), DELAY_MS);
     return () => clearTimeout(id);
-  }, []);
+  }, [isExcludedPage]);
 
   const handleClose = () => { setVisible(false); markDismissed(); };
 
