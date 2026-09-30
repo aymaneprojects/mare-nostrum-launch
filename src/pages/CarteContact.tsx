@@ -1,7 +1,5 @@
 import { useParams, Link } from "react-router-dom";
 import { Phone, Mail, MessageCircle, Linkedin, MapPin, Download, Share2, Users, ArrowLeft, Globe } from "lucide-react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import StructuredData from "@/components/StructuredData";
 import NotFound from "@/pages/NotFound";
@@ -75,10 +73,10 @@ const CarteContact = () => {
         keywords={`${name}, Mare Nostrum, ${member.titre}, contact, carte de visite`}
       />
       <StructuredData data={personSchema} />
-      <Header />
 
-      {/* Chatbot et popup promo sont désactivés sur cette page (voir App.tsx) :
-          la personne qui scanne doit voir la carte, rien d'autre. */}
+      {/* Page nue : ni en-tête, ni pied de page, ni navigation du bas, ni chatbot,
+          ni bandeau cookies, ni popup promo (voir App.tsx). La personne qui scanne
+          le QR code doit voir la carte de visite, rien d'autre. */}
       <main className="flex-1">
         {/* Bandeau sombre — pattern hero du design system */}
         <section
@@ -220,7 +218,11 @@ const CarteContact = () => {
         </section>
       </main>
 
-      <Footer />
+      <footer className="border-t border-border py-6 text-center">
+        <a href={SITE_URL} className="text-xs text-muted-foreground hover:text-primary transition-colors">
+          marenostrum.tech
+        </a>
+      </footer>
     </div>
   );
 };

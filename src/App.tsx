@@ -75,19 +75,22 @@ const AppContent = () => {
     );
   }
   
-  // Cartes de visite (/equipe et /equipe/<slug>) : ni chatbot ni popup promo.
-  // Ce sont des pages qu'on scanne en rendez-vous, pas des pages de conversion.
-  // Live conférence (/live…) : écrans plein cadre projetés ou utilisés au téléphone
-  // pendant un événement. Aucun élément global ne doit s'y superposer.
-  const quiet = isLive || location.pathname === "/equipe" || /^\/equipe\/[^/]+$/.test(location.pathname);
+  // Fiche de visite (/equipe/<prénom>) : page nue. On la scanne en rendez-vous,
+  // elle ne doit montrer que la carte — ni navigation, ni pied de page, ni bandeau.
+  // Live conférence (/live…) : écrans plein cadre projetés ou tenus en main pendant
+  // un événement. Aucun élément global ne doit s'y superposer.
+  const isCard = /^\/equipe\/[^/]+$/.test(location.pathname);
+  // Pages sans sollicitation : ni chatbot, ni popup promo.
+  const quiet = isLive || isCard || location.pathname === "/equipe";
+  const bare = isLive || isCard;
 
   return (
     <>
       <ScrollToTop />
-      {!isLive && <ScrollToTopButton />}
+      {!bare && <ScrollToTopButton />}
       {!quiet && <ChatBot />}
-      {!isLive && <BottomNav />}
-      {!isLive && <CookieBanner />}
+      {!bare && <BottomNav />}
+      {!bare && <CookieBanner />}
       {!quiet && <ExitIntentPopup />}
 
       <Routes>
