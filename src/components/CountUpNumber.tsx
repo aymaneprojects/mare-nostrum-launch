@@ -17,6 +17,19 @@ export default function CountUpNumber({ value, inView, duration = 1400, classNam
   const [count, setCount] = useState(prefersReducedMotion ? target : 0);
   const [done, setDone]   = useState(prefersReducedMotion);
 
+  // Filet : si la section n'est toujours pas atteinte au bout d'une seconde et
+  // demie, on affiche directement la valeur. Sans cela, un visiteur qui ne
+  // défile pas jusque-là voit « 0+ » — ce qui dit exactement le contraire de ce
+  // que le chiffre est censé prouver.
+  useEffect(() => {
+    if (inView || done || prefersReducedMotion) return;
+    const t = window.setTimeout(() => {
+      setCount(target);
+      setDone(true);
+    }, 1500);
+    return () => window.clearTimeout(t);
+  }, [inView, done, target]);
+
   useEffect(() => {
     if (!inView || done || prefersReducedMotion) return;
     setDone(true);

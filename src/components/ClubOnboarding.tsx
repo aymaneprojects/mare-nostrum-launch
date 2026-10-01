@@ -13,7 +13,14 @@ import {
 import { EVT, track, trackOnce } from "@/lib/analytics";
 
 const stripeKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY as string | undefined;
-const stripePromise = stripeKey?.startsWith("pk_") ? loadStripe(stripeKey) : null;
+// Chargé à la première ouverture du paiement seulement. Au niveau du module, le
+// script de Stripe était téléchargé sur CHAQUE page du site, y compris l'accueil.
+let stripePromiseCache: ReturnType<typeof loadStripe> | null = null;
+const getStripePromise = () => {
+  if (!stripeKey?.startsWith("pk_")) return null;
+  if (!stripePromiseCache) stripePromiseCache = loadStripe(stripeKey);
+  return stripePromiseCache;
+};
 
 const KIT_URL   = "/kit-adherent-club.pdf";
 const SLACK_URL = "https://join.slack.com/t/clubmarenostrum/shared_invite/zt-3k96xxhx1-UjfT8oy4ISyHKScmuqsleg";
@@ -195,7 +202,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   const showEmailError = emailTouched && email.trim() !== "" && !emailValid;
 
   useEffect(() => {
-    if (phase === "payment" && !stripePromise) {
+    if (phase === "payment" && !getStripePromise()) {
       console.error("Missing Stripe public key: set VITE_STRIPE_PUBLIC_KEY in .env");
     }
   }, [phase]);
@@ -386,18 +393,18 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
           )}
 
           {/* Stripe Embedded Checkout */}
-          {phase === "payment" && clientSecret && stripePromise && (
+          {phase === "payment" && clientSecret && getStripePromise() && (
             <div className="mt-2">
               <Button variant="ghost" size="sm" onClick={handleBackFromPayment} className="mb-2 -ml-2 text-muted-foreground">
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 <span className="sr-only">Retour</span>
               </Button>
-              <EmbeddedCheckoutProvider stripe={stripePromise} options={checkoutOptions}>
+              <EmbeddedCheckoutProvider stripe={getStripePromise()} options={checkoutOptions}>
                 <EmbeddedCheckout />
               </EmbeddedCheckoutProvider>
             </div>
           )}
-          {phase === "payment" && !stripePromise && (
+          {phase === "payment" && !getStripePromise() && (
             <p className="text-sm text-destructive py-4 text-center">
               Une erreur est survenue. Réessaie.
             </p>

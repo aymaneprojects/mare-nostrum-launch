@@ -187,7 +187,7 @@ const Education = () => {
       <section className="py-5 md:py-6 bg-secondary/40 border-b border-border">
         <div className="container mx-auto px-4">
           <div className="max-w-full mx-auto text-center">
-            <span className="font-editorial font-semibold text-base md:text-lg text-primary whitespace-nowrap">
+            <span className="font-editorial font-semibold text-base md:text-lg text-primary md:whitespace-nowrap">
               Organisme de formation enregistré sous le numéro 76311216831 : cet enregistrement ne vaut pas agrément de l'État.
             </span>
           </div>
