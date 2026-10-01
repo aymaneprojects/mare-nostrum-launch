@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { EVT, track } from "@/lib/analytics";
 
 const Newsletter = () => {
   const [nom, setNom]             = useState("");
@@ -23,6 +24,7 @@ const Newsletter = () => {
         body: { nom: nom.trim(), email: email.trim(), projet: projet.trim(), telephone: telephone.trim(), rgpd },
       });
       if (error) throw error;
+      track(EVT.generateLead, { form: "newsletter" });
       setStatus("success");
     } catch {
       setStatus("error");

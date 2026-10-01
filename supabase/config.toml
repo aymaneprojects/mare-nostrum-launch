@@ -29,3 +29,6 @@ verify_jwt = false
 
 [functions.live-admin]
 verify_jwt = false
+
+[functions.stripe-payment-webhook]
+verify_jwt = false

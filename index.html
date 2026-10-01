@@ -3,14 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-19HMWTZH76"></script>
+    <!-- Google tag (gtag.js) — la mesure démarre REFUSÉE et n'est levée que par
+         le choix du visiteur dans la bannière cookies (src/lib/analytics.ts). -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      // Avant tout chargement : rien n'est stocké tant que le visiteur n'a pas accepté.
+      gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        wait_for_update: 500
+      });
+      // Visiteur déjà venu et déjà consentant : on rétablit son choix tout de suite,
+      // sinon chaque retour sur le site repartirait en refus.
+      try {
+        var mnPrefs = JSON.parse(localStorage.getItem('cookie_preferences') || 'null');
+        if (mnPrefs && localStorage.getItem('cookie_consent') === 'true') {
+          gtag('consent', 'update', {
+            analytics_storage: mnPrefs.analytics ? 'granted' : 'denied',
+            ad_storage: mnPrefs.marketing ? 'granted' : 'denied',
+            ad_user_data: mnPrefs.marketing ? 'granted' : 'denied',
+            ad_personalization: mnPrefs.marketing ? 'granted' : 'denied'
+          });
+        }
+      } catch (e) { /* stockage indisponible : on reste en refus */ }
       gtag('js', new Date());
-      gtag('config', 'G-19HMWTZH76');
+      // send_page_view désactivé : les pages vues sont envoyées par le routeur
+      // (src/hooks/useAnalyticsPageView.ts), sinon la première page compterait double.
+      gtag('config', 'G-19HMWTZH76', { send_page_view: false });
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-19HMWTZH76"></script>
     
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="google5e6a62e6c33d5e8c" />

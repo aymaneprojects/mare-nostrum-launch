@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { useToast } from "@/hooks/use-toast";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
+import { EVT, track } from "@/lib/analytics";
 const Contact = () => {
   const {
     toast
@@ -77,6 +78,7 @@ const Contact = () => {
         console.error("Webhook error:", webhookError);
       }
       
+      track(EVT.generateLead, { form: "contact" });
       setIsSuccess(true);
       toast({
         title: "Message envoyé !",

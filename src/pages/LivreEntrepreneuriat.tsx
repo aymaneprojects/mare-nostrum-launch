@@ -15,6 +15,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import livreBlancCover from "@/assets/livre-blanc-cover.png";
+import { EVT, track } from "@/lib/analytics";
 const formSchema = z.object({
   firstName: z.string().trim().min(2, {
     message: "Le prénom doit contenir au moins 2 caractères"
@@ -110,6 +111,7 @@ const LivreEntrepreneuriat = () => {
       } catch (webhookError) {
         console.error("Webhook error:", webhookError);
       }
+      track(EVT.generateLead, { form: "livre-blanc" });
       setIsSuccess(true);
       toast({
         title: "Livre Blanc envoyé!",

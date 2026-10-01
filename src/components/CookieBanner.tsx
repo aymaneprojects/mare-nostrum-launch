@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import { setConsent } from "@/lib/analytics";
 
 interface CookiePreferences {
   necessary: boolean;
@@ -50,6 +51,9 @@ const CookieBanner = () => {
   const saveConsent = (prefs: CookiePreferences) => {
     localStorage.setItem(COOKIE_CONSENT_KEY, "true");
     localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(prefs));
+    // Seul endroit qui lève (ou maintient) le refus par défaut posé dans index.html.
+    // Sans cet appel, la bannière n'aurait aucun effet réel sur la mesure.
+    setConsent(prefs);
     setPreferences(prefs);
     setShowBanner(false);
     setShowSettings(false);

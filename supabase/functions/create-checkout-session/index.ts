@@ -115,6 +115,11 @@ serve(async (req) => {
         tax_rates: [taxRate],
         quantity:  1,
       }],
+      // Recopiées sur l'abonnement : les évènements d'abonnement ultérieurs
+      // (renouvellement, résiliation) ne portent pas les métadonnées de la session.
+      subscription_data: {
+        metadata: { offer, location, billing },
+      },
       phone_number_collection: { enabled: true },
       allow_promotion_codes:   true,
       return_url: "https://marenostrum.tech/club?session_id={CHECKOUT_SESSION_ID}",

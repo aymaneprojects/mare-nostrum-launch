@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import { supabase } from "@/integrations/supabase/client";
+import { EVT, track } from "@/lib/analytics";
 
 // ─── questions ────────────────────────────────────────────────
 // Chaque choix = score interne 1–4 (A=1, B=2, C=3, D=4)
@@ -174,6 +175,7 @@ const Diagnostic = () => {
         body: { nom, email, projet, scores, comments, remarques: "", noteGlobale: 0, totalScore },
       });
       if (error) throw error;
+      track(EVT.generateLead, { form: "diagnostic" });
       setDone(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch {

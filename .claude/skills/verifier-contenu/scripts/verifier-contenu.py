@@ -22,20 +22,25 @@ import sys
 # Fichiers qui portent du texte publié. Le reste de src/ est technique.
 SURVEILLES = ("src/pages", "src/components", "src/data/team.json", "index.html")
 
-# Lignes de code qui n'ont jamais à être traitées comme de la prose.
+# Lignes de code ou de commentaire : jamais de la prose destinée au visiteur.
 IGNORER = re.compile(
-    r"^\s*(import|export|const|let|var|function|return|type|interface|//|/\*|\*|\}|\)|<\/)"
-    r"|className=|aria-|data-|href=|src=|key=|^\s*[{}()\[\];,]*\s*$"
+    r"^\s*(import|export|const|let|var|function|return|type|interface|//|/\*|\*|<!--|\}|\)|<\/)"
+    r"|className=|aria-|data-|href=|src=|key=|=>|console\.|track\(|gtag\(|^\s*[{}()\[\];,]*\s*$"
 )
 
-# Prose = texte d'au moins 40 caractères contenant plusieurs mots.
-MOTS = re.compile(r"[A-Za-zÀ-ÿ]{2,}(?:[\s'’,.;:!?-]+[A-Za-zÀ-ÿ]{2,}){3,}")
+# Prose = au moins quatre mots séparés par des ESPACES. Exiger l'espace écarte les
+# listes de code séparées par des virgules (« offer, location, billing, value »),
+# qui passaient pour des phrases dans la première version de ce script.
+MOTS = re.compile(r"[A-Za-zÀ-ÿ]{2,}(?:[’'-]?\s+[A-Za-zÀ-ÿ]{2,}){3,}")
 
 
 def lignes_de_prose(diff: str) -> dict[str, list[tuple[str, str]]]:
     """{fichier: [(signe, extrait), …]} pour les lignes ajoutées ou retirées."""
     trouvailles: dict[str, list[tuple[str, str]]] = {}
     fichier = ""
+    # Un commentaire HTML ou /* */ s'étale souvent sur plusieurs lignes : seule la
+    # première porte le marqueur d'ouverture. On suit donc l'état d'un diff à l'autre.
+    dans_commentaire = False
     for ligne in diff.splitlines():
         if ligne.startswith("+++ b/"):
             fichier = ligne[6:]
@@ -45,6 +50,13 @@ def lignes_de_prose(diff: str) -> dict[str, list[tuple[str, str]]]:
         if not ligne or ligne[0] not in "+-":
             continue
         texte = ligne[1:]
+        if dans_commentaire:
+            if "-->" in texte or "*/" in texte:
+                dans_commentaire = False
+            continue
+        if ("<!--" in texte and "-->" not in texte) or ("/*" in texte and "*/" not in texte):
+            dans_commentaire = True
+            continue
         if IGNORER.search(texte):
             continue
         extrait = MOTS.search(texte)

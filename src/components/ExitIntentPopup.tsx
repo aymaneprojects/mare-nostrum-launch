@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
+import { EVT, track } from "@/lib/analytics";
 
 const STORAGE_KEY   = "mn_exit_popup_dismissed";
 const DELAY_MS      = 2 * 60 * 1000;
@@ -69,6 +70,7 @@ export default function ExitIntentPopup() {
         body: { prenom, email, phone: phone || undefined, zone },
       });
       if (fnError) throw new Error(fnError.message);
+      track(EVT.generateLead, { form: "code-promo" });
       setSent(true);
       markDismissed();
     } catch {

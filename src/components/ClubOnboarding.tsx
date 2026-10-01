@@ -10,6 +10,7 @@ import {
   ArrowRight, ArrowLeft, Loader2, CheckCircle2, X,
   User, Briefcase, CreditCard, Download, MessageSquare, Sparkles, PartyPopper,
 } from "lucide-react";
+import { EVT, track, trackOnce } from "@/lib/analytics";
 
 const stripeKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY as string | undefined;
 const stripePromise = stripeKey?.startsWith("pk_") ? loadStripe(stripeKey) : null;
@@ -81,6 +82,12 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   const [emailTouched, setEmailTouched] = useState(false);
 
   const price       = (billing === "monthly" ? MONTHLY_PRICES : ANNUAL_PRICES)[location][offer];
+
+  // Mesure du tunnel d'adhésion. Quatre points, tous dans ce fichier : ouverture,
+  // étape 1 validée, paiement affiché, paiement abouti. Voir src/lib/analytics.ts.
+  useEffect(() => {
+    if (open) track(EVT.clubModalOpen, { offer, location, billing });
+  }, [open, offer, location, billing]);
   const period      = billing === "monthly" ? "/mois" : "/an";
   const currentStep = phaseToStep[phase];
   const isPostPayment = ["success", "kit", "slack"].includes(phase);
@@ -124,6 +131,12 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
     setPhase("step2");
   };
 
+  /** Étape 1 validée : prénom et e-mail saisis. C'est le vrai point de fuite. */
+  const goToStep2 = () => {
+    track(EVT.beginCheckout, { offer, location, billing, value: price, currency: location === "france" ? "EUR" : "XOF" });
+    setPhase("step2");
+  };
+
   const handleStartPayment = async () => {
     setPhase("loading");
     setError("");
@@ -134,6 +147,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
       if (fnError) throw new Error(fnError.message);
       if (!data?.clientSecret) throw new Error("Réponse invalide du serveur.");
       setClientSecret(data.clientSecret);
+      track(EVT.checkoutShown, { offer, location, billing });
       setPhase("payment");
     } catch (e: any) {
       console.error("create-checkout-session failed:", e);
@@ -143,8 +157,14 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   };
 
   const handleComplete = useCallback(() => {
+    // trackOnce : le retour de Stripe est consulté plusieurs fois (rappel + sondage),
+    // un achat compté deux fois fausserait tout le rapport.
+    trackOnce(clientSecret.split("_secret_")[0] || "club", EVT.purchase, {
+      offer, location, billing, value: price, currency: location === "france" ? "EUR" : "XOF",
+      items: [{ item_id: offer, item_name: `Club ${offer}`, price }],
+    });
     setPhase("success");
-  }, []);
+  }, [clientSecret, offer, location, billing, price]);
 
   const fetchClientSecret = useCallback(() => Promise.resolve(clientSecret), [clientSecret]);
 
@@ -275,7 +295,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                   <Label htmlFor="prenom">Prénom *</Label>
                   <Input id="prenom" placeholder="Prénom" value={prenom}
                     onChange={e => setPrenom(e.target.value)}
-                    onKeyDown={e => e.key === "Enter" && step1Valid && setPhase("step2")} autoFocus />
+                    onKeyDown={e => e.key === "Enter" && step1Valid && goToStep2()} autoFocus />
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor="email">Email *</Label>
@@ -284,7 +304,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                     onBlur={() => setEmailTouched(true)}
                     aria-invalid={showEmailError}
                     aria-describedby={showEmailError ? "email-error" : undefined}
-                    onKeyDown={e => e.key === "Enter" && step1Valid && setPhase("step2")} />
+                    onKeyDown={e => e.key === "Enter" && step1Valid && goToStep2()} />
                   {showEmailError && (
                     <p id="email-error" role="alert" className="text-sm text-destructive">
                       Adresse e-mail invalide
@@ -292,7 +312,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                   )}
                 </div>
               </div>
-              <Button className="w-full" disabled={!step1Valid} onClick={() => setPhase("step2")}>
+              <Button className="w-full" disabled={!step1Valid} onClick={goToStep2}>
                 Suivant <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
