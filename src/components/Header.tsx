@@ -59,10 +59,10 @@ const Header = () => {
             backgroundColor: scrolled ? "rgba(255,255,255,0.98)" : "rgba(255,255,255,0.93)",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
-            border: "1px solid rgba(200,210,220,0.6)",
+            border: "1px solid hsl(222 44% 25% / 0.12)",
             boxShadow: scrolled
-              ? "0 8px 32px rgba(0,0,0,0.14), 0 2px 8px rgba(0,0,0,0.08)"
-              : "0 4px 20px rgba(0,0,0,0.10), 0 1px 6px rgba(0,0,0,0.06)",
+              ? "0 4px 16px hsl(228 56% 13% / 0.08)"
+              : "var(--shadow-soft)",
           }}
         >
           {/* Logo */}
@@ -83,7 +83,7 @@ const Header = () => {
                 className={`px-3 py-1.5 text-[13px] font-medium rounded-full transition-all duration-200 ${
                   isActive(link.to)
                     ? "bg-primary/10 text-primary"
-                    : "text-foreground/70 hover:text-foreground hover:bg-gray-100"
+                    : "text-foreground/70 hover:text-foreground hover:bg-muted"
                 }`}
               >
                 {link.label}
@@ -98,7 +98,7 @@ const Header = () => {
                 <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
               </Button>
             ) : (
-              <Button asChild size="sm" className="rounded-full text-[13px] h-9 px-5" style={{ background: "hsl(222 44% 25%)", color: "#fff" }}>
+              <Button asChild size="sm" className="rounded-full text-[13px] h-9 px-5" style={{ background: "hsl(222 44% 25%)", color: "hsl(40 38% 94%)" }}>
                 <Link to="/club#offres">Rejoindre le Club</Link>
               </Button>
             )}
@@ -119,7 +119,7 @@ const Header = () => {
 
       {/* ── Mobile slide-over panel ─────────────────────────────── */}
       <div
-        className={`fixed inset-0 z-[60] md:hidden bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`fixed inset-0 z-[60] md:hidden bg-[hsl(var(--mn-ink)/0.5)] backdrop-blur-sm transition-opacity duration-300 ${
           isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setIsMenuOpen(false)}
@@ -129,7 +129,7 @@ const Header = () => {
       <div
         id="menu-mobile"
         className={`fixed top-0 right-0 bottom-0 z-[70] md:hidden w-[82vw] max-w-[340px]
-          bg-background flex flex-col shadow-2xl
+          bg-background flex flex-col shadow-lift
           transition-[transform,visibility] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]
           ${isMenuOpen ? "translate-x-0 visible" : "translate-x-full invisible pointer-events-none"}`}
         aria-modal="true"
@@ -176,7 +176,7 @@ const Header = () => {
               <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
             </Button>
           ) : (
-            <Button asChild className="w-full h-11 rounded-full" style={{ background: "hsl(222 44% 25%)", color: "#fff" }}>
+            <Button asChild className="w-full h-11 rounded-full" style={{ background: "hsl(222 44% 25%)", color: "hsl(40 38% 94%)" }}>
               <Link to="/club#offres">Rejoindre le Club</Link>
             </Button>
           )}

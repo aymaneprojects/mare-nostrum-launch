@@ -9,7 +9,7 @@ interface PageHeroProps {
 }
 
 const PageHero = ({ eyebrow, title, subtitle, ctas, size = "md" }: PageHeroProps) => {
-  const py = size === "sm" ? "py-12 md:py-20" : size === "lg" ? "py-20 md:py-36" : "py-16 md:py-28";
+  const py = size === "sm" ? "py-12 md:py-24" : size === "lg" ? "py-20 md:py-44" : "py-16 md:py-32";
 
   return (
     <section
@@ -29,16 +29,16 @@ const PageHero = ({ eyebrow, title, subtitle, ctas, size = "md" }: PageHeroProps
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {eyebrow && <div className="mn-eyebrow-light mb-4">{eyebrow}</div>}
+          {eyebrow && <div className="mn-eyebrow-light mb-5 md:mb-6">{eyebrow}</div>}
           <h1
-            className="font-editorial italic text-3xl md:text-5xl lg:text-6xl font-semibold text-primary-foreground mb-4 md:mb-6 leading-[1.05]"
-            style={{ letterSpacing: "-0.02em", textWrap: "balance" } as React.CSSProperties}
+            className="font-editorial italic text-[2rem] sm:text-4xl md:text-6xl lg:text-7xl font-semibold text-primary-foreground mb-5 md:mb-8 leading-[1.05] break-words"
+            style={{ letterSpacing: "-0.03em", textWrap: "balance" } as React.CSSProperties}
           >
             {title}
           </h1>
           {subtitle && (
             <p
-              className="text-base md:text-xl text-primary-foreground/80 max-w-2xl mx-auto"
+              className="text-base md:text-xl text-primary-foreground/80 max-w-xl md:max-w-2xl mx-auto"
               style={{ lineHeight: "1.65" }}
             >
               {subtitle}

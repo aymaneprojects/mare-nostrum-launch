@@ -21,10 +21,10 @@ export function useFadeIn(delay = 0) {
           obs.disconnect();
         }
       },
-      // rootMargin : on révèle 300 px AVANT que la section n'entre à l'écran.
+      // rootMargin : on révèle 900 px AVANT que la section n'entre à l'écran.
       // Sans cette avance, un défilement rapide laisse un écran blanc le temps
       // du fondu — le visiteur croit que la page est vide.
-      { threshold: 0.01, rootMargin: "300px 0px" }
+      { threshold: 0.01, rootMargin: "900px 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();

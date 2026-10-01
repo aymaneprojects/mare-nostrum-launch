@@ -146,8 +146,8 @@ All colors MUST be HSL.
     color: hsl(var(--foreground));
   }
 
-  h1 { @apply text-4xl md:text-6xl font-bold leading-[1.05]; letter-spacing: -0.02em; }
-  h2 { @apply text-3xl md:text-5xl font-bold leading-tight; letter-spacing: -0.015em; }
+  h1 { @apply text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.05]; letter-spacing: -0.03em; }
+  h2 { @apply text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1]; letter-spacing: -0.025em; }
   h3 { @apply text-xl md:text-2xl font-semibold tracking-tight; }
 
   /* Accessibility — visible focus rings (UI/UX checklist) */
@@ -176,21 +176,21 @@ All colors MUST be HSL.
   /* Micro labels (KIND / DATE / EYEBROW) */
   .mn-eyebrow {
     font-size: 11px;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     font-weight: 700;
     color: hsl(var(--mn-nuit));
   }
   .mn-eyebrow-muted {
     font-size: 11px;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     font-weight: 600;
     color: hsl(var(--mn-muted));
   }
   .mn-eyebrow-turquoise {
-    font-size: 10px;
-    letter-spacing: 0.25em;
+    font-size: 11px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     font-weight: 700;
     /* Nuit sur fond clair (le turquoise n'y atteint que 1,6:1). Sur fond sombre,
@@ -230,19 +230,22 @@ All colors MUST be HSL.
   /* Card with brand border */
   .mn-card {
     background: #fff;
-    border: 1.5px solid hsl(var(--mn-nuit) / 0.18);
+    border: 1px solid hsl(var(--mn-nuit) / 0.14);
     border-radius: 14px;
     transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .mn-card-accent { border-color: hsl(var(--mn-turquoise)); }
-  .mn-card:hover { border-color: hsl(var(--mn-nuit) / 0.4); }
+  .mn-card:hover { border-color: hsl(var(--mn-nuit) / 0.3); }
+
+  /* Colonne de lecture étroite (~65 caractères), centrée */
+  .mn-prose { max-width: 65ch; margin-inline: auto; }
 
   /* Hairline section divider with side rules */
   .mn-section-label {
     position: relative;
     text-align: center;
     font-size: 11px;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     font-weight: 700;
     color: hsl(var(--mn-nuit));
@@ -265,17 +268,17 @@ All colors MUST be HSL.
 
   /* Eyebrow for dark (navy) panel backgrounds */
   .mn-eyebrow-light {
-    font-size: 10px;
-    letter-spacing: 0.28em;
+    font-size: 11px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    font-weight: 600;
-    color: hsl(var(--mn-turquoise) / 0.80);
+    font-weight: 700;
+    color: hsl(var(--mn-turquoise));
   }
 
   /* Mono-style stat sublabel */
   .mn-stat-label {
-    font-size: 10px;
-    letter-spacing: 0.20em;
+    font-size: 11px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     font-weight: 600;
     color: hsl(var(--mn-muted));
@@ -292,8 +295,8 @@ All colors MUST be HSL.
   /* ── Scroll reveal (respect prefers-reduced-motion) ──────────────── */
   .fade-up {
     opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.55s cubic-bezier(0.4,0,0.2,1), transform 0.55s cubic-bezier(0.4,0,0.2,1);
+    transform: translateY(16px);
+    transition: opacity 0.38s cubic-bezier(0.4,0,0.2,1), transform 0.38s cubic-bezier(0.4,0,0.2,1);
   }
   .fade-up.is-visible {
     opacity: 1;
@@ -309,8 +312,8 @@ All colors MUST be HSL.
       transition: transform 0.2s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s cubic-bezier(0.4,0,0.2,1);
     }
     .hover-lift:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(15,23,51,0.12);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px hsl(228 56% 13% / 0.08);
     }
   }
 
@@ -322,7 +325,7 @@ All colors MUST be HSL.
   @media (hover: hover) and (pointer: fine) {
     .card-interactive:hover {
       border-color: hsl(var(--mn-turquoise) / 0.5);
-      box-shadow: 0 4px 16px rgba(15,23,51,0.08);
+      box-shadow: var(--shadow-soft);
     }
   }
 

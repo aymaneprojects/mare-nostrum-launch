@@ -28,6 +28,8 @@ const Index = () => {
   const fadeServices    = useFadeIn(0);
   const fadeTestimonials= useFadeIn(100);
   const fadeCTA         = useFadeIn(0);
+  const fadePoles       = useFadeIn(0);
+  const fadeHow         = useFadeIn(0);
   const homePageSchema = [
     {
       "@context": "https://schema.org",
@@ -214,19 +216,19 @@ const Index = () => {
       <Header />
 
 
-      <section className="relative overflow-hidden py-16 md:py-32" style={{ background: 'linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)' }}>
+      <section className="relative overflow-hidden py-20 md:py-44" style={{ background: 'linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)' }}>
         {/* Diagonal stripe texture */}
         <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, hsl(181 67% 54% / 0.055) 22px 23px)' }}></div>
         {/* Turquoise radial glow top-left + deep ink vignette bottom-right */}
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 22% 18%, hsl(181 67% 54% / 0.20) 0%, transparent 52%), radial-gradient(ellipse at 80% 88%, hsl(228 56% 8% / 0.75) 0%, transparent 58%)' }}></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="mn-eyebrow-light mb-5">depuis Toulouse, dans tout l'espace francophone</div>
-            <p className="text-base md:text-xl font-semibold text-primary-foreground/80 mb-4 max-w-2xl mx-auto" style={{ letterSpacing: '0.01em' }}>
+            <div className="mn-eyebrow-light mb-6 md:mb-8">depuis Toulouse, dans tout l'espace francophone</div>
+            <p className="text-base md:text-lg font-medium text-primary-foreground/80 mb-5 md:mb-6 max-w-xl mx-auto" style={{ letterSpacing: '0.01em' }}>
               Vous bâtissez un service ou un produit utile pour demain&nbsp;?
             </p>
-            <h1 className="font-editorial italic text-3xl md:text-6xl font-semibold text-primary-foreground mb-4 md:mb-6 leading-[1.05]" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>Nous traçons la voie de votre <span style={{ color: 'hsl(181 67% 54%)' }}>projet</span> vers ses <span style={{ color: 'hsl(181 67% 54%)' }}>sources de revenus</span>.</h1>
-            <p className="text-base md:text-xl text-primary-foreground/75 mb-8 md:mb-12 max-w-2xl mx-auto" style={{ lineHeight: '1.65' }}>
+            <h1 className="font-editorial italic text-[2rem] sm:text-4xl md:text-7xl lg:text-[5.25rem] font-semibold text-primary-foreground mb-6 md:mb-10 leading-[1.05] break-words" style={{ letterSpacing: '-0.03em', textWrap: 'balance' }}>Nous traçons la voie de votre <span style={{ color: 'hsl(181 67% 54%)' }}>projet</span> vers ses <span style={{ color: 'hsl(181 67% 54%)' }}>sources de revenus</span>.</h1>
+            <p className="text-base md:text-xl text-primary-foreground/75 mb-10 md:mb-14 max-w-xl mx-auto" style={{ lineHeight: '1.65' }}>
               Mare Nostrum accompagne les écoles et les entrepreneurs francophones.
             </p>
             
@@ -237,7 +239,7 @@ const Index = () => {
                   Je suis une école
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-primary w-full sm:w-auto">
+              <Button asChild size="lg" variant="outline" className="bg-primary-foreground/10 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary w-full sm:w-auto">
                 <Link to="/club">
                   <TrendingUp className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                   Rejoindre l'équipage
@@ -272,23 +274,23 @@ const Index = () => {
       </section>
 
       {/* Who We Are */}
-      <section ref={fadeServices as React.RefObject<HTMLElement>} className="py-12 md:py-24 bg-background">
+      <section ref={fadeServices as React.RefObject<HTMLElement>} className="py-16 md:py-32 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="mn-eyebrow-turquoise text-center mb-4">À propos</div>
-            <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 md:mb-6 text-foreground">
+            <div className="mn-eyebrow-turquoise text-center mb-5">À propos</div>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center mb-8 md:mb-12 text-foreground">
               Qui sommes-nous ?
             </h2>
-            <div className="prose prose-lg mx-auto text-center">
-              <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6">
+            <div className="prose prose-lg mx-auto text-center max-w-[65ch]">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-5 md:mb-8">
                 Mare Nostrum est une entreprise de services aux entrepreneurs et aux établissements, fondée en 2023 à Toulouse, avec des bureaux à Paris et Casablanca.
               </p>
-              <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-5 md:mb-8">
                 Société à mission, familiale et interculturelle, notre raison d'être est de 
                 <strong className="text-foreground"> sécuriser la trajectoire des entreprises à impact</strong> et 
                 renforcer leurs capacités à coopérer, protéger le vivant, et inclure les publics vulnérables.
               </p>
-              <div className="flex flex-wrap justify-center gap-2 md:gap-4 mt-6 md:mt-8">
+              <div className="flex flex-wrap justify-center gap-2 md:gap-3 mt-10 md:mt-14 pt-8 md:pt-10 mn-hairline">
                 <div className="flex items-center space-x-2 bg-secondary px-3 py-2 md:px-4 md:py-2 rounded-full text-sm md:text-base">
                   <Target className="h-5 w-5 text-primary" />
                   <span className="font-medium">Respect</span>
@@ -316,18 +318,18 @@ const Index = () => {
       </section>
 
       {/* Two Poles */}
-      <section className="py-16 md:py-24 bg-secondary/30">
+      <section ref={fadePoles as React.RefObject<HTMLElement>} className="py-16 md:py-32 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="mn-eyebrow-turquoise text-center mb-4">Nos offres</div>
-            <h2 className="text-2xl md:text-3xl font-bold mb-12 md:mb-16 text-foreground">
+            <div className="mn-eyebrow-turquoise text-center mb-5">Nos offres</div>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-10 md:mb-20 text-foreground">
               Nos deux pôles d'expertise
             </h2>
 
-            <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-5 md:gap-8 max-w-4xl mx-auto">
               <Link
                 to="/education"
-                className="group relative overflow-hidden rounded-sm p-8 md:p-10 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200 cursor-pointer text-left"
+                className="group relative overflow-hidden rounded-lg p-8 md:p-12 shadow-soft hover-lift card-interactive text-left"
                 style={{ background: 'linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)' }}
               >
                 <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, hsl(181 67% 54% / 0.06) 22px 23px)' }}></div>
@@ -335,10 +337,10 @@ const Index = () => {
                 <div className="relative z-10">
                   <div className="mn-eyebrow-light mb-4">Mare Nostrum Éducation</div>
                   <MaritimeIcon name="sailboat" size={60} className="mb-5" />
-                  <h3 className="text-xl md:text-2xl font-semibold text-white mb-2" style={{ letterSpacing: '-0.01em' }}>
+                  <h3 className="text-xl md:text-3xl font-semibold text-primary-foreground mb-3" style={{ letterSpacing: '-0.01em' }}>
                     Le cap de l'esprit d'entreprendre
                   </h3>
-                  <p className="text-sm md:text-base text-white/75">
+                  <p className="text-sm md:text-base text-primary-foreground/75">
                     De la sensibilisation à la professionnalisation, y compris la pré-incubation.
                   </p>
                 </div>
@@ -346,7 +348,7 @@ const Index = () => {
 
               <Link
                 to="/club"
-                className="group relative overflow-hidden rounded-sm p-8 md:p-10 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-200 cursor-pointer text-left"
+                className="group relative overflow-hidden rounded-lg p-8 md:p-12 shadow-soft hover-lift card-interactive text-left"
                 style={{ background: 'linear-gradient(135deg, hsl(181 67% 38%) 0%, hsl(181 67% 24%) 100%)' }}
               >
                 <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, rgba(255,255,255,0.05) 22px 23px)' }}></div>
@@ -354,10 +356,10 @@ const Index = () => {
                 <div className="relative z-10">
                   <div className="mn-eyebrow-light mb-4">Mare Nostrum Croissance</div>
                   <MaritimeIcon name="wheel" size={60} className="mb-5" />
-                  <h3 className="text-xl md:text-2xl font-semibold text-white mb-2" style={{ letterSpacing: '-0.01em' }}>
+                  <h3 className="text-xl md:text-3xl font-semibold text-primary-foreground mb-3" style={{ letterSpacing: '-0.01em' }}>
                     Le Quai des Entrepreneurs
                   </h3>
-                  <p className="text-sm md:text-base text-white/75">
+                  <p className="text-sm md:text-base text-primary-foreground/75">
                     Vos premiers outils d'IA, vos partenaires &amp; clients, dans un seul espace digital.
                   </p>
                 </div>
@@ -371,22 +373,22 @@ const Index = () => {
       <StatsSection />
 
       {/* Testimonials */}
-      <section ref={fadeTestimonials as React.RefObject<HTMLElement>} className="py-12 md:py-24 bg-secondary/30">
+      <section ref={fadeTestimonials as React.RefObject<HTMLElement>} className="py-16 md:py-32 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-turquoise text-center mb-4">Témoignages</div>
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
+          <div className="mn-eyebrow-turquoise text-center mb-5">Témoignages</div>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center mb-10 md:mb-16 text-foreground">
             Ils nous font confiance
           </h2>
-          <div className="grid md:grid-cols-3 gap-4 md:gap-8 max-w-6xl mx-auto mb-8 md:mb-12">
+          <div className="grid md:grid-cols-3 gap-8 md:gap-8 max-w-6xl mx-auto mb-14 md:mb-24">
             <TestimonialCard text="Quelque chose qui était présent à chaque instant (du Programme) c'est l'échange d'expérience et d'opinion. Ce qui permettait un retour permanent, constructif et pointilleux tout ça dans la bienveillance et la bonne humeur" author="Annabel" role="Étudiante et néo-entrepreneure accompagnée" organization="2024" />
             <TestimonialCard text="Un acteur efficace, engagé et authentique, qui accompagne réellement les établissements dans leur transformation." author="Géraldine Le Caer" role="Directrice d'établissement partenaire" />
             <TestimonialCard text="Être ici aux côtés de l'ensemble des porteurs de projet, pour moi, c'était important. Parce que ce sont des jeunes audacieux, persévérants, et parce qu'on a besoin d'un entrepreneuriat qui est en capacité de pouvoir changer le monde. Ils mettent leurs convictions au service de solutions. Ce sont des solutions concrètes et performantes. Faites leur confiance, aidez-les, accompagnez-les !" author="Nadia Pellefigue" role="Vice-présidente de la Région Occitanie" />
           </div>
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <div className="max-w-6xl mx-auto mn-hairline pt-14 md:pt-24">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-5 md:mb-6 text-foreground">
               Nos Partenaires et Référents
             </h2>
-            <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
+            <p className="text-center text-lg text-muted-foreground mb-10 md:mb-14 max-w-xl mx-auto leading-relaxed">
               Ils nous font confiance et contribuent à notre mission
             </p>
             
@@ -398,64 +400,64 @@ const Index = () => {
           })]} className="w-full">
               <CarouselContent>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
                     <img src={hufLogo} alt="HUF - Partenaire Mare Nostrum accompagnement entrepreneuriat Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
                     <img src={bidayaLogo} alt="Bidaya - Partenaire Mare Nostrum entrepreneuriat Maroc Casablanca" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
                     <img src={toulouseWayLogo} alt="Toulouse Way - Partenaire écosystème entrepreneurial Toulouse Occitanie" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
                     <img src={airbusLogo} alt="Airbus Développement - Partenaire innovation entreprises Toulouse Aerospace" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
                     <img src={roseLabLogo} alt="Rose Lab - Partenaire incubateur startups entreprises à impact" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
                     <img src={cpme31Logo} alt="CPME 31 Haute-Garonne - Confédération PME entrepreneurs Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
                     <img src={creditMutuelLogo} alt="Crédit Mutuel - Partenaire financement entrepreneurs PME" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.touleco.fr/" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
                       <img src={toulecoLogo} alt="Touleco - Média économique Toulouse Occitanie partenaire Mare Nostrum" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.imaginationsfertiles.fr/" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
                       <img src={imaginationsFertilesLogo} alt="Imaginations Fertiles - Partenaire créativité innovation entrepreneuriale" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://emergingbusinessfactory.com/" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
                       <img src={emergingBusinessLogo} alt="Emerging Business Factory - Accélérateur startups scale-ups Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.moovjee.fr/" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
                       <img src={moovjeeLogo} alt="Moovjee - Mouvement jeunes entrepreneurs France accompagnement création" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
@@ -467,14 +469,14 @@ const Index = () => {
       </section>
 
       {/* How to Work With Us */}
-      <section className="py-16 md:py-24 bg-background">
+      <section ref={fadeHow as React.RefObject<HTMLElement>} className="py-16 md:py-32 bg-background">
         <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-turquoise text-center mb-4">Notre approche</div>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <div className="mn-eyebrow-turquoise text-center mb-5">Notre approche</div>
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center mb-10 md:mb-16 text-foreground">
             Comment travailler avec nous ?
           </h2>
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-6">
+          <div className="max-w-3xl mx-auto">
+            <div className="border-b border-border">
               {([
                 { icon: "telescope" as const,  title: "Rendez-vous de découverte",  description: "Échangeons sur vos besoins et vos objectifs" },
                 { icon: "map"       as const,  title: "Diagnostic personnalisé",    description: "École ou entreprise, nous analysons votre situation" },
@@ -482,16 +484,16 @@ const Index = () => {
                 { icon: "lighthouse"as const,  title: "Lancement & accompagnement", description: "Mise en œuvre avec notre équipe d'experts" },
                 { icon: "buoy"      as const,  title: "Évaluation d'impact",        description: "Mesure des résultats et ajustements continus" },
               ]).map(item => (
-                <div key={item.title} className="flex items-start gap-6 p-6 bg-card border border-nuit/12 rounded-sm hover:shadow-md hover:border-nuit/25 transition-all duration-200">
+                <div key={item.title} className="flex items-start gap-5 md:gap-8 py-6 md:py-8 mn-hairline">
                   <MaritimeIcon name={item.icon} size={52} className="flex-shrink-0 mt-0.5 opacity-90" />
                   <div>
-                    <h3 className="text-xl font-semibold mb-2 text-foreground">{item.title}</h3>
-                    <p className="text-muted-foreground">{item.description}</p>
+                    <h3 className="text-xl md:text-2xl font-semibold mb-2 text-foreground">{item.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{item.description}</p>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="text-center mt-12">
+            <div className="text-center mt-12 md:mt-16">
               <Button asChild size="lg">
                 <a href="https://meet.marenostrum.tech/rdv-equipe" target="_blank" rel="noopener noreferrer">
                   Planifier un appel découverte
@@ -506,15 +508,15 @@ const Index = () => {
       <FAQSection faqs={faqs} />
 
       {/* CTA Section */}
-      <section ref={fadeCTA as React.RefObject<HTMLElement>} className="relative overflow-hidden py-16 md:py-20" style={{ background: 'linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)' }}>
+      <section ref={fadeCTA as React.RefObject<HTMLElement>} className="relative overflow-hidden py-20 md:py-36" style={{ background: 'linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)' }}>
         <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, hsl(181 67% 54% / 0.055) 22px 23px)' }}></div>
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 70% 30%, hsl(181 67% 54% / 0.18) 0%, transparent 52%), radial-gradient(ellipse at 15% 80%, hsl(228 56% 8% / 0.65) 0%, transparent 55%)' }}></div>
         <div className="container mx-auto px-4 text-center relative z-10">
-          <div className="mn-eyebrow-light mb-5">Travaillons ensemble</div>
-          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold mb-6 text-primary-foreground" style={{ letterSpacing: '-0.015em' }}>
+          <div className="mn-eyebrow-light mb-6">Travaillons ensemble</div>
+          <h2 className="font-editorial italic text-[2rem] sm:text-4xl md:text-6xl font-semibold mb-6 md:mb-8 text-primary-foreground break-words" style={{ letterSpacing: '-0.03em', textWrap: 'balance' }}>
             Prêt à construire l'avenir ensemble ?
           </h2>
-          <p className="text-lg text-primary-foreground/75 mb-8 max-w-2xl mx-auto" style={{ lineHeight: '1.65' }}>
+          <p className="text-lg text-primary-foreground/75 mb-10 md:mb-12 max-w-xl mx-auto" style={{ lineHeight: '1.65' }}>
             Rejoignez les écoles et entrepreneurs qui transforment leurs ambitions en réalité
           </p>
           <Button asChild size="lg" variant="secondary">

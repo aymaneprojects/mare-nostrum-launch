@@ -22,10 +22,10 @@ export default function StatsSection() {
   const { ref, inView } = useInView(0.2);
 
   return (
-    <section ref={ref as React.RefObject<HTMLElement>} className="py-12 md:py-24 bg-background">
+    <section ref={ref as React.RefObject<HTMLElement>} className="py-16 md:py-32 bg-background">
       <div className="container mx-auto px-4">
-        <div className="mn-eyebrow-turquoise text-center mb-4">L'équipage en chiffres</div>
-        <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
+        <div className="mn-eyebrow-turquoise text-center mb-5">L'équipage en chiffres</div>
+        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center mb-10 md:mb-16 text-foreground">
           Pourquoi nous choisir
         </h2>
 
@@ -38,9 +38,7 @@ export default function StatsSection() {
             {STATS.map((s, i) => (
               <CarouselItem key={i} className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <div
-                  className={`bg-card border rounded-sm p-6 h-full hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-default ${
-                    s.color === "turquoise" ? "border-turquoise/20" : "border-nuit/12"
-                  }`}
+                  className={`bg-card border border-border rounded-lg p-6 md:p-7 h-full hover-lift cursor-default`}
                 >
                   <div
                     className={`font-editorial font-semibold text-5xl mb-0 ${
@@ -58,7 +56,7 @@ export default function StatsSection() {
           </CarouselContent>
         </Carousel>
 
-        <p className="text-center text-sm text-muted-foreground mt-8">
+        <p className="text-center text-sm text-muted-foreground mt-10 md:mt-14 mn-hairline pt-6 md:pt-8 max-w-3xl mx-auto leading-relaxed">
           France • Maroc • Tunisie • Algérie • Sénégal • Côte d'Ivoire • Bénin • Cameroun • Burkina Faso • RD Congo • Égypte • Canada
         </p>
       </div>
