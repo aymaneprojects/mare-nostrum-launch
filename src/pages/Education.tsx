@@ -240,6 +240,7 @@ const Education = () => {
             <div className="grid md:grid-cols-2 gap-8 items-stretch">
               <img 
                 src={formationWorkshop} 
+                width={628} height={363} loading="lazy"
                 alt="Formation en salle avec formateur et participants" 
                 className="w-full h-full object-cover rounded-sm shadow-lg"
               />
@@ -259,7 +260,7 @@ const Education = () => {
 
           {/* CTA Pré-inscription */}
           <div className="mt-12 text-center">
-            <Button asChild size="lg" className="bg-[hsl(var(--mn-turquoise))] hover:bg-[hsl(var(--mn-turquoise))]/90 text-white px-8">
+            <Button asChild size="lg" className="bg-[hsl(var(--mn-turquoise))] hover:bg-[hsl(var(--mn-turquoise))]/90 text-accent-foreground px-8">
               <Link to="/contact">
                 Se pré-inscrire à une formation
                 <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
@@ -444,14 +445,14 @@ const Education = () => {
             Financer votre formation
           </h2>
           <div className="max-w-4xl mx-auto">
-            <div className="flex items-center justify-center gap-6 mb-8">
-              <img src={qualiopiLogo} alt="Logo Qualiopi" className="h-32 w-auto flex-shrink-0" />
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
+              <img src={qualiopiLogo} alt="Logo Qualiopi" width={317} height={170} loading="lazy" className="h-20 md:h-32 w-auto flex-shrink-0" />
               <p className="text-center text-muted-foreground leading-relaxed">
                 Mare Nostrum est un organisme de formation certifié Qualiopi et déclaré auprès de la DREETS Occitanie. À ce titre, des financements de la formation professionnelle sont mobilisables : prise en charge par votre OPCO, financement par votre employeur, dispositifs publics et cofinancements. Chaque situation est différente. Nous vous aidons à identifier le circuit adapté à votre statut et à monter le dossier. Contacter la directrice du centre de formation.
               </p>
             </div>
             <div className="text-center">
-              <Button asChild size="lg" className="bg-[hsl(var(--mn-turquoise))] hover:bg-[hsl(var(--mn-turquoise))]/90 text-white px-8">
+              <Button asChild size="lg" className="bg-[hsl(var(--mn-turquoise))] hover:bg-[hsl(var(--mn-turquoise))]/90 text-accent-foreground px-8">
                 <Link to="/contact">
                   Nous consulter sur le financement
                   <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
@@ -536,9 +537,9 @@ const Education = () => {
           </p>
           
           <div className="overflow-hidden">
-            <div className="flex gap-6 animate-scroll">
-              <div className="relative overflow-hidden rounded-sm shadow-lg flex-shrink-0 w-[400px] h-[300px]">
-                <img src={ylookProgramme} alt="Programme Ylook - Ynov Campus Toulouse" className="w-full h-full object-cover" />
+            <div className="flex gap-6 animate-scroll motion-reduce:animate-none">
+              <div className="relative overflow-hidden rounded-sm shadow-lg flex-shrink-0 w-[85vw] md:w-[400px] h-[300px]">
+                <img src={ylookProgramme} width={1920} height={1279} loading="lazy" alt="Programme Ylook - Ynov Campus Toulouse" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                   <div className="p-6 text-primary-foreground">
                     <h3 className="text-xl font-bold mb-2">Programme Ylook - Ynov Campus Toulouse</h3>
@@ -547,8 +548,8 @@ const Education = () => {
                 </div>
               </div>
 
-              <div className="relative overflow-hidden rounded-sm shadow-lg flex-shrink-0 w-[400px] h-[300px]">
-                <img src={fresque1Img} alt="Fresque organisée pour 80 personnes dans un établissement" className="w-full h-full object-cover" />
+              <div className="relative overflow-hidden rounded-sm shadow-lg flex-shrink-0 w-[85vw] md:w-[400px] h-[300px]">
+                <img src={fresque1Img} width={996} height={812} loading="lazy" alt="Fresque organisée pour 80 personnes dans un établissement" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                   <div className="p-6 text-primary-foreground">
                     <h3 className="text-xl font-bold mb-2">Fresque collaborative</h3>
@@ -557,8 +558,8 @@ const Education = () => {
                 </div>
               </div>
 
-              <div className="relative overflow-hidden rounded-sm shadow-lg flex-shrink-0 w-[400px] h-[300px]">
-                <img src={iscomChallenge} alt="ISCOM Startup Challenge - Réfléchir vite pour répondre à la problématique donnée" className="w-full h-full object-cover" />
+              <div className="relative overflow-hidden rounded-sm shadow-lg flex-shrink-0 w-[85vw] md:w-[400px] h-[300px]">
+                <img src={iscomChallenge} width={1920} height={1440} loading="lazy" alt="ISCOM Startup Challenge - Réfléchir vite pour répondre à la problématique donnée" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                   <div className="p-6 text-primary-foreground">
                     <h3 className="text-xl font-bold mb-2">ISCOM Startup Challenge</h3>
@@ -567,8 +568,8 @@ const Education = () => {
                 </div>
               </div>
 
-              <div className="relative overflow-hidden rounded-sm shadow-lg flex-shrink-0 w-[400px] h-[300px]">
-                <img src={fresqueDoctorant} alt="Fresque de l'esprit d'entreprendre adaptée aux doctorants" className="w-full h-full object-cover" />
+              <div className="relative overflow-hidden rounded-sm shadow-lg flex-shrink-0 w-[85vw] md:w-[400px] h-[300px]">
+                <img src={fresqueDoctorant} width={1672} height={1000} loading="lazy" alt="Fresque de l'esprit d'entreprendre adaptée aux doctorants" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                   <div className="p-6 text-primary-foreground">
                     <h3 className="text-xl font-bold mb-2">Fresque de l'esprit d'entreprendre</h3>
@@ -609,7 +610,7 @@ const Education = () => {
               { src: schoolEfap, alt: "EFAP" },
             ].map((school) => (
               <div key={school.alt} className="flex items-center justify-center h-16 md:h-20 grayscale hover:grayscale-0 transition-all duration-300">
-                <img src={school.src} alt={school.alt} className="max-h-full max-w-[140px] md:max-w-[160px] object-contain" />
+                <img src={school.src} alt={school.alt} width={160} height={80} loading="lazy" className="max-h-full max-w-[140px] md:max-w-[160px] object-contain" />
               </div>
             ))}
           </div>

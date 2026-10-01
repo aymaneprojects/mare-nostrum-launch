@@ -193,7 +193,9 @@ All colors MUST be HSL.
     letter-spacing: 0.25em;
     text-transform: uppercase;
     font-weight: 700;
-    color: hsl(var(--mn-turquoise));
+    /* Nuit sur fond clair (le turquoise n'y atteint que 1,6:1). Sur fond sombre,
+       ajouter text-[hsl(var(--mn-turquoise))] ou utiliser mn-eyebrow-light. */
+    color: hsl(var(--mn-nuit));
   }
 
   /* Date / category chips — three brand variants */
@@ -211,7 +213,7 @@ All colors MUST be HSL.
   }
   .mn-chip-nuit { background: hsl(var(--mn-nuit)); color: hsl(var(--mn-ivory)); }
   .mn-chip-turquoise { background: hsl(var(--mn-turquoise)); color: hsl(var(--mn-nuit)); }
-  .mn-chip-ocre { background: hsl(var(--mn-ocre)); color: #fff; }
+  .mn-chip-ocre { background: hsl(var(--mn-ocre)); color: hsl(var(--mn-ink)); }
   .mn-chip-outline {
     background: transparent;
     color: hsl(var(--mn-nuit));

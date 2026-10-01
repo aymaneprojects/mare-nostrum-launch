@@ -78,6 +78,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   const [clientSecret, setClientSecret] = useState("");
   const [cgvAccepted, setCgvAccepted]   = useState(false);
   const [kitClicked, setKitClicked]     = useState(false);
+  const [emailTouched, setEmailTouched] = useState(false);
 
   const price       = (billing === "monthly" ? MONTHLY_PRICES : ANNUAL_PRICES)[location][offer];
   const period      = billing === "monthly" ? "/mois" : "/an";
@@ -106,7 +107,21 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
     setPhase("step1");
     setPrenom(""); setEmail(""); setEntreprise("");
     setError(""); setClientSecret(""); setCgvAccepted(false); setKitClicked(false);
+    setEmailTouched(false);
     onClose();
+  };
+
+  // Échap / clic extérieur : ignorés pendant le paiement pour ne pas perdre la saisie.
+  // La croix (handleClose directe) reste fonctionnelle.
+  const handleOpenChange = (next: boolean) => {
+    if (!next && (phase === "payment" || phase === "loading")) return;
+    handleClose();
+  };
+
+  const handleBackFromPayment = () => {
+    setClientSecret("");
+    setError("");
+    setPhase("step2");
   };
 
   const handleStartPayment = async () => {
@@ -121,7 +136,8 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
       setClientSecret(data.clientSecret);
       setPhase("payment");
     } catch (e: any) {
-      setError(e.message || "Une erreur est survenue. Réessaie.");
+      console.error("create-checkout-session failed:", e);
+      setError("Une erreur est survenue. Réessaie.");
       setPhase("step2");
     }
   };
@@ -154,13 +170,24 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
     }, 3000);
     return () => clearInterval(id);
   }, [phase, clientSecret]);
-  const step1Valid = prenom.trim() !== "" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const step1Valid = prenom.trim() !== "" && emailValid;
+  const showEmailError = emailTouched && email.trim() !== "" && !emailValid;
+
+  useEffect(() => {
+    if (phase === "payment" && !stripePromise) {
+      console.error("Missing Stripe public key: set VITE_STRIPE_PUBLIC_KEY in .env");
+    }
+  }, [phase]);
 
   /* ─── Header dynamique selon phase ─────────────────────── */
   const headerBg =
     phase === "slack"   ? "bg-accent" :
     isPostPayment       ? "bg-primary" :
                           "bg-primary";
+
+  const headerText = phase === "slack" ? "text-accent-foreground" : "text-white";
+  const headerTextMuted = phase === "slack" ? "text-accent-foreground/70" : "text-white/60";
 
   const headerSub =
     phase === "success" ? "Paiement confirmé ✓" :
@@ -175,7 +202,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                           `Rejoindre l'offre ${OFFER_LABELS[offer]}`;
 
   return (
-    <Dialog open={open} onOpenChange={handleClose}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent
         className={`p-0 flex flex-col transition-all duration-300
           max-sm:left-0 max-sm:top-0 max-sm:translate-x-0 max-sm:translate-y-0
@@ -187,20 +214,24 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
         {/* ── Header ────────────────────────────────────────── */}
         <div className={`${headerBg} px-6 py-5 shrink-0 transition-colors duration-500 relative`}>
           <DialogTitle className="sr-only">{headerTitle}</DialogTitle>
-          <p className="text-xs text-white/60 uppercase tracking-widest mb-1">{headerSub}</p>
-          <h2 className="font-editorial italic text-xl text-white pr-10">{headerTitle}</h2>
+          <p className={`text-xs ${headerTextMuted} uppercase tracking-widest mb-1`}>{headerSub}</p>
+          <h2 className={`font-editorial italic text-xl ${headerText} pr-10`}>{headerTitle}</h2>
           <button
             onClick={handleClose}
             className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 active:bg-white/30 transition-colors"
             aria-label="Fermer"
           >
-            <X className="h-4 w-4 text-white" />
+            <X className={`h-4 w-4 ${headerText}`} />
           </button>
         </div>
 
         {/* ── Stepper unifié 6 étapes ───────────────────────── */}
         {phase !== "loading" && (
-          <div className="flex items-center justify-center px-4 pt-4 pb-1 shrink-0">
+          <div
+            role="group"
+            aria-label={`Étape ${currentStep + 1} sur ${ALL_STEPS.length}`}
+            className="flex items-center justify-center px-2 sm:px-4 pt-4 pb-1 shrink-0"
+          >
             {ALL_STEPS.map((s, i) => {
               const Icon   = s.icon;
               const active = currentStep === i;
@@ -209,7 +240,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                 <div key={i} className="flex items-center">
                   <div className="flex flex-col items-center gap-0.5">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-                      done   ? "bg-accent text-white" :
+                      done   ? "bg-accent text-accent-foreground" :
                       active ? "bg-primary text-white" :
                                "bg-muted text-muted-foreground"
                     }`}>
@@ -222,7 +253,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                     </span>
                   </div>
                   {i < ALL_STEPS.length - 1 && (
-                    <div className={`w-6 md:w-8 h-0.5 mx-1 rounded-full transition-all duration-300 ${
+                    <div className={`w-3 sm:w-6 md:w-8 h-0.5 mx-0.5 sm:mx-1 rounded-full transition-all duration-300 ${
                       currentStep > i ? "bg-accent" : "bg-border"
                     }`} />
                   )}
@@ -250,7 +281,15 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                   <Label htmlFor="email">Email *</Label>
                   <Input id="email" type="email" placeholder="toi@exemple.com" value={email}
                     onChange={e => setEmail(e.target.value)}
+                    onBlur={() => setEmailTouched(true)}
+                    aria-invalid={showEmailError}
+                    aria-describedby={showEmailError ? "email-error" : undefined}
                     onKeyDown={e => e.key === "Enter" && step1Valid && setPhase("step2")} />
+                  {showEmailError && (
+                    <p id="email-error" role="alert" className="text-sm text-destructive">
+                      Adresse e-mail invalide
+                    </p>
+                  )}
                 </div>
               </div>
               <Button className="w-full" disabled={!step1Valid} onClick={() => setPhase("step2")}>
@@ -329,6 +368,10 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
           {/* Stripe Embedded Checkout */}
           {phase === "payment" && clientSecret && stripePromise && (
             <div className="mt-2">
+              <Button variant="ghost" size="sm" onClick={handleBackFromPayment} className="mb-2 -ml-2 text-muted-foreground">
+                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+                <span className="sr-only">Retour</span>
+              </Button>
               <EmbeddedCheckoutProvider stripe={stripePromise} options={checkoutOptions}>
                 <EmbeddedCheckout />
               </EmbeddedCheckoutProvider>
@@ -336,7 +379,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
           )}
           {phase === "payment" && !stripePromise && (
             <p className="text-sm text-destructive py-4 text-center">
-              Clé Stripe publique manquante — ajoute <code>VITE_STRIPE_PUBLIC_KEY</code> dans <code>.env</code>
+              Une erreur est survenue. Réessaie.
             </p>
           )}
 
@@ -441,7 +484,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                 href={SLACK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full max-w-xs bg-accent text-white rounded-sm px-5 py-3.5 font-semibold text-sm hover:bg-accent/90 transition-colors"
+                className="flex items-center justify-center gap-2 w-full max-w-xs bg-accent text-accent-foreground rounded-sm px-5 py-3.5 font-semibold text-sm hover:bg-accent/90 transition-colors"
               >
                 <MessageSquare className="h-4 w-4" />
                 Rejoindre la communauté

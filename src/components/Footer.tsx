@@ -21,35 +21,35 @@ const Footer = () => {
 
           {/* Navigation */}
           <div>
-            <h3 className="mn-eyebrow-turquoise mb-4">Navigation</h3>
+            <h3 className="mn-eyebrow-turquoise text-[hsl(var(--mn-turquoise))] mb-4">Navigation</h3>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <Link to="/" className="text-primary-foreground/75 hover:text-accent transition-colors">
+                <Link to="/" className="inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors">
                   Accueil
                 </Link>
               </li>
               <li>
-                <Link to="/education" className="text-primary-foreground/75 hover:text-accent transition-colors">
+                <Link to="/education" className="inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors">
                   Centre de formation
                 </Link>
               </li>
               <li>
-                <Link to="/club" className="text-primary-foreground/75 hover:text-accent transition-colors">
+                <Link to="/club" className="inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors">
                   Offre Club
                 </Link>
               </li>
               <li>
-                <Link to="/a-propos" className="text-primary-foreground/75 hover:text-accent transition-colors">
+                <Link to="/a-propos" className="inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors">
                   À propos
                 </Link>
               </li>
               <li>
-                <Link to="/equipe" className="text-primary-foreground/75 hover:text-accent transition-colors">
+                <Link to="/equipe" className="inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors">
                   Équipe
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="text-primary-foreground/75 hover:text-accent transition-colors">
+                <Link to="/contact" className="inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors">
                   Contact
                 </Link>
               </li>
@@ -58,7 +58,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="mn-eyebrow-turquoise mb-4">Contact</h3>
+            <h3 className="mn-eyebrow-turquoise text-[hsl(var(--mn-turquoise))] mb-4">Contact</h3>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center space-x-2.5">
                 <MapPin className="h-4 w-4 text-accent shrink-0" />
@@ -68,7 +68,7 @@ const Footer = () => {
                 <Mail className="h-4 w-4 text-accent shrink-0" />
                 <a
                   href="mailto:contact@marenostrum.tech"
-                  className="text-primary-foreground/75 hover:text-accent transition-colors"
+                  className="inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors"
                 >
                   contact@marenostrum.tech
                 </a>
@@ -77,7 +77,7 @@ const Footer = () => {
                 <Phone className="h-4 w-4 text-accent shrink-0" />
                 <a
                   href="tel:+33617358167"
-                  className="text-primary-foreground/75 hover:text-accent transition-colors"
+                  className="inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors"
                 >
                   +33 6 17 35 81 67
                 </a>
@@ -87,7 +87,7 @@ const Footer = () => {
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary-foreground/75 hover:text-accent transition-colors"
+                  className="inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors"
                   href="https://www.linkedin.com/company/mare-nostrum-education"
                 >
                   LinkedIn Éducation
@@ -98,7 +98,7 @@ const Footer = () => {
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary-foreground/75 hover:text-accent transition-colors"
+                  className="inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors"
                   href="https://www.linkedin.com/company/marenostrumtech"
                 >
                   LinkedIn Croissance
@@ -109,19 +109,19 @@ const Footer = () => {
         </div>
 
         <div className="mt-10 md:mt-14 pt-6 md:pt-8 border-t border-primary-foreground/15">
-          <div className="flex flex-col md:flex-row justify-between items-center text-xs md:text-sm text-primary-foreground/55 gap-3 md:gap-0">
+          <div className="flex flex-col md:flex-row justify-between items-center text-xs md:text-sm text-primary-foreground/70 gap-3 md:gap-0">
             <p>© 2023-2026 Mare Nostrum SAS. Tous droits réservés. Développé par l'équipe avec 💙.</p>
             <div className="flex flex-wrap gap-x-4 gap-y-2">
-              <Link to="/mentions-legales" className="hover:text-accent transition-colors">
+              <Link to="/mentions-legales" className="inline-block py-2 hover:text-accent transition-colors">
                 Mentions légales
               </Link>
-              <Link to="/cgu" className="hover:text-accent transition-colors">
+              <Link to="/cgu" className="inline-block py-2 hover:text-accent transition-colors">
                 CGU
               </Link>
-              <Link to="/confidentialite" className="hover:text-accent transition-colors">
+              <Link to="/confidentialite" className="inline-block py-2 hover:text-accent transition-colors">
                 Politique de confidentialité
               </Link>
-              <a href="/sitemap.xml" className="hover:text-accent transition-colors">
+              <a href="/sitemap.xml" className="inline-block py-2 hover:text-accent transition-colors">
                 Sitemap
               </a>
             </div>

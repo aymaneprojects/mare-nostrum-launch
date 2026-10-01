@@ -17,9 +17,6 @@ const BottomNav = () => {
 
   return (
     <>
-      {/* Spacer so page content isn't hidden behind the bar */}
-      <div className="h-16 md:hidden" aria-hidden="true" />
-
       <nav
         className="fixed bottom-0 left-0 right-0 z-40 md:hidden
           bg-background/95 backdrop-blur-xl border-t border-border

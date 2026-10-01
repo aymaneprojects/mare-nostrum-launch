@@ -38,6 +38,15 @@ const Header = () => {
 
   useEffect(() => { setIsMenuOpen(false); }, [location.pathname]);
 
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [isMenuOpen]);
+
   const isActive = (path: string) => location.pathname === path;
 
   return (
@@ -97,9 +106,11 @@ const Header = () => {
 
           {/* Mobile — hamburger */}
           <button
-            className="md:hidden w-9 h-9 flex items-center justify-center rounded-full bg-muted/60 active:scale-90 transition-transform duration-150 text-primary"
+            className="md:hidden w-11 h-11 flex items-center justify-center rounded-full bg-muted/60 active:scale-90 transition-transform duration-150 text-primary"
             onClick={() => setIsMenuOpen(true)}
             aria-label="Ouvrir le menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="menu-mobile"
           >
             <Menu className="h-5 w-5" />
           </button>
@@ -116,10 +127,11 @@ const Header = () => {
       />
 
       <div
+        id="menu-mobile"
         className={`fixed top-0 right-0 bottom-0 z-[70] md:hidden w-[82vw] max-w-[340px]
           bg-background flex flex-col shadow-2xl
-          transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]
-          ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+          transition-[transform,visibility] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]
+          ${isMenuOpen ? "translate-x-0 visible" : "translate-x-full invisible pointer-events-none"}`}
         aria-modal="true"
         role="dialog"
         aria-label="Menu principal"
@@ -129,7 +141,7 @@ const Header = () => {
           <img src={logo} alt="Mare Nostrum" className="h-9 w-auto" />
           <button
             onClick={() => setIsMenuOpen(false)}
-            className="w-9 h-9 flex items-center justify-center rounded-full bg-muted active:scale-90 transition-transform duration-150"
+            className="w-11 h-11 flex items-center justify-center rounded-full bg-muted active:scale-90 transition-transform duration-150"
             aria-label="Fermer le menu"
           >
             <X className="h-4.5 w-4.5 text-foreground/70" />

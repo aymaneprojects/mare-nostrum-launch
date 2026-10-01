@@ -64,7 +64,7 @@ const FeatureWithTooltip = ({ feature }: { feature: OfferFeature }) => (
         <PopoverTrigger asChild>
           <button
             type="button"
-            className="inline-flex items-center justify-center w-4 h-4 rounded-full text-muted-foreground/50 hover:text-primary active:scale-90 transition-all flex-shrink-0"
+            className="relative inline-flex items-center justify-center w-4 h-4 rounded-full text-muted-foreground hover:text-primary active:scale-90 transition-all flex-shrink-0 after:absolute after:-inset-3.5 after:content-['']"
             aria-label={`En savoir plus : ${feature.label}`}
           >
             <Info className="h-3.5 w-3.5" />
@@ -87,7 +87,7 @@ const FeatureWithTooltipLight = ({ feature }: { feature: OfferFeature }) => (
         <PopoverTrigger asChild>
           <button
             type="button"
-            className="inline-flex items-center justify-center w-4 h-4 rounded-full opacity-50 hover:opacity-100 active:scale-90 transition-all flex-shrink-0"
+            className="relative inline-flex items-center justify-center w-4 h-4 rounded-full opacity-80 hover:opacity-100 active:scale-90 transition-all flex-shrink-0 after:absolute after:-inset-3.5 after:content-['']"
             aria-label={`En savoir plus : ${feature.label}`}
           >
             <Info className="h-3.5 w-3.5 text-white" />
@@ -147,13 +147,27 @@ const Croissance = () => {
 
     supabase.functions.invoke("get-checkout-session", { body: { sessionId } })
       .then(({ data, error }) => {
-        if (error || !data?.paid) return;
+        if (error || !data?.paid) {
+          toast({
+            variant: "destructive",
+            title: "Paiement non confirmé",
+            description: "Nous n'avons pas pu confirmer votre paiement. Contactez l'équipe Mare Nostrum.",
+          });
+          return;
+        }
         setSelectedLocation((data.location as LocationType) || "france");
         setSelectedBilling(data.billing as "monthly" | "annual" || "monthly");
         setOnboardingOffer((data.offer as Offer) || null);
         setRestoredCheckout({ prenom: data.prenom || "", email: data.email || "" });
+      })
+      .catch(() => {
+        toast({
+          variant: "destructive",
+          title: "Paiement non confirmé",
+          description: "Nous n'avons pas pu confirmer votre paiement. Contactez l'équipe Mare Nostrum.",
+        });
       });
-  }, []);
+  }, [toast]);
 
   const openOnboarding = (offer: Offer) => setOnboardingOffer(offer);
 
@@ -519,16 +533,18 @@ const Croissance = () => {
             <div className="flex items-center gap-1 bg-background border border-border rounded-full p-1 shadow-sm">
               <button
                 onClick={() => setSelectedBilling("monthly")}
-                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${selectedBilling === "monthly" ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
+                aria-pressed={selectedBilling === "monthly"}
+                className={`min-h-11 px-5 py-2 rounded-full text-sm font-semibold transition-all ${selectedBilling === "monthly" ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
               >
                 Mensuel
               </button>
               <button
                 onClick={() => setSelectedBilling("annual")}
-                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all flex items-center gap-2 ${selectedBilling === "annual" ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
+                aria-pressed={selectedBilling === "annual"}
+                className={`min-h-11 px-5 py-2 rounded-full text-sm font-semibold transition-all flex items-center gap-2 ${selectedBilling === "annual" ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
               >
                 Annuel
-                <span className="text-xs font-bold px-1.5 py-0.5 rounded-full bg-accent/20 text-accent">
+                <span className={`text-xs font-bold px-1.5 py-0.5 rounded-full bg-accent/20 ${selectedBilling === "annual" ? "text-accent" : "text-primary"}`}>
                   {selectedLocation === "france" ? "-20%" : "2 mois offerts"}
                 </span>
               </button>
@@ -546,9 +562,9 @@ const Croissance = () => {
                 </div>
                 {getPriceDetail("communaute") && (
                   <div className="mb-2">
-                    <span className="inline-block bg-accent/15 text-accent text-xs font-bold px-2 py-0.5 rounded-full mr-2">{getPriceDetail("communaute")!.badge}</span>
+                    <span className="inline-block bg-accent/15 text-primary text-xs font-bold px-2 py-0.5 rounded-full mr-2">{getPriceDetail("communaute")!.badge}</span>
                     <span className="text-xs text-muted-foreground">{getPriceDetail("communaute")!.equiv}</span>
-                    {getPriceDetail("communaute")!.saving && <p className="text-xs text-accent font-medium mt-0.5">{getPriceDetail("communaute")!.saving}</p>}
+                    {getPriceDetail("communaute")!.saving && <p className="text-xs text-primary font-medium mt-0.5">{getPriceDetail("communaute")!.saving}</p>}
                   </div>
                 )}
                 <p className="text-xs text-accent font-semibold">1 micro-mentorat offert dès votre arrivée</p>
@@ -575,7 +591,7 @@ const Croissance = () => {
             </div>
 
             {/* Groupe - Highlighted */}
-            <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground border-2 border-accent rounded-sm p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 relative flex flex-col h-full">
+            <div className="text-primary-foreground border-2 border-accent rounded-sm p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 relative flex flex-col h-full" style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}>
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <span className="bg-accent text-accent-foreground px-4 py-1 rounded-full text-sm font-semibold">
                   Recommandé
@@ -628,9 +644,9 @@ const Croissance = () => {
                 </div>
                 {getPriceDetail("individuel") && (
                   <div className="mb-2">
-                    <span className="inline-block bg-accent/15 text-accent text-xs font-bold px-2 py-0.5 rounded-full mr-2">{getPriceDetail("individuel")!.badge}</span>
+                    <span className="inline-block bg-accent/15 text-primary text-xs font-bold px-2 py-0.5 rounded-full mr-2">{getPriceDetail("individuel")!.badge}</span>
                     <span className="text-xs text-muted-foreground">{getPriceDetail("individuel")!.equiv}</span>
-                    {getPriceDetail("individuel")!.saving && <p className="text-xs text-accent font-medium mt-0.5">{getPriceDetail("individuel")!.saving}</p>}
+                    {getPriceDetail("individuel")!.saving && <p className="text-xs text-primary font-medium mt-0.5">{getPriceDetail("individuel")!.saving}</p>}
                   </div>
                 )}
                 <p className="text-xs text-accent font-semibold">1 tutorat personnalisé offert dès J+1</p>
@@ -686,8 +702,8 @@ const Croissance = () => {
                   const bg = idx % 2 === 0 ? 'hsl(40 38% 94% / 0.5)' : '#fff';
                   const Cell = ({ val }: { val: boolean | string }) => (
                     <td className="py-2 px-2 md:py-3 md:px-4 text-center" style={{ background: val !== false && val !== true ? 'hsl(222 44% 25% / 0.04)' : undefined }}>
-                      {val === true ? <CheckCircle2 className="h-4 w-4 mx-auto" style={{ color: 'hsl(181 67% 40%)' }} /> :
-                       val === false ? <span className="text-muted-foreground/30 font-bold text-lg leading-none">—</span> :
+                      {val === true ? <><CheckCircle2 aria-hidden="true" className="h-4 w-4 mx-auto" style={{ color: 'hsl(181 67% 40%)' }} /><span className="sr-only">Inclus</span></> :
+                       val === false ? <><span aria-hidden="true" className="text-muted-foreground/30 font-bold text-lg leading-none">—</span><span className="sr-only">Non inclus</span></> :
                        <span className="font-semibold text-primary">{val}</span>}
                     </td>
                   );
@@ -696,8 +712,8 @@ const Croissance = () => {
                       <td className="py-2 px-2 md:py-3 md:px-4 text-foreground/80 font-medium">{feature}</td>
                       <Cell val={c} />
                       <td className="py-2 px-2 md:py-3 md:px-4 text-center" style={{ background: 'hsl(222 44% 25% / 0.04)' }}>
-                        {g === true ? <CheckCircle2 className="h-4 w-4 mx-auto" style={{ color: 'hsl(181 67% 40%)' }} /> :
-                         g === false ? <span className="text-muted-foreground/30 font-bold text-lg leading-none">—</span> :
+                        {g === true ? <><CheckCircle2 aria-hidden="true" className="h-4 w-4 mx-auto" style={{ color: 'hsl(181 67% 40%)' }} /><span className="sr-only">Inclus</span></> :
+                         g === false ? <><span aria-hidden="true" className="text-muted-foreground/30 font-bold text-lg leading-none">—</span><span className="sr-only">Non inclus</span></> :
                          <span className="font-semibold text-primary">{g}</span>}
                       </td>
                       <Cell val={i} />

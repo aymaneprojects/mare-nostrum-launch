@@ -132,7 +132,7 @@ const CarteContact = () => {
               <div className={`grid gap-2 ${quickActions.length >= 4 ? "grid-cols-4" : quickActions.length === 3 ? "grid-cols-3" : "grid-cols-2"}`}>
                 {quickActions.map(({ label, Icon, href, external }) => (
                   <Button key={label} asChild variant="outline" className="h-auto py-3 flex-col gap-1.5">
-                    <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})} aria-label={`${label} ${name}`}>
+                    <a href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})} aria-label={`${label} ${name}${external ? " (nouvel onglet)" : ""}`}>
                       <Icon className="h-5 w-5" />
                       <span className="text-xs">{label}</span>
                     </a>
@@ -157,7 +157,7 @@ const CarteContact = () => {
               {member.linkedin && (
                 <div className="flex items-start gap-3 py-3">
                   <dt className="w-24 shrink-0 text-muted-foreground">LinkedIn</dt>
-                  <dd className="break-all"><a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors">{member.linkedin.replace(/^https?:\/\/(www\.)?/, "")}</a></dd>
+                  <dd className="break-all"><a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-foreground hover:text-primary transition-colors">{member.linkedin.replace(/^https?:\/\/(www\.)?/, "")}<span className="sr-only"> (nouvel onglet)</span></a></dd>
                 </div>
               )}
               <div className="flex items-start gap-3 py-3">
@@ -193,10 +193,10 @@ const CarteContact = () => {
             </p>
             <p className="font-mono text-sm text-foreground mt-2 break-all">{url.replace(/^https?:\/\/(www\.)?/, "")}</p>
             <div className="flex flex-col sm:flex-row gap-2 justify-center mt-4">
-              <Button asChild variant="outline" size="sm">
+              <Button asChild variant="outline" size="sm" className="h-11 md:h-9">
                 <a href={qrPath(member, "png")} download={`qr-${member.slug}.png`}>Télécharger en PNG</a>
               </Button>
-              <Button asChild variant="outline" size="sm">
+              <Button asChild variant="outline" size="sm" className="h-11 md:h-9">
                 <a href={qrPath(member, "svg")} download={`qr-${member.slug}.svg`}>SVG pour impression</a>
               </Button>
             </div>
@@ -210,7 +210,7 @@ const CarteContact = () => {
               </a>
             </Button>
             <div>
-              <Link to="/equipe" className="text-sm text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
+              <Link to="/equipe" tabIndex={-1} className="text-sm text-primary underline underline-offset-4 hover:text-primary/80 transition-colors">
                 Voir toute l'équipe
               </Link>
             </div>
@@ -219,7 +219,7 @@ const CarteContact = () => {
       </main>
 
       <footer className="border-t border-border py-6 text-center">
-        <a href={SITE_URL} className="text-xs text-muted-foreground hover:text-primary transition-colors">
+        <a href={SITE_URL} tabIndex={-1} className="text-xs text-muted-foreground hover:text-primary transition-colors">
           marenostrum.tech
         </a>
       </footer>

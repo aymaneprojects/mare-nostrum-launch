@@ -97,10 +97,10 @@ const CookieBanner = () => {
                   Vous pouvez personnaliser vos préférences ou accepter tous les cookies.
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-3">
+                <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:gap-3">
                   <Button 
                     onClick={acceptAll}
-                    className="w-full sm:w-auto"
+                    className="col-span-2 w-full sm:w-auto"
                   >
                     <Check className="mr-2 h-4 w-4" />
                     Tout accepter
@@ -166,23 +166,24 @@ const CookieBanner = () => {
             {/* Cookies nécessaires */}
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <Label className="font-medium">Cookies nécessaires</Label>
+                <Label htmlFor="cookie-necessary" className="font-medium">Cookies nécessaires</Label>
                 <p className="text-sm text-muted-foreground">
                   Essentiels au fonctionnement du site (session, sécurité)
                 </p>
               </div>
-              <Switch checked disabled className="data-[state=checked]:bg-primary" />
+              <Switch id="cookie-necessary" checked disabled className="data-[state=checked]:bg-primary" />
             </div>
             
             {/* Cookies analytiques */}
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <Label className="font-medium">Cookies analytiques</Label>
+                <Label htmlFor="cookie-analytics" className="font-medium">Cookies analytiques</Label>
                 <p className="text-sm text-muted-foreground">
                   Nous aident à comprendre comment vous utilisez le site
                 </p>
               </div>
               <Switch 
+                id="cookie-analytics"
                 checked={preferences.analytics}
                 onCheckedChange={(checked) => 
                   setPreferences(prev => ({ ...prev, analytics: checked }))
@@ -193,12 +194,13 @@ const CookieBanner = () => {
             {/* Cookies marketing */}
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <Label className="font-medium">Cookies marketing</Label>
+                <Label htmlFor="cookie-marketing" className="font-medium">Cookies marketing</Label>
                 <p className="text-sm text-muted-foreground">
                   Permettent d'afficher des publicités personnalisées
                 </p>
               </div>
               <Switch 
+                id="cookie-marketing"
                 checked={preferences.marketing}
                 onCheckedChange={(checked) => 
                   setPreferences(prev => ({ ...prev, marketing: checked }))

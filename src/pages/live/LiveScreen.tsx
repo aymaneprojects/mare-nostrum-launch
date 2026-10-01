@@ -26,7 +26,7 @@ const LiveScreen = () => {
   const seo = <EnhancedSEOHead title="Écran live — Mare Nostrum" description="Écran de salle Mare Nostrum Live." noindex />;
 
   if (status === "loading" || status === "error") {
-    return <LiveShell>{seo}<div className="flex flex-1 items-center justify-center"><Loader2 className="h-10 w-10 animate-spin text-primary-foreground/60" /></div></LiveShell>;
+    return <LiveShell>{seo}<div className="flex flex-1 flex-col items-center justify-center"><Loader2 className="h-10 w-10 animate-spin text-primary-foreground/60" role="status" aria-label="Chargement" />{status === "error" && <p className="mt-6 text-2xl text-primary-foreground/70">Connexion en cours… nouvel essai automatique.</p>}</div></LiveShell>;
   }
   if (status !== "ready" || !event) {
     return <LiveShell>{seo}<div className="flex flex-1 items-center justify-center text-2xl text-primary-foreground/70">Événement introuvable.</div></LiveShell>;
@@ -72,9 +72,9 @@ const LiveScreen = () => {
         ) : (
           <p className="text-sm text-primary-foreground/60">Participez sur</p>
         )}
-        <p className="font-mono text-lg font-semibold text-primary-foreground">{urls.display}</p>
+        <p className="font-mono text-2xl font-semibold text-primary-foreground">{urls.display}</p>
       </div>
-      <LiveQrCode value={urls.public} size={wallInCorner ? 112 : 96} expandable caption={urls.display} />
+      <LiveQrCode value={urls.public} size={160} expandable caption={urls.display} />
     </div>
   );
 

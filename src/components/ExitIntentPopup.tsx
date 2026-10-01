@@ -48,6 +48,15 @@ export default function ExitIntentPopup() {
 
   const handleClose = () => { setVisible(false); markDismissed(); };
 
+  useEffect(() => {
+    if (!visible) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") { setVisible(false); markDismissed(); }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [visible]);
+
   const valid = prenom.trim() !== "" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && zone !== "" && rgpd;
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -76,11 +85,11 @@ export default function ExitIntentPopup() {
       role="dialog"
       aria-modal="true"
       aria-labelledby="ep-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex overflow-y-auto p-4 bg-black/60 backdrop-blur-sm"
       onClick={handleClose}
     >
       <div
-        className="w-full max-w-md bg-background rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 fade-in duration-300"
+        className="w-full max-w-md m-auto bg-background rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 fade-in duration-300"
         onClick={e => e.stopPropagation()}
       >
         {/* ── Header ── */}
@@ -90,7 +99,7 @@ export default function ExitIntentPopup() {
 
           <button
             onClick={handleClose}
-            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+            className="absolute top-2 right-2 w-11 h-11 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
             aria-label="Fermer"
           >
             <X className="h-4 w-4 text-white" />
@@ -137,7 +146,7 @@ export default function ExitIntentPopup() {
                       placeholder="Prénom"
                       value={prenom}
                       onChange={e => setPrenom(e.target.value)}
-                      className="pl-8 h-9 text-sm"
+                      className="pl-8 h-11 text-sm"
                       autoComplete="given-name"
                       autoFocus
                     />
@@ -154,7 +163,7 @@ export default function ExitIntentPopup() {
                       placeholder="+33 6…"
                       value={phone}
                       onChange={e => setPhone(e.target.value)}
-                      className="pl-8 h-9 text-sm"
+                      className="pl-8 h-11 text-sm"
                       autoComplete="tel"
                     />
                   </div>
@@ -171,7 +180,7 @@ export default function ExitIntentPopup() {
                     placeholder="toi@exemple.com"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
-                    className="pl-8 h-9 text-sm"
+                    className="pl-8 h-11 text-sm"
                     autoComplete="email"
                   />
                 </div>
@@ -182,7 +191,7 @@ export default function ExitIntentPopup() {
                 <div className="relative">
                   <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 z-10 pointer-events-none" />
                   <Select onValueChange={setZone} value={zone}>
-                    <SelectTrigger id="ep-zone" className="pl-8 h-9 text-sm">
+                    <SelectTrigger id="ep-zone" className="pl-8 h-11 text-sm">
                       <SelectValue placeholder="Où es-tu basé ?" />
                     </SelectTrigger>
                     <SelectContent>

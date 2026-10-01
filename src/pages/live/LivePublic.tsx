@@ -84,7 +84,7 @@ const LivePublic = () => {
   if (status === "loading" || status === "error") {
     return (
       <LiveShell>{seo}<Centered>
-        <Loader2 className="h-8 w-8 animate-spin text-primary-foreground/60" aria-label="Chargement" />
+        <Loader2 className="h-8 w-8 animate-spin text-primary-foreground/60" role="status" aria-label="Chargement" />
         {status === "error" && <p className="mt-4 text-sm text-primary-foreground/70">Connexion en cours… nouvel essai automatique.</p>}
       </Centered></LiveShell>
     );
@@ -107,7 +107,7 @@ const LivePublic = () => {
   const identityBadge = identity ? (
     <div className="flex items-center gap-2">
       <AuthorChip name={identity.firstName} emoji={identity.emoji} className="rounded-full bg-primary-foreground/10 px-3 py-1.5" />
-      <button type="button" onClick={forgetIdentity} className="text-xs text-primary-foreground/50 underline-offset-2 hover:underline">
+      <button type="button" onClick={forgetIdentity} className="px-3 py-2 text-sm text-primary-foreground/50 underline-offset-2 hover:underline">
         Changer
       </button>
     </div>
@@ -171,7 +171,7 @@ const LivePublic = () => {
             </div>
           )
         ) : !identityChecked ? (
-          <Centered><Loader2 className="h-8 w-8 animate-spin text-primary-foreground/60" aria-label="Chargement" /></Centered>
+          <Centered><Loader2 className="h-8 w-8 animate-spin text-primary-foreground/60" role="status" aria-label="Chargement" /></Centered>
         ) : activeItem && (!activeWall || tab === "question") ? (
           renderQuestion(activeItem)
         ) : activeWall ? (
@@ -183,7 +183,7 @@ const LivePublic = () => {
             <p className="mt-3 max-w-xs text-primary-foreground/70">
               Vous êtes connecté. La prochaine question apparaîtra ici automatiquement, inutile de recharger la page.
             </p>
-            <span className="mt-8 inline-flex items-center gap-2 text-xs text-primary-foreground/50">
+            <span role="status" className="mt-8 inline-flex items-center gap-2 text-xs text-primary-foreground/50">
               <span className="h-2 w-2 animate-pulse rounded-full bg-accent" aria-hidden />
               En attente de l'animateur
             </span>

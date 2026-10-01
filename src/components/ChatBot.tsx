@@ -102,9 +102,10 @@ const ChatBot = () => {
   }, [messages]);
 
   useEffect(() => {
-    if (isOpen && inputRef.current) {
-      inputRef.current.focus();
-    }
+    if (!isOpen) return;
+    // Léger délai : la fenêtre fermée est `invisible`, le champ n'est focalisable qu'une fois affichée.
+    const id = window.setTimeout(() => inputRef.current?.focus(), 50);
+    return () => window.clearTimeout(id);
   }, [isOpen]);
 
   // Vérifier si l'utilisateur a déjà utilisé le chat
@@ -294,10 +295,12 @@ const ChatBot = () => {
           <div className="bg-card border border-border rounded-sm shadow-lg p-4 cursor-pointer hover:shadow-xl transition-shadow relative">
             <button 
               onClick={handleDismissNotification}
-              className="absolute -top-2 -right-2 w-6 h-6 bg-muted rounded-full flex items-center justify-center hover:bg-muted-foreground/20 transition-colors"
+              className="absolute -top-5 -right-5 w-11 h-11 flex items-center justify-center group"
               aria-label="Fermer"
             >
-              <X className="h-3 w-3 text-muted-foreground" />
+              <span className="w-6 h-6 bg-muted rounded-full flex items-center justify-center group-hover:bg-muted-foreground/20 transition-colors">
+                <X className="h-3 w-3 text-muted-foreground" />
+              </span>
             </button>
             <div className="flex items-start gap-3">
               <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
@@ -337,8 +340,8 @@ const ChatBot = () => {
       <div
         className={`fixed z-50 transition-all duration-200 transform origin-bottom-right
           ${isOpen 
-            ? "scale-100 opacity-100 pointer-events-auto" 
-            : "scale-95 opacity-0 pointer-events-none"
+            ? "scale-100 opacity-100 visible pointer-events-auto" 
+            : "scale-95 opacity-0 invisible pointer-events-none"
           }
           /* Mobile: full width minus margins */
           bottom-36 right-2 left-2 sm:left-auto
@@ -372,7 +375,7 @@ const ChatBot = () => {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-secondary/10">
+          <div role="log" aria-live="polite" className="flex-1 overflow-y-auto p-4 space-y-3 bg-secondary/10">
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -442,7 +445,8 @@ const ChatBot = () => {
                 onClick={sendMessage}
                 disabled={!input.trim() || isLoading}
                 size="icon"
-                className="rounded-full bg-primary hover:bg-primary/90 h-9 w-9"
+                className="rounded-full bg-primary hover:bg-primary/90 h-11 w-11"
+                aria-label="Envoyer le message"
               >
                 <Send className="h-4 w-4" />
               </Button>

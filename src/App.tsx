@@ -97,6 +97,8 @@ const AppContent = () => {
       {!bare && <CookieBanner />}
       {!quiet && <ExitIntentPopup />}
 
+      {/* Compense la barre de navigation mobile fixe (BottomNav) en bas de page */}
+      <div className={bare ? undefined : "pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0"}>
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/education" element={<Education />} />
@@ -151,6 +153,7 @@ const AppContent = () => {
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </div>
     </>
   );
 };
