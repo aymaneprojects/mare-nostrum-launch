@@ -49,6 +49,10 @@ import Partenaires from "./pages/Partenaires";
 import Equipe from "./pages/Equipe";
 import CarteContact from "./pages/CarteContact";
 
+// Pôle d'expertise : archive non reliée au site (voir src/pages/Expertise.tsx).
+// Chargée à la demande pour ne pas peser sur le bundle des pages publiées.
+const Expertise = lazy(() => import("./pages/Expertise"));
+
 // Live conférence : chargées à la demande (QR code + temps réel), hors du bundle du site vitrine.
 const LiveHome = lazy(() => import("./pages/live/LiveHome"));
 const LivePublic = lazy(() => import("./pages/live/LivePublic"));
@@ -97,6 +101,8 @@ const AppContent = () => {
         <Route path="/" element={<Index />} />
         <Route path="/education" element={<Education />} />
         <Route path="/formation" element={<Navigate to="/education" replace />} />
+        {/* Archive, volontairement sans lien depuis le site */}
+        <Route path="/expertise" element={<Suspense fallback={null}><Expertise /></Suspense>} />
         <Route path="/club" element={<Croissance />} />
         <Route path="/offre-ia" element={<OffreIA />} />
         <Route path="/engagement-rse" element={<EngagementRSE />} />

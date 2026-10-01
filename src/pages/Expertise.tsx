@@ -1,3 +1,15 @@
+/**
+ * Pôle d'expertise — /expertise
+ *
+ * Archive : copie de la page « Centre de formation » (src/pages/Education.tsx)
+ * conservée pour un futur repositionnement. La page n'est volontairement reliée
+ * à rien : aucun lien dans le Header, le Footer, la navigation mobile ou le plan
+ * du site, et `noindex` pour que les moteurs de recherche ne l'indexent pas.
+ * On y accède uniquement en tapant l'adresse.
+ *
+ * Les deux pages évoluent séparément : une correction faite ici ne part pas
+ * dans /education, et inversement.
+ */
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { GraduationCap, Users, Lightbulb, Trophy, BookOpen, Network, ArrowRight, CheckCircle2 } from "lucide-react";
@@ -28,11 +40,11 @@ import schoolNeoma from "@/assets/schools/neoma.png";
 import schoolIcd from "@/assets/schools/icd.png";
 import schoolEsct from "@/assets/schools/esct.png";
 import schoolEfap from "@/assets/schools/efap.png";
-const Education = () => {
-  const educationSchema = [{
+const Expertise = () => {
+  const expertiseSchema = [{
     "@context": "https://schema.org",
     "@type": "Course",
-    "name": "Programme Mare Nostrum Éducation",
+    "name": "Pôle d'expertise Mare Nostrum",
     "description": "Formation entrepreneuriale complète pour écoles et universités : ateliers participatifs, fresques collaboratives, hackathons et accompagnement premium. Programme éprouvé avec 17+ projets étudiants accompagnés.",
     "provider": {
       "@type": "Organization",
@@ -130,7 +142,7 @@ const Education = () => {
       "availability": "https://schema.org/InStock"
     }]
   }];
-  const educationFaqs = [{
+  const expertiseFaqs = [{
     question: "Faut-il un diplôme ou une expérience préalable ?",
     answer: "Aucun diplôme n'est exigé pour l'ensemble de nos formations. Les prérequis sont propres à chaque formation et figurent dans le programme détaillé : certaines s'adressent à des porteurs de projet ayant une idée à valider, d'autres à des dirigeants déjà en activité. En cas de doute, un entretien préalable permet de vérifier avec vous que la formation correspond à votre situation."
   }, {
@@ -165,12 +177,12 @@ const Education = () => {
     answer: "Oui, Mare Nostrum est un organisme de formation déclaré en France et enregistré sous le numéro 76311216831 : cet enregistrement ne vaut pas agrément de l'Etat."
   }];
   return <div className="min-h-screen flex flex-col">
-      <EnhancedSEOHead title="Centre de formation Mare Nostrum | Qualiopi | Paris, Toulouse et Francophonie" description="Organisme de formation certifié Qualiopi à Toulouse. Formations à l'entrepreneuriat, au pilotage d'entreprise et à l'IA. Financements formation mobilisables." keywords="education entrepreneuriale toulouse, entrepreneuriat etudiant, entrepreneuriat etudiant toulouse, formation entrepreneuriat etudiant, programmes ecoles entrepreneuriat, ateliers entrepreneuriat toulouse, hackathon entrepreneuriat etudiant, enseignement superieur toulouse, Niteo, programme Niteo, fresque entrepreneuriat, entrepreneuriat afrique, formation entrepreneur etudiant, entrepreneuriat universite, entrepreneuriat ecole de commerce" structuredData={educationSchema} faqSchema={educationFaqs}  />
+      <EnhancedSEOHead noindex title="Pôle d'expertise Mare Nostrum | Paris, Toulouse et Francophonie" description="Organisme de formation certifié Qualiopi à Toulouse. Formations à l'entrepreneuriat, au pilotage d'entreprise et à l'IA. Financements formation mobilisables." keywords="education entrepreneuriale toulouse, entrepreneuriat etudiant, entrepreneuriat etudiant toulouse, formation entrepreneuriat etudiant, programmes ecoles entrepreneuriat, ateliers entrepreneuriat toulouse, hackathon entrepreneuriat etudiant, enseignement superieur toulouse, Niteo, programme Niteo, fresque entrepreneuriat, entrepreneuriat afrique, formation entrepreneur etudiant, entrepreneuriat universite, entrepreneuriat ecole de commerce" structuredData={expertiseSchema} faqSchema={expertiseFaqs}  />
       <Header />
 
 
       <PageHero
-        eyebrow="Centre de formation de Mare Nostrum"
+        eyebrow="Pôle d'expertise de Mare Nostrum"
         title="Se former pour créer, diriger et faire grandir son entreprise."
         subtitle="Organisme de formation certifié Qualiopi, basé à Toulouse et actif dans l'espace francophone. Nous formons celles et ceux qui entreprennent, et les organisations qui les accompagnent."
         ctas={
@@ -252,7 +264,7 @@ const Education = () => {
                   Derrière chaque formation, des praticiens. Nos formateurs dirigent, accompagnent et enseignent : ils transmettent ce qu'ils font. Ils ont été soigneusement sélectionnés par notre entreprise-école.
                 </p>
                 <p className="text-sm font-semibold text-primary">Julienne MUKABUCYANA</p>
-                <p className="text-sm text-muted-foreground">Directrice du Centre de formation de Mare Nostrum</p>
+                <p className="text-sm text-muted-foreground">Directrice du Pôle d'expertise de Mare Nostrum</p>
               </div>
             </div>
           </div>
@@ -631,7 +643,7 @@ const Education = () => {
         </div>
       </section>
 
-      <FAQSection title="Questions fréquentes" faqs={educationFaqs} />
+      <FAQSection title="Questions fréquentes" faqs={expertiseFaqs} />
 
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-primary to-accent">
@@ -688,4 +700,4 @@ const Education = () => {
       <Footer />
     </div>;
 };
-export default Education;
+export default Expertise;
