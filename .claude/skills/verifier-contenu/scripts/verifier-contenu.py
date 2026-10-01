@@ -66,20 +66,20 @@ def lignes_de_prose(diff: str) -> dict[str, list[tuple[str, str]]]:
         trouvailles.setdefault(fichier, []).append((ligne[0], extrait.group()[:90]))
 
     # Un texte retiré ici et rajouté là-bas à l'identique est un DÉPLACEMENT, pas
-    # une réécriture : réordonner des sections est autorisé. On annule donc les
-    # paires exactes, fichier par fichier, et on ne garde que ce qui a vraiment
-    # changé de formulation.
+    # une réécriture : réordonner des sections, ou retirer un champ technique sur
+    # la même ligne qu'un texte, est autorisé. On annule donc les paires exactes,
+    # fichier par fichier. Chaque paire consomme UN ajout ET UN retrait — les
+    # compter séparément est indispensable, sinon seul un côté disparaît.
     for nom in list(trouvailles):
         lignes = trouvailles[nom]
-        restant_a_annuler = Counter(t for signe, t in lignes if signe == "+") & Counter(
+        paires = Counter(t for signe, t in lignes if signe == "+") & Counter(
             t for signe, t in lignes if signe == "-"
         )
+        budget = {"+": Counter(paires), "-": Counter(paires)}
         restant = []
         for signe, texte in lignes:
-            if restant_a_annuler.get(texte, 0) > 0:
-                # Chaque paire consomme un ajout ET un retrait.
-                if signe == "-":
-                    restant_a_annuler[texte] -= 1
+            if budget[signe].get(texte, 0) > 0:
+                budget[signe][texte] -= 1
                 continue
             restant.append((signe, texte))
         if restant:

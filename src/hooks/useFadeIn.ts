@@ -4,30 +4,64 @@ const reducedMotion =
   typeof window !== "undefined" &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+/** Avance de révélation : la section apparaît avant d'entrer à l'écran, sinon un
+ *  défilement rapide laisse un blanc le temps du fondu. */
+const AVANCE_PX = 900;
+/** Filet de sécurité : au-delà, on révèle quoi qu'il arrive. Rien ne doit pouvoir
+ *  rester invisible — c'est pire que pas d'animation du tout. */
+const SECOURS_MS = 1200;
+
+/**
+ * Apparition au défilement : opacité et léger glissement, 400 ms.
+ *
+ * Le style est posé **directement sur l'élément**, pas par une classe CSS : une
+ * classe ajoutée en JavaScript est effacée au premier rendu de React, qui
+ * réécrit l'attribut `class` depuis le JSX. L'effet ne jouait donc jamais.
+ */
 export function useFadeIn(delay = 0) {
   const ref = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    if (reducedMotion) return;
     const el = ref.current;
-    if (!el) return;
+    if (!el || reducedMotion) return;
 
-    el.classList.add("fade-up");
+    el.style.opacity = "0";
+    el.style.transform = "translateY(16px)";
+    el.style.transition = "opacity 0.4s var(--ease-mn), transform 0.4s var(--ease-mn)";
+
+    let fait = false;
+    const reveler = () => {
+      if (fait) return;
+      fait = true;
+      window.setTimeout(() => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      }, delay);
+    };
 
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => el.classList.add("is-visible"), delay);
+        // On révèle aussi une section déjà dépassée (bord supérieur au-dessus de
+        // l'écran) : en sautant directement en bas de page — lien d'ancre, retour
+        // arrière — elle n'entre jamais à l'écran et resterait invisible.
+        if (entry.isIntersecting || entry.boundingClientRect.top < 0) {
+          reveler();
           obs.disconnect();
         }
       },
-      // rootMargin : on révèle 900 px AVANT que la section n'entre à l'écran.
-      // Sans cette avance, un défilement rapide laisse un écran blanc le temps
-      // du fondu — le visiteur croit que la page est vide.
-      { threshold: 0.01, rootMargin: "900px 0px" }
+      { threshold: 0.01, rootMargin: `${AVANCE_PX}px 0px` },
     );
     obs.observe(el);
-    return () => obs.disconnect();
+
+    const secours = window.setTimeout(() => {
+      reveler();
+      obs.disconnect();
+    }, SECOURS_MS);
+
+    return () => {
+      window.clearTimeout(secours);
+      obs.disconnect();
+    };
   }, [delay]);
 
   return ref;

@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, GraduationCap, TrendingUp, Users, Target, Lightbulb, Globe, ShieldCheck, Star, Award, MapPin } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import MaritimeIcon from "@/components/MaritimeIcon";
 import StatCard from "@/components/StatCard";
 import TestimonialCard from "@/components/TestimonialCard";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
@@ -345,7 +344,6 @@ const Index = () => {
                 <div className="relative z-10 flex items-start justify-between">
                   <div>
                     <div className="mn-eyebrow-light mb-4">Mare Nostrum Éducation</div>
-                    <MaritimeIcon name="sailboat" size={60} />
                   </div>
                   <span aria-hidden="true" className="mn-pole-arrow flex h-11 w-11 items-center justify-center rounded-full border border-primary-foreground/40 text-primary-foreground">
                     <ArrowRight className="h-5 w-5" />
@@ -370,7 +368,6 @@ const Index = () => {
                 <div className="relative z-10 flex items-start justify-between">
                   <div>
                     <div className="mn-eyebrow-light mb-4">Mare Nostrum Croissance</div>
-                    <MaritimeIcon name="wheel" size={60} />
                   </div>
                   <span aria-hidden="true" className="mn-pole-arrow flex h-11 w-11 items-center justify-center rounded-full border border-primary-foreground/40 text-primary-foreground">
                     <ArrowRight className="h-5 w-5" />
@@ -463,14 +460,13 @@ const Index = () => {
           <div className="max-w-3xl mx-auto">
             <div className="border-b border-border">
               {([
-                { icon: "telescope" as const,  title: "Rendez-vous de découverte",  description: "Échangeons sur vos besoins et vos objectifs" },
-                { icon: "map"       as const,  title: "Diagnostic personnalisé",    description: "École ou entreprise, nous analysons votre situation" },
-                { icon: "anchor"    as const,  title: "Proposition sur mesure",     description: "Programme ou offre adaptée à vos enjeux" },
-                { icon: "lighthouse"as const,  title: "Lancement & accompagnement", description: "Mise en œuvre avec notre équipe d'experts" },
-                { icon: "buoy"      as const,  title: "Évaluation d'impact",        description: "Mesure des résultats et ajustements continus" },
+                { title: "Rendez-vous de découverte",  description: "Échangeons sur vos besoins et vos objectifs" },
+                { title: "Diagnostic personnalisé",    description: "École ou entreprise, nous analysons votre situation" },
+                { title: "Proposition sur mesure",     description: "Programme ou offre adaptée à vos enjeux" },
+                { title: "Lancement & accompagnement", description: "Mise en œuvre avec notre équipe d'experts" },
+                { title: "Évaluation d'impact",        description: "Mesure des résultats et ajustements continus" },
               ]).map(item => (
                 <div key={item.title} className="flex items-start gap-5 md:gap-8 py-6 md:py-8 mn-hairline">
-                  <MaritimeIcon name={item.icon} size={52} className="flex-shrink-0 mt-0.5 opacity-90" />
                   <div>
                     <h3 className="mb-2 text-foreground">{item.title}</h3>
                     <p className="mn-body text-muted-foreground">{item.description}</p>

@@ -49,6 +49,7 @@ import Diagnostic from "./pages/Diagnostic";
 import Partenaires from "./pages/Partenaires";
 import Equipe from "./pages/Equipe";
 import CarteContact from "./pages/CarteContact";
+import { cn } from "@/lib/utils";
 
 // Pôle d'expertise : archive non reliée au site (voir src/pages/Expertise.tsx).
 // Chargée à la demande pour ne pas peser sur le bundle des pages publiées.
@@ -99,8 +100,13 @@ const AppContent = () => {
       {!bare && <CookieBanner />}
       {!quiet && <ExitIntentPopup />}
 
-      {/* Compense la barre de navigation mobile fixe (BottomNav) en bas de page */}
-      <div className={bare ? undefined : "pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0"}>
+      {/* Compense la barre de navigation mobile fixe (BottomNav) en bas de page.
+          La clé sur le chemin déclenche le fondu d'entrée à chaque changement de
+          page (classe mn-page, opacité seule, 160 ms — voir src/index.css). */}
+      <div
+        key={location.pathname}
+        className={cn("mn-page", bare ? undefined : "pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0")}
+      >
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/education" element={<Education />} />

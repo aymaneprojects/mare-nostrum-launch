@@ -315,18 +315,9 @@ All colors MUST be HSL.
   .elevation-4 { box-shadow: 0 20px 48px rgba(15,23,51,0.14), 0 8px 16px rgba(15,23,51,0.07); }
 
   /* ── Scroll reveal (respect prefers-reduced-motion) ──────────────── */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.4s var(--ease-mn), transform 0.4s var(--ease-mn);
-  }
-  .fade-up.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .fade-up { opacity: 1; transform: none; transition: none; }
-  }
+  /* L'apparition au défilement est pilotée en style direct par
+     src/hooks/useFadeIn.ts : une classe ajoutée en JavaScript est effacée au
+     premier rendu de React, l'effet ne jouait donc jamais. */
 
   /* ── Échelle typographique : sous-titre, corps, légende ──────────── */
   .mn-lead { font-size: var(--fs-lead); line-height: 1.4; }
@@ -337,6 +328,18 @@ All colors MUST be HSL.
   }
 
   /* ── Boutons : survol 150 ms, fond + léger lever (-1 px) ─────────── */
+  /* Transition entre les pages : opacité seule, 160 ms. Jamais de glissement —
+     un décalage au changement de page donne le mal de mer et retarde la lecture.
+     La classe est posée sur un conteneur dont la clé est le chemin (src/App.tsx). */
+  .mn-page { animation: mn-page-in 160ms var(--ease-mn) both; }
+  @keyframes mn-page-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mn-page { animation: none; }
+  }
+
   .mn-btn {
     transition: background-color 0.15s var(--ease-mn), color 0.15s var(--ease-mn),
       border-color 0.15s var(--ease-mn), box-shadow 0.15s var(--ease-mn), transform 0.15s var(--ease-mn);
