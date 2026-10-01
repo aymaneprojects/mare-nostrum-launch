@@ -2,28 +2,59 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Sector agents (token-efficient specialisation)
+## Published content is never rewritten
 
-Before working on any feature, read the relevant brief from `.agents/`:
+**Rule, above everything else in this file.** Any text a visitor can read —
+heading, paragraph, FAQ question, displayed price, testimonial, legal notice,
+button label — is **never** modified without an explicit request from the site
+owner.
 
-| Task involves…         | Read first            |
-|------------------------|-----------------------|
-| Club, pricing, Stripe  | `.agents/club.md`     |
-| Écoles, Niteo, B2B     | `.agents/education.md`|
-| Blog, articles, mag    | `.agents/mag.md`      |
-| SEO, meta, schema      | `.agents/seo.md`      |
-| Design, CSS, tokens    | `DESIGN-SYSTEM.md` (référence complète) puis `.agents/design.md` |
-| Supabase, functions    | `.agents/backend.md`  |
+Allowed without asking: moving text without rewriting it, fixing the code
+around it, technical SEO, bug fixes, accessibility.
 
-Only read the brief(s) relevant to the task — not all of them. This keeps context tight and saves tokens.
+Not allowed without agreement: rewriting a sentence, "improving" a heading,
+fixing a turn of phrase, shortening a paragraph, changing a displayed price.
+When a text change seems warranted: **propose it** (current text → proposed
+text → why) and wait.
+
+Two automatic checks enforce this, declared in `.claude/settings.json`:
+contract pages (CGV, CGU, legal notice, privacy, RSE) are refused on write, and
+any prose changed in `src/pages`, `src/components`, `src/data/team.json` or
+`index.html` is reported before a task can end. The mechanism and what to do
+when it fires live in the `verifier-contenu` skill.
+
+## Specialised agents and skills
+
+Agents live in `.claude/agents/` — one per sector (club-stripe,
+education-niteo, mag-blog, seo-technique, design-system, backend-supabase,
+live-conference, revue-invariants). They are selected automatically from the
+request; no table to consult. An agent is a **scope**: entry files and
+non-obvious invariants. It never copies facts that live in the code.
+
+Skills live in `.claude/skills/` — one per repeatable procedure:
+`publier-le-site`, `supabase-ops`, `revue-avant-publication`,
+`verifier-contenu`, `incident-prod`. A skill is a **procedure**: ordered steps,
+expected result at each step.
+
+Authoritative reference documents stay at the root and are never summarised
+elsewhere: `DESIGN-SYSTEM.md` (UI), `BRIEF-CHRISTOPHE.md` (server, incidents),
+`CONSIGNES-ANIMATEUR-LIVE.md` (live conference).
+
+**Never copy a fact that the code already holds** — prices, function lists,
+routes, tokens. Point at the file instead. The previous `.agents/` briefs rotted
+exactly that way: one listed 8 edge functions when there were 26, another called
+Stripe "pending" while it was taking payments.
 
 ## Auto-push after every task
 
 After completing any task, always commit the changes and push to the `main` branch on `origin` (GitHub: `aymaneprojects/mare-nostrum-launch`).
 
+**Exception:** do not push when the content check reports modified prose. Show
+the change to the owner first.
+
 ## Project overview
 
-Mare Nostrum is a French-language entrepreneurship consulting website (Toulouse / Paris / Casablanca). It is a static SPA built with Vite + React + TypeScript, deployed on Render as a static site. Supabase provides the database and edge functions backend.
+Mare Nostrum is a French-language entrepreneurship consulting website (Toulouse / Paris / Casablanca). It is a static SPA built with Vite + React + TypeScript, deployed on a CloudPanel VPS via `./deploy-vps.sh` (the `render.yaml` file is the previous host, kept for history). Supabase provides the database and edge functions backend.
 
 ## Commands
 
@@ -52,7 +83,7 @@ Every page uses `<EnhancedSEOHead>` (not the bare `<SEOHead>`). It automatically
 
 ### Supabase backend
 - **Database table:** `blog_articles` (id, title, slug, excerpt, content, author, category, image, published_at, is_published).
-- **Edge functions** (`supabase/functions/`): `send-contact-confirmation`, `send-contact-notification`, `send-livre-blanc`, `send-livre-blanc-notification`, `generate-blog-article`, `sitemap`, `healthz`, `webhook-proxy`. JWT verification is disabled on `healthz`, `sitemap`, and `send-livre-blanc`.
+- **Edge functions** (`supabase/functions/`): 26 functions, one per folder — read the folder, not a list here. `supabase/config.toml` says which ones skip JWT verification; several payment and Airtable functions are open, see the `backend-supabase` agent.
 - Migrations live in `supabase/migrations/`.
 
 ### Design system
@@ -76,7 +107,7 @@ Custom shadows: `--shadow-soft`, `--shadow-medium`, `--shadow-elegant`, `--shado
 Fonts: `font-sans` = DM Sans (body), `font-editorial` = Fraunces (display headings).
 
 ### Deployment
-- Render static site: `npm install && npm run build`, publishes `./dist`, all routes rewrite to `/index.html` (see `render.yaml`).
+- VPS CloudPanel + nginx: `./deploy-vps.sh` builds locally and publishes `dist/` to **both** domain roots (`www.marenostrum.tech` and `niteo.marenostrum.tech` — one build serves both, see `src/main.tsx`). The script refuses to publish code older than what is live. Never build on the server. See the `publier-le-site` skill.
 - GitHub remote: `origin` → `https://github.com/aymaneprojects/mare-nostrum-launch`.
 
 
