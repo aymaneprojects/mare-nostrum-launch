@@ -16,6 +16,7 @@ modifie jamais sans demande explicite du propriétaire.
 """
 import json
 import re
+from collections import Counter
 import subprocess
 import sys
 
@@ -63,6 +64,28 @@ def lignes_de_prose(diff: str) -> dict[str, list[tuple[str, str]]]:
         if not extrait or len(extrait.group()) < 40:
             continue
         trouvailles.setdefault(fichier, []).append((ligne[0], extrait.group()[:90]))
+
+    # Un texte retiré ici et rajouté là-bas à l'identique est un DÉPLACEMENT, pas
+    # une réécriture : réordonner des sections est autorisé. On annule donc les
+    # paires exactes, fichier par fichier, et on ne garde que ce qui a vraiment
+    # changé de formulation.
+    for nom in list(trouvailles):
+        lignes = trouvailles[nom]
+        restant_a_annuler = Counter(t for signe, t in lignes if signe == "+") & Counter(
+            t for signe, t in lignes if signe == "-"
+        )
+        restant = []
+        for signe, texte in lignes:
+            if restant_a_annuler.get(texte, 0) > 0:
+                # Chaque paire consomme un ajout ET un retrait.
+                if signe == "-":
+                    restant_a_annuler[texte] -= 1
+                continue
+            restant.append((signe, texte))
+        if restant:
+            trouvailles[nom] = restant
+        else:
+            del trouvailles[nom]
     return trouvailles
 
 

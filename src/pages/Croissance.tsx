@@ -118,23 +118,20 @@ const Croissance = () => {
   const [onboardingOffer, setOnboardingOffer] = useState<Offer | null>(null);
   const [restoredCheckout, setRestoredCheckout] = useState<{ prenom: string; email: string } | null>(null);
 
-  // Géolocalisation par IP — détection automatique Afrique francophone
+  // Devise déduite du fuseau horaire du navigateur : aucune requête réseau, donc
+  // aucun transfert de données avant consentement, et surtout pas de prix affiché
+  // en euros qui bascule sous les yeux du visiteur une seconde plus tard.
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    if (params.get("session_id")) return; // Stripe restore prend la main
-    fetch("https://ipapi.co/json/")
-      .then(r => r.json())
-      .then(({ country_code }: { country_code: string }) => {
-        const AFRICAN_CODES = [
-          "CG","CD","MA","TN","DZ","SN","CI","BJ","CM","BF",
-          "EG","GA","GN","ML","NE","TD","CF","GW","TG","MR",
-          "RW","BI","KM","DJ","MG","MU","GQ","ST","CV",
-        ];
-        if (AFRICAN_CODES.includes(country_code)) {
-          setSelectedLocation("congo_brazzaville");
-        }
-      })
-      .catch(() => {});
+    if (params.get("session_id")) return; // le retour de Stripe prend la main
+    try {
+      const zone = Intl.DateTimeFormat().resolvedOptions().timeZone ?? "";
+      if (zone.startsWith("Africa/") || zone === "Indian/Antananarivo" || zone === "Indian/Comoro") {
+        setSelectedLocation("congo_brazzaville");
+      }
+    } catch {
+      /* fuseau indisponible : on reste sur la zone par défaut */
+    }
   }, []);
 
   // Restore onboarding after Stripe redirect (3DS / redirect-based payment)
@@ -449,7 +446,6 @@ const Croissance = () => {
           </Button>
         }
       />
-
       {/* Section 1 : Douleur Client */}
       <section className="py-12 md:py-24 bg-background" aria-label="Problèmes courants des entrepreneurs">
         <div className="container mx-auto px-4">
@@ -513,7 +509,42 @@ const Croissance = () => {
           </div>
         </div>
       </section>
+      {/* Section 3 : Résultats Concrets */}
+      <section className="py-16 md:py-24 bg-background" aria-label="Résultats et statistiques d'accompagnement entrepreneur">
+        <div className="container mx-auto px-4">
+          <div className="mn-eyebrow-turquoise text-center mb-3">Impact mesuré</div>
+          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-12 text-foreground">
+            Résultats concrets de l'accompagnement entrepreneur Mare Nostrum
+          </h2>
 
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
+              <div className="text-4xl md:text-5xl font-bold text-primary mb-3">50%</div>
+              <p className="text-sm text-muted-foreground">
+                des entrepreneurs accompagnés se rémunèrent correctement dans les 2 ans après la création
+              </p>
+            </div>
+            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
+              <div className="text-4xl md:text-5xl font-bold text-accent mb-3">3</div>
+              <p className="text-sm text-muted-foreground">
+                contacts qualifiés en moyenne dès le premier mois d'adhésion
+              </p>
+            </div>
+            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
+              <div className="text-4xl md:text-5xl font-bold text-primary mb-3">93%</div>
+              <p className="text-sm text-muted-foreground">
+                des membres se disent "très satisfaits ou satisfaits" de leur expérience
+              </p>
+            </div>
+            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
+              <div className="text-4xl md:text-5xl font-bold text-accent mb-3">90%</div>
+              <p className="text-sm text-muted-foreground">
+                déclarent gagner du temps, de la clarté et de la sérénité après chaque session
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* Section 2 : Offres */}
       <section id="offres" className="py-16 md:py-24 bg-secondary/30" aria-label="Tarifs et offres du Club Entrepreneur">
         <div className="container mx-auto px-4">
@@ -585,7 +616,8 @@ const Croissance = () => {
                 ))}
               </ul>
 
-              <Button className="w-full mt-auto" onClick={() => openOnboarding("communaute")}>
+              {/* Contour : une seule offre porte le bouton plein (voir carte Groupe). */}
+              <Button variant="outline" className="w-full mt-auto" onClick={() => openOnboarding("communaute")}>
                 Rejoindre l'équipage
               </Button>
             </div>
@@ -629,7 +661,8 @@ const Croissance = () => {
                 ))}
               </ul>
 
-              <Button className="w-full bg-white text-primary hover:bg-white/90 mt-auto" onClick={() => openOnboarding("groupe")}>
+              {/* Offre recommandée : SEUL bouton plein turquoise de la page. */}
+              <Button variant="secondary" className="w-full mt-auto" onClick={() => openOnboarding("groupe")}>
                 Rejoindre l'équipage
               </Button>
             </div>
@@ -667,7 +700,7 @@ const Croissance = () => {
                 ))}
               </ul>
 
-              <Button variant="default" className="w-full mt-auto" onClick={() => openOnboarding("individuel")}>
+              <Button variant="outline" className="w-full mt-auto" onClick={() => openOnboarding("individuel")}>
                 Rejoindre l'équipage
               </Button>
             </div>
@@ -763,44 +796,6 @@ const Croissance = () => {
           initialEmail={restoredCheckout?.email}
         />
       )}
-
-      {/* Section 3 : Résultats Concrets */}
-      <section className="py-16 md:py-24 bg-background" aria-label="Résultats et statistiques d'accompagnement entrepreneur">
-        <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-turquoise text-center mb-3">Impact mesuré</div>
-          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-12 text-foreground">
-            Résultats concrets de l'accompagnement entrepreneur Mare Nostrum
-          </h2>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
-              <div className="text-4xl md:text-5xl font-bold text-primary mb-3">50%</div>
-              <p className="text-sm text-muted-foreground">
-                des entrepreneurs accompagnés se rémunèrent correctement dans les 2 ans après la création
-              </p>
-            </div>
-            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
-              <div className="text-4xl md:text-5xl font-bold text-accent mb-3">3</div>
-              <p className="text-sm text-muted-foreground">
-                contacts qualifiés en moyenne dès le premier mois d'adhésion
-              </p>
-            </div>
-            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
-              <div className="text-4xl md:text-5xl font-bold text-primary mb-3">93%</div>
-              <p className="text-sm text-muted-foreground">
-                des membres se disent "très satisfaits ou satisfaits" de leur expérience
-              </p>
-            </div>
-            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
-              <div className="text-4xl md:text-5xl font-bold text-accent mb-3">90%</div>
-              <p className="text-sm text-muted-foreground">
-                déclarent gagner du temps, de la clarté et de la sérénité après chaque session
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Section 4 : Témoignages */}
       <section className="py-16 md:py-24 bg-secondary/30" aria-label="Témoignages de membres du Club Entrepreneur">
         <div className="container mx-auto px-4">
@@ -826,7 +821,6 @@ const Croissance = () => {
           </div>
         </div>
       </section>
-
       {/* Photos Ateliers Section */}
       <section className="py-16 md:py-24 bg-background" aria-label="Photos des ateliers et sessions d'accompagnement">
         <div className="container mx-auto px-4">
@@ -872,17 +866,23 @@ const Croissance = () => {
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             Clarifie ta vision, structure ta stratégie et accélère ta croissance avec le Club Entrepreneur Mare Nostrum à Toulouse
           </p>
+          {/* Le bouton d'adhésion ramène aux offres : c'est ici que l'objection vient
+              de tomber (FAQ juste au-dessus), et c'était jusqu'ici une impasse —
+              les deux boutons menaient au formulaire de contact. */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
-              <Link to="/contact">
-                <Calendar className="mr-2 h-5 w-5" />
-                Réserver une session découverte
-              </Link>
+            <Button
+              size="lg"
+              variant="secondary"
+              className="w-full sm:w-auto"
+              onClick={() => document.getElementById("offres")?.scrollIntoView({ behavior: "smooth", block: "start" })}
+            >
+              <MessageSquare className="mr-2 h-5 w-5" />
+              Essayer 30 jours gratuits
             </Button>
             <Button asChild size="lg" variant="outline" className="w-full sm:w-auto bg-white/10 border-white text-white hover:bg-white hover:text-primary">
               <Link to="/contact">
-                <MessageSquare className="mr-2 h-5 w-5" />
-                Essayer 30 jours gratuits
+                <Calendar className="mr-2 h-5 w-5" />
+                Réserver une session découverte
               </Link>
             </Button>
           </div>

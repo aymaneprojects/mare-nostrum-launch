@@ -3,6 +3,7 @@ import { X, Send, User, MessageCircle, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
+import { useLocation } from "react-router-dom";
 interface Message {
   id: string;
   role: "user" | "assistant";
@@ -114,9 +115,12 @@ const ChatBot = () => {
     setHasUsedChat(hasUsed);
   }, []);
 
-  // Afficher la notification périodiquement (max 3 fois par session)
+  // Afficher la notification périodiquement (max 3 fois par session).
+  // Jamais sur /club : on n'interrompt pas quelqu'un en train de décider d'un
+  // paiement. La bulle reste cliquable, elle ne se manifeste simplement plus.
+  const { pathname } = useLocation();
   useEffect(() => {
-    if (hasUsedChat || isOpen) return;
+    if (hasUsedChat || isOpen || pathname === "/club") return;
 
     const showNotificationWithDelay = () => {
       // Première notification après 8 secondes, puis toutes les 60 secondes
@@ -134,7 +138,7 @@ const ChatBot = () => {
 
     const cleanup = showNotificationWithDelay();
     return cleanup;
-  }, [notificationCount, hasUsedChat, isOpen]);
+  }, [notificationCount, hasUsedChat, isOpen, pathname]);
 
   // Cacher la notification après 8 secondes
   useEffect(() => {

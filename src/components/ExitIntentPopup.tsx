@@ -13,7 +13,8 @@ const DELAY_MS      = 2 * 60 * 1000;
 const COOLDOWN_DAYS = 7;
 
 // Pages où le popup ne doit PAS s'afficher
-const EXCLUDED_PATHS = ["/education"];
+// /club : ne jamais interrompre une décision de paiement par une autre offre.
+const EXCLUDED_PATHS = ["/education", "/club"];
 
 function isDismissed(): boolean {
   try {
