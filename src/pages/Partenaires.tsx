@@ -114,7 +114,7 @@ const Partenaires = () => (
       <div className="container mx-auto px-4 relative z-10 text-center">
         <div className="mn-eyebrow-light mb-4">Écosystème Mare Nostrum</div>
         <h1
-          className="font-editorial italic text-4xl md:text-6xl font-semibold text-primary-foreground leading-tight mb-5"
+          className="font-editorial italic font-semibold text-primary-foreground leading-tight mb-5"
           style={{ letterSpacing: "-0.02em" }}
         >
           Nos partenaires
@@ -130,7 +130,7 @@ const Partenaires = () => (
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="mn-eyebrow-turquoise text-center mb-3">Partenaires</div>
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-3">
+          <h2 className="text-center text-foreground mb-3">
             Institutions & acteurs économiques
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
@@ -149,7 +149,7 @@ const Partenaires = () => (
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="mn-eyebrow-turquoise text-center mb-3">Établissements partenaires</div>
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-foreground mb-3">
+          <h2 className="text-center text-foreground mb-3">
             Écoles & universités
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
@@ -165,7 +165,7 @@ const Partenaires = () => (
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto text-center">
           <div className="mn-eyebrow-turquoise mb-3">Rejoindre l'écosystème</div>
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+          <h2 className="text-foreground mb-3">
             Vous souhaitez devenir partenaire ?
           </h2>
           <p className="text-muted-foreground mb-10 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">

@@ -198,7 +198,7 @@ const Education = () => {
       <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">À qui s'adressent nos formations ?</div>
-          <h2 className="font-editorial italic text-2xl md:text-4xl font-semibold text-center mb-8 md:mb-12 text-foreground">
+          <h2 className="font-editorial italic font-semibold text-center mb-8 md:mb-12 text-foreground">
             Trois portes d'entrée, une même exigence : des formateurs praticiens et un accompagnement individualisé.
           </h2>
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
@@ -206,7 +206,7 @@ const Education = () => {
               <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Lightbulb className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Je veux me former</h3>
+              <h3 className="text-xl mb-4 text-foreground">Je veux me former</h3>
               <p className="text-muted-foreground">
                 Demandeurs d'emploi, salariés, personnes en reconversion : Vous voulez acquérir une compétence qui compte sur le marché du travail, ou préparer un changement de trajectoire. Nos formations courtes vous donnent des acquis immédiatement mobilisables.
               </p>
@@ -215,7 +215,7 @@ const Education = () => {
               <div className="bg-accent/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Users className="h-8 w-8 text-accent" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Je crée ou je dirige mon entreprise</h3>
+              <h3 className="text-xl mb-4 text-foreground">Je crée ou je dirige mon entreprise</h3>
               <p className="text-muted-foreground">
                 Porteurs de projet, créateurs, dirigeants de TPE : Vous portez un projet ou vous dirigez une entreprise, souvent seul·e face aux décisions. Nos formats vous apportent une méthode, un cadre et un collectif de pairs.
               </p>
@@ -224,7 +224,7 @@ const Education = () => {
               <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Trophy className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Je forme mes équipes ou des publics divers</h3>
+              <h3 className="text-xl mb-4 text-foreground">Je forme mes équipes ou des publics divers</h3>
               <p className="text-muted-foreground">
                 Entreprises, collectivités, universités, écoles, associations : Vous voulez développer les compétences entrepreneuriales ou managériales de vos collaborateurs, vos publics ou vos adhérents. Nous concevons et animons des dispositifs sur mesure.
               </p>
@@ -248,7 +248,7 @@ const Education = () => {
                 <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                   <Users className="h-7 w-7 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-foreground">L'équipe pédagogique</h3>
+                <h3 className="text-xl mb-4 text-foreground">L'équipe pédagogique</h3>
                 <p className="text-muted-foreground mb-4">
                   Derrière chaque formation, des praticiens. Nos formateurs dirigent, accompagnent et enseignent : ils transmettent ce qu'ils font. Ils ont été soigneusement sélectionnés par notre entreprise-école.
                 </p>
@@ -274,7 +274,7 @@ const Education = () => {
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Les formations certifiées en conformité avec Qualiopi</div>
-          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic font-semibold text-center mb-4 text-foreground">
             Ce que propose le centre de formation de Mare Nostrum
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -293,7 +293,7 @@ const Education = () => {
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Lightbulb className="h-7 w-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">La Fresque de l'esprit d'entreprendre</h3>
+              <h3 className="text-xl mb-4 text-foreground">La Fresque de l'esprit d'entreprendre</h3>
               <p className="text-muted-foreground mb-6">
                 Atelier collaboratif de 3h pour découvrir l'entrepreneuriat de manière ludique et engageante. Idéal pour sensibiliser un grand nombre d'étudiants.
               </p>
@@ -318,7 +318,7 @@ const Education = () => {
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Users className="h-7 w-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">L'Atelier des Alliés</h3>
+              <h3 className="text-xl mb-4 text-foreground">L'Atelier des Alliés</h3>
               <p className="text-muted-foreground mb-6">
                 Session d'intelligence collective pour développer la créativité et l'esprit d'équipe autour de projets entrepreneuriaux concrets.
               </p>
@@ -343,7 +343,7 @@ const Education = () => {
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Trophy className="h-7 w-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Hackathons & Challenges</h3>
+              <h3 className="text-xl mb-4 text-foreground">Hackathons & Challenges</h3>
               <p className="text-muted-foreground mb-6">Événements sur-mesure pour stimuler l'innovation et développer des projets entrepreneuriaux en équipe sur 1 à 5 jours.</p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start space-x-2">
@@ -366,7 +366,7 @@ const Education = () => {
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <GraduationCap className="h-7 w-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Programme Niteo</h3>
+              <h3 className="text-xl mb-4 text-foreground">Programme Niteo</h3>
               <p className="text-muted-foreground mb-6">Accompagnement complet sur 2 mois pour faciliter l'insertion de vos étudiants dans l'écosystème entrepreneuriat.</p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start space-x-2">
@@ -389,7 +389,7 @@ const Education = () => {
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <BookOpen className="h-7 w-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Cours professionnalisants</h3>
+              <h3 className="text-xl mb-4 text-foreground">Cours professionnalisants</h3>
               <p className="text-muted-foreground mb-6">Interventions pédagogiques personnalisées sur des thématiques entrepreneuriales spécifiques (stratégie d'entreprise, business plan...).</p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-start space-x-2">
@@ -412,7 +412,7 @@ const Education = () => {
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Network className="h-7 w-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Matinale de la pédagogie entrepreneuriale</h3>
+              <h3 className="text-xl mb-4 text-foreground">Matinale de la pédagogie entrepreneuriale</h3>
               <p className="text-muted-foreground mb-6">
                 Intégrez un réseau d'établissements et partagez les meilleures pratiques en pédagogie entrepreneuriale avec vos pairs.
               </p>
@@ -441,7 +441,7 @@ const Education = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Financement</div>
-          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-12 text-foreground">
+          <h2 className="font-editorial italic font-semibold text-center mb-12 text-foreground">
             Financer votre formation
           </h2>
           <div className="max-w-4xl mx-auto">
@@ -467,7 +467,7 @@ const Education = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Les dispositifs pour les établissements</div>
-          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic font-semibold text-center mb-4 text-foreground">
             Les interventions dans l'enseignement supérieur
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -500,23 +500,23 @@ const Education = () => {
       <section className="py-6 md:py-8 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Ils nous font confiance</div>
-          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-12 text-foreground">
+          <h2 className="font-editorial italic font-semibold text-center mb-12 text-foreground">
             Résultats & preuve sociale
           </h2>
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-3 gap-8 text-center">
               <div>
-                <div className="text-5xl font-bold text-primary mb-2">95+</div>
+                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">95+</div>
                 <div className="text-muted-foreground">projets étudiants</div>
                 <div className="text-sm text-muted-foreground">accompagnés</div>
               </div>
               <div>
-                <div className="text-5xl font-bold text-accent mb-2">544h</div>
+                <div className="text-4xl md:text-5xl font-bold text-accent mb-2">544h</div>
                 <div className="text-muted-foreground">de formation</div>
                 <div className="text-sm text-muted-foreground">dispensées</div>
               </div>
               <div>
-                <div className="text-5xl font-bold text-primary mb-2">55%</div>
+                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">55%</div>
                 <div className="text-muted-foreground">des néo-entrepreneurs</div>
                 <div className="text-sm text-muted-foreground">se rémunèrent dans les 2 ans</div>
               </div>
@@ -529,7 +529,7 @@ const Education = () => {
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Retours d'expérience</div>
-          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic font-semibold text-center mb-4 text-foreground">
             Exemples de nos actions
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -542,7 +542,7 @@ const Education = () => {
                 <img src={ylookProgramme} width={1920} height={1279} loading="lazy" alt="Programme Ylook - Ynov Campus Toulouse" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                   <div className="p-6 text-primary-foreground">
-                    <h3 className="text-xl font-bold mb-2">Programme Ylook - Ynov Campus Toulouse</h3>
+                    <h3 className="text-xl mb-2 text-primary-foreground">Programme Ylook - Ynov Campus Toulouse</h3>
                     <p className="text-sm">Accompagnement étudiant au sein de l'école Ynov Campus Toulouse dans le cadre du programme Ylook</p>
                   </div>
                 </div>
@@ -552,7 +552,7 @@ const Education = () => {
                 <img src={fresque1Img} width={996} height={812} loading="lazy" alt="Fresque organisée pour 80 personnes dans un établissement" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                   <div className="p-6 text-primary-foreground">
-                    <h3 className="text-xl font-bold mb-2">Fresque collaborative</h3>
+                    <h3 className="text-xl mb-2 text-primary-foreground">Fresque collaborative</h3>
                     <p className="text-sm">Fresque organisée pour 80 personnes dans un établissement</p>
                   </div>
                 </div>
@@ -562,7 +562,7 @@ const Education = () => {
                 <img src={iscomChallenge} width={1920} height={1440} loading="lazy" alt="ISCOM Startup Challenge - Réfléchir vite pour répondre à la problématique donnée" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                   <div className="p-6 text-primary-foreground">
-                    <h3 className="text-xl font-bold mb-2">ISCOM Startup Challenge</h3>
+                    <h3 className="text-xl mb-2 text-primary-foreground">ISCOM Startup Challenge</h3>
                     <p className="text-sm">Réfléchir vite pour répondre à la problématique donnée</p>
                   </div>
                 </div>
@@ -572,7 +572,7 @@ const Education = () => {
                 <img src={fresqueDoctorant} width={1672} height={1000} loading="lazy" alt="Fresque de l'esprit d'entreprendre adaptée aux doctorants" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                   <div className="p-6 text-primary-foreground">
-                    <h3 className="text-xl font-bold mb-2">Fresque de l'esprit d'entreprendre</h3>
+                    <h3 className="text-xl mb-2 text-primary-foreground">Fresque de l'esprit d'entreprendre</h3>
                     <p className="text-sm">Fresque de l'esprit d'entreprendre adaptée aux doctorants</p>
                   </div>
                 </div>
@@ -586,7 +586,7 @@ const Education = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Ecoles et établissements partenaires</div>
-          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic font-semibold text-center mb-4 text-foreground">
             Ils nous font confiance
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -621,7 +621,7 @@ const Education = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Témoignages</div>
-          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-12 text-foreground">
+          <h2 className="font-editorial italic font-semibold text-center mb-12 text-foreground">
             Que disent nos clients de notre centre de formation ?
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -638,7 +638,7 @@ const Education = () => {
       <section className="py-16 md:py-20 bg-gradient-to-br from-primary to-accent">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary-foreground">
+            <h2 className="mb-6 text-primary-foreground">
               Se former pour entreprendre, ou former ceux qui entreprennent
             </h2>
             <p className="text-xl text-primary-foreground/90 mb-8">
@@ -647,7 +647,7 @@ const Education = () => {
             
             <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
               <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-sm p-8">
-                <h3 className="text-xl font-bold text-primary-foreground mb-4">Responsable pédagogique ?</h3>
+                <h3 className="text-xl text-primary-foreground mb-4">Responsable pédagogique ?</h3>
                 <p className="text-primary-foreground/80 mb-6">
                   Planifions un rendez-vous pour discuter de vos besoins
                 </p>
@@ -659,7 +659,7 @@ const Education = () => {
               </div>
 
               <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-sm p-8">
-                <h3 className="text-xl font-bold text-primary-foreground mb-4">Appel d'offres en cours ?</h3>
+                <h3 className="text-xl text-primary-foreground mb-4">Appel d'offres en cours ?</h3>
                 <p className="text-primary-foreground/80 mb-6">
                   Envoyez-nous votre brief pour une réponse personnalisée
                 </p>
@@ -671,7 +671,7 @@ const Education = () => {
               </div>
 
               <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-sm p-8">
-                <h3 className="text-xl font-bold text-primary-foreground mb-4">Vous voulez vous former ?</h3>
+                <h3 className="text-xl text-primary-foreground mb-4">Vous voulez vous former ?</h3>
                 <p className="text-primary-foreground/80 mb-6">
                   Découvrez le catalogue et pré-inscrivez-vous
                 </p>

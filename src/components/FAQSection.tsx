@@ -19,7 +19,7 @@ const FAQSection = ({ title = "Questions fréquentes", faqs }: FAQSectionProps) 
   return (
     <section ref={fade as React.RefObject<HTMLElement>} className="py-16 md:py-32 bg-secondary/30">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center mb-10 md:mb-16 text-foreground">
+        <h2 className="text-center mb-10 md:mb-16 text-foreground">
           {title}
         </h2>
         <div className="max-w-3xl mx-auto">

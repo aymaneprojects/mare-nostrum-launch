@@ -22,7 +22,7 @@ export default function StatsSection() {
   return (
     <section
       ref={ref as React.RefObject<HTMLElement>}
-      className="relative overflow-hidden py-16 md:py-32"
+      className="relative overflow-hidden py-12 md:py-24"
       style={{ background: "linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)" }}
     >
       <div
@@ -37,7 +37,7 @@ export default function StatsSection() {
       />
       <div className="container mx-auto px-4 relative z-10">
         <div className="mn-eyebrow-light text-center mb-5">L'équipage en chiffres</div>
-        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center mb-10 md:mb-20 text-primary-foreground">
+        <h2 className="text-center mb-8 md:mb-14 text-primary-foreground">
           Pourquoi nous choisir
         </h2>
 
@@ -47,26 +47,26 @@ export default function StatsSection() {
             return (
               <div
                 key={i}
-                className="border-t border-primary-foreground/15 max-lg:even:border-l lg:border-l lg:[&:nth-child(4n+1)]:border-l-0 px-3 py-7 md:px-8 md:py-12 text-center min-w-0"
+                className="border-t border-primary-foreground/15 max-lg:even:border-l lg:border-l lg:[&:nth-child(4n+1)]:border-l-0 px-3 py-6 md:px-8 md:py-10 text-center min-w-0"
               >
                 <div
                   className={`font-editorial font-semibold tabular-nums ${
                     big
-                      ? "text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-turquoise"
-                      : "text-4xl sm:text-5xl md:text-6xl text-primary-foreground"
+                      ? "text-[2.5rem] sm:text-5xl md:text-6xl text-turquoise"
+                      : "text-3xl sm:text-4xl md:text-5xl text-primary-foreground"
                   }`}
                   style={{ letterSpacing: "-0.03em", lineHeight: "1" }}
                 >
                   <CountUpNumber value={s.value} inView={inView} duration={1800 + i * 80} />
                 </div>
                 <div className="mn-eyebrow-light mt-4 md:mt-5">{s.label}</div>
-                <div className="text-sm text-primary-foreground/70 mt-1">{s.sub}</div>
+                <div className="mn-caption text-primary-foreground/70 mt-1">{s.sub}</div>
               </div>
             );
           })}
         </div>
 
-        <p className="text-center text-sm text-primary-foreground/60 mt-10 md:mt-16 border-t border-primary-foreground/15 pt-6 md:pt-8 max-w-3xl mx-auto leading-relaxed">
+        <p className="mn-caption text-center text-primary-foreground/60 mt-8 md:mt-12 border-t border-primary-foreground/15 pt-6 md:pt-8 max-w-3xl mx-auto leading-relaxed">
           France • Maroc • Tunisie • Algérie • Sénégal • Côte d'Ivoire • Bénin • Cameroun • Burkina Faso • RD Congo • Égypte • Canada
         </p>
       </div>

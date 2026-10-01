@@ -80,10 +80,10 @@ const Header = () => {
               <Link
                 key={link.to}
                 to={link.to}
-                className={`px-3 py-1.5 text-[13px] font-medium rounded-full transition-all duration-200 ${
+                className={`mn-link-u [--mn-u-inset:0.75rem] [--mn-u-bottom:0.3rem] px-3 py-1.5 text-[13px] font-medium rounded-full transition-colors duration-200 ${
                   isActive(link.to)
                     ? "bg-primary/10 text-primary"
-                    : "text-foreground/70 hover:text-foreground hover:bg-muted"
+                    : "text-foreground/70 hover:text-foreground"
                 }`}
               >
                 {link.label}
@@ -94,11 +94,11 @@ const Header = () => {
           {/* CTA desktop */}
           <div className="hidden md:flex items-center shrink-0">
             {["/education", "/niteo-toulouse"].includes(location.pathname) ? (
-              <Button asChild size="sm" className="rounded-full text-[13px] h-9 px-5">
+              <Button asChild size="sm" className="rounded-full text-[15px] h-10 px-5">
                 <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
               </Button>
             ) : (
-              <Button asChild size="sm" className="rounded-full text-[13px] h-9 px-5" style={{ background: "hsl(222 44% 25%)", color: "hsl(40 38% 94%)" }}>
+              <Button asChild size="sm" className="rounded-full text-[15px] h-10 px-5" style={{ background: "hsl(222 44% 25%)", color: "hsl(40 38% 94%)" }}>
                 <Link to="/club#offres">Rejoindre le Club</Link>
               </Button>
             )}
@@ -172,11 +172,11 @@ const Header = () => {
         {/* CTAs */}
         <div className="px-4 pb-10 pt-3 space-y-2.5 border-t border-border shrink-0">
           {["/education", "/niteo-toulouse"].includes(location.pathname) ? (
-            <Button asChild className="w-full h-11 rounded-full">
+            <Button asChild className="w-full h-[52px] rounded-full text-base">
               <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
             </Button>
           ) : (
-            <Button asChild className="w-full h-11 rounded-full" style={{ background: "hsl(222 44% 25%)", color: "hsl(40 38% 94%)" }}>
+            <Button asChild className="w-full h-[52px] rounded-full text-base" style={{ background: "hsl(222 44% 25%)", color: "hsl(40 38% 94%)" }}>
               <Link to="/club#offres">Rejoindre le Club</Link>
             </Button>
           )}

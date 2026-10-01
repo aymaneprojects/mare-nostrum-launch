@@ -36,7 +36,7 @@ const EngagementRSE = () => {
       {/* Objectifs Section */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="text-center mb-12 text-foreground">
             Nos cinq objectifs sociaux et environnementaux
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -100,7 +100,7 @@ const EngagementRSE = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center gap-3 mb-12">
             <Leaf className="h-8 w-8 text-primary" />
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+            <h2 className="text-foreground">
               Nos engagements environnementaux
             </h2>
           </div>
@@ -108,7 +108,7 @@ const EngagementRSE = () => {
           {/* Carbone */}
           <div className="max-w-5xl mx-auto mb-16">
             <div className="bg-card p-8 rounded-sm border border-border shadow-sm">
-              <h3 className="text-2xl font-bold text-foreground mb-4">Carbone</h3>
+              <h3 className="text-2xl text-foreground mb-4">Carbone</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">
                 Mare Nostrum met en place un environnement de travail "neutre en carbone", porté par un engagement fort 
                 et statutaire. L'entreprise mesure chaque année ses émissions carbone, finance des projets de compensation 
@@ -160,7 +160,7 @@ const EngagementRSE = () => {
           {/* Biodiversité */}
           <div className="max-w-5xl mx-auto mb-16">
             <div className="bg-card p-8 rounded-sm border border-border shadow-sm">
-              <h3 className="text-2xl font-bold text-foreground mb-4">Biodiversité</h3>
+              <h3 className="text-2xl text-foreground mb-4">Biodiversité</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">
                 La protection du vivant fait partie intégrante de la raison d'être de Mare Nostrum. La stratégie vise à 
                 sensibiliser, mobiliser le réseau, et favoriser l'adoption de comportements favorables à la biodiversité.
@@ -194,7 +194,7 @@ const EngagementRSE = () => {
             <div className="bg-card p-8 rounded-sm border border-border shadow-sm">
               <div className="flex items-center gap-3 mb-4">
                 <Recycle className="h-6 w-6 text-primary" />
-                <h3 className="text-2xl font-bold text-foreground">Économie circulaire</h3>
+                <h3 className="text-2xl text-foreground">Économie circulaire</h3>
               </div>
               <p className="text-muted-foreground mb-6 leading-relaxed">
                 Mare Nostrum favorise l'innovation collaborative et la création d'entreprises « by design », ayant intégré 
@@ -241,7 +241,7 @@ const EngagementRSE = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center gap-3 mb-12">
             <Heart className="h-8 w-8 text-accent" />
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+            <h2 className="text-foreground">
               Nos engagements sociaux
             </h2>
           </div>
@@ -301,7 +301,7 @@ const EngagementRSE = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center gap-3 mb-12">
             <Shield className="h-8 w-8 text-primary" />
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+            <h2 className="text-foreground">
               Partage de la valeur et du pouvoir
             </h2>
           </div>
@@ -309,7 +309,7 @@ const EngagementRSE = () => {
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* Gouvernance */}
             <div className="bg-card p-8 rounded-sm border border-border shadow-sm">
-              <h3 className="text-2xl font-bold text-foreground mb-4">Gouvernance</h3>
+              <h3 className="text-2xl text-foreground mb-4">Gouvernance</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">
                 Transparence, confiance et gestion collaborative fondent la gouvernance de Mare Nostrum. Elle se structure 
                 autour d'un conseil d'administration, d'un tableau de bord stratégique, et d'une animation de coalition et de réseau.
@@ -350,7 +350,7 @@ const EngagementRSE = () => {
 
             {/* Finance */}
             <div className="bg-card p-8 rounded-sm border border-border shadow-sm">
-              <h3 className="text-2xl font-bold text-foreground mb-4">Finance et investissement</h3>
+              <h3 className="text-2xl text-foreground mb-4">Finance et investissement</h3>
               <p className="text-muted-foreground mb-6 leading-relaxed">
                 Mare Nostrum accompagne la création de modèles économiques durables, favorisant l'indépendance financière 
                 et l'investissement à impact positif, tout en prônant sa propre autonomie et résilience financière.
@@ -400,7 +400,7 @@ const EngagementRSE = () => {
       {/* Implementation Section */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="text-center mb-12 text-foreground">
             Pour aller plus loin : comment notre stratégie RSE est-elle implémentée ?
           </h2>
           <div className="max-w-4xl mx-auto">

@@ -451,7 +451,7 @@ const Croissance = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="mn-eyebrow-turquoise text-center mb-3">Le diagnostic</div>
-            <h2 className="font-editorial italic text-2xl md:text-4xl font-semibold text-center mb-8 md:mb-12 text-foreground">
+            <h2 className="font-editorial italic font-semibold text-center mb-8 md:mb-12 text-foreground">
               Ce qui freine 90% des entrepreneurs (et comment en sortir)
             </h2>
 
@@ -513,7 +513,7 @@ const Croissance = () => {
       <section className="py-16 md:py-24 bg-background" aria-label="Résultats et statistiques d'accompagnement entrepreneur">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Impact mesuré</div>
-          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-12 text-foreground">
+          <h2 className="font-editorial italic font-semibold text-center mb-12 text-foreground">
             Résultats concrets de l'accompagnement entrepreneur Mare Nostrum
           </h2>
 
@@ -549,7 +549,7 @@ const Croissance = () => {
       <section id="offres" className="py-16 md:py-24 bg-secondary/30" aria-label="Tarifs et offres du Club Entrepreneur">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Choisissez votre niveau</div>
-          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic font-semibold text-center mb-4 text-foreground">
             Nos offres d'accompagnement entrepreneur, Toulouse et Afrique
           </h2>
           <p className="text-center text-muted-foreground mb-4 max-w-3xl mx-auto">
@@ -586,7 +586,7 @@ const Croissance = () => {
             {/* Communauté */}
             <div className="bg-card border-2 border-border rounded-sm p-6 md:p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col h-full">
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold mb-2 text-foreground">Communauté</h3>
+                <h3 className="text-2xl mb-2 text-foreground">Communauté</h3>
                 <div className="text-4xl font-bold text-primary mb-1">
                   {getPrice("communaute")}
                   <span className="text-lg font-normal text-muted-foreground"> {getPricePeriod()}</span>
@@ -631,7 +631,7 @@ const Croissance = () => {
               </div>
 
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold mb-2">Groupe</h3>
+                <h3 className="text-2xl mb-2 text-primary-foreground">Groupe</h3>
                 <div className="text-4xl font-bold mb-1">
                   {getPrice("groupe")}
                   <span className="text-lg font-normal opacity-80"> {getPricePeriod()}</span>
@@ -670,7 +670,7 @@ const Croissance = () => {
             {/* Personnalisé */}
             <div className="bg-card border-2 border-border rounded-sm p-6 md:p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col h-full">
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold mb-2 text-foreground">Personnalisé</h3>
+                <h3 className="text-2xl mb-2 text-foreground">Personnalisé</h3>
                 <div className="text-4xl font-bold text-primary mb-1">
                   {getPrice("individuel")}
                   <span className="text-lg font-normal text-muted-foreground"> {getPricePeriod()}</span>
@@ -799,7 +799,7 @@ const Croissance = () => {
       {/* Section 4 : Témoignages */}
       <section className="py-16 md:py-24 bg-secondary/30" aria-label="Témoignages de membres du Club Entrepreneur">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="text-center mb-12 text-foreground">
             Ce que disent nos membres entrepreneurs
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -824,7 +824,7 @@ const Croissance = () => {
       {/* Photos Ateliers Section */}
       <section className="py-16 md:py-24 bg-background" aria-label="Photos des ateliers et sessions d'accompagnement">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <h2 className="text-center mb-4 text-foreground">
             Nos ateliers d'accompagnement entrepreneur en action
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -836,7 +836,7 @@ const Croissance = () => {
               <img src={atelierRose} alt="Atelier d'accompagnement entrepreneur Mare Nostrum à Toulouse avec experts et participants" loading="lazy" width="600" height="400" className="w-full h-[220px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-accent/90 via-accent/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
-                  <h3 className="text-xl font-bold mb-2">Ateliers thématiques</h3>
+                  <h3 className="text-xl mb-2">Ateliers thématiques</h3>
                   <p className="text-sm">Workshops et masterclasses avec nos experts</p>
                 </div>
               </div>
@@ -846,7 +846,7 @@ const Croissance = () => {
               <img src={neoEntrepreneurElite} alt="Journée de business développement avec néo-entrepreneurs dans l'offre Personnalisé Mare Nostrum Toulouse" loading="lazy" width="600" height="400" className="w-full h-[220px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
-                  <h3 className="text-xl font-bold mb-2">Offre Personnalisé</h3>
+                  <h3 className="text-xl mb-2">Offre Personnalisé</h3>
                   <p className="text-sm">Accompagnement premium avec nos néo-entrepreneurs</p>
                 </div>
               </div>
@@ -860,7 +860,7 @@ const Croissance = () => {
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-accent via-primary to-primary">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary-foreground">
+          <h2 className="mb-6 text-primary-foreground">
             Prêt à accélérer votre entreprise avec un accompagnement sur mesure ?
           </h2>
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">

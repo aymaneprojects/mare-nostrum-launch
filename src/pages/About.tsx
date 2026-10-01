@@ -132,7 +132,7 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="mn-eyebrow-turquoise mb-3">Nos origines</div>
-            <h2 className="font-editorial italic text-2xl md:text-4xl font-semibold mb-6 md:mb-8 text-foreground">Notre histoire</h2>
+            <h2 className="font-editorial italic font-semibold mb-6 md:mb-8 text-foreground">Notre histoire</h2>
             <div className="prose prose-lg max-w-none">
               <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6">
                 Mare Nostrum est née en 2023 à Toulouse d'une conviction forte : <strong className="text-foreground">l'entrepreneuriat 
@@ -156,7 +156,7 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-8 md:mb-12">
             <div className="mn-eyebrow-turquoise mb-3">Société à mission</div>
-            <h2 className="font-editorial italic text-2xl md:text-4xl font-semibold mb-4 md:mb-6 text-foreground">Notre raison d'être</h2>
+            <h2 className="font-editorial italic font-semibold mb-4 md:mb-6 text-foreground">Notre raison d'être</h2>
             <p className="text-lg md:text-xl text-muted-foreground">
               Société à mission, familiale et interculturelle, nous existons pour :
             </p>
@@ -167,7 +167,7 @@ const About = () => {
               <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Target className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Sécuriser les trajectoires</h3>
+              <h3 className="text-xl mb-4 text-foreground">Sécuriser les trajectoires</h3>
               <p className="text-muted-foreground">
                 Accompagner les entreprises à impact dans leur croissance et leur passage à l'échelle
               </p>
@@ -177,7 +177,7 @@ const About = () => {
               <div className="bg-accent/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Users className="h-8 w-8 text-accent" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Renforcer la coopération</h3>
+              <h3 className="text-xl mb-4 text-foreground">Renforcer la coopération</h3>
               <p className="text-muted-foreground">
                 Créer des espaces de collaboration et d'intelligence collective entre entrepreneurs
               </p>
@@ -187,7 +187,7 @@ const About = () => {
               <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Heart className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Protéger le vivant</h3>
+              <h3 className="text-xl mb-4 text-foreground">Protéger le vivant</h3>
               <p className="text-muted-foreground">
                 Encourager les projets qui incluent les publics vulnérables et protègent l'environnement
               </p>
@@ -205,7 +205,7 @@ const About = () => {
       <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Ce qui nous guide</div>
-          <h2 className="font-editorial italic text-2xl md:text-4xl font-semibold text-center mb-8 md:mb-12 text-foreground">Nos valeurs</h2>
+          <h2 className="font-editorial italic font-semibold text-center mb-8 md:mb-12 text-foreground">Nos valeurs</h2>
           <div className="max-w-4xl mx-auto space-y-6 md:space-y-8">
             {([
               { icon: "handshake"  as const, title: "Respect",          text: "Nous plaçons l'humain au centre de nos actions et respectons la diversité des parcours et des cultures." },
@@ -217,7 +217,7 @@ const About = () => {
               <div key={v.title} className="flex items-start gap-4 md:gap-5 p-4 md:p-6 bg-card border border-border rounded-sm">
                 <MaritimeIcon name={v.icon} size={52} className="flex-shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">{v.title}</h3>
+                  <h3 className="text-lg md:text-xl mb-2 text-foreground">{v.title}</h3>
                   <p className="text-sm md:text-base text-muted-foreground">{v.text}</p>
                 </div>
               </div>
@@ -230,14 +230,14 @@ const About = () => {
       <section className="py-12 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Les visages de Mare Nostrum</div>
-          <h2 className="font-editorial italic text-2xl md:text-4xl font-semibold text-center mb-8 md:mb-12 text-foreground">Notre équipe</h2>
+          <h2 className="font-editorial italic font-semibold text-center mb-8 md:mb-12 text-foreground">Notre équipe</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 max-w-6xl mx-auto">
             <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={alexisJanicotImg} alt="Alexis Janicot" />
                 <AvatarFallback>AJ</AvatarFallback>
               </Avatar>
-              <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">Alexis Janicot</h3>
+              <h3 className="text-lg md:text-xl mb-2 text-foreground">Alexis Janicot</h3>
               <p className="text-sm md:text-base text-muted-foreground">Fondateur et Dirigeant</p>
             </div>
 
@@ -246,7 +246,7 @@ const About = () => {
                 <AvatarImage src={aymaneAbdennourImg} alt="Aymane Abdennour" />
                 <AvatarFallback>AA</AvatarFallback>
               </Avatar>
-              <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">Aymane Abdennour</h3>
+              <h3 className="text-lg md:text-xl mb-2 text-foreground">Aymane Abdennour</h3>
               <p className="text-sm md:text-base text-muted-foreground">Fondateur de Veluo by Mare Nostrum</p>
             </div>
 
@@ -255,7 +255,7 @@ const About = () => {
                 <AvatarImage src={romeoMasipImg} alt="Roméo Masip" />
                 <AvatarFallback>RM</AvatarFallback>
               </Avatar>
-              <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">Roméo Masip</h3>
+              <h3 className="text-lg md:text-xl mb-2 text-foreground">Roméo Masip</h3>
               <p className="text-sm md:text-base text-muted-foreground">Commercial Junior</p>
             </div>
 
@@ -264,7 +264,7 @@ const About = () => {
                 <AvatarImage src={khalidEzzemaniImg} alt="Khalid Ezzemani" />
                 <AvatarFallback>KE</AvatarFallback>
               </Avatar>
-              <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">Khalid Ezzemani</h3>
+              <h3 className="text-lg md:text-xl mb-2 text-foreground">Khalid Ezzemani</h3>
               <p className="text-sm md:text-base text-muted-foreground">Co-Fondateur · Casablanca</p>
             </div>
 
@@ -273,7 +273,7 @@ const About = () => {
                 <AvatarImage src={alainJanicotImg} alt="Alain Janicot" />
                 <AvatarFallback className="text-2xl">AJ</AvatarFallback>
               </Avatar>
-              <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">Alain Janicot</h3>
+              <h3 className="text-lg md:text-xl mb-2 text-foreground">Alain Janicot</h3>
               <p className="text-sm md:text-base text-muted-foreground">Co-Fondateur · Paris</p>
             </div>
 
@@ -282,7 +282,7 @@ const About = () => {
                 <AvatarImage src={frederiqueBerteletImg} alt="Frédérique Bertelet" />
                 <AvatarFallback>FB</AvatarFallback>
               </Avatar>
-              <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">Frédérique Bertelet</h3>
+              <h3 className="text-lg md:text-xl mb-2 text-foreground">Frédérique Bertelet</h3>
               <p className="text-sm md:text-base text-muted-foreground">Ingénieur pédagogique</p>
             </div>
 
@@ -291,7 +291,7 @@ const About = () => {
                 <AvatarImage src={dianeMoulinsImg} alt="Diane Moulins" />
                 <AvatarFallback>DM</AvatarFallback>
               </Avatar>
-              <h3 className="text-lg md:text-xl font-bold mb-2 text-foreground">Diane Moulins</h3>
+              <h3 className="text-lg md:text-xl mb-2 text-foreground">Diane Moulins</h3>
               <p className="text-sm md:text-base text-muted-foreground">Chef de projet Nitéo</p>
             </div>
           </div>
@@ -302,7 +302,7 @@ const About = () => {
       <section className="py-12 md:py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-foreground">Notre rayonnement</h2>
+            <h2 className="text-center mb-6 text-foreground">Notre rayonnement</h2>
             <p className="text-center text-muted-foreground mb-8">
               Présents sur la scène internationale pour porter notre vision de l'entrepreneuriat à impact
             </p>
@@ -322,7 +322,7 @@ const About = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Impact mesuré</div>
-          <h2 className="font-editorial italic text-3xl md:text-4xl font-semibold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic font-semibold text-center mb-4 text-foreground">
             Nos chiffres clés
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -338,7 +338,7 @@ const About = () => {
             <CarouselContent className="-ml-4">
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
-                  <div className="text-5xl font-bold mb-2">24</div>
+                  <div className="text-4xl md:text-5xl font-bold mb-2">24</div>
                   <div className="font-medium mb-1">Entreprises</div>
                   <div className="text-sm opacity-90">accompagnées</div>
                 </div>
@@ -346,7 +346,7 @@ const About = () => {
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
-                  <div className="text-5xl font-bold mb-2">17+</div>
+                  <div className="text-4xl md:text-5xl font-bold mb-2">17+</div>
                   <div className="font-medium mb-1">Projets étudiants</div>
                   <div className="text-sm opacity-90">accompagnés</div>
                 </div>
@@ -354,7 +354,7 @@ const About = () => {
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
-                  <div className="text-5xl font-bold mb-2">70%</div>
+                  <div className="text-4xl md:text-5xl font-bold mb-2">70%</div>
                   <div className="font-medium mb-1">Entreprises à impact</div>
                   <div className="text-sm opacity-90">17 organisations</div>
                 </div>
@@ -362,7 +362,7 @@ const About = () => {
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
-                  <div className="text-5xl font-bold mb-2">93%</div>
+                  <div className="text-4xl md:text-5xl font-bold mb-2">93%</div>
                   <div className="font-medium mb-1">Prise de décision</div>
                   <div className="text-sm opacity-90">accélérée</div>
                 </div>
@@ -370,7 +370,7 @@ const About = () => {
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
-                  <div className="text-5xl font-bold mb-2">95%</div>
+                  <div className="text-4xl md:text-5xl font-bold mb-2">95%</div>
                   <div className="font-medium mb-1">Satisfaction</div>
                   <div className="text-sm opacity-90">satisfaits/très satisfaits</div>
                 </div>
@@ -378,7 +378,7 @@ const About = () => {
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
-                  <div className="text-5xl font-bold mb-2">55%</div>
+                  <div className="text-4xl md:text-5xl font-bold mb-2">55%</div>
                   <div className="font-medium mb-1">Projet à temps plein</div>
                   <div className="text-sm opacity-90">avec satisfaction</div>
                 </div>
@@ -386,7 +386,7 @@ const About = () => {
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
-                  <div className="text-5xl font-bold mb-2">210+</div>
+                  <div className="text-4xl md:text-5xl font-bold mb-2">210+</div>
                   <div className="font-medium mb-1">Mises en relation</div>
                   <div className="text-sm opacity-90">professionnelles</div>
                 </div>
@@ -394,7 +394,7 @@ const About = () => {
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
-                  <div className="text-5xl font-bold mb-2">32</div>
+                  <div className="text-4xl md:text-5xl font-bold mb-2">32</div>
                   <div className="font-medium mb-1">Projets collaboratifs</div>
                   <div className="text-sm opacity-90">initiés</div>
                 </div>
@@ -402,7 +402,7 @@ const About = () => {
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
-                  <div className="text-5xl font-bold mb-2">135+</div>
+                  <div className="text-4xl md:text-5xl font-bold mb-2">135+</div>
                   <div className="font-medium mb-1">Experts</div>
                   <div className="text-sm opacity-90">mobilisables</div>
                 </div>
@@ -410,7 +410,7 @@ const About = () => {
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
-                  <div className="text-5xl font-bold mb-2">2000</div>
+                  <div className="text-4xl md:text-5xl font-bold mb-2">2000</div>
                   <div className="font-medium mb-1">Années d'expérience</div>
                   <div className="text-sm opacity-90">cumulées experts</div>
                 </div>
@@ -418,7 +418,7 @@ const About = () => {
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
-                  <div className="text-5xl font-bold mb-2">358h</div>
+                  <div className="text-4xl md:text-5xl font-bold mb-2">358h</div>
                   <div className="font-medium mb-1">Formation</div>
                   <div className="text-sm opacity-90">dispensées</div>
                 </div>
@@ -426,7 +426,7 @@ const About = () => {
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
-                  <div className="text-5xl font-bold mb-2">36%</div>
+                  <div className="text-4xl md:text-5xl font-bold mb-2">36%</div>
                   <div className="font-medium mb-1">Néo-entrepreneurs</div>
                   <div className="text-sm opacity-90">accompagnés</div>
                 </div>
@@ -434,7 +434,7 @@ const About = () => {
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
-                  <div className="text-5xl font-bold mb-2">12</div>
+                  <div className="text-4xl md:text-5xl font-bold mb-2">12</div>
                   <div className="font-medium mb-1">Pays</div>
                   <div className="text-sm opacity-90">d'intervention</div>
                 </div>
@@ -469,7 +469,7 @@ const About = () => {
             <div className="bg-gradient-to-br from-primary to-accent w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8">
               <Globe className="h-10 w-10 text-white" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+            <h2 className="mb-6 text-foreground">
               Un réseau d'experts au service de votre réussite
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
@@ -581,7 +581,7 @@ const About = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+            <h2 className="text-center mb-4 text-foreground">
               Nos Partenaires et Référents
             </h2>
             <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -668,7 +668,7 @@ const About = () => {
       {/* CTA Section */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-primary to-accent">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary-foreground">
+          <h2 className="mb-6 text-primary-foreground">
             Envie de rejoindre l'aventure ?
           </h2>
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">

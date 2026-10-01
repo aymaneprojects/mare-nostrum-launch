@@ -84,7 +84,7 @@ const OffreIA = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mn-eyebrow-light mb-4 md:mb-6">Mare Nostrum IA</div>
-            <h1 className="text-3xl md:text-6xl font-bold text-primary-foreground mb-4 md:mb-6">
+            <h1 className="text-primary-foreground mb-4 md:mb-6">
               L'IA au service de votre projet entrepreneurial
             </h1>
             <p className="text-lg md:text-2xl text-primary-foreground/90 mb-8 md:mb-12">
@@ -103,7 +103,7 @@ const OffreIA = () => {
       {/* Challenges Section */}
       <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
+          <h2 className="text-center mb-8 md:mb-12 text-foreground">
             Pourquoi intégrer l'IA dans votre projet ?
           </h2>
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
@@ -111,7 +111,7 @@ const OffreIA = () => {
               <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Lightbulb className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Avantage compétitif</h3>
+              <h3 className="text-xl mb-4 text-foreground">Avantage compétitif</h3>
               <p className="text-muted-foreground">
                 Différenciez-vous en exploitant les technologies les plus avancées pour résoudre les problèmes de vos clients
               </p>
@@ -120,7 +120,7 @@ const OffreIA = () => {
               <div className="bg-accent/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <TrendingUp className="h-8 w-8 text-accent" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Scalabilité</h3>
+              <h3 className="text-xl mb-4 text-foreground">Scalabilité</h3>
               <p className="text-muted-foreground">
                 L'IA vous permet d'automatiser et de scaler vos opérations sans multiplier les ressources humaines
               </p>
@@ -129,7 +129,7 @@ const OffreIA = () => {
               <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <BarChart3 className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Décisions data-driven</h3>
+              <h3 className="text-xl mb-4 text-foreground">Décisions data-driven</h3>
               <p className="text-muted-foreground">
                 Prenez des décisions éclairées basées sur l'analyse de données et les prédictions de vos modèles
               </p>
@@ -141,7 +141,7 @@ const OffreIA = () => {
       {/* Services Section */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <h2 className="text-center mb-4 text-foreground">
             Nos services IA & Data
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -154,7 +154,7 @@ const OffreIA = () => {
                 <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                   <service.icon className="h-7 w-7 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-foreground">{service.title}</h3>
+                <h3 className="text-xl mb-4 text-foreground">{service.title}</h3>
                 <p className="text-muted-foreground mb-6">{service.description}</p>
                 <ul className="space-y-2">
                   {service.features.map((feature, idx) => (
@@ -176,7 +176,7 @@ const OffreIA = () => {
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+                <h2 className="text-foreground mb-6">
                   Notre approche
                 </h2>
                 <p className="text-muted-foreground mb-8">
@@ -225,7 +225,7 @@ const OffreIA = () => {
                 <div className="bg-gradient-to-br from-primary to-accent w-16 h-16 rounded-sm flex items-center justify-center mb-6">
                   <Brain className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">Dimension entrepreneuriale intégrée</h3>
+                <h3 className="text-2xl text-foreground mb-4">Dimension entrepreneuriale intégrée</h3>
                 <p className="text-muted-foreground mb-6">
                   Notre expertise unique combine la maîtrise des technologies IA avec une compréhension profonde des enjeux entrepreneuriaux. 
                   Chaque solution est pensée pour générer de la valeur business.
@@ -260,7 +260,7 @@ const OffreIA = () => {
       <section className="py-16 md:py-24 bg-gradient-to-br from-primary to-accent">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+            <h2 className="text-primary-foreground mb-4">
               Prêt à intégrer l'IA dans votre projet ?
             </h2>
             <p className="text-lg text-primary-foreground/90 mb-8">

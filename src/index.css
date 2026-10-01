@@ -84,7 +84,21 @@ All colors MUST be HSL.
     --shadow-cta: 0 12px 32px -10px hsl(var(--mn-turquoise) / 0.5), 0 4px 10px -4px hsl(var(--mn-turquoise) / 0.3);
     --shadow-lift: 0 30px 80px rgba(15,23,51,0.08);
 
-    --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Courbe d'easing unique du site : toute transition l'utilise. */
+    --ease-mn: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.25s var(--ease-mn);
+
+    /* Échelle typographique (mesurée chez les concurrents).
+       Titres : interpolés entre 480 px (mobile) et 1280 px (grand écran). */
+    --fs-h1: clamp(34px, 20.8px + 2.75vw, 56px);
+    --fs-h2: clamp(26px, 17.6px + 1.75vw, 40px);
+    --fs-h3: clamp(20px, 17.6px + 0.5vw, 24px);
+    --fs-lead: clamp(20px, 17.6px + 0.5vw, 24px);
+    --fs-body: 17px;
+    --fs-micro: 13px;
+  }
+  @media (min-width: 1280px) {
+    :root { --fs-body: 18px; --fs-micro: 14px; }
   }
 
   .dark {
@@ -139,6 +153,8 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-feature-settings: "ss01", "ss02";
+    font-size: var(--fs-body);
+    line-height: 1.6;
   }
 
   /* DM Sans applied site-wide for headings & UI; Fraunces reserved for editorial accents */
@@ -147,9 +163,14 @@ All colors MUST be HSL.
     color: hsl(var(--foreground));
   }
 
-  h1 { @apply text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.05]; letter-spacing: -0.03em; }
-  h2 { @apply text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1]; letter-spacing: -0.025em; }
-  h3 { @apply text-xl md:text-2xl font-semibold tracking-tight; }
+  /* Titres : graisse 600 (pas 700), interligne serré. Tailles : voir --fs-* */
+  h1 { font-size: var(--fs-h1); line-height: 1.15; @apply font-semibold; letter-spacing: -0.03em; }
+  h2 { font-size: var(--fs-h2); line-height: 1.25; @apply font-semibold; letter-spacing: -0.025em; }
+  h3 { font-size: var(--fs-h3); line-height: 1.3; @apply font-semibold tracking-tight; }
+  @media (min-width: 1280px) {
+    h1 { line-height: 1.1; }
+    h2 { line-height: 1.2; }
+  }
 
   /* Accessibility — visible focus rings (UI/UX checklist) */
   :focus-visible {
@@ -176,22 +197,22 @@ All colors MUST be HSL.
 
   /* Micro labels (KIND / DATE / EYEBROW) */
   .mn-eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.2em;
+    font-size: var(--fs-micro);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     font-weight: 700;
     color: hsl(var(--mn-nuit));
   }
   .mn-eyebrow-muted {
-    font-size: 11px;
-    letter-spacing: 0.2em;
+    font-size: var(--fs-micro);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     font-weight: 600;
     color: hsl(var(--mn-muted));
   }
   .mn-eyebrow-turquoise {
-    font-size: 11px;
-    letter-spacing: 0.2em;
+    font-size: var(--fs-micro);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     font-weight: 700;
     /* Nuit sur fond clair (le turquoise n'y atteint que 1,6:1). Sur fond sombre,
@@ -233,7 +254,7 @@ All colors MUST be HSL.
     background: #fff;
     border: 1px solid hsl(var(--mn-nuit) / 0.14);
     border-radius: 14px;
-    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.2s var(--ease-mn), transform 0.2s var(--ease-mn), box-shadow 0.2s var(--ease-mn);
   }
   .mn-card-accent { border-color: hsl(var(--mn-turquoise)); }
   .mn-card:hover { border-color: hsl(var(--mn-nuit) / 0.3); }
@@ -245,8 +266,8 @@ All colors MUST be HSL.
   .mn-section-label {
     position: relative;
     text-align: center;
-    font-size: 11px;
-    letter-spacing: 0.2em;
+    font-size: var(--fs-micro);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     font-weight: 700;
     color: hsl(var(--mn-nuit));
@@ -269,8 +290,8 @@ All colors MUST be HSL.
 
   /* Eyebrow for dark (navy) panel backgrounds */
   .mn-eyebrow-light {
-    font-size: 11px;
-    letter-spacing: 0.2em;
+    font-size: var(--fs-micro);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     font-weight: 700;
     color: hsl(var(--mn-turquoise));
@@ -278,8 +299,8 @@ All colors MUST be HSL.
 
   /* Mono-style stat sublabel */
   .mn-stat-label {
-    font-size: 11px;
-    letter-spacing: 0.2em;
+    font-size: var(--fs-micro);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     font-weight: 600;
     color: hsl(var(--mn-muted));
@@ -297,7 +318,7 @@ All colors MUST be HSL.
   .fade-up {
     opacity: 0;
     transform: translateY(16px);
-    transition: opacity 0.38s cubic-bezier(0.4,0,0.2,1), transform 0.38s cubic-bezier(0.4,0,0.2,1);
+    transition: opacity 0.4s var(--ease-mn), transform 0.4s var(--ease-mn);
   }
   .fade-up.is-visible {
     opacity: 1;
@@ -307,10 +328,55 @@ All colors MUST be HSL.
     .fade-up { opacity: 1; transform: none; transition: none; }
   }
 
+  /* ── Échelle typographique : sous-titre, corps, légende ──────────── */
+  .mn-lead { font-size: var(--fs-lead); line-height: 1.4; }
+  .mn-body { font-size: var(--fs-body); line-height: 1.6; }
+  .mn-caption { font-size: var(--fs-micro); line-height: 1.4; }
+  @media (min-width: 1280px) {
+    .mn-lead { line-height: 1.35; }
+  }
+
+  /* ── Boutons : survol 150 ms, fond + léger lever (-1 px) ─────────── */
+  .mn-btn {
+    transition: background-color 0.15s var(--ease-mn), color 0.15s var(--ease-mn),
+      border-color 0.15s var(--ease-mn), box-shadow 0.15s var(--ease-mn), transform 0.15s var(--ease-mn);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .mn-btn-lift:not(:disabled):hover { transform: translateY(-1px); }
+  }
+
+  /* ── Lien de navigation : soulignement qui se déploie (200 ms) ───── */
+  .mn-link-u { position: relative; --mn-u-inset: 0px; --mn-u-bottom: 0px; }
+  .mn-link-u::after {
+    content: "";
+    position: absolute;
+    left: var(--mn-u-inset);
+    right: var(--mn-u-inset);
+    bottom: var(--mn-u-bottom);
+    height: 1.5px;
+    border-radius: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.2s var(--ease-mn);
+    pointer-events: none;
+  }
+  .mn-link-u:focus-visible::after { transform: scaleX(1); }
+  @media (hover: hover) and (pointer: fine) {
+    .mn-link-u:hover::after { transform: scaleX(1); }
+  }
+
+  /* ── Bandeau de preuves : verre dépoli, statique ─────────────────── */
+  .mn-glass {
+    background-color: hsl(var(--mn-ivory) / 0.86);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
   /* ── Hover effects uniquement sur devices avec pointeur précis ────── */
   @media (hover: hover) and (pointer: fine) {
     .hover-lift {
-      transition: transform 0.2s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s cubic-bezier(0.4,0,0.2,1);
+      transition: transform 0.2s var(--ease-mn), box-shadow 0.2s var(--ease-mn);
     }
     .hover-lift:hover {
       transform: translateY(-2px);
@@ -320,7 +386,7 @@ All colors MUST be HSL.
 
   /* ── Micro-interactions cards (50-100ms) ─────────────────────────── */
   .card-interactive {
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    transition: border-color 0.15s var(--ease-mn), box-shadow 0.15s var(--ease-mn);
     cursor: pointer;
   }
   @media (hover: hover) and (pointer: fine) {
@@ -544,8 +610,8 @@ All colors MUST be HSL.
   .mn-scroll-cue { animation: mn-scroll-cue 2.6s ease-in-out infinite; }
 
   /* ── Cartes de pôles : zoom du fond au survol, texte immobile ────── */
-  .mn-pole-bg { transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
-  .mn-pole-arrow { transition: transform 0.3s ease, opacity 0.3s ease; opacity: 0.7; }
+  .mn-pole-bg { transition: transform 0.4s var(--ease-mn); }
+  .mn-pole-arrow { transition: transform 0.3s var(--ease-mn), opacity 0.3s var(--ease-mn); opacity: 0.7; }
   @media (hover: hover) and (pointer: fine) {
     .mn-pole:hover .mn-pole-bg { transform: scale(1.06); }
     .mn-pole:hover .mn-pole-arrow { transform: translateX(4px); opacity: 1; }
@@ -577,6 +643,8 @@ All colors MUST be HSL.
   @media (prefers-reduced-motion: reduce) {
     .mn-hero-halo, .mn-scroll-cue, .mn-marquee-track { animation: none !important; }
     .mn-pole-bg, .mn-pole-arrow { transition: none; }
+    .mn-btn-lift:hover { transform: none; }
+    .mn-link-u::after { transition: none; }
     .mn-pole:hover .mn-pole-bg, .mn-pole:hover .mn-pole-arrow { transform: none; }
   }
 }

@@ -221,7 +221,7 @@ const Index = () => {
       <Header />
 
 
-      <section className="relative overflow-hidden flex flex-col justify-center min-h-[88svh] md:min-h-[90vh] py-20 md:py-32" style={{ background: 'linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)' }}>
+      <section className="relative overflow-hidden flex flex-col justify-center min-h-[80svh] md:min-h-[80vh] py-14 md:py-28" style={{ background: 'linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)' }}>
         <DarkLayers halo="22% 18%" vignette="80% 88%" />
         {/* Halo turquoise très lent (transform uniquement) */}
         <div aria-hidden="true" className="mn-hero-halo absolute -top-[25%] -left-[20%] h-[75vmax] w-[75vmax] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, hsl(var(--mn-turquoise) / 0.16) 0%, transparent 62%)' }}></div>
@@ -230,22 +230,22 @@ const Index = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
             <div className="mn-eyebrow-light mb-6 md:mb-8">depuis Toulouse, dans tout l'espace francophone</div>
-            <p className="text-base md:text-lg font-medium text-primary-foreground/80 mb-5 md:mb-6 max-w-xl mx-auto" style={{ letterSpacing: '0.01em' }}>
+            <p className="mn-body font-medium text-primary-foreground/80 mb-4 md:mb-6 max-w-xl mx-auto" style={{ letterSpacing: '0.01em' }}>
               Vous bâtissez un service ou un produit utile pour demain&nbsp;?
             </p>
-            <h1 className="font-editorial italic font-semibold text-primary-foreground mb-6 md:mb-10 break-words" style={{ fontSize: 'clamp(2rem, 0.9rem + 5.2vw, 6.75rem)', lineHeight: 1.04, letterSpacing: '-0.03em', textWrap: 'balance' }}>Nous traçons la voie de votre <span className="text-turquoise">projet</span> vers ses <span className="text-turquoise">sources de revenus</span>.</h1>
-            <p className="text-base md:text-xl text-primary-foreground/75 mb-10 md:mb-14 max-w-xl mx-auto" style={{ lineHeight: '1.65' }}>
+            <h1 className="font-editorial italic font-medium text-primary-foreground mb-5 md:mb-8 break-words" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>Nous traçons la voie de votre <span className="text-turquoise">projet</span> vers ses <span className="text-turquoise">sources de revenus</span>.</h1>
+            <p className="mn-lead text-primary-foreground/75 mb-8 md:mb-12 max-w-2xl mx-auto">
               Mare Nostrum accompagne les écoles et les entrepreneurs francophones.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
-              <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto h-14 px-9 text-base" style={{ boxShadow: 'var(--shadow-cta)' }}>
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+              <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto" style={{ boxShadow: 'var(--shadow-cta)' }}>
                 <Link to="/education">
                   <GraduationCap className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                   Je suis une école
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="bg-primary-foreground/10 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary w-full sm:w-auto h-14 px-9 text-base">
+              <Button asChild size="lg" variant="outline" className="bg-primary-foreground/10 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary w-full sm:w-auto">
                 <Link to="/club">
                   <TrendingUp className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                   Rejoindre l'équipage
@@ -255,13 +255,13 @@ const Index = () => {
           </div>
         </div>
         {/* Indication de défilement, décorative */}
-        <div aria-hidden="true" className="hidden md:block absolute bottom-7 left-1/2 -translate-x-1/2 z-10 h-12 w-px overflow-hidden bg-primary-foreground/15">
+        <div aria-hidden="true" className="hidden md:block absolute bottom-12 left-1/2 -translate-x-1/2 z-10 h-12 w-px overflow-hidden bg-primary-foreground/15">
           <span className="mn-scroll-cue block h-full w-full bg-turquoise"></span>
         </div>
       </section>
 
       {/* Trust Strip */}
-      <section className="py-4 md:py-5 bg-background border-b" style={{ borderColor: 'hsl(222 44% 25% / 0.08)' }}>
+      <section className="mn-glass relative z-10 -mt-5 md:-mt-6 py-4 md:py-5 border-b" style={{ borderColor: 'hsl(222 44% 25% / 0.08)' }}>
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center items-center gap-x-6 md:gap-x-10 gap-y-2.5">
             {[
@@ -272,7 +272,7 @@ const Index = () => {
               { icon: MapPin, label: "12 pays d'intervention" },
               { icon: Award, label: "Soutenu par la Région Occitanie" },
             ].map(({ icon: Icon, label }) => (
-              <div key={label} className="flex items-center gap-2 text-sm font-medium" style={{ color: 'hsl(222 44% 25% / 0.75)' }}>
+              <div key={label} className="mn-caption flex items-center gap-2 font-medium" style={{ color: 'hsl(222 44% 25% / 0.75)' }}>
                 <Icon className="h-4 w-4 flex-shrink-0" style={{ color: 'hsl(181 67% 54%)' }} />
                 <span>{label}</span>
               </div>
@@ -282,19 +282,19 @@ const Index = () => {
       </section>
 
       {/* Who We Are */}
-      <section ref={fadeServices as React.RefObject<HTMLElement>} className="relative overflow-hidden py-16 md:py-32" style={{ background: 'linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)' }}>
+      <section ref={fadeServices as React.RefObject<HTMLElement>} className="relative overflow-hidden py-12 md:py-24" style={{ background: 'linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)' }}>
         <DarkLayers halo="78% 20%" vignette="15% 90%" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto">
             <div className="mn-eyebrow-light text-center mb-5">À propos</div>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center mb-8 md:mb-12 text-primary-foreground">
+            <h2 className="text-center mb-6 md:mb-10 text-primary-foreground">
               Qui sommes-nous ?
             </h2>
             <div className="prose prose-lg mx-auto text-center max-w-[65ch]">
-              <p className="text-base md:text-lg text-primary-foreground/75 leading-relaxed mb-5 md:mb-8">
+              <p className="mn-body text-primary-foreground/75 mb-5 md:mb-8">
                 Mare Nostrum est une entreprise de services aux entrepreneurs et aux établissements, fondée en 2023 à Toulouse, avec des bureaux à Paris et Casablanca.
               </p>
-              <p className="text-base md:text-lg text-primary-foreground/75 leading-relaxed mb-5 md:mb-8">
+              <p className="mn-body text-primary-foreground/75 mb-5 md:mb-8">
                 Société à mission, familiale et interculturelle, notre raison d'être est de 
                 <strong className="text-primary-foreground"> sécuriser la trajectoire des entreprises à impact</strong> et 
                 renforcer leurs capacités à coopérer, protéger le vivant, et inclure les publics vulnérables.
@@ -327,18 +327,18 @@ const Index = () => {
       </section>
 
       {/* Two Poles */}
-      <section ref={fadePoles as React.RefObject<HTMLElement>} className="py-16 md:py-32 bg-secondary/30">
+      <section ref={fadePoles as React.RefObject<HTMLElement>} className="py-12 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto text-center">
             <div className="mn-eyebrow-turquoise text-center mb-5">Nos offres</div>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-10 md:mb-20 text-foreground">
+            <h2 className="mb-8 md:mb-14 text-foreground">
               Nos deux pôles d'expertise
             </h2>
 
             <div className="grid md:grid-cols-2 gap-5 md:gap-8 max-w-6xl mx-auto">
               <Link
                 to="/education"
-                className="mn-pole group relative flex flex-col justify-between overflow-hidden rounded-lg p-7 md:p-12 min-h-[26rem] md:min-h-[36rem] shadow-lift card-interactive text-left"
+                className="mn-pole group relative flex flex-col justify-between overflow-hidden rounded-lg p-6 md:p-10 min-h-[22rem] md:min-h-[30rem] shadow-lift card-interactive text-left"
               >
                 <div aria-hidden="true" className="mn-pole-bg absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 20% 15%, hsl(var(--mn-turquoise) / 0.22) 0%, transparent 60%), repeating-linear-gradient(135deg, transparent 0 22px, hsl(var(--mn-turquoise) / 0.07) 22px 23px), linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)' }}></div>
                 <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, hsl(var(--mn-ink) / 0.92) 0%, hsl(var(--mn-ink) / 0.55) 42%, transparent 75%)' }}></div>
@@ -352,10 +352,10 @@ const Index = () => {
                   </span>
                 </div>
                 <div className="relative z-10 mt-16">
-                  <h3 className="font-editorial italic text-3xl md:text-5xl font-semibold text-primary-foreground mb-3 md:mb-4" style={{ letterSpacing: '-0.02em', lineHeight: 1.08, textWrap: 'balance' }}>
+                  <h3 className="font-editorial italic font-medium text-[length:var(--fs-h2)] leading-[1.2] text-primary-foreground mb-3 md:mb-4" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>
                     Le cap de l'esprit d'entreprendre
                   </h3>
-                  <p className="text-sm md:text-lg text-primary-foreground/80">
+                  <p className="mn-body text-primary-foreground/80">
                     De la sensibilisation à la professionnalisation, y compris la pré-incubation.
                   </p>
                 </div>
@@ -363,7 +363,7 @@ const Index = () => {
 
               <Link
                 to="/club"
-                className="mn-pole group relative flex flex-col justify-between overflow-hidden rounded-lg p-7 md:p-12 min-h-[26rem] md:min-h-[36rem] shadow-lift card-interactive text-left"
+                className="mn-pole group relative flex flex-col justify-between overflow-hidden rounded-lg p-6 md:p-10 min-h-[22rem] md:min-h-[30rem] shadow-lift card-interactive text-left"
               >
                 <div aria-hidden="true" className="mn-pole-bg absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 80% 15%, hsl(var(--mn-ivory) / 0.14) 0%, transparent 55%), repeating-linear-gradient(135deg, transparent 0 22px, hsl(var(--mn-ivory) / 0.06) 22px 23px), linear-gradient(135deg, hsl(181 67% 38%) 0%, hsl(181 67% 24%) 100%)' }}></div>
                 <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, hsl(var(--mn-ink) / 0.92) 0%, hsl(var(--mn-ink) / 0.55) 42%, transparent 75%)' }}></div>
@@ -377,10 +377,10 @@ const Index = () => {
                   </span>
                 </div>
                 <div className="relative z-10 mt-16">
-                  <h3 className="font-editorial italic text-3xl md:text-5xl font-semibold text-primary-foreground mb-3 md:mb-4" style={{ letterSpacing: '-0.02em', lineHeight: 1.08, textWrap: 'balance' }}>
+                  <h3 className="font-editorial italic font-medium text-[length:var(--fs-h2)] leading-[1.2] text-primary-foreground mb-3 md:mb-4" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>
                     Le Quai des Entrepreneurs
                   </h3>
-                  <p className="text-sm md:text-lg text-primary-foreground/80">
+                  <p className="mn-body text-primary-foreground/80">
                     Vos premiers outils d'IA, vos partenaires &amp; clients, dans un seul espace digital.
                   </p>
                 </div>
@@ -394,10 +394,10 @@ const Index = () => {
       <StatsSection />
 
       {/* Testimonials */}
-      <section ref={fadeTestimonials as React.RefObject<HTMLElement>} className="py-16 md:py-32 bg-secondary/30">
+      <section ref={fadeTestimonials as React.RefObject<HTMLElement>} className="py-12 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-5">Témoignages</div>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center mb-10 md:mb-16 text-foreground">
+          <h2 className="text-center mb-8 md:mb-12 text-foreground">
             Ils nous font confiance
           </h2>
           <div className="grid lg:grid-cols-2 lg:[&>:last-child]:col-span-2 gap-5 md:gap-8 max-w-6xl mx-auto">
@@ -409,14 +409,14 @@ const Index = () => {
       </section>
 
       {/* Partners — bandeau continu */}
-      <section className="relative overflow-hidden py-16 md:py-28" style={{ background: 'linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)' }}>
+      <section className="relative overflow-hidden py-12 md:py-24" style={{ background: 'linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)' }}>
         <DarkLayers halo="50% 0%" vignette="50% 100%" />
         <div className="relative z-10">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-5 md:mb-6 text-primary-foreground">
+            <h2 className="text-center mb-4 md:mb-6 text-primary-foreground">
               Nos Partenaires et Référents
             </h2>
-            <p className="text-center text-lg text-primary-foreground/75 mb-10 md:mb-14 max-w-xl mx-auto leading-relaxed">
+            <p className="mn-body text-center text-primary-foreground/75 mb-8 md:mb-12 max-w-xl mx-auto">
               Ils nous font confiance et contribuent à notre mission
             </p>
           </div>
@@ -454,10 +454,10 @@ const Index = () => {
       </section>
 
       {/* How to Work With Us */}
-      <section ref={fadeHow as React.RefObject<HTMLElement>} className="py-16 md:py-32 bg-background">
+      <section ref={fadeHow as React.RefObject<HTMLElement>} className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-5">Notre approche</div>
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center mb-10 md:mb-16 text-foreground">
+          <h2 className="text-center mb-8 md:mb-12 text-foreground">
             Comment travailler avec nous ?
           </h2>
           <div className="max-w-3xl mx-auto">
@@ -472,14 +472,14 @@ const Index = () => {
                 <div key={item.title} className="flex items-start gap-5 md:gap-8 py-6 md:py-8 mn-hairline">
                   <MaritimeIcon name={item.icon} size={52} className="flex-shrink-0 mt-0.5 opacity-90" />
                   <div>
-                    <h3 className="text-xl md:text-2xl font-semibold mb-2 text-foreground">{item.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                    <h3 className="mb-2 text-foreground">{item.title}</h3>
+                    <p className="mn-body text-muted-foreground">{item.description}</p>
                   </div>
                 </div>
               ))}
             </div>
             <div className="text-center mt-12 md:mt-16">
-              <Button asChild size="lg" className="h-14 px-9 text-base" style={{ boxShadow: 'var(--shadow-cta)' }}>
+              <Button asChild size="lg" className="w-full sm:w-auto" style={{ boxShadow: 'var(--shadow-cta)' }}>
                 <a href="https://meet.marenostrum.tech/rdv-equipe" target="_blank" rel="noopener noreferrer">
                   Planifier un appel découverte
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -493,18 +493,18 @@ const Index = () => {
       <FAQSection faqs={faqs} />
 
       {/* CTA Section */}
-      <section ref={fadeCTA as React.RefObject<HTMLElement>} className="relative overflow-hidden py-20 md:py-36" style={{ background: 'linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)' }}>
+      <section ref={fadeCTA as React.RefObject<HTMLElement>} className="relative overflow-hidden py-16 md:py-28" style={{ background: 'linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)' }}>
         <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, hsl(181 67% 54% / 0.055) 22px 23px)' }}></div>
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 70% 30%, hsl(181 67% 54% / 0.18) 0%, transparent 52%), radial-gradient(ellipse at 15% 80%, hsl(228 56% 8% / 0.65) 0%, transparent 55%)' }}></div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="mn-eyebrow-light mb-6">Travaillons ensemble</div>
-          <h2 className="font-editorial italic text-[2rem] sm:text-4xl md:text-6xl font-semibold mb-6 md:mb-8 text-primary-foreground break-words" style={{ letterSpacing: '-0.03em', textWrap: 'balance' }}>
+          <h2 className="font-editorial italic font-medium mb-5 md:mb-8 text-primary-foreground break-words" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>
             Prêt à construire l'avenir ensemble ?
           </h2>
-          <p className="text-lg text-primary-foreground/75 mb-10 md:mb-12 max-w-xl mx-auto" style={{ lineHeight: '1.65' }}>
+          <p className="mn-lead text-primary-foreground/75 mb-8 md:mb-10 max-w-2xl mx-auto">
             Rejoignez les écoles et entrepreneurs qui transforment leurs ambitions en réalité
           </p>
-          <Button asChild size="lg" variant="secondary" className="h-14 px-9 text-base" style={{ boxShadow: 'var(--shadow-cta)' }}>
+          <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto" style={{ boxShadow: 'var(--shadow-cta)' }}>
             <Link to="/contact">
               Contactez-nous maintenant
               <ArrowRight className="ml-2 h-5 w-5" />

@@ -10,7 +10,7 @@
 
 1. **Aucune couleur brute.** Ni `text-white`, ni `bg-blue-500`, ni `#24335D`, ni `rgb()`. Uniquement les tokens de ce document.
 2. **HSL partout.** Les tokens sont des triplets HSL sans `hsl()` ; on les consomme via `hsl(var(--token))` ou via la classe Tailwind correspondante.
-3. **Les boutons sont des pilules.** `rounded-full`, casse normale, `font-medium`. Jamais `uppercase`, jamais `tracking-[…]` sur un bouton.
+3. **Les boutons sont des pilules.** `rounded-full`, casse normale, graisse 600. Jamais `uppercase`, jamais `tracking-[…]` sur un bouton. Hauteur 52 px pour une action principale.
 4. **Sections sombres = le pattern hero** (dégradé + rayures + halo). Pas de fond uni nuit.
 5. **Fraunces italique pour les titres d'impact, DM Sans pour tout le reste.** Fraunces ne s'utilise jamais en corps de texte.
 6. **`src/components/ui/` est généré par shadcn — on ne l'édite pas.** Seule exception documentée : `button.tsx`.
@@ -18,6 +18,9 @@
 8. **Chaque page importe `Header`, `Footer` et `EnhancedSEOHead`.** Ils ne sont pas montés globalement.
 9. **Toute animation respecte `prefers-reduced-motion`** — c'est géré globalement, à condition d'utiliser les utilitaires de ce document et non des animations maison.
 10. **Ton de marque : expert, institutionnel, français.** Ne jamais mélanger avec le ton d'une autre marque.
+11. **L'échelle typographique est globale.** Une classe `text-5xl` posée sur un titre casse l'échelle du site : on laisse les variables `--fs-*` faire leur travail (§2.2).
+12. **Une seule courbe d'animation**, `--ease-mn`. Jamais `ease`, `ease-out` ni une courbe écrite en dur (§7).
+13. **Le texte publié ne se réécrit jamais** sans demande explicite du propriétaire. Deux contrôles automatiques l'appliquent — voir `CLAUDE.md` et la skill `verifier-contenu`.
 
 ---
 
@@ -120,14 +123,41 @@ Valeurs en usage : `/5` `/10` (fonds légers), `/14` `/18` (bordures), `/40` (bo
 
 ### 2.2 Échelle des titres (définie globalement)
 
-| Balise | Classes appliquées | Letter-spacing |
-|---|---|---|
-| `h1` | `text-4xl md:text-6xl font-bold leading-[1.05]` | `-0.02em` |
-| `h2` | `text-3xl md:text-5xl font-bold leading-tight` | `-0.015em` |
-| `h3` | `text-xl md:text-2xl font-semibold tracking-tight` | — |
-| `h4` | `font-display tracking-tight` | — |
+L'échelle est calée sur une mesure réelle des sites concurrents français
+(LiveMentor, Le Wagon, Bpifrance Création, Réseau Entreprendre, Station F, BGE).
+Elle est définie par des variables dans `src/index.css` et s'applique
+automatiquement à toutes les balises de titre.
 
-Ces styles s'appliquent automatiquement. On ne les redéfinit pas inline, on les **surcharge** si besoin.
+| Variable | Mobile (≤ 480) | Grand écran (≥ 1280) | Interligne |
+|---|---|---|---|
+| `--fs-h1` | 34 px | **56 px** | 1,15 → 1,10 |
+| `--fs-h2` | 26 px | **40 px** | 1,25 → 1,20 |
+| `--fs-h3` | 20 px | 24 px | 1,30 |
+| `--fs-lead` (chapô) | 20 px | 24 px | 1,40 |
+| `--fs-body` | 17 px | **18 px** | 1,60 |
+| `--fs-micro` | 13 px | 14 px | 1,40 |
+
+Les tailles sont en `clamp()` : elles grandissent continûment avec la fenêtre,
+sans palier brutal.
+
+**Pourquoi ces valeurs.** Le rapport entre le titre principal et le corps de
+texte doit rester entre **2,5 et 3,5** sur ce marché : 56 ⁄ 18 = 3,1. Le Wagon
+est à 3,5, LiveMentor à 2,5. Au-delà de 4, on quitte le registre du conseil
+pour celui du lieu événementiel (Station F : 6,9). Le site a été à 108 px de
+titre, soit un rapport de 6 — c'était trop.
+
+**La graisse compte plus que la taille.** Les titres sont en **600**, jamais en
+700, et le titre d'accueil descend à **500**. Les concurrents les plus élégants
+font de même : un 56 px en demi-gras avec un interligne de 1,1 paraît plus posé
+qu'un 44 px en gras avec un interligne large. Fraunces n'est chargée qu'en
+italique 500 : demander 600 produit un faux gras synthétisé, moins net.
+
+**Réduction mobile : −35 à −40 %** sur le titre principal, pas davantage. Le
+corps ne descend jamais sous 17 px, un libellé de bouton jamais sous 15 px.
+
+On ne redéfinit pas ces tailles page par page. Une classe `text-5xl` posée sur
+un titre passe avant la règle globale et casse l'échelle du site : c'est ce qui
+rendait les pages incohérentes avant octobre 2026.
 
 ### 2.3 Le titre éditorial
 
@@ -146,13 +176,25 @@ Sur fond sombre, remplacer `text-foreground` par `text-primary-foreground`. Ajou
 
 ### 2.4 Corps de texte
 
+Trois utilitaires portent l'échelle. On les préfère aux classes Tailwind de
+taille, qui figent une valeur et échappent à l'échelle globale.
+
+| Classe | Taille | Usage |
+|---|---|---|
+| `mn-lead` | 20 → 24 px | chapô, sous-titre de héros |
+| `mn-body` | 17 → 18 px | paragraphe courant |
+| `mn-caption` | 13 → 14 px | légende, mention légale |
+
 | Contexte | Classes |
 |---|---|
-| Paragraphe standard | `text-base text-muted-foreground leading-relaxed` |
-| Paragraphe d'intro / sous-titre | `text-lg md:text-xl text-muted-foreground` + `style={{ lineHeight: "1.65" }}` |
+| Paragraphe standard | `mn-body text-muted-foreground` |
+| Paragraphe d'intro | `mn-lead text-muted-foreground` |
 | Texte long (CGV, articles) | `prose prose-lg max-w-none text-foreground/80` |
-| Légende, mention légale | `text-xs text-muted-foreground` |
-| Mobile | jamais sous `text-sm` (14 px) pour du texte lu, `text-base` (16 px) préféré |
+| Largeur de colonne | 65 caractères maximum (`mn-prose` ou `max-w-prose`) |
+
+Une colonne de texte qui court sur toute la largeur fait « page web ». Une
+colonne de 65 caractères fait « publication » : c'est ce que font tous les
+sites de référence, qui occupent 43 à 51 % de la largeur de fenêtre.
 
 ### 2.5 Micro-labels (eyebrows)
 
@@ -285,10 +327,18 @@ Base : `rounded-full text-sm font-medium` + `gap-2`, transitions 200 ms, focus r
 
 | `size` | Hauteur | Padding | Texte |
 |---|---|---|---|
-| `sm` | 36 px | 16 px | 13 px |
-| `default` | 40 px | 20 px | 14 px |
-| `lg` | 44 px | 28 px | 14 px |
+| `sm` | 44 px mobile, 40 px dès `md` | 20 px | 15 px |
+| `default` | 44 px | 24 px | 15 px |
+| `lg` | **52 px** | 28 px | 16 px |
 | `icon` | 40 × 40 | — | — |
+
+La hauteur de 52 px est la médiane mesurée chez les concurrents (50, 54, 49,
+44). Le texte est en **600**, jamais sous 15 px. La forme pilule est une marque
+de fabrique : on la garde, même si le marché utilise plutôt un rayon de 8 px.
+
+Sur mobile, un bouton principal passe en pleine largeur et conserve sa hauteur.
+**Deux appels à l'action au maximum** au-dessus de la ligne de flottaison : un
+plein, un en contour. Les sites qui en empilent huit n'en font choisir aucun.
 
 ```tsx
 // ✅ lien routeur
@@ -426,20 +476,34 @@ Bouton de soumission : désactivé pendant l'envoi, avec `Loader2 animate-spin`.
 
 Le respect de `prefers-reduced-motion` est global : toute transition et animation est neutralisée quand l'utilisateur le demande. **Ceci ne fonctionne que si on n'utilise pas `!important` ni d'animation JS manuelle.**
 
+**Une seule courbe pour tout le site** : `--ease-mn` = `cubic-bezier(0.4, 0, 0.2, 1)`.
+C'est ce qui donne l'impression d'unité — les sites les plus soignés n'en
+utilisent qu'une. Ne jamais écrire `ease`, `ease-out` ou une autre courbe en dur.
+
 | Besoin | Solution | Durée |
 |---|---|---|
-| Transition générique | `transition-all duration-200` ou `--transition-smooth` | 250 ms |
-| Micro-interaction (bordure, ombre) | `card-interactive` | 150 ms |
+| Survol de bouton | `mn-btn` + `mn-btn-lift` (fond + `translateY(-1px)`) | 150 ms |
+| Micro-interaction (bordure, ombre) | `card-interactive` | 200 ms |
 | Survol d'une carte | `hover-lift` | 200 ms |
-| Apparition au scroll | `fade-up` + `is-visible` (via `useFadeIn`) | 550 ms |
-| Ouverture de menu / modale | `animate-in zoom-in-95 fade-in duration-300` | 300 ms |
-| Pression tactile | `active:scale-90` ou `active:scale-[0.98]` | 150 ms |
+| Soulignement de lien | `mn-link` (`scaleX` sur `::after`) | 200 ms |
+| Apparition au défilement | `fade-up` via `useFadeIn` | 400 ms |
+| Ouverture de menu / modale | `animate-in zoom-in-95 fade-in` | 300 ms |
 
 Règles :
-- Micro-interactions entre **150 et 300 ms**. Au-delà, ça traîne ; en deçà, ça saccade.
+- Durées entre **150 et 400 ms**. Au-delà, ça traîne ; en deçà, ça saccade.
+- Amplitude d'une apparition : **16 px maximum**. Au-delà de 20 px, l'effet
+  devient un gadget.
 - N'animer que `transform` et `opacity`. Jamais `width`, `height`, `top`, `margin`.
-- Les effets de survol vivent dans `@media (hover: hover) and (pointer: fine)` — sinon ils collent au doigt sur mobile. `hover-lift` et `card-interactive` le font déjà.
-- Le survol ne doit **jamais** décaler la mise en page : pas de `scale` sur un élément inline, pas de changement de `font-weight`.
+- Les effets de survol vivent dans `@media (hover: hover) and (pointer: fine)` — sinon ils collent au doigt sur mobile.
+- Le survol ne doit **jamais** décaler la mise en page.
+- Révéler **900 px avant** l'entrée à l'écran (`rootMargin` de `useFadeIn`) :
+  sans cette avance, un défilement rapide laisse un écran blanc.
+
+**Ce qu'on ne fait pas, et c'est délibéré.** Aucun des six concurrents analysés
+n'utilise de parallaxe, de compteur animé en continu, ni de transition entre
+les pages. Les sites les plus agités du marché sont aussi les plus confus. Deux
+mouvements d'ambiance subsistent sur l'accueil — le halo du héros (26 s) et le
+bandeau de logos (55 s) — et doivent rester les seuls.
 
 ---
 
@@ -523,5 +587,7 @@ Un jeu de tokens `.dark` existe dans `index.css` mais **n'est pas activé** sur 
 ---
 
 ## 11. Maintenance de ce document
+
+Dernière refonte : **octobre 2026** — échelle typographique recalée sur une mesure réelle des concurrents français, boutons ramenés à 52 px, courbe d'animation unifiée, cinq effets de mouvement normalisés.
 
 Quand un token, une variante de bouton ou un utilitaire change dans le code, **ce fichier est mis à jour dans le même commit**. Un design system qui ne correspond plus au code est pire qu'aucun design system : il donne confiance dans des règles fausses — c'est exactement ce qui est arrivé à `CHARTE-GRAPHIQUE.md`.

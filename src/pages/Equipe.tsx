@@ -69,7 +69,7 @@ const Equipe = () => {
                         {portrait && <AvatarImage src={portrait} alt={name} className="object-cover" />}
                         <AvatarFallback className="text-xl bg-primary text-primary-foreground">{initials(m)}</AvatarFallback>
                       </Avatar>
-                      <h2 className="text-lg md:text-xl font-bold text-foreground">{name}</h2>
+                      <h2 className="text-foreground">{name}</h2>
                       <p className="text-sm text-muted-foreground mt-1">{m.titre}</p>
                       <p className="inline-flex items-center gap-1 text-xs text-muted-foreground mt-2">
                         <MapPin className="h-3 w-3" />
