@@ -218,18 +218,25 @@ Chaque page utilise `<EnhancedSEOHead>` (**pas** `<SEOHead>` seul). Ce composant
 
 `Header` et `Footer` ne sont **pas** montés globalement : chaque page les importe elle-même. Si tu crées une page, n'oublie pas de les ajouter.
 
-### Briefs par domaine
+### Agents et procédures (si tu travailles avec Claude Code)
 
-Avant de travailler sur une fonctionnalité, lis le brief correspondant dans `.agents/` — et **seulement** celui-là :
+Les anciens briefs `.agents/` ont été remplacés par des agents spécialisés, dans
+`.claude/agents/` : un par domaine (Club et Stripe, Écoles et Niteo, Blog, SEO,
+Design, Supabase, Live, Relecture). Ils sont choisis automatiquement selon la
+demande — il n'y a plus de tableau à consulter.
 
-| Le sujet touche à… | Lire |
-|---|---|
-| Club, tarifs, Stripe | `.agents/club.md` |
-| Écoles, Niteo, B2B | `.agents/education.md` |
-| Blog, articles, mag | `.agents/mag.md` |
-| SEO, métadonnées, schémas | `.agents/seo.md` |
-| Design, CSS, tokens | `.agents/design.md` |
-| Supabase, edge functions | `.agents/backend.md` |
+Les procédures répétables sont dans `.claude/skills/` : publier le site,
+intervenir sur Supabase, relire avant publication, vérifier le contenu, gérer
+une panne.
+
+**Règle qui prime sur tout :** aucun texte publié du site ne se réécrit sans
+l'accord du CEO. Deux contrôles automatiques l'appliquent — les pages juridiques
+sont verrouillées en écriture, et toute prose modifiée est signalée avant la fin
+d'une tâche. Tu peux lancer le contrôle toi-même :
+
+```bash
+python3 .claude/skills/verifier-contenu/scripts/verifier-contenu.py
+```
 
 ---
 
@@ -386,6 +393,31 @@ Le bloc `try_files` a disparu du vhost. Remets-le (section 4), `nginx -t`, puis 
 
 Le build a été fait sans le `.env` — presque toujours parce que quelqu'un a lancé `npm run build` sur le serveur. Vérifie avec le `grep` de la section 5 : si le résultat est `0`, rebuilde depuis ta machine et relance `./deploy-vps.sh`. Ne cherche pas du côté de nginx, les fichiers sont servis correctement ; c'est le JavaScript qui plante dans le navigateur.
 
+### Une page affiche un écran blanc ou « page introuvable » après une publication
+
+Le navigateur du visiteur garde en mémoire l'ancienne page d'accueil, qui
+réclame un fichier dont le nom a changé à la publication — et l'ancien fichier a
+été supprimé du serveur. La page reste blanche, ou affiche « page introuvable »
+alors que tout va bien côté serveur.
+
+Corrigé le 1er octobre 2026 : les deux configurations nginx interdisent
+désormais la mise en cache de `index.html`, tout en gardant un cache long sur
+les fichiers de `assets/` (leur nom change à chaque publication, donc ils
+peuvent être gardés indéfiniment).
+
+```bash
+curl -s -D - -o /dev/null https://www.marenostrum.tech/ | grep -i cache-control
+```
+
+Doit contenir `no-cache`. Si ce n'est pas le cas, la consigne a sauté : voir le
+bloc `location = /index.html` dans les fichiers de configuration des deux sites.
+
+Un visiteur qui a déjà l'ancienne page en mémoire doit recharger une fois en
+forçant (Cmd+Maj+R sur Mac, Ctrl+F5 sur Windows). Ensuite, le problème ne se
+reproduit plus.
+
+---
+
 ### Un déploiement a cassé le site
 
 Le `rsync` utilise `--delete` : il n'y a pas de version précédente sur le serveur. Le rollback se fait depuis Git :
@@ -481,8 +513,12 @@ Le CEO ne code pas. Cette section compte autant que le reste.
 |---|---|
 | `CLAUDE.md` | Instructions du dépôt, architecture détaillée |
 | `README.md` | Démarrage rapide |
-| `CHARTE-GRAPHIQUE.md` | Charte graphique complète |
-| `.agents/*.md` | Briefs par domaine fonctionnel |
+| `DESIGN-SYSTEM.md` | Référence visuelle qui fait autorité |
+| `CHARTE-GRAPHIQUE.md` | Obsolète — ne pas utiliser |
+| `CONSIGNES-ANIMATEUR-LIVE.md` | Mode d'emploi du live conférence |
+| `.claude/agents/*.md` | Agents spécialisés par domaine |
+| `.claude/skills/*/SKILL.md` | Procédures : publier, Supabase, relire, contenu, panne |
+| `docs/ines-*.md` | Profil et fiche de mission d'Inès, la commerciale |
 | `ACTION-PLAN-MARE-NOSTRUM-SEO.md` | Feuille de route SEO |
 | `CHECKLIST-SEO-GEO-AI.md` | Checklist SEO / référencement IA |
 | `render.yaml` | Ancienne configuration Render — historique, plus utilisée après la bascule |
