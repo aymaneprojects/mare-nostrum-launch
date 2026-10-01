@@ -8,8 +8,6 @@ import StatCard from "@/components/StatCard";
 import TestimonialCard from "@/components/TestimonialCard";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import FAQSection from "@/components/FAQSection";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 import StatsSection from "@/components/StatsSection";
 import { useFadeIn } from "@/hooks/useFadeIn";
 import hufLogo from "@/assets/partners/huf.png";
@@ -23,6 +21,13 @@ import toulecoLogo from "@/assets/partners/touleco.png";
 import imaginationsFertilesLogo from "@/assets/partners/imaginations-fertiles.png";
 import emergingBusinessLogo from "@/assets/partners/emerging-business.png";
 import moovjeeLogo from "@/assets/partners/moovjee.png";
+const DarkLayers = ({ halo, vignette }: { halo: string; vignette: string }) => (
+  <>
+    <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, hsl(var(--mn-turquoise) / 0.055) 22px 23px)' }}></div>
+    <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(ellipse at ${halo}, hsl(var(--mn-turquoise) / 0.18) 0%, transparent 52%), radial-gradient(ellipse at ${vignette}, hsl(var(--mn-ink) / 0.7) 0%, transparent 58%)` }}></div>
+  </>
+);
+
 const Index = () => {
   const fadeHero        = useFadeIn(0);
   const fadeServices    = useFadeIn(0);
@@ -216,39 +221,42 @@ const Index = () => {
       <Header />
 
 
-      <section className="relative overflow-hidden py-20 md:py-44" style={{ background: 'linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)' }}>
-        {/* Diagonal stripe texture */}
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, hsl(181 67% 54% / 0.055) 22px 23px)' }}></div>
-        {/* Turquoise radial glow top-left + deep ink vignette bottom-right */}
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 22% 18%, hsl(181 67% 54% / 0.20) 0%, transparent 52%), radial-gradient(ellipse at 80% 88%, hsl(228 56% 8% / 0.75) 0%, transparent 58%)' }}></div>
+      <section className="relative overflow-hidden flex flex-col justify-center min-h-[88svh] md:min-h-[90vh] py-20 md:py-32" style={{ background: 'linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)' }}>
+        <DarkLayers halo="22% 18%" vignette="80% 88%" />
+        {/* Halo turquoise très lent (transform uniquement) */}
+        <div aria-hidden="true" className="mn-hero-halo absolute -top-[25%] -left-[20%] h-[75vmax] w-[75vmax] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, hsl(var(--mn-turquoise) / 0.16) 0%, transparent 62%)' }}></div>
+        {/* Grain fin en CSS pur */}
+        <div aria-hidden="true" className="mn-grain absolute inset-0 pointer-events-none"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-5xl mx-auto text-center">
             <div className="mn-eyebrow-light mb-6 md:mb-8">depuis Toulouse, dans tout l'espace francophone</div>
             <p className="text-base md:text-lg font-medium text-primary-foreground/80 mb-5 md:mb-6 max-w-xl mx-auto" style={{ letterSpacing: '0.01em' }}>
               Vous bâtissez un service ou un produit utile pour demain&nbsp;?
             </p>
-            <h1 className="font-editorial italic text-[2rem] sm:text-4xl md:text-7xl lg:text-[5.25rem] font-semibold text-primary-foreground mb-6 md:mb-10 leading-[1.05] break-words" style={{ letterSpacing: '-0.03em', textWrap: 'balance' }}>Nous traçons la voie de votre <span style={{ color: 'hsl(181 67% 54%)' }}>projet</span> vers ses <span style={{ color: 'hsl(181 67% 54%)' }}>sources de revenus</span>.</h1>
+            <h1 className="font-editorial italic font-semibold text-primary-foreground mb-6 md:mb-10 break-words" style={{ fontSize: 'clamp(2rem, 0.9rem + 5.2vw, 6.75rem)', lineHeight: 1.04, letterSpacing: '-0.03em', textWrap: 'balance' }}>Nous traçons la voie de votre <span className="text-turquoise">projet</span> vers ses <span className="text-turquoise">sources de revenus</span>.</h1>
             <p className="text-base md:text-xl text-primary-foreground/75 mb-10 md:mb-14 max-w-xl mx-auto" style={{ lineHeight: '1.65' }}>
               Mare Nostrum accompagne les écoles et les entrepreneurs francophones.
             </p>
-            
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-6 md:mb-8 px-4">
-              <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
+
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center px-4">
+              <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto h-14 px-9 text-base" style={{ boxShadow: 'var(--shadow-cta)' }}>
                 <Link to="/education">
                   <GraduationCap className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                   Je suis une école
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="bg-primary-foreground/10 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary w-full sm:w-auto">
+              <Button asChild size="lg" variant="outline" className="bg-primary-foreground/10 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary w-full sm:w-auto h-14 px-9 text-base">
                 <Link to="/club">
                   <TrendingUp className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                   Rejoindre l'équipage
                 </Link>
               </Button>
             </div>
-
-
           </div>
+        </div>
+        {/* Indication de défilement, décorative */}
+        <div aria-hidden="true" className="hidden md:block absolute bottom-7 left-1/2 -translate-x-1/2 z-10 h-12 w-px overflow-hidden bg-primary-foreground/15">
+          <span className="mn-scroll-cue block h-full w-full bg-turquoise"></span>
         </div>
       </section>
 
@@ -274,40 +282,41 @@ const Index = () => {
       </section>
 
       {/* Who We Are */}
-      <section ref={fadeServices as React.RefObject<HTMLElement>} className="py-16 md:py-32 bg-background">
-        <div className="container mx-auto px-4">
+      <section ref={fadeServices as React.RefObject<HTMLElement>} className="relative overflow-hidden py-16 md:py-32" style={{ background: 'linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)' }}>
+        <DarkLayers halo="78% 20%" vignette="15% 90%" />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto">
-            <div className="mn-eyebrow-turquoise text-center mb-5">À propos</div>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center mb-8 md:mb-12 text-foreground">
+            <div className="mn-eyebrow-light text-center mb-5">À propos</div>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center mb-8 md:mb-12 text-primary-foreground">
               Qui sommes-nous ?
             </h2>
             <div className="prose prose-lg mx-auto text-center max-w-[65ch]">
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-5 md:mb-8">
+              <p className="text-base md:text-lg text-primary-foreground/75 leading-relaxed mb-5 md:mb-8">
                 Mare Nostrum est une entreprise de services aux entrepreneurs et aux établissements, fondée en 2023 à Toulouse, avec des bureaux à Paris et Casablanca.
               </p>
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-5 md:mb-8">
+              <p className="text-base md:text-lg text-primary-foreground/75 leading-relaxed mb-5 md:mb-8">
                 Société à mission, familiale et interculturelle, notre raison d'être est de 
-                <strong className="text-foreground"> sécuriser la trajectoire des entreprises à impact</strong> et 
+                <strong className="text-primary-foreground"> sécuriser la trajectoire des entreprises à impact</strong> et 
                 renforcer leurs capacités à coopérer, protéger le vivant, et inclure les publics vulnérables.
               </p>
-              <div className="flex flex-wrap justify-center gap-2 md:gap-3 mt-10 md:mt-14 pt-8 md:pt-10 mn-hairline">
-                <div className="flex items-center space-x-2 bg-secondary px-3 py-2 md:px-4 md:py-2 rounded-full text-sm md:text-base">
+              <div className="flex flex-wrap justify-center gap-2 md:gap-3 mt-10 md:mt-14 pt-8 md:pt-10 border-t border-primary-foreground/15">
+                <div className="flex items-center space-x-2 bg-secondary text-secondary-foreground px-3 py-2 md:px-4 md:py-2 rounded-full text-sm md:text-base">
                   <Target className="h-5 w-5 text-primary" />
                   <span className="font-medium">Respect</span>
                 </div>
-                <div className="flex items-center space-x-2 bg-secondary px-4 py-2 rounded-full">
+                <div className="flex items-center space-x-2 bg-secondary text-secondary-foreground px-4 py-2 rounded-full">
                   <Lightbulb className="h-5 w-5 text-accent" />
                   <span className="font-medium">Enthousiasme</span>
                 </div>
-                <div className="flex items-center space-x-2 bg-secondary px-4 py-2 rounded-full">
+                <div className="flex items-center space-x-2 bg-secondary text-secondary-foreground px-4 py-2 rounded-full">
                   <Users className="h-5 w-5 text-primary" />
                   <span className="font-medium">Fiabilité</span>
                 </div>
-                <div className="flex items-center space-x-2 bg-secondary px-4 py-2 rounded-full">
+                <div className="flex items-center space-x-2 bg-secondary text-secondary-foreground px-4 py-2 rounded-full">
                   <TrendingUp className="h-5 w-5 text-accent" />
                   <span className="font-medium">Impact</span>
                 </div>
-                <div className="flex items-center space-x-2 bg-secondary px-4 py-2 rounded-full">
+                <div className="flex items-center space-x-2 bg-secondary text-secondary-foreground px-4 py-2 rounded-full">
                   <Globe className="h-5 w-5 text-primary" />
                   <span className="font-medium">Co-apprentissage</span>
                 </div>
@@ -320,27 +329,33 @@ const Index = () => {
       {/* Two Poles */}
       <section ref={fadePoles as React.RefObject<HTMLElement>} className="py-16 md:py-32 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-6xl mx-auto text-center">
             <div className="mn-eyebrow-turquoise text-center mb-5">Nos offres</div>
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-10 md:mb-20 text-foreground">
               Nos deux pôles d'expertise
             </h2>
 
-            <div className="grid md:grid-cols-2 gap-5 md:gap-8 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-5 md:gap-8 max-w-6xl mx-auto">
               <Link
                 to="/education"
-                className="group relative overflow-hidden rounded-lg p-8 md:p-12 shadow-soft hover-lift card-interactive text-left"
-                style={{ background: 'linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)' }}
+                className="mn-pole group relative flex flex-col justify-between overflow-hidden rounded-lg p-7 md:p-12 min-h-[26rem] md:min-h-[36rem] shadow-lift card-interactive text-left"
               >
-                <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, hsl(181 67% 54% / 0.06) 22px 23px)' }}></div>
-                <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 20% 20%, hsl(181 67% 54% / 0.18) 0%, transparent 60%)' }}></div>
-                <div className="relative z-10">
-                  <div className="mn-eyebrow-light mb-4">Mare Nostrum Éducation</div>
-                  <MaritimeIcon name="sailboat" size={60} className="mb-5" />
-                  <h3 className="text-xl md:text-3xl font-semibold text-primary-foreground mb-3" style={{ letterSpacing: '-0.01em' }}>
+                <div aria-hidden="true" className="mn-pole-bg absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 20% 15%, hsl(var(--mn-turquoise) / 0.22) 0%, transparent 60%), repeating-linear-gradient(135deg, transparent 0 22px, hsl(var(--mn-turquoise) / 0.07) 22px 23px), linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)' }}></div>
+                <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, hsl(var(--mn-ink) / 0.92) 0%, hsl(var(--mn-ink) / 0.55) 42%, transparent 75%)' }}></div>
+                <div className="relative z-10 flex items-start justify-between">
+                  <div>
+                    <div className="mn-eyebrow-light mb-4">Mare Nostrum Éducation</div>
+                    <MaritimeIcon name="sailboat" size={60} />
+                  </div>
+                  <span aria-hidden="true" className="mn-pole-arrow flex h-11 w-11 items-center justify-center rounded-full border border-primary-foreground/40 text-primary-foreground">
+                    <ArrowRight className="h-5 w-5" />
+                  </span>
+                </div>
+                <div className="relative z-10 mt-16">
+                  <h3 className="font-editorial italic text-3xl md:text-5xl font-semibold text-primary-foreground mb-3 md:mb-4" style={{ letterSpacing: '-0.02em', lineHeight: 1.08, textWrap: 'balance' }}>
                     Le cap de l'esprit d'entreprendre
                   </h3>
-                  <p className="text-sm md:text-base text-primary-foreground/75">
+                  <p className="text-sm md:text-lg text-primary-foreground/80">
                     De la sensibilisation à la professionnalisation, y compris la pré-incubation.
                   </p>
                 </div>
@@ -348,18 +363,24 @@ const Index = () => {
 
               <Link
                 to="/club"
-                className="group relative overflow-hidden rounded-lg p-8 md:p-12 shadow-soft hover-lift card-interactive text-left"
-                style={{ background: 'linear-gradient(135deg, hsl(181 67% 38%) 0%, hsl(181 67% 24%) 100%)' }}
+                className="mn-pole group relative flex flex-col justify-between overflow-hidden rounded-lg p-7 md:p-12 min-h-[26rem] md:min-h-[36rem] shadow-lift card-interactive text-left"
               >
-                <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, rgba(255,255,255,0.05) 22px 23px)' }}></div>
-                <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.10) 0%, transparent 55%)' }}></div>
-                <div className="relative z-10">
-                  <div className="mn-eyebrow-light mb-4">Mare Nostrum Croissance</div>
-                  <MaritimeIcon name="wheel" size={60} className="mb-5" />
-                  <h3 className="text-xl md:text-3xl font-semibold text-primary-foreground mb-3" style={{ letterSpacing: '-0.01em' }}>
+                <div aria-hidden="true" className="mn-pole-bg absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 80% 15%, hsl(var(--mn-ivory) / 0.14) 0%, transparent 55%), repeating-linear-gradient(135deg, transparent 0 22px, hsl(var(--mn-ivory) / 0.06) 22px 23px), linear-gradient(135deg, hsl(181 67% 38%) 0%, hsl(181 67% 24%) 100%)' }}></div>
+                <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, hsl(var(--mn-ink) / 0.92) 0%, hsl(var(--mn-ink) / 0.55) 42%, transparent 75%)' }}></div>
+                <div className="relative z-10 flex items-start justify-between">
+                  <div>
+                    <div className="mn-eyebrow-light mb-4">Mare Nostrum Croissance</div>
+                    <MaritimeIcon name="wheel" size={60} />
+                  </div>
+                  <span aria-hidden="true" className="mn-pole-arrow flex h-11 w-11 items-center justify-center rounded-full border border-primary-foreground/40 text-primary-foreground">
+                    <ArrowRight className="h-5 w-5" />
+                  </span>
+                </div>
+                <div className="relative z-10 mt-16">
+                  <h3 className="font-editorial italic text-3xl md:text-5xl font-semibold text-primary-foreground mb-3 md:mb-4" style={{ letterSpacing: '-0.02em', lineHeight: 1.08, textWrap: 'balance' }}>
                     Le Quai des Entrepreneurs
                   </h3>
-                  <p className="text-sm md:text-base text-primary-foreground/75">
+                  <p className="text-sm md:text-lg text-primary-foreground/80">
                     Vos premiers outils d'IA, vos partenaires &amp; clients, dans un seul espace digital.
                   </p>
                 </div>
@@ -379,91 +400,55 @@ const Index = () => {
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center mb-10 md:mb-16 text-foreground">
             Ils nous font confiance
           </h2>
-          <div className="grid md:grid-cols-3 gap-8 md:gap-8 max-w-6xl mx-auto mb-14 md:mb-24">
+          <div className="grid lg:grid-cols-2 lg:[&>:last-child]:col-span-2 gap-5 md:gap-8 max-w-6xl mx-auto">
             <TestimonialCard text="Quelque chose qui était présent à chaque instant (du Programme) c'est l'échange d'expérience et d'opinion. Ce qui permettait un retour permanent, constructif et pointilleux tout ça dans la bienveillance et la bonne humeur" author="Annabel" role="Étudiante et néo-entrepreneure accompagnée" organization="2024" />
             <TestimonialCard text="Un acteur efficace, engagé et authentique, qui accompagne réellement les établissements dans leur transformation." author="Géraldine Le Caer" role="Directrice d'établissement partenaire" />
             <TestimonialCard text="Être ici aux côtés de l'ensemble des porteurs de projet, pour moi, c'était important. Parce que ce sont des jeunes audacieux, persévérants, et parce qu'on a besoin d'un entrepreneuriat qui est en capacité de pouvoir changer le monde. Ils mettent leurs convictions au service de solutions. Ce sont des solutions concrètes et performantes. Faites leur confiance, aidez-les, accompagnez-les !" author="Nadia Pellefigue" role="Vice-présidente de la Région Occitanie" />
           </div>
-          <div className="max-w-6xl mx-auto mn-hairline pt-14 md:pt-24">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-5 md:mb-6 text-foreground">
+        </div>
+      </section>
+
+      {/* Partners — bandeau continu */}
+      <section className="relative overflow-hidden py-16 md:py-28" style={{ background: 'linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)' }}>
+        <DarkLayers halo="50% 0%" vignette="50% 100%" />
+        <div className="relative z-10">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-5 md:mb-6 text-primary-foreground">
               Nos Partenaires et Référents
             </h2>
-            <p className="text-center text-lg text-muted-foreground mb-10 md:mb-14 max-w-xl mx-auto leading-relaxed">
+            <p className="text-center text-lg text-primary-foreground/75 mb-10 md:mb-14 max-w-xl mx-auto leading-relaxed">
               Ils nous font confiance et contribuent à notre mission
             </p>
-            
-            <Carousel opts={{
-            align: "start",
-            loop: true
-          }} plugins={[Autoplay({
-            delay: 2000
-          })]} className="w-full">
-              <CarouselContent>
-                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
-                    <img src={hufLogo} alt="HUF - Partenaire Mare Nostrum accompagnement entrepreneuriat Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
-                  </div>
-                </CarouselItem>
-                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
-                    <img src={bidayaLogo} alt="Bidaya - Partenaire Mare Nostrum entrepreneuriat Maroc Casablanca" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
-                  </div>
-                </CarouselItem>
-                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
-                    <img src={toulouseWayLogo} alt="Toulouse Way - Partenaire écosystème entrepreneurial Toulouse Occitanie" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
-                  </div>
-                </CarouselItem>
-                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
-                    <img src={airbusLogo} alt="Airbus Développement - Partenaire innovation entreprises Toulouse Aerospace" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
-                  </div>
-                </CarouselItem>
-                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
-                    <img src={roseLabLogo} alt="Rose Lab - Partenaire incubateur startups entreprises à impact" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
-                  </div>
-                </CarouselItem>
-                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
-                    <img src={cpme31Logo} alt="CPME 31 Haute-Garonne - Confédération PME entrepreneurs Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
-                  </div>
-                </CarouselItem>
-                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
-                    <img src={creditMutuelLogo} alt="Crédit Mutuel - Partenaire financement entrepreneurs PME" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
-                  </div>
-                </CarouselItem>
-                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <a href="https://www.touleco.fr/" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
-                      <img src={toulecoLogo} alt="Touleco - Média économique Toulouse Occitanie partenaire Mare Nostrum" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
-                    </div>
-                  </a>
-                </CarouselItem>
-                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <a href="https://www.imaginationsfertiles.fr/" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
-                      <img src={imaginationsFertilesLogo} alt="Imaginations Fertiles - Partenaire créativité innovation entrepreneuriale" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
-                    </div>
-                  </a>
-                </CarouselItem>
-                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <a href="https://emergingbusinessfactory.com/" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
-                      <img src={emergingBusinessLogo} alt="Emerging Business Factory - Accélérateur startups scale-ups Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
-                    </div>
-                  </a>
-                </CarouselItem>
-                <CarouselItem className="basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <a href="https://www.moovjee.fr/" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-lg hover-lift">
-                      <img src={moovjeeLogo} alt="Moovjee - Mouvement jeunes entrepreneurs France accompagnement création" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
-                    </div>
-                  </a>
-                </CarouselItem>
-              </CarouselContent>
-            </Carousel>
+          </div>
+          <div className="mn-marquee mn-marquee-mask overflow-hidden motion-reduce:overflow-x-auto">
+            <div className="mn-marquee-track flex w-max animate-scroll motion-reduce:animate-none">
+                <div className="flex shrink-0 gap-4 md:gap-6 pr-4 md:pr-6">
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={hufLogo} alt="HUF - Partenaire Mare Nostrum accompagnement entrepreneuriat Toulouse" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={bidayaLogo} alt="Bidaya - Partenaire Mare Nostrum entrepreneuriat Maroc Casablanca" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={toulouseWayLogo} alt="Toulouse Way - Partenaire écosystème entrepreneurial Toulouse Occitanie" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={airbusLogo} alt="Airbus Développement - Partenaire innovation entreprises Toulouse Aerospace" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={roseLabLogo} alt="Rose Lab - Partenaire incubateur startups entreprises à impact" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={cpme31Logo} alt="CPME 31 Haute-Garonne - Confédération PME entrepreneurs Toulouse" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={creditMutuelLogo} alt="Crédit Mutuel - Partenaire financement entrepreneurs PME" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <a href="https://www.touleco.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg"><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={toulecoLogo} alt="Touleco - Média économique Toulouse Occitanie partenaire Mare Nostrum" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
+                  <a href="https://www.imaginationsfertiles.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg"><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={imaginationsFertilesLogo} alt="Imaginations Fertiles - Partenaire créativité innovation entrepreneuriale" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
+                  <a href="https://emergingbusinessfactory.com/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg"><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={emergingBusinessLogo} alt="Emerging Business Factory - Accélérateur startups scale-ups Toulouse" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
+                  <a href="https://www.moovjee.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg"><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={moovjeeLogo} alt="Moovjee - Mouvement jeunes entrepreneurs France accompagnement création" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
+                </div>
+                <div className="flex shrink-0 gap-4 md:gap-6 pr-4 md:pr-6" aria-hidden="true">
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={hufLogo} alt="" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={bidayaLogo} alt="" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={toulouseWayLogo} alt="" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={airbusLogo} alt="" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={roseLabLogo} alt="" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={cpme31Logo} alt="" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={creditMutuelLogo} alt="" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <a href="https://www.touleco.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg" tabIndex={-1}><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={toulecoLogo} alt="" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
+                  <a href="https://www.imaginationsfertiles.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg" tabIndex={-1}><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={imaginationsFertilesLogo} alt="" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
+                  <a href="https://emergingbusinessfactory.com/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg" tabIndex={-1}><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={emergingBusinessLogo} alt="" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
+                  <a href="https://www.moovjee.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg" tabIndex={-1}><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={moovjeeLogo} alt="" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
+                </div>
+            </div>
           </div>
         </div>
       </section>
@@ -494,7 +479,7 @@ const Index = () => {
               ))}
             </div>
             <div className="text-center mt-12 md:mt-16">
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="h-14 px-9 text-base" style={{ boxShadow: 'var(--shadow-cta)' }}>
                 <a href="https://meet.marenostrum.tech/rdv-equipe" target="_blank" rel="noopener noreferrer">
                   Planifier un appel découverte
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -519,7 +504,7 @@ const Index = () => {
           <p className="text-lg text-primary-foreground/75 mb-10 md:mb-12 max-w-xl mx-auto" style={{ lineHeight: '1.65' }}>
             Rejoignez les écoles et entrepreneurs qui transforment leurs ambitions en réalité
           </p>
-          <Button asChild size="lg" variant="secondary">
+          <Button asChild size="lg" variant="secondary" className="h-14 px-9 text-base" style={{ boxShadow: 'var(--shadow-cta)' }}>
             <Link to="/contact">
               Contactez-nous maintenant
               <ArrowRight className="ml-2 h-5 w-5" />

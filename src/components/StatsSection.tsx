@@ -1,5 +1,3 @@
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 import CountUpNumber from "@/components/CountUpNumber";
 import { useInView } from "@/hooks/useInView";
 
@@ -22,41 +20,53 @@ export default function StatsSection() {
   const { ref, inView } = useInView(0.2);
 
   return (
-    <section ref={ref as React.RefObject<HTMLElement>} className="py-16 md:py-32 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="mn-eyebrow-turquoise text-center mb-5">L'équipage en chiffres</div>
-        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center mb-10 md:mb-16 text-foreground">
+    <section
+      ref={ref as React.RefObject<HTMLElement>}
+      className="relative overflow-hidden py-16 md:py-32"
+      style={{ background: "linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)" }}
+    >
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{ backgroundImage: "repeating-linear-gradient(135deg, transparent 0 22px, hsl(var(--mn-turquoise) / 0.055) 22px 23px)" }}
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse at 50% 12%, hsl(var(--mn-turquoise) / 0.2) 0%, transparent 55%), radial-gradient(ellipse at 85% 95%, hsl(var(--mn-ink) / 0.7) 0%, transparent 55%)" }}
+      />
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="mn-eyebrow-light text-center mb-5">L'équipage en chiffres</div>
+        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-center mb-10 md:mb-20 text-primary-foreground">
           Pourquoi nous choisir
         </h2>
 
-        <Carousel
-          opts={{ align: "start", loop: true }}
-          plugins={[Autoplay({ delay: 3000 })]}
-          className="w-full max-w-6xl mx-auto"
-        >
-          <CarouselContent className="-ml-4">
-            {STATS.map((s, i) => (
-              <CarouselItem key={i} className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
+          {STATS.map((s, i) => {
+            const big = i < 4;
+            return (
+              <div
+                key={i}
+                className="border-t border-primary-foreground/15 max-lg:even:border-l lg:border-l lg:[&:nth-child(4n+1)]:border-l-0 px-3 py-7 md:px-8 md:py-12 text-center min-w-0"
+              >
                 <div
-                  className={`bg-card border border-border rounded-lg p-6 md:p-7 h-full hover-lift cursor-default`}
+                  className={`font-editorial font-semibold tabular-nums ${
+                    big
+                      ? "text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-turquoise"
+                      : "text-4xl sm:text-5xl md:text-6xl text-primary-foreground"
+                  }`}
+                  style={{ letterSpacing: "-0.03em", lineHeight: "1" }}
                 >
-                  <div
-                    className={`font-editorial font-semibold text-5xl mb-0 ${
-                      s.color === "turquoise" ? "text-turquoise" : "text-nuit"
-                    }`}
-                    style={{ letterSpacing: "-0.025em", lineHeight: "1" }}
-                  >
-                    <CountUpNumber value={s.value} inView={inView} duration={1400 + i * 50} />
-                  </div>
-                  <div className="mn-stat-label">{s.label}</div>
-                  <div className="text-sm text-muted-foreground">{s.sub}</div>
+                  <CountUpNumber value={s.value} inView={inView} duration={1800 + i * 80} />
                 </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+                <div className="mn-eyebrow-light mt-4 md:mt-5">{s.label}</div>
+                <div className="text-sm text-primary-foreground/70 mt-1">{s.sub}</div>
+              </div>
+            );
+          })}
+        </div>
 
-        <p className="text-center text-sm text-muted-foreground mt-10 md:mt-14 mn-hairline pt-6 md:pt-8 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-center text-sm text-primary-foreground/60 mt-10 md:mt-16 border-t border-primary-foreground/15 pt-6 md:pt-8 max-w-3xl mx-auto leading-relaxed">
           France • Maroc • Tunisie • Algérie • Sénégal • Côte d'Ivoire • Bénin • Cameroun • Burkina Faso • RD Congo • Égypte • Canada
         </p>
       </div>

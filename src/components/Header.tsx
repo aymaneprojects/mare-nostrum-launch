@@ -26,8 +26,8 @@ const Header = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -52,11 +52,11 @@ const Header = () => {
   return (
     <>
       {/* Wrapper sticky — transparent, laisse passer les clics sur les zones vides */}
-      <header className="sticky top-0 z-50 w-full px-4 md:px-6 pt-4 pb-2 pointer-events-none">
+      <header className={`sticky top-0 z-50 w-full h-[5.5rem] md:h-24 px-4 md:px-6 pb-2 pointer-events-none transition-[padding] duration-200 ${scrolled ? "pt-2" : "pt-4"}`}>
         <nav
-          className="pointer-events-auto mx-auto flex h-12 md:h-14 max-w-7xl items-center justify-between px-3 md:px-5 rounded-full transition-all duration-300"
+          className={`pointer-events-auto mx-auto flex max-w-7xl items-center justify-between px-3 md:px-5 rounded-full transition-all duration-200 ${scrolled ? "h-11 md:h-12" : "h-14 md:h-16"}`}
           style={{
-            backgroundColor: scrolled ? "rgba(255,255,255,0.98)" : "rgba(255,255,255,0.93)",
+            backgroundColor: scrolled ? "rgba(255,255,255,0.82)" : "rgba(255,255,255,0.96)",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
             border: "1px solid hsl(222 44% 25% / 0.12)",
@@ -70,7 +70,7 @@ const Header = () => {
             <img
               src={logo}
               alt="Mare Nostrum"
-              className="h-9 md:h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+              className={`w-auto transition-all duration-200 group-hover:scale-105 ${scrolled ? "h-8 md:h-8" : "h-9 md:h-11"}`}
             />
           </Link>
 
