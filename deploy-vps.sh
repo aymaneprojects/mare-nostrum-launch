@@ -25,13 +25,27 @@ TARGETS=(
 )
 
 # Sur le serveur, les commandes s'exécutent en local ; ailleurs, via SSH.
+#
+# Le transfert passe par une ARCHIVE envoyée en un seul flux, puis par un rsync
+# exécuté SUR le serveur. rsync à travers SSH depuis un Mac s'est bloqué
+# indéfiniment le 2 octobre 2026 — sans message, sans fin — en laissant le site
+# à moitié publié, donc en écran blanc. Un flux unique n'a pas ce défaut, et le
+# rsync local au serveur reste instantané.
+DEPOT_TEMP="/tmp/mn-dist"
+
 if [ -d /home/marenostrum/htdocs ]; then
   run() { bash -c "$1"; }
-  copy() { rsync -a --delete dist/ "$1"; }
+  envoyer() { rm -rf "$DEPOT_TEMP" && mkdir -p "$DEPOT_TEMP" && cp -a dist/. "$DEPOT_TEMP/"; }
 else
-  run() { ssh "$SERVER" "$1"; }
-  copy() { rsync -az --delete dist/ "$SERVER:$1"; }
+  run() { ssh -o ConnectTimeout=15 "$SERVER" "$1"; }
+  envoyer() {
+    # --no-xattrs : sans lui, macOS ajoute des attributs que tar côté Linux
+    # ignore bruyamment, une ligne par fichier.
+    COPYFILE_DISABLE=1 tar --no-xattrs -czf - -C dist . | ssh -o ConnectTimeout=15 "$SERVER" \
+      "rm -rf $DEPOT_TEMP && mkdir -p $DEPOT_TEMP && tar xzf - -C $DEPOT_TEMP"
+  }
 fi
+copy() { run "rsync -a --delete $DEPOT_TEMP/ \"$1\""; }
 
 # ── Garde-fou : ne jamais remplacer une version plus récente ─────────────────
 echo "==> Vérification de la version en ligne"
@@ -83,6 +97,16 @@ fi
 echo "==> Build de production"
 npm run build
 
+echo "==> Envoi de l'archive ($(du -sh dist | cut -f1))"
+envoyer
+livres_source=$(run "ls $DEPOT_TEMP/assets | wc -l" | tr -d ' ')
+attendus=$(ls dist/assets | wc -l | tr -d ' ')
+if [ "$livres_source" != "$attendus" ]; then
+  echo "ÉCHEC : archive incomplète ($livres_source fichiers sur $attendus)." >&2
+  exit 1
+fi
+echo "    reçue : $livres_source fichiers"
+
 for target in "${TARGETS[@]}"; do
   IFS=':' read -r domain user dir <<< "$target"
 
@@ -103,7 +127,33 @@ for target in "${TARGETS[@]}"; do
     echo "ÉCHEC : $domain a répondu $code au lieu de 200" >&2
     exit 1
   fi
-  echo "    OK ($code)"
+
+  # La page d'accueil répond 200 même quand le site est vide : nginx sert
+  # index.html quoi qu'il arrive. Il faut donc vérifier le FICHIER JAVASCRIPT
+  # qu'elle réclame. Le 2 octobre 2026, un transfert interrompu a laissé le site
+  # en écran blanc pendant une heure, avec un contrôle au vert.
+  bundle=$(run "curl -sk --http1.1 --resolve $domain:443:127.0.0.1 https://$domain/ \
+    | grep -o 'assets/index-[^\"]*\.js' | head -1")
+  if [ -z "$bundle" ]; then
+    echo "ÉCHEC : aucun script trouvé dans la page de $domain" >&2
+    exit 1
+  fi
+  jscode=$(run "curl -sk --http1.1 --resolve $domain:443:127.0.0.1 \
+    -o /dev/null -w '%{http_code}' https://$domain/$bundle")
+  if [ "$jscode" != "200" ]; then
+    echo "ÉCHEC : $domain sert une page vide — $bundle répond $jscode." >&2
+    echo "Le transfert est incomplet. Relancez le déploiement." >&2
+    exit 1
+  fi
+
+  # Nombre de fichiers livrés, comparé au build local : un transfert interrompu
+  # se voit immédiatement.
+  livres=$(run "ls $dir/assets | wc -l" | tr -d ' ')
+  if [ "$livres" != "$attendus" ]; then
+    echo "ÉCHEC : $livres fichiers livrés sur $attendus attendus ($domain)." >&2
+    exit 1
+  fi
+  echo "    OK ($code, $livres fichiers, $bundle)"
 done
 
 echo "==> Terminé — en ligne : $local_commit"

@@ -393,6 +393,34 @@ Le bloc `try_files` a disparu du vhost. Remets-le (section 4), `nginx -t`, puis 
 
 Le build a été fait sans le `.env` — presque toujours parce que quelqu'un a lancé `npm run build` sur le serveur. Vérifie avec le `grep` de la section 5 : si le résultat est `0`, rebuilde depuis ta machine et relance `./deploy-vps.sh`. Ne cherche pas du côté de nginx, les fichiers sont servis correctement ; c'est le JavaScript qui plante dans le navigateur.
 
+### Le site entier est vide après un déploiement (le plus grave)
+
+Les pages répondent 200, mais l'écran reste blanc : le fichier JavaScript qu'elles
+réclament n'existe pas sur le serveur. C'est arrivé le 2 octobre 2026 — le
+transfert s'est bloqué en plein milieu, après avoir supprimé les anciens
+fichiers. Le site est resté vide une heure sans que rien ne l'indique, parce que
+le contrôle de fin de déploiement ne testait que la page d'accueil, et que nginx
+la sert toujours.
+
+Diagnostic en deux commandes :
+
+```bash
+curl -s https://www.marenostrum.tech/ | grep -o 'assets/index-[^"]*\.js'
+curl -s -o /dev/null -w '%{http_code}\n' https://www.marenostrum.tech/assets/index-XXXX.js
+```
+
+Le second doit répondre `200`. S'il répond `404`, le site est vide : relance
+`./deploy-vps.sh`.
+
+Deux protections ont été ajoutées le jour même :
+- le transfert passe par une **archive envoyée en un seul flux**, puis par une
+  copie locale sur le serveur. L'outil de synchronisation à travers SSH se
+  bloquait sans fin depuis un Mac ;
+- le contrôle de fin vérifie désormais **le fichier JavaScript** et le **nombre
+  de fichiers livrés**, et non plus seulement la page d'accueil.
+
+---
+
 ### Une page affiche un écran blanc ou « page introuvable » après une publication
 
 Le navigateur du visiteur garde en mémoire l'ancienne page d'accueil, qui
