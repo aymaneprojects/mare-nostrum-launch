@@ -34,10 +34,22 @@ const Contact = () => {
         supabase
       } = await import("@/integrations/supabase/client");
 
+      // Le champ « website » est un piège anti-spam : il n'existe PAS en base.
+      // L'envoyer tel quel faisait échouer tout enregistrement (PGRST204) et
+      // cassait le formulaire pour tout le monde. On le retire ici, et on le
+      // laisse aux fonctions serveur, qui s'en servent pour filtrer.
+      const { website: piege, ...donnees } = formData;
+
+      // Robot : on fait comme si tout s'était bien passé, sans rien enregistrer.
+      if (piege) {
+        setIsSuccess(true);
+        return;
+      }
+
       // Save to database
       const {
         error: dbError
-      } = await supabase.from('contact_submissions').insert([formData]);
+      } = await supabase.from('contact_submissions').insert([donnees]);
       if (dbError) {
         console.error("Error saving to database:", dbError);
         toast({
