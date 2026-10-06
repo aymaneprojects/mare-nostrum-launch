@@ -140,7 +140,9 @@ serve(async (req) => {
       ]),
     ].filter((a) => !destinataires.includes(a));
 
-    const sujet = `PRISE DE CONTACT — ${name} — ${libelles.join(" · ")}`;
+    // Objet volontairement nu : la personne le voit aussi, puisqu'elle est en
+    // copie cachée. Les pôles restent dans Airtable, pas dans l'objet.
+    const sujet = `PRISE DE CONTACT — ${name}`;
 
     // Message volontairement court. On ne dit JAMAIS à la personne qu'on a saisi
     // ses coordonnées quelque part : on acte simplement que le contact a eu lieu
