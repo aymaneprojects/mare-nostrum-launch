@@ -77,12 +77,6 @@ const esc = (v: unknown) =>
 
 const prenomDe = (nom: string) => nom.trim().split(/\s+/)[0] || "";
 
-/** Prénom du responsable, déduit de son adresse (alexis@… → Alexis). */
-const prenomResponsable = (adresse: string) => {
-  const base = adresse.split("@")[0];
-  return base.charAt(0).toUpperCase() + base.slice(1);
-};
-
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
@@ -146,29 +140,17 @@ serve(async (req) => {
       ]),
     ].filter((a) => !destinataires.includes(a));
 
-    const liste = libelles.length === 1
-      ? libelles[0]
-      : `${libelles.slice(0, -1).join(", ")} et ${libelles[libelles.length - 1]}`;
-
     const sujet = `PRISE DE CONTACT — ${name} — ${libelles.join(" · ")}`;
 
     // Message volontairement court. On ne dit JAMAIS à la personne qu'on a saisi
     // ses coordonnées quelque part : on acte simplement que le contact a eu lieu
     // — événement, rencontre ou site — et on annonce qui la recontacte.
-    const qui = [...new Set(destinataires.map(prenomResponsable))];
-    const quiTexte = qui.length === 1
-      ? `${qui[0]} revient vers vous`
-      : `${qui.slice(0, -1).join(", ")} et ${qui[qui.length - 1]} reviennent vers vous`;
-
     const html = `
 <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.65;color:#1b2340;max-width:560px">
   <p>Bonjour ${esc(prenomDe(name))},</p>
 
   <p>Ravis d'avoir été en contact avec vous — lors d'un événement, d'une rencontre
   ou depuis notre site.</p>
-
-  <p>Votre intérêt porte sur <strong>${esc(liste)}</strong> : ${esc(quiTexte)} très
-  prochainement pour en échanger.</p>
 
   <p>À très bientôt,<br>
   <strong>L'équipe Mare Nostrum</strong></p>
