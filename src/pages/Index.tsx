@@ -260,7 +260,14 @@ const Index = () => {
       </section>
 
       {/* Trust Strip */}
-      <section className="mn-glass relative z-10 -mt-5 md:-mt-6 py-4 md:py-5 border-b" style={{ borderColor: 'hsl(222 44% 25% / 0.08)' }}>
+      {/* Bande de preuves. Elle était en ivoire translucide et chevauchait le héros :
+          entre deux sections sombres, cela donnait une barre grise à l'arête dure.
+          Elle est désormais sombre, séparée par deux filets fins — la continuité
+          du héros, pas une rupture. */}
+      <section
+        className="relative z-10 border-y border-primary-foreground/10 py-4 md:py-5"
+        style={{ background: 'hsl(var(--mn-ink))' }}
+      >
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center items-center gap-x-6 md:gap-x-10 gap-y-2.5">
             {[
@@ -271,8 +278,8 @@ const Index = () => {
               { icon: MapPin, label: "12 pays d'intervention" },
               { icon: Award, label: "Soutenu par la Région Occitanie" },
             ].map(({ icon: Icon, label }) => (
-              <div key={label} className="mn-caption flex items-center gap-2 font-medium" style={{ color: 'hsl(222 44% 25% / 0.75)' }}>
-                <Icon className="h-4 w-4 flex-shrink-0" style={{ color: 'hsl(181 67% 54%)' }} />
+              <div key={label} className="mn-caption flex items-center gap-2 font-medium text-primary-foreground/75">
+                <Icon className="h-4 w-4 flex-shrink-0 text-turquoise" />
                 <span>{label}</span>
               </div>
             ))}
