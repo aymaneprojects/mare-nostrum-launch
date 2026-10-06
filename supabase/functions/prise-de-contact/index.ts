@@ -149,8 +149,7 @@ serve(async (req) => {
 <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.65;color:#1b2340;max-width:560px">
   <p>Bonjour ${esc(prenomDe(name))},</p>
 
-  <p>Ravis d'avoir été en contact avec vous — lors d'un événement, d'une rencontre
-  ou depuis notre site.</p>
+  <p>Ravis d'avoir été en contact avec vous.</p>
 
   <p>À très bientôt,<br>
   <strong>L'équipe Mare Nostrum</strong></p>
