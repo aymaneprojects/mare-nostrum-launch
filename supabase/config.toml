@@ -32,3 +32,6 @@ verify_jwt = false
 
 [functions.stripe-payment-webhook]
 verify_jwt = false
+
+[functions.prise-de-contact]
+verify_jwt = false

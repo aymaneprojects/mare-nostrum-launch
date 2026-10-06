@@ -11,6 +11,15 @@ import PageHero from "@/components/PageHero";
 import { useToast } from "@/hooks/use-toast";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import { EVT, track } from "@/lib/analytics";
+/** Les cinq pôles de Mare Nostrum. L'ordre est celui du discours de l'entreprise. */
+const POLES = [
+  { cle: "expertise", libelle: "Expertise",           detail: "Conseil et accompagnement sur mesure" },
+  { cle: "agent_ia",  libelle: "Agent IA",            detail: "Agents d'intelligence artificielle" },
+  { cle: "club",      libelle: "Club",                detail: "La communauté d'entrepreneurs" },
+  { cle: "formation", libelle: "Centre de formation", detail: "Organisme certifié Qualiopi" },
+  { cle: "niteo",     libelle: "Niteo",               detail: "L'incubateur" },
+];
+
 const Contact = () => {
   const {
     toast
@@ -26,6 +35,11 @@ const Contact = () => {
     message: "",
     website: "", // honeypot — doit rester vide
   });
+  // Pôles Mare Nostrum qui intéressent la personne. Au moins un est exigé :
+  // c'est lui qui décide à qui part la prise de contact.
+  const [poles, setPoles] = useState<string[]>([]);
+  const basculerPole = (cle: string) =>
+    setPoles(p => (p.includes(cle) ? p.filter(x => x !== cle) : [...p, cle]));
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -38,7 +52,11 @@ const Contact = () => {
       // L'envoyer tel quel faisait échouer tout enregistrement (PGRST204) et
       // cassait le formulaire pour tout le monde. On le retire ici, et on le
       // laisse aux fonctions serveur, qui s'en servent pour filtrer.
-      const { website: piege, ...donnees } = formData;
+      const { website: piege, ...champs } = formData;
+      const donnees = {
+        ...champs,
+        message: `${champs.message}\n\n[Pôles : ${poles.join(", ")}]`,
+      };
 
       // Robot : on fait comme si tout s'était bien passé, sans rien enregistrer.
       if (piege) {
@@ -60,14 +78,14 @@ const Contact = () => {
         return;
       }
 
-      // Send confirmation email
-      const {
-        error
-      } = await supabase.functions.invoke('send-contact-confirmation', {
-        body: formData
+      // Prise de contact : un seul message, routé vers le responsable du pôle
+      // choisi, avec la personne en copie cachée. Remplace l'ancien couple
+      // « e-mail de confirmation » + « notification à l'équipe ».
+      const { error } = await supabase.functions.invoke("prise-de-contact", {
+        body: { ...donnees, poles },
       });
       if (error) {
-        console.error("Error sending confirmation:", error);
+        console.error("prise-de-contact:", error);
         toast({
           title: "Erreur",
           description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
@@ -76,20 +94,15 @@ const Contact = () => {
         return;
       }
 
-      // Send notification to Mare Nostrum team
-      await supabase.functions.invoke('send-contact-notification', {
-        body: formData
-      });
-
-      // Send data to n8n webhook via proxy
+      // Rapporte le contact aux automatisations existantes (n8n).
       try {
         await supabase.functions.invoke('webhook-proxy', {
-          body: { type: 'contact', data: formData }
+          body: { type: 'contact', data: { ...donnees, poles } }
         });
       } catch (webhookError) {
         console.error("Webhook error:", webhookError);
       }
-      
+
       track(EVT.generateLead, { form: "contact" });
       setIsSuccess(true);
       toast({
@@ -98,6 +111,7 @@ const Contact = () => {
       });
 
       // Reset form
+      setPoles([]);
       setFormData({
         name: "",
         email: "",
@@ -324,12 +338,44 @@ const Contact = () => {
                   </Select>
                 </div>
 
+                <fieldset>
+                  <legend className="text-sm font-medium leading-none">Ce qui vous intéresse *</legend>
+                  <p className="mn-caption text-muted-foreground mt-1">Plusieurs choix possibles.</p>
+                  <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                    {POLES.map(p => {
+                      const actif = poles.includes(p.cle);
+                      return (
+                        <label
+                          key={p.cle}
+                          className={`flex min-h-11 cursor-pointer items-start gap-3 rounded-lg border p-3 transition-colors ${
+                            actif ? "border-accent bg-accent/10" : "border-border hover:border-accent/50"
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            className="mt-0.5 h-5 w-5 shrink-0 accent-[hsl(var(--mn-turquoise))]"
+                            checked={actif}
+                            onChange={() => basculerPole(p.cle)}
+                          />
+                          <span>
+                            <span className="block text-sm font-medium text-foreground">{p.libelle}</span>
+                            <span className="mn-caption block text-muted-foreground">{p.detail}</span>
+                          </span>
+                        </label>
+                      );
+                    })}
+                  </div>
+                  {poles.length === 0 && (
+                    <p className="mn-caption text-muted-foreground mt-2">Choisissez au moins un pôle.</p>
+                  )}
+                </fieldset>
+
                 <div>
                   <Label htmlFor="message">Votre message *</Label>
                   <Textarea id="message" required value={formData.message} onChange={e => handleChange("message", e.target.value)} placeholder="Parlez-nous de votre projet, vos besoins, vos objectifs..." rows={6} className="mt-2" />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                <Button type="submit" size="lg" className="w-full" disabled={isSubmitting || poles.length === 0}>
                   {isSubmitting ? (
                     <>
                       <Loader2 className="mr-2 h-5 w-5 animate-spin" />
