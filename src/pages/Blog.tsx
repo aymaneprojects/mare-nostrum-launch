@@ -226,6 +226,7 @@ const Blog = () => {
                     size="icon"
                     onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                     disabled={currentPage === 1}
+                    aria-label="Page précédente"
                   >
                     <ChevronLeft className="h-4 w-4" />
                   </Button>
@@ -237,6 +238,8 @@ const Blog = () => {
                         variant={currentPage === page ? "default" : "outline"}
                         size="icon"
                         onClick={() => setCurrentPage(page)}
+                        aria-current={currentPage === page ? "page" : undefined}
+                        aria-label={`Page ${page}`}
                         className="w-10 h-10"
                       >
                         {page}
@@ -249,6 +252,7 @@ const Blog = () => {
                     size="icon"
                     onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                     disabled={currentPage === totalPages}
+                    aria-label="Page suivante"
                   >
                     <ChevronRight className="h-4 w-4" />
                   </Button>

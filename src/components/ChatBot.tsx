@@ -441,6 +441,7 @@ const ChatBot = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
+                aria-label="Votre message"
                 placeholder="Posez votre question..."
                 className="flex-1 rounded-full border-border text-sm"
                 disabled={isLoading}

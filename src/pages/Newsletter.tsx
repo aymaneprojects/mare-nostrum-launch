@@ -59,7 +59,7 @@ const Newsletter = () => {
           <div className="relative mb-7 flex items-center gap-3.5">
             <img src="/logo.jpg" alt="Mare Nostrum" className="h-11 w-11 object-contain bg-card p-0.5" />
             <div>
-              <div className="font-editorial text-[32px] font-semibold leading-none text-primary-foreground">ITER</div>
+              <div role="heading" aria-level={1} className="font-editorial text-[32px] font-semibold leading-none text-primary-foreground">ITER</div>
               <div className="mn-eyebrow-light mt-1.5">par Mare Nostrum</div>
             </div>
           </div>

@@ -350,6 +350,23 @@ All colors MUST be HSL.
     .mn-btn-lift:not(:disabled):hover { transform: translateY(-1px); }
   }
 
+  /* Retour IMMÉDIAT à l'appui, au doigt comme à la souris. Sans lui, un bouton
+     ne réagit qu'au relâchement et paraît mort : le retour doit vivre sur le
+     contact, pas sur la fin du geste (principe « response » de apple-design).
+     Prioritaire sur le survol, et très court : 100 ms. */
+  .mn-btn:not(:disabled):active {
+    transform: scale(0.97);
+    transition-duration: 0.1s;
+  }
+  .card-interactive:active { transform: scale(0.99); transition-duration: 0.1s; }
+
+  /* Supprime le délai de 300 ms que certains navigateurs mobiles ajoutent avant
+     de réagir à un appui (attente d'un éventuel double-tap). Aucun élément de ce
+     site n'utilise le double-tap : on ne paie pas ce coût pour rien. */
+  a, button, [role="button"], label, summary, input, select, textarea {
+    touch-action: manipulation;
+  }
+
   /* ── Lien de navigation : soulignement qui se déploie (200 ms) ───── */
   .mn-link-u { position: relative; --mn-u-inset: 0px; --mn-u-bottom: 0px; }
   .mn-link-u::after {
@@ -652,4 +669,24 @@ All colors MUST be HSL.
     .mn-link-u::after { transition: none; }
     .mn-pole:hover .mn-pole-bg, .mn-pole:hover .mn-pole-arrow { transform: none; }
   }
+}
+
+/* ── Réglages d'accessibilité du système ─────────────────────────────────
+   Les surfaces translucides (en-tête, bande de preuves, bannière) restent
+   lisibles pour les personnes qui ont demandé moins de transparence ou plus de
+   contraste : fond opaque, plus de flou, bordure franche. */
+@media (prefers-reduced-transparency: reduce) {
+  .mn-glass,
+  header,
+  [class*="backdrop-blur"] {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  .mn-glass { background-color: hsl(var(--mn-ivory)) !important; }
+  header { background-color: hsl(var(--background)) !important; }
+}
+@media (prefers-contrast: more) {
+  .mn-card { border-color: hsl(var(--mn-nuit)) !important; }
+  .mn-glass { background-color: hsl(var(--mn-ivory)) !important; border-bottom: 1px solid hsl(var(--mn-nuit)); }
+  .mn-btn { box-shadow: inset 0 0 0 1.5px hsl(var(--mn-nuit)); }
 }

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Users, CheckCircle2, ArrowRight, Calendar, MessageSquare, Target, Clock } from "lucide-react";
+import PageHero from "@/components/PageHero";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
@@ -78,30 +79,26 @@ const MentoratIndividuel = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-[hsl(var(--mn-ink))] py-16 md:py-24">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <Breadcrumbs
-              items={[
-                { label: "Entrepreneurs", href: "/entrepreneurs/accompagnement-francophonie-afrique" },
-                { label: "Mentorat individuel", href: "/entrepreneurs/mentorat-individuel" }
-              ]}
-            />
-            <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-4 md:mb-6">
-              Mentorat Entrepreneur Individuel
-            </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/90 mb-8">
-              Des séances personnalisées avec des entrepreneurs expérimentés pour débloquer vos challenges
-            </p>
-            <Button asChild size="lg" variant="secondary" className="text-base md:text-lg">
-              <Link to="/contact">
-                Réserver ma première séance
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        breadcrumbs={
+          <Breadcrumbs
+                        items={[
+                          { label: "Entrepreneurs", href: "/entrepreneurs/accompagnement-francophonie-afrique" },
+                          { label: "Mentorat individuel", href: "/entrepreneurs/mentorat-individuel" }
+                        ]}
+                      />
+        }
+        title="Mentorat Entrepreneur Individuel"
+        subtitle="Des séances personnalisées avec des entrepreneurs expérimentés pour débloquer vos challenges"
+        ctas={
+          <Button asChild size="lg" variant="secondary" className="text-base md:text-lg">
+                        <Link to="/contact">
+                          Réserver ma première séance
+                          <ArrowRight className="ml-2 h-5 w-5" />
+                        </Link>
+                      </Button>
+        }
+      />
 
       {/* Comment ça fonctionne */}
       <section className="py-16 md:py-24 bg-background">

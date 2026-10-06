@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle2, ArrowRight, Clock, Target, Users } from "lucide-react";
+import PageHero from "@/components/PageHero";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
@@ -113,24 +114,18 @@ const DiagnosticGratuit = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-16 md:py-24">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <Breadcrumbs
-              items={[
-                { label: "Écoles", href: "/ecoles/transformation-entrepreneuriale" },
-                { label: "Diagnostic gratuit", href: "/ecoles/diagnostic-gratuit" }
-              ]}
-            />
-            <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-4 md:mb-6">
-              Diagnostic Entrepreneuriat Gratuit
-            </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/90 mb-8">
-              30 minutes pour identifier les meilleures opportunités pour votre établissement
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        breadcrumbs={
+          <Breadcrumbs
+                        items={[
+                          { label: "Écoles", href: "/ecoles/transformation-entrepreneuriale" },
+                          { label: "Diagnostic gratuit", href: "/ecoles/diagnostic-gratuit" }
+                        ]}
+                      />
+        }
+        title="Diagnostic Entrepreneuriat Gratuit"
+        subtitle="30 minutes pour identifier les meilleures opportunités pour votre établissement"
+      />
 
       {/* Benefits + Form Section */}
       <section className="py-16 md:py-24 bg-background">

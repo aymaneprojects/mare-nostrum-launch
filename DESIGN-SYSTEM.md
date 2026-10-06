@@ -364,15 +364,18 @@ Cible tactile minimale 44 px : sur mobile, préférer `size="lg"` ou `h-11` pour
 
 ### 5.2 `PageHero` — `src/components/PageHero.tsx`
 
-Le héros de toutes les pages internes. Applique automatiquement le pattern sombre, le titre Fraunces italique et l'eyebrow clair.
+Le héros de **toutes** les pages internes. Applique automatiquement le pattern sombre (dégradé nuit → encre, rayures, halo turquoise), le titre Fraunces italique et l'eyebrow clair. **Une page ne fabrique jamais son propre héros** : c'est ce qui rendait le site disparate, chaque page ayant sa hauteur, son sous-titre et son dégradé.
 
 ```tsx
 interface PageHeroProps {
-  eyebrow?: string;      // rendu en mn-eyebrow-light
-  title: string;         // h1 Fraunces italique, text-wrap: balance
-  subtitle?: string;     // text-primary-foreground/80, max-w-2xl
-  ctas?: ReactNode;      // boutons, empilés mobile / en ligne desktop
-  size?: "sm" | "md" | "lg";   // py-12/20 · py-16/28 · py-20/36
+  eyebrow?: string;       // rendu en mn-eyebrow-light
+  title: ReactNode;       // h1 Fraunces italique, text-wrap: balance — un <span> coloré est permis
+  subtitle?: ReactNode;   // mn-lead, text-primary-foreground/80, max-w-2xl
+  ctas?: ReactNode;       // boutons, empilés mobile / en ligne desktop
+  breadcrumbs?: ReactNode;// fil d'Ariane au-dessus du titre, recoloré pour le fond sombre
+  meta?: ReactNode;       // ligne sous le titre : auteur · date · temps de lecture
+  align?: "center" | "left";   // « left » pour les articles ; « center » par défaut
+  size?: "sm" | "md" | "lg";   // py-10/20 · py-12/24 · py-16/32
 }
 ```
 
@@ -391,6 +394,8 @@ interface PageHeroProps {
 ```
 
 Sur fond sombre, le CTA principal est `variant="secondary"` (turquoise), pas `default` (nuit sur nuit, invisible).
+
+**Exceptions assumées** — pages dont le héros n'est pas un bandeau centré : l'accueil (héros unique), Niteo (marque distincte, sous-domaine propre), le parcours du diagnostic (l'écran de couverture fait partie d'un enchaînement d'étapes), la page du livre blanc (deux colonnes avec formulaire), la newsletter et les écrans du live. Les pages juridiques sont verrouillées en écriture.
 
 ### 5.3 `MaritimeIcon` — `src/components/MaritimeIcon.tsx`
 
@@ -498,6 +503,10 @@ Règles :
 - Le survol ne doit **jamais** décaler la mise en page.
 - Révéler **900 px avant** l'entrée à l'écran (`rootMargin` de `useFadeIn`) :
   sans cette avance, un défilement rapide laisse un écran blanc.
+
+**Retour à l'appui.** Un bouton réagit au **contact**, pas au relâchement : `.mn-btn:active` le réduit à 97 % en 100 ms, `.card-interactive:active` à 99 %. Sans cela, un bouton ne bouge qu'à la fin du geste et paraît mort au doigt. `touch-action: manipulation` est posé sur tous les éléments cliquables pour supprimer le délai de 300 ms de certains navigateurs mobiles : aucun élément du site n'utilise le double-tap.
+
+**Réglages système.** Les surfaces translucides (en-tête, bande de preuves, bannière) deviennent opaques sous `prefers-reduced-transparency`, et gagnent une bordure franche sous `prefers-contrast: more`. Une matière translucide ne doit jamais coûter la lisibilité.
 
 **Ce qu'on ne fait pas, et c'est délibéré.** Aucun des six concurrents analysés
 n'utilise de parallaxe, de compteur animé en continu, ni de transition entre

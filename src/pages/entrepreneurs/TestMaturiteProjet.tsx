@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ArrowLeft, CheckCircle2, Sparkles, Rocket, Users } from "lucide-react";
+import PageHero from "@/components/PageHero";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
@@ -180,24 +181,18 @@ const TestMaturiteProjet = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-12 md:py-20">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <Breadcrumbs
-              items={[
-                { label: "Entrepreneurs", href: "/entrepreneurs/accompagnement-francophonie-afrique" },
-                { label: "Test maturité", href: "/entrepreneurs/test-maturite-projet" }
-              ]}
-            />
-            <h1 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
-              Test de Maturité Projet
-            </h1>
-            <p className="text-lg text-primary-foreground/90">
-              Évaluez votre projet en 5 minutes et découvrez le programme adapté
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        breadcrumbs={
+          <Breadcrumbs
+                        items={[
+                          { label: "Entrepreneurs", href: "/entrepreneurs/accompagnement-francophonie-afrique" },
+                          { label: "Test maturité", href: "/entrepreneurs/test-maturite-projet" }
+                        ]}
+                      />
+        }
+        title="Test de Maturité Projet"
+        subtitle="Évaluez votre projet en 5 minutes et découvrez le programme adapté"
+      />
 
       {/* Quiz Section */}
       <section className="py-12 md:py-20 bg-background flex-1">

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Brain, BarChart3, Bot, Lightbulb, GraduationCap, Cog, TrendingUp, Users, ArrowRight, CheckCircle2 } from "lucide-react";
 import Header from "@/components/Header";
+import PageHero from "@/components/PageHero";
 import Footer from "@/components/Footer";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import FAQSection from "@/components/FAQSection";
@@ -79,26 +80,20 @@ const OffreIA = () => {
       />
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-[hsl(var(--mn-ink))] py-16 md:py-32">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mn-eyebrow-light mb-4 md:mb-6">Mare Nostrum IA</div>
-            <h1 className="text-primary-foreground mb-4 md:mb-6">
-              L'IA au service de votre projet entrepreneurial
-            </h1>
-            <p className="text-lg md:text-2xl text-primary-foreground/90 mb-8 md:mb-12">
-              Transformez votre entreprise grâce à l'intelligence artificielle. De la formation aux solutions sur mesure, nous vous accompagnons.
-            </p>
-            <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
-              <Link to="/contact">
-                Discuter de votre projet
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        size="lg"
+        eyebrow="Mare Nostrum IA"
+        title="L'IA au service de votre projet entrepreneurial"
+        subtitle="Transformez votre entreprise grâce à l'intelligence artificielle. De la formation aux solutions sur mesure, nous vous accompagnons."
+        ctas={
+          <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
+            <Link to="/contact">
+              Discuter de votre projet
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Link>
+          </Button>
+        }
+      />
 
       {/* Challenges Section */}
       <section className="py-16 md:py-24 bg-background">

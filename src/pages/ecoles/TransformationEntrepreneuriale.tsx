@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { GraduationCap, Users, Lightbulb, CheckCircle2, ArrowRight, Clock, Target, Zap } from "lucide-react";
 import Header from "@/components/Header";
+import PageHero from "@/components/PageHero";
 import Footer from "@/components/Footer";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -59,33 +60,27 @@ const TransformationEntrepreneuriale = () => {
       />
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-[hsl(var(--mn-ink))] py-16 md:py-32">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mn-eyebrow-light mb-4 md:mb-6">Mare Nostrum pour les Écoles</div>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-4 md:mb-6">
-              Programmes d'Entrepreneuriat pour Écoles
-            </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 md:mb-12 max-w-3xl mx-auto">
-              Une alternative agile aux dispositifs traditionnels. Intégrez l'esprit d'entreprendre dans votre établissement avec des programmes sur-mesure.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" variant="secondary" className="text-base md:text-lg">
-                <Link to="/ecoles/diagnostic-gratuit">
-                  Demander un diagnostic gratuit
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="text-base md:text-lg border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
-                <Link to="/contact">
-                  Nous contacter
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        size="lg"
+        eyebrow="Mare Nostrum pour les Écoles"
+        title="Programmes d'Entrepreneuriat pour Écoles"
+        subtitle="Une alternative agile aux dispositifs traditionnels. Intégrez l'esprit d'entreprendre dans votre établissement avec des programmes sur-mesure."
+        ctas={
+          <>
+            <Button asChild size="lg" variant="secondary" className="text-base md:text-lg">
+              <Link to="/ecoles/diagnostic-gratuit">
+                Demander un diagnostic gratuit
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="text-base md:text-lg border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+              <Link to="/contact">
+                Nous contacter
+              </Link>
+            </Button>
+          </>
+        }
+      />
 
       {/* Problématiques Section */}
       <section className="py-16 md:py-24 bg-background">

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Calendar, User, Clock, BarChart3, Target, TrendingUp, CheckCircle2, PieChart } from "lucide-react";
+import PageHero from "@/components/PageHero";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
@@ -39,36 +40,35 @@ const ImpactMesureStartup = () => {
       <Header />
 
       {/* Hero Article */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-16 md:py-24">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <Breadcrumbs
-              items={[
-                { label: "Magazine", href: "/blog" },
-                { label: "Mesure d'Impact", href: "/mag/impact-mesure-startup" }
-              ]}
-            />
-            <div className="mn-eyebrow-light mb-6">Thought Leadership</div>
-            <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-6">
-              Mesurer l'Impact Social de sa Startup : Guide Complet des Méthodes et Frameworks
-            </h1>
-            <div className="flex flex-wrap items-center gap-6 text-primary-foreground/80">
-              <div className="flex items-center gap-2">
-                <User className="h-4 w-4" />
-                <span>Mare Nostrum</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4" />
-                <span>Janvier 2025</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4" />
-                <span>15 min de lecture</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        breadcrumbs={
+          <Breadcrumbs
+                        items={[
+                          { label: "Magazine", href: "/blog" },
+                          { label: "Mesure d'Impact", href: "/mag/impact-mesure-startup" }
+                        ]}
+                      />
+        }
+        eyebrow="Thought Leadership"
+        title="Mesurer l'Impact Social de sa Startup : Guide Complet des Méthodes et Frameworks"
+        meta={
+          <div className="flex flex-wrap items-center gap-6 text-primary-foreground/80">
+                        <div className="flex items-center gap-2">
+                          <User className="h-4 w-4" />
+                          <span>Mare Nostrum</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar className="h-4 w-4" />
+                          <span>Janvier 2025</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Clock className="h-4 w-4" />
+                          <span>15 min de lecture</span>
+                        </div>
+                      </div>
+        }
+        align="left"
+      />
 
       {/* Article Content */}
       <article className="py-12 md:py-20 bg-background">

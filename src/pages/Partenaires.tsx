@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import PageHero from "@/components/PageHero";
 import Footer from "@/components/Footer";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 
@@ -104,26 +105,11 @@ const Partenaires = () => (
     />
     <Header />
 
-    {/* Hero */}
-    <section
-      className="relative overflow-hidden py-20 md:py-32"
-      style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}
-    >
-      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(135deg, transparent 0 22px, hsl(181 67% 54% / 0.055) 22px 23px)" }} />
-      <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 22% 18%, hsl(181 67% 54% / 0.18) 0%, transparent 52%), radial-gradient(ellipse at 80% 85%, hsl(228 56% 8% / 0.65) 0%, transparent 55%)" }} />
-      <div className="container mx-auto px-4 relative z-10 text-center">
-        <div className="mn-eyebrow-light mb-4">Écosystème Mare Nostrum</div>
-        <h1
-          className="font-editorial italic font-semibold text-primary-foreground leading-tight mb-5"
-          style={{ letterSpacing: "-0.02em" }}
-        >
-          Nos partenaires
-        </h1>
-        <p className="text-primary-foreground/75 text-lg max-w-2xl mx-auto leading-relaxed">
-          Des institutions, des entreprises et des établissements d'enseignement engagés à nos côtés pour faire grandir l'entrepreneuriat dans la francophonie.
-        </p>
-      </div>
-    </section>
+    <PageHero
+      eyebrow="Écosystème Mare Nostrum"
+      title="Nos partenaires"
+      subtitle="Des institutions, des entreprises et des établissements d'enseignement engagés à nos côtés pour faire grandir l'entrepreneuriat dans la francophonie."
+    />
 
     {/* Section 1 — Partenaires institutionnels & économiques */}
     <section className="py-16 md:py-24 bg-background">
