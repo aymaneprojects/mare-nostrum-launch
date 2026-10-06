@@ -77,6 +77,12 @@ const esc = (v: unknown) =>
 
 const prenomDe = (nom: string) => nom.trim().split(/\s+/)[0] || "";
 
+/** Prénom du responsable, déduit de son adresse (alexis@… → Alexis). */
+const prenomResponsable = (adresse: string) => {
+  const base = adresse.split("@")[0];
+  return base.charAt(0).toUpperCase() + base.slice(1);
+};
+
 serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
@@ -146,42 +152,29 @@ serve(async (req) => {
 
     const sujet = `PRISE DE CONTACT — ${name} — ${libelles.join(" · ")}`;
 
+    // Message volontairement court. On ne dit JAMAIS à la personne qu'on a saisi
+    // ses coordonnées quelque part : on acte simplement que le contact a eu lieu
+    // — événement, rencontre ou site — et on annonce qui la recontacte.
+    const qui = [...new Set(destinataires.map(prenomResponsable))];
+    const quiTexte = qui.length === 1
+      ? `${qui[0]} revient vers vous`
+      : `${qui.slice(0, -1).join(", ")} et ${qui[qui.length - 1]} reviennent vers vous`;
+
     const html = `
-<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;color:#1b2340;max-width:600px">
+<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.65;color:#1b2340;max-width:560px">
   <p>Bonjour ${esc(prenomDe(name))},</p>
 
-  <p>Nous avons échangé récemment — lors d'un événement, sur notre site ou à l'occasion
-  d'une rencontre — et nous avons noté vos coordonnées afin de poursuivre la conversation.</p>
+  <p>Ravis d'avoir été en contact avec vous — lors d'un événement, d'une rencontre
+  ou depuis notre site.</p>
 
-  <p>Mare Nostrum accompagne les entrepreneurs, les écoles et les organisations, depuis
-  Toulouse et dans tout l'espace francophone. D'après notre échange, votre intérêt porte
-  sur <strong>${esc(liste)}</strong> :</p>
+  <p>Votre intérêt porte sur <strong>${esc(liste)}</strong> : ${esc(quiTexte)} très
+  prochainement pour en échanger.</p>
 
-  <ul style="padding-left:18px">
-    ${choisis.map((p) => `<li style="margin-bottom:6px"><strong>${esc(POLES[p].libelle)}</strong> — ${esc(POLES[p].phrase)}.</li>`).join("")}
-  </ul>
-
-  <p>Un membre de l'équipe revient vers vous sous 48 heures ouvrées pour convenir d'un
-  premier échange et voir, concrètement, ce que nous pourrions construire ensemble. Vous
-  pouvez aussi répondre directement à ce message.</p>
-
-  <p>Au plaisir de vous lire,<br>
+  <p>À très bientôt,<br>
   <strong>L'équipe Mare Nostrum</strong></p>
 
-  <hr style="border:none;border-top:1px solid #e3e1da;margin:28px 0">
-
-  <p style="font-size:13px;color:#5b6179;margin-bottom:6px"><strong>Coordonnées enregistrées</strong></p>
-  <table style="font-size:13px;color:#5b6179;border-collapse:collapse">
-    <tr><td style="padding:2px 12px 2px 0">Nom</td><td>${esc(name)}</td></tr>
-    <tr><td style="padding:2px 12px 2px 0">E-mail</td><td>${esc(email)}</td></tr>
-    ${phone ? `<tr><td style="padding:2px 12px 2px 0">Téléphone</td><td>${esc(phone)}</td></tr>` : ""}
-    ${country ? `<tr><td style="padding:2px 12px 2px 0">Pays</td><td>${esc(country)}</td></tr>` : ""}
-    ${message ? `<tr><td style="padding:2px 12px 2px 0;vertical-align:top">Message</td><td>${esc(message)}</td></tr>` : ""}
-  </table>
-
-  <p style="font-size:12px;color:#8a8fa3;margin-top:24px">
-    Vous recevez ce message parce que vous nous avez confié vos coordonnées. Si c'est une
-    erreur, répondez à ce message et nous les supprimerons immédiatement.
+  <p style="font-size:13px;color:#8a8fa3;margin-top:28px">
+    Toulouse · Paris · Casablanca — <a href="https://www.marenostrum.tech" style="color:#8a8fa3">marenostrum.tech</a>
   </p>
 </div>`;
 
@@ -192,7 +185,7 @@ serve(async (req) => {
         from: "Mare Nostrum <no-reply@marenostrum.tech>",
         to: destinataires,
         bcc: copieCachee,
-        reply_to: CONTACT,
+        reply_to: email.trim(),
         subject: sujet,
         html,
       }),
