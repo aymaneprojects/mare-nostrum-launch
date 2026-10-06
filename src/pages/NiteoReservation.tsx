@@ -103,10 +103,10 @@ export default function NiteoReservation() {
             <div>
               <img src={logoNiteo} alt="Niteo Toulouse 2026" className="h-16 md:h-20 mb-6" />
               <div className="mn-eyebrow-light mb-4">Mardi 16 juin 2026</div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-4 leading-tight">
                 Demo Day<br />Niteo Toulouse 2026
               </h1>
-              <p className="text-base md:text-lg text-white/75 mb-8 max-w-md leading-relaxed">
+              <p className="text-base md:text-lg text-primary-foreground/75 mb-8 max-w-md leading-relaxed">
                 Venez assister aux pitchs des étudiants entrepreneurs en tant qu'invité.
                 Remise des prix, cocktail et networking.
               </p>
@@ -118,10 +118,10 @@ export default function NiteoReservation() {
                 ].map((item, i) => (
                   <div
                     key={i}
-                    className="flex items-center gap-2 px-4 py-2 rounded-sm text-sm font-medium text-white/90"
-                    style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)" }}
+                    className="flex items-center gap-2 px-4 py-2 rounded-sm text-sm font-medium text-primary-foreground/90"
+                    style={{ background: "hsl(var(--primary-foreground) / 0.08)", border: "1px solid hsl(var(--primary-foreground) / 0.12)" }}
                   >
-                    <span style={{ color: "hsl(181 67% 54%)" }}>{item.icon}</span>
+                    <span style={{ color: "hsl(var(--mn-turquoise))" }}>{item.icon}</span>
                     {item.text}
                   </div>
                 ))}
@@ -132,16 +132,16 @@ export default function NiteoReservation() {
             <div
               className="rounded-xl p-6 md:p-8"
               style={{
-                background: "rgba(255,255,255,0.06)",
+                background: "hsl(var(--primary-foreground) / 0.06)",
                 backdropFilter: "blur(18px)",
                 WebkitBackdropFilter: "blur(18px)",
-                border: "1px solid rgba(255,255,255,0.13)",
-                boxShadow: "0 8px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08)",
+                border: "1px solid hsl(var(--primary-foreground) / 0.13)",
+                boxShadow: "0 8px 40px hsl(var(--mn-ink) / 0.25), inset 0 1px 0 hsl(var(--primary-foreground) / 0.08)",
               }}
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-1 h-6 rounded-full" style={{ background: "hsl(181 67% 54%)" }} />
-                <span className="text-white font-semibold text-sm tracking-widest uppercase">Programme de la journée</span>
+                <div className="w-1 h-6 rounded-full" style={{ background: "hsl(var(--mn-turquoise))" }} />
+                <span className="text-primary-foreground font-semibold text-sm tracking-widest uppercase">Programme de la journée</span>
               </div>
 
               {/* Timeline */}
@@ -167,7 +167,7 @@ export default function NiteoReservation() {
                         <div
                           className="w-[10px] h-[10px] rounded-full mt-[5px] transition-transform duration-200 group-hover:scale-125"
                           style={{
-                            background: step.highlight ? "hsl(181 67% 54%)" : "rgba(255,255,255,0.25)",
+                            background: step.highlight ? "hsl(var(--mn-turquoise))" : "hsl(var(--primary-foreground) / 0.25)",
                             boxShadow: step.highlight ? "0 0 8px hsl(181 67% 54% / 0.6)" : "none",
                             marginLeft: "15px",
                           }}
@@ -177,12 +177,12 @@ export default function NiteoReservation() {
                       <div className={`pb-5 ${i === arr.length - 1 ? "pb-0" : ""}`}>
                         <span
                           className="text-xs font-bold tabular-nums block mb-0.5"
-                          style={{ color: "hsl(181 67% 54%)" }}
+                          style={{ color: "hsl(var(--mn-turquoise))" }}
                         >
                           {step.time}
                         </span>
                         <span
-                          className={`text-sm leading-snug ${step.highlight ? "font-semibold text-white" : "text-white/70"}`}
+                          className={`text-sm leading-snug ${step.highlight ? "font-semibold text-primary-foreground" : "text-primary-foreground/70"}`}
                         >
                           {step.label}
                         </span>
@@ -194,8 +194,8 @@ export default function NiteoReservation() {
 
               {/* Note en bas */}
               <div
-                className="mt-6 pt-5 text-xs text-white/50 leading-relaxed"
-                style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+                className="mt-6 pt-5 text-xs text-primary-foreground/50 leading-relaxed"
+                style={{ borderTop: "1px solid hsl(var(--primary-foreground) / 0.08)" }}
               >
                 Présence possible sur toute la durée (14h–19h30) ou uniquement à partir de 17h30 pour la remise des prix et le cocktail.
               </div>

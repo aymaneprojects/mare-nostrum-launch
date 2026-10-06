@@ -88,11 +88,11 @@ export default function ExitIntentPopup() {
       role="dialog"
       aria-modal="true"
       aria-labelledby="ep-title"
-      className="fixed inset-0 z-50 flex overflow-y-auto p-4 bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex overflow-y-auto p-4 bg-ink/60 backdrop-blur-sm"
       onClick={handleClose}
     >
       <div
-        className="w-full max-w-md m-auto bg-background rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 fade-in duration-300"
+        className="w-full max-w-md m-auto bg-background rounded-2xl shadow-[var(--shadow-lift)] overflow-hidden animate-in zoom-in-95 fade-in duration-300"
         onClick={e => e.stopPropagation()}
       >
         {/* ── Header ── */}
@@ -102,10 +102,10 @@ export default function ExitIntentPopup() {
 
           <button
             onClick={handleClose}
-            className="absolute top-2 right-2 w-11 h-11 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+            className="absolute top-2 right-2 w-11 h-11 flex items-center justify-center rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors"
             aria-label="Fermer"
           >
-            <X className="h-4 w-4 text-white" />
+            <X className="h-4 w-4 text-primary-foreground" />
           </button>
 
           <div className="flex items-center gap-2 mb-3">
@@ -115,11 +115,11 @@ export default function ExitIntentPopup() {
             </span>
           </div>
 
-          <h2 id="ep-title" className="font-editorial italic text-3xl text-white leading-tight mb-2">
+          <h2 id="ep-title" className="font-editorial italic text-3xl text-primary-foreground leading-tight mb-2">
             Attendez !<br />
             <span className="text-[hsl(var(--mn-turquoise))]">–50%</span> le premier mois
           </h2>
-          <p className="text-sm text-white/60 leading-relaxed">
+          <p className="text-sm text-primary-foreground/60 leading-relaxed">
             Remplis le formulaire — ton code promo personnalisé t'est envoyé par email instantanément.
           </p>
         </div>

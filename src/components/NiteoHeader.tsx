@@ -7,7 +7,7 @@ const CTA_URL = "https://airtable.com/appZ8ykNuUOv89ou0/shrxZTmKppjTEHTjE";
 
 export default function NiteoHeader() {
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-primary/90 backdrop-blur-xl border-b border-primary-foreground/5 shadow-[0_4px_30px_-4px_rgba(0,0,0,0.3)]">
+    <div className="fixed top-0 left-0 right-0 z-50 bg-primary/90 backdrop-blur-xl border-b border-primary-foreground/5 shadow-[var(--shadow-medium)]">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link to="/">
           <img src={logoNiteo} alt="Niteo" className="h-14" />
@@ -18,7 +18,7 @@ export default function NiteoHeader() {
           <span className="text-accent text-xs font-semibold hidden sm:inline">4ème édition · Coming Soon</span>
         </div>
         <Link to="/reservation">
-          <Button size="sm" variant="secondary" className="shadow-md hover:shadow-lg transition-shadow">
+          <Button size="sm" variant="secondary" className="shadow-[var(--shadow-medium)] hover:shadow-[var(--shadow-medium)] transition-shadow">
             Réserver ma place
             <ArrowRight className="ml-1 h-4 w-4" />
           </Button>

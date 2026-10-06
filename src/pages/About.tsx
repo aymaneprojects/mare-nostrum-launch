@@ -127,7 +127,7 @@ const About = () => {
       />
 
       {/* Story Section */}
-      <section className="py-12 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="mn-eyebrow-turquoise mb-3">Nos origines</div>
@@ -151,7 +151,7 @@ const About = () => {
       </section>
 
       {/* Mission Section */}
-      <section className="py-12 md:py-24 bg-secondary/30">
+      <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-8 md:mb-12">
             <div className="mn-eyebrow-turquoise mb-3">Société à mission</div>
@@ -162,7 +162,7 @@ const About = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-            <div className="bg-card border border-border rounded-sm p-6 md:p-8 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
+            <div className="mn-card p-6 md:p-8 text-center hover-lift transition-all duration-200">
               <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Target className="h-8 w-8 text-primary" />
               </div>
@@ -172,7 +172,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-8 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
+            <div className="mn-card p-8 text-center hover-lift transition-all duration-200">
               <div className="bg-accent/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Users className="h-8 w-8 text-accent" />
               </div>
@@ -182,7 +182,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-8 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
+            <div className="mn-card p-8 text-center hover-lift transition-all duration-200">
               <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Heart className="h-8 w-8 text-primary" />
               </div>
@@ -194,14 +194,14 @@ const About = () => {
           </div>
           
           {/* Image illustration mission */}
-          <div className="mt-12 max-w-4xl mx-auto rounded-sm overflow-hidden shadow-lg">
+          <div className="mt-12 max-w-4xl mx-auto rounded-sm overflow-hidden shadow-[var(--shadow-medium)]">
             
           </div>
         </div>
       </section>
 
       {/* Values Section */}
-      <section className="py-12 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Ce qui nous guide</div>
           <h2 className="font-editorial italic font-semibold text-center mb-8 md:mb-12 text-foreground">Nos valeurs</h2>
@@ -213,7 +213,7 @@ const About = () => {
               { title: "Impact",           text: "Chacune de nos actions vise un impact concret et mesurable sur les entrepreneurs et les écoles que nous accompagnons." },
               { title: "Co-apprentissage", text: "Nous grandissons ensemble avec nos clients et notre réseau. L'intelligence collective est au cœur de notre approche." },
             ]).map(v => (
-              <div key={v.title} className="flex items-start gap-4 md:gap-5 p-4 md:p-6 bg-card border border-border rounded-sm">
+              <div key={v.title} className="flex items-start gap-4 md:gap-5 p-4 md:p-6 mn-card">
                 <div>
                   <h3 className="text-lg md:text-xl mb-2 text-foreground">{v.title}</h3>
                   <p className="text-sm md:text-base text-muted-foreground">{v.text}</p>
@@ -225,12 +225,12 @@ const About = () => {
       </section>
 
       {/* Team Section */}
-      <section className="py-12 md:py-24 bg-secondary/30">
+      <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Les visages de Mare Nostrum</div>
           <h2 className="font-editorial italic font-semibold text-center mb-8 md:mb-12 text-foreground">Notre équipe</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 max-w-6xl mx-auto">
-            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={alexisJanicotImg} alt="Alexis Janicot" />
                 <AvatarFallback>AJ</AvatarFallback>
@@ -239,7 +239,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Fondateur et Dirigeant</p>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={aymaneAbdennourImg} alt="Aymane Abdennour" />
                 <AvatarFallback>AA</AvatarFallback>
@@ -248,7 +248,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Fondateur de Veluo by Mare Nostrum</p>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={romeoMasipImg} alt="Roméo Masip" />
                 <AvatarFallback>RM</AvatarFallback>
@@ -257,7 +257,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Commercial Junior</p>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={khalidEzzemaniImg} alt="Khalid Ezzemani" />
                 <AvatarFallback>KE</AvatarFallback>
@@ -266,7 +266,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Co-Fondateur · Casablanca</p>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={alainJanicotImg} alt="Alain Janicot" />
                 <AvatarFallback className="text-2xl">AJ</AvatarFallback>
@@ -275,7 +275,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Co-Fondateur · Paris</p>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={frederiqueBerteletImg} alt="Frédérique Bertelet" />
                 <AvatarFallback>FB</AvatarFallback>
@@ -284,7 +284,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Ingénieur pédagogique</p>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-5 text-center hover:shadow-lg hover:border-accent/40 transition-all duration-200">
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={dianeMoulinsImg} alt="Diane Moulins" />
                 <AvatarFallback>DM</AvatarFallback>
@@ -297,14 +297,14 @@ const About = () => {
       </section>
 
       {/* Rayonnement Section */}
-      <section className="py-12 md:py-16 bg-background">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-center mb-6 text-foreground">Notre rayonnement</h2>
             <p className="text-center text-muted-foreground mb-8">
               Présents sur la scène internationale pour porter notre vision de l'entrepreneuriat à impact
             </p>
-            <div className="rounded-sm overflow-hidden shadow-lg max-w-[50%] mx-auto">
+            <div className="rounded-sm overflow-hidden shadow-[var(--shadow-medium)] max-w-[50%] mx-auto">
               <img src={francophonieScientiqueImg} alt="Alexis Janicot présent à la 5e Semaine mondiale de la Francophonie scientifique organisée par l'AUF" className="w-full h-auto object-cover" />
               <div className="bg-card p-4 border-t border-border">
                 <p className="text-sm text-muted-foreground text-center">
@@ -335,7 +335,7 @@ const About = () => {
         })]} className="w-full max-w-6xl mx-auto mb-12">
             <CarouselContent className="-ml-4">
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover-lift transition-all duration-200 hover:brightness-110">
                   <div className="text-4xl md:text-5xl font-bold mb-2">24</div>
                   <div className="font-medium mb-1">Entreprises</div>
                   <div className="text-sm opacity-90">accompagnées</div>
@@ -343,7 +343,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
+                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover-lift transition-all duration-200 hover:brightness-110">
                   <div className="text-4xl md:text-5xl font-bold mb-2">17+</div>
                   <div className="font-medium mb-1">Projets étudiants</div>
                   <div className="text-sm opacity-90">accompagnés</div>
@@ -351,7 +351,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover-lift transition-all duration-200 hover:brightness-110">
                   <div className="text-4xl md:text-5xl font-bold mb-2">70%</div>
                   <div className="font-medium mb-1">Entreprises à impact</div>
                   <div className="text-sm opacity-90">17 organisations</div>
@@ -359,7 +359,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
+                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover-lift transition-all duration-200 hover:brightness-110">
                   <div className="text-4xl md:text-5xl font-bold mb-2">93%</div>
                   <div className="font-medium mb-1">Prise de décision</div>
                   <div className="text-sm opacity-90">accélérée</div>
@@ -367,7 +367,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
+                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover-lift transition-all duration-200 hover:brightness-110">
                   <div className="text-4xl md:text-5xl font-bold mb-2">95%</div>
                   <div className="font-medium mb-1">Satisfaction</div>
                   <div className="text-sm opacity-90">satisfaits/très satisfaits</div>
@@ -375,7 +375,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover-lift transition-all duration-200 hover:brightness-110">
                   <div className="text-4xl md:text-5xl font-bold mb-2">55%</div>
                   <div className="font-medium mb-1">Projet à temps plein</div>
                   <div className="text-sm opacity-90">avec satisfaction</div>
@@ -383,7 +383,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover-lift transition-all duration-200 hover:brightness-110">
                   <div className="text-4xl md:text-5xl font-bold mb-2">210+</div>
                   <div className="font-medium mb-1">Mises en relation</div>
                   <div className="text-sm opacity-90">professionnelles</div>
@@ -391,7 +391,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
+                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover-lift transition-all duration-200 hover:brightness-110">
                   <div className="text-4xl md:text-5xl font-bold mb-2">32</div>
                   <div className="font-medium mb-1">Projets collaboratifs</div>
                   <div className="text-sm opacity-90">initiés</div>
@@ -399,7 +399,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover-lift transition-all duration-200 hover:brightness-110">
                   <div className="text-4xl md:text-5xl font-bold mb-2">135+</div>
                   <div className="font-medium mb-1">Experts</div>
                   <div className="text-sm opacity-90">mobilisables</div>
@@ -407,7 +407,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
+                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover-lift transition-all duration-200 hover:brightness-110">
                   <div className="text-4xl md:text-5xl font-bold mb-2">2000</div>
                   <div className="font-medium mb-1">Années d'expérience</div>
                   <div className="text-sm opacity-90">cumulées experts</div>
@@ -415,7 +415,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover-lift transition-all duration-200 hover:brightness-110">
                   <div className="text-4xl md:text-5xl font-bold mb-2">358h</div>
                   <div className="font-medium mb-1">Formation</div>
                   <div className="text-sm opacity-90">dispensées</div>
@@ -423,7 +423,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
+                <div className="bg-gradient-to-br from-accent to-accent/80 text-accent-foreground rounded-sm p-8 h-full hover-lift transition-all duration-200 hover:brightness-110">
                   <div className="text-4xl md:text-5xl font-bold mb-2">36%</div>
                   <div className="font-medium mb-1">Néo-entrepreneurs</div>
                   <div className="text-sm opacity-90">accompagnés</div>
@@ -431,7 +431,7 @@ const About = () => {
               </CarouselItem>
               
               <CarouselItem className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
-                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover:shadow-xl transition-all duration-200 hover:brightness-110">
+                <div className="bg-gradient-to-br from-primary to-primary/80 text-primary-foreground rounded-sm p-8 h-full hover-lift transition-all duration-200 hover:brightness-110">
                   <div className="text-4xl md:text-5xl font-bold mb-2">12</div>
                   <div className="font-medium mb-1">Pays</div>
                   <div className="text-sm opacity-90">d'intervention</div>
@@ -464,8 +464,8 @@ const About = () => {
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-gradient-to-br from-primary to-accent w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8">
-              <Globe className="h-10 w-10 text-white" />
+            <div className="bg-accent w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8">
+              <Globe className="h-10 w-10 text-accent-foreground" />
             </div>
             <h2 className="mb-6 text-foreground">
               Un réseau d'experts au service de votre réussite
@@ -486,84 +486,84 @@ const About = () => {
           })]} className="w-full max-w-5xl mx-auto">
               <CarouselContent className="-ml-4">
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="bg-card border-2 border-primary/20 rounded-sm p-6 hover:shadow-lg transition-all">
+                  <div className="mn-card p-6 hover-lift transition-all">
                     <div className="text-4xl font-bold mb-2">🇫🇷</div>
                     <h3 className="font-semibold text-foreground mb-1">France</h3>
                     <p className="text-sm text-muted-foreground">Toulouse · Paris</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="bg-card border-2 border-accent/20 rounded-sm p-6 hover:shadow-lg transition-all">
+                  <div className="mn-card p-6 hover-lift transition-all">
                     <div className="text-4xl font-bold mb-2">🇲🇦</div>
                     <h3 className="font-semibold text-foreground mb-1">Maroc</h3>
                     <p className="text-sm text-muted-foreground">Casablanca</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="bg-card border-2 border-primary/20 rounded-sm p-6 hover:shadow-lg transition-all">
+                  <div className="mn-card p-6 hover-lift transition-all">
                     <div className="text-4xl font-bold mb-2">🇹🇳</div>
                     <h3 className="font-semibold text-foreground mb-1">Tunisie</h3>
                     <p className="text-sm text-muted-foreground">Réseau experts</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="bg-card border-2 border-accent/20 rounded-sm p-6 hover:shadow-lg transition-all">
+                  <div className="mn-card p-6 hover-lift transition-all">
                     <div className="text-4xl font-bold mb-2">🇩🇿</div>
                     <h3 className="font-semibold text-foreground mb-1">Algérie</h3>
                     <p className="text-sm text-muted-foreground">Réseau experts</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="bg-card border-2 border-primary/20 rounded-sm p-6 hover:shadow-lg transition-all">
+                  <div className="mn-card p-6 hover-lift transition-all">
                     <div className="text-4xl font-bold mb-2">🇸🇳</div>
                     <h3 className="font-semibold text-foreground mb-1">Sénégal</h3>
                     <p className="text-sm text-muted-foreground">Réseau experts</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="bg-card border-2 border-accent/20 rounded-sm p-6 hover:shadow-lg transition-all">
+                  <div className="mn-card p-6 hover-lift transition-all">
                     <div className="text-4xl font-bold mb-2">🇨🇮</div>
                     <h3 className="font-semibold text-foreground mb-1">Côte d'Ivoire</h3>
                     <p className="text-sm text-muted-foreground">Réseau experts</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="bg-card border-2 border-primary/20 rounded-sm p-6 hover:shadow-lg transition-all">
+                  <div className="mn-card p-6 hover-lift transition-all">
                     <div className="text-4xl font-bold mb-2">🇧🇯</div>
                     <h3 className="font-semibold text-foreground mb-1">Bénin</h3>
                     <p className="text-sm text-muted-foreground">Réseau experts</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="bg-card border-2 border-accent/20 rounded-sm p-6 hover:shadow-lg transition-all">
+                  <div className="mn-card p-6 hover-lift transition-all">
                     <div className="text-4xl font-bold mb-2">🇨🇲</div>
                     <h3 className="font-semibold text-foreground mb-1">Cameroun</h3>
                     <p className="text-sm text-muted-foreground">Réseau experts</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="bg-card border-2 border-primary/20 rounded-sm p-6 hover:shadow-lg transition-all">
+                  <div className="mn-card p-6 hover-lift transition-all">
                     <div className="text-4xl font-bold mb-2">🇧🇫</div>
                     <h3 className="font-semibold text-foreground mb-1">Burkina Faso</h3>
                     <p className="text-sm text-muted-foreground">Réseau experts</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="bg-card border-2 border-accent/20 rounded-sm p-6 hover:shadow-lg transition-all">
+                  <div className="mn-card p-6 hover-lift transition-all">
                     <div className="text-4xl font-bold mb-2">🇨🇩</div>
                     <h3 className="font-semibold text-foreground mb-1">RD Congo</h3>
                     <p className="text-sm text-muted-foreground">Réseau experts</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="bg-card border-2 border-primary/20 rounded-sm p-6 hover:shadow-lg transition-all">
+                  <div className="mn-card p-6 hover-lift transition-all">
                     <div className="text-4xl font-bold mb-2">🇪🇬</div>
                     <h3 className="font-semibold text-foreground mb-1">Égypte</h3>
                     <p className="text-sm text-muted-foreground">Réseau experts</p>
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="bg-card border-2 border-accent/20 rounded-sm p-6 hover:shadow-lg transition-all">
+                  <div className="mn-card p-6 hover-lift transition-all">
                     <div className="text-4xl font-bold mb-2">🇨🇦</div>
                     <h3 className="font-semibold text-foreground mb-1">Canada</h3>
                     <p className="text-sm text-muted-foreground">Réseau experts</p>
@@ -594,64 +594,64 @@ const About = () => {
           })]} className="w-full">
               <CarouselContent className="-ml-4">
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300">
+                  <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
                     <img src={hufLogo} alt="HUF - Partenaire Mare Nostrum accompagnement entrepreneuriat Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300">
+                  <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
                     <img src={bidayaLogo} alt="Bidaya - Partenaire Mare Nostrum entrepreneuriat Maroc Casablanca" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300">
+                  <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
                     <img src={toulouseWayLogo} alt="Toulouse Way - Partenaire écosystème entrepreneurial Toulouse Occitanie" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300">
+                  <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
                     <img src={airbusLogo} alt="Airbus Développement - Partenaire innovation entreprises Toulouse Aerospace" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300">
+                  <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
                     <img src={roseLabLogo} alt="Rose Lab - Partenaire incubateur startups entreprises à impact" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300">
+                  <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
                     <img src={cpme31Logo} alt="CPME 31 Haute-Garonne - Confédération PME entrepreneurs Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
-                  <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300">
+                  <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
                     <img src={creditMutuelLogo} alt="Crédit Mutuel - Partenaire financement entrepreneurs PME" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.touleco.fr/" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
                       <img src={toulecoLogo} alt="Touleco - Média économique Toulouse Occitanie partenaire Mare Nostrum" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.imaginationsfertiles.fr/" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
                       <img src={imaginationsFertilesLogo} alt="Imaginations Fertiles - Partenaire créativité innovation entrepreneuriale" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://emergingbusinessfactory.com/" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
                       <img src={emergingBusinessLogo} alt="Emerging Business Factory - Accélérateur startups scale-ups Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.moovjee.fr/" target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="flex items-center justify-center p-6 bg-card border border-border rounded-sm hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
                       <img src={moovjeeLogo} alt="Moovjee - Mouvement jeunes entrepreneurs France accompagnement création" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
@@ -664,7 +664,7 @@ const About = () => {
 
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-primary to-accent">
+      <section className="py-16 md:py-20 bg-gradient-to-br from-primary to-[hsl(var(--mn-ink))]">
         <div className="container mx-auto px-4 text-center">
           <h2 className="mb-6 text-primary-foreground">
             Envie de rejoindre l'aventure ?

@@ -80,7 +80,7 @@ const FeatureWithTooltip = ({ feature }: { feature: OfferFeature }) => (
 
 const FeatureWithTooltipLight = ({ feature }: { feature: OfferFeature }) => (
   <li className="flex items-start space-x-3">
-    <CheckCircle2 className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
+    <CheckCircle2 className="h-5 w-5 text-primary-foreground flex-shrink-0 mt-0.5" />
     <span className="text-sm opacity-95 flex items-center gap-1.5 flex-wrap">
       {feature.label}
       <Popover>
@@ -90,7 +90,7 @@ const FeatureWithTooltipLight = ({ feature }: { feature: OfferFeature }) => (
             className="relative inline-flex items-center justify-center w-4 h-4 rounded-full opacity-80 hover:opacity-100 active:scale-90 transition-all flex-shrink-0 after:absolute after:-inset-3.5 after:content-['']"
             aria-label={`En savoir plus : ${feature.label}`}
           >
-            <Info className="h-3.5 w-3.5 text-white" />
+            <Info className="h-3.5 w-3.5 text-primary-foreground" />
           </button>
         </PopoverTrigger>
         <PopoverContent side="top" className="max-w-xs text-sm z-[100]">
@@ -456,7 +456,7 @@ const Croissance = () => {
             </h2>
 
             <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-10">
-              <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
+              <div className="bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40 transition-all duration-200">
                 <div className="bg-destructive/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                   <Clock className="h-6 w-6 text-destructive" />
                 </div>
@@ -466,7 +466,7 @@ const Croissance = () => {
                 </p>
               </div>
 
-              <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
+              <div className="bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40 transition-all duration-200">
                 <div className="bg-destructive/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                   <Brain className="h-6 w-6 text-destructive" />
                 </div>
@@ -476,7 +476,7 @@ const Croissance = () => {
                 </p>
               </div>
 
-              <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
+              <div className="bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40 transition-all duration-200">
                 <div className="bg-destructive/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                   <Target className="h-6 w-6 text-destructive" />
                 </div>
@@ -486,7 +486,7 @@ const Croissance = () => {
                 </p>
               </div>
 
-              <div className="bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
+              <div className="bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40 transition-all duration-200">
                 <div className="bg-destructive/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                   <Flame className="h-6 w-6 text-destructive" />
                 </div>
@@ -518,25 +518,25 @@ const Croissance = () => {
           </h2>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
+            <div className="text-center bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40 transition-all duration-200">
               <div className="text-4xl md:text-5xl font-bold text-primary mb-3">50%</div>
               <p className="text-sm text-muted-foreground">
                 des entrepreneurs accompagnés se rémunèrent correctement dans les 2 ans après la création
               </p>
             </div>
-            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
+            <div className="text-center bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40 transition-all duration-200">
               <div className="text-4xl md:text-5xl font-bold text-accent mb-3">3</div>
               <p className="text-sm text-muted-foreground">
                 contacts qualifiés en moyenne dès le premier mois d'adhésion
               </p>
             </div>
-            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
+            <div className="text-center bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40 transition-all duration-200">
               <div className="text-4xl md:text-5xl font-bold text-primary mb-3">93%</div>
               <p className="text-sm text-muted-foreground">
                 des membres se disent "très satisfaits ou satisfaits" de leur expérience
               </p>
             </div>
-            <div className="text-center bg-card border border-border rounded-sm p-6 hover:shadow-md hover:border-accent/40 transition-all duration-200">
+            <div className="text-center bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40 transition-all duration-200">
               <div className="text-4xl md:text-5xl font-bold text-accent mb-3">90%</div>
               <p className="text-sm text-muted-foreground">
                 déclarent gagner du temps, de la clarté et de la sérénité après chaque session
@@ -584,7 +584,7 @@ const Croissance = () => {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
             {/* Communauté */}
-            <div className="bg-card border-2 border-border rounded-sm p-6 md:p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col h-full">
+            <div className="bg-card border-2 border-border rounded-sm p-6 md:p-8 shadow-[var(--shadow-medium)] hover-lift transition-all hover:-translate-y-1 flex flex-col h-full">
               <div className="text-center mb-6">
                 <h3 className="text-2xl mb-2 text-foreground">Communauté</h3>
                 <div className="text-4xl font-bold text-primary mb-1">
@@ -623,7 +623,7 @@ const Croissance = () => {
             </div>
 
             {/* Groupe - Highlighted */}
-            <div className="text-primary-foreground border-2 border-accent rounded-sm p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2 relative flex flex-col h-full" style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}>
+            <div className="text-primary-foreground border-2 border-accent rounded-sm p-6 md:p-8 shadow-[var(--shadow-elegant)] hover:shadow-2xl transition-all hover:-translate-y-2 relative flex flex-col h-full" style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}>
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <span className="bg-accent text-accent-foreground px-4 py-1 rounded-full text-sm font-semibold">
                   Recommandé
@@ -638,7 +638,7 @@ const Croissance = () => {
                 </div>
                 {getPriceDetail("groupe") && (
                   <div className="mb-2">
-                    <span className="inline-block bg-white/20 text-white text-xs font-bold px-2 py-0.5 rounded-full mr-2">{getPriceDetail("groupe")!.badge}</span>
+                    <span className="inline-block bg-primary-foreground/20 text-primary-foreground text-xs font-bold px-2 py-0.5 rounded-full mr-2">{getPriceDetail("groupe")!.badge}</span>
                     <span className="text-xs opacity-80">{getPriceDetail("groupe")!.equiv}</span>
                     {getPriceDetail("groupe")!.saving && <p className="text-xs font-semibold opacity-90 mt-0.5">{getPriceDetail("groupe")!.saving}</p>}
                   </div>
@@ -647,7 +647,7 @@ const Croissance = () => {
                 <p className="text-xs opacity-70 mt-1">Pas de frais d'entrée · Sans engagement</p>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-sm rounded-sm p-3 mb-6">
+              <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-sm p-3 mb-6">
                 <p className="text-xs text-center opacity-90">
                   Tu as tes premiers clients et veux accélérer (1K-10K€ MRR)
                 </p>
@@ -668,7 +668,7 @@ const Croissance = () => {
             </div>
 
             {/* Personnalisé */}
-            <div className="bg-card border-2 border-border rounded-sm p-6 md:p-8 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col h-full">
+            <div className="bg-card border-2 border-border rounded-sm p-6 md:p-8 shadow-[var(--shadow-medium)] hover-lift transition-all hover:-translate-y-1 flex flex-col h-full">
               <div className="text-center mb-6">
                 <h3 className="text-2xl mb-2 text-foreground">Personnalisé</h3>
                 <div className="text-4xl font-bold text-primary mb-1">
@@ -832,7 +832,7 @@ const Croissance = () => {
           </p>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <div className="group relative overflow-hidden rounded-sm shadow-lg hover:shadow-2xl transition-all">
+            <div className="group relative overflow-hidden rounded-sm shadow-[var(--shadow-medium)] hover:shadow-2xl transition-all">
               <img src={atelierRose} alt="Atelier d'accompagnement entrepreneur Mare Nostrum à Toulouse avec experts et participants" loading="lazy" width="600" height="400" className="w-full h-[220px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-accent/90 via-accent/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
@@ -842,7 +842,7 @@ const Croissance = () => {
               </div>
             </div>
 
-            <div className="group relative overflow-hidden rounded-sm shadow-lg hover:shadow-2xl transition-all">
+            <div className="group relative overflow-hidden rounded-sm shadow-[var(--shadow-medium)] hover:shadow-2xl transition-all">
               <img src={neoEntrepreneurElite} alt="Journée de business développement avec néo-entrepreneurs dans l'offre Personnalisé Mare Nostrum Toulouse" loading="lazy" width="600" height="400" className="w-full h-[220px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
@@ -879,7 +879,7 @@ const Croissance = () => {
               <MessageSquare className="mr-2 h-5 w-5" />
               Essayer 30 jours gratuits
             </Button>
-            <Button asChild size="lg" variant="outline" className="w-full sm:w-auto bg-white/10 border-white text-white hover:bg-white hover:text-primary">
+            <Button asChild size="lg" variant="outline" className="w-full sm:w-auto bg-primary-foreground/10 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
               <Link to="/contact">
                 <Calendar className="mr-2 h-5 w-5" />
                 Réserver une session découverte

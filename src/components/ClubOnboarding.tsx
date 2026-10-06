@@ -213,8 +213,8 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
     isPostPayment       ? "bg-primary" :
                           "bg-primary";
 
-  const headerText = phase === "slack" ? "text-accent-foreground" : "text-white";
-  const headerTextMuted = phase === "slack" ? "text-accent-foreground/70" : "text-white/60";
+  const headerText = phase === "slack" ? "text-accent-foreground" : "text-primary-foreground";
+  const headerTextMuted = phase === "slack" ? "text-accent-foreground/70" : "text-primary-foreground/60";
 
   const headerSub =
     phase === "success" ? "Paiement confirmé ✓" :
@@ -245,7 +245,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
           <h2 className={`font-editorial italic text-xl ${headerText} pr-10`}>{headerTitle}</h2>
           <button
             onClick={handleClose}
-            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 active:bg-white/30 transition-colors"
+            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 active:bg-primary-foreground/30 transition-colors"
             aria-label="Fermer"
           >
             <X className={`h-4 w-4 ${headerText}`} />
@@ -268,7 +268,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                   <div className="flex flex-col items-center gap-0.5">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
                       done   ? "bg-accent text-accent-foreground" :
-                      active ? "bg-primary text-white" :
+                      active ? "bg-primary text-primary-foreground" :
                                "bg-muted text-muted-foreground"
                     }`}>
                       {done ? <CheckCircle2 className="h-3.5 w-3.5" /> : <Icon className="h-3.5 w-3.5" />}

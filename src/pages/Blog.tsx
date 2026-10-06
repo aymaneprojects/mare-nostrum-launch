@@ -174,7 +174,7 @@ const Blog = () => {
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {paginatedArticles.map((article: BlogArticle) => (
-                  <Card key={article.id} className="overflow-hidden hover:shadow-lg transition-shadow group">
+                  <Card key={article.id} className="mn-card card-interactive hover-lift shadow-none overflow-hidden group">
                     <div className="relative h-48 overflow-hidden bg-muted">
                       <img
                         src={optimizeImageUrl(article.image, 600)}

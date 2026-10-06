@@ -98,7 +98,7 @@ const BienvenuClub = () => {
               {steps.map(({ icon: Icon, title, desc }, i) => (
                 <div
                   key={i}
-                  className="bg-card border border-border rounded-sm p-5 flex flex-col gap-3"
+                  className="mn-card p-5 flex flex-col gap-3"
                 >
                   <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <Icon className="h-5 w-5 text-primary" />
@@ -128,7 +128,7 @@ const BienvenuClub = () => {
               rel="noopener noreferrer"
               className="group flex items-center gap-4 w-full bg-primary text-primary-foreground rounded-sm px-6 py-5 mb-4 hover:bg-primary/90 transition-colors"
             >
-              <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-full bg-primary-foreground/10 flex items-center justify-center flex-shrink-0">
                 <MessageSquare className="h-6 w-6" />
               </div>
               <div className="flex-1 text-left">
@@ -143,7 +143,7 @@ const BienvenuClub = () => {
               href={KIT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-4 w-full bg-card border border-border rounded-sm px-6 py-5 mb-8 hover:border-primary/40 hover:bg-primary/5 transition-all"
+              className="group flex items-center gap-4 w-full mn-card px-6 py-5 mb-8 hover:border-primary/40 hover:bg-primary/5 transition-all"
             >
               <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
                 <Download className="h-6 w-6 text-primary" />

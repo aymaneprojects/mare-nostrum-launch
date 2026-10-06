@@ -175,7 +175,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-12 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
             {/* Contact Info */}
@@ -254,7 +254,7 @@ const Contact = () => {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-card border border-border rounded-sm p-6 md:p-8 shadow-lg">
+            <div className="mn-card p-6 md:p-8">
               {!isSuccess && (
                 <div className="mb-6 pb-6 border-b border-border">
                   <div className="mn-eyebrow-turquoise mb-2">Formulaire de contact</div>

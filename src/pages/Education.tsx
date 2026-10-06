@@ -242,11 +242,11 @@ const Education = () => {
                 src={formationWorkshop} 
                 width={628} height={363} loading="lazy"
                 alt="Formation en salle avec formateur et participants" 
-                className="w-full h-full object-cover rounded-sm shadow-lg"
+                className="w-full h-full object-cover rounded-sm shadow-[var(--shadow-medium)]"
               />
-              <div className="bg-card border border-border rounded-sm p-8 shadow-lg">
+              <div className="bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)]">
                 <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                  <Users className="h-7 w-7 text-white" />
+                  <Users className="h-7 w-7 text-primary-foreground" />
                 </div>
                 <h3 className="text-xl mb-4 text-foreground">L'équipe pédagogique</h3>
                 <p className="text-muted-foreground mb-4">
@@ -289,9 +289,9 @@ const Education = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Fresque */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Lightbulb className="h-7 w-7 text-white" />
+                <Lightbulb className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl mb-4 text-foreground">La Fresque de l'esprit d'entreprendre</h3>
               <p className="text-muted-foreground mb-6">
@@ -314,9 +314,9 @@ const Education = () => {
             </div>
 
             {/* Atelier des Alliés */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Users className="h-7 w-7 text-white" />
+                <Users className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl mb-4 text-foreground">L'Atelier des Alliés</h3>
               <p className="text-muted-foreground mb-6">
@@ -339,9 +339,9 @@ const Education = () => {
             </div>
 
             {/* Hackathons */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Trophy className="h-7 w-7 text-white" />
+                <Trophy className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl mb-4 text-foreground">Hackathons & Challenges</h3>
               <p className="text-muted-foreground mb-6">Événements sur-mesure pour stimuler l'innovation et développer des projets entrepreneuriaux en équipe sur 1 à 5 jours.</p>
@@ -362,9 +362,9 @@ const Education = () => {
             </div>
 
             {/* Programme Premium */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <GraduationCap className="h-7 w-7 text-white" />
+                <GraduationCap className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl mb-4 text-foreground">Programme Niteo</h3>
               <p className="text-muted-foreground mb-6">Accompagnement complet sur 2 mois pour faciliter l'insertion de vos étudiants dans l'écosystème entrepreneuriat.</p>
@@ -385,9 +385,9 @@ const Education = () => {
             </div>
 
             {/* Cours */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <BookOpen className="h-7 w-7 text-white" />
+                <BookOpen className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl mb-4 text-foreground">Cours professionnalisants</h3>
               <p className="text-muted-foreground mb-6">Interventions pédagogiques personnalisées sur des thématiques entrepreneuriales spécifiques (stratégie d'entreprise, business plan...).</p>
@@ -408,9 +408,9 @@ const Education = () => {
             </div>
 
             {/* Réseau */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Network className="h-7 w-7 text-white" />
+                <Network className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl mb-4 text-foreground">Matinale de la pédagogie entrepreneuriale</h3>
               <p className="text-muted-foreground mb-6">
@@ -538,7 +538,7 @@ const Education = () => {
           
           <div className="overflow-hidden">
             <div className="flex gap-6 animate-scroll motion-reduce:animate-none">
-              <div className="relative overflow-hidden rounded-sm shadow-lg flex-shrink-0 w-[85vw] md:w-[400px] h-[300px]">
+              <div className="relative overflow-hidden rounded-sm shadow-[var(--shadow-medium)] flex-shrink-0 w-[85vw] md:w-[400px] h-[300px]">
                 <img src={ylookProgramme} width={1920} height={1279} loading="lazy" alt="Programme Ylook - Ynov Campus Toulouse" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                   <div className="p-6 text-primary-foreground">
@@ -548,7 +548,7 @@ const Education = () => {
                 </div>
               </div>
 
-              <div className="relative overflow-hidden rounded-sm shadow-lg flex-shrink-0 w-[85vw] md:w-[400px] h-[300px]">
+              <div className="relative overflow-hidden rounded-sm shadow-[var(--shadow-medium)] flex-shrink-0 w-[85vw] md:w-[400px] h-[300px]">
                 <img src={fresque1Img} width={996} height={812} loading="lazy" alt="Fresque organisée pour 80 personnes dans un établissement" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                   <div className="p-6 text-primary-foreground">
@@ -558,7 +558,7 @@ const Education = () => {
                 </div>
               </div>
 
-              <div className="relative overflow-hidden rounded-sm shadow-lg flex-shrink-0 w-[85vw] md:w-[400px] h-[300px]">
+              <div className="relative overflow-hidden rounded-sm shadow-[var(--shadow-medium)] flex-shrink-0 w-[85vw] md:w-[400px] h-[300px]">
                 <img src={iscomChallenge} width={1920} height={1440} loading="lazy" alt="ISCOM Startup Challenge - Réfléchir vite pour répondre à la problématique donnée" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                   <div className="p-6 text-primary-foreground">
@@ -568,7 +568,7 @@ const Education = () => {
                 </div>
               </div>
 
-              <div className="relative overflow-hidden rounded-sm shadow-lg flex-shrink-0 w-[85vw] md:w-[400px] h-[300px]">
+              <div className="relative overflow-hidden rounded-sm shadow-[var(--shadow-medium)] flex-shrink-0 w-[85vw] md:w-[400px] h-[300px]">
                 <img src={fresqueDoctorant} width={1672} height={1000} loading="lazy" alt="Fresque de l'esprit d'entreprendre adaptée aux doctorants" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
                   <div className="p-6 text-primary-foreground">
@@ -646,7 +646,7 @@ const Education = () => {
             </p>
             
             <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-sm p-8">
+              <div className="bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded-sm p-8">
                 <h3 className="text-xl text-primary-foreground mb-4">Responsable pédagogique ?</h3>
                 <p className="text-primary-foreground/80 mb-6">
                   Planifions un rendez-vous pour discuter de vos besoins
@@ -658,7 +658,7 @@ const Education = () => {
                 </Button>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-sm p-8">
+              <div className="bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded-sm p-8">
                 <h3 className="text-xl text-primary-foreground mb-4">Appel d'offres en cours ?</h3>
                 <p className="text-primary-foreground/80 mb-6">
                   Envoyez-nous votre brief pour une réponse personnalisée
@@ -670,7 +670,7 @@ const Education = () => {
                 </Button>
               </div>
 
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-sm p-8">
+              <div className="bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded-sm p-8">
                 <h3 className="text-xl text-primary-foreground mb-4">Vous voulez vous former ?</h3>
                 <p className="text-primary-foreground/80 mb-6">
                   Découvrez le catalogue et pré-inscrivez-vous

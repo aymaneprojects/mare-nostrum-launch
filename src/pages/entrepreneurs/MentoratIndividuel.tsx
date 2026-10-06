@@ -78,7 +78,7 @@ const MentoratIndividuel = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-16 md:py-24">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-[hsl(var(--mn-ink))] py-16 md:py-24">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <Breadcrumbs
@@ -159,7 +159,7 @@ const MentoratIndividuel = () => {
           </h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="bg-card border border-border rounded-sm p-6">
+            <div className="mn-card p-6">
               <div className="bg-accent/10 w-12 h-12 rounded-sm flex items-center justify-center mb-4">
                 <Target className="h-6 w-6 text-accent" />
               </div>
@@ -168,7 +168,7 @@ const MentoratIndividuel = () => {
                 Prenez du recul sur votre projet et clarifiez votre vision et vos priorités
               </p>
             </div>
-            <div className="bg-card border border-border rounded-sm p-6">
+            <div className="mn-card p-6">
               <div className="bg-primary/10 w-12 h-12 rounded-sm flex items-center justify-center mb-4">
                 <MessageSquare className="h-6 w-6 text-primary" />
               </div>
@@ -177,7 +177,7 @@ const MentoratIndividuel = () => {
                 Bénéficiez de l'expérience d'entrepreneurs qui sont passés par les mêmes étapes
               </p>
             </div>
-            <div className="bg-card border border-border rounded-sm p-6">
+            <div className="mn-card p-6">
               <div className="bg-accent/10 w-12 h-12 rounded-sm flex items-center justify-center mb-4">
                 <Users className="h-6 w-6 text-accent" />
               </div>
@@ -186,7 +186,7 @@ const MentoratIndividuel = () => {
                 Accédez à notre réseau de partenaires, investisseurs et experts
               </p>
             </div>
-            <div className="bg-card border border-border rounded-sm p-6">
+            <div className="mn-card p-6">
               <div className="bg-primary/10 w-12 h-12 rounded-sm flex items-center justify-center mb-4">
                 <Calendar className="h-6 w-6 text-primary" />
               </div>
@@ -195,7 +195,7 @@ const MentoratIndividuel = () => {
                 Des séances adaptées à votre emploi du temps, en présentiel ou à distance
               </p>
             </div>
-            <div className="bg-card border border-border rounded-sm p-6">
+            <div className="mn-card p-6">
               <div className="bg-accent/10 w-12 h-12 rounded-sm flex items-center justify-center mb-4">
                 <Clock className="h-6 w-6 text-accent" />
               </div>
@@ -204,7 +204,7 @@ const MentoratIndividuel = () => {
                 Évitez les erreurs classiques et accélérez votre progression
               </p>
             </div>
-            <div className="bg-card border border-border rounded-sm p-6">
+            <div className="mn-card p-6">
               <div className="bg-primary/10 w-12 h-12 rounded-sm flex items-center justify-center mb-4">
                 <CheckCircle2 className="h-6 w-6 text-primary" />
               </div>
@@ -229,7 +229,7 @@ const MentoratIndividuel = () => {
           
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {mentors.map((mentor, index) => (
-              <div key={index} className="bg-card border border-border rounded-sm p-6 text-center">
+              <div key={index} className="mn-card p-6 text-center">
                 <img
                   src={mentor.image}
                   alt={mentor.name}
@@ -245,7 +245,7 @@ const MentoratIndividuel = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary to-accent">
+      <section className="py-16 md:py-24 bg-gradient-to-br from-primary to-[hsl(var(--mn-ink))]">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-4xl font-bold text-primary-foreground mb-6">
             Prêt à être accompagné ?
@@ -260,7 +260,7 @@ const MentoratIndividuel = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="text-lg border-white/30 text-primary-foreground hover:bg-white/10">
+            <Button asChild size="lg" variant="outline" className="text-lg border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
               <Link to="/entrepreneurs/test-maturite-projet">
                 Faire le test de maturité
               </Link>

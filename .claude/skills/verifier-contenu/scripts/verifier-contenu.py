@@ -26,7 +26,18 @@ SURVEILLES = ("src/pages", "src/components", "src/data/team.json", "index.html")
 # Lignes de code ou de commentaire : jamais de la prose destinée au visiteur.
 IGNORER = re.compile(
     r"^\s*(import|export|const|let|var|function|return|type|interface|//|/\*|\*|<!--|\}|\)|<\/)"
-    r"|className=|aria-|data-|href=|src=|key=|=>|console\.|track\(|gtag\(|^\s*[{}()\[\];,]*\s*$"
+    r"|=>|console\.|track\(|gtag\(|^\s*[{}()\[\];,]*\s*$"
+)
+
+# Attributs techniques, retirés AVANT de chercher de la prose. Sans cela, une
+# ligne portant className= était ignorée en entier : un texte déplacé vers une
+# ligne stylée passait pour une suppression (constaté le 6 octobre 2026).
+# placeholder, title et alt sont volontairement conservés : ils sont lus par le
+# visiteur ou par un lecteur d'écran.
+ATTRIBUTS = re.compile(
+    r"\b(className|class|style|aria-[\w-]+|data-[\w-]+|href|src|srcSet|key|id|htmlFor"
+    r"|type|name|role|tabIndex|width|height|loading|target|rel|on[A-Z]\w+)"
+    r"=(\"[^\"]*\"|\{[^}]*\}|'[^']*')"
 )
 
 # Prose = au moins quatre mots séparés par des ESPACES. Exiger l'espace écarte les
@@ -60,6 +71,7 @@ def lignes_de_prose(diff: str) -> dict[str, list[tuple[str, str]]]:
             continue
         if IGNORER.search(texte):
             continue
+        texte = ATTRIBUTS.sub(" ", texte)
         extrait = MOTS.search(texte)
         if not extrait or len(extrait.group()) < 40:
             continue

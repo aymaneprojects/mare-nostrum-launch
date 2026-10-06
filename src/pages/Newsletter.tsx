@@ -2,6 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { EVT, track } from "@/lib/analytics";
+import { Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const Newsletter = () => {
   const [nom, setNom]             = useState("");
@@ -33,194 +38,183 @@ const Newsletter = () => {
   };
 
   return (
-    <div style={{ minHeight: "100vh", background: "hsl(40, 38%, 94%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "2rem 1rem", fontFamily: "'DM Sans', Helvetica, Arial, sans-serif" }}>
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4 py-8">
 
-      <div style={{ width: "100%", maxWidth: 520, borderRadius: 0, overflow: "hidden", boxShadow: "0 18px 40px -22px rgba(36,51,93,0.28)" }}>
+      <div className="mn-card w-full max-w-[520px] overflow-hidden shadow-[var(--shadow-medium)]">
 
         {/* ── Header ITER ── */}
-        <div style={{ background: "linear-gradient(135deg, #24335D 0%, #0F1733 100%)", padding: "40px 40px 36px", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(135deg, transparent 0 22px, rgba(191,212,238,0.055) 22px 23px)" }} />
+        <div
+          className="relative overflow-hidden px-6 pt-10 pb-9 sm:px-10"
+          style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}
+        >
+          <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(135deg, transparent 0 22px, hsl(181 67% 54% / 0.055) 22px 23px)" }} />
+          <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 22% 18%, hsl(181 67% 54% / 0.18) 0%, transparent 52%), radial-gradient(ellipse at 80% 85%, hsl(228 56% 8% / 0.65) 0%, transparent 55%)" }} />
 
           {/* eyebrow */}
-          <div style={{ position: "relative", fontSize: 10, fontWeight: 700, letterSpacing: "2.4px", textTransform: "uppercase", color: "#BFD4EE", marginBottom: 20 }}>
+          <div className="mn-eyebrow-light relative mb-5">
             ITER · La lettre Mare Nostrum
           </div>
 
           {/* logo lockup */}
-          <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 14, marginBottom: 28 }}>
-            <img src="/logo.jpg" alt="Mare Nostrum" style={{ width: 44, height: 44, objectFit: "contain", background: "white", padding: 2 }} />
+          <div className="relative mb-7 flex items-center gap-3.5">
+            <img src="/logo.jpg" alt="Mare Nostrum" className="h-11 w-11 object-contain bg-card p-0.5" />
             <div>
-              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 600, fontSize: 32, letterSpacing: "-0.4px", color: "#FFFFFF", lineHeight: 1 }}>ITER</div>
-              <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "2.2px", textTransform: "uppercase", color: "#BFD4EE", marginTop: 6 }}>par Mare Nostrum</div>
+              <div className="font-editorial text-[32px] font-semibold leading-none text-primary-foreground">ITER</div>
+              <div className="mn-eyebrow-light mt-1.5">par Mare Nostrum</div>
             </div>
           </div>
 
-          <div style={{ position: "relative", borderTop: "1px solid rgba(191,212,238,0.22)", marginBottom: 28 }} />
+          <div className="relative mb-7 border-t border-primary-foreground/20" />
 
           {/* quote */}
-          <div style={{ position: "relative" }}>
-            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "2.6px", textTransform: "uppercase", color: "#BFD4EE", marginBottom: 14 }}>
+          <div className="relative">
+            <div className="mn-eyebrow-light mb-3.5">
               Phrase d'inspiration
             </div>
-            <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic", fontSize: 22, lineHeight: 1.35, color: "#FFFFFF", letterSpacing: "-0.2px" }}>
+            <div className="font-editorial italic text-[22px] leading-[1.35] text-primary-foreground">
               «&nbsp;Le meilleur moment pour planter un arbre était il y a vingt ans. Le deuxième meilleur moment, c'est maintenant.&nbsp;»
             </div>
-            <div style={{ fontSize: 13, fontWeight: 500, color: "#8FA6CC", marginTop: 14 }}>
+            <div className="mt-3.5 text-[13px] font-medium text-primary-foreground/75">
               — Proverbe chinois
             </div>
           </div>
         </div>
 
         {/* ── Body ── */}
-        <div style={{ background: "#FFFFFF", padding: "36px 40px 40px" }}>
+        <div className="bg-card px-6 pt-9 pb-10 sm:px-10">
 
           {status === "success" ? (
-            <div style={{ textAlign: "center", padding: "1rem 0 0.5rem" }}>
-              <div style={{ width: 56, height: 56, borderRadius: "50%", background: "rgba(191,212,238,0.2)", border: "1.5px solid #BFD4EE", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px" }}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#24335D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <div className="text-center pt-4 pb-2">
+              <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-accent bg-accent/15">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
               </div>
-              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 600, fontSize: 22, color: "#24335D", marginBottom: 10, letterSpacing: "-0.3px" }}>
+              <div className="mb-2.5 font-editorial text-[22px] font-semibold text-primary">
                 Bienvenue dans l'aventure !
               </div>
-              <p style={{ fontSize: 15, color: "#6C7591", lineHeight: 1.65, margin: "0 0 24px" }}>
-                Tu es bien inscrit(e) à <strong style={{ color: "#24335D" }}>ITER</strong>. La prochaine étape arrive dans ta boîte mail.
+              <p className="mb-6 text-[15px] leading-[1.65] text-muted-foreground">
+                Tu es bien inscrit(e) à <strong className="text-primary">ITER</strong>. La prochaine étape arrive dans ta boîte mail.
               </p>
-              <Link to="/" style={{ display: "inline-block", padding: "14px 28px", background: "#24335D", color: "#FFFFFF", fontWeight: 700, fontSize: 14, letterSpacing: "0.3px", textDecoration: "none" }}>
-                Découvrir Mare Nostrum →
-              </Link>
+              <Button asChild size="lg">
+                <Link to="/">
+                  Découvrir Mare Nostrum →
+                </Link>
+              </Button>
             </div>
           ) : (
             <>
-              <div style={{ marginBottom: 8 }}>
-                <div style={{ display: "inline-block", width: 24, height: 2, background: "#24335D", verticalAlign: "middle", marginRight: 10 }} />
-                <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "2.6px", textTransform: "uppercase", color: "#24335D" }}>Inscription</span>
+              <div className="mb-2">
+                <div className="mr-2.5 inline-block h-0.5 w-6 align-middle bg-primary" />
+                <span className="mn-eyebrow">Inscription</span>
               </div>
 
-              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 600, fontSize: 24, color: "#24335D", letterSpacing: "-0.3px", margin: "14px 0 8px", lineHeight: 1.25 }}>
+              <div className="mt-3.5 mb-2 font-editorial text-2xl font-semibold leading-tight text-primary">
                 Transforme ton idée utile en entreprise solide.
               </div>
-              <p style={{ fontSize: 15, color: "#6C7591", lineHeight: 1.65, margin: "0 0 28px" }}>
+              <p className="mb-7 text-[15px] leading-[1.65] text-muted-foreground">
                 ITER, c'est la lettre hebdomadaire de Mare Nostrum. Reçois gratuitement des méthodes, des ressources et des outils pratiques pour avancer concrètement.
               </p>
 
               <form onSubmit={handleSubmit} noValidate>
-                <div style={{ marginBottom: 18 }}>
-                  <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#24335D", marginBottom: 6, letterSpacing: "0.3px" }}>
+                <div className="mb-5">
+                  <Label htmlFor="nom" className="mb-1.5 block text-xs font-bold text-primary">
                     Nom et prénom *
-                  </label>
-                  <input
+                  </Label>
+                  <Input
+                    id="nom"
                     type="text"
                     value={nom}
                     onChange={e => setNom(e.target.value)}
-                    placeholder="Marie Dupont"
-                    required
-                    style={{ width: "100%", padding: "11px 14px", border: "1.5px solid #E3E8F1", borderRadius: 0, fontFamily: "'DM Sans', Helvetica, Arial, sans-serif", fontSize: 15, color: "#0F1733", outline: "none", boxSizing: "border-box" }}
-                    onFocus={e => { e.target.style.borderColor = "#24335D"; e.target.style.boxShadow = "0 0 0 3px rgba(36,51,93,0.1)"; }}
-                    onBlur={e => { e.target.style.borderColor = "#E3E8F1"; e.target.style.boxShadow = "none"; }}
+                    placeholder="Marie Dupont" required
                   />
                 </div>
 
-                <div style={{ marginBottom: 18 }}>
-                  <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#24335D", marginBottom: 6, letterSpacing: "0.3px" }}>
+                <div className="mb-5">
+                  <Label htmlFor="email" className="mb-1.5 block text-xs font-bold text-primary">
                     Adresse email *
-                  </label>
-                  <input
+                  </Label>
+                  <Input
+                    id="email"
                     type="email"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
-                    placeholder="marie@example.com"
-                    required
-                    style={{ width: "100%", padding: "11px 14px", border: "1.5px solid #E3E8F1", borderRadius: 0, fontFamily: "'DM Sans', Helvetica, Arial, sans-serif", fontSize: 15, color: "#0F1733", outline: "none", boxSizing: "border-box" }}
-                    onFocus={e => { e.target.style.borderColor = "#24335D"; e.target.style.boxShadow = "0 0 0 3px rgba(36,51,93,0.1)"; }}
-                    onBlur={e => { e.target.style.borderColor = "#E3E8F1"; e.target.style.boxShadow = "none"; }}
+                    placeholder="marie@example.com" required
                   />
                 </div>
 
-                <div style={{ marginBottom: 18 }}>
-                  <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#24335D", marginBottom: 6, letterSpacing: "0.3px" }}>
+                <div className="mb-5">
+                  <Label htmlFor="projet" className="mb-1.5 block text-xs font-bold text-primary">
                     Nom de ton projet
-                  </label>
-                  <input
+                  </Label>
+                  <Input
+                    id="projet"
                     type="text"
                     value={projet}
                     onChange={e => setProjet(e.target.value)}
                     placeholder="Mon projet / Ma startup"
-                    style={{ width: "100%", padding: "11px 14px", border: "1.5px solid #E3E8F1", borderRadius: 0, fontFamily: "'DM Sans', Helvetica, Arial, sans-serif", fontSize: 15, color: "#0F1733", outline: "none", boxSizing: "border-box" }}
-                    onFocus={e => { e.target.style.borderColor = "#24335D"; e.target.style.boxShadow = "0 0 0 3px rgba(36,51,93,0.1)"; }}
-                    onBlur={e => { e.target.style.borderColor = "#E3E8F1"; e.target.style.boxShadow = "none"; }}
                   />
                 </div>
 
-                <div style={{ marginBottom: 18 }}>
-                  <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#24335D", marginBottom: 6, letterSpacing: "0.3px" }}>
+                <div className="mb-5">
+                  <Label htmlFor="telephone" className="mb-1.5 block text-xs font-bold text-primary">
                     Numéro de téléphone
-                  </label>
-                  <input
+                  </Label>
+                  <Input
+                    id="telephone"
                     type="tel"
                     value={telephone}
                     onChange={e => setTelephone(e.target.value)}
                     placeholder="Numéro de téléphone"
-                    style={{ width: "100%", padding: "11px 14px", border: "1.5px solid #E3E8F1", borderRadius: 0, fontFamily: "'DM Sans', Helvetica, Arial, sans-serif", fontSize: 15, color: "#0F1733", outline: "none", boxSizing: "border-box" }}
-                    onFocus={e => { e.target.style.borderColor = "#24335D"; e.target.style.boxShadow = "0 0 0 3px rgba(36,51,93,0.1)"; }}
-                    onBlur={e => { e.target.style.borderColor = "#E3E8F1"; e.target.style.boxShadow = "none"; }}
                   />
                 </div>
 
-                <div style={{ marginBottom: 24, display: "flex", alignItems: "flex-start", gap: 10 }}>
-                  <input
-                    type="checkbox"
+                <div className="mb-6 flex items-start gap-2.5">
+                  <Checkbox
                     id="rgpd"
                     checked={rgpd}
-                    onChange={e => setRgpd(e.target.checked)}
+                    onCheckedChange={checked => setRgpd(checked === true)}
                     required
-                    style={{ marginTop: 2, width: 16, height: 16, flexShrink: 0, accentColor: "#24335D", cursor: "pointer" }}
+                    className="mt-0.5"
                   />
-                  <label htmlFor="rgpd" style={{ fontSize: 13, color: "#6C7591", lineHeight: 1.55, cursor: "pointer" }}>
-                    J'accepte que mes données soient utilisées par Mare Nostrum pour m'envoyer la newsletter ITER et des informations liées à l'entrepreneuriat. Conformément au RGPD, je peux exercer mes droits à tout moment en écrivant à <span style={{ color: "#24335D", fontWeight: 600 }}>contact@marenostrum.tech</span>. *
-                  </label>
+                  <Label htmlFor="rgpd" className="cursor-pointer text-[13px] font-normal leading-[1.55] text-muted-foreground">
+                    J'accepte que mes données soient utilisées par Mare Nostrum pour m'envoyer la newsletter ITER et des informations liées à l'entrepreneuriat. Conformément au RGPD, je peux exercer mes droits à tout moment en écrivant à <span className="font-semibold text-primary">contact@marenostrum.tech</span>. *
+                  </Label>
                 </div>
 
                 {errorMsg && (
-                  <div style={{ padding: "12px 14px", background: "#FEF2F2", border: "1px solid #FECACA", color: "#991B1B", fontSize: 14, marginBottom: 16 }}>
+                  <div className="mb-4 rounded-sm border border-destructive/20 bg-destructive/10 px-3.5 py-3 text-sm text-destructive">
                     {errorMsg}
                   </div>
                 )}
 
-                <button
-                  type="submit"
-                  disabled={status === "loading"}
-                  style={{ width: "100%", padding: "16px", background: "#24335D", color: "#FFFFFF", fontFamily: "'DM Sans', Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: 15, letterSpacing: "0.4px", border: "none", cursor: status === "loading" ? "not-allowed" : "pointer", opacity: status === "loading" ? 0.7 : 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 10 }}
-                >
+                <Button type="submit" size="lg" className="w-full" disabled={status === "loading"}>
                   {status === "loading" ? (
                     <>
-                      <svg style={{ animation: "spin 0.6s linear infinite" }} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="10" strokeOpacity="0.3" /><path d="M12 2a10 10 0 0 1 10 10" /></svg>
+                      <Loader2 className="animate-spin" aria-hidden="true" />
                       Inscription en cours…
                     </>
                   ) : "Rejoindre ITER gratuitement →"}
-                </button>
+                </Button>
               </form>
             </>
           )}
         </div>
 
         {/* ── Footer ── */}
-        <div style={{ background: "#24335D", padding: "24px 40px", textAlign: "center" }}>
-          <div style={{ fontSize: 11, color: "#8FA6CC", lineHeight: 1.7 }}>
+        <div className="bg-primary px-6 py-6 text-center sm:px-10">
+          <div className="mn-caption leading-[1.7] text-primary-foreground/75">
             Mare Nostrum · Toulouse · Paris · Casablanca<br />
-            <Link to="/confidentialite" style={{ color: "#6F84AA", fontSize: 10, letterSpacing: "0.4px", textDecoration: "underline" }}>
+            <Link to="/confidentialite" className="text-primary-foreground/70 underline">
               Politique de confidentialité
             </Link>
           </div>
         </div>
       </div>
 
-      <div style={{ marginTop: 16, fontSize: 11, color: "#8B97AE", textAlign: "center" }}>
+      <div className="mn-caption mt-4 text-center text-muted-foreground">
         © Mare Nostrum 2026 · ITER, la lettre hebdomadaire
       </div>
-
-      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>
   );
 };

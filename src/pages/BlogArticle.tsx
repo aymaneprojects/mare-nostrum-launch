@@ -242,7 +242,7 @@ const BlogArticle = () => {
       </section>
 
       {/* Contenu de l'article */}
-      <section className="py-12 md:py-16 bg-background">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             {/* Navigation */}
@@ -318,7 +318,7 @@ const BlogArticle = () => {
 
       {/* Articles similaires */}
       {relatedArticles.length > 0 && (
-        <section className="py-12 md:py-16 bg-secondary/30">
+        <section className="py-16 md:py-24 bg-secondary/30">
           <div className="container mx-auto px-4">
             <h2 className="text-2xl font-bold text-foreground mb-8 text-center">
               Continuer à lire
@@ -330,7 +330,7 @@ const BlogArticle = () => {
                   <Link
                     key={related.id}
                     to={`/blog/${related.slug}`}
-                    className="group bg-card border border-border rounded-sm overflow-hidden hover:shadow-md transition-all duration-200 flex flex-col"
+                    className="group mn-card card-interactive hover-lift overflow-hidden flex flex-col"
                   >
                     <div className="h-44 overflow-hidden bg-secondary/50 shrink-0">
                       {related.image && (

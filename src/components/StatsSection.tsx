@@ -22,7 +22,7 @@ export default function StatsSection() {
   return (
     <section
       ref={ref as React.RefObject<HTMLElement>}
-      className="relative overflow-hidden py-12 md:py-24"
+      className="relative overflow-hidden py-16 md:py-24"
       style={{ background: "linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)" }}
     >
       <div

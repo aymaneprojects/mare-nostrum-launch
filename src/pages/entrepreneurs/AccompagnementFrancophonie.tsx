@@ -61,7 +61,7 @@ const AccompagnementFrancophonie = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-16 md:py-32">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-[hsl(var(--mn-ink))] py-16 md:py-32">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mn-eyebrow-light mb-4 md:mb-6">Toulouse · Casablanca</div>
@@ -78,7 +78,7 @@ const AccompagnementFrancophonie = () => {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="text-base md:text-lg border-white/30 text-primary-foreground hover:bg-white/10">
+              <Button asChild size="lg" variant="outline" className="text-base md:text-lg border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
                 <Link to="/contact">
                   Nous contacter
                 </Link>
@@ -145,9 +145,9 @@ const AccompagnementFrancophonie = () => {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Tremplin */}
-            <div className="bg-card border border-border rounded-sm p-8 hover:shadow-lg transition-shadow">
+            <div className="mn-card p-8 hover-lift transition-shadow">
               <div className="bg-gradient-to-br from-primary/80 to-primary w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Sparkles className="h-7 w-7 text-white" />
+                <Sparkles className="h-7 w-7 text-accent-foreground" />
               </div>
               <h3 className="text-2xl font-bold mb-2 text-foreground">Tremplin</h3>
               <p className="text-accent font-medium mb-4">Pour les porteurs d'idées</p>
@@ -171,12 +171,12 @@ const AccompagnementFrancophonie = () => {
             </div>
 
             {/* Ascension */}
-            <div className="bg-card border-2 border-primary rounded-sm p-8 hover:shadow-lg transition-shadow relative">
+            <div className="mn-card p-8 hover-lift transition-shadow relative">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-sm font-medium px-4 py-1 rounded-full">
                 Populaire
               </div>
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Rocket className="h-7 w-7 text-white" />
+              <div className="bg-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <Rocket className="h-7 w-7 text-accent-foreground" />
               </div>
               <h3 className="text-2xl font-bold mb-2 text-foreground">Ascension</h3>
               <p className="text-accent font-medium mb-4">Pour les projets validés</p>
@@ -204,9 +204,9 @@ const AccompagnementFrancophonie = () => {
             </div>
 
             {/* Élite */}
-            <div className="bg-card border border-border rounded-sm p-8 hover:shadow-lg transition-shadow">
+            <div className="mn-card p-8 hover-lift transition-shadow">
               <div className="bg-gradient-to-br from-accent to-accent/80 w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Users className="h-7 w-7 text-white" />
+                <Users className="h-7 w-7 text-accent-foreground" />
               </div>
               <h3 className="text-2xl font-bold mb-2 text-foreground">Élite</h3>
               <p className="text-accent font-medium mb-4">Accompagnement premium</p>
@@ -246,7 +246,7 @@ const AccompagnementFrancophonie = () => {
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <Link 
               to="/entrepreneurs/test-maturite-projet"
-              className="bg-card border border-border rounded-sm p-8 hover:shadow-lg transition-all hover:border-primary group"
+              className="mn-card p-8 hover-lift transition-all hover:border-primary group"
             >
               <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
                 Test de maturité projet
@@ -262,7 +262,7 @@ const AccompagnementFrancophonie = () => {
 
             <Link 
               to="/entrepreneurs/mentorat-individuel"
-              className="bg-card border border-border rounded-sm p-8 hover:shadow-lg transition-all hover:border-primary group"
+              className="mn-card p-8 hover-lift transition-all hover:border-primary group"
             >
               <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
                 Mentorat individuel
@@ -280,7 +280,7 @@ const AccompagnementFrancophonie = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary to-accent">
+      <section className="py-16 md:py-24 bg-gradient-to-br from-primary to-[hsl(var(--mn-ink))]">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-4xl font-bold text-primary-foreground mb-6">
             Prêt à rejoindre la communauté ?

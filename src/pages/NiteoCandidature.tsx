@@ -71,21 +71,21 @@ function NiteoNotify() {
 
       <div className="container mx-auto px-4 relative z-10 text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-turquoise/30 bg-turquoise/10 mb-6">
-          <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-pulse" style={{ color: "hsl(181 67% 54%)" }} />
-          <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "hsl(181 67% 54%)" }}>
+          <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-pulse" style={{ color: "hsl(var(--mn-turquoise))" }} />
+          <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "hsl(var(--mn-turquoise))" }}>
             4ème édition · Coming Soon
           </span>
         </div>
 
-        <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+        <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-3">
           Soyez notifié(e) pour la 4ème édition
         </h2>
-        <p className="text-white/60 text-sm mb-8 max-w-md mx-auto">
+        <p className="text-primary-foreground/60 text-sm mb-8 max-w-md mx-auto">
           Candidatures ouvertes en priorité aux inscrits. Gratuit, 50h, Demo Day.
         </p>
 
         {status === "done" ? (
-          <div role="status" aria-live="polite" className="flex items-center justify-center gap-2 text-sm font-medium" style={{ color: "hsl(181 67% 54%)" }}>
+          <div role="status" aria-live="polite" className="flex items-center justify-center gap-2 text-sm font-medium" style={{ color: "hsl(var(--mn-turquoise))" }}>
             <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
             C'est noté — on vous prévient en premier !
           </div>
@@ -98,7 +98,7 @@ function NiteoNotify() {
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder="votre@email.fr"
-              className="flex-1 h-11 rounded-sm px-4 text-sm bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-turquoise/60 transition-colors"
+              className="flex-1 h-11 rounded-sm px-4 text-sm bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40 focus:outline-none focus:border-turquoise/60 transition-colors"
               style={{ minHeight: "44px" }}
             />
             <Button
@@ -106,7 +106,7 @@ function NiteoNotify() {
               size="sm"
               disabled={status === "loading"}
               className="h-11 px-6 font-semibold shrink-0 cursor-pointer"
-              style={{ background: "hsl(181 67% 54%)", color: "hsl(228 56% 13%)", minHeight: "44px" }}
+              style={{ background: "hsl(var(--mn-turquoise))", color: "hsl(228 56% 13%)", minHeight: "44px" }}
             >
               {status === "loading" ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -117,7 +117,7 @@ function NiteoNotify() {
           </form>
         )}
         {status === "error" && (
-          <p className="text-red-400 text-xs mt-3">Une erreur est survenue, réessayez.</p>
+          <p className="text-destructive text-xs mt-3">Une erreur est survenue, réessayez.</p>
         )}
       </div>
     </section>
@@ -399,7 +399,7 @@ const NiteoCandidature = () => {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link to="/reservation">
-                <Button size="lg" variant="secondary" className="shadow-lg hover:shadow-xl transition-shadow">
+                <Button size="lg" variant="secondary" className="shadow-[var(--shadow-medium)] hover:shadow-[var(--shadow-medium)] transition-shadow">
                   Réserver ma place au Demo Day
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -450,7 +450,7 @@ const NiteoCandidature = () => {
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {parcours.map((item, i) => (
-              <div key={i} className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow text-center">
+              <div key={i} className="mn-card hover-lift p-8 text-center">
                 <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-4 mx-auto">
                   {item.icon}
                 </div>
@@ -640,15 +640,15 @@ const NiteoCandidature = () => {
           <div className="max-w-3xl mx-auto rounded-sm border border-border overflow-hidden shadow-sm">
             <div className="p-8 md:p-10" style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}>
               <div className="mn-eyebrow-light mb-3">Mardi 16 juin 2026</div>
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-3">
                 Venez assister au Demo Day en tant qu'invité
               </h2>
-              <p className="text-white/75 mb-6 text-sm leading-relaxed">
+              <p className="text-primary-foreground/75 mb-6 text-sm leading-relaxed">
                 Décideurs, professionnels, curieux — assistez aux pitchs des étudiants entrepreneurs.<br />
                 Accueil café · Pitchs · Remise des prix · Cocktail · Résidence Baragnon, 14h – 19h30
               </p>
               <Link to="/reservation">
-                <Button variant="secondary" className="shadow-lg">
+                <Button variant="secondary">
                   Réserver ma présence — 25 €
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -690,7 +690,7 @@ const NiteoCandidature = () => {
             En attendant, viens assister au Demo Day de l'édition actuelle le 16 juin 2026 à la Résidence Baragnon.
           </p>
           <Link to="/reservation">
-            <Button size="lg" variant="secondary" className="shadow-xl hover:shadow-2xl transition-shadow">
+            <Button size="lg" variant="secondary" className="shadow-[var(--shadow-medium)] hover:shadow-[var(--shadow-lift)] transition-shadow">
               Réserver ma place au Demo Day — 25 €
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>

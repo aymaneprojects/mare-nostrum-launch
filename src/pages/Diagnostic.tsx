@@ -242,7 +242,7 @@ const Diagnostic = () => {
 
         {/* ── questions ─────────────────────────────────────── */}
         {q && (
-          <section className="flex-1 flex items-center py-12 bg-background">
+          <section className="flex-1 flex items-center py-16 md:py-24 bg-background">
             <div className="container mx-auto px-4">
               <div className="max-w-xl mx-auto">
 
@@ -269,10 +269,10 @@ const Diagnostic = () => {
                       <button
                         key={i}
                         onClick={() => selectAnswer(q.key, c.score)}
-                        className={`w-full text-left flex items-center gap-3 px-4 sm:px-5 py-4 border rounded-sm transition-all duration-150 cursor-pointer group
+                        className={`w-full text-left flex items-center gap-3 mn-card px-4 sm:px-5 py-4 cursor-pointer group
                           ${selected
                             ? "border-primary bg-primary/5"
-                            : "border-border bg-card hover:border-primary/40 hover:bg-secondary/30"
+                            : "hover:border-primary/40 hover:bg-secondary/30"
                           }`}
                       >
                         <span className={`flex-shrink-0 w-7 h-7 rounded-sm flex items-center justify-center text-xs font-bold transition-colors
@@ -290,12 +290,14 @@ const Diagnostic = () => {
 
                 {/* back */}
                 {step > 0 && (
-                  <button
+                  <Button
+                    variant="ghost"
+                    size="sm"
                     onClick={() => setStep(s => s - 1)}
-                    className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors mt-6 cursor-pointer"
+                    className="mt-6 text-muted-foreground hover:text-foreground"
                   >
                     <ArrowLeft className="h-3.5 w-3.5" /> Étape précédente
-                  </button>
+                  </Button>
                 )}
               </div>
             </div>
@@ -304,10 +306,10 @@ const Diagnostic = () => {
 
         {/* ── email capture ──────────────────────────────────── */}
         {step === QUESTIONS.length && !done && (
-          <section className="flex-1 flex items-center py-12 bg-background">
+          <section className="flex-1 flex items-center py-16 md:py-24 bg-background">
             <div className="container mx-auto px-4">
               <div className="max-w-md mx-auto">
-                <div className="bg-card border border-border rounded-sm shadow-md p-6 md:p-8">
+                <div className="mn-card shadow-[var(--shadow-medium)] p-6 md:p-8">
 
                   {/* score teaser */}
                   <div className="flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 border border-accent/20 mx-auto mb-6">
@@ -323,15 +325,15 @@ const Diagnostic = () => {
                   <div className="space-y-4">
                     <div>
                       <Label htmlFor="nom" className="text-xs font-semibold tracking-wider uppercase text-muted-foreground">Prénom et nom *</Label>
-                      <Input id="nom" value={nom} onChange={e => setNom(e.target.value)} placeholder="Votre nom complet" className="mt-1.5 rounded-sm" autoFocus />
+                      <Input id="nom" value={nom} onChange={e => setNom(e.target.value)} placeholder="Votre nom complet" className="mt-1.5" autoFocus />
                     </div>
                     <div>
                       <Label htmlFor="email" className="text-xs font-semibold tracking-wider uppercase text-muted-foreground">Email *</Label>
-                      <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="votre@email.com" className="mt-1.5 rounded-sm" />
+                      <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="votre@email.com" className="mt-1.5" />
                     </div>
                     <div>
                       <Label htmlFor="projet" className="text-xs font-semibold tracking-wider uppercase text-muted-foreground">Votre projet <span className="normal-case font-normal">(optionnel)</span></Label>
-                      <Input id="projet" value={projet} onChange={e => setProjet(e.target.value)} placeholder="Nom de votre entreprise / projet" className="mt-1.5 rounded-sm" />
+                      <Input id="projet" value={projet} onChange={e => setProjet(e.target.value)} placeholder="Nom de votre entreprise / projet" className="mt-1.5" />
                     </div>
                   </div>
 
@@ -362,7 +364,7 @@ const Diagnostic = () => {
 
         {/* ── résultats ──────────────────────────────────────── */}
         {done && (
-          <section className="flex-1 py-12 md:py-20 bg-background">
+          <section className="flex-1 py-16 md:py-24 bg-background">
             <div className="container mx-auto px-4">
               <div className="max-w-lg mx-auto">
 
@@ -376,7 +378,7 @@ const Diagnostic = () => {
                 </div>
 
                 {/* récap par axe */}
-                <div className="bg-card border border-border rounded-sm overflow-hidden mb-6">
+                <div className="mn-card overflow-hidden mb-6">
                   {QUESTIONS.map((q, i) => {
                     const s = answers[q.key] ?? 0;
                     const choice = q.choices.find(c => c.score === s);

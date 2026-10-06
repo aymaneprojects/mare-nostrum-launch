@@ -31,7 +31,7 @@ export function ScrollToTopButton() {
     <Button
       onClick={scrollToTop}
       size="icon"
-      className="fixed bottom-20 md:bottom-6 right-24 z-40 rounded-full shadow-lg hover:scale-110 transition-transform"
+      className="fixed bottom-20 md:bottom-6 right-24 z-40 rounded-full shadow-[var(--shadow-medium)] hover:scale-110 transition-transform"
       aria-label="Retour en haut"
     >
       <ArrowUp className="h-5 w-5" />

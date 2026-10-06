@@ -296,7 +296,7 @@ const ChatBot = () => {
           className="fixed bottom-36 right-4 sm:bottom-24 sm:right-6 z-50 max-w-[280px] animate-in slide-in-from-right-5 fade-in duration-300"
           onClick={handleOpenChat}
         >
-          <div className="bg-card border border-border rounded-sm shadow-lg p-4 cursor-pointer hover:shadow-xl transition-shadow relative">
+          <div className="mn-card hover-lift p-4 cursor-pointer relative">
             <button 
               onClick={handleDismissNotification}
               className="absolute -top-5 -right-5 w-11 h-11 flex items-center justify-center group"
@@ -325,7 +325,7 @@ const ChatBot = () => {
       {/* Chat Toggle Button - Inès */}
       <button
         onClick={() => isOpen ? setIsOpen(false) : handleOpenChat()}
-        className={`fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-full shadow-lg
+        className={`fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-full shadow-[var(--shadow-medium)]
           flex items-center justify-center transition-all duration-200
           ${isOpen
             ? "bg-muted-foreground"
@@ -334,9 +334,9 @@ const ChatBot = () => {
         aria-label={isOpen ? "Fermer le chat" : "Discuter avec Inès"}
       >
         {isOpen ? (
-          <X className="h-6 w-6 text-white" />
+          <X className="h-6 w-6 text-primary-foreground" />
         ) : (
-          <MessageCircle className="h-6 w-6 text-white" />
+          <MessageCircle className="h-6 w-6 text-primary-foreground" />
         )}
       </button>
 
@@ -352,16 +352,16 @@ const ChatBot = () => {
           /* Desktop: fixed width */
           sm:bottom-24 sm:right-6 sm:w-[360px] sm:max-w-[calc(100vw-3rem)]`}
       >
-        <div className="bg-card border border-border rounded-sm shadow-xl overflow-hidden flex flex-col h-[60vh] sm:h-[480px] max-h-[600px]">
+        <div className="mn-card shadow-[var(--shadow-lift)] overflow-hidden flex flex-col h-[60vh] sm:h-[480px] max-h-[600px]">
           {/* Header */}
           <div className="bg-primary p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                <MessageCircle className="h-5 w-5 text-white" />
+              <div className="w-10 h-10 rounded-full bg-primary-foreground/20 flex items-center justify-center">
+                <MessageCircle className="h-5 w-5 text-primary-foreground" />
               </div>
               <div>
-                <h3 className="font-semibold text-white">Inès</h3>
-                <p className="text-xs text-white/70">Assistante virtuelle</p>
+                <h3 className="font-semibold text-primary-foreground">Inès</h3>
+                <p className="text-xs text-primary-foreground/70">Assistante virtuelle</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -369,7 +369,7 @@ const ChatBot = () => {
                 variant="ghost"
                 size="sm"
                 onClick={resetChat}
-                className="text-white/70 hover:text-white hover:bg-white/10 h-8 px-2 flex items-center gap-1.5"
+                className="text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10 h-8 px-2 flex items-center gap-1.5"
                 title="Réinitialiser la conversation"
               >
                 <RotateCcw className="h-4 w-4" />

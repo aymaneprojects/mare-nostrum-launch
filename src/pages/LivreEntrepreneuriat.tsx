@@ -159,9 +159,9 @@ const LivreEntrepreneuriat = () => {
                       <img 
                         src={livreBlancCover} 
                         alt="Couverture du Livre Blanc - Former à l'entrepreneuriat responsable" 
-                        className="rounded-sm shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3),_8px_0_20px_-5px_rgba(0,0,0,0.2)] w-full max-w-[18rem] transform transition-transform duration-300"
+                        className="rounded-sm w-full max-w-[18rem] transform transition-transform duration-300"
                         style={{
-                          boxShadow: '0 20px 60px -15px rgba(0,0,0,0.3), 8px 0 20px -5px rgba(0,0,0,0.2), -2px 0 10px -2px rgba(0,0,0,0.1)',
+                          boxShadow: '0 20px 60px -15px hsl(228 56% 13% / 0.3), 8px 0 20px -5px hsl(228 56% 13% / 0.2), -2px 0 10px -2px hsl(228 56% 13% / 0.1)',
                         }}
                       />
                     </div>
@@ -170,7 +170,7 @@ const LivreEntrepreneuriat = () => {
 
                 {/* Right Column - Form */}
                 <div className="lg:mt-0">
-                  {isSuccess ? <div className="text-center p-12 bg-card rounded-sm border border-border shadow-lg">
+                  {isSuccess ? <div className="mn-card text-center p-12 shadow-[var(--shadow-medium)]">
                       <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
                         <Download className="w-10 h-10 text-primary" />
                       </div>
@@ -181,7 +181,7 @@ const LivreEntrepreneuriat = () => {
                       <p className="text-sm text-muted-foreground">
                         Consultez votre boîte de réception (et vos spams si besoin).
                       </p>
-                    </div> : <div className="bg-card p-8 rounded-sm border border-border shadow-lg">
+                    </div> : <div className="mn-card p-8 shadow-[var(--shadow-medium)]">
                       <h2 className="text-2xl font-bold mb-2 text-foreground text-center">
                         Recevez le Livre Blanc par Email
                       </h2>
@@ -334,14 +334,14 @@ const LivreEntrepreneuriat = () => {
         </section>
 
         {/* Benefits Section */}
-        <section className="py-16 bg-background">
+        <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <h2 className="text-3xl font-bold text-center mb-12 text-foreground">
                 Ce que vous allez découvrir
               </h2>
               <div className="grid md:grid-cols-3 gap-8">
-                <div className="text-center p-6 rounded-sm bg-card border border-border">
+                <div className="mn-card text-center p-6">
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
                     <Target className="w-8 h-8 text-primary" />
                   </div>
@@ -350,7 +350,7 @@ const LivreEntrepreneuriat = () => {
                     Les approches pédagogiques les plus efficaces pour développer l'esprit entrepreneurial
                   </p>
                 </div>
-                <div className="text-center p-6 rounded-sm bg-card border border-border">
+                <div className="mn-card text-center p-6">
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
                     <GraduationCap className="w-8 h-8 text-primary" />
                   </div>
@@ -359,7 +359,7 @@ const LivreEntrepreneuriat = () => {
                     Des exemples concrets d'implémentation dans différents types d'établissements
                   </p>
                 </div>
-                <div className="text-center p-6 rounded-sm bg-card border border-border">
+                <div className="mn-card text-center p-6">
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
                     <Users className="w-8 h-8 text-primary" />
                   </div>

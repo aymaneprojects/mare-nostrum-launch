@@ -92,7 +92,7 @@ const CarteContact = () => {
               Toute l'équipe
             </Link>
 
-            <Avatar className="w-28 h-28 md:w-36 md:h-36 mx-auto ring-4 ring-accent/70 shadow-lg">
+            <Avatar className="w-28 h-28 md:w-36 md:h-36 mx-auto ring-4 ring-accent/70 shadow-[var(--shadow-medium)]">
               {portrait && <AvatarImage src={portrait} alt={name} className="object-cover" />}
               <AvatarFallback className="text-2xl md:text-3xl bg-primary text-primary-foreground">{initials(member)}</AvatarFallback>
             </Avatar>
@@ -114,7 +114,7 @@ const CarteContact = () => {
 
         {/* Carte — chevauche le bandeau */}
         <section className="container mx-auto px-4 -mt-14 md:-mt-16 relative z-10 pb-16 md:pb-24">
-          <div className="max-w-lg mx-auto bg-card border border-border rounded-lg shadow-lg p-5 md:p-7 space-y-6">
+          <div className="max-w-lg mx-auto bg-card border border-border rounded-lg shadow-[var(--shadow-medium)] p-5 md:p-7 space-y-6">
             <div>
               {/* Pas d'attribut download : iOS ouvre alors la fiche contact directement. */}
               <Button asChild size="lg" className="w-full h-12 text-base">

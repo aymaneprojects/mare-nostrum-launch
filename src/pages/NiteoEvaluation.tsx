@@ -19,7 +19,7 @@ const AXES = [
   { key: "synthese",     label: "Synthèse",                   desc: "Cohérence de la vision globale, pertinence du plan d'action à 3–6 mois, call to action final." },
 ];
 
-const TURQUOISE = "hsl(181 67% 54%)";
+const TURQUOISE = "hsl(var(--mn-turquoise))";
 const INK       = "hsl(var(--mn-ink))";
 const NUIT      = "hsl(var(--mn-nuit))";
 
@@ -204,21 +204,21 @@ export default function NiteoEvaluation() {
 
       {/* ── Navbar style NiteoHeader */}
       {/* ── Navbar style NiteoHeader */}
-      <div className="sticky top-0 z-50 backdrop-blur-xl border-b border-white/5 shadow-[0_4px_30px_-4px_rgba(0,0,0,0.3)]"
+      <div className="sticky top-0 z-50 backdrop-blur-xl border-b border-primary-foreground/5 shadow-[var(--shadow-medium)]"
         style={{ background: "hsl(222 44% 20%)" }}>
         <div className="h-16 px-4 flex items-center justify-between relative">
           <img src={logoNiteo} alt="Niteo" className="h-12" />
 
           <div className="absolute left-1/2 -translate-x-1/2">
-            <span className="text-white/80 text-xs font-semibold tracking-[0.3em] uppercase">Jury</span>
+            <span className="text-primary-foreground/80 text-xs font-semibold tracking-[0.3em] uppercase">Jury</span>
           </div>
 
           {nomJure ? (
             <div className="text-right">
-              <p className="text-xs font-semibold text-white/90 truncate max-w-[110px]">
+              <p className="text-xs font-semibold text-primary-foreground/90 truncate max-w-[110px]">
                 {nomJure.split(" ")[0]}
               </p>
-              <p className="text-[11px] text-white/50">
+              <p className="text-[11px] text-primary-foreground/50">
                 {projetsEvalues.length}/{projets.length || "?"} évalué{projetsEvalues.length !== 1 ? "s" : ""}
               </p>
             </div>
@@ -505,7 +505,7 @@ export default function NiteoEvaluation() {
 
                   <div className="space-y-2 pt-1">
                     <div className="space-y-1">
-                      <Label className="text-xs font-semibold" style={{ color: "#15803d" }}>
+                      <Label className="text-xs font-semibold" style={{ color: "hsl(var(--mn-nuit))" }}>
                         Points positifs
                       </Label>
                       <Textarea rows={2} value={comments[axe.key]?.positif ?? ""}
@@ -514,7 +514,7 @@ export default function NiteoEvaluation() {
                         className="text-sm resize-none rounded-xl" style={{ fontSize: 16 }} />
                     </div>
                     <div className="space-y-1">
-                      <Label className="text-xs font-semibold" style={{ color: "#c2410c" }}>
+                      <Label className="text-xs font-semibold" style={{ color: "hsl(var(--destructive))" }}>
                         Points à améliorer
                       </Label>
                       <Textarea rows={2} value={comments[axe.key]?.amelio ?? ""}
@@ -528,7 +528,7 @@ export default function NiteoEvaluation() {
 
               {/* Score + CTA sticky */}
               <div className="sticky bottom-4 z-10">
-                <div className="bg-card border border-border rounded-2xl p-3 shadow-lg space-y-2.5">
+                <div className="mn-card !rounded-2xl p-3 space-y-2.5">
 
                   {/* Ligne 1 : score + points progression */}
                   <div className="flex items-center justify-between gap-2">
@@ -633,12 +633,12 @@ export default function NiteoEvaluation() {
                     <StarDisplay value={notes[axe.key] ?? 0} />
                   </div>
                   {comments[axe.key]?.positif && (
-                    <p className="text-xs mt-1 leading-snug" style={{ color: "#15803d" }}>
+                    <p className="text-xs mt-1 leading-snug" style={{ color: "hsl(var(--mn-nuit))" }}>
                       + {comments[axe.key].positif}
                     </p>
                   )}
                   {comments[axe.key]?.amelio && (
-                    <p className="text-xs mt-0.5 leading-snug" style={{ color: "#c2410c" }}>
+                    <p className="text-xs mt-0.5 leading-snug" style={{ color: "hsl(var(--destructive))" }}>
                       △ {comments[axe.key].amelio}
                     </p>
                   )}

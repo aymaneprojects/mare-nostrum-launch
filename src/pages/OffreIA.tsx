@@ -80,7 +80,7 @@ const OffreIA = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-16 md:py-32">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-[hsl(var(--mn-ink))] py-16 md:py-32">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mn-eyebrow-light mb-4 md:mb-6">Mare Nostrum IA</div>
@@ -101,7 +101,7 @@ const OffreIA = () => {
       </section>
 
       {/* Challenges Section */}
-      <section className="py-12 md:py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-center mb-8 md:mb-12 text-foreground">
             Pourquoi intégrer l'IA dans votre projet ?
@@ -150,9 +150,9 @@ const OffreIA = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {services.map((service, index) => (
-              <div key={index} className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl transition-shadow">
-                <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                  <service.icon className="h-7 w-7 text-white" />
+              <div key={index} className="mn-card p-8 hover-lift transition-shadow">
+                <div className="bg-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                  <service.icon className="h-7 w-7 text-accent-foreground" />
                 </div>
                 <h3 className="text-xl mb-4 text-foreground">{service.title}</h3>
                 <p className="text-muted-foreground mb-6">{service.description}</p>
@@ -222,8 +222,8 @@ const OffreIA = () => {
                 </div>
               </div>
               <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-sm p-8 border border-border">
-                <div className="bg-gradient-to-br from-primary to-accent w-16 h-16 rounded-sm flex items-center justify-center mb-6">
-                  <Brain className="h-8 w-8 text-white" />
+                <div className="bg-accent w-16 h-16 rounded-sm flex items-center justify-center mb-6">
+                  <Brain className="h-8 w-8 text-accent-foreground" />
                 </div>
                 <h3 className="text-2xl text-foreground mb-4">Dimension entrepreneuriale intégrée</h3>
                 <p className="text-muted-foreground mb-6">
@@ -257,7 +257,7 @@ const OffreIA = () => {
       />
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary to-accent">
+      <section className="py-16 md:py-24 bg-gradient-to-br from-primary to-[hsl(var(--mn-ink))]">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-primary-foreground mb-4">

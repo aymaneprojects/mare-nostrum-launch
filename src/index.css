@@ -251,7 +251,9 @@ All colors MUST be HSL.
 
   /* Card with brand border */
   .mn-card {
-    background: #fff;
+    /* Le fond vient du token de carte : un blanc brut était écrit ici, en
+       contradiction avec la première règle du design system. */
+    background: hsl(var(--card));
     border: 1px solid hsl(var(--mn-nuit) / 0.14);
     border-radius: 14px;
     transition: border-color 0.2s var(--ease-mn), transform 0.2s var(--ease-mn), box-shadow 0.2s var(--ease-mn);

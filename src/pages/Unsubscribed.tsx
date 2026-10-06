@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const Unsubscribed = () => {
   const [email, setEmail]   = useState("");
@@ -29,144 +33,137 @@ const Unsubscribed = () => {
   };
 
   return (
-    <div style={{ minHeight: "100vh", background: "hsl(40, 38%, 94%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "2rem 1rem", fontFamily: "'DM Sans', Helvetica, Arial, sans-serif" }}>
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4 py-8">
 
-      <div style={{ width: "100%", maxWidth: 520, boxShadow: "0 18px 40px -22px rgba(36,51,93,0.28)", overflow: "hidden" }}>
+      <div className="mn-card w-full max-w-[520px] overflow-hidden shadow-[var(--shadow-medium)]">
 
         {/* ── Header ── */}
-        <div style={{ background: "linear-gradient(135deg, #24335D 0%, #0F1733 100%)", padding: "36px 40px 32px", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(135deg, transparent 0 22px, rgba(191,212,238,0.055) 22px 23px)" }} />
-          <div style={{ position: "relative", display: "flex", alignItems: "center", gap: 14 }}>
-            <img src="/logo.jpg" alt="Mare Nostrum" style={{ width: 40, height: 40, objectFit: "contain", background: "white", padding: 2 }} />
+        <div
+          className="relative overflow-hidden px-6 pt-9 pb-8 sm:px-10"
+          style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}
+        >
+          <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "repeating-linear-gradient(135deg, transparent 0 22px, hsl(181 67% 54% / 0.055) 22px 23px)" }} />
+          <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 22% 18%, hsl(181 67% 54% / 0.18) 0%, transparent 52%), radial-gradient(ellipse at 80% 85%, hsl(228 56% 8% / 0.65) 0%, transparent 55%)" }} />
+          <div className="relative flex items-center gap-3.5">
+            <img src="/logo.jpg" alt="Mare Nostrum" className="h-10 w-10 object-contain bg-card p-0.5" />
             <div>
-              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 600, fontSize: 28, letterSpacing: "-0.4px", color: "#FFFFFF", lineHeight: 1 }}>ITER</div>
-              <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: "2.2px", textTransform: "uppercase", color: "#BFD4EE", marginTop: 5 }}>par Mare Nostrum</div>
+              <div className="font-editorial text-[28px] font-semibold leading-none text-primary-foreground">ITER</div>
+              <div className="mn-eyebrow-light mt-1.5">par Mare Nostrum</div>
             </div>
           </div>
         </div>
 
         {/* ── Body ── */}
-        <div style={{ background: "#FFFFFF", padding: "44px 40px 40px", textAlign: "center" }}>
+        <div className="bg-card px-6 pt-11 pb-10 text-center sm:px-10">
 
           {/* icon */}
-          <div style={{ width: 64, height: 64, borderRadius: "50%", background: "#EAF2FB", border: "1.5px solid #BFD4EE", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 24px" }}>
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#24335D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-accent bg-accent/15">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
               <path d="M18 6 6 18M6 6l12 12" />
             </svg>
           </div>
 
-          <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 600, fontSize: 26, color: "#24335D", letterSpacing: "-0.4px", lineHeight: 1.2, marginBottom: 16 }}>
+          <div className="mb-4 font-editorial text-[26px] font-semibold leading-tight text-primary">
             Se désabonner d'ITER
           </div>
 
-          <p style={{ fontSize: 15, color: "#6C7591", lineHeight: 1.7, margin: "0 0 32px" }}>
+          <p className="mb-8 text-[15px] leading-[1.7] text-muted-foreground">
             Saisis ton adresse email pour confirmer ton désabonnement.
           </p>
 
           {status === "success" ? (
-            <div style={{ textAlign: "center", padding: "8px 0 8px" }}>
-              <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 600, fontSize: 20, color: "#24335D", marginBottom: 10 }}>
+            <div className="text-center py-2">
+              <div className="mb-2.5 font-editorial text-xl font-semibold text-primary">
                 C'est noté.
               </div>
-              <p style={{ fontSize: 15, color: "#6C7591", lineHeight: 1.7, margin: "0 0 28px" }}>
+              <p className="mb-7 text-[15px] leading-[1.7] text-muted-foreground">
                 Tu ne recevras plus nos emails. Si l'envie revient — la porte est toujours ouverte.
               </p>
 
               {/* proof strip */}
-              <div style={{ background: "#EAF2FB", border: "1px solid #BFD4EE", padding: "20px 24px", marginBottom: 24 }}>
-                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: "2.6px", textTransform: "uppercase", color: "#24335D", marginBottom: 12 }}>
+              <div className="mn-card mb-6 px-6 py-5">
+                <div className="mn-eyebrow mb-3">
                   Ce que tu rates
                 </div>
-                <div style={{ display: "flex", justifyContent: "space-around", gap: 8 }}>
+                <div className="flex justify-around gap-2">
                   {[["12", "étapes actionnables"], ["70+", "entrepreneurs actifs"], ["100%", "gratuit"]].map(([num, label]) => (
-                    <div key={label} style={{ flex: 1 }}>
-                      <div style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 600, fontSize: 22, color: "#24335D", lineHeight: 1 }}>{num}</div>
-                      <div style={{ fontSize: 11, color: "#6C7591", marginTop: 4, lineHeight: 1.4 }}>{label}</div>
+                    <div key={label} className="flex-1">
+                      <div className="font-editorial text-[22px] font-semibold leading-none text-primary">{num}</div>
+                      <div className="mn-caption mt-1 leading-[1.4] text-muted-foreground">{label}</div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <Link
-                to="/iter"
-                style={{ display: "block", padding: "16px", background: "#24335D", color: "#FFFFFF", fontWeight: 700, fontSize: 14, letterSpacing: "0.4px", textDecoration: "none", marginBottom: 14 }}
-              >
-                Me réinscrire à ITER →
-              </Link>
+              <Button asChild size="lg" className="mb-3.5 w-full">
+                <Link to="/iter">
+                  Me réinscrire à ITER →
+                </Link>
+              </Button>
 
-              <Link
-                to="/"
-                style={{ display: "block", padding: "14px", border: "1.5px solid #E3E8F1", color: "#6C7591", fontWeight: 600, fontSize: 14, textDecoration: "none" }}
-              >
-                Retour sur le site
-              </Link>
+              <Button asChild size="lg" variant="outline" className="w-full">
+                <Link to="/">
+                  Retour sur le site
+                </Link>
+              </Button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} noValidate style={{ textAlign: "left" }}>
-              <div style={{ marginBottom: 20 }}>
-                <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "#24335D", marginBottom: 6, letterSpacing: "0.3px" }}>
+            <form onSubmit={handleSubmit} noValidate className="text-left">
+              <div className="mb-5">
+                <Label htmlFor="email" className="mb-1.5 block text-xs font-bold text-primary">
                   Adresse email *
-                </label>
-                <input
+                </Label>
+                <Input
+                  id="email"
                   type="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   placeholder="marie@example.com"
                   required
-                  style={{ width: "100%", padding: "11px 14px", border: "1.5px solid #E3E8F1", borderRadius: 0, fontFamily: "'DM Sans', Helvetica, Arial, sans-serif", fontSize: 15, color: "#0F1733", outline: "none", boxSizing: "border-box" }}
-                  onFocus={e => { e.target.style.borderColor = "#24335D"; e.target.style.boxShadow = "0 0 0 3px rgba(36,51,93,0.1)"; }}
-                  onBlur={e => { e.target.style.borderColor = "#E3E8F1"; e.target.style.boxShadow = "none"; }}
                 />
               </div>
 
               {status === "notfound" && (
-                <div style={{ padding: "12px 14px", background: "#FEF3CD", border: "1px solid #F0C040", color: "#7A5C00", fontSize: 14, marginBottom: 16 }}>
+                <div className="mb-4 rounded-sm border border-ocre/30 bg-ocre/10 px-3.5 py-3 text-sm text-foreground">
                   Aucun compte trouvé pour cette adresse email.
                 </div>
               )}
 
               {status === "error" && (
-                <div style={{ padding: "12px 14px", background: "#FEF2F2", border: "1px solid #FECACA", color: "#991B1B", fontSize: 14, marginBottom: 16 }}>
+                <div className="mb-4 rounded-sm border border-destructive/20 bg-destructive/10 px-3.5 py-3 text-sm text-destructive">
                   Une erreur est survenue. Réessaie dans quelques instants.
                 </div>
               )}
 
-              <button
-                type="submit"
-                disabled={status === "loading"}
-                style={{ width: "100%", padding: "16px", background: "#24335D", color: "#FFFFFF", fontFamily: "'DM Sans', Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: 15, letterSpacing: "0.4px", border: "none", cursor: status === "loading" ? "not-allowed" : "pointer", opacity: status === "loading" ? 0.7 : 1, display: "flex", alignItems: "center", justifyContent: "center", gap: 10, marginBottom: 14 }}
-              >
+              <Button type="submit" size="lg" className="mb-3.5 w-full" disabled={status === "loading"}>
                 {status === "loading" ? (
                   <>
-                    <svg style={{ animation: "spin 0.6s linear infinite" }} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="10" strokeOpacity="0.3" /><path d="M12 2a10 10 0 0 1 10 10" /></svg>
+                    <Loader2 className="animate-spin" aria-hidden="true" />
                     Traitement en cours…
                   </>
                 ) : "Confirmer le désabonnement"}
-              </button>
+              </Button>
 
-              <Link
-                to="/"
-                style={{ display: "block", padding: "14px", border: "1.5px solid #E3E8F1", color: "#6C7591", fontWeight: 600, fontSize: 14, textDecoration: "none", textAlign: "center" }}
-              >
-                Retour sur le site
-              </Link>
+              <Button asChild size="lg" variant="outline" className="w-full">
+                <Link to="/">
+                  Retour sur le site
+                </Link>
+              </Button>
             </form>
           )}
         </div>
 
         {/* ── Footer ── */}
-        <div style={{ background: "#24335D", padding: "20px 40px", textAlign: "center" }}>
-          <div style={{ fontSize: 11, color: "#8FA6CC", lineHeight: 1.7 }}>
+        <div className="bg-primary px-6 py-5 text-center sm:px-10">
+          <div className="mn-caption leading-[1.7] text-primary-foreground/75">
             Mare Nostrum · Toulouse · Paris · Casablanca
           </div>
         </div>
       </div>
 
-      <div style={{ marginTop: 16, fontSize: 11, color: "#8B97AE" }}>
+      <div className="mn-caption mt-4 text-muted-foreground">
         © Mare Nostrum 2026 · ITER, la lettre hebdomadaire
       </div>
-
-      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>
   );
 };

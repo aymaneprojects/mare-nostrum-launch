@@ -60,7 +60,7 @@ const TransformationEntrepreneuriale = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-16 md:py-32">
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary to-[hsl(var(--mn-ink))] py-16 md:py-32">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mn-eyebrow-light mb-4 md:mb-6">Mare Nostrum pour les Écoles</div>
@@ -77,7 +77,7 @@ const TransformationEntrepreneuriale = () => {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="text-base md:text-lg border-white/30 text-primary-foreground hover:bg-white/10">
+              <Button asChild size="lg" variant="outline" className="text-base md:text-lg border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
                 <Link to="/contact">
                   Nous contacter
                 </Link>
@@ -97,7 +97,7 @@ const TransformationEntrepreneuriale = () => {
             Vous souhaitez développer la culture entrepreneuriale mais faites face à des contraintes réelles
           </p>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="bg-card border border-border rounded-sm p-8 text-center">
+            <div className="mn-card p-8 text-center">
               <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Clock className="h-8 w-8 text-primary" />
               </div>
@@ -106,7 +106,7 @@ const TransformationEntrepreneuriale = () => {
                 Les programmes existants sont souvent lourds à mettre en place et difficiles à intégrer dans le calendrier académique
               </p>
             </div>
-            <div className="bg-card border border-border rounded-sm p-8 text-center">
+            <div className="mn-card p-8 text-center">
               <div className="bg-accent/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Target className="h-8 w-8 text-accent" />
               </div>
@@ -115,7 +115,7 @@ const TransformationEntrepreneuriale = () => {
                 Les contraintes budgétaires et le manque d'expertise interne freinent le développement de programmes ambitieux
               </p>
             </div>
-            <div className="bg-card border border-border rounded-sm p-8 text-center">
+            <div className="mn-card p-8 text-center">
               <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Zap className="h-8 w-8 text-primary" />
               </div>
@@ -139,7 +139,7 @@ const TransformationEntrepreneuriale = () => {
           </p>
           
           <div className="max-w-4xl mx-auto">
-            <div className="bg-card border border-border rounded-sm overflow-hidden">
+            <div className="mn-card overflow-hidden">
               <div className="grid md:grid-cols-3 bg-primary text-primary-foreground">
                 <div className="p-4 font-semibold">Critère</div>
                 <div className="p-4 font-semibold text-center">Dispositifs traditionnels</div>
@@ -174,9 +174,9 @@ const TransformationEntrepreneuriale = () => {
           </p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="bg-card border border-border rounded-sm p-8 hover:shadow-lg transition-shadow">
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Lightbulb className="h-7 w-7 text-white" />
+            <div className="mn-card p-8 hover-lift transition-shadow">
+              <div className="bg-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <Lightbulb className="h-7 w-7 text-accent-foreground" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">La Fresque de l'esprit d'entreprendre</h3>
               <p className="text-muted-foreground mb-4">
@@ -194,9 +194,9 @@ const TransformationEntrepreneuriale = () => {
               </ul>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-8 hover:shadow-lg transition-shadow">
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Users className="h-7 w-7 text-white" />
+            <div className="mn-card p-8 hover-lift transition-shadow">
+              <div className="bg-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <Users className="h-7 w-7 text-accent-foreground" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Ateliers & Hackathons</h3>
               <p className="text-muted-foreground mb-4">
@@ -214,9 +214,9 @@ const TransformationEntrepreneuriale = () => {
               </ul>
             </div>
 
-            <div className="bg-card border border-border rounded-sm p-8 hover:shadow-lg transition-shadow">
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <GraduationCap className="h-7 w-7 text-white" />
+            <div className="mn-card p-8 hover-lift transition-shadow">
+              <div className="bg-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <GraduationCap className="h-7 w-7 text-accent-foreground" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Programme Premium</h3>
               <p className="text-muted-foreground mb-4">
@@ -238,7 +238,7 @@ const TransformationEntrepreneuriale = () => {
       </section>
 
       {/* CTA Diagnostic */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary to-accent">
+      <section className="py-16 md:py-24 bg-gradient-to-br from-primary to-[hsl(var(--mn-ink))]">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-4xl font-bold text-primary-foreground mb-6">
             Prêt à transformer votre établissement ?
