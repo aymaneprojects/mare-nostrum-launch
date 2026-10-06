@@ -40,6 +40,20 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const { prenom, email, phone, zone } = await req.json();
 
+    // Validation AVANT toute création chez Stripe. Sans elle, n'importe qui
+    // appelant cette adresse directement — sans passer par le site — faisait
+    // créer un coupon de −50 % (audit du 2 octobre 2026).
+    const estTexte = (v: unknown, max: number) =>
+      typeof v === "string" && v.trim().length > 0 && v.trim().length <= max;
+    const emailValide = typeof email === "string" && /^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email.trim());
+
+    if (!estTexte(prenom, 40) || !emailValide || !["france", "congo", "autre"].includes(zone)) {
+      return new Response(
+        JSON.stringify({ error: "Requête invalide." }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      );
+    }
+
     const promoCode = generateCode(prenom);
     const zoneLabel = zone === "france" ? "France" : zone === "congo" ? "République du Congo" : "Autre pays";
 
