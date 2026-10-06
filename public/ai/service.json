@@ -1,0 +1,37 @@
+{
+  "provider": "Mare Nostrum",
+  "url": "https://www.marenostrum.tech",
+  "services": [
+    {
+      "name": "Accompagnement d'entrepreneurs",
+      "audience": "Entrepreneurs et dirigeants",
+      "url": "https://www.marenostrum.tech/club"
+    },
+    {
+      "name": "Programmes entrepreneuriaux pour écoles et universités",
+      "audience": "Établissements d'enseignement supérieur",
+      "url": "https://www.marenostrum.tech/education"
+    },
+    {
+      "name": "Formation professionnelle certifiée Qualiopi",
+      "audience": "Salariés, demandeurs d'emploi, dirigeants",
+      "url": "https://www.marenostrum.tech/education"
+    },
+    {
+      "name": "Incubation Niteo",
+      "audience": "Porteurs de projet, étudiants",
+      "url": "https://www.marenostrum.tech/niteo-toulouse"
+    },
+    {
+      "name": "Déploiement d'agents IA",
+      "audience": "Organisations",
+      "url": "https://www.marenostrum.tech/offre-ia"
+    }
+  ],
+  "areaServed": [
+    "France",
+    "Maroc",
+    "Espace francophone"
+  ],
+  "updated": "2026-10-06"
+}

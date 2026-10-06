@@ -1,0 +1,46 @@
+{
+  "name": "Mare Nostrum",
+  "legalName": "Mare Nostrum SAS",
+  "url": "https://www.marenostrum.tech",
+  "description": "Cabinet de conseil, de formation et d'incubation en entrepreneuriat, entre Toulouse, Paris et Casablanca. Société à mission.",
+  "locations": [
+    "Toulouse, France",
+    "Paris, France",
+    "Casablanca, Maroc"
+  ],
+  "languages": [
+    "fr"
+  ],
+  "contact": {
+    "email": "contact@marenostrum.tech",
+    "page": "https://www.marenostrum.tech/contact"
+  },
+  "poles": [
+    {
+      "name": "Expertise",
+      "url": "https://www.marenostrum.tech/offre-ia",
+      "summary": "Conseil et accompagnement sur mesure des organisations."
+    },
+    {
+      "name": "Agent IA",
+      "url": "https://www.marenostrum.tech/offre-ia",
+      "summary": "Déploiement d'agents d'intelligence artificielle."
+    },
+    {
+      "name": "Club",
+      "url": "https://www.marenostrum.tech/club",
+      "summary": "Communauté d'entrepreneurs accompagnés toute l'année, à partir de 30 €/mois."
+    },
+    {
+      "name": "Centre de formation",
+      "url": "https://www.marenostrum.tech/education",
+      "summary": "Organisme de formation certifié Qualiopi, enregistré sous le numéro 76311216831."
+    },
+    {
+      "name": "Niteo",
+      "url": "https://www.marenostrum.tech/niteo-toulouse",
+      "summary": "Incubateur pour porteurs de projet à Toulouse, gratuit pour les étudiants."
+    }
+  ],
+  "updated": "2026-10-06"
+}
