@@ -14,7 +14,6 @@ import FAQSection from "@/components/FAQSection";
 import ClubOnboarding, { type Offer, type PaidOffer } from "@/components/ClubOnboarding";
 import { supabase } from "@/integrations/supabase/client";
 import atelierRose from "@/assets/atelier-rose.png";
-import neoEntrepreneurElite from "@/assets/neo-entrepreneur-elite.png";
 
 type LocationType = "france" | "congo_brazzaville";
 
@@ -797,23 +796,13 @@ const Croissance = () => {
             Sessions de travail collaboratives avec les entrepreneurs à Toulouse et en Afrique francophone
           </p>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid gap-8 max-w-3xl mx-auto">
             <div className="group relative overflow-hidden rounded-sm shadow-[var(--shadow-medium)] hover:shadow-2xl transition-all">
               <img src={atelierRose} alt="Atelier d'accompagnement entrepreneur Mare Nostrum à Toulouse avec experts et participants" loading="lazy" width="600" height="400" className="w-full h-[220px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-accent/90 via-accent/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
                   <h3 className="text-xl mb-2">Ateliers thématiques</h3>
                   <p className="text-sm">Workshops et masterclasses avec nos experts</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="group relative overflow-hidden rounded-sm shadow-[var(--shadow-medium)] hover:shadow-2xl transition-all">
-              <img src={neoEntrepreneurElite} alt="Journée de business développement avec néo-entrepreneurs dans l'offre Groupe Mare Nostrum Toulouse" loading="lazy" width="600" height="400" className="w-full h-[220px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                <div className="p-6 text-primary-foreground">
-                  <h3 className="text-xl mb-2">Offre Groupe</h3>
-                  <p className="text-sm">Journées de business développement avec nos néo-entrepreneurs</p>
                 </div>
               </div>
             </div>
