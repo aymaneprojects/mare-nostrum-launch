@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { GraduationCap, Users, Lightbulb, Trophy, BookOpen, Network, ArrowRight, CheckCircle2 } from "lucide-react";
+import { GraduationCap, Users, Lightbulb, Trophy, BookOpen, Network, Monitor, BrainCircuit, Bot, ArrowRight, CheckCircle2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
@@ -289,8 +289,125 @@ const Education = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Initiation à l'intelligence artificielle */}
+            <div className="relative order-1 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+              <span className="absolute top-6 right-6 rounded-full bg-primary/15 px-3 py-1 text-xs font-bold tracking-wide text-primary">
+                NUMÉRIQUE / IA
+              </span>
+              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <BrainCircuit className="h-7 w-7 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-foreground">Initiation à l'intelligence artificielle</h3>
+              <p className="text-muted-foreground mb-6">Une journée d'initiation pour comprendre l'IA, démêler le vrai du faux et apprendre à l'utiliser utilement, prudemment et sans jargon technique.</p>
+              <ul className="space-y-2 mb-6">
+                <li className="flex items-start space-x-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-sm text-muted-foreground">Tout public · 12 participants maximum</span></li>
+                <li className="flex items-start space-x-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-sm text-muted-foreground">7 h · classe virtuelle synchrone</span></li>
+                <li className="flex items-start space-x-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-sm text-muted-foreground">Pratique, usage responsable et premiers cas d'usage</span></li>
+              </ul>
+              <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <Link to="/initiation-ia">
+                  Accéder à la fiche détaillée
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+
+            {/* Agent IA pour le marketing */}
+            <div className="relative order-2 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+              <span className="absolute top-6 right-6 rounded-full bg-primary/15 px-3 py-1 text-xs font-bold tracking-wide text-primary">
+                NUMÉRIQUE / IA
+              </span>
+              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <Bot className="h-7 w-7 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-foreground">Concevoir son agent IA marketing</h3>
+              <p className="text-muted-foreground mb-6">En deux modules, concevez, construisez et mettez en service un agent IA pour votre marketing, appliqué à votre propre cas.</p>
+              <ul className="space-y-2 mb-6">
+                <li className="flex items-start space-x-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-sm text-muted-foreground">Marketing, communication et dirigeants de TPE-PME</span></li>
+                <li className="flex items-start space-x-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-sm text-muted-foreground">44 h · 100 % à distance</span></li>
+                <li className="flex items-start space-x-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-sm text-muted-foreground">Un agent fonctionnel, avec validation humaine</span></li>
+              </ul>
+              <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <Link to="/agent-ia-marketing">
+                  Accéder à la fiche détaillée
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+
+            <div className="relative order-4 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+              <span className="absolute top-6 right-6 rounded-full bg-[hsl(var(--mn-turquoise))]/20 px-3 py-1 text-xs font-bold tracking-wide text-primary">
+                ENTREPRENEURIAT
+              </span>
+              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <Users className="h-7 w-7 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-foreground">Mastermind néo-entrepreneurs</h3>
+              <p className="text-muted-foreground mb-6">
+                Parcours de 12 mois en petit groupe pour résoudre ses problématiques de jeune dirigeant par le codéveloppement, avec un entrepreneur invité à chaque session.
+              </p>
+              <ul className="space-y-2 mb-6">
+                <li className="flex items-start space-x-2">
+                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-muted-foreground">Créateurs et repreneurs d'entreprise</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-muted-foreground">56 h · 10 participants max · Toulouse</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-muted-foreground">Codéveloppement et mentorat individuel</span>
+                </li>
+              </ul>
+              <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <Link to="/mastermind">
+                  Accéder à la fiche détaillée
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+
+            {/* Mastermind digital néo-entrepreneurs */}
+            <div className="relative order-5 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+              <span className="absolute top-6 right-6 rounded-full bg-[hsl(var(--mn-turquoise))]/20 px-3 py-1 text-xs font-bold tracking-wide text-primary">
+                ENTREPRENEURIAT
+              </span>
+              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <Monitor className="h-7 w-7 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-foreground">Mastermind digital</h3>
+              <p className="text-muted-foreground mb-6">
+                La version 100 % en ligne du Mastermind pour les jeunes créateurs de l'espace francophone, avec des groupes constitués par fuseau horaire.
+              </p>
+              <ul className="space-y-2 mb-6">
+                <li className="flex items-start space-x-2">
+                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-muted-foreground">Étudiants et jeunes diplômés ayant créé leur entreprise</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-muted-foreground">39 h · 100 % à distance</span>
+                </li>
+                <li className="flex items-start space-x-2">
+                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-muted-foreground">Tarif adapté au pays de résidence</span>
+                </li>
+              </ul>
+              <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <Link to="/mastermind-digital">
+                  Accéder à la fiche détaillée
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+
+
             {/* Fresque */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="relative order-7 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+              <span className="absolute top-6 right-6 rounded-full bg-[hsl(var(--mn-ivory))] px-3 py-1 text-xs font-bold tracking-wide text-primary ring-1 ring-primary/15">
+                PÉDAGOGIE
+              </span>
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Lightbulb className="h-7 w-7 text-primary-foreground" />
               </div>
@@ -315,7 +432,10 @@ const Education = () => {
             </div>
 
             {/* Atelier des Alliés */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="relative order-3 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+              <span className="absolute top-6 right-6 rounded-full bg-[hsl(var(--mn-ocre))]/20 px-3 py-1 text-xs font-bold tracking-wide text-[hsl(var(--mn-ocre))]">
+                GESTION DE PROJET
+              </span>
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Users className="h-7 w-7 text-primary-foreground" />
               </div>
@@ -340,7 +460,10 @@ const Education = () => {
             </div>
 
             {/* Hackathons */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="relative order-9 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+              <span className="absolute top-6 right-6 rounded-full bg-primary/15 px-3 py-1 text-xs font-bold tracking-wide text-primary">
+                INNOVATION
+              </span>
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Trophy className="h-7 w-7 text-primary-foreground" />
               </div>
@@ -363,7 +486,10 @@ const Education = () => {
             </div>
 
             {/* Programme Premium */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="relative order-6 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+              <span className="absolute top-6 right-6 rounded-full bg-[hsl(var(--mn-turquoise))]/20 px-3 py-1 text-xs font-bold tracking-wide text-primary">
+                ENTREPRENEURIAT
+              </span>
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <GraduationCap className="h-7 w-7 text-primary-foreground" />
               </div>
@@ -386,7 +512,10 @@ const Education = () => {
             </div>
 
             {/* Cours */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="relative order-10 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+              <span className="absolute top-6 right-6 rounded-full bg-[hsl(var(--mn-muted))]/15 px-3 py-1 text-xs font-bold tracking-wide text-[hsl(var(--mn-muted))]">
+                TOUTES DISCIPLINES
+              </span>
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <BookOpen className="h-7 w-7 text-primary-foreground" />
               </div>
@@ -409,7 +538,10 @@ const Education = () => {
             </div>
 
             {/* Réseau */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="relative order-8 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+              <span className="absolute top-6 right-6 rounded-full bg-[hsl(var(--mn-ivory))] px-3 py-1 text-xs font-bold tracking-wide text-primary ring-1 ring-primary/15">
+                PEDAGOGIE
+              </span>
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Network className="h-7 w-7 text-primary-foreground" />
               </div>

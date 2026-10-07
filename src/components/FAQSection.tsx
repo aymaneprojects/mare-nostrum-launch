@@ -9,15 +9,16 @@ interface FAQ {
 interface FAQSectionProps {
   title?: string;
   faqs: FAQ[];
+  className?: string;
 }
 
-const FAQSection = ({ title = "Questions fréquentes", faqs }: FAQSectionProps) => {
+const FAQSection = ({ title = "Questions fréquentes", faqs, className = "" }: FAQSectionProps) => {
   const fade = useFadeIn(0);
   // Note: Le schéma FAQ est maintenant géré uniquement par SEOHead
   // pour éviter les doublons détectés par Google Search Console
 
   return (
-    <section ref={fade as React.RefObject<HTMLElement>} className="py-16 md:py-24 bg-secondary/30">
+    <section ref={fade as React.RefObject<HTMLElement>} className={`py-16 md:py-24 bg-secondary/30 ${className}`}>
       <div className="container mx-auto px-4">
         <h2 className="text-center mb-10 md:mb-16 text-foreground">
           {title}

@@ -11,8 +11,7 @@
  * React ait fini, et écrit le HTML obtenu dans dist/<route>/index.html. nginx
  * sert alors ce fichier, et React reprend la main côté visiteur.
  *
- * Exclus volontairement : /live (écrans de conférence), /healthz (sonde), et
- * /expertise (archive en noindex).
+ * Exclus volontairement : /live (écrans de conférence) et /healthz (sonde).
  *
  * Lancé par `npm run build`. Désactivable avec SKIP_PRERENDER=1.
  */
@@ -41,7 +40,8 @@ const TYPES = {
 
 /** Pages publiques à pré-rendre. Une entrée = un fichier HTML livré. */
 const ROUTES = [
-  "/", "/education", "/club", "/offre-ia", "/engagement-rse", "/a-propos",
+  "/", "/education", "/expertise", "/mastermind", "/mastermind-digital", "/initiation-ia",
+  "/agent-ia-marketing", "/club", "/offre-ia", "/engagement-rse", "/a-propos",
   "/a-propos/partenaire", "/contact", "/equipe", "/blog", "/livre-entrepreneuriat",
   "/diagnostic", "/niteo-toulouse", "/iter",
   "/ecoles/transformation-entrepreneuriale", "/ecoles/diagnostic-gratuit",

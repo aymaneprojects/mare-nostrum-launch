@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Home, GraduationCap, Users, Leaf, BookOpen, Info, Mail } from "lucide-react";
+import { Menu, X, Home, GraduationCap, Compass, Users, Leaf, BookOpen, Info, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
 // Desktop : sans "Accueil" (le logo sert de lien home)
 const desktopLinks = [
+  { to: "/expertise",         label: "Pôle d'expertise",          Icon: Compass         },
   { to: "/education",         label: "Centre de formation",        Icon: GraduationCap  },
   { to: "/club",              label: "Club",             Icon: Users          },
   { to: "/engagement-rse",    label: "RSE",              Icon: Leaf           },

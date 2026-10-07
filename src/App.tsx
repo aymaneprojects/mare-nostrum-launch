@@ -51,9 +51,13 @@ import Equipe from "./pages/Equipe";
 import CarteContact from "./pages/CarteContact";
 import { cn } from "@/lib/utils";
 
-// Pôle d'expertise : archive non reliée au site (voir src/pages/Expertise.tsx).
-// Chargée à la demande pour ne pas peser sur le bundle des pages publiées.
+// Pôle d'expertise et fiches de formation : chargés à la demande pour ne pas
+// peser sur le bundle des pages principales.
 const Expertise = lazy(() => import("./pages/Expertise"));
+const MastermindNeoEntrepreneurs = lazy(() => import("./pages/MastermindNeoEntrepreneurs"));
+const MastermindDigital = lazy(() => import("./pages/MastermindDigital"));
+const InitiationIA = lazy(() => import("./pages/InitiationIA"));
+const AgentIAMarketing = lazy(() => import("./pages/AgentIAMarketing"));
 
 // Live conférence : chargées à la demande (QR code + temps réel), hors du bundle du site vitrine.
 const LiveHome = lazy(() => import("./pages/live/LiveHome"));
@@ -111,8 +115,11 @@ const AppContent = () => {
         <Route path="/" element={<Index />} />
         <Route path="/education" element={<Education />} />
         <Route path="/formation" element={<Navigate to="/education" replace />} />
-        {/* Archive, volontairement sans lien depuis le site */}
         <Route path="/expertise" element={<Suspense fallback={null}><Expertise /></Suspense>} />
+        <Route path="/mastermind" element={<Suspense fallback={null}><MastermindNeoEntrepreneurs /></Suspense>} />
+        <Route path="/mastermind-digital" element={<Suspense fallback={null}><MastermindDigital /></Suspense>} />
+        <Route path="/initiation-ia" element={<Suspense fallback={null}><InitiationIA /></Suspense>} />
+        <Route path="/agent-ia-marketing" element={<Suspense fallback={null}><AgentIAMarketing /></Suspense>} />
         <Route path="/club" element={<Croissance />} />
         <Route path="/offre-ia" element={<OffreIA />} />
         <Route path="/engagement-rse" element={<EngagementRSE />} />

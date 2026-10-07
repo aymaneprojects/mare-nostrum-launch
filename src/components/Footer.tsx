@@ -29,6 +29,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/expertise" className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors">
+                  Pôle d'expertise
+                </Link>
+              </li>
+              <li>
                 <Link to="/education" className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors">
                   Centre de formation
                 </Link>

@@ -1,31 +1,13 @@
-/**
- * Pôle d'expertise — /expertise
- *
- * Archive : copie de la page « Centre de formation » (src/pages/Education.tsx)
- * conservée pour un futur repositionnement. La page n'est volontairement reliée
- * à rien : aucun lien dans le Header, le Footer, la navigation mobile ou le plan
- * du site, et `noindex` pour que les moteurs de recherche ne l'indexent pas.
- * On y accède uniquement en tapant l'adresse.
- *
- * Les deux pages évoluent séparément : une correction faite ici ne part pas
- * dans /education, et inversement.
- */
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { GraduationCap, Users, Lightbulb, Trophy, BookOpen, Network, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Users, Lightbulb, Trophy, Route, Handshake, SlidersHorizontal, ShieldCheck, Compass, ArrowRight, CheckCircle2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
-import TestimonialCard from "@/components/TestimonialCard";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
-import ylookProgramme from "@/assets/ylook-programme.jpg";
 import formationWorkshop from "@/assets/formation-workshop.jpg";
-import qualiopiLogo from "@/assets/qualiopi-logo.png";
-import fresque1Img from "@/assets/fresque-1.png";
-import iscomChallenge from "@/assets/iscom-startup-challenge.jpeg";
-import fresqueDoctorant from "@/assets/fresque-doctorant.png";
 import schoolIpstCnam from "@/assets/schools/ipst-cnam.png";
 import schoolIscom from "@/assets/schools/iscom.png";
 import schoolIstef from "@/assets/schools/istef.png";
@@ -34,18 +16,24 @@ import schoolEcole3a from "@/assets/schools/ecole-3a.png";
 import schoolAuf from "@/assets/schools/auf.png";
 import schoolIct from "@/assets/schools/ict.png";
 import schoolComue from "@/assets/schools/comue-toulouse.png";
-import schoolInpN7 from "@/assets/schools/inp-n7.png";
 import schoolIcam from "@/assets/schools/icam.png";
 import schoolNeoma from "@/assets/schools/neoma.png";
 import schoolIcd from "@/assets/schools/icd.png";
 import schoolEsct from "@/assets/schools/esct.png";
 import schoolEfap from "@/assets/schools/efap.png";
-import DarkSection from "@/components/DarkSection";
+import schoolUsms from "@/assets/schools/logo_usms_v.fw__0.png";
+import schoolFabLabMaroc from "@/assets/schools/FablabMaroc.png";
+import schoolAccede from "@/assets/schools/accede-mePbbKl0kKFbr3K9.jpg";
+import schoolIbnTofail from "@/assets/schools/universite-ibn-tofail-kenitra.png";
+import schoolExpertiseFrance from "@/assets/schools/expertise-france-afd.png";
+import schoolUtm from "@/assets/schools/universite-toulouse-mirail.png";
+import schoolCadiAyyad from "@/assets/schools/universite-cadi-ayyad.png";
+import schoolSenghor from "@/assets/schools/universite-senghor.png";
 const Expertise = () => {
   const expertiseSchema = [{
     "@context": "https://schema.org",
     "@type": "Course",
-    "name": "Pôle d'expertise Mare Nostrum",
+    "name": "Programme Mare Nostrum Éducation",
     "description": "Formation entrepreneuriale complète pour écoles et universités : ateliers participatifs, fresques collaboratives, hackathons et accompagnement premium. Programme éprouvé avec 17+ projets étudiants accompagnés.",
     "provider": {
       "@type": "Organization",
@@ -143,53 +131,46 @@ const Expertise = () => {
       "availability": "https://schema.org/InStock"
     }]
   }];
-  const expertiseFaqs = [{
-    question: "Faut-il un diplôme ou une expérience préalable ?",
-    answer: "Aucun diplôme n'est exigé pour l'ensemble de nos formations. Les prérequis sont propres à chaque formation et figurent dans le programme détaillé : certaines s'adressent à des porteurs de projet ayant une idée à valider, d'autres à des dirigeants déjà en activité. En cas de doute, un entretien préalable permet de vérifier avec vous que la formation correspond à votre situation."
-  }, {
-    question: "Combien de temps dure une formation ?",
-    answer: "Les formations de notre catalogue durent de 20 à 55 heures selon le programme, réparties sur plusieurs semaines pour rester compatibles avec une activité professionnelle. Nos interventions auprès des établissements et des entreprises vont, elles, de l'atelier de 3 heures au dispositif de plusieurs mois. La durée exacte est indiquée dans chaque programme détaillé."
-  }, {
-    question: "Où se déroulent les formations, et existe-t-il des formats à distance ?",
-    answer: "Nos formations se déroulent principalement en présentiel à Toulouse, et nous intervenons également à Paris, à Casablanca et dans l'espace francophone. Certains programmes sont proposés en format hybride, associant séances en présentiel et modules à distance. La modalité de chaque formation (présentiel, distanciel ou hybride) est précisée dans son programme détaillé."
-  }, {
-    question: "Quels sont les délais pour s'inscrire ?",
-    answer: "Le délai d'accès est de 15 jours ouvrés entre la validation de votre inscription et l'entrée en formation. Ce délai peut être allongé lorsqu'un financement externe doit être instruit, notamment auprès d'un OPCO. Nous vous indiquons le calendrier applicable dès le premier échange."
-  }, {
-    question: "Combien coûte une formation et comment la financer ?",
-    answer: "Le tarif est indiqué dans le programme détaillé de chaque formation et repris dans la proposition qui vous est adressée. Nos formations sont exonérées de TVA en application de l'article 261-4-4° a du Code général des impôts. Mare Nostrum étant un organisme de formation certifié Qualiopi, des financements de la formation professionnelle sont mobilisables selon votre statut : nous consulter pour identifier le circuit adapté et monter le dossier."
-  }, {
-    question: "Je suis en situation de handicap : comment se passe l'adaptation ?",
-    answer: "Toutes les formations dispensées par Mare Nostrum sont accessibles aux personnes en situation de handicap. Un référent handicap est à votre disposition pour étudier avec vous les aménagements nécessaires, en amont de votre inscription, et vous orienter le cas échéant vers les acteurs spécialisés. Vous pouvez le contacter à handicap@marenostrum.tech."
-  }, {
-    question: "Comment se déroule une formation, et que reçoit-on à la fin ?",
-    answer: "Nos formations reposent sur des méthodes actives : apports structurés, travail sur votre propre projet, mises en situation et échanges entre pairs, animés par des praticiens. Vos acquis sont évalués tout au long du parcours et en fin de formation, au regard des objectifs annoncés dans le programme. À l'issue, vous recevez une attestation de fin de formation mentionnant les objectifs visés et les résultats de l'évaluation."
-  }, {
-    question: "Quels résultats obtenez-vous auprès de vos participants ?",
-    answer: "Nous avons accompagné plus de 95 projets entrepreneuriaux et dispensé 544 heures de formation ; 55 % des néo-entrepreneurs accompagnés se rémunèrent dans les deux ans. Notre centre de formation ayant été certifié Qualiopi le 1er septembre 2026, les indicateurs de résultats propres aux formations de notre catalogue (taux de satisfaction, d'assiduité et d'atteinte des objectifs) seront publiés sur cette page au plus tard le 30 juin 2027."
-  }, {
-    question: "Que signifie la certification Qualiopi ?",
-    answer: "Qualiopi est la marque de certification nationale attestant de la qualité du processus mis en œuvre par les organismes de formation. Elle est délivrée après audit par un organisme accrédité et conditionne l'accès aux financements publics et mutualisés de la formation professionnelle. La mention réglementaire est la suivante : « La certification qualité a été délivrée au titre de la catégorie d'action suivante : ACTIONS DE FORMATION. »"
-  }, {
-    question: "Vous accompagnez aussi les établissements et les entreprises : comment fonctionnez-vous ?",
-    answer: "Tout commence par un échange de cadrage : vos objectifs, vos publics, votre calendrier et votre budget. Nous vous adressons ensuite une proposition sur mesure, de l'atelier de 3 heures au dispositif de plusieurs mois, en présentiel ou à distance, en France comme dans l'espace francophone. La mise en œuvre est formalisée par une convention de formation et pilotée par un interlocuteur unique."
-  }, {
-    question: "Le centre de formation Mare Nostrum est-il déclaré en France ?",
-    answer: "Oui, Mare Nostrum est un organisme de formation déclaré en France et enregistré sous le numéro 76311216831 : cet enregistrement ne vaut pas agrément de l'Etat."
-  }];
+  const expertiseFaqs = [
+    {
+      question: "Qui intervient sur notre mission, et qu'ont-ils déjà fait ?",
+      answer: "Des experts indépendants, sous convention avec Mare Nostrum, choisis parce qu'ils ont exercé le métier sur lequel porte votre besoin. Vous connaissez leur nom et leur parcours avant de signer. La directrice du Pôle d'expertise reste votre interlocutrice unique, du premier échange à la restitution."
+    },
+    {
+      question: "Connaissez-vous notre contexte ?",
+      answer: "C'est notre premier principe. Sur chaque mission internationale, un expert travaille en binôme avec un consultant qui connaît votre pays de l'intérieur : sa réglementation, ses institutions, ses usages. Nous partons de méthodes qui ont fait leurs preuves, puis nous les adaptons à vos ressources et à votre culture d'établissement."
+    },
+    {
+      question: "Combien coûte une mission, et comment la financer ?",
+      answer: "Chaque mission fait l'objet d'un devis établi après un premier échange gratuit. Elle peut être financée sur votre budget propre, comme ligne d'un projet soutenu par un bailleur ou dans le cadre d'un programme de coopération ; nous pouvons vous aider à identifier le bon guichet. Nos missions de conseil ne relèvent pas des financements de la formation professionnelle : seules les actions de notre centre de formation certifié Qualiopi y sont éligibles. Deux leviers permettent d'en réduire le coût : la mutualisation entre plusieurs établissements et la science ouverte (diffusion des livrable sous licence ouverte)."
+    },
+    {
+      question: "Pouvez-vous garantir l'obtention d'une accréditation ?",
+      answer: "Non, et personne ne peut honnêtement le faire : la décision appartient à l'agence ou à l'organisme compétent. Nous garantissons une préparation rigoureuse : un diagnostic d'écart sans complaisance, des preuves solides, des équipes prêtes."
+    },
+    {
+      question: "Vous proposez aussi des formations, des programmes et des outils numériques : comment garantissez-vous votre indépendance ?",
+      answer: "La question est légitime, et nous préférons y répondre franchement. Mare Nostrum est aussi organisme de formation et opérateur de programmes. Le diagnostic est livré et facturé pour lui-même : vous n'êtes jamais tenu de nous confier la suite. Lorsque l'une de nos offres figure parmi les options recommandées, nous le signalons et présentons des alternatives."
+    }
+  ];
   return <div className="min-h-screen flex flex-col">
-      <EnhancedSEOHead noindex title="Pôle d'expertise Mare Nostrum | Paris, Toulouse et Francophonie" description="Organisme de formation certifié Qualiopi à Toulouse. Formations à l'entrepreneuriat, au pilotage d'entreprise et à l'IA. Financements formation mobilisables." keywords="education entrepreneuriale toulouse, entrepreneuriat etudiant, entrepreneuriat etudiant toulouse, formation entrepreneuriat etudiant, programmes ecoles entrepreneuriat, ateliers entrepreneuriat toulouse, hackathon entrepreneuriat etudiant, enseignement superieur toulouse, Niteo, programme Niteo, fresque entrepreneuriat, entrepreneuriat afrique, formation entrepreneur etudiant, entrepreneuriat universite, entrepreneuriat ecole de commerce" structuredData={expertiseSchema} faqSchema={expertiseFaqs}  />
+      <EnhancedSEOHead title="Conseil auprès des établissements d'enseignement supérieur francophone | Au service de la coopération internationale" description="Concevoir, auditer et déployer vos projets de transformation avec des experts francophones qui ont exercé ces métiers, en Europe et en Afrique. Echange découverte gratuit." keywords="conseil université, ingénierie de financement, accompagnement d'établissement d'enseignement supérieur, innovation pédagogique université, stratégie d'établissement, appel à projets enseignement supérieur francophone, entrepreneuriat étudiant, conseil universités, campus entrepreneurial, renforcement des capacités des universités, agence universitaire de la francophonie" structuredData={expertiseSchema} faqSchema={expertiseFaqs} disableAutoEnhancement />
       <Header />
 
 
       <PageHero
         eyebrow="Pôle d'expertise de Mare Nostrum"
-        title="Se former pour créer, diriger et faire grandir son entreprise."
-        subtitle="Organisme de formation certifié Qualiopi, basé à Toulouse et actif dans l'espace francophone. Nous formons celles et ceux qui entreprennent, et les organisations qui les accompagnent."
+        title="Concevoir, auditer et déployer les transformations de l'enseignement supérieur."
+        subtitle={
+          <>
+            <span className="block">Nous accompagnons les universités et les écoles à chaque étape, du diagnostic à l'évaluation.</span>
+            <span className="block mt-4">Monter un programme, le faire financer, structurer l'entrepreneuriat sur votre campus, préparer une accréditation.</span>
+          </>
+        }
         ctas={
           <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
             <Link to="/contact">
-              Demander un programme sur mesure
+              Présenter mon projet à la directrice de Mare Nostrum
               <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
             </Link>
           </Button>
@@ -199,82 +180,160 @@ const Expertise = () => {
       {/* Trust Strip */}
       <section className="py-5 md:py-6 bg-secondary/40 border-b border-border">
         <div className="container mx-auto px-4">
-          <div className="max-w-full mx-auto text-center">
-            <span className="font-editorial font-semibold text-base md:text-lg text-primary whitespace-nowrap">
-              Organisme de formation enregistré sous le numéro 76311216831 : cet enregistrement ne vaut pas agrément de l'État.
+          <div className="max-w-5xl mx-auto text-center">
+            <span className="font-editorial font-semibold text-sm md:text-base text-primary">
+              Nous travaillons aussi avec les bailleurs internationaux, les agences de coopération et les collectivités territoriales qui financent ou portent des projets de transformation. Nos méthodes s’appliquent aussi à vos projets. Parlons-en.
             </span>
           </div>
         </div>
       </section>
 
-      {/* Challenges Section */}
-      <section className="py-16 md:py-24 bg-background">
+      {/* Offers Section */}
+      <section className="pt-16 md:pt-24 pb-8 md:pb-10 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-turquoise text-center mb-3">À qui s'adressent nos formations ?</div>
-          <h2 className="font-editorial italic text-center mb-8 md:mb-12 text-foreground">
-            Trois portes d'entrée, une même exigence : des formateurs praticiens et un accompagnement individualisé.
+          <div className="mn-eyebrow-turquoise text-center mb-3">Trois expertises, un même collectif.</div>
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
+            Nos domaines d’intervention dans l’enseignement supérieur
           </h2>
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-            <div className="text-center p-6">
-              <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
-                <Lightbulb className="h-8 w-8 text-primary" />
+          <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+            Nous n'intervenons que là où nos experts ont exercé.
+          </p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Ingénierie de projets et de financement */}
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
+              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <Lightbulb className="h-7 w-7 text-white" />
               </div>
-              <h3 className="text-xl mb-4 text-foreground">Je veux me former</h3>
-              <p className="text-muted-foreground">
-                Demandeurs d'emploi, salariés, personnes en reconversion : Vous voulez acquérir une compétence qui compte sur le marché du travail, ou préparer un changement de trajectoire. Nos formations courtes vous donnent des acquis immédiatement mobilisables.
+              <h3 className="text-xl font-bold mb-4 text-foreground">Du projet au programme : ingénierie de projets et de financement</h3>
+              <p className="text-muted-foreground mb-5">
+                Comment structurer nos projets, fédérer nos partenaires et démontrer notre impact ?
               </p>
-            </div>
-            <div className="text-center p-6">
-              <div className="bg-accent/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
-                <Users className="h-8 w-8 text-accent" />
+              <div className="space-y-4">
+                <div>
+                  <p className="text-sm font-semibold text-foreground mb-1">Vous avez</p>
+                  <p className="text-sm text-muted-foreground">Une idée, une priorité ou un guichet de financement, mais pas encore le programme complet.</p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground mb-2">Ce que nous faisons</p>
+                  <ul className="space-y-2">
+                    {["Note d'opportunité", "Architecture du programme", "Consortium et parties prenantes", "Plan de financement et rédaction du dossier", "Feuille de route et suivi-évaluation"].map((item) => (
+                      <li key={item} className="flex items-start space-x-2">
+                        <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <p className="text-sm text-muted-foreground"><span className="font-semibold text-foreground">Ce que vous obtenez :</span> un dossier solide, un consortium qui tient et un modèle économique pensé pour durer au-delà du premier financement.</p>
               </div>
-              <h3 className="text-xl mb-4 text-foreground">Je crée ou je dirige mon entreprise</h3>
-              <p className="text-muted-foreground">
-                Porteurs de projet, créateurs, dirigeants de TPE : Vous portez un projet ou vous dirigez une entreprise, souvent seul·e face aux décisions. Nos formats vous apportent une méthode, un cadre et un collectif de pairs.
-              </p>
             </div>
-            <div className="text-center p-6">
-              <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
-                <Trophy className="h-8 w-8 text-primary" />
+
+            {/* Campus entrepreneurial */}
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
+              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <Users className="h-7 w-7 text-white" />
               </div>
-              <h3 className="text-xl mb-4 text-foreground">Je forme mes équipes ou des publics divers</h3>
-              <p className="text-muted-foreground">
-                Entreprises, collectivités, universités, écoles, associations : Vous voulez développer les compétences entrepreneuriales ou managériales de vos collaborateurs, vos publics ou vos adhérents. Nous concevons et animons des dispositifs sur mesure.
+              <h3 className="text-xl font-bold mb-4 text-foreground">Campus entrepreneurial : entrepreneuriat étudiant et écosystème d'innovation</h3>
+              <p className="text-muted-foreground mb-5">
+                Comment passer d'initiatives dispersées à une politique d'établissement cohérente ?
               </p>
+              <div className="space-y-4">
+                <div>
+                  <p className="text-sm font-semibold text-foreground mb-1">Vous avez</p>
+                  <p className="text-sm text-muted-foreground">Des initiatives, un FabLab ou un incubateur, mais pas encore de politique d'établissement.</p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground mb-2">Ce que nous faisons</p>
+                  <ul className="space-y-2">
+                    {["Diagnostic de maturité", "Parcours et dispositifs", "Formation des équipes", "Mesure d'impact", "Partenariats privés et écosystème"].map((item) => (
+                      <li key={item} className="flex items-start space-x-2">
+                        <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <p className="text-sm text-muted-foreground"><span className="font-semibold text-foreground">Ce que vous obtenez :</span> un écosystème entrepreneurial durable, porté par vos équipes.</p>
+              </div>
             </div>
+
+            {/* Démarche qualité */}
+            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
+              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <Trophy className="h-7 w-7 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-foreground">Démarche qualité : accréditation et reconnaissance des formations</h3>
+              <p className="text-muted-foreground mb-5">
+                Comment prouver la qualité de nos formations, et la maintenir dans la durée ?
+              </p>
+              <div className="space-y-4">
+                <div>
+                  <p className="text-sm font-semibold text-foreground mb-1">Vous avez</p>
+                  <p className="text-sm text-muted-foreground">Des formations et des résultats, mais pas encore la reconnaissance officielle qui les rend visibles, comparables et finançables.</p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground mb-2">Ce que nous faisons</p>
+                  <ul className="space-y-2">
+                    {["Diagnostic d'écart au référentiel", "Plan d'action qualité", "Ingénierie des formations", "Audit blanc", "Préparation à l'évaluation"].map((item) => (
+                      <li key={item} className="flex items-start space-x-2">
+                        <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <p className="text-sm text-muted-foreground"><span className="font-semibold text-foreground">Ce que vous obtenez :</span> une documentation qualité à jour, des preuves prêtes et des équipes qui abordent l'évaluation sereinement.</p>
+              </div>
+            </div>
+
           </div>
+
+          <div className="max-w-3xl mx-auto mt-10 md:mt-12 p-6 md:p-8 rounded-sm border border-accent/30 bg-accent/10 text-center">
+            <p className="text-base md:text-lg text-foreground leading-relaxed">
+              Votre besoin ne correspond à aucune de ces situations ? Nous construisons nos interventions sur mesure : écrivez-nous à <a href="mailto:expertise@marenostrum.tech" className="font-semibold underline underline-offset-4 text-foreground">expertise@marenostrum.tech</a>.
+            </p>
+          </div>
+
+          {/* Encart contact */}
         </div>
       </section>
 
       {/* Image Formation */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="pt-8 md:pt-10 pb-8 md:pb-10 bg-background border-t border-border">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-8 items-stretch">
               <img 
                 src={formationWorkshop} 
                 alt="Formation en salle avec formateur et participants" 
-                className="w-full h-full object-cover rounded-sm shadow-[var(--shadow-medium)]"
+                className="w-full h-full object-cover rounded-sm shadow-lg"
               />
-              <div className="mn-card p-8">
-                <div className="bg-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                  <Users className="h-7 w-7 text-accent-foreground" />
+              <div className="bg-card border border-border rounded-sm p-8 shadow-lg">
+                <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                  <Compass className="h-7 w-7 text-white" />
                 </div>
-                <h3 className="text-xl mb-4 text-foreground">L'équipe pédagogique</h3>
+                <h3 className="text-xl font-bold mb-4 text-foreground">Le pôle d'expertise</h3>
                 <p className="text-muted-foreground mb-4">
-                  Derrière chaque formation, des praticiens. Nos formateurs dirigent, accompagnent et enseignent : ils transmettent ce qu'ils font. Ils ont été soigneusement sélectionnés par notre entreprise-école.
+                  Mon rôle est simple : faire en sorte que votre besoin rencontre la bonne personne. Je qualifie votre demande avec vous, je choisis l'expert adéquat, et je veille à la qualité de la mission jusqu'à son terme. Vous avez une seule interlocutrice, du premier échange à la restitution.
                 </p>
-                <p className="text-sm font-semibold text-primary">Julienne MUKABUCYANA</p>
+                <p className="text-sm font-semibold text-primary">Yasmine AREZKI</p>
                 <p className="text-sm text-muted-foreground">Directrice du Pôle d'expertise de Mare Nostrum</p>
               </div>
             </div>
           </div>
 
+          <div className="max-w-4xl mx-auto mt-8 p-6 md:p-8 rounded-sm border border-accent/30 bg-accent/10">
+            <p className="text-base text-foreground leading-relaxed">
+              <span className="font-semibold">Qui intervient réellement ?</span> Chaque mission associe un expert international, un enseignant-chercheur et un consultant qui connaît votre contexte local. Selon la mission, nous mobilisons notre réseau d'intervenants, sélectionnés et coordonnés par Mare Nostrum. À titre d'exemple : un ancien président d'université, une ancienne dirigeante d'école numérique, un enseignant-chercheur en sciences ou un ancien dirigeant d'incubateur au sein d'une business school.
+            </p>
+          </div>
+
           {/* CTA Pré-inscription */}
           <div className="mt-12 text-center">
-            <Button asChild size="lg" variant="secondary">
+            <Button asChild size="lg" className="h-auto max-w-full whitespace-normal text-center leading-snug bg-[hsl(var(--mn-turquoise))] hover:bg-[hsl(var(--mn-turquoise))]/90 text-white py-3">
               <Link to="/contact">
-                Se pré-inscrire à une formation
+                Réserver mon échange : 30 minutes pour faire le point sur mon projet et repartir avec une première orientation.
                 <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
               </Link>
             </Button>
@@ -282,327 +341,69 @@ const Expertise = () => {
         </div>
       </section>
 
-      {/* Offers Section */}
-      <section className="py-16 md:py-24 bg-secondary/30">
+      {/* Pourquoi choisir Mare Nostrum */}
+      <section className="pt-8 md:pt-10 pb-8 md:pb-10 bg-background border-t border-border">
         <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-turquoise text-center mb-3">Les formations certifiées en conformité avec Qualiopi</div>
-          <h2 className="font-editorial italic text-center mb-4 text-foreground">
-            Ce que propose le centre de formation de Mare Nostrum
+          <div className="mn-eyebrow-turquoise text-center mb-3">Pourquoi choisir Mare Nostrum ?</div>
+          <h2 className="font-editorial italic text-center mb-8 md:mb-12 text-foreground">
+            Une capacité d'intervention qui relie stratégie, ingénierie de projet et terrain.
           </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Chaque formation fait l'objet d'un programme détaillé, disponible sur demande, personnalisé sur commande.
-          </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
+            <div className="text-center p-6">
+              <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
+                <Route className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-foreground">Un interlocuteur unique, de l'idée à l'impact</h3>
+              <p className="text-muted-foreground">
+                Diagnostic, conception, financement, consortium, déploiement et suivi-évaluation : nous couvrons toute la chaîne. La stratégie validée au départ est celle qui est mise en œuvre.
+              </p>
+            </div>
+            <div className="text-center p-6">
+              <div className="bg-accent/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
+                <Handshake className="h-8 w-8 text-accent" />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-foreground">Un binôme expert international / expert local</h3>
+              <p className="text-muted-foreground">
+                Chaque mission combine une expertise métier et une connaissance fine du contexte. Les coopérations Sud-Sud comptent autant que Nord-Sud.
+              </p>
+            </div>
+            <div className="text-center p-6">
+              <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
+                <SlidersHorizontal className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-foreground">Des méthodes éprouvées, adaptées</h3>
+              <p className="text-muted-foreground">
+                Nous ne plaquons pas de modèle : nos dispositifs sont ajustés à vos réglementations, vos ressources et vos priorités, et co-construits avec vos équipes.
+              </p>
+            </div>
+            <div className="text-center p-6">
+              <div className="bg-accent/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
+                <ShieldCheck className="h-8 w-8 text-accent" />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-foreground">Un résultat qui vous appartient</h3>
+              <p className="text-muted-foreground">
+                Outils documentés, équipes formées, appropriation vérifiée : l'objectif est votre autonomie, sans dépendance aux experts externes.
+              </p>
+            </div>
+          </div>
 
-          <div className="bg-accent/10 border border-accent/30 rounded-sm p-6 max-w-3xl mx-auto mb-12">
-            <p className="text-center text-foreground font-medium">
-              Le catalogue de formation se met à jour et s'étoffe. D'autres formations rejoindront cette page et seront à votre disposition au plus tard le 30 septembre 2026. Pour être informé·e de l'ouverture des sessions, <Link to="/contact" className="text-[hsl(var(--mn-turquoise))] underline font-semibold">cliquez ici</Link>.
+          <div className="max-w-3xl mx-auto mt-10 md:mt-12 p-6 md:p-8 rounded-sm border border-accent/30 bg-accent/10 text-center">
+            <p className="text-base md:text-lg text-foreground leading-relaxed">
+              Nous intervenons en France, en Belgique, en Andorre, en Égypte, en Tunisie, au Maroc, au Sénégal, au Congo-Brazzaville et au Burkina Faso, et ailleurs dans l'espace francophone selon les besoins.
             </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Fresque */}
-            <div className="mn-card p-8 hover-lift transition-all duration-200 cursor-pointer">
-              <div className="bg-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Lightbulb className="h-7 w-7 text-accent-foreground" />
-              </div>
-              <h3 className="text-xl mb-4 text-foreground">La Fresque de l'esprit d'entreprendre</h3>
-              <p className="text-muted-foreground mb-6">
-                Atelier collaboratif de 3h pour découvrir l'entrepreneuriat de manière ludique et engageante. Idéal pour sensibiliser un grand nombre d'étudiants.
-              </p>
-              <ul className="space-y-2 mb-6">
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Tous niveaux (licence, master, doctorat)</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">10 à 80 participants</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Réseaux de formateurs agrées</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Atelier des Alliés */}
-            <div className="mn-card p-8 hover-lift transition-all duration-200 cursor-pointer">
-              <div className="bg-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Users className="h-7 w-7 text-accent-foreground" />
-              </div>
-              <h3 className="text-xl mb-4 text-foreground">L'Atelier des Alliés</h3>
-              <p className="text-muted-foreground mb-6">
-                Session d'intelligence collective pour développer la créativité et l'esprit d'équipe autour de projets entrepreneuriaux concrets.
-              </p>
-              <ul className="space-y-2 mb-6">
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Co-création et collaboration</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Méthodes d'innovation</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">15-25 participants</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Hackathons */}
-            <div className="mn-card p-8 hover-lift transition-all duration-200 cursor-pointer">
-              <div className="bg-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Trophy className="h-7 w-7 text-accent-foreground" />
-              </div>
-              <h3 className="text-xl mb-4 text-foreground">Hackathons & Challenges</h3>
-              <p className="text-muted-foreground mb-6">Événements sur-mesure pour stimuler l'innovation et développer des projets entrepreneuriaux en équipe sur 1 à 5 jours.</p>
-              <ul className="space-y-2 mb-6">
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Format intensif et structuré</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Mobilisation d'intervenants et de jury</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Projets concrets (fictifs ou réels)</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Programme Premium */}
-            <div className="mn-card p-8 hover-lift transition-all duration-200 cursor-pointer">
-              <div className="bg-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <GraduationCap className="h-7 w-7 text-accent-foreground" />
-              </div>
-              <h3 className="text-xl mb-4 text-foreground">Programme Niteo</h3>
-              <p className="text-muted-foreground mb-6">Accompagnement complet sur 2 mois pour faciliter l'insertion de vos étudiants dans l'écosystème entrepreneuriat.</p>
-              <ul className="space-y-2 mb-6">
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Programme clé en main</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Pédagogie éprouvée</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Écosystème de partenaires mobilisées</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Cours */}
-            <div className="mn-card p-8 hover-lift transition-all duration-200 cursor-pointer">
-              <div className="bg-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <BookOpen className="h-7 w-7 text-accent-foreground" />
-              </div>
-              <h3 className="text-xl mb-4 text-foreground">Cours professionnalisants</h3>
-              <p className="text-muted-foreground mb-6">Interventions pédagogiques personnalisées sur des thématiques entrepreneuriales spécifiques (stratégie d'entreprise, business plan...).</p>
-              <ul className="space-y-2 mb-6">
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Contenu adapté à votre syllabus</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Portage d'intervenants professionnels</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Organisme de formation déclaré</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Réseau */}
-            <div className="mn-card p-8 hover-lift transition-all duration-200 cursor-pointer">
-              <div className="bg-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Network className="h-7 w-7 text-accent-foreground" />
-              </div>
-              <h3 className="text-xl mb-4 text-foreground">Matinale de la pédagogie entrepreneuriale</h3>
-              <p className="text-muted-foreground mb-6">
-                Intégrez un réseau d'établissements et partagez les meilleures pratiques en pédagogie entrepreneuriale avec vos pairs.
-              </p>
-              <ul className="space-y-2 mb-6">
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Veille nationale et francophone</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Partage d'expériences entre pairs</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-muted-foreground">Sur invitation</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Bouton Niteo */}
-        </div>
-      </section>
-
-      {/* Financement Section */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-turquoise text-center mb-3">Financement</div>
-          <h2 className="font-editorial italic text-center mb-12 text-foreground">
-            Financer votre formation
-          </h2>
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center justify-center gap-6 mb-8">
-              <img src={qualiopiLogo} alt="Logo Qualiopi" className="h-32 w-auto flex-shrink-0" />
-              <p className="text-center text-muted-foreground leading-relaxed">
-                Mare Nostrum est un organisme de formation certifié Qualiopi et déclaré auprès de la DREETS Occitanie. À ce titre, des financements de la formation professionnelle sont mobilisables : prise en charge par votre OPCO, financement par votre employeur, dispositifs publics et cofinancements. Chaque situation est différente. Nous vous aidons à identifier le circuit adapté à votre statut et à monter le dossier. Contacter la directrice du centre de formation.
-              </p>
-            </div>
-            <div className="text-center">
-              <Button asChild size="lg" variant="secondary">
-                <Link to="/contact">
-                  Nous consulter sur le financement
-                  <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* B2B Section */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-turquoise text-center mb-3">Les dispositifs pour les établissements</div>
-          <h2 className="font-editorial italic text-center mb-4 text-foreground">
-            Les interventions dans l'enseignement supérieur
-          </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Un réseau d'intervenants mobilisables pour vos modules, de 3 heures à 100 heures, en France et dans l'espace francophone, en présentiel et en distanciel
-          </p>
-
-          <div className="mb-12">
-            <h3 className="font-editorial italic text-2xl md:text-3xl font-semibold text-center mb-8 text-foreground">
-              Vos enjeux
-            </h3>
-            <div className="max-w-3xl mx-auto space-y-4">
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                <p className="text-muted-foreground"><strong className="text-foreground">Transformation pédagogique :</strong> innover dans vos méthodes et intégrer le numérique pour former celles et ceux qui entreprendront demain.</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                <p className="text-muted-foreground"><strong className="text-foreground">Attractivité et engagement :</strong> différencier votre offre et engager vos publics dans des projets concrets.</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                <p className="text-muted-foreground"><strong className="text-foreground">Soutenabilité budgétaire :</strong> optimiser vos ressources dans le respect de vos contraintes réglementaires.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Results Section */}
-      <section className="py-6 md:py-8 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-turquoise text-center mb-3">Ils nous font confiance</div>
-          <h2 className="font-editorial italic text-center mb-12 text-foreground">
-            Résultats & preuve sociale
-          </h2>
-          <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-8 text-center">
-              <div>
-                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">95+</div>
-                <div className="text-muted-foreground">projets étudiants</div>
-                <div className="text-sm text-muted-foreground">accompagnés</div>
-              </div>
-              <div>
-                <div className="text-4xl md:text-5xl font-bold text-accent mb-2">544h</div>
-                <div className="text-muted-foreground">de formation</div>
-                <div className="text-sm text-muted-foreground">dispensées</div>
-              </div>
-              <div>
-                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">55%</div>
-                <div className="text-muted-foreground">des néo-entrepreneurs</div>
-                <div className="text-sm text-muted-foreground">se rémunèrent dans les 2 ans</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Exemples de nos actions Section */}
-      <section className="py-16 md:py-24 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-turquoise text-center mb-3">Retours d'expérience</div>
-          <h2 className="font-editorial italic text-center mb-4 text-foreground">
-            Exemples de nos actions
-          </h2>
-          <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Nos programmes en action dans les établissements partenaires
-          </p>
-          
-          <div className="overflow-hidden">
-            <div className="flex gap-6 animate-scroll">
-              <div className="relative overflow-hidden rounded-sm shadow-[var(--shadow-medium)] flex-shrink-0 w-[400px] h-[300px]">
-                <img src={ylookProgramme} alt="Programme Ylook - Ynov Campus Toulouse" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
-                  <div className="p-6 text-primary-foreground">
-                    <h3 className="text-xl mb-2 text-primary-foreground">Programme Ylook - Ynov Campus Toulouse</h3>
-                    <p className="text-sm">Accompagnement étudiant au sein de l'école Ynov Campus Toulouse dans le cadre du programme Ylook</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative overflow-hidden rounded-sm shadow-[var(--shadow-medium)] flex-shrink-0 w-[400px] h-[300px]">
-                <img src={fresque1Img} alt="Fresque organisée pour 80 personnes dans un établissement" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
-                  <div className="p-6 text-primary-foreground">
-                    <h3 className="text-xl mb-2 text-primary-foreground">Fresque collaborative</h3>
-                    <p className="text-sm">Fresque organisée pour 80 personnes dans un établissement</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative overflow-hidden rounded-sm shadow-[var(--shadow-medium)] flex-shrink-0 w-[400px] h-[300px]">
-                <img src={iscomChallenge} alt="ISCOM Startup Challenge - Réfléchir vite pour répondre à la problématique donnée" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
-                  <div className="p-6 text-primary-foreground">
-                    <h3 className="text-xl mb-2 text-primary-foreground">ISCOM Startup Challenge</h3>
-                    <p className="text-sm">Réfléchir vite pour répondre à la problématique donnée</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative overflow-hidden rounded-sm shadow-[var(--shadow-medium)] flex-shrink-0 w-[400px] h-[300px]">
-                <img src={fresqueDoctorant} alt="Fresque de l'esprit d'entreprendre adaptée aux doctorants" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent flex items-end">
-                  <div className="p-6 text-primary-foreground">
-                    <h3 className="text-xl mb-2 text-primary-foreground">Fresque de l'esprit d'entreprendre</h3>
-                    <p className="text-sm">Fresque de l'esprit d'entreprendre adaptée aux doctorants</p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Écoles Partenaires Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="pt-8 md:pt-10 pb-8 md:pb-10 bg-background border-t border-border">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Ecoles et établissements partenaires</div>
           <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Ils nous font confiance
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Comme ces organisations, faites appel au réseau d'intervenants et formateurs de Mare Nostrum
+            Comme ces établissements, faites appel à Mare Nostrum
           </p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 max-w-5xl mx-auto">
             {[
@@ -614,12 +415,19 @@ const Expertise = () => {
               { src: schoolAuf, alt: "AUF" },
               { src: schoolIct, alt: "ICT - Institut Catholique de Toulouse" },
               { src: schoolComue, alt: "Communauté d'universités de Toulouse" },
-              { src: schoolInpN7, alt: "Toulouse INP N7" },
               { src: schoolIcam, alt: "ICAM" },
               { src: schoolNeoma, alt: "NEOMA Business School" },
               { src: schoolIcd, alt: "ICD Business School" },
               { src: schoolEsct, alt: "ESCT" },
               { src: schoolEfap, alt: "EFAP" },
+              { src: schoolUsms, alt: "USMS" },
+              { src: schoolFabLabMaroc, alt: "FabLab Maroc" },
+              { src: schoolAccede, alt: "Accede" },
+              { src: schoolIbnTofail, alt: "Université Ibn Tofaïl de Kénitra" },
+              { src: schoolExpertiseFrance, alt: "Expertise France – Groupe AFD" },
+              { src: schoolUtm, alt: "Université Toulouse – Jean Jaurès" },
+              { src: schoolCadiAyyad, alt: "Université Cadi Ayyad" },
+              { src: schoolSenghor, alt: "Université Senghor" },
             ].map((school) => (
               <div key={school.alt} className="flex items-center justify-center h-16 md:h-20 grayscale hover:grayscale-0 transition-all duration-300">
                 <img src={school.src} alt={school.alt} className="max-h-full max-w-[140px] md:max-w-[160px] object-contain" />
@@ -629,74 +437,7 @@ const Expertise = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-turquoise text-center mb-3">Témoignages</div>
-          <h2 className="font-editorial italic text-center mb-12 text-foreground">
-            Que disent nos clients de notre centre de formation ?
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <TestimonialCard text="Quelque chose qui était présent à chaque instant (du Programme) c'est l'échange d'expérience et d'opinion. Ce qui permettait un retour permanent, constructif et pointilleux tout ça dans la bienveillance et la bonne humeur" author="Annabel" role="Étudiante et néo-entrepreneure accompagnée" organization="2024" />
-            <TestimonialCard text="Un acteur efficace, engagé et authentique, qui accompagne réellement les établissements dans leur transformation." author="Géraldine Le Caer" role="Directrice d'établissement partenaire" />
-            <TestimonialCard text="Être ici aux côtés de l'ensemble des porteurs de projet, pour moi, c'était important. Parce que ce sont des jeunes audacieux, persévérants, et parce qu'on a besoin d'un entrepreneuriat qui est en capacité de pouvoir changer le monde. Ils mettent leurs convictions au service de solutions. Ce sont des solutions concrètes et performantes. Faites leur confiance, aidez-les, accompagnez-les !" author="Nadia Pellefigue" role="Vice-présidente de la Région Occitanie" />
-          </div>
-        </div>
-      </section>
-
-      <FAQSection title="Questions fréquentes" faqs={expertiseFaqs} />
-
-      {/* CTA Section */}
-      <DarkSection>
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="font-editorial italic mb-6 text-primary-foreground">
-              Se former pour entreprendre, ou former ceux qui entreprennent
-            </h2>
-            <p className="text-xl text-primary-foreground/90 mb-8">
-              Choisissez l'entrée qui vous convient
-            </p>
-            
-            <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-              <div className="bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded-sm p-8">
-                <h3 className="text-xl text-primary-foreground mb-4">Responsable pédagogique ?</h3>
-                <p className="text-primary-foreground/80 mb-6">
-                  Planifions un rendez-vous pour discuter de vos besoins
-                </p>
-                <Button asChild variant="secondary" className="w-full">
-                  <a href="https://meet.marenostrum.tech/rdv-equipe" target="_blank" rel="noopener noreferrer">
-                    Planifier un rendez-vous
-                  </a>
-                </Button>
-              </div>
-
-              <div className="bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded-sm p-8">
-                <h3 className="text-xl text-primary-foreground mb-4">Appel d'offres en cours ?</h3>
-                <p className="text-primary-foreground/80 mb-6">
-                  Envoyez-nous votre brief pour une réponse personnalisée
-                </p>
-                <Button asChild variant="secondary" className="w-full">
-                  <Link to="/contact">
-                    Nous envoyer un brief
-                  </Link>
-                </Button>
-              </div>
-
-              <div className="bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded-sm p-8">
-                <h3 className="text-xl text-primary-foreground mb-4">Vous voulez vous former ?</h3>
-                <p className="text-primary-foreground/80 mb-6">
-                  Découvrez le catalogue et pré-inscrivez-vous
-                </p>
-                <Button asChild variant="secondary" className="w-full">
-                  <Link to="/contact">
-                    S'informer
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </DarkSection>
+      <FAQSection title="Questions fréquentes" faqs={expertiseFaqs} className="!py-8 md:!py-10 border-t border-border" />
 
       <Footer />
     </div>;
