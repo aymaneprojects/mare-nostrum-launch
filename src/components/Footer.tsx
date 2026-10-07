@@ -16,7 +16,7 @@ const Footer = () => {
               className="h-12 md:h-14 w-auto mb-4 brightness-0 invert"
             />
             <p className="mn-body text-primary-foreground/75 max-w-sm">
-              Du projet à l'entreprise : l'alliance pour les parcours entrepreneuriaux
+              Du projet aux premiers revenus : le groupe de services pour les parcours entrepreneuriaux
             </p>
             <div className="mt-5">
               <img
@@ -51,7 +51,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/club" className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors">
-                  Offre Club
+                  Club d'entrepreneurs
                 </Link>
               </li>
               <li>

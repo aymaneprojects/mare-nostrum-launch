@@ -166,7 +166,7 @@ const Education = () => {
     answer: "Oui, Mare Nostrum est un organisme de formation déclaré en France et enregistré sous le numéro 76311216831 : cet enregistrement ne vaut pas agrément de l'Etat."
   }];
   return <div className="min-h-screen flex flex-col">
-      <EnhancedSEOHead title="Centre de formation Mare Nostrum | Qualiopi | Paris, Toulouse et Francophonie" description="Organisme de formation certifié Qualiopi à Toulouse. Formations à l'entrepreneuriat, au pilotage d'entreprise et à l'IA. Financements formation mobilisables." keywords="education entrepreneuriale toulouse, entrepreneuriat etudiant, entrepreneuriat etudiant toulouse, formation entrepreneuriat etudiant, programmes ecoles entrepreneuriat, ateliers entrepreneuriat toulouse, hackathon entrepreneuriat etudiant, enseignement superieur toulouse, Niteo, programme Niteo, fresque entrepreneuriat, entrepreneuriat afrique, formation entrepreneur etudiant, entrepreneuriat universite, entrepreneuriat ecole de commerce" structuredData={educationSchema} faqSchema={educationFaqs}  />
+      <EnhancedSEOHead title="Du projet à l'entreprise : le groupe de services pour les parcours entrepreneuriaux" description="Organisme de formation certifié Qualiopi à Toulouse. Formations à l'entrepreneuriat, au pilotage d'entreprise et à l'IA. Financements formation mobilisables." keywords="education entrepreneuriale toulouse, entrepreneuriat etudiant, entrepreneuriat etudiant toulouse, formation entrepreneuriat etudiant, programmes ecoles entrepreneuriat, ateliers entrepreneuriat toulouse, hackathon entrepreneuriat etudiant, enseignement superieur toulouse, Niteo, programme Niteo, fresque entrepreneuriat, entrepreneuriat afrique, formation entrepreneur etudiant, entrepreneuriat universite, entrepreneuriat ecole de commerce" structuredData={educationSchema} faqSchema={educationFaqs}  />
       <Header />
 
 
@@ -290,7 +290,7 @@ const Education = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Initiation à l'intelligence artificielle */}
-            <div className="relative order-1 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="relative order-[1] bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
               <span className="absolute top-6 right-6 rounded-full bg-primary/15 px-3 py-1 text-xs font-bold tracking-wide text-primary">
                 NUMÉRIQUE / IA
               </span>
@@ -313,7 +313,7 @@ const Education = () => {
             </div>
 
             {/* Agent IA pour le marketing */}
-            <div className="relative order-2 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="relative order-[2] bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
               <span className="absolute top-6 right-6 rounded-full bg-primary/15 px-3 py-1 text-xs font-bold tracking-wide text-primary">
                 NUMÉRIQUE / IA
               </span>
@@ -432,7 +432,7 @@ const Education = () => {
             </div>
 
             {/* Atelier des Alliés */}
-            <div className="relative order-3 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="relative order-6 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
               <span className="absolute top-6 right-6 rounded-full bg-[hsl(var(--mn-ocre))]/20 px-3 py-1 text-xs font-bold tracking-wide text-[hsl(var(--mn-ocre))]">
                 GESTION DE PROJET
               </span>

@@ -10,10 +10,17 @@ import Autoplay from "embla-carousel-autoplay";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import alexisJanicotImg from "@/assets/team/alexis-janicot.png";
 import aymaneAbdennourImg from "@/assets/team/aymane-abdennour.png";
-import romeoMasipImg from "@/assets/team/romeo-masip.png";
+import julienneMukabucyanaImg from "@/assets/team/julienne-mukabucyana.jpg";
+import yasmineArezkiImg from "@/assets/team/yasmine-arezki.jpg";
+import muhannadAlfgiImg from "@/assets/team/muhannad-alfgi.jpg";
+import marieCarolleMarcelinImg from "@/assets/team/marie-carolle-marcelin.jpg";
+import lamineNdiayeImg from "@/assets/team/lamine-ndiaye.jpg";
+import aristideEliezerGnangueBongomaImg from "@/assets/team/aristide-eliezer-gnangue-bongoma.jpg";
+import claireGoursauImg from "@/assets/team/claire-goursau.jpg";
+import bouchaibMernariImg from "@/assets/team/bouchaib-mernari.jpeg";
+import geraldineLeCaerImg from "@/assets/team/geraldine-le-caer.jpg";
 import khalidEzzemaniImg from "@/assets/team/khalid-ezzemani.png";
-import frederiqueBerteletImg from "@/assets/team/frederique-bertelet.png";
-import dianeMoulinsImg from "@/assets/team/diane-moulins.png";
+
 import alainJanicotImg from "@/assets/team/alain-janicot.png";
 import hufLogo from "@/assets/partners/huf.png";
 import bidayaLogo from "@/assets/partners/bidaya.png";
@@ -75,11 +82,7 @@ const About = () => {
             }
           ],
           "employee": [
-            {
-              "@type": "Person",
-              "name": "Roméo Masip",
-              "jobTitle": "Commercial Junior"
-            },
+
             {
               "@type": "Person",
               "name": "Khalid Ezzemani",
@@ -94,13 +97,54 @@ const About = () => {
             },
             {
               "@type": "Person",
-              "name": "Frédérique Bertelet",
-              "jobTitle": "Ingénieur pédagogique"
+              "name": "Julienne Mukabucyana",
+              "jobTitle": "Directrice du centre de formation",
+              "workLocation": "Toulouse, France"
             },
             {
               "@type": "Person",
-              "name": "Diane Moulins",
-              "jobTitle": "Chef de projet Nitéo"
+              "name": "Yasmine Arezki",
+              "jobTitle": "Directrice du pôle d'expertise",
+              "workLocation": "Toulouse, France"
+            },
+            {
+              "@type": "Person",
+              "name": "Muhannad Alfgi",
+              "jobTitle": "Chargé de financements de projets",
+              "workLocation": "Toulouse, France"
+            },
+            {
+              "@type": "Person",
+              "name": "Marie-Carolle Marcelin",
+              "jobTitle": "Ambassadrice Mare Nostrum",
+              "workLocation": "Toulouse, France"
+            },
+            {
+              "@type": "Person",
+              "name": "Lamine Ndiaye",
+              "jobTitle": "Ambassadeur Mare Nostrum",
+              "workLocation": "Dakar, Sénégal"
+            },
+            {
+              "@type": "Person",
+              "name": "Aristide-Eliezer Gnangue-Bongoma",
+              "jobTitle": "Ambassadeur Mare Nostrum",
+              "workLocation": "Brazzaville, République du Congo"
+            },
+            {
+              "@type": "Person",
+              "name": "Claire Goursau",
+              "jobTitle": "Membre du comité de mission"
+            },
+            {
+              "@type": "Person",
+              "name": "Bouchaib Mernari",
+              "jobTitle": "Membre du comité scientifique"
+            },
+            {
+              "@type": "Person",
+              "name": "Géraldine Le Caër",
+              "jobTitle": "Membre du comité de mission"
             }
           ],
           "knowsAbout": [
@@ -237,7 +281,7 @@ const About = () => {
                 <AvatarFallback>AJ</AvatarFallback>
               </Avatar>
               <h3 className="text-lg md:text-xl mb-2 text-foreground">Alexis Janicot</h3>
-              <p className="text-sm md:text-base text-muted-foreground">Fondateur et Dirigeant</p>
+              <p className="text-sm md:text-base text-muted-foreground">Fondateur et dirigeant · Toulouse (France)</p>
             </div>
 
             <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
@@ -246,17 +290,90 @@ const About = () => {
                 <AvatarFallback>AA</AvatarFallback>
               </Avatar>
               <h3 className="text-lg md:text-xl mb-2 text-foreground">Aymane Abdennour</h3>
-              <p className="text-sm md:text-base text-muted-foreground">Fondateur de Veluo by Mare Nostrum</p>
+              <p className="text-sm md:text-base text-muted-foreground">Chargé de développement de l'IA · Toulouse (France)</p>
             </div>
 
             <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
-                <AvatarImage src={romeoMasipImg} alt="Roméo Masip" />
-                <AvatarFallback>RM</AvatarFallback>
+                <AvatarImage src={julienneMukabucyanaImg} alt="Julienne Mukabucyana" />
+                <AvatarFallback>JM</AvatarFallback>
               </Avatar>
-              <h3 className="text-lg md:text-xl mb-2 text-foreground">Roméo Masip</h3>
-              <p className="text-sm md:text-base text-muted-foreground">Commercial Junior</p>
+              <h3 className="text-lg md:text-xl mb-2 text-foreground">Julienne Mukabucyana</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Directrice du centre de formation · Toulouse (France)</p>
             </div>
+
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
+              <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
+                <AvatarImage src={yasmineArezkiImg} alt="Yasmine Arezki" />
+                <AvatarFallback>YA</AvatarFallback>
+              </Avatar>
+              <h3 className="text-lg md:text-xl mb-2 text-foreground">Yasmine Arezki</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Directrice du pôle d'expertise · Toulouse (France)</p>
+            </div>
+
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
+              <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
+                <AvatarImage src={marieCarolleMarcelinImg} alt="Marie-Carolle Marcelin" />
+                <AvatarFallback>MM</AvatarFallback>
+              </Avatar>
+              <h3 className="text-lg md:text-xl mb-2 text-foreground">Marie-Carolle Marcelin</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Ambassadrice Mare Nostrum à Toulouse (France)</p>
+            </div>
+
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
+              <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
+                <AvatarImage src={lamineNdiayeImg} alt="Lamine Ndiaye" />
+                <AvatarFallback>LN</AvatarFallback>
+              </Avatar>
+              <h3 className="text-lg md:text-xl mb-2 text-foreground">Lamine Ndiaye</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Ambassadeur Mare Nostrum à Dakar (Sénégal)</p>
+            </div>
+
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
+              <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
+                <AvatarImage src={aristideEliezerGnangueBongomaImg} alt="Aristide-Eliezer Gnangue-Bongoma" />
+                <AvatarFallback>AG</AvatarFallback>
+              </Avatar>
+              <h3 className="text-lg md:text-xl mb-2 text-foreground">Aristide-Eliezer Gnangue-Bongoma</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Ambassadeur Mare Nostrum à Brazzaville (République du Congo)</p>
+            </div>
+
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
+              <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
+                <AvatarImage src={claireGoursauImg} alt="Claire Goursau" />
+                <AvatarFallback>CG</AvatarFallback>
+              </Avatar>
+              <h3 className="text-lg md:text-xl mb-2 text-foreground">Claire Goursau</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Membre du comité de mission</p>
+            </div>
+
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
+              <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
+                <AvatarImage src={bouchaibMernariImg} alt="Bouchaib Mernari" />
+                <AvatarFallback>BM</AvatarFallback>
+              </Avatar>
+              <h3 className="text-lg md:text-xl mb-2 text-foreground">Bouchaib Mernari</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Membre du comité scientifique</p>
+            </div>
+
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
+              <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
+                <AvatarImage src={yasmineArezkiImg} alt="Yasmine Arezki" />
+                <AvatarFallback>YA</AvatarFallback>
+              </Avatar>
+              <h3 className="text-lg md:text-xl mb-2 text-foreground">Yasmine Arezki</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Directrice du pôle d'expertise · Toulouse (France)</p>
+            </div>
+
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
+              <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
+                <AvatarImage src={muhannadAlfgiImg} alt="Muhannad Alfgi" />
+                <AvatarFallback>MA</AvatarFallback>
+              </Avatar>
+              <h3 className="text-lg md:text-xl mb-2 text-foreground">Muhannad Alfgi</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Chargé de financements de projets · Toulouse (France)</p>
+            </div>
+
 
             <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
@@ -264,7 +381,7 @@ const About = () => {
                 <AvatarFallback>KE</AvatarFallback>
               </Avatar>
               <h3 className="text-lg md:text-xl mb-2 text-foreground">Khalid Ezzemani</h3>
-              <p className="text-sm md:text-base text-muted-foreground">Co-Fondateur · Casablanca</p>
+              <p className="text-sm md:text-base text-muted-foreground">Co-fondateur · Casablanca (Maroc)</p>
             </div>
 
             <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
@@ -273,26 +390,11 @@ const About = () => {
                 <AvatarFallback className="text-2xl">AJ</AvatarFallback>
               </Avatar>
               <h3 className="text-lg md:text-xl mb-2 text-foreground">Alain Janicot</h3>
-              <p className="text-sm md:text-base text-muted-foreground">Co-Fondateur · Paris</p>
+              <p className="text-sm md:text-base text-muted-foreground">Responsable administratif · Paris (France)</p>
             </div>
 
-            <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
-              <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
-                <AvatarImage src={frederiqueBerteletImg} alt="Frédérique Bertelet" />
-                <AvatarFallback>FB</AvatarFallback>
-              </Avatar>
-              <h3 className="text-lg md:text-xl mb-2 text-foreground">Frédérique Bertelet</h3>
-              <p className="text-sm md:text-base text-muted-foreground">Ingénieur pédagogique</p>
-            </div>
 
-            <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
-              <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
-                <AvatarImage src={dianeMoulinsImg} alt="Diane Moulins" />
-                <AvatarFallback>DM</AvatarFallback>
-              </Avatar>
-              <h3 className="text-lg md:text-xl mb-2 text-foreground">Diane Moulins</h3>
-              <p className="text-sm md:text-base text-muted-foreground">Chef de projet Nitéo</p>
-            </div>
+
           </div>
         </div>
       </section>
