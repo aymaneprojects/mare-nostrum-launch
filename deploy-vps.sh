@@ -96,6 +96,7 @@ fi
 
 echo "==> Build de production"
 npm run build
+scripts/verifier-build.sh   # refuse un build vide AVANT d'envoyer quoi que ce soit
 
 echo "==> Envoi de l'archive ($(du -sh dist | cut -f1))"
 envoyer
