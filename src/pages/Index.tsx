@@ -7,7 +7,7 @@ import StatCard from "@/components/StatCard";
 import TestimonialCard from "@/components/TestimonialCard";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import FAQSection from "@/components/FAQSection";
-import StatsSection from "@/components/StatsSection";
+
 import { useFadeIn } from "@/hooks/useFadeIn";
 import hufLogo from "@/assets/partners/huf.png";
 import bidayaLogo from "@/assets/partners/bidaya.png";
@@ -38,7 +38,7 @@ const Index = () => {
   const fadeTestimonials= useFadeIn(100);
   const fadeCTA         = useFadeIn(0);
   const fadePoles       = useFadeIn(0);
-  const fadeHow         = useFadeIn(0);
+
   const homePageSchema = [
     {
       "@context": "https://schema.org",
@@ -333,70 +333,33 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Two Poles */}
+      {/* Services */}
       <section ref={fadePoles as React.RefObject<HTMLElement>} className="py-12 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto text-center">
-            <div className="mn-eyebrow-turquoise text-center mb-5">Nos offres</div>
+            <div className="mn-eyebrow-turquoise text-center mb-5">Nos services</div>
             <h2 className="font-editorial italic mb-8 md:mb-14 text-foreground">
-              Nos deux pôles d'expertise
+              Les services Mare Nostrum
             </h2>
 
-            <div className="grid md:grid-cols-2 gap-5 md:gap-8 max-w-6xl mx-auto">
-              <Link
-                to="/education"
-                className="mn-pole group relative flex flex-col justify-between overflow-hidden rounded-lg p-6 md:p-10 min-h-[22rem] md:min-h-[30rem] shadow-lift card-interactive text-left"
-              >
-                <div aria-hidden="true" className="mn-pole-bg absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 20% 15%, hsl(var(--mn-turquoise) / 0.22) 0%, transparent 60%), repeating-linear-gradient(135deg, transparent 0 22px, hsl(var(--mn-turquoise) / 0.07) 22px 23px), linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)' }}></div>
-                <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, hsl(var(--mn-ink) / 0.92) 0%, hsl(var(--mn-ink) / 0.55) 42%, transparent 75%)' }}></div>
-                <div className="relative z-10 flex items-start justify-between">
-                  <div>
-                    <div className="mn-eyebrow-light mb-4">Mare Nostrum Éducation</div>
-                  </div>
-                  <span aria-hidden="true" className="mn-pole-arrow flex h-11 w-11 items-center justify-center rounded-full border border-primary-foreground/40 text-primary-foreground">
-                    <ArrowRight className="h-5 w-5" />
-                  </span>
-                </div>
-                <div className="relative z-10 mt-16">
-                  <h3 className="font-editorial italic font-medium text-[length:var(--fs-h2)] leading-[1.2] text-primary-foreground mb-3 md:mb-4" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>
-                    Le cap de l'esprit d'entreprendre
-                  </h3>
-                  <p className="mn-body text-primary-foreground/80">
-                    De la sensibilisation à la professionnalisation, y compris la pré-incubation.
-                  </p>
-                </div>
-              </Link>
-
-              <Link
-                to="/club"
-                className="mn-pole group relative flex flex-col justify-between overflow-hidden rounded-lg p-6 md:p-10 min-h-[22rem] md:min-h-[30rem] shadow-lift card-interactive text-left"
-              >
-                <div aria-hidden="true" className="mn-pole-bg absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 80% 15%, hsl(var(--mn-ivory) / 0.14) 0%, transparent 55%), repeating-linear-gradient(135deg, transparent 0 22px, hsl(var(--mn-ivory) / 0.06) 22px 23px), linear-gradient(135deg, hsl(181 67% 38%) 0%, hsl(181 67% 24%) 100%)' }}></div>
-                <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, hsl(var(--mn-ink) / 0.92) 0%, hsl(var(--mn-ink) / 0.55) 42%, transparent 75%)' }}></div>
-                <div className="relative z-10 flex items-start justify-between">
-                  <div>
-                    <div className="mn-eyebrow-light mb-4">Mare Nostrum Croissance</div>
-                  </div>
-                  <span aria-hidden="true" className="mn-pole-arrow flex h-11 w-11 items-center justify-center rounded-full border border-primary-foreground/40 text-primary-foreground">
-                    <ArrowRight className="h-5 w-5" />
-                  </span>
-                </div>
-                <div className="relative z-10 mt-16">
-                  <h3 className="font-editorial italic font-medium text-[length:var(--fs-h2)] leading-[1.2] text-primary-foreground mb-3 md:mb-4" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>
-                    Le Quai des Entrepreneurs
-                  </h3>
-                  <p className="mn-body text-primary-foreground/80">
-                    Vos premiers outils d'IA, vos partenaires &amp; clients, dans un seul espace digital.
-                  </p>
-                </div>
-              </Link>
+            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 md:gap-7">
+              {[
+                { title: "Centre de formation", description: "Certifié Qualiopi", icon: centreFormationIcon },
+                { title: "Pôle d’expertise", description: "Conseil et ingénierie pour l’enseignement supérieur", icon: poleExpertiseIcon },
+                { title: "Programme Niteo", description: "Programme de pré-incubation", icon: niteoIcon },
+                { title: "Club d’entrepreneurs", description: "Communauté d’entrepreneurs", icon: clubIcon },
+                { title: "Veluo", description: "Agent IA des chefs de projet et entrepreneurs", icon: veluoIcon },
+              ].map((service) => (
+                <article key={service.title} className="mn-card p-6 md:p-7 text-left hover-lift">
+                  <img src={service.icon} alt="" aria-hidden="true" className="h-16 w-16 mb-6 object-contain" />
+                  <h3 className="mb-3 text-foreground">{service.title}</h3>
+                  <p className="mn-body text-muted-foreground">{service.description}</p>
+                </article>
+              ))}
             </div>
           </div>
         </div>
       </section>
-
-      {/* Stats Section */}
-      <StatsSection />
 
       {/* Testimonials */}
       <section ref={fadeTestimonials as React.RefObject<HTMLElement>} className="py-12 md:py-24 bg-secondary/30">
@@ -458,42 +421,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* How to Work With Us */}
-      <section ref={fadeHow as React.RefObject<HTMLElement>} className="py-12 md:py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-turquoise text-center mb-5">Notre approche</div>
-          <h2 className="font-editorial italic text-center mb-8 md:mb-12 text-foreground">
-            Comment travailler avec nous ?
-          </h2>
-          <div className="max-w-3xl mx-auto">
-            <div className="border-b border-border">
-              {([
-                { title: "Centre de formation", description: "Certifié Qualiopi", icon: centreFormationIcon },
-                { title: "Pôle d’expertise", description: "Conseil et ingénierie pour l’enseignement supérieur", icon: poleExpertiseIcon },
-                { title: "Veluo", description: "Agent IA des chefs de projet et entrepreneurs", icon: veluoIcon },
-                { title: "Niteo", description: "Programme de pré-incubation", icon: niteoIcon },
-                { title: "Club", description: "Communauté d’entrepreneurs", icon: clubIcon },
-              ]).map(item => (
-                <div key={item.title} className="flex items-start gap-5 md:gap-8 py-6 md:py-8 mn-hairline">
-                  <img src={item.icon} alt="" aria-hidden="true" className="h-12 w-12 shrink-0 object-contain md:h-14 md:w-14" />
-                  <div>
-                    <h3 className="mb-2 text-foreground">{item.title}</h3>
-                    <p className="mn-body text-muted-foreground">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="text-center mt-12 md:mt-16">
-              <Button asChild size="lg" className="w-full sm:w-auto" style={{ boxShadow: 'var(--shadow-cta)' }}>
-                <a href="https://meet.marenostrum.tech/rdv-equipe" target="_blank" rel="noopener noreferrer">
-                  Planifier un appel découverte
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       <FAQSection faqs={faqs} />
 
