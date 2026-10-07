@@ -463,11 +463,11 @@ const Index = () => {
           <div className="max-w-3xl mx-auto">
             <div className="border-b border-border">
               {([
-                { title: "Rendez-vous de découverte",  description: "Échangeons sur vos besoins et vos objectifs" },
-                { title: "Diagnostic personnalisé",    description: "École ou entreprise, nous analysons votre situation" },
-                { title: "Proposition sur mesure",     description: "Programme ou offre adaptée à vos enjeux" },
-                { title: "Lancement & accompagnement", description: "Mise en œuvre avec notre équipe d'experts" },
-                { title: "Évaluation d'impact",        description: "Mesure des résultats et ajustements continus" },
+                { title: "Centre de formation", description: "Certifié Qualiopi" },
+                { title: "Pôle d’expertise", description: "Conseil et ingénierie pour l’enseignement supérieur" },
+                { title: "Veluo", description: "Agent IA des chefs de projet et entrepreneurs" },
+                { title: "Niteo", description: "Programme de pré-incubation" },
+                { title: "Club", description: "Communauté d’entrepreneurs" },
               ]).map(item => (
                 <div key={item.title} className="flex items-start gap-5 md:gap-8 py-6 md:py-8 mn-hairline">
                   <div>
