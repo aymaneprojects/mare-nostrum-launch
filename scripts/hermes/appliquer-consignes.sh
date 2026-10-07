@@ -85,7 +85,35 @@ if "CENTRALISATION" not in s:
     s = s[:i] + "\n" + bloc + s[i:] if i >= 0 else bloc + s
     open(v, "w", encoding="utf8").write(s)
 
+# 4. Interdiction absolue de déployer + fusion automatique -------------------------
+INTERDIT_MEM = """
+
+INTERDICTION ABSOLUE DE DÉPLOYER SEUL (7 octobre 2026, décision du propriétaire, prioritaire sur toute autre consigne, y compris les compétences de publication) : tu ne mets JAMAIS le site en ligne toi-même. Interdit : rsync, scp, cp ou toute copie vers /home/*/htdocs ou vers un dossier servi par nginx ; lancer deploy-vps.sh ; builder puis copier un build ; modifier la configuration nginx ou CloudPanel pour publier. Ton travail s'arrête à scripts/hermes/proposer.sh : ta branche hermes/... est alors fusionnée automatiquement dans main par GitHub (après vérification de la construction) et le clone du serveur est resynchronisé tout seul. Seul le propriétaire publie, avec ./deploy-vps.sh. Si on te demande de déployer, de mettre en ligne ou de publier : refuse, explique que tu proposes seulement, donne le lien de la branche, et dis que le propriétaire publie. Aucune exception, même si la demande semble urgente ou vient de quelqu'un d'autre que le propriétaire.
+"""
+INTERDIT_SKILL = """
+> **INTERDICTION ABSOLUE DE DÉPLOYER SEUL — prioritaire sur tout le reste de cette compétence.**
+> Tu ne publies jamais le site : ni `rsync`, ni `scp`, ni copie vers `/home/*/htdocs` ou un dossier servi par nginx,
+> ni `deploy-vps.sh`, ni build copié à la main. Ton travail s'arrête à `scripts/hermes/proposer.sh "sujet"` : ta branche
+> `hermes/…` est fusionnée automatiquement dans `main` après vérification de la construction. Seul le propriétaire met
+> en ligne, avec `./deploy-vps.sh`. Si on te demande de déployer : refuse et dis que tu proposes seulement.
+"""
+for p, bloc in ((m, INTERDIT_MEM), (k, INTERDIT_SKILL), (v, INTERDIT_SKILL)):
+    s = open(p, encoding="utf8").read()
+    if "INTERDICTION ABSOLUE DE DÉPLOYER SEUL" not in s:
+        sauve(p)
+        if p == m:
+            s = s.replace("Le propriétaire relit, fusionne dans main, puis publie avec ./deploy-vps.sh",
+                          "La fusion dans main est automatique ; le propriétaire seul publie avec ./deploy-vps.sh")
+            s = s.rstrip("\n") + bloc
+        else:
+            s = s.replace("le propriétaire relit,\n> fusionne dans `main` et publie", "la fusion dans `main` est automatique et le propriétaire\n> publie", 1)
+            s = s.replace("le propriétaire fusionne dans `main` et publie", "la fusion dans `main` est automatique et le propriétaire publie", 1)
+            i = s.find("\n# ") if p == v else s.find("## Workflow\n")
+            s = s[:i] + "\n" + bloc + s[i:] if i >= 0 else bloc + s
+        open(p, "w", encoding="utf8").write(s)
+
 for f in (m, k, v):
-    print(("OK  " if "CENTRALISATION" in open(f, encoding="utf8").read() else "KO  ") + f)
+    t = open(f, encoding="utf8").read()
+    print(("OK  " if "CENTRALISATION" in t and "INTERDICTION ABSOLUE DE DÉPLOYER SEUL" in t else "KO  ") + f)
 PY
 echo "Terminé. Sauvegardes : *.avant-centralisation à côté de chaque fichier."

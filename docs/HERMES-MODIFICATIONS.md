@@ -40,6 +40,8 @@ Décidé le 7 octobre 2026 : **les propositions de Hermes se fusionnent toutes s
 - **Fusionner n'est pas publier.** Le site en ligne ne change qu'avec `./deploy-vps.sh` (qui refuse un code plus ancien que celui en ligne). Le point de contrôle humain est donc la mise en ligne.
 - **Toujours le dernier commit** : `scripts/hermes/sync.sh` remet le clone du serveur sur `main`, sans jamais rien écraser. Un minuteur peut l'exécuter toutes les 10 minutes (`scripts/hermes/installer-minuteur.sh`).
 
+**Interdiction absolue de déployer seul** (inscrite le 7 octobre 2026 dans la mémoire de Christophe et dans ses deux compétences de publication) : pas de `rsync`, de `scp`, de copie vers les dossiers web, ni de `deploy-vps.sh`. Son travail s'arrête à `proposer.sh`. S'il reçoit une demande de mise en ligne, il refuse et indique que le propriétaire publie.
+
 ## Les deux scripts
 
 - `scripts/hermes/sync.sh` : récupère GitHub et avance `main` du clone. **N'écrase jamais rien** : s'arrête (code 2) si le clone contient des modifications, ou (code 3) s'il contient des commits qui ne sont pas sur GitHub.
