@@ -1,0 +1,15 @@
+[Unit]
+Description=Relais chat du site -> Ines (Hermes)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/ines-relay.env
+ExecStart=/usr/bin/python3 /opt/ines-relay/ines_relay.py
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
