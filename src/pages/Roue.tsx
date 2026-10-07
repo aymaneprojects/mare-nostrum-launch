@@ -474,6 +474,18 @@ const Roue = () => {
     };
   }, [presentation]);
 
+  // En présentation, toute la page grandit avec la HAUTEUR de l'écran : les tailles de la page sont
+  // en rem, donc elles suivent la taille de caractère racine. 1,85 vh : environ 110 % sur un portable,
+  // 140 % sur un grand écran. Remise à zéro en quittant.
+  useEffect(() => {
+    if (!presentation) return;
+    const racine = document.documentElement;
+    racine.style.fontSize = "clamp(15px, 1.85vh, 30px)";
+    return () => {
+      racine.style.fontSize = "";
+    };
+  }, [presentation]);
+
   // Clavier : F = plein écran, Échap = quitter la présentation.
   useEffect(() => {
     const touche = (e: KeyboardEvent) => {
@@ -505,7 +517,7 @@ const Roue = () => {
     <main
       className={cn(
         "relative min-h-screen overflow-hidden text-primary-foreground",
-        presentation && "h-screen",
+        presentation && "h-screen flex flex-col",
         presentation && inactif && "cursor-none",
       )}
       style={{ background: "linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)" }}
@@ -542,17 +554,27 @@ const Roue = () => {
         {presentation ? "Quitter la présentation" : "Plein écran"}
       </Button>
 
-      <div className={cn("relative z-10 container mx-auto px-4", presentation ? "py-5" : "py-8 md:py-12")}>
-        <header className={cn("flex flex-col items-center text-center", presentation ? "mb-3" : "mb-6 md:mb-10")}>
+      <div
+        className={cn(
+          "relative z-10",
+          presentation ? "flex-1 min-h-0 flex flex-col w-full px-8 py-4" : "container mx-auto px-4 py-8 md:py-12",
+        )}
+      >
+        <header className={cn("flex flex-col items-center text-center", presentation ? "mb-2 shrink-0" : "mb-6 md:mb-10")}>
           <img
             src={logo}
             alt="Mare Nostrum"
             width={176}
             height={69}
-            className={cn("w-auto brightness-0 invert", presentation ? "h-9 mb-3" : "h-11 mb-5")}
+            className={cn("w-auto brightness-0 invert", presentation ? "h-8 mb-2" : "h-11 mb-5")}
           />
-          <div className="mn-eyebrow-light mn-eyebrow-pill mb-4">Jeu de l'événement</div>
-          <h1 className="font-editorial italic font-medium text-primary-foreground" style={{ textWrap: "balance" } as React.CSSProperties}>
+          <div className={cn("mn-eyebrow-light mn-eyebrow-pill", presentation ? "mb-2" : "mb-4")}>Jeu de l'événement</div>
+          <h1
+            className={cn(
+              "font-editorial italic font-medium text-primary-foreground",
+              presentation && "text-[clamp(1.6rem,4.2vh,3.4rem)] leading-tight",
+            )}
+            style={{ textWrap: "balance" } as React.CSSProperties}>
             Faites tourner la roue
           </h1>
           {!presentation && (
@@ -561,18 +583,19 @@ const Roue = () => {
         </header>
 
         <div
+          style={presentation ? { maxWidth: "calc(100vh - 14.5rem + 32rem + 3rem)" } : undefined}
           className={cn(
-            "grid gap-10 lg:gap-14 items-start mx-auto",
+            "grid mx-auto",
             presentation
-              ? "lg:grid-cols-[minmax(0,1fr)_minmax(0,30rem)] max-w-[110rem]"
-              : "lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] max-w-6xl",
+              ? "flex-1 min-h-0 w-full items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,32rem)]"
+              : "gap-10 lg:gap-14 items-start lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] max-w-6xl",
           )}
         >
           {/* ── La roue : toujours affichée ─────────────────────────── */}
-          <div className="flex flex-col items-center">
+          <div className={cn("flex flex-col items-center", presentation && "min-h-0 justify-center")}>
             <div
               className="relative"
-              style={{ width: presentation ? "min(62vh, 88vw)" : "min(88vw, 34rem)", aspectRatio: "1" }}
+              style={{ width: presentation ? "min(100%, calc(100vh - 14.5rem))" : "min(88vw, 34rem)", aspectRatio: "1" }}
             >
               {/* Pointeur */}
               <svg
@@ -660,7 +683,7 @@ const Roue = () => {
           </div>
 
           {/* ── Coordonnées, puis les lots ──────────────────────────── */}
-          <aside className="space-y-6">
+          <aside className={cn(presentation ? "space-y-3 min-h-0 max-h-full overflow-y-auto" : "space-y-6")}>
             {/* Étape 1 : coordonnées. Une fois validées, le formulaire laisse place à un récapitulatif. */}
             <section aria-labelledby="titre-coordonnees">
               <h2 id="titre-coordonnees" className="mn-eyebrow-light text-center lg:text-left mb-3">
@@ -729,15 +752,15 @@ const Roue = () => {
               )}
             </section>
 
-            <section aria-labelledby="titre-lots" className="space-y-3">
+            <section aria-labelledby="titre-lots" className={cn(presentation ? "space-y-2" : "space-y-3")}>
               <h2 id="titre-lots" className="mn-eyebrow-light text-center lg:text-left">Les lots à gagner</h2>
-              <ul className="space-y-3">
+              <ul className={cn(presentation ? "space-y-2" : "space-y-3")}>
                 {LOTS.map((l) => (
                   <li
                     key={l.id}
                     className={cn(
                       "flex items-center gap-4 rounded-[14px] border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm",
-                      presentation ? "p-5" : "p-4",
+                      presentation ? "p-4" : "p-4",
                     )}
                     style={{ boxShadow: "var(--shadow-glass)" }}
                   >
@@ -747,7 +770,7 @@ const Roue = () => {
                         {l.titre}
                         {epuise(l.id) && <span className="ml-2 align-middle text-xs font-bold uppercase tracking-wide">Épuisé</span>}
                       </p>
-                      <p className={cn("text-primary-foreground/70", presentation ? "text-base" : "text-sm")}>{l.detail}</p>
+                      <p className="text-sm text-primary-foreground/70">{l.detail}</p>
                     </div>
                     <p className={cn("font-editorial font-semibold shrink-0 tabular-nums", presentation ? "text-3xl" : "text-2xl")}>
                       <Montant lot={l} />
