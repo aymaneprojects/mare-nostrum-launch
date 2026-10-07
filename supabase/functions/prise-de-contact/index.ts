@@ -140,24 +140,30 @@ serve(async (req) => {
       ]),
     ].filter((a) => !destinataires.includes(a));
 
-    // Objet volontairement nu : la personne le voit aussi, puisqu'elle est en
-    // copie cachée. Les pôles restent dans Airtable, pas dans l'objet.
-    const sujet = `PRISE DE CONTACT — ${name}`;
+    // Objet et message validés par le propriétaire le 7 octobre 2026. La personne est
+    // en copie cachée : elle reçoit le même message que les responsables de pôle. On
+    // ne lui dit JAMAIS qu'on a saisi ses coordonnées quelque part : on acte que le
+    // contact a eu lieu — événement, rencontre ou site — et on annonce un retour.
+    const sujet = "Bienvenue dans l'écosystème de Mare Nostrum !";
 
-    // Message volontairement court. On ne dit JAMAIS à la personne qu'on a saisi
-    // ses coordonnées quelque part : on acte simplement que le contact a eu lieu
-    // — événement, rencontre ou site — et on annonce qui la recontacte.
+    const gris = "#8a8fa3";
     const html = `
 <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.65;color:#1b2340;max-width:560px">
   <p>Bonjour ${esc(prenomDe(name))},</p>
 
-  <p>Ravis d'avoir été en contact avec vous.</p>
+  <p>L'équipe de Mare Nostrum est ravie de cette prise de contact — lors d'un événement, d'une rencontre ou depuis notre site.</p>
+
+  <p>Notre équipe revient vers vous.</p>
+
+  <p>Vous pouvez aussi vous inscrire à notre newsletter <a href="https://www.marenostrum.tech/iter" style="color:#1b2340;font-weight:600">Iter</a>.</p>
 
   <p>À très bientôt,<br>
   <strong>L'équipe Mare Nostrum</strong></p>
 
-  <p style="font-size:13px;color:#8a8fa3;margin-top:28px">
-    Toulouse · Paris · Casablanca — <a href="https://www.marenostrum.tech" style="color:#8a8fa3">marenostrum.tech</a>
+  <p style="margin:20px 0 0"><a href="https://www.marenostrum.tech"><img src="https://www.marenostrum.tech/logo.jpg" alt="Mare Nostrum" width="72" height="72" style="display:block;border:0"></a></p>
+
+  <p style="font-size:12px;line-height:1.5;color:${gris};margin-top:28px">
+    Vous recevez ce message suite à votre prise de contact avec Mare Nostrum. Vos données sont utilisées par Mare Nostrum pour donner suite à cet échange, conformément au Règlement général sur la protection des données (RGPD). Vous disposez d'un droit d'accès, de rectification, d'opposition et de suppression en écrivant à <a href="mailto:contact@marenostrum.tech" style="color:${gris}">contact@marenostrum.tech</a>. Pour en savoir plus : <a href="https://www.marenostrum.tech/confidentialite" style="color:${gris}">politique de confidentialité</a>.
   </p>
 </div>`;
 
