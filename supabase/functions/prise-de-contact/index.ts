@@ -250,7 +250,7 @@ serve(async (req) => {
   <p>À très bientôt,<br>
   <strong>L'équipe Mare Nostrum</strong></p>
 
-  <p style="margin:20px 0 0"><a href="https://www.marenostrum.tech"><img src="https://www.marenostrum.tech/logo.jpg" alt="Mare Nostrum" width="72" height="72" style="display:block;border:0"></a></p>
+  <p style="margin:20px 0 0"><a href="https://www.marenostrum.tech"><img src="https://www.marenostrum.tech/logo-mare-nostrum.png" alt="Mare Nostrum" width="240" height="94" style="display:block;border:0;width:240px;max-width:100%;height:auto"></a></p>
 
   <p style="font-size:12px;line-height:1.5;color:${gris};margin-top:28px">
     Vous recevez ce message suite à votre prise de contact avec Mare Nostrum. Vos données sont utilisées par Mare Nostrum pour donner suite à cet échange, conformément au Règlement général sur la protection des données (RGPD). Vous disposez d'un droit d'accès, de rectification, d'opposition et de suppression en écrivant à <a href="mailto:${RGPD}" style="color:${gris}">${RGPD}</a>. Pour en savoir plus : <a href="https://www.marenostrum.tech/confidentialite" style="color:${gris}">politique de confidentialité</a>.

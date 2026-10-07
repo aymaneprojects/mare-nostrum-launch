@@ -232,10 +232,6 @@ const Croissance = () => {
       tooltip: "Rejoins un petit groupe soudé d'entrepreneurs aux profils complémentaires qui s'entraident"
     },
     {
-      label: "1 session mensuelle collective de business développement",
-      tooltip: "Repars avec un plan d'action concret co-construit par le groupe dans chaque journée et économise chaque mois plusieurs jours de réflexion en solitaire"
-    },
-    {
       label: "Mises en relation partenaires & réseaux",
       tooltip: "Bénéficie de mises en relation directes avec des partenaires de Mare Nostrum à votre demande (plus de 100 partenaires clés dans l'écosystème)"
     },
@@ -316,7 +312,7 @@ const Croissance = () => {
           {
             "@type": "Offer",
             "name": "Groupe",
-            "description": "Tout de Communauté + intégration dans un Cercle d'entrepreneurs, sessions collectives de business développement, mises en relation partenaires, micro-mentorat mensuel.",
+            "description": "Tout de Communauté + intégration dans un Cercle d'entrepreneurs, mises en relation partenaires, micro-mentorat mensuel.",
             "price": "90",
             "priceCurrency": "EUR",
             "priceSpecification": { "@type": "UnitPriceSpecification", "price": "90.00", "priceCurrency": "EUR", "unitText": "MONTH" },
@@ -699,7 +695,6 @@ const Croissance = () => {
                   { feature: "Académie en ligne +30h", f: false, c: true, g: true },
                   { feature: "Opportunités & tarifs partenaires", f: false, c: true, g: true },
                   { feature: "Intégration dans un Cercle", f: false, c: false, g: true },
-                  { feature: "Session collective biz dev / mois", f: false, c: false, g: true },
                   { feature: "Mises en relation partenaires", f: false, c: false, g: true },
                   { feature: "Micro-mentorat mensuel", f: false, c: "1×", g: "1×" },
                 ].map(({ feature, f, c, g }, idx) => {

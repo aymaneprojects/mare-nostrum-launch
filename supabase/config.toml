@@ -38,3 +38,6 @@ verify_jwt = false
 
 [functions.club-freemium-signup]
 verify_jwt = false
+
+[functions.roue-participation]
+verify_jwt = false

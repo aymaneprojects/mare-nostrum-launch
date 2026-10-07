@@ -1,0 +1,87 @@
+/* Affiches A3 de la roue de l'événement.
+   Mêmes jetons de marque que src/index.css (--mn-*, triplets HSL) ; le dessin de la roue
+   reprend les constantes de src/pages/Roue.tsx (voir design/roue/README dans le script de génération :
+   viewBox 600, rayon 268, couronne 292, 15 parts dans le même ordre). */
+
+@font-face { font-family: "DM Sans"; font-style: normal; font-weight: 100 1000; src: url("fonts/dmsans-latin.woff2") format("woff2"); }
+@font-face { font-family: "Fraunces"; font-style: italic; font-weight: 500; src: url("fonts/fraunces-italic-500-latin.woff2") format("woff2"); }
+
+:root {
+  --mn-nuit: 222 44% 25%;
+  --mn-turquoise: 181 67% 54%;
+  --mn-ivory: 40 38% 94%;
+  --mn-ocre: 36 78% 45%;
+  --mn-ink: 228 56% 13%;
+}
+
+@page { size: 297mm 420mm; margin: 0; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 297mm; height: 420mm; overflow: hidden; }
+body {
+  font-family: "DM Sans", sans-serif;
+  font-feature-settings: "ss01", "ss02";
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.affiche {
+  position: relative;
+  width: 297mm;
+  height: 420mm;
+  overflow: hidden;
+  color: hsl(var(--mn-ivory));
+  background: linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%);
+}
+.rayures, .halo { position: absolute; inset: 0; }
+.rayures { background-image: repeating-linear-gradient(135deg, transparent 0 7mm, hsl(var(--mn-turquoise) / 0.07) 7mm 7.6mm); }
+.halo {
+  background:
+    radial-gradient(ellipse at 28% 30%, hsl(var(--mn-turquoise) / 0.2) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 90%, hsl(228 56% 8% / 0.65) 0%, transparent 55%);
+}
+
+.logo {
+  position: absolute; z-index: 2;
+  left: 50%; top: 17mm; transform: translateX(-50%);
+  height: 21mm; width: auto;
+  filter: brightness(0) invert(1); /* logo en blanc, comme sur la page */
+}
+
+h1 {
+  position: absolute; z-index: 2;
+  left: 18mm; right: 18mm; top: 44mm; height: 92mm;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic; font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+  color: hsl(var(--mn-ivory));
+  text-wrap: balance;
+}
+h1.court { font-size: 46mm; }
+h1.long  { font-size: 27mm; }
+
+.scene {
+  position: absolute; z-index: 2;
+  left: 22.5mm; top: 144mm; width: 252mm; height: 252mm;
+}
+.roue { width: 100%; height: 100%; display: block; }
+.pointeur { position: absolute; z-index: 3; left: 50%; top: -2.2%; width: 8.8%; transform: translateX(-50%); }
+
+.part { stroke: hsl(var(--mn-ivory)); stroke-width: 2.5; }
+.moyeu { fill: hsl(var(--mn-nuit)); stroke: hsl(var(--mn-ivory)); stroke-width: 8; }
+.lib { font-family: "DM Sans", sans-serif; font-weight: 700; font-size: 28px; }
+.f-nuit { fill: hsl(var(--mn-nuit)); }
+.f-turquoise { fill: hsl(var(--mn-turquoise)); }
+.f-ivory { fill: hsl(var(--mn-ivory)); }
+.f-ocre { fill: hsl(var(--mn-ocre)); }
+.f-ink { fill: hsl(var(--mn-ink)); }
+
+.site {
+  position: absolute; z-index: 2; left: 0; right: 0; bottom: 10mm;
+  text-align: center;
+  font-size: 5mm; font-weight: 500; letter-spacing: 0.08em;
+  color: hsl(var(--mn-ivory) / 0.75);
+}

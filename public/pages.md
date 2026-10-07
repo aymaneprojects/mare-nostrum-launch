@@ -67,7 +67,7 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 **URL :** https://marenostrum.tech/club  
 **Ancienne URL (redirige 301) :** https://marenostrum.tech/croissance  
 **Titre SEO :** Club Entrepreneur Francophone — Croissance & Accompagnement | Mare Nostrum  
-**Description :** Rejoignez le club international d'entrepreneurs francophones. Communauté, mentorat et sessions collectives. Accès gratuit, offres payantes dès 30 EUR/mois.  
+**Description :** Rejoignez le club international d'entrepreneurs francophones. Communauté et mentorat. Accès gratuit, offres payantes dès 30 EUR/mois.  
 **Mots-clés cibles :** club entrepreneur Toulouse, club entrepreneur francophone, accompagnement entrepreneur Toulouse, mentorat entrepreneur, réseau entrepreneur francophone  
 **Contenu principal :** Comparatif des 3 offres (Freemium gratuit, Communauté 30€, Groupe 90€), détail des inclusions, témoignages membres, FAQ.
 
