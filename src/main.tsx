@@ -5,6 +5,24 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./App.tsx";
 import "./index.css";
 
+// Après une mise en ligne, un onglet resté ouvert réclame encore les anciens fichiers
+// (supprimés, 404) et la page « bug ». On recharge alors UNE seule fois pour récupérer
+// la nouvelle version ; le marqueur évite toute boucle si le problème est ailleurs.
+window.addEventListener("vite:preloadError", (event) => {
+  event.preventDefault();
+  try {
+    const cle = "mn-rechargement-version";
+    const dernier = Number(sessionStorage.getItem(cle) || 0);
+    if (Date.now() - dernier < 30_000) return;
+    sessionStorage.setItem(cle, String(Date.now()));
+  } catch {
+    // stockage indisponible : un seul rechargement par chargement de page
+    if ((window as unknown as { __mnReload?: boolean }).__mnReload) return;
+    (window as unknown as { __mnReload?: boolean }).__mnReload = true;
+  }
+  window.location.reload();
+});
+
 const isNiteoSubdomain = window.location.hostname === "niteo.marenostrum.tech";
 
 if (isNiteoSubdomain) {
