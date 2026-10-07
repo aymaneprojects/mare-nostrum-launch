@@ -324,6 +324,24 @@ All colors MUST be HSL.
     .mn-cta-row--center { justify-content: center; }
   }
 
+  /* Confettis de la roue (/roue) : de simples pastilles qui tombent. Coupés par le
+     réglage « réduire les animations » (la page ne les crée même pas dans ce cas). */
+  .mn-confetti {
+    position: absolute;
+    top: -16px;
+    width: 10px;
+    height: 16px;
+    border-radius: 2px;
+    opacity: 0;
+    animation-name: mn-confetti-chute;
+    animation-timing-function: cubic-bezier(0.25, 0.6, 0.35, 1);
+    animation-fill-mode: forwards;
+  }
+  @keyframes mn-confetti-chute {
+    0%   { opacity: 1; transform: translateY(0) rotate(0deg); }
+    100% { opacity: 0; transform: translateY(105vh) rotate(540deg); }
+  }
+
   /* Rangée de pastilles de réassurance (sous un héros ou près d'un bouton). */
   .mn-assurance { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
   .mn-assurance > * {

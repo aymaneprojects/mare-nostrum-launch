@@ -101,11 +101,11 @@ const FeatureWithTooltipLight = ({ feature }: { feature: OfferFeature }) => (
   </li>
 );
 
-const MONTHLY = {
+export const MONTHLY = {
   france:            { communaute: 30,    groupe: 90    },
   congo_brazzaville: { communaute: 10000, groupe: 30000 },
 };
-const ANNUAL = {
+export const ANNUAL = {
   france:            { communaute: 288,    groupe: 864    },
   congo_brazzaville: { communaute: 100000, groupe: 300000 },
 };

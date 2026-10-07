@@ -60,6 +60,7 @@ const InitiationIA = lazy(() => import("./pages/InitiationIA"));
 const AgentIAMarketing = lazy(() => import("./pages/AgentIAMarketing"));
 
 // Live conférence : chargées à la demande (QR code + temps réel), hors du bundle du site vitrine.
+const Roue = lazy(() => import("./pages/Roue"));
 const LiveHome = lazy(() => import("./pages/live/LiveHome"));
 const LivePublic = lazy(() => import("./pages/live/LivePublic"));
 const LiveScreen = lazy(() => import("./pages/live/LiveScreen"));
@@ -92,8 +93,10 @@ const AppContent = () => {
   // un événement. Aucun élément global ne doit s'y superposer.
   const isCard = /^\/equipe\/[^/]+$/.test(location.pathname);
   // Pages sans sollicitation : ni chatbot, ni popup promo.
-  const quiet = isLive || isCard || location.pathname === "/equipe";
-  const bare = isLive || isCard;
+  // Roue de l'événement (/roue) : écran de jeu, comme le live, sans rien par-dessus.
+  const isRoue = location.pathname === "/roue";
+  const quiet = isLive || isCard || isRoue || location.pathname === "/equipe";
+  const bare = isLive || isCard || isRoue;
 
   return (
     <>
@@ -120,6 +123,7 @@ const AppContent = () => {
         <Route path="/mastermind-digital" element={<Suspense fallback={null}><MastermindDigital /></Suspense>} />
         <Route path="/initiation-ia" element={<Suspense fallback={null}><InitiationIA /></Suspense>} />
         <Route path="/agent-ia-marketing" element={<Suspense fallback={null}><AgentIAMarketing /></Suspense>} />
+        <Route path="/roue" element={<Suspense fallback={null}><Roue /></Suspense>} />
         <Route path="/club" element={<Croissance />} />
         <Route path="/offre-ia" element={<OffreIA />} />
         <Route path="/engagement-rse" element={<EngagementRSE />} />
