@@ -60,3 +60,5 @@ Ces étapes touchent la configuration du serveur et de l'agent : elles ne sont p
 
 - Tant que les consignes de l'agent ne sont pas changées (étape 2), **rien n'empêche Christophe de déployer comme avant** : ces scripts rendent le bon chemin facile, ils ne bloquent pas l'ancien. Seule la protection de `main` côté GitHub et le retrait de ses droits sur les dossiers web le feraient vraiment.
 - Hermes tourne en `root` sur le serveur : il peut techniquement écrire dans les dossiers web. La règle repose donc sur ses consignes.
+
+_Fusion automatique vérifiée le 7 octobre 2026 : une branche `hermes/…` poussée sur GitHub est fusionnée dans `main` après contrôle de la construction._
