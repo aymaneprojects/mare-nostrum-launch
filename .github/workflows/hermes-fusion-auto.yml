@@ -98,10 +98,13 @@ jobs:
           printf '%s\n' "$VPS_KNOWN_HOSTS" > ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
+      # Le pré-rendu SEO est temporairement désactivé : sur le runner GitHub,
+      # il a enregistré un HTML d'accueil vide et provoqué un écran blanc.
+      # Le site React reste entièrement fonctionnel sans cette étape.
       - name: Publier (deploy-vps.sh)
         if: steps.pret.outputs.pret == 'oui'
         env:
-          CHROME_PATH: /usr/bin/google-chrome
+          SKIP_PRERENDER: '1'
         run: |
           npm ci
           ./deploy-vps.sh
