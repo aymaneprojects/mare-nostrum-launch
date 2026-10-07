@@ -274,8 +274,8 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Les visages de Mare Nostrum</div>
           <h2 className="font-editorial italic text-center mb-8 md:mb-12 text-foreground">Notre équipe</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-20 gap-5 md:gap-7 max-w-6xl mx-auto">
-            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-5" style={{ order: 1 }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-5 md:gap-7 max-w-6xl mx-auto">
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-3" style={{ order: 1 }}>
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={alexisJanicotImg} alt="Alexis Janicot" />
                 <AvatarFallback>AJ</AvatarFallback>
@@ -284,7 +284,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Fondateur et dirigeant · Toulouse (France)</p>
             </div>
 
-            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-5" style={{ order: 2 }}>
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-3" style={{ order: 2 }}>
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={aymaneAbdennourImg} alt="Aymane Abdennour" />
                 <AvatarFallback>AA</AvatarFallback>
@@ -293,7 +293,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Chargé de développement de l'IA · Toulouse (France)</p>
             </div>
 
-            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-5" style={{ order: 4 }}>
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-3" style={{ order: 3 }}>
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={julienneMukabucyanaImg} alt="Julienne Mukabucyana" />
                 <AvatarFallback>JM</AvatarFallback>
@@ -302,7 +302,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Directrice du centre de formation · Toulouse (France)</p>
             </div>
 
-            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-5" style={{ order: 3 }}>
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-3" style={{ order: 4 }}>
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={yasmineArezkiImg} alt="Yasmine Arezki" />
                 <AvatarFallback>YA</AvatarFallback>
@@ -311,7 +311,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Directrice du pôle d'expertise · Toulouse (France)</p>
             </div>
 
-            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-4" style={{ order: 13 }}>
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-4" style={{ order: 12 }}>
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={marieCarolleMarcelinImg} alt="Marie-Carolle Marcelin" />
                 <AvatarFallback>MM</AvatarFallback>
@@ -320,7 +320,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Ambassadrice Mare Nostrum à Toulouse (France)</p>
             </div>
 
-            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-4" style={{ order: 12 }}>
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-4" style={{ order: 13 }}>
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={lamineNdiayeImg} alt="Lamine Ndiaye" />
                 <AvatarFallback>LN</AvatarFallback>
@@ -338,7 +338,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Ambassadeur Mare Nostrum à Brazzaville (République du Congo)</p>
             </div>
 
-            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-5" style={{ order: 8 }}>
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-4" style={{ order: 7 }}>
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={claireGoursauImg} alt="Claire Goursau" />
                 <AvatarFallback>CG</AvatarFallback>
@@ -347,7 +347,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Membre du comité de mission</p>
             </div>
 
-            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-5" style={{ order: 6 }}>
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-4" style={{ order: 5 }}>
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={bouchaibMernariImg} alt="Bouchaib Mernari" />
                 <AvatarFallback>BM</AvatarFallback>
@@ -356,7 +356,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Membre du comité scientifique</p>
             </div>
 
-            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-5" style={{ order: 7 }}>
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-4" style={{ order: 6 }}>
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={geraldineLeCaerImg} alt="Géraldine Le Caër" />
                 <AvatarFallback>GL</AvatarFallback>
@@ -365,7 +365,7 @@ const About = () => {
               <p className="text-sm md:text-base text-muted-foreground">Membre du comité de mission</p>
             </div>
 
-            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-5" style={{ order: 5 }}>
+            <div className="mn-card p-5 text-center hover-lift transition-all duration-200 lg:col-span-4" style={{ order: 8 }}>
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
                 <AvatarImage src={muhannadAlfgiImg} alt="Muhannad Alfgi" />
                 <AvatarFallback>MA</AvatarFallback>
