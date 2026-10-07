@@ -197,6 +197,17 @@ const ChatBot = () => {
     setIsLoading(true);
 
     try {
+      // Réponses d'Inès déjà présentes : on attend une réponse POSTÉRIEURE à cette
+      // question, sinon le deuxième message afficherait la réponse du premier.
+      const lireHistorique = async () => {
+        const { data } = await supabase.functions.invoke(
+          `chatbot-webhook?action=history&sessionId=${sessionId}`,
+          { method: "GET" }
+        );
+        return ((data?.messages ?? []) as { role: string; content: string }[]).filter(m => m.role === "assistant");
+      };
+      const dejaRepondu = (await lireHistorique()).length;
+
       // Envoyer le message au webhook
       const { error: fnError } = await supabase.functions.invoke("chatbot-webhook", {
         body: {
@@ -207,32 +218,22 @@ const ChatBot = () => {
 
       if (fnError) throw fnError;
 
-      // Polling pour récupérer la réponse d'Inès (max 30 secondes)
+      // Polling pour récupérer la réponse d'Inès (jusqu'à ~75 secondes : l'agent peut réfléchir)
       let assistantContent = "";
       let attempts = 0;
-      const maxAttempts = 30;
-      
+      const maxAttempts = 50;
+
       while (attempts < maxAttempts) {
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 1500));
         attempts++;
-        
-        const { data: historyData } = await supabase.functions.invoke(
-          `chatbot-webhook?action=history&sessionId=${sessionId}`,
-          { method: "GET" }
-        );
-        
-        if (historyData?.messages) {
-          const lastAssistantMsg = historyData.messages
-            .filter((m: any) => m.role === "assistant")
-            .pop();
-          
-          if (lastAssistantMsg && lastAssistantMsg.content !== "Merci pour ton message ! Inès va te répondre dès que possible. 💬") {
-            assistantContent = lastAssistantMsg.content;
-            break;
-          }
+
+        const reponses = await lireHistorique();
+        if (reponses.length > dejaRepondu) {
+          assistantContent = reponses[reponses.length - 1].content;
+          break;
         }
       }
-      
+
       if (!assistantContent) {
         assistantContent = "Merci pour ton message ! Inès va te répondre dès que possible. 💬";
       }
