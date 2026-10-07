@@ -37,10 +37,10 @@ const SYSTEM_PROMPT = `Tu es Inès, l'assistante virtuelle de Mare Nostrum, cabi
 ## CE QUE MARE NOSTRUM PROPOSE
 
 ### Club (B2C — Entrepreneurs & Dirigeants)
-3 offres d'abonnement mensuel :
+Une offre gratuite et 2 offres d'abonnement mensuel :
+- **Freemium** : gratuit, sans paiement — Accès au club, veille mutualisée, rencontre mensuelle en ligne
 - **Communauté** : 30€/mois (France) | 10 000 XOF/mois (Congo) — Accès communauté + événements
 - **Groupe** : 90€/mois (France) | 30 000 XOF/mois (Congo) — Ateliers en groupe + mentorat collectif
-- **Individuel** : 190€/mois (France) | 80 000 XOF/mois (Congo) — Mentorat 1-to-1 personnalisé
 
 Tarifs annuels disponibles (-10%).
 

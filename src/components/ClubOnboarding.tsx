@@ -25,24 +25,25 @@ const getStripePromise = () => {
 const KIT_URL   = "/kit-adherent-club.pdf";
 const SLACK_URL = "https://join.slack.com/t/clubmarenostrum/shared_invite/zt-3k96xxhx1-UjfT8oy4ISyHKScmuqsleg";
 
-export type Offer        = "communaute" | "groupe" | "individuel";
+export type PaidOffer    = "communaute" | "groupe";
+export type Offer        = "freemium" | PaidOffer;
 export type LocationType = "france" | "congo_brazzaville";
 export type Billing      = "monthly" | "annual";
 
 const OFFER_LABELS: Record<Offer, string> = {
+  freemium:   "Freemium",
   communaute: "Communauté",
   groupe:     "Groupe",
-  individuel: "Personnalisé",
 };
 
-const MONTHLY_PRICES: Record<LocationType, Record<Offer, number>> = {
-  france:            { communaute: 30,    groupe: 90,    individuel: 190   },
-  congo_brazzaville: { communaute: 10000, groupe: 30000, individuel: 80000 },
+const MONTHLY_PRICES: Record<LocationType, Record<PaidOffer, number>> = {
+  france:            { communaute: 30,    groupe: 90    },
+  congo_brazzaville: { communaute: 10000, groupe: 30000 },
 };
 
-const ANNUAL_PRICES: Record<LocationType, Record<Offer, number>> = {
-  france:            { communaute: 288,    groupe: 864,    individuel: 1728   },
-  congo_brazzaville: { communaute: 100000, groupe: 300000, individuel: 800000 },
+const ANNUAL_PRICES: Record<LocationType, Record<PaidOffer, number>> = {
+  france:            { communaute: 288,    groupe: 864    },
+  congo_brazzaville: { communaute: 100000, groupe: 300000 },
 };
 
 function formatPrice(amount: number, location: LocationType): string {
@@ -77,6 +78,19 @@ const phaseToStep: Record<Phase, number> = {
   success: 3, kit: 4, slack: 5,
 };
 
+// Parcours gratuit : pas de paiement, pas de kit, on passe directement à Slack.
+const FREE_STEPS = [
+  { icon: User,          label: "Toi"       },
+  { icon: Briefcase,     label: "Projet"    },
+  { icon: PartyPopper,   label: "Bienvenue" },
+  { icon: MessageSquare, label: "Slack"     },
+];
+
+const freePhaseToStep: Record<Phase, number> = {
+  step1: 0, step2: 1, loading: 1, payment: 1,
+  success: 2, kit: 3, slack: 3,
+};
+
 export default function ClubOnboarding({ open, onClose, offer, location, billing, initialPhase, initialPrenom, initialEmail }: Props) {
   const [phase, setPhase]               = useState<Phase>(initialPhase ?? "step1");
   const [prenom, setPrenom]             = useState(initialPrenom ?? "");
@@ -88,7 +102,9 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   const [kitClicked, setKitClicked]     = useState(false);
   const [emailTouched, setEmailTouched] = useState(false);
 
-  const price       = (billing === "monthly" ? MONTHLY_PRICES : ANNUAL_PRICES)[location][offer];
+  const isFree      = offer === "freemium";
+  const price       = isFree ? 0 : (billing === "monthly" ? MONTHLY_PRICES : ANNUAL_PRICES)[location][offer];
+  const steps       = isFree ? FREE_STEPS : ALL_STEPS;
 
   // Mesure du tunnel d'adhésion. Quatre points, tous dans ce fichier : ouverture,
   // étape 1 validée, paiement affiché, paiement abouti. Voir src/lib/analytics.ts.
@@ -96,7 +112,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
     if (open) track(EVT.clubModalOpen, { offer, location, billing });
   }, [open, offer, location, billing]);
   const period      = billing === "monthly" ? "/mois" : "/an";
-  const currentStep = phaseToStep[phase];
+  const currentStep = (isFree ? freePhaseToStep : phaseToStep)[phase];
   const isPostPayment = ["success", "kit", "slack"].includes(phase);
 
   const handleKitDownload = async () => {
@@ -163,6 +179,24 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
     }
   };
 
+  /** Offre freemium : enregistrement du membre, sans paiement. */
+  const handleFreeSignup = async () => {
+    setPhase("loading");
+    setError("");
+    try {
+      const { data, error: fnError } = await supabase.functions.invoke("club-freemium-signup", {
+        body: { prenom, email, entreprise, location },
+      });
+      if (fnError || !data?.ok) throw new Error(fnError?.message ?? "Réponse invalide du serveur.");
+      trackOnce(`freemium:${email}`, EVT.clubFreemiumSignup, { method: "club_freemium", offer, location });
+      setPhase("slack");
+    } catch (e: any) {
+      console.error("club-freemium-signup failed:", e);
+      setError("Une erreur est survenue. Réessaie.");
+      setPhase("step2");
+    }
+  };
+
   const handleComplete = useCallback(() => {
     // trackOnce : le retour de Stripe est consulté plusieurs fois (rappel + sondage),
     // un achat compté deux fois fausserait tout le rapport.
@@ -219,13 +253,13 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   const headerSub =
     phase === "success" ? "Paiement confirmé ✓" :
     phase === "kit"     ? "Étape 1 sur 2" :
-    phase === "slack"   ? "Étape 2 sur 2 · Dernière étape !" :
+    phase === "slack"   ? (isFree ? "Inscription confirmée ✓" : "Étape 2 sur 2 · Dernière étape !") :
                           "Club Mare Nostrum";
 
   const headerTitle =
     phase === "success" ? `Félicitations, ${prenom} !` :
     phase === "kit"     ? "Télécharge ton kit de bienvenue" :
-    phase === "slack"   ? "Rejoins la communauté" :
+    phase === "slack"   ? (isFree ? `Bienvenue dans le Club, ${prenom} !` : "Rejoins la communauté") :
                           `Rejoindre l'offre ${OFFER_LABELS[offer]}`;
 
   return (
@@ -256,10 +290,10 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
         {phase !== "loading" && (
           <div
             role="group"
-            aria-label={`Étape ${currentStep + 1} sur ${ALL_STEPS.length}`}
+            aria-label={`Étape ${currentStep + 1} sur ${steps.length}`}
             className="flex items-center justify-center px-2 sm:px-4 pt-4 pb-1 shrink-0"
           >
-            {ALL_STEPS.map((s, i) => {
+            {steps.map((s, i) => {
               const Icon   = s.icon;
               const active = currentStep === i;
               const done   = currentStep > i;
@@ -279,7 +313,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                       {s.label}
                     </span>
                   </div>
-                  {i < ALL_STEPS.length - 1 && (
+                  {i < steps.length - 1 && (
                     <div className={`w-3 sm:w-6 md:w-8 h-0.5 mx-0.5 sm:mx-1 rounded-full transition-all duration-300 ${
                       currentStep > i ? "bg-accent" : "bg-border"
                     }`} />
@@ -331,31 +365,48 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
               <p className="text-sm text-muted-foreground">Parle-nous de ton projet.</p>
               <div className="space-y-3">
                 <div className="space-y-1.5">
-                  <Label htmlFor="entreprise">Entreprise / Projet *</Label>
+                  <Label htmlFor="entreprise">{isFree ? "Entreprise / Projet" : "Entreprise / Projet *"}</Label>
                   <Input id="entreprise" placeholder="Nom de ton projet ou entreprise"
                     value={entreprise} onChange={e => setEntreprise(e.target.value)} autoFocus />
                 </div>
               </div>
 
-              <div className="bg-muted/40 border border-border rounded-sm p-4 flex items-center justify-between">
-                <div>
-                  <p className="text-xs text-muted-foreground">
-                    {OFFER_LABELS[offer]} · {location === "france" ? "France" : "Rép. du Congo"} · {billing === "monthly" ? "Mensuel" : "Annuel"}
-                  </p>
-                  {billing === "annual" && (
-                    <p className="text-xs text-accent font-semibold mt-0.5">
-                      {location === "france" ? "-20% vs mensuel" : "2 mois offerts"}
-                    </p>
-                  )}
+              {isFree ? (
+                <div className="bg-muted/40 border border-border rounded-sm p-4 flex items-center justify-between">
+                  <p className="text-xs text-muted-foreground">{OFFER_LABELS[offer]}</p>
+                  <span className="text-xl font-bold text-primary">Gratuit</span>
                 </div>
-                <span className="text-xl font-bold text-primary">
-                  {formatPrice(price, location)}<span className="text-xs font-normal text-muted-foreground">{period}</span>
-                </span>
-              </div>
+              ) : (
+                <div className="bg-muted/40 border border-border rounded-sm p-4 flex items-center justify-between">
+                  <div>
+                    <p className="text-xs text-muted-foreground">
+                      {OFFER_LABELS[offer]} · {location === "france" ? "France" : "Rép. du Congo"} · {billing === "monthly" ? "Mensuel" : "Annuel"}
+                    </p>
+                    {billing === "annual" && (
+                      <p className="text-xs text-accent font-semibold mt-0.5">
+                        {location === "france" ? "-20% vs mensuel" : "2 mois offerts"}
+                      </p>
+                    )}
+                  </div>
+                  <span className="text-xl font-bold text-primary">
+                    {formatPrice(price, location)}<span className="text-xs font-normal text-muted-foreground">{period}</span>
+                  </span>
+                </div>
+              )}
 
-              <p className="text-xs text-muted-foreground">
-                Abonnement reconductible tacitement. Un préavis de <strong>3 mois</strong> est requis pour résilier.
-              </p>
+              {isFree ? (
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Aucun paiement, aucune carte bancaire. Tes coordonnées servent à t'ouvrir l'accès au Club et à te tenir informé(e) de ses activités, conformément à notre{" "}
+                  <a href="/confidentialite" target="_blank" rel="noopener noreferrer"
+                    className="text-primary underline underline-offset-2 hover:text-primary/80">
+                    politique de confidentialité
+                  </a>.
+                </p>
+              ) : (
+                <>
+                  <p className="text-xs text-muted-foreground">
+                    Abonnement reconductible tacitement. Un préavis de <strong>3 mois</strong> est requis pour résilier.
+                  </p>
 
               <label className="flex items-start gap-2.5 cursor-pointer">
                 <input type="checkbox" checked={cgvAccepted} onChange={e => setCgvAccepted(e.target.checked)}
@@ -369,6 +420,8 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                   </a>{" "}de Mare Nostrum.
                 </span>
               </label>
+                </>
+              )}
 
               {error && <p className="text-sm text-destructive">{error}</p>}
 
@@ -376,10 +429,17 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                 <Button variant="outline" onClick={() => setPhase("step1")} className="flex-none">
                   <ArrowLeft className="h-4 w-4" />
                 </Button>
-                <Button className="flex-1" disabled={!entreprise.trim() || !cgvAccepted} onClick={handleStartPayment}>
-                  <CreditCard className="mr-2 h-4 w-4" />
-                  Passer au paiement
-                </Button>
+                {isFree ? (
+                  <Button className="flex-1" onClick={handleFreeSignup}>
+                    <CheckCircle2 className="mr-2 h-4 w-4" />
+                    Rejoindre gratuitement
+                  </Button>
+                ) : (
+                  <Button className="flex-1" disabled={!entreprise.trim() || !cgvAccepted} onClick={handleStartPayment}>
+                    <CreditCard className="mr-2 h-4 w-4" />
+                    Passer au paiement
+                  </Button>
+                )}
               </div>
             </div>
           )}
@@ -388,7 +448,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
           {phase === "loading" && (
             <div className="flex flex-col items-center justify-center py-12 gap-4">
               <Loader2 className="h-8 w-8 animate-spin text-primary" />
-              <p className="text-sm text-muted-foreground">Préparation du paiement sécurisé…</p>
+              <p className="text-sm text-muted-foreground">{isFree ? "Enregistrement de ton inscription…" : "Préparation du paiement sécurisé…"}</p>
             </div>
           )}
 
@@ -425,7 +485,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                   Tu fais partie du Club,<br />{prenom} !
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Ton abonnement <strong className="text-foreground">{OFFER_LABELS[offer]}</strong> est actif.
+                  Ton abonnement <strong className="text-foreground">{OFFER_LABELS[offer] ?? "Club"}</strong> est actif.
                   On va maintenant te guider pour intégrer la communauté en 2 étapes rapides.
                 </p>
               </div>
@@ -519,7 +579,11 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
 
               <div className="w-full max-w-xs space-y-2">
                 <div className="border-t border-border pt-4 text-xs text-muted-foreground text-center leading-relaxed">
-                  Un email de confirmation a été envoyé à <strong>{email}</strong>.<br />
+                  {isFree ? (
+                    <>Ton inscription gratuite est enregistrée pour <strong>{email}</strong>.</>
+                  ) : (
+                    <>Un email de confirmation a été envoyé à <strong>{email}</strong>.</>
+                  )}<br />
                   N'hésite pas à nous contacter pour toute question.
                 </div>
                 <Button variant="ghost" className="w-full text-muted-foreground text-sm" onClick={onClose}>

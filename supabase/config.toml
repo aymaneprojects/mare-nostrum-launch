@@ -35,3 +35,6 @@ verify_jwt = false
 
 [functions.prise-de-contact]
 verify_jwt = false
+
+[functions.club-freemium-signup]
+verify_jwt = false

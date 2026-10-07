@@ -11,7 +11,7 @@ import TestimonialCard from "@/components/TestimonialCard";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
-import ClubOnboarding, { type Offer } from "@/components/ClubOnboarding";
+import ClubOnboarding, { type Offer, type PaidOffer } from "@/components/ClubOnboarding";
 import { supabase } from "@/integrations/supabase/client";
 import atelierRose from "@/assets/atelier-rose.png";
 import neoEntrepreneurElite from "@/assets/neo-entrepreneur-elite.png";
@@ -102,12 +102,12 @@ const FeatureWithTooltipLight = ({ feature }: { feature: OfferFeature }) => (
 );
 
 const MONTHLY = {
-  france:            { communaute: 30,    groupe: 90,    individuel: 190   },
-  congo_brazzaville: { communaute: 10000, groupe: 30000, individuel: 80000 },
+  france:            { communaute: 30,    groupe: 90    },
+  congo_brazzaville: { communaute: 10000, groupe: 30000 },
 };
 const ANNUAL = {
-  france:            { communaute: 288,    groupe: 864,    individuel: 1728   },
-  congo_brazzaville: { communaute: 100000, groupe: 300000, individuel: 800000 },
+  france:            { communaute: 288,    groupe: 864    },
+  congo_brazzaville: { communaute: 100000, groupe: 300000 },
 };
 
 const Croissance = () => {
@@ -168,7 +168,7 @@ const Croissance = () => {
 
   const openOnboarding = (offer: Offer) => setOnboardingOffer(offer);
 
-  const getPrice = (offer: "communaute" | "groupe" | "individuel") => {
+  const getPrice = (offer: PaidOffer) => {
     if (selectedLocation === "france") {
       const amount = selectedBilling === "monthly" ? MONTHLY.france[offer] : ANNUAL.france[offer];
       return `${amount}€`;
@@ -182,7 +182,7 @@ const Croissance = () => {
   const getPricePeriod = () => selectedBilling === "monthly" ? "/mois" : "/an";
 
   type PriceDetail = { equiv: string; badge: string; saving: string | null };
-  const getPriceDetail = (offer: "communaute" | "groupe" | "individuel"): PriceDetail | null => {
+  const getPriceDetail = (offer: PaidOffer): PriceDetail | null => {
     if (selectedBilling === "monthly") return null;
     if (selectedLocation === "france") {
       const m = MONTHLY.france[offer];
@@ -245,24 +245,10 @@ const Croissance = () => {
     }
   ];
 
-  const individuelFeatures: OfferFeature[] = [
-    {
-      label: "Tout le pack Communauté + Groupe +",
-      tooltip: "Découvre tous les avantages dans l'offre Communauté et dans l'offre Groupe"
-    },
-    {
-      label: "Accompagnement 1-to-1 IA",
-      tooltip: "Implémente concrètement l'IA dans votre projet grâce à une session individuelle d'1 heure chaque mois"
-    },
-    {
-      label: "4 micro-mentorat",
-      tooltip: "Profite de quatre visio individualisées, chaque mois, avec un accompagnateur pendant 20 minutes qui vous permets de débloquer une problématique clé"
-    },
-    {
-      label: "Ligne directe avec le fondateur de Mare Nostrum",
-      tooltip: "Accède à une ligne directe pour obtenir le soutien du dirigeant de Mare Nostrum en moins de 2h : un blocage technique ? une décision stratégique urgente ? Ne reste plus jamais seul face à un imprévu !"
-    }
-  ];
+  // Offre freemium : accès au club, veille, rencontre mensuelle (retranscription
+  // « Priorités commerciales - Temps Forts »). Libellés et infobulles repris de
+  // l'offre Communauté, sans réécriture.
+  const freemiumFeatures: OfferFeature[] = communauteFeatures.slice(0, 3);
 
   const croissanceSchema = [
     {
@@ -270,7 +256,7 @@ const Croissance = () => {
       "@type": "Service",
       "name": "Club Entrepreneur Mare Nostrum - Accompagnement Startup Toulouse & Afrique",
       "url": "https://marenostrum.tech/club",
-      "description": "Club d'accompagnement pour entrepreneurs francophones à impact. Mentorat, réseau, IA, formation. 3 offres dès 30€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans.",
+      "description": "Club d'accompagnement pour entrepreneurs francophones à impact. Mentorat, réseau, IA, formation. Accès gratuit (freemium) et 2 offres payantes dès 30€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans.",
       "provider": {
         "@type": "Organization",
         "name": "Mare Nostrum",
@@ -311,6 +297,15 @@ const Croissance = () => {
         "itemListElement": [
           {
             "@type": "Offer",
+            "name": "Freemium",
+            "description": "Accès gratuit au club international d'entrepreneurs francophones, veille mutualisée et rencontre mensuelle en ligne. Sans paiement.",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "priceSpecification": { "@type": "UnitPriceSpecification", "price": "0.00", "priceCurrency": "EUR" },
+            "itemOffered": { "@type": "Service", "name": "Freemium", "category": "Offre gratuite entrepreneur" }
+          },
+          {
+            "@type": "Offer",
             "name": "Communauté",
             "description": "Accès au club international d'entrepreneurs francophones, veille mutualisée, rencontres mensuelles en ligne, académie en ligne avec plus de 30h de formation.",
             "price": "30",
@@ -326,15 +321,6 @@ const Croissance = () => {
             "priceCurrency": "EUR",
             "priceSpecification": { "@type": "UnitPriceSpecification", "price": "90.00", "priceCurrency": "EUR", "unitText": "MONTH" },
             "itemOffered": { "@type": "Service", "name": "Groupe", "category": "Offre recommandée entrepreneur" }
-          },
-          {
-            "@type": "Offer",
-            "name": "Personnalisé",
-            "description": "Tout de Groupe + accompagnement 1-to-1 IA, 4 micro-mentorats par mois, ligne directe avec le fondateur Mare Nostrum pour réponse en moins de 2h.",
-            "price": "190",
-            "priceCurrency": "EUR",
-            "priceSpecification": { "@type": "UnitPriceSpecification", "price": "190.00", "priceCurrency": "EUR", "unitText": "MONTH" },
-            "itemOffered": { "@type": "Service", "name": "Personnalisé", "category": "Offre premium entrepreneur" }
           }
         ]
       }
@@ -344,7 +330,7 @@ const Croissance = () => {
       "@type": "WebPage",
       "name": "Club Entrepreneur Toulouse & Afrique - Mare Nostrum",
       "url": "https://marenostrum.tech/club",
-      "description": "Club d'accompagnement entrepreneur à Toulouse et en Afrique francophone. Mentorat, réseau, IA dès 30€/mois.",
+      "description": "Club d'accompagnement entrepreneur à Toulouse et en Afrique francophone. Mentorat, réseau, IA : accès gratuit, offres payantes dès 30€/mois.",
       "isPartOf": { "@type": "WebSite", "name": "Mare Nostrum", "url": "https://marenostrum.tech" },
       "speakable": {
         "@type": "SpeakableSpecification",
@@ -360,7 +346,7 @@ const Croissance = () => {
     },
     {
       question: "Peut-on essayer avant de s'engager ?",
-      answer: "Oui. L'offre Communauté te permet de rejoindre le collectif sans engagement long terme. Dès ton inscription, tu reçois ton premier micro-mentorat de 20 minutes offert — pour avancer tout de suite, pas « plus tard »."
+      answer: "Oui. L'offre Freemium est gratuite : tu rejoins le Club sans rien payer. L'offre Communauté te permet ensuite de rejoindre le collectif sans engagement long terme. Dès ton inscription, tu reçois ton premier micro-mentorat de 20 minutes offert — pour avancer tout de suite, pas « plus tard »."
     },
     {
       question: "Je n'ai pas le temps de suivre un accompagnement intensif.",
@@ -368,11 +354,11 @@ const Croissance = () => {
     },
     {
       question: "Je n'ai pas les moyens pour une dépense fixe chaque mois.",
-      answer: "30 €, 90 € ou 190 € par mois — c'est le coût de 1 à 3 heures perdues à hésiter seul. Nos membres disent souvent : « Le jour où j'ai eu mon premier contrat grâce au Club, l'abonnement s'est remboursé dix fois. » Le retour sur investissement est concret : nouveaux clients, mises en relation, temps gagné, décisions plus rentables. C'est une dépense qui rapporte."
+      answer: "L'offre Freemium est gratuite pour découvrir le Club. Ensuite, 30 € ou 90 € par mois — c'est le coût de 1 à 3 heures perdues à hésiter seul. Nos membres disent souvent : « Le jour où j'ai eu mon premier contrat grâce au Club, l'abonnement s'est remboursé dix fois. » Le retour sur investissement est concret : nouveaux clients, mises en relation, temps gagné, décisions plus rentables. C'est une dépense qui rapporte."
     },
     {
       question: "J'ai peur que ce soit trop général, pas adapté à mon projet.",
-      answer: "Chaque membre bénéficie d'un accompagnement selon son niveau et ses besoins. Communauté pour rompre l'isolement et poser les bases solides. Groupe pour structurer la croissance et affiner l'offre. Personnalisé pour un accompagnement stratégique sur-mesure sur l'IA, les financements ou le développement. Nos experts connaissent le quotidien des entrepreneurs — on parle concret, pas théorie."
+      answer: "Chaque membre bénéficie d'un accompagnement selon son niveau et ses besoins. Communauté pour rompre l'isolement et poser les bases solides. Groupe pour structurer la croissance et affiner l'offre. Freemium pour découvrir le Club gratuitement avant de choisir. Nos experts connaissent le quotidien des entrepreneurs — on parle concret, pas théorie."
     },
     {
       question: "Je suis déjà accompagné ailleurs.",
@@ -393,10 +379,6 @@ const Croissance = () => {
     {
       question: "30 euros pour une communauté en ligne, j'en ai déjà des gratuites.",
       answer: "Les communautés gratuites n'ont pas de filtre. Ici, chaque membre est sélectionné, chaque rencontre est animée, et vous avez plus de 30 heures de formation incluses. Testez 30 jours : remboursé si cela ne vous convient pas."
-    },
-    {
-      question: "190 euros par mois, je peux trouver un freelance pour ce prix.",
-      answer: "Un freelance répond à une mission ponctuelle. Nous, nous répondons en moins de deux heures à n'importe quel blocage, nous vous accompagnons sur l'IA et nous vous connectons à un réseau de décideurs. Aucun freelance ne fait tout cela pour 190 euros par mois."
     }
   ];
 
@@ -422,8 +404,8 @@ const Croissance = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <EnhancedSEOHead
-        title="Club Entrepreneur Toulouse & Afrique | Accompagnement Startup dès 30€/mois - Mare Nostrum"
-        description="Rejoignez le Club Entrepreneur Mare Nostrum à Toulouse. 3 offres : Communauté 30€, Groupe 90€, Personnalisé 190€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans. Mentorat, réseau, IA. Toulouse, Paris, Casablanca, Afrique francophone."
+        title="Club Entrepreneur Toulouse & Afrique | Accès gratuit, offres dès 30€/mois - Mare Nostrum"
+        description="Rejoignez le Club Entrepreneur Mare Nostrum à Toulouse. 3 offres : Freemium gratuit, Communauté 30€, Groupe 90€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans. Mentorat, réseau, IA. Toulouse, Paris, Casablanca, Afrique francophone."
         keywords="club entrepreneur toulouse, accompagnement entrepreneur toulouse, mentorat startup toulouse, accompagnement entrepreneur afrique, club entrepreneur francophone, incubateur toulouse, croissance entreprise toulouse, réseau entrepreneur toulouse, coaching entrepreneur, accompagnement startup francophonie, entrepreneuriat toulouse, entrepreneuriat afrique"
         structuredData={croissanceSchema}
         faqSchema={croissanceFaqs}
@@ -436,7 +418,7 @@ const Croissance = () => {
       <PageHero
         eyebrow="Le Quai des Entrepreneurs · depuis Toulouse, dans tout l'espace francophone"
         title="Plongez dans Mare Nostrum"
-        subtitle="Vos premiers outils d'IA, vos partenaires & clients, dans un seul espace digital. 50% de nos membres se rémunèrent en moins de 2 ans. Dès 30€/mois."
+        subtitle="Vos premiers outils d'IA, vos partenaires & clients, dans un seul espace digital. 50% de nos membres se rémunèrent en moins de 2 ans. Accès gratuit, offres payantes dès 30€/mois."
         size="lg"
         ctas={
           <Button size="lg" variant="secondary" className="w-full sm:w-auto" onClick={() => {
@@ -583,6 +565,35 @@ const Croissance = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
+            {/* Freemium : inscription gratuite, sans paiement */}
+            <div className="bg-card border-2 border-border rounded-sm p-6 md:p-8 shadow-[var(--shadow-medium)] hover-lift transition-all hover:-translate-y-1 flex flex-col h-full">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl mb-2 text-foreground">Freemium</h3>
+                <div className="text-4xl font-bold text-primary mb-1">
+                  Gratuit
+                </div>
+                <p className="text-xs text-muted-foreground mt-1">Sans paiement · Sans engagement</p>
+              </div>
+
+              <div className="bg-muted/50 rounded-sm p-3 mb-6">
+                <p className="text-xs text-muted-foreground text-center">
+                  Tu découvres le Club et son réseau
+                </p>
+              </div>
+
+              <p className="text-sm font-medium text-foreground mb-4">Pour rejoindre le Club sans payer</p>
+
+              <ul className="space-y-4 mb-8 flex-grow">
+                {freemiumFeatures.map((feature, idx) => (
+                  <FeatureWithTooltip key={idx} feature={feature} />
+                ))}
+              </ul>
+
+              <Button variant="outline" className="w-full mt-auto" onClick={() => openOnboarding("freemium")}>
+                Rejoindre gratuitement
+              </Button>
+            </div>
+
             {/* Communauté */}
             <div className="bg-card border-2 border-border rounded-sm p-6 md:p-8 shadow-[var(--shadow-medium)] hover-lift transition-all hover:-translate-y-1 flex flex-col h-full">
               <div className="text-center mb-6">
@@ -666,44 +677,6 @@ const Croissance = () => {
                 Rejoindre l'équipage
               </Button>
             </div>
-
-            {/* Personnalisé */}
-            <div className="bg-card border-2 border-border rounded-sm p-6 md:p-8 shadow-[var(--shadow-medium)] hover-lift transition-all hover:-translate-y-1 flex flex-col h-full">
-              <div className="text-center mb-6">
-                <h3 className="text-2xl mb-2 text-foreground">Personnalisé</h3>
-                <div className="text-4xl font-bold text-primary mb-1">
-                  {getPrice("individuel")}
-                  <span className="text-lg font-normal text-muted-foreground"> {getPricePeriod()}</span>
-                </div>
-                {getPriceDetail("individuel") && (
-                  <div className="mb-2">
-                    <span className="inline-block bg-accent/15 text-primary text-xs font-bold px-2 py-0.5 rounded-full mr-2">{getPriceDetail("individuel")!.badge}</span>
-                    <span className="text-xs text-muted-foreground">{getPriceDetail("individuel")!.equiv}</span>
-                    {getPriceDetail("individuel")!.saving && <p className="text-xs text-primary font-medium mt-0.5">{getPriceDetail("individuel")!.saving}</p>}
-                  </div>
-                )}
-                <p className="text-xs text-accent font-semibold">1 tutorat personnalisé offert dès J+1</p>
-                <p className="text-xs text-muted-foreground mt-1">Pas de frais d'entrée · Sans engagement</p>
-              </div>
-
-              <div className="bg-muted/50 rounded-sm p-3 mb-6">
-                <p className="text-xs text-muted-foreground text-center">
-                  Tu structures ta croissance, chaque décision compte (10K€+ MRR)
-                </p>
-              </div>
-
-              <p className="text-sm font-medium text-foreground mb-4">Le bras droit pour réussir vos choix structurants</p>
-
-              <ul className="space-y-4 mb-8 flex-grow">
-                {individuelFeatures.map((feature, idx) => (
-                  <FeatureWithTooltip key={idx} feature={feature} />
-                ))}
-              </ul>
-
-              <Button variant="outline" className="w-full mt-auto" onClick={() => openOnboarding("individuel")}>
-                Rejoindre l'équipage
-              </Button>
-            </div>
           </div>
 
           {/* Feature Comparison Table */}
@@ -713,25 +686,23 @@ const Croissance = () => {
               <thead>
                 <tr>
                   <th className="text-left py-2 px-2 md:py-3 md:px-4 text-muted-foreground font-medium" style={{ width: '40%' }}></th>
+                  <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Freemium</th>
                   <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Communauté</th>
                   <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-primary-foreground rounded-t-sm" style={{ background: 'hsl(222 44% 25%)' }}>Groupe</th>
-                  <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Personnalisé</th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  { feature: "Accès Club International", c: true, g: true, i: true },
-                  { feature: "Veille mutualisée mensuelle", c: true, g: true, i: true },
-                  { feature: "Rencontre networking mensuelle", c: true, g: true, i: true },
-                  { feature: "Académie en ligne +30h", c: true, g: true, i: true },
-                  { feature: "Opportunités & tarifs partenaires", c: true, g: true, i: true },
-                  { feature: "Intégration dans un Cercle", c: false, g: true, i: true },
-                  { feature: "Session collective biz dev / mois", c: false, g: true, i: true },
-                  { feature: "Mises en relation partenaires", c: false, g: true, i: true },
-                  { feature: "Micro-mentorat mensuel", c: "1×", g: "1×", i: "4×" },
-                  { feature: "Accompagnement 1-to-1 IA", c: false, g: false, i: true },
-                  { feature: "Ligne directe fondateur (<2h)", c: false, g: false, i: true },
-                ].map(({ feature, c, g, i }, idx) => {
+                  { feature: "Accès Club International", f: true, c: true, g: true },
+                  { feature: "Veille mutualisée mensuelle", f: true, c: true, g: true },
+                  { feature: "Rencontre networking mensuelle", f: true, c: true, g: true },
+                  { feature: "Académie en ligne +30h", f: false, c: true, g: true },
+                  { feature: "Opportunités & tarifs partenaires", f: false, c: true, g: true },
+                  { feature: "Intégration dans un Cercle", f: false, c: false, g: true },
+                  { feature: "Session collective biz dev / mois", f: false, c: false, g: true },
+                  { feature: "Mises en relation partenaires", f: false, c: false, g: true },
+                  { feature: "Micro-mentorat mensuel", f: false, c: "1×", g: "1×" },
+                ].map(({ feature, f, c, g }, idx) => {
                   const bg = idx % 2 === 0 ? 'hsl(40 38% 94% / 0.5)' : '#fff';
                   const Cell = ({ val }: { val: boolean | string }) => (
                     <td className="py-2 px-2 md:py-3 md:px-4 text-center" style={{ background: val !== false && val !== true ? 'hsl(222 44% 25% / 0.04)' : undefined }}>
@@ -743,13 +714,13 @@ const Croissance = () => {
                   return (
                     <tr key={feature} style={{ background: bg, borderTop: '1px solid hsl(222 44% 25% / 0.07)' }}>
                       <td className="py-2 px-2 md:py-3 md:px-4 text-foreground/80 font-medium">{feature}</td>
+                      <Cell val={f} />
                       <Cell val={c} />
                       <td className="py-2 px-2 md:py-3 md:px-4 text-center" style={{ background: 'hsl(222 44% 25% / 0.04)' }}>
                         {g === true ? <><CheckCircle2 aria-hidden="true" className="h-4 w-4 mx-auto" style={{ color: 'hsl(181 67% 40%)' }} /><span className="sr-only">Inclus</span></> :
                          g === false ? <><span aria-hidden="true" className="text-muted-foreground/30 font-bold text-lg leading-none">—</span><span className="sr-only">Non inclus</span></> :
                          <span className="font-semibold text-primary">{g}</span>}
                       </td>
-                      <Cell val={i} />
                     </tr>
                   );
                 })}
@@ -758,13 +729,13 @@ const Croissance = () => {
                     Prix mensuel · {selectedLocation === "france" ? "France" : "Rép. du Congo"}
                   </td>
                   <td className="py-3 px-2 md:py-4 md:px-4 text-center font-bold text-primary">
+                    Gratuit
+                  </td>
+                  <td className="py-3 px-2 md:py-4 md:px-4 text-center font-bold text-primary">
                     {selectedLocation === "france" ? "30€" : "10 000 XOF"}
                   </td>
                   <td className="py-3 px-2 md:py-4 md:px-4 text-center font-bold text-primary-foreground rounded-b-sm" style={{ background: 'hsl(222 44% 25%)' }}>
                     {selectedLocation === "france" ? "90€" : "30 000 XOF"}
-                  </td>
-                  <td className="py-3 px-2 md:py-4 md:px-4 text-center font-bold text-primary">
-                    {selectedLocation === "france" ? "190€" : "80 000 XOF"}
                   </td>
                 </tr>
               </tbody>
@@ -843,11 +814,11 @@ const Croissance = () => {
             </div>
 
             <div className="group relative overflow-hidden rounded-sm shadow-[var(--shadow-medium)] hover:shadow-2xl transition-all">
-              <img src={neoEntrepreneurElite} alt="Journée de business développement avec néo-entrepreneurs dans l'offre Personnalisé Mare Nostrum Toulouse" loading="lazy" width="600" height="400" className="w-full h-[220px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
+              <img src={neoEntrepreneurElite} alt="Journée de business développement avec néo-entrepreneurs dans l'offre Groupe Mare Nostrum Toulouse" loading="lazy" width="600" height="400" className="w-full h-[220px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-300" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                 <div className="p-6 text-primary-foreground">
-                  <h3 className="text-xl mb-2">Offre Personnalisé</h3>
-                  <p className="text-sm">Accompagnement premium avec nos néo-entrepreneurs</p>
+                  <h3 className="text-xl mb-2">Offre Groupe</h3>
+                  <p className="text-sm">Journées de business développement avec nos néo-entrepreneurs</p>
                 </div>
               </div>
             </div>

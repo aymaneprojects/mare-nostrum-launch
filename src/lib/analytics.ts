@@ -39,6 +39,8 @@ export const EVT = {
   checkoutShown: "checkout_shown",
   /** Paiement abouti. */
   purchase: "purchase",
+  /** Inscription gratuite au Club (offre freemium) : aucun paiement. */
+  clubFreemiumSignup: "sign_up",
   /** Un formulaire de contact, diagnostic, livre blanc ou newsletter est envoyé. */
   generateLead: "generate_lead",
 } as const;

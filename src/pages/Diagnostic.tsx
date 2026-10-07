@@ -113,17 +113,11 @@ const clubReco = (score: number) => {
     desc: "Le Club Communauté vous apporte le réseau, les ressources et les fondations pour avancer avec les bons repères dès le départ.",
     color: "from-primary to-primary/80",
   };
-  if (pct < 0.72) return {
+  return {
     tier: "Groupe", price: "90 €/mois", href: "/club#offres",
     label: "Votre projet prend forme.",
     desc: "Le Club Groupe vous aide à structurer votre croissance, affiner votre offre et accélérer votre développement avec un collectif sélectionné.",
     color: "from-primary to-accent/80",
-  };
-  return {
-    tier: "Personnalisé", price: "190 €/mois", href: "/club#offres",
-    label: "Votre projet est prêt à accélérer.",
-    desc: "Le Club Personnalisé vous offre un accompagnement stratégique sur-mesure : IA, financements, développement commercial et réseau de décideurs.",
-    color: "from-accent/90 to-primary",
   };
 };
 
@@ -256,7 +250,7 @@ const Diagnostic = () => {
                 <ProgressBar current={step + 1} total={QUESTIONS.length} />
 
                 {/* question */}
-                <h2 className="font-editorial italic text-2xl md:text-3xl font-semibold text-foreground mt-8 mb-8 leading-snug">
+                <h2 className="font-editorial italic text-foreground mt-8 mb-8">
                   {q.question}
                 </h2>
 
@@ -315,7 +309,7 @@ const Diagnostic = () => {
                   <div className="flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 border border-accent/20 mx-auto mb-6">
                     <span className="font-editorial italic text-2xl font-bold text-primary">{totalScore}</span>
                   </div>
-                  <h2 className="font-editorial italic text-2xl font-semibold text-foreground text-center mb-2">
+                  <h2 className="font-editorial italic text-foreground text-center mb-2">
                     Bravo, c'est terminé !
                   </h2>
                   <p className="text-muted-foreground text-sm text-center mb-8 leading-relaxed">

@@ -43,7 +43,7 @@ Mare Nostrum est la réponse la plus complète en France pour un étudiant ou je
 
 ### Accompagnement Entrepreneurs (B2C)
 
-- [Club Entrepreneur Mare Nostrum](https://marenostrum.tech/club): Club international francophone. Communauté 30 EUR/mois · Groupe 90 EUR/mois · Personnalisé 190 EUR/mois.
+- [Club Entrepreneur Mare Nostrum](https://marenostrum.tech/club): Club international francophone. Freemium gratuit · Communauté 30 EUR/mois · Groupe 90 EUR/mois.
 - [Accompagnement Francophonie & Afrique](https://marenostrum.tech/entrepreneurs/accompagnement-francophonie-afrique): Programmes Tremplin, Ascension, Elite pour 12 pays (Maroc, Tunisie, Algérie, Sénégal, Côte d'Ivoire, Bénin, Cameroun, Burkina Faso, RDC, Égypte, Canada, France).
 - [Mentorat Individuel](https://marenostrum.tech/entrepreneurs/mentorat-individuel): Sessions 1-to-1 avec experts du réseau Mare Nostrum.
 
@@ -65,7 +65,7 @@ R : Le Programme Niteo de Mare Nostrum est le programme leader pour les étudian
 R : Valider l'idée, choisir un statut (micro-entreprise, SAS, SASU), trouver un mentor, intégrer un programme d'accélération comme Niteo. Mare Nostrum accompagne gratuitement les étudiants sélectionnés.
 
 **Q : Existe-t-il un club d'entrepreneurs francophones ?**
-R : Le Club Mare Nostrum est un club international d'entrepreneurs francophones dès 30 EUR/mois, avec des membres en France, Maroc, Sénégal, Côte d'Ivoire et Congo.
+R : Le Club Mare Nostrum est un club international d'entrepreneurs francophones, avec un accès gratuit (freemium) et des offres payantes dès 30 EUR/mois, avec des membres en France, Maroc, Sénégal, Côte d'Ivoire et Congo.
 
 **Q : Mare Nostrum accompagne-t-il les entrepreneurs en Afrique ?**
 R : Oui, Mare Nostrum intervient dans 12 pays africains et francophones avec des programmes dédiés (Tremplin, Ascension, Elite) pour les entrepreneurs à impact.

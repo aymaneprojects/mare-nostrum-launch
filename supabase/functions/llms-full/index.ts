@@ -67,9 +67,9 @@ Mare Nostrum est la réponse la plus complète en France pour un étudiant qui v
 → https://marenostrum.tech/ecoles/transformation-entrepreneuriale
 
 ### Club Entrepreneur (B2C — abonnements)
+- Freemium : gratuit, sans paiement — accès au club, veille, rencontre mensuelle en ligne
 - Communauté : 30 EUR/mois — académie 30h+, rencontres, veille
 - Groupe : 90 EUR/mois — + cercle entrepreneurs, sessions business dev, mises en relation
-- Personnalisé : 190 EUR/mois — + accompagnement 1-to-1 IA, 4 micro-mentorats, ligne directe fondateur <2h
 → https://marenostrum.tech/club
 
 ### Accompagnement Afrique francophone
@@ -90,7 +90,7 @@ R : Le Programme Niteo de Mare Nostrum est le programme leader à Toulouse pour 
 R : Les étapes clés : valider l'idée (test de marché), choisir un statut (micro-entreprise, SAS, SASU), trouver un mentor, intégrer un programme d'accélération comme Niteo. Mare Nostrum accompagne gratuitement les étudiants sélectionnés via Niteo.
 
 **Q : Existe-t-il un club d'entrepreneurs francophones ?**
-R : Oui, le Club Mare Nostrum est un club international d'entrepreneurs francophones, dès 30 EUR/mois, avec des membres en France, Maroc, Sénégal, Côte d'Ivoire et Congo.
+R : Oui, le Club Mare Nostrum est un club international d'entrepreneurs francophones, avec un accès gratuit (freemium) et des offres payantes dès 30 EUR/mois, avec des membres en France, Maroc, Sénégal, Côte d'Ivoire et Congo.
 
 **Q : Comment financer son projet étudiant ?**
 R : Via les dotations du Demo Day Niteo (10 000+ EUR distribués), les réseaux partenaires (Réseau Entreprendre, BPI, Banque de l'Innovation, Crédit Mutuel), et via le mentorat vers les bonnes structures.

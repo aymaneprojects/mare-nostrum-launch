@@ -11,26 +11,28 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-type Offer    = "communaute" | "groupe" | "individuel";
+// L'offre « individuel » (Personnalisé) est retirée : voir la retranscription
+// « Priorités commerciales - Temps Forts ». Les abonnements déjà souscrits restent
+// gérés dans Stripe. Le freemium ne passe jamais par ici (club-freemium-signup).
+type Offer    = "communaute" | "groupe";
 type Location = "france" | "congo_brazzaville";
 type Billing  = "monthly" | "annual";
 
 // EUR en centimes, XOF est zero-decimal
 const PRICES: Record<Location, Record<Billing, Record<Offer, number>>> = {
   france: {
-    monthly: { communaute: 3000,   groupe: 9000,   individuel: 19000  },
-    annual:  { communaute: 28800,  groupe: 86400,  individuel: 172800 },
+    monthly: { communaute: 3000,   groupe: 9000   },
+    annual:  { communaute: 28800,  groupe: 86400  },
   },
   congo_brazzaville: {
-    monthly: { communaute: 10000,  groupe: 30000,  individuel: 80000  },
-    annual:  { communaute: 100000, groupe: 300000, individuel: 800000 },
+    monthly: { communaute: 10000,  groupe: 30000  },
+    annual:  { communaute: 100000, groupe: 300000 },
   },
 };
 
 const OFFER_NAMES: Record<Offer, string> = {
   communaute: "Communauté",
   groupe:     "Groupe",
-  individuel: "Personnalisé",
 };
 
 const CURRENCIES: Record<Location, string> = {
@@ -47,7 +49,6 @@ const TAX_RATE_EXPORT       = "txr_1TZv2WRtzJviITg0Dd3ZXPaZ"; // 0%  — TVA à 
 const INVOICE_TPL_FR: Record<Offer, string> = {
   communaute: "inrtem_1TZv63RtzJviITg0y2KK0DoH",
   groupe:     "inrtem_1TZukIRtzJviITg0ZPPC9xLv",
-  individuel: "inrtem_1TZukIRtzJviITg0ZPPC9xLv",
 };
 const INVOICE_TPL_EXPORT = "inrtem_1TZunVRtzJviITg0YK8HfB4s";
 
@@ -67,6 +68,9 @@ serve(async (req) => {
 
     if (!offer || !location || !billing || !prenom || !email) {
       throw new Error("Champs obligatoires manquants.");
+    }
+    if (!(offer in OFFER_NAMES) || !(location in PRICES) || !(billing in PRICES[location])) {
+      throw new Error("Offre indisponible.");
     }
 
     const isFrance     = location === "france";
