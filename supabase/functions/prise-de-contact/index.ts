@@ -26,6 +26,8 @@ const AYMANE  = "aymane@marenostrum.tech";
 const ALEXIS  = "alexis@marenostrum.tech";
 const JULIENNE = "julienne@marenostrum.tech";
 const YASMINE  = "yasmine@marenostrum.tech";
+/** Adresse des droits RGPD : seule mentionnée dans la clause RGPD des mails. */
+const RGPD = "rgpd@marenostrum.tech";
 
 /** Les cinq pôles : libellé affiché, responsable, adresses en copie cachée. */
 const POLES = {
@@ -59,6 +61,13 @@ const POLES = {
     responsable: ALEXIS,
     copie: [CONTACT, AYMANE],
   },
+  // Dernier choix du formulaire : tout ce qui ne relève pas d'un pôle. Pour Alexis.
+  partenariats: {
+    libelle: "Partenariats et autres demandes",
+    phrase: "un partenariat ou une autre demande",
+    responsable: ALEXIS,
+    copie: [CONTACT, AYMANE],
+  },
 } as const;
 
 type ClePole = keyof typeof POLES;
@@ -86,8 +95,20 @@ const prenomDe = (nom: string) => nom.trim().split(/\s+/)[0] || "";
 const PROFILS: Record<string, string> = {
   ecole: "Une école / université",
   entrepreneur: "Un entrepreneur / dirigeant",
+  entreprise: "Une entreprise",
   etudiant: "Un étudiant",
   partenaire: "Un partenaire potentiel",
+  autre: "Autre",
+};
+
+/** Champ « Segment » d'Airtable : la liste de catégories du CRM, pas les codes du formulaire.
+ *  Écrire un code brut (« autre », « entreprise ») créait de fausses catégories. */
+const SEGMENTS: Record<string, string> = {
+  ecole: "Enseignement supérieur et recherche",
+  entrepreneur: "Entrepreneur",
+  etudiant: "Etudiant",
+  entreprise: "Entreprise",
+  partenaire: "Autre",
   autre: "Autre",
 };
 
@@ -157,7 +178,7 @@ serve(async (req) => {
               "Mail": email,
               "Téléphone": phone ?? "",
               "Pays de résidence": country ?? "",
-              "Segment": type ?? "",
+              "Segment": SEGMENTS[String(type ?? "")] ?? "Autre",
               "Pôles concernés": libelles,
               "Lead Type": "Lead Chaud",
               "Expérience": "Prise de contact",
@@ -232,7 +253,7 @@ serve(async (req) => {
   <p style="margin:20px 0 0"><a href="https://www.marenostrum.tech"><img src="https://www.marenostrum.tech/logo.jpg" alt="Mare Nostrum" width="72" height="72" style="display:block;border:0"></a></p>
 
   <p style="font-size:12px;line-height:1.5;color:${gris};margin-top:28px">
-    Vous recevez ce message suite à votre prise de contact avec Mare Nostrum. Vos données sont utilisées par Mare Nostrum pour donner suite à cet échange, conformément au Règlement général sur la protection des données (RGPD). Vous disposez d'un droit d'accès, de rectification, d'opposition et de suppression en écrivant à <a href="mailto:contact@marenostrum.tech" style="color:${gris}">contact@marenostrum.tech</a>. Pour en savoir plus : <a href="https://www.marenostrum.tech/confidentialite" style="color:${gris}">politique de confidentialité</a>.
+    Vous recevez ce message suite à votre prise de contact avec Mare Nostrum. Vos données sont utilisées par Mare Nostrum pour donner suite à cet échange, conformément au Règlement général sur la protection des données (RGPD). Vous disposez d'un droit d'accès, de rectification, d'opposition et de suppression en écrivant à <a href="mailto:${RGPD}" style="color:${gris}">${RGPD}</a>. Pour en savoir plus : <a href="https://www.marenostrum.tech/confidentialite" style="color:${gris}">politique de confidentialité</a>.
   </p>
 </div>`;
 

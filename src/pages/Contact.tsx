@@ -18,6 +18,7 @@ const POLES = [
   { cle: "club",      libelle: "Club",                detail: "La communauté d'entrepreneurs" },
   { cle: "formation", libelle: "Centre de formation", detail: "Organisme certifié Qualiopi" },
   { cle: "niteo",     libelle: "Niteo",               detail: "L'incubateur" },
+  { cle: "partenariats", libelle: "Partenariats et autres demandes", detail: "Un projet commun, une autre question" },
 ];
 
 const Contact = () => {
@@ -331,6 +332,7 @@ const Contact = () => {
                     <SelectContent>
                       <SelectItem value="ecole">Une école / université</SelectItem>
                       <SelectItem value="entrepreneur">Un entrepreneur / dirigeant</SelectItem>
+                      <SelectItem value="entreprise">Une entreprise</SelectItem>
                       <SelectItem value="etudiant">Un étudiant</SelectItem>
                       <SelectItem value="partenaire">Un partenaire potentiel</SelectItem>
                       <SelectItem value="autre">Autre</SelectItem>
