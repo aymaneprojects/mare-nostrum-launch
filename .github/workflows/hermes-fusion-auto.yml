@@ -1,0 +1,53 @@
+# Fusion automatique des propositions de Hermes.
+#
+# Quand l'agent développeur envoie une branche `hermes/…` (scripts/hermes/proposer.sh),
+# GitHub vérifie que le site se construit, puis la fusionne dans `main` et supprime la branche.
+# Ainsi `main` contient toujours le dernier travail, et le clone du serveur (qui se
+# synchronise toutes les 10 minutes) repart toujours de la dernière version.
+#
+# CE QUI RESTE MANUEL : la mise en ligne. Fusionner n'est pas publier : le site ne change
+# qu'avec ./deploy-vps.sh, qui refuse un code plus ancien que celui en ligne.
+#
+# Si la construction échoue ou si la fusion est en conflit, rien n'est fusionné : la branche
+# reste telle quelle et l'échec apparaît dans l'onglet « Actions » de GitHub.
+name: Fusion automatique des propositions de Hermes
+
+on:
+  push:
+    branches: ["hermes/**"]
+
+# Une seule fusion à la fois : deux propositions simultanées passent l'une après l'autre.
+concurrency:
+  group: hermes-fusion
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  fusion:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Vérifier que le site se construit
+        run: |
+          npm ci
+          SKIP_PRERENDER=1 npm run build
+
+      - name: Fusionner dans main
+        run: |
+          git config user.name "Hermes (fusion automatique)"
+          git config user.email "hermes@marenostrum.tech"
+          git checkout main
+          git pull --ff-only origin main
+          git merge --no-ff "origin/${GITHUB_REF_NAME}" -m "Fusion automatique : ${GITHUB_REF_NAME}"
+          git push origin main
+          git push origin --delete "${GITHUB_REF_NAME}"

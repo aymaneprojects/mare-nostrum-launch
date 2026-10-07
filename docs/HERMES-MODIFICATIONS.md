@@ -32,6 +32,14 @@ Hermes **ne publie jamais**. Il propose ; une personne valide et publie.
 4. **Ne jamais modifier un texte publié** sans demande explicite du propriétaire (règle de `CLAUDE.md`). Un changement de texte se propose : texte actuel → texte proposé → pourquoi.
 5. **Aucun secret dans une proposition** : `proposer.sh` refuse `.env`, les clés et les fichiers temporaires.
 
+## Fusion automatique et dernier commit
+
+Décidé le 7 octobre 2026 : **les propositions de Hermes se fusionnent toutes seules dans `main`**.
+
+- `.github/workflows/hermes-fusion-auto.yml` : à chaque branche `hermes/…` reçue, GitHub construit le site pour vérifier qu'il n'est pas cassé, fusionne dans `main`, puis supprime la branche. En cas d'échec ou de conflit, rien n'est fusionné et l'échec apparaît dans l'onglet *Actions* de GitHub.
+- **Fusionner n'est pas publier.** Le site en ligne ne change qu'avec `./deploy-vps.sh` (qui refuse un code plus ancien que celui en ligne). Le point de contrôle humain est donc la mise en ligne.
+- **Toujours le dernier commit** : `scripts/hermes/sync.sh` remet le clone du serveur sur `main`, sans jamais rien écraser. Un minuteur peut l'exécuter toutes les 10 minutes (`scripts/hermes/installer-minuteur.sh`).
+
 ## Les deux scripts
 
 - `scripts/hermes/sync.sh` : récupère GitHub et avance `main` du clone. **N'écrase jamais rien** : s'arrête (code 2) si le clone contient des modifications, ou (code 3) s'il contient des commits qui ne sont pas sur GitHub.
