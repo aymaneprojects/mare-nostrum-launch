@@ -133,7 +133,7 @@ const DiagnosticGratuit = () => {
           <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Benefits */}
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
+              <h2 className="font-editorial italic text-foreground mb-8">
                 Ce que vous obtiendrez
               </h2>
               

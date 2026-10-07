@@ -216,7 +216,7 @@ export default function NiteoReservation() {
                 <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style={{ background: "hsl(var(--mn-turquoise) / 0.12)" }}>
                   <CheckCircle2 className="h-10 w-10" aria-hidden="true" style={{ color: "hsl(var(--mn-turquoise))" }} />
                 </div>
-                <h2 className="text-2xl font-bold mb-3" style={{ color: "hsl(var(--mn-ink))" }}>
+                <h2 className="font-editorial italic mb-3" style={{ color: "hsl(var(--mn-ink))" }}>
                   Votre présence est confirmée !
                 </h2>
                 {successName && (
@@ -253,7 +253,7 @@ export default function NiteoReservation() {
             {/* PHASE: FORM */}
             {phase === "form" && (
               <>
-                <h2 className="text-2xl md:text-3xl font-bold text-center mb-2" style={{ color: "hsl(var(--mn-ink))" }}>
+                <h2 className="font-editorial italic text-center mb-2" style={{ color: "hsl(var(--mn-ink))" }}>
                   Réservez votre place
                 </h2>
                 <p className="text-center text-muted-foreground mb-8">
@@ -319,7 +319,7 @@ export default function NiteoReservation() {
             {/* PHASE: PAYMENT */}
             {phase === "payment" && stripePromise && (
               <div>
-                <h2 className="text-2xl font-bold text-center mb-6" style={{ color: "hsl(var(--mn-ink))" }}>
+                <h2 className="font-editorial italic text-center mb-6" style={{ color: "hsl(var(--mn-ink))" }}>
                   Paiement sécurisé
                 </h2>
                 <EmbeddedCheckoutProvider stripe={stripePromise} options={checkoutOptions}>

@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
+import DarkSection from "@/components/DarkSection";
 
 const TransformationEntrepreneuriale = () => {
   const pageSchema = [
@@ -85,7 +86,7 @@ const TransformationEntrepreneuriale = () => {
       {/* Problématiques Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Les défis des établissements aujourd'hui
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -126,7 +127,7 @@ const TransformationEntrepreneuriale = () => {
       {/* Notre Approche vs Traditionnelle */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Notre approche vs. les dispositifs traditionnels
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -161,7 +162,7 @@ const TransformationEntrepreneuriale = () => {
       {/* Nos Formats */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Des formats adaptés à vos besoins
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -233,9 +234,9 @@ const TransformationEntrepreneuriale = () => {
       </section>
 
       {/* CTA Diagnostic */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary to-[hsl(var(--mn-ink))]">
+      <DarkSection>
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-4xl font-bold text-primary-foreground mb-6">
+          <h2 className="font-editorial italic text-primary-foreground mb-6">
             Prêt à transformer votre établissement ?
           </h2>
           <p className="text-lg text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
@@ -248,7 +249,7 @@ const TransformationEntrepreneuriale = () => {
             </Link>
           </Button>
         </div>
-      </section>
+      </DarkSection>
 
       {/* FAQ */}
       <FAQSection

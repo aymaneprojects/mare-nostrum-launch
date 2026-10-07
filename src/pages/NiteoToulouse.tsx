@@ -39,6 +39,7 @@ import partnerVenture from "@/assets/niteo/venture.png";
 import partnerTouleco from "@/assets/niteo/touleco.png";
 import partnerRoselab from "@/assets/niteo/roselab.png";
 import partnerToulouseWay from "@/assets/niteo/toulouse-way.png";
+import DarkSection from "@/components/DarkSection";
 
 const NiteoToulouse = () => {
   const niteoSchema = [{
@@ -205,7 +206,7 @@ const NiteoToulouse = () => {
       {/* Section 2: Enjeux pedagogiques */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-foreground">
+          <h2 className="font-editorial italic text-center mb-8 md:mb-12 text-foreground">
             Les enjeux pédagogiques
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
@@ -231,7 +232,7 @@ const NiteoToulouse = () => {
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
+            <h2 className="font-editorial italic mb-4 text-foreground">
               Pourquoi Niteo ?
             </h2>
             <p className="text-lg text-muted-foreground mb-12">
@@ -259,7 +260,7 @@ const NiteoToulouse = () => {
       {/* Section 4: Parcours 50h */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Le parcours de 50 heures
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -288,7 +289,7 @@ const NiteoToulouse = () => {
       {/* Section 5: 3 resultats immediats */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="font-editorial italic text-center mb-12 text-foreground">
             3 résultats immédiats
           </h2>
           <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
@@ -334,7 +335,7 @@ const NiteoToulouse = () => {
       {/* Section 7: Calendrier */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-foreground">
+          <h2 className="font-editorial italic text-center mb-16 text-foreground">
             Calendrier 2026
           </h2>
           <div className="max-w-2xl mx-auto">
@@ -365,7 +366,7 @@ const NiteoToulouse = () => {
       {/* Section 8: Equipe Niteo */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             L'équipe Niteo
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -460,7 +461,7 @@ const NiteoToulouse = () => {
       {/* Section 10: Partenaires */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Partenaires écosystème
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -487,10 +488,10 @@ const NiteoToulouse = () => {
       <FAQSection title="Questions fréquentes sur Niteo" faqs={niteoFaqs} />
 
       {/* Section 12: CTA final */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-primary to-accent">
+      <DarkSection>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary-foreground">
+            <h2 className="font-editorial italic mb-6 text-primary-foreground">
               Rejoignez Niteo Toulouse 2026
             </h2>
             <p className="text-xl text-primary-foreground/90 mb-8">
@@ -507,7 +508,7 @@ const NiteoToulouse = () => {
             </p>
           </div>
         </div>
-      </section>
+      </DarkSection>
 
       <Footer />
     </div>

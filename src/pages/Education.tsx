@@ -28,6 +28,7 @@ import schoolNeoma from "@/assets/schools/neoma.png";
 import schoolIcd from "@/assets/schools/icd.png";
 import schoolEsct from "@/assets/schools/esct.png";
 import schoolEfap from "@/assets/schools/efap.png";
+import DarkSection from "@/components/DarkSection";
 const Education = () => {
   const educationSchema = [{
     "@context": "https://schema.org",
@@ -198,7 +199,7 @@ const Education = () => {
       <section className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">À qui s'adressent nos formations ?</div>
-          <h2 className="font-editorial italic font-semibold text-center mb-8 md:mb-12 text-foreground">
+          <h2 className="font-editorial italic text-center mb-8 md:mb-12 text-foreground">
             Trois portes d'entrée, une même exigence : des formateurs praticiens et un accompagnement individualisé.
           </h2>
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
@@ -274,7 +275,7 @@ const Education = () => {
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Les formations certifiées en conformité avec Qualiopi</div>
-          <h2 className="font-editorial italic font-semibold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Ce que propose le centre de formation de Mare Nostrum
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -441,7 +442,7 @@ const Education = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Financement</div>
-          <h2 className="font-editorial italic font-semibold text-center mb-12 text-foreground">
+          <h2 className="font-editorial italic text-center mb-12 text-foreground">
             Financer votre formation
           </h2>
           <div className="max-w-4xl mx-auto">
@@ -467,7 +468,7 @@ const Education = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Les dispositifs pour les établissements</div>
-          <h2 className="font-editorial italic font-semibold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Les interventions dans l'enseignement supérieur
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -500,7 +501,7 @@ const Education = () => {
       <section className="py-6 md:py-8 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Ils nous font confiance</div>
-          <h2 className="font-editorial italic font-semibold text-center mb-12 text-foreground">
+          <h2 className="font-editorial italic text-center mb-12 text-foreground">
             Résultats & preuve sociale
           </h2>
           <div className="max-w-4xl mx-auto">
@@ -529,7 +530,7 @@ const Education = () => {
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Retours d'expérience</div>
-          <h2 className="font-editorial italic font-semibold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Exemples de nos actions
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -586,7 +587,7 @@ const Education = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Ecoles et établissements partenaires</div>
-          <h2 className="font-editorial italic font-semibold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Ils nous font confiance
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -621,7 +622,7 @@ const Education = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Témoignages</div>
-          <h2 className="font-editorial italic font-semibold text-center mb-12 text-foreground">
+          <h2 className="font-editorial italic text-center mb-12 text-foreground">
             Que disent nos clients de notre centre de formation ?
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -635,10 +636,10 @@ const Education = () => {
       <FAQSection title="Questions fréquentes" faqs={educationFaqs} />
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-primary to-accent">
+      <DarkSection>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="mb-6 text-primary-foreground">
+            <h2 className="font-editorial italic mb-6 text-primary-foreground">
               Se former pour entreprendre, ou former ceux qui entreprennent
             </h2>
             <p className="text-xl text-primary-foreground/90 mb-8">
@@ -684,7 +685,7 @@ const Education = () => {
             </div>
           </div>
         </div>
-      </section>
+      </DarkSection>
 
       <Footer />
     </div>;

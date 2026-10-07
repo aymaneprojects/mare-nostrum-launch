@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
+import DarkSection from "@/components/DarkSection";
 
 const AccompagnementFrancophonie = () => {
   const pageSchema = [
@@ -87,7 +88,7 @@ const AccompagnementFrancophonie = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-6">
+            <h2 className="font-editorial italic text-foreground mb-6">
               Notre vision de l'accompagnement
             </h2>
             <p className="text-lg text-muted-foreground">
@@ -131,7 +132,7 @@ const AccompagnementFrancophonie = () => {
       {/* Les 3 Offres */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Nos programmes d'accompagnement
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -234,7 +235,7 @@ const AccompagnementFrancophonie = () => {
       {/* Outils du Silo */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="font-editorial italic text-center mb-12 text-foreground">
             Outils et ressources
           </h2>
           
@@ -275,9 +276,9 @@ const AccompagnementFrancophonie = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary to-[hsl(var(--mn-ink))]">
+      <DarkSection>
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-4xl font-bold text-primary-foreground mb-6">
+          <h2 className="font-editorial italic text-primary-foreground mb-6">
             Prêt à rejoindre la communauté ?
           </h2>
           <p className="text-lg text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
@@ -290,7 +291,7 @@ const AccompagnementFrancophonie = () => {
             </Link>
           </Button>
         </div>
-      </section>
+      </DarkSection>
 
       {/* FAQ */}
       <FAQSection

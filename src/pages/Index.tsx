@@ -293,7 +293,7 @@ const Index = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto">
             <div className="mn-eyebrow-light text-center mb-5">À propos</div>
-            <h2 className="text-center mb-6 md:mb-10 text-primary-foreground">
+            <h2 className="font-editorial italic text-center mb-6 md:mb-10 text-primary-foreground">
               Qui sommes-nous ?
             </h2>
             <div className="prose prose-lg mx-auto text-center max-w-[65ch]">
@@ -337,7 +337,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto text-center">
             <div className="mn-eyebrow-turquoise text-center mb-5">Nos offres</div>
-            <h2 className="mb-8 md:mb-14 text-foreground">
+            <h2 className="font-editorial italic mb-8 md:mb-14 text-foreground">
               Nos deux pôles d'expertise
             </h2>
 
@@ -401,7 +401,7 @@ const Index = () => {
       <section ref={fadeTestimonials as React.RefObject<HTMLElement>} className="py-12 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-5">Témoignages</div>
-          <h2 className="text-center mb-8 md:mb-12 text-foreground">
+          <h2 className="font-editorial italic text-center mb-8 md:mb-12 text-foreground">
             Ils nous font confiance
           </h2>
           <div className="grid lg:grid-cols-2 lg:[&>:last-child]:col-span-2 gap-5 md:gap-8 max-w-6xl mx-auto">
@@ -417,7 +417,7 @@ const Index = () => {
         <DarkLayers halo="50% 0%" vignette="50% 100%" />
         <div className="relative z-10">
           <div className="container mx-auto px-4">
-            <h2 className="text-center mb-4 md:mb-6 text-primary-foreground">
+            <h2 className="font-editorial italic text-center mb-4 md:mb-6 text-primary-foreground">
               Nos Partenaires et Référents
             </h2>
             <p className="mn-body text-center text-primary-foreground/75 mb-8 md:mb-12 max-w-xl mx-auto">
@@ -461,7 +461,7 @@ const Index = () => {
       <section ref={fadeHow as React.RefObject<HTMLElement>} className="py-12 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-5">Notre approche</div>
-          <h2 className="text-center mb-8 md:mb-12 text-foreground">
+          <h2 className="font-editorial italic text-center mb-8 md:mb-12 text-foreground">
             Comment travailler avec nous ?
           </h2>
           <div className="max-w-3xl mx-auto">
@@ -501,7 +501,7 @@ const Index = () => {
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 70% 30%, hsl(181 67% 54% / 0.18) 0%, transparent 52%), radial-gradient(ellipse at 15% 80%, hsl(228 56% 8% / 0.65) 0%, transparent 55%)' }}></div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="mn-eyebrow-light mb-6">Travaillons ensemble</div>
-          <h2 className="font-editorial italic font-medium mb-5 md:mb-8 text-primary-foreground break-words" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>
+          <h2 className="font-editorial italic mb-5 md:mb-8 text-primary-foreground break-words" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>
             Prêt à construire l'avenir ensemble ?
           </h2>
           <p className="mn-lead text-primary-foreground/75 mb-8 md:mb-10 max-w-2xl mx-auto">

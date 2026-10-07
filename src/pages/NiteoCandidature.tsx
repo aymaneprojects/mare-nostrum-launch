@@ -39,6 +39,7 @@ import partnerVenture from "@/assets/niteo/venture.png";
 import partnerTouleco from "@/assets/niteo/touleco.png";
 import partnerRoselab from "@/assets/niteo/roselab.png";
 import partnerToulouseWay from "@/assets/niteo/toulouse-way.png";
+import DarkSection from "@/components/DarkSection";
 
 const CTA_URL = "https://airtable.com/appZ8ykNuUOv89ou0/shrxZTmKppjTEHTjE";
 
@@ -77,7 +78,7 @@ function NiteoNotify() {
           </span>
         </div>
 
-        <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-3">
+        <h2 className="font-editorial italic text-primary-foreground mb-3">
           Soyez notifié(e) pour la 4ème édition
         </h2>
         <p className="text-primary-foreground/60 text-sm mb-8 max-w-md mx-auto">
@@ -416,7 +417,7 @@ const NiteoCandidature = () => {
       {/* ===== POUR QUI ===== */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Pour qui ?
           </h2>
           <p className="text-center text-muted-foreground mb-4 max-w-2xl mx-auto">
@@ -442,7 +443,7 @@ const NiteoCandidature = () => {
       {/* ===== TON DEFI EN 50H ===== */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Ton défi en 50h chrono
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -466,7 +467,7 @@ const NiteoCandidature = () => {
       {/* ===== CE QUE TU VAS VIVRE ===== */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="font-editorial italic text-center mb-12 text-foreground">
             Ce que tu vas vivre concrètement
           </h2>
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
@@ -493,7 +494,7 @@ const NiteoCandidature = () => {
       {/* ===== A LA CLE ===== */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="font-editorial italic text-center mb-12 text-foreground">
             À la clé
           </h2>
           <div className="max-w-5xl mx-auto">
@@ -524,7 +525,7 @@ const NiteoCandidature = () => {
       {/* ===== CALENDRIER ===== */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Calendrier
           </h2>
           <p className="text-center text-muted-foreground mb-12">
@@ -559,7 +560,7 @@ const NiteoCandidature = () => {
       {/* ===== COACHS ET MENTORS ===== */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Tes coachs et mentors
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -621,7 +622,7 @@ const NiteoCandidature = () => {
       {/* ===== PARTENAIRES ===== */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="font-editorial italic text-center mb-12 text-foreground">
             Nos partenaires
           </h2>
           <div className="grid grid-cols-3 md:grid-cols-5 gap-8 max-w-5xl mx-auto items-center">
@@ -640,7 +641,7 @@ const NiteoCandidature = () => {
           <div className="max-w-3xl mx-auto rounded-sm border border-border overflow-hidden shadow-sm">
             <div className="p-8 md:p-10" style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}>
               <div className="mn-eyebrow-light mb-3">Mardi 16 juin 2026</div>
-              <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-3">
+              <h2 className="font-editorial italic text-primary-foreground mb-3">
                 Venez assister au Demo Day en tant qu'invité
               </h2>
               <p className="text-primary-foreground/75 mb-6 text-sm leading-relaxed">
@@ -661,7 +662,7 @@ const NiteoCandidature = () => {
       {/* ===== FAQ ===== */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="font-editorial italic text-center mb-12 text-foreground">
             Questions fréquentes
           </h2>
           <div className="max-w-3xl mx-auto">
@@ -678,9 +679,9 @@ const NiteoCandidature = () => {
       </section>
 
       {/* ===== CTA FINAL ===== */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-primary to-accent">
+      <DarkSection>
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-6">
+          <h2 className="font-editorial italic text-primary-foreground mb-6">
             La 4ème édition arrive bientôt
           </h2>
           <p className="text-lg text-primary-foreground/80 mb-2 max-w-xl mx-auto">
@@ -696,7 +697,7 @@ const NiteoCandidature = () => {
             </Button>
           </Link>
         </div>
-      </section>
+      </DarkSection>
 
     </div>
   );

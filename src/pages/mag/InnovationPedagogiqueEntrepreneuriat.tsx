@@ -84,7 +84,7 @@ const InnovationPedagogiqueEntrepreneuriat = () => {
                 Dans cet article, nous explorons les innovations pédagogiques qui redéfinissent l'enseignement de l'entrepreneuriat et préparent les entrepreneurs de demain à relever les défis d'un monde en constante mutation.
               </p>
 
-              <h2>Les limites de l'enseignement traditionnel</h2>
+              <h2 className="font-editorial italic">Les limites de l'enseignement traditionnel</h2>
 
               <p>
                 Pendant des décennies, l'enseignement de l'entrepreneuriat s'est largement inspiré des méthodes académiques classiques : cours magistraux, études de cas, rédaction de business plans. Ces approches, bien que structurantes, présentent des limites significatives lorsqu'il s'agit de former des entrepreneurs opérationnels.
@@ -110,7 +110,7 @@ const InnovationPedagogiqueEntrepreneuriat = () => {
                 Les entrepreneurs qui réussissent ont généralement appris de leurs échecs, les ont intégrés dans leur parcours comme autant d'étapes vers la réussite. Comment former à cette résilience si l'erreur reste taboue dans l'espace éducatif ?
               </p>
 
-              <h2>Le design thinking : penser comme un designer</h2>
+              <h2 className="font-editorial italic">Le design thinking : penser comme un designer</h2>
 
               <p>
                 Parmi les innovations pédagogiques qui transforment l'enseignement de l'entrepreneuriat, le design thinking occupe une place centrale. Cette méthodologie, issue du monde du design, propose une approche structurée de la créativité et de la résolution de problèmes.
@@ -146,7 +146,7 @@ const InnovationPedagogiqueEntrepreneuriat = () => {
                 </p>
               </blockquote>
 
-              <h2>Learning by doing : apprendre en faisant</h2>
+              <h2 className="font-editorial italic">Learning by doing : apprendre en faisant</h2>
 
               <p>
                 Le "learning by doing", ou apprentissage par la pratique, constitue le second pilier de la révolution pédagogique en entrepreneuriat. Cette approche part d'un constat simple : on retient mieux ce que l'on fait que ce que l'on entend ou lit.
@@ -176,7 +176,7 @@ const InnovationPedagogiqueEntrepreneuriat = () => {
                 <li><strong>Les stages immersifs</strong> : expériences au sein de startups ou d'entreprises innovantes</li>
               </ol>
 
-              <h2>L'intelligence collective au service de l'apprentissage</h2>
+              <h2 className="font-editorial italic">L'intelligence collective au service de l'apprentissage</h2>
 
               <p>
                 L'entrepreneuriat est rarement une aventure solitaire. Les équipes performantes combinent des compétences et des perspectives diverses pour résoudre des problèmes complexes. L'enseignement de l'entrepreneuriat doit refléter cette réalité en développant les compétences collaboratives des apprenants.
@@ -202,7 +202,7 @@ const InnovationPedagogiqueEntrepreneuriat = () => {
                 Le coaching, quant à lui, aide l'apprenant à développer sa propre réflexion, à clarifier ses objectifs, à surmonter ses blocages. Ces approches reconnaissent que chaque parcours entrepreneurial est unique et mérite un accompagnement personnalisé.
               </p>
 
-              <h2>Le rôle des technologies éducatives</h2>
+              <h2 className="font-editorial italic">Le rôle des technologies éducatives</h2>
 
               <p>
                 Les technologies numériques offrent de nouvelles possibilités pour enrichir l'enseignement de l'entrepreneuriat. Elles permettent de dépasser les contraintes de temps et d'espace, de personnaliser les parcours, de multiplier les simulations et les expérimentations.
@@ -228,7 +228,7 @@ const InnovationPedagogiqueEntrepreneuriat = () => {
                 Cette personnalisation permet d'optimiser le temps d'apprentissage en se concentrant sur les compétences à développer. Elle respecte également les rythmes individuels, chacun pouvant progresser à son propre rythme.
               </p>
 
-              <h2>Évaluer autrement : au-delà des notes</h2>
+              <h2 className="font-editorial italic">Évaluer autrement : au-delà des notes</h2>
 
               <p>
                 L'innovation pédagogique en entrepreneuriat implique également de repenser les modalités d'évaluation. Comment évaluer des compétences entrepreneuriales qui ne se réduisent pas à des connaissances mémorisables ?
@@ -246,7 +246,7 @@ const InnovationPedagogiqueEntrepreneuriat = () => {
                 Le portfolio de compétences permet de documenter le parcours d'apprentissage de manière dynamique. L'apprenant y collecte les preuves de ses réalisations, réfléchit à ses apprentissages, identifie ses axes de progression. Cette approche développe la métacognition et prépare à l'apprentissage tout au long de la vie.
               </p>
 
-              <h2>Les défis de la transformation pédagogique</h2>
+              <h2 className="font-editorial italic">Les défis de la transformation pédagogique</h2>
 
               <p>
                 La mise en œuvre de ces innovations pédagogiques ne va pas sans défis. Les établissements d'enseignement doivent surmonter plusieurs obstacles pour transformer leurs pratiques.
@@ -264,7 +264,7 @@ const InnovationPedagogiqueEntrepreneuriat = () => {
                 Les pédagogies actives nécessitent des espaces adaptés : salles modulables, espaces de prototypage, lieux de convivialité. L'architecture même des établissements doit évoluer pour favoriser la collaboration, la créativité et l'expérimentation.
               </p>
 
-              <h2>Conclusion : former les entrepreneurs de demain</h2>
+              <h2 className="font-editorial italic">Conclusion : former les entrepreneurs de demain</h2>
 
               <p>
                 L'innovation pédagogique en entrepreneuriat n'est pas un effet de mode mais une nécessité. Dans un monde où le changement s'accélère, où les métiers se transforment, où l'entrepreneuriat devient une compétence clé pour tous, les méthodes d'enseignement doivent évoluer.

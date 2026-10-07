@@ -603,7 +603,7 @@ export default function NiteoEvaluation() {
             <div className="space-y-3">
               <div className="bg-card border border-border rounded-2xl p-5 shadow-sm">
                 <div className="mn-eyebrow-turquoise mb-2 text-xs">Récapitulatif</div>
-                <h2 className="text-xl font-bold mb-1" style={{ color: INK }}>Êtes-vous sûr(e) ?</h2>
+                <h2 className="font-editorial italic mb-1" style={{ color: INK }}>Êtes-vous sûr(e) ?</h2>
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   Une fois envoyées, les notes ne peuvent plus être modifiées.
                 </p>
@@ -666,7 +666,7 @@ export default function NiteoEvaluation() {
                   style={{ background: "hsl(181 67% 54% / 0.12)" }}>
                   <CheckCircle2 className="h-8 w-8" style={{ color: TURQUOISE }} />
                 </div>
-                <h2 className="text-xl font-bold mb-1" style={{ color: INK }}>Évaluation envoyée !</h2>
+                <h2 className="font-editorial italic mb-1" style={{ color: INK }}>Évaluation envoyée !</h2>
                 <p className="text-muted-foreground text-sm">
                   <strong>« {lastProjet} »</strong> bien transmis. Merci {nomJure.split(" ")[0]} !
                 </p>

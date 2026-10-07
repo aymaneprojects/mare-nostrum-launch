@@ -257,7 +257,7 @@ const TestMaturiteProjet = () => {
                 </div>
 
                 {/* Result Level */}
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                <h2 className="font-editorial italic text-foreground mb-4">
                   Programme recommandé : {result.level}
                 </h2>
 

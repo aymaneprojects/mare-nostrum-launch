@@ -12,6 +12,7 @@ import FAQSection from "@/components/FAQSection";
 import alexisJanicot from "@/assets/team/alexis-janicot.png";
 import alainJanicot from "@/assets/team/alain-janicot.png";
 import khalidEzzemani from "@/assets/team/khalid-ezzemani.png";
+import DarkSection from "@/components/DarkSection";
 
 const mentors = [
   {
@@ -103,7 +104,7 @@ const MentoratIndividuel = () => {
       {/* Comment ça fonctionne */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="font-editorial italic text-center mb-12 text-foreground">
             Comment ça fonctionne
           </h2>
           
@@ -151,7 +152,7 @@ const MentoratIndividuel = () => {
       {/* Bénéfices */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          <h2 className="font-editorial italic text-center mb-12 text-foreground">
             Ce que vous apporte le mentorat
           </h2>
           
@@ -217,7 +218,7 @@ const MentoratIndividuel = () => {
       {/* Nos Mentors */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Nos mentors
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -242,9 +243,9 @@ const MentoratIndividuel = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary to-[hsl(var(--mn-ink))]">
+      <DarkSection>
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-4xl font-bold text-primary-foreground mb-6">
+          <h2 className="font-editorial italic text-primary-foreground mb-6">
             Prêt à être accompagné ?
           </h2>
           <p className="text-lg text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
@@ -264,7 +265,7 @@ const MentoratIndividuel = () => {
             </Button>
           </div>
         </div>
-      </section>
+      </DarkSection>
 
       {/* Lien retour silo */}
       <section className="py-8 bg-background">

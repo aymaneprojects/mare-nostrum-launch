@@ -6,6 +6,7 @@ import PageHero from "@/components/PageHero";
 import Footer from "@/components/Footer";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import FAQSection from "@/components/FAQSection";
+import DarkSection from "@/components/DarkSection";
 
 const OffreIA = () => {
   const services = [
@@ -98,7 +99,7 @@ const OffreIA = () => {
       {/* Challenges Section */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-center mb-8 md:mb-12 text-foreground">
+          <h2 className="font-editorial italic text-center mb-8 md:mb-12 text-foreground">
             Pourquoi intégrer l'IA dans votre projet ?
           </h2>
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
@@ -136,7 +137,7 @@ const OffreIA = () => {
       {/* Services Section */}
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Nos services IA & Data
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
@@ -171,7 +172,7 @@ const OffreIA = () => {
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-foreground mb-6">
+                <h2 className="font-editorial italic text-foreground mb-6">
                   Notre approche
                 </h2>
                 <p className="text-muted-foreground mb-8">
@@ -252,10 +253,10 @@ const OffreIA = () => {
       />
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary to-[hsl(var(--mn-ink))]">
+      <DarkSection>
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-primary-foreground mb-4">
+            <h2 className="font-editorial italic text-primary-foreground mb-4">
               Prêt à intégrer l'IA dans votre projet ?
             </h2>
             <p className="text-lg text-primary-foreground/90 mb-8">
@@ -270,7 +271,7 @@ const OffreIA = () => {
             </Button>
           </div>
         </div>
-      </section>
+      </DarkSection>
 
       <Footer />
     </div>

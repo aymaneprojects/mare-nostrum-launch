@@ -84,7 +84,7 @@ const EntrepreneuriatSocialFrancophonie = () => {
                 Dans cet article, nous explorons les fondements, les tendances actuelles et les perspectives d'avenir de l'entrepreneuriat social francophone, en mettant en lumière les opportunités qui s'offrent aux entrepreneurs engagés.
               </p>
 
-              <h2>Qu'est-ce que l'entrepreneuriat social ?</h2>
+              <h2 className="font-editorial italic">Qu'est-ce que l'entrepreneuriat social ?</h2>
 
               <p>
                 L'entrepreneuriat social se distingue de l'entrepreneuriat classique par sa finalité première : créer de la valeur sociale ou environnementale. Là où l'entreprise traditionnelle cherche à maximiser le profit pour ses actionnaires, l'entreprise sociale place l'impact positif au cœur de son modèle économique.
@@ -108,7 +108,7 @@ const EntrepreneuriatSocialFrancophonie = () => {
                 <li><strong>La collaboration</strong> : capacité à fédérer des parties prenantes diverses autour d'objectifs communs</li>
               </ul>
 
-              <h2>La francophonie : un terreau fertile pour l'entrepreneuriat social</h2>
+              <h2 className="font-editorial italic">La francophonie : un terreau fertile pour l'entrepreneuriat social</h2>
 
               <p>
                 L'espace francophone présente des caractéristiques uniques qui en font un territoire particulièrement propice au développement de l'entrepreneuriat social. La diversité des contextes économiques, sociaux et culturels crée à la fois des défis et des opportunités sans équivalent.
@@ -136,7 +136,7 @@ const EntrepreneuriatSocialFrancophonie = () => {
                 </p>
               </blockquote>
 
-              <h2>Les grandes tendances de l'entrepreneuriat social francophone</h2>
+              <h2 className="font-editorial italic">Les grandes tendances de l'entrepreneuriat social francophone</h2>
 
               <p>
                 L'observation attentive de l'écosystème francophone permet d'identifier plusieurs tendances structurantes qui façonnent l'avenir de l'entrepreneuriat social dans notre espace linguistique.
@@ -172,7 +172,7 @@ const EntrepreneuriatSocialFrancophonie = () => {
                 Ces innovations contribuent à réduire les fractures territoriales et sociales en rendant accessibles des services autrefois réservés aux populations urbaines ou les plus aisées. Elles participent ainsi à la construction d'une société plus équitable.
               </p>
 
-              <h2>Les acteurs clés de l'écosystème francophone</h2>
+              <h2 className="font-editorial italic">Les acteurs clés de l'écosystème francophone</h2>
 
               <p>
                 L'entrepreneuriat social ne se développe pas en vase clos. Il s'inscrit dans un écosystème complexe où interagissent de multiples acteurs : incubateurs, investisseurs à impact, fondations, pouvoirs publics, grandes entreprises engagées. La vitalité de cet écosystème conditionne largement la capacité des entrepreneurs sociaux à passer de l'idée à l'impact.
@@ -198,7 +198,7 @@ const EntrepreneuriatSocialFrancophonie = () => {
                 Heureusement, un écosystème de financement à impact se structure progressivement dans l'espace francophone. Fonds d'investissement solidaire, fondations, plateformes de financement participatif : les sources de financement se diversifient et s'adaptent aux spécificités des entreprises sociales.
               </p>
 
-              <h2>Perspectives et opportunités pour les entrepreneurs</h2>
+              <h2 className="font-editorial italic">Perspectives et opportunités pour les entrepreneurs</h2>
 
               <p>
                 L'avenir de l'entrepreneuriat social francophone s'annonce prometteur. Plusieurs facteurs convergent pour créer des conditions favorables au développement de ce secteur et offrir des opportunités inédites aux entrepreneurs engagés.
@@ -234,7 +234,7 @@ const EntrepreneuriatSocialFrancophonie = () => {
                 Les entrepreneurs qui sauront maîtriser ces technologies tout en restant fidèles à leur mission sociale disposeront d'un avantage compétitif décisif. L'enjeu est de s'approprier ces outils sans perdre de vue la finalité humaine de l'entrepreneuriat social.
               </p>
 
-              <h2>Conclusion : vers un entrepreneuriat social francophone d'excellence</h2>
+              <h2 className="font-editorial italic">Conclusion : vers un entrepreneuriat social francophone d'excellence</h2>
 
               <p>
                 L'entrepreneuriat social francophone se trouve à un moment charnière de son développement. Les fondations sont posées, les acteurs se structurent, les réussites se multiplient. Il reste maintenant à passer à l'échelle pour démontrer que ce modèle peut contribuer significativement à la résolution des grands défis de notre temps.

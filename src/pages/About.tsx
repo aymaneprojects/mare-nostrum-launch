@@ -28,6 +28,7 @@ import emergingBusinessLogo from "@/assets/partners/emerging-business.png";
 import moovjeeLogo from "@/assets/partners/moovjee.png";
 import neoEntrepreneurEliteImg from "@/assets/neo-entrepreneur-elite.png";
 import francophonieScientiqueImg from "@/assets/francophonie-scientifique.png";
+import DarkSection from "@/components/DarkSection";
 const About = () => {
   return <div className="min-h-screen flex flex-col">
       <EnhancedSEOHead 
@@ -131,7 +132,7 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="mn-eyebrow-turquoise mb-3">Nos origines</div>
-            <h2 className="font-editorial italic font-semibold mb-6 md:mb-8 text-foreground">Notre histoire</h2>
+            <h2 className="font-editorial italic mb-6 md:mb-8 text-foreground">Notre histoire</h2>
             <div className="prose prose-lg max-w-none">
               <p className="text-base md:text-lg text-muted-foreground mb-4 md:mb-6">
                 Mare Nostrum est née en 2023 à Toulouse d'une conviction forte : <strong className="text-foreground">l'entrepreneuriat 
@@ -155,7 +156,7 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-8 md:mb-12">
             <div className="mn-eyebrow-turquoise mb-3">Société à mission</div>
-            <h2 className="font-editorial italic font-semibold mb-4 md:mb-6 text-foreground">Notre raison d'être</h2>
+            <h2 className="font-editorial italic mb-4 md:mb-6 text-foreground">Notre raison d'être</h2>
             <p className="text-lg md:text-xl text-muted-foreground">
               Société à mission, familiale et interculturelle, nous existons pour :
             </p>
@@ -204,7 +205,7 @@ const About = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Ce qui nous guide</div>
-          <h2 className="font-editorial italic font-semibold text-center mb-8 md:mb-12 text-foreground">Nos valeurs</h2>
+          <h2 className="font-editorial italic text-center mb-8 md:mb-12 text-foreground">Nos valeurs</h2>
           <div className="max-w-4xl mx-auto space-y-6 md:space-y-8">
             {([
               { title: "Respect",          text: "Nous plaçons l'humain au centre de nos actions et respectons la diversité des parcours et des cultures." },
@@ -228,7 +229,7 @@ const About = () => {
       <section className="py-16 md:py-24 bg-secondary/30">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Les visages de Mare Nostrum</div>
-          <h2 className="font-editorial italic font-semibold text-center mb-8 md:mb-12 text-foreground">Notre équipe</h2>
+          <h2 className="font-editorial italic text-center mb-8 md:mb-12 text-foreground">Notre équipe</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 max-w-6xl mx-auto">
             <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
@@ -300,7 +301,7 @@ const About = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-center mb-6 text-foreground">Notre rayonnement</h2>
+            <h2 className="font-editorial italic text-center mb-6 text-foreground">Notre rayonnement</h2>
             <p className="text-center text-muted-foreground mb-8">
               Présents sur la scène internationale pour porter notre vision de l'entrepreneuriat à impact
             </p>
@@ -320,7 +321,7 @@ const About = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="mn-eyebrow-turquoise text-center mb-3">Impact mesuré</div>
-          <h2 className="font-editorial italic font-semibold text-center mb-4 text-foreground">
+          <h2 className="font-editorial italic text-center mb-4 text-foreground">
             Nos chiffres clés
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -467,7 +468,7 @@ const About = () => {
             <div className="bg-accent w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8">
               <Globe className="h-10 w-10 text-accent-foreground" />
             </div>
-            <h2 className="mb-6 text-foreground">
+            <h2 className="font-editorial italic mb-6 text-foreground">
               Un réseau d'experts au service de votre réussite
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
@@ -579,7 +580,7 @@ const About = () => {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-center mb-4 text-foreground">
+            <h2 className="font-editorial italic text-center mb-4 text-foreground">
               Nos Partenaires et Référents
             </h2>
             <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -664,9 +665,9 @@ const About = () => {
 
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-primary to-[hsl(var(--mn-ink))]">
+      <DarkSection>
         <div className="container mx-auto px-4 text-center">
-          <h2 className="mb-6 text-primary-foreground">
+          <h2 className="font-editorial italic mb-6 text-primary-foreground">
             Envie de rejoindre l'aventure ?
           </h2>
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
@@ -679,7 +680,7 @@ const About = () => {
             </Link>
           </Button>
         </div>
-      </section>
+      </DarkSection>
 
       <Footer />
     </div>;

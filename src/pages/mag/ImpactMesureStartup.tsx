@@ -88,7 +88,7 @@ const ImpactMesureStartup = () => {
                 Ce guide explore les méthodes, frameworks et outils disponibles pour mesurer l'impact social de manière rigoureuse et utile.
               </p>
 
-              <h2>Pourquoi mesurer son impact ?</h2>
+              <h2 className="font-editorial italic">Pourquoi mesurer son impact ?</h2>
 
               <p>
                 Avant d'explorer le "comment", prenons le temps du "pourquoi". La mesure d'impact n'est pas une fin en soi : c'est un outil au service d'objectifs plus larges.
@@ -120,7 +120,7 @@ const ImpactMesureStartup = () => {
                 En documentant son impact, l'entrepreneur social contribue également à la construction d'un corpus de connaissances sur ce qui fonctionne en matière d'innovation sociale. Ses apprentissages peuvent inspirer d'autres acteurs, influencer les politiques publiques, alimenter la recherche.
               </p>
 
-              <h2>La théorie du changement : fondement de la mesure d'impact</h2>
+              <h2 className="font-editorial italic">La théorie du changement : fondement de la mesure d'impact</h2>
 
               <p>
                 Toute démarche sérieuse de mesure d'impact commence par l'élaboration d'une théorie du changement. Ce concept, emprunté au monde de l'évaluation des programmes sociaux, constitue le socle sur lequel repose l'ensemble de la démarche.
@@ -156,7 +156,7 @@ const ImpactMesureStartup = () => {
                 </p>
               </blockquote>
 
-              <h2>Les frameworks de mesure d'impact</h2>
+              <h2 className="font-editorial italic">Les frameworks de mesure d'impact</h2>
 
               <p>
                 Plusieurs frameworks ont été développés pour structurer la mesure d'impact social. Chacun a ses spécificités, ses forces et ses limites. Le choix du framework dépend du contexte, des ressources disponibles et des objectifs poursuivis.
@@ -210,7 +210,7 @@ const ImpactMesureStartup = () => {
                 Cet outil est particulièrement adapté aux entreprises qui souhaitent évaluer l'ensemble de leurs pratiques responsables, au-delà de leur seul impact sur les bénéficiaires.
               </p>
 
-              <h2>Les indicateurs clés de performance (KPIs)</h2>
+              <h2 className="font-editorial italic">Les indicateurs clés de performance (KPIs)</h2>
 
               <p>
                 Au-delà des frameworks généraux, la mesure d'impact repose sur la définition d'indicateurs spécifiques à chaque entreprise. Ces KPIs doivent être pertinents, mesurables et actionnables.
@@ -259,7 +259,7 @@ const ImpactMesureStartup = () => {
                 <li>Surface d'écosystèmes préservés</li>
               </ul>
 
-              <h2>Collecter les données : méthodes et outils</h2>
+              <h2 className="font-editorial italic">Collecter les données : méthodes et outils</h2>
 
               <p>
                 Une fois les indicateurs définis, se pose la question de la collecte des données. Cette étape est souvent sous-estimée, alors qu'elle conditionne la qualité de la mesure.
@@ -295,7 +295,7 @@ const ImpactMesureStartup = () => {
                 Il est important d'être humble sur ce point. Dans les systèmes complexes, le changement résulte toujours de facteurs multiples. L'objectif n'est pas de prouver une causalité absolue mais de documenter une contribution plausible.
               </p>
 
-              <h2>Communiquer sur son impact</h2>
+              <h2 className="font-editorial italic">Communiquer sur son impact</h2>
 
               <p>
                 La mesure d'impact ne prend tout son sens que si elle est communiquée de manière appropriée. Mais cette communication doit respecter certains principes pour rester crédible.
@@ -321,7 +321,7 @@ const ImpactMesureStartup = () => {
                 Une communication efficace adapte son format et son contenu à chaque audience, tout en restant cohérente sur le fond.
               </p>
 
-              <h2>Intégrer la mesure d'impact dans son organisation</h2>
+              <h2 className="font-editorial italic">Intégrer la mesure d'impact dans son organisation</h2>
 
               <p>
                 La mesure d'impact ne doit pas être un exercice ponctuel réalisé pour répondre à une demande externe. Elle gagne à être intégrée dans le fonctionnement de l'organisation, au même titre que le suivi financier.
@@ -339,7 +339,7 @@ const ImpactMesureStartup = () => {
                 Des outils numériques peuvent faciliter la collecte, l'analyse et la visualisation des données d'impact. Du simple tableur aux plateformes spécialisées, l'offre s'est considérablement développée ces dernières années.
               </p>
 
-              <h2>Conclusion : la mesure d'impact comme culture d'entreprise</h2>
+              <h2 className="font-editorial italic">Conclusion : la mesure d'impact comme culture d'entreprise</h2>
 
               <p>
                 Mesurer son impact n'est pas une contrainte mais une opportunité. C'est l'occasion de prendre du recul sur son action, d'apprendre de ses succès et de ses échecs, de renforcer sa légitimité auprès de ses parties prenantes.

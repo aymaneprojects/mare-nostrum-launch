@@ -181,7 +181,7 @@ const Contact = () => {
             {/* Contact Info */}
             <div>
               <div className="mn-eyebrow-turquoise mb-3">Nos bureaux</div>
-              <h2 className="font-editorial italic font-semibold mb-6 md:mb-8 text-foreground">Nous contacter</h2>
+              <h2 className="font-editorial italic mb-6 md:mb-8 text-foreground">Nous contacter</h2>
               <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-8">
                 Que vous soyez une école, une université, un entrepreneur ou un dirigeant d'entreprise à impact, 
                 nous sommes là pour vous accompagner.
@@ -267,7 +267,7 @@ const Contact = () => {
                   <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
                     <CheckCircle2 className="w-10 h-10 text-primary" />
                   </div>
-                  <h2 className="mb-4 text-foreground">Merci !</h2>
+                  <h2 className="font-editorial italic mb-4 text-foreground">Merci !</h2>
                   <p className="text-lg text-muted-foreground mb-2">
                     Votre message a bien été envoyé.
                   </p>

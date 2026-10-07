@@ -174,7 +174,7 @@ const LivreEntrepreneuriat = () => {
                       <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
                         <Download className="w-10 h-10 text-primary" />
                       </div>
-                      <h2 className="text-3xl font-bold mb-4 text-foreground">Merci!</h2>
+                      <h2 className="font-editorial italic mb-4 text-foreground">Merci!</h2>
                       <p className="text-lg text-muted-foreground mb-2">
                         Le Livre Blanc a été envoyé à votre adresse email.
                       </p>
@@ -182,7 +182,7 @@ const LivreEntrepreneuriat = () => {
                         Consultez votre boîte de réception (et vos spams si besoin).
                       </p>
                     </div> : <div className="mn-card p-8 shadow-[var(--shadow-medium)]">
-                      <h2 className="text-2xl font-bold mb-2 text-foreground text-center">
+                      <h2 className="font-editorial italic mb-2 text-foreground text-center">
                         Recevez le Livre Blanc par Email
                       </h2>
                       <p className="text-muted-foreground text-center mb-6">
@@ -337,7 +337,7 @@ const LivreEntrepreneuriat = () => {
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12 text-foreground">
+              <h2 className="font-editorial italic text-center mb-12 text-foreground">
                 Ce que vous allez découvrir
               </h2>
               <div className="grid md:grid-cols-3 gap-8">
