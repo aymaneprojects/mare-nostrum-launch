@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Home, GraduationCap, Compass, Users, Leaf, BookOpen, Info, Mail } from "lucide-react";
+import { Menu, X, Home, GraduationCap, Compass, Users, Leaf, BookOpen, Info, Mail, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
@@ -9,6 +9,7 @@ const desktopLinks = [
   { to: "/expertise",         label: "Pôle d'expertise",          Icon: Compass         },
   { to: "/education",         label: "Centre de formation",        Icon: GraduationCap  },
   { to: "/club",              label: "Club",             Icon: Users          },
+  { to: "https://niteo.marenostrum.tech/", label: "Niteo", Icon: Rocket, external: true },
   { to: "/engagement-rse",    label: "RSE",              Icon: Leaf           },
   { to: "/blog",              label: "Blog",             Icon: BookOpen       },
   { to: "/a-propos",          label: "À propos",         Icon: Info           },
@@ -77,19 +78,18 @@ const Header = () => {
 
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-0.5 lg:gap-1">
-            {desktopLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`mn-link-u [--mn-u-inset:0.75rem] [--mn-u-bottom:0.3rem] px-3 py-1.5 text-[13px] font-medium rounded-full transition-colors duration-200 ${
-                  isActive(link.to)
-                    ? "bg-primary/10 text-primary"
-                    : "text-foreground/70 hover:text-foreground"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {desktopLinks.map((link) => {
+              const active = !link.external && isActive(link.to);
+              const className = `mn-link-u [--mn-u-inset:0.75rem] [--mn-u-bottom:0.3rem] px-3 py-1.5 text-[13px] font-medium rounded-full transition-colors duration-200 ${
+                active ? "bg-primary/10 text-primary" : "text-foreground/70 hover:text-foreground"
+              }`;
+
+              return link.external ? (
+                <a key={link.to} href={link.to} className={className}>{link.label}</a>
+              ) : (
+                <Link key={link.to} to={link.to} className={className}>{link.label}</Link>
+              );
+            })}
           </div>
 
           {/* CTA desktop */}
@@ -151,23 +151,23 @@ const Header = () => {
 
         {/* Nav links */}
         <nav className="flex-1 overflow-y-auto px-3 py-3">
-          {navLinks.map(({ to, label, Icon }) => (
-            <Link
-              key={to}
-              to={to}
-              className={`flex items-center gap-3.5 px-4 py-3.5 rounded-xl mb-1 transition-all duration-200 active:scale-[0.98] ${
-                isActive(to)
-                  ? "bg-primary text-primary-foreground font-semibold"
-                  : "text-foreground/75 hover:bg-muted hover:text-foreground"
-              }`}
-            >
-              <Icon className={`h-4.5 w-4.5 shrink-0 ${isActive(to) ? "text-primary-foreground" : "text-primary/70"}`} />
+          {navLinks.map(({ to, label, Icon, external }) => {
+            const active = !external && isActive(to);
+            const className = `flex items-center gap-3.5 px-4 py-3.5 rounded-xl mb-1 transition-all duration-200 active:scale-[0.98] ${
+              active ? "bg-primary text-primary-foreground font-semibold" : "text-foreground/75 hover:bg-muted hover:text-foreground"
+            }`;
+            const content = <>
+              <Icon className={`h-4.5 w-4.5 shrink-0 ${active ? "text-primary-foreground" : "text-primary/70"}`} />
               <span className="text-[15px]">{label}</span>
-              {isActive(to) && (
-                <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary-foreground/70" />
-              )}
-            </Link>
-          ))}
+              {active && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-primary-foreground/70" />}
+            </>;
+
+            return external ? (
+              <a key={to} href={to} className={className}>{content}</a>
+            ) : (
+              <Link key={to} to={to} className={className}>{content}</Link>
+            );
+          })}
         </nav>
 
         {/* CTAs */}
