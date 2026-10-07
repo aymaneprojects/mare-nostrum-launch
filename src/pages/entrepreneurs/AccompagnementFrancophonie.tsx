@@ -68,13 +68,13 @@ const AccompagnementFrancophonie = () => {
         subtitle="Un accompagnement personnalisé pour transformer votre vision en réalité. Rejoignez une communauté d'entrepreneurs engagés dans l'espace francophone."
         ctas={
           <>
-            <Button asChild size="lg" variant="secondary" className="text-base md:text-lg">
+            <Button asChild size="lg" variant="secondary" >
               <Link to="/entrepreneurs/test-maturite-projet">
                 Tester la maturité de mon projet
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="text-base md:text-lg border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+            <Button asChild size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
               <Link to="/contact">
                 Nous contacter
               </Link>
@@ -283,7 +283,7 @@ const AccompagnementFrancophonie = () => {
           <p className="text-lg text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             Commencez par évaluer la maturité de votre projet. En 5 minutes, découvrez le programme le plus adapté à votre situation.
           </p>
-          <Button asChild size="lg" variant="secondary" className="text-lg">
+          <Button asChild size="lg" variant="secondary">
             <Link to="/entrepreneurs/test-maturite-projet">
               Évaluer mon projet
               <ArrowRight className="ml-2 h-5 w-5" />

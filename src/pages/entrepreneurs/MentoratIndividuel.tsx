@@ -91,7 +91,7 @@ const MentoratIndividuel = () => {
         title="Mentorat Entrepreneur Individuel"
         subtitle="Des séances personnalisées avec des entrepreneurs expérimentés pour débloquer vos challenges"
         ctas={
-          <Button asChild size="lg" variant="secondary" className="text-base md:text-lg">
+          <Button asChild size="lg" variant="secondary" >
                         <Link to="/contact">
                           Réserver ma première séance
                           <ArrowRight className="ml-2 h-5 w-5" />
@@ -250,14 +250,14 @@ const MentoratIndividuel = () => {
           <p className="text-lg text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             Réservez un premier échange gratuit pour discuter de vos besoins et découvrir comment le mentorat peut vous aider.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" variant="secondary" className="text-lg">
+          <div className="mn-cta-row mn-cta-row--center">
+            <Button asChild size="lg" variant="secondary">
               <Link to="/contact">
                 Réserver un échange gratuit
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="text-lg border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+            <Button asChild size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
               <Link to="/entrepreneurs/test-maturite-projet">
                 Faire le test de maturité
               </Link>

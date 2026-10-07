@@ -262,9 +262,9 @@ export default function NiteoEvaluation() {
                     <p className="text-sm text-destructive font-medium">{error}</p>
                   </div>
                 )}
-                <Button type="submit" className="w-full h-13 rounded-xl text-base font-semibold touch-manipulation"
+                <Button size="lg" type="submit" className="w-full touch-manipulation"
                   disabled={loading || !juryCode}
-                  style={{ background: TURQUOISE, color: INK, height: 52 }}>
+                  style={{ background: TURQUOISE, color: INK }}>
                   {loading ? <Loader2 className="h-5 w-5 animate-spin mr-2" /> : null}
                   Continuer
                 </Button>
@@ -348,7 +348,7 @@ export default function NiteoEvaluation() {
                 )}
 
                 <Button
-                  className="w-full rounded-xl text-base font-semibold touch-manipulation mb-4"
+                  className="w-full touch-manipulation mb-4"
                   disabled={!selectedJure || loading}
                   onClick={() => selectedJure && handleSelect(selectedJure)}
                   style={{ background: TURQUOISE, color: INK, height: 52 }}
@@ -359,8 +359,7 @@ export default function NiteoEvaluation() {
 
                 <div className="pt-4 border-t border-border">
                   <p className="text-sm text-muted-foreground mb-3">Votre nom n'est pas dans la liste ?</p>
-                  <Button variant="outline" className="w-full rounded-xl touch-manipulation" style={{ height: 48 }}
-                    onClick={() => setPhase("register")}>
+                  <Button size="lg" variant="outline" className="w-full touch-manipulation" onClick={() => setPhase("register")}>
                     <UserPlus className="h-4 w-4 mr-2" />
                     Je ne suis pas dans la liste
                   </Button>
@@ -406,9 +405,9 @@ export default function NiteoEvaluation() {
                     <p className="text-sm text-destructive font-medium">{error}</p>
                   </div>
                 )}
-                <Button type="submit" className="w-full rounded-xl text-base font-semibold touch-manipulation"
+                <Button size="lg" type="submit" className="w-full touch-manipulation"
                   disabled={loading || !prenom || !nom || !email || !telephone}
-                  style={{ background: TURQUOISE, color: INK, height: 52 }}>
+                  style={{ background: TURQUOISE, color: INK }}>
                   {loading ? <Loader2 className="h-5 w-5 animate-spin mr-2" /> : null}
                   Accéder à la grille
                 </Button>
@@ -580,9 +579,9 @@ export default function NiteoEvaluation() {
                       <p className="text-xs text-destructive font-medium">{error}</p>
                     </div>
                   )}
-                  <Button type="submit" className="w-full rounded-xl text-sm font-semibold touch-manipulation"
+                  <Button size="lg" type="submit" className="w-full touch-manipulation"
                     disabled={!allFilled}
-                    style={{ background: allFilled ? TURQUOISE : undefined, color: allFilled ? INK : undefined, height: 48 }}>
+                    style={{ background: allFilled ? TURQUOISE : undefined, color: allFilled ? INK : undefined, }}>
                     Vérifier avant d'envoyer →
                   </Button>
                   {!allFilled && (
@@ -646,9 +645,9 @@ export default function NiteoEvaluation() {
               ))}
 
               <div className="bg-card border border-border rounded-2xl p-4 space-y-3">
-                <Button className="w-full rounded-xl text-base font-semibold touch-manipulation"
+                <Button size="lg" className="w-full touch-manipulation"
                   onClick={handleConfirmedSubmit}
-                  style={{ background: TURQUOISE, color: INK, height: 52, fontWeight: 600 }}>
+                  style={{ background: TURQUOISE, color: INK, fontWeight: 600 }}>
                   Confirmer et envoyer →
                 </Button>
                 <button type="button" onClick={() => setPhase("form")}

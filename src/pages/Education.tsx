@@ -260,7 +260,7 @@ const Education = () => {
 
           {/* CTA Pré-inscription */}
           <div className="mt-12 text-center">
-            <Button asChild size="lg" className="bg-[hsl(var(--mn-turquoise))] hover:bg-[hsl(var(--mn-turquoise))]/90 text-accent-foreground px-8">
+            <Button asChild size="lg" className="bg-[hsl(var(--mn-turquoise))] hover:bg-[hsl(var(--mn-turquoise))]/90 text-accent-foreground">
               <Link to="/contact">
                 Se pré-inscrire à une formation
                 <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
@@ -452,7 +452,7 @@ const Education = () => {
               </p>
             </div>
             <div className="text-center">
-              <Button asChild size="lg" className="bg-[hsl(var(--mn-turquoise))] hover:bg-[hsl(var(--mn-turquoise))]/90 text-accent-foreground px-8">
+              <Button asChild size="lg" className="bg-[hsl(var(--mn-turquoise))] hover:bg-[hsl(var(--mn-turquoise))]/90 text-accent-foreground">
                 <Link to="/contact">
                   Nous consulter sur le financement
                   <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />

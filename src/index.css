@@ -315,6 +315,15 @@ All colors MUST be HSL.
     box-shadow: var(--shadow-glass);
   }
 
+  /* Groupe de boutons d'action : colonne pleine largeur sur mobile, ligne dès sm.
+     Le bouton principal est TOUJOURS le premier. Même écart partout (relevé Naano/Delos). */
+  .mn-cta-row { display: flex; flex-direction: column; gap: 0.75rem; }
+  .mn-cta-row--center { align-items: stretch; justify-content: center; }
+  @media (min-width: 640px) {
+    .mn-cta-row { flex-direction: row; align-items: center; gap: 1rem; }
+    .mn-cta-row--center { justify-content: center; }
+  }
+
   /* Rangée de pastilles de réassurance (sous un héros ou près d'un bouton). */
   .mn-assurance { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
   .mn-assurance > * {

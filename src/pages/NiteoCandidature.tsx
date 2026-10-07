@@ -105,7 +105,7 @@ function NiteoNotify() {
               type="submit"
               size="sm"
               disabled={status === "loading"}
-              className="h-11 px-6 font-semibold shrink-0 cursor-pointer"
+              className="shrink-0 cursor-pointer"
               style={{ background: "hsl(var(--mn-turquoise))", color: "hsl(228 56% 13%)", minHeight: "44px" }}
             >
               {status === "loading" ? (

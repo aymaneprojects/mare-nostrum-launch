@@ -117,7 +117,7 @@ const CarteContact = () => {
           <div className="max-w-lg mx-auto bg-card border border-border rounded-lg shadow-[var(--shadow-medium)] p-5 md:p-7 space-y-6">
             <div>
               {/* Pas d'attribut download : iOS ouvre alors la fiche contact directement. */}
-              <Button asChild size="lg" className="w-full h-12 text-base">
+              <Button asChild size="lg" className="w-full">
                 <a href={vcardPath(member)}>
                   <Download className="mr-2 h-5 w-5" />
                   Ajouter à mes contacts
@@ -193,10 +193,10 @@ const CarteContact = () => {
             </p>
             <p className="font-mono text-sm text-foreground mt-2 break-all">{url.replace(/^https?:\/\/(www\.)?/, "")}</p>
             <div className="flex flex-col sm:flex-row gap-2 justify-center mt-4">
-              <Button asChild variant="outline" size="sm" className="h-11 md:h-9">
+              <Button asChild variant="outline" size="sm">
                 <a href={qrPath(member, "png")} download={`qr-${member.slug}.png`}>Télécharger en PNG</a>
               </Button>
-              <Button asChild variant="outline" size="sm" className="h-11 md:h-9">
+              <Button asChild variant="outline" size="sm">
                 <a href={qrPath(member, "svg")} download={`qr-${member.slug}.svg`}>SVG pour impression</a>
               </Button>
             </div>

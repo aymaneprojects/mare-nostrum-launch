@@ -271,7 +271,7 @@ const Expertise = () => {
 
           {/* CTA Pré-inscription */}
           <div className="mt-12 text-center">
-            <Button asChild size="lg" variant="secondary" className="px-8">
+            <Button asChild size="lg" variant="secondary">
               <Link to="/contact">
                 Se pré-inscrire à une formation
                 <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
@@ -463,7 +463,7 @@ const Expertise = () => {
               </p>
             </div>
             <div className="text-center">
-              <Button asChild size="lg" variant="secondary" className="px-8">
+              <Button asChild size="lg" variant="secondary">
                 <Link to="/contact">
                   Nous consulter sur le financement
                   <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />

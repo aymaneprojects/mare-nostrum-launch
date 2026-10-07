@@ -869,7 +869,7 @@ const Croissance = () => {
           {/* Le bouton d'adhésion ramène aux offres : c'est ici que l'objection vient
               de tomber (FAQ juste au-dessus), et c'était jusqu'ici une impasse —
               les deux boutons menaient au formulaire de contact. */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="mn-cta-row mn-cta-row--center">
             <Button
               size="lg"
               variant="secondary"

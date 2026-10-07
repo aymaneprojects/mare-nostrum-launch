@@ -271,7 +271,7 @@ const TestMaturiteProjet = () => {
                 </div>
 
                 {/* Actions */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="mn-cta-row mn-cta-row--center">
                   <Button asChild size="lg">
                     <Link to="/entrepreneurs/accompagnement-francophonie-afrique">
                       Découvrir le programme {result.level}

@@ -94,11 +94,11 @@ const Header = () => {
           {/* CTA desktop */}
           <div className="hidden md:flex items-center shrink-0">
             {["/education", "/niteo-toulouse"].includes(location.pathname) ? (
-              <Button asChild size="sm" className="rounded-full text-[15px] h-10 px-5">
+              <Button asChild size="sm">
                 <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
               </Button>
             ) : (
-              <Button asChild size="sm" className="rounded-full text-[15px] h-10 px-5" style={{ background: "hsl(222 44% 25%)", color: "hsl(40 38% 94%)" }}>
+              <Button asChild size="sm" style={{ background: "hsl(222 44% 25%)", color: "hsl(40 38% 94%)" }}>
                 <Link to="/club#offres">Rejoindre le Club</Link>
               </Button>
             )}
@@ -172,11 +172,11 @@ const Header = () => {
         {/* CTAs */}
         <div className="px-4 pb-10 pt-3 space-y-2.5 border-t border-border shrink-0">
           {["/education", "/niteo-toulouse"].includes(location.pathname) ? (
-            <Button asChild className="w-full h-[52px] rounded-full text-base">
+            <Button asChild size="lg" className="w-full">
               <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
             </Button>
           ) : (
-            <Button asChild className="w-full h-[52px] rounded-full text-base" style={{ background: "hsl(222 44% 25%)", color: "hsl(40 38% 94%)" }}>
+            <Button asChild size="lg" className="w-full" style={{ background: "hsl(222 44% 25%)", color: "hsl(40 38% 94%)" }}>
               <Link to="/club#offres">Rejoindre le Club</Link>
             </Button>
           )}

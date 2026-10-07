@@ -65,7 +65,7 @@ const PageHero = ({ eyebrow, title, subtitle, ctas, breadcrumbs, meta, align = "
           )}
           {meta && <div className="mt-6 text-primary-foreground/80">{meta}</div>}
           {ctas && (
-            <div className={`flex flex-col sm:flex-row gap-3 md:gap-4 mt-6 md:mt-10 ${gauche ? "justify-start" : "justify-center"}`}>
+            <div className={`mn-cta-row mt-6 md:mt-10 ${gauche ? "" : "mn-cta-row--center"}`}>
               {ctas}
             </div>
           )}

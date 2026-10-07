@@ -77,13 +77,13 @@ const Equipe = () => {
                       </p>
                     </Link>
                     <div className="grid grid-cols-2 gap-2 mt-5">
-                      <Button asChild variant="outline" size="sm" className="h-11 md:h-9">
+                      <Button asChild variant="outline" size="sm">
                         <Link to={`/equipe/${m.slug}`} tabIndex={-1}>
                           Voir la fiche
                           <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                         </Link>
                       </Button>
-                      <Button asChild size="sm" className="h-11 md:h-9">
+                      <Button asChild size="sm">
                         <a href={vcardPath(m)} aria-label={`Ajouter ${name} à mes contacts`}>
                           <Download className="mr-1.5 h-3.5 w-3.5" />
                           Ajouter
@@ -105,7 +105,7 @@ const Equipe = () => {
               <p className="text-sm text-muted-foreground mt-4">
                 À afficher sur un stand ou un support : un scan ouvre cette page, et chaque contact s'ajoute en un geste.
               </p>
-              <Button asChild variant="outline" size="sm" className="mt-4 h-11 md:h-9">
+              <Button asChild variant="outline" size="sm" className="mt-4">
                 <a href="/qr/equipe.svg" download="qr-equipe-marenostrum.svg">SVG pour impression</a>
               </Button>
             </div>

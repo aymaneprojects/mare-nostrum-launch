@@ -231,7 +231,7 @@ const Contact = () => {
                     <h3 className="font-semibold text-foreground mb-1 text-sm md:text-base">Prendre rendez-vous</h3>
                     <p className="text-muted-foreground mb-3 text-xs md:text-sm">Réservez un créneau directement avec notre équipe</p>
                     <div className="flex flex-col gap-2">
-                      <Button asChild variant="outline" size="sm" className="w-full text-xs md:text-sm">
+                      <Button asChild variant="outline" size="sm" className="w-full">
                         <a href="https://meet.marenostrum.tech/rdv-equipe" target="_blank" rel="noopener noreferrer">
                           <Calendar className="mr-2 h-3 w-3 md:h-4 md:w-4" />
                           Prendre rendez-vous

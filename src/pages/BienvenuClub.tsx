@@ -156,7 +156,7 @@ const BienvenuClub = () => {
             </a>
 
             {/* Secondaires */}
-            <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
+            <div className="mn-cta-row mn-cta-row--center">
               <Button asChild variant="outline" size="default" className="w-full sm:w-auto">
                 <Link to="/blog">
                   <BookOpen className="mr-2 h-4 w-4" />

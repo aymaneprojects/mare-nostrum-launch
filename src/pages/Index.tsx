@@ -237,7 +237,7 @@ const Index = () => {
               Mare Nostrum accompagne les écoles et les entrepreneurs francophones.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+            <div className="mn-cta-row mn-cta-row--center">
               <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto" style={{ boxShadow: 'var(--shadow-cta)' }}>
                 <Link to="/education">
                   <GraduationCap className="mr-2 h-4 md:h-5 w-4 md:w-5" />

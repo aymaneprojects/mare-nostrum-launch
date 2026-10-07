@@ -362,6 +362,20 @@ plein, un en contour. Les sites qui en empilent huit n'en font choisir aucun.
 
 Cible tactile minimale 44 px : sur mobile, préférer `size="lg"` ou `h-11` pour les CTA.
 
+### 5.1 bis — Gabarits de boutons (alignés le 7 octobre 2026)
+
+Mesuré chez Naano : CTA principal 52 px, marges 28 px, texte 16 px à 600 ; CTA d'en-tête 35 px. Notre `Button` est déjà à ce gabarit, donc **aucune page ne le surcharge**.
+
+| Taille | Hauteur | Usage |
+|---|---|---|
+| `lg` | 52 px | CTA principal d'une section, héros, clôture, soumission d'un formulaire |
+| `default` | 44 px | bouton dans une carte ou un bloc |
+| `sm` | 44 px mobile, 40 px dès md | en-tête, actions secondaires denses |
+
+Interdit sur un `<Button>` : `h-*`, `px-*`, `rounded-*`, `text-*` (même responsive), `font-*`, et `style={{ height }}`. Un bouton trop petit ou trop grand se règle avec `size`, jamais avec une classe locale.
+
+Placement : tout groupe de boutons utilise `mn-cta-row` (+ `mn-cta-row--center` pour centrer). Colonne pleine largeur sur mobile, ligne dès `sm`, écart 12 px puis 16 px. **Le bouton principal est toujours le premier.** `PageHero` l'applique à ses `ctas`.
+
 ### 5.2 `PageHero` — `src/components/PageHero.tsx`
 
 Le héros de **toutes** les pages internes. Applique automatiquement le pattern sombre (dégradé nuit → encre, rayures, halo turquoise), le titre Fraunces italique et l'eyebrow clair. **Une page ne fabrique jamais son propre héros** : c'est ce qui rendait le site disparate, chaque page ayant sa hauteur, son sous-titre et son dégradé.
