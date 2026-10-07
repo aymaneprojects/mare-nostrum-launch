@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import SEOHead from "@/components/SEOHead";
+import { Maximize2, Minimize2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { MONTHLY, ANNUAL } from "@/pages/Croissance";
 import logo from "@/assets/logo.png";
 
@@ -10,7 +12,8 @@ import logo from "@/assets/logo.png";
    sollicitation (voir `quiet` et `bare` dans App.tsx), non indexée.
 
    LES LOTS ET LEURS CHANCES SE RÉGLENT ICI, et nulle part ailleurs :
-   - `poids` est la chance relative de tomber sur le lot (60 / 30 / 10 = 60 %, 30 %, 10 %).
+   - Les lots sont listés du PREMIER PRIX au dernier ; le premier prix est aussi le plus rare.
+   - `poids` est la chance relative de tomber sur le lot (10 / 30 / 60 = 10 %, 30 %, 60 %).
    - Chaque lot occupe deux parts de la roue : l'apparence ne dépend pas des chances.
    ───────────────────────────────────────────────────────────────────────────── */
 
@@ -19,7 +22,6 @@ const PRIX_MOIS = MONTHLY.france.communaute;
 const PRIX_AN = ANNUAL.france.communaute;
 /** Journée de formation offerte : « Initiation à l'IA », 7 h, 420 € HT (page /initiation-ia). */
 const PRIX_JOURNEE_HT = 420;
-const HEURES_JOURNEE = 7;
 
 const euros = (n: number) =>
   new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n);
@@ -31,8 +33,6 @@ type Lot = {
   titre: string;
   detail: string;
   valeur: number;
-  /** Le calcul de la valeur, montré tel quel au gagnant et dans la liste des lots. */
-  calcul: string;
   suffixe?: string;
   poids: number;
   fond: string;
@@ -41,25 +41,13 @@ type Lot = {
 
 const LOTS: Lot[] = [
   {
-    id: "club3",
-    roue: ["3 mois", "au Club"],
-    titre: "3 mois au Club",
-    detail: "Offre Communauté",
-    valeur: 3 * PRIX_MOIS,
-    calcul: `3 mois × ${euros(PRIX_MOIS)}`,
-    poids: 60,
-    fond: "hsl(var(--mn-turquoise))",
-    texte: "hsl(var(--mn-ink))",
-  },
-  {
     id: "formation",
     roue: ["1 journée", "de formation"],
     titre: "1 journée de formation",
     detail: "Initiation à l'IA · 7 h",
     valeur: PRIX_JOURNEE_HT,
-    calcul: `${HEURES_JOURNEE} h × ${euros(PRIX_JOURNEE_HT / HEURES_JOURNEE)}`,
     suffixe: " HT",
-    poids: 30,
+    poids: 10,
     fond: "hsl(var(--mn-ivory))",
     texte: "hsl(var(--mn-nuit))",
   },
@@ -69,9 +57,18 @@ const LOTS: Lot[] = [
     titre: "12 mois au Club",
     detail: "Offre Communauté",
     valeur: PRIX_AN,
-    calcul: `12 mois × ${euros(PRIX_AN / 12)} (tarif annuel)`,
-    poids: 10,
+    poids: 30,
     fond: "hsl(var(--mn-ocre))",
+    texte: "hsl(var(--mn-ink))",
+  },
+  {
+    id: "club3",
+    roue: ["3 mois", "au Club"],
+    titre: "3 mois au Club",
+    detail: "Offre Communauté",
+    valeur: 3 * PRIX_MOIS,
+    poids: 60,
+    fond: "hsl(var(--mn-turquoise))",
     texte: "hsl(var(--mn-ink))",
   },
 ];
@@ -130,6 +127,8 @@ const Roue = () => {
   const [enCours, setEnCours] = useState(false);
   const [gagne, setGagne] = useState<Lot | null>(null);
   const [tirages, setTirages] = useState<Tirage[]>([]);
+  const [presentation, setPresentation] = useState(false);
+  const [inactif, setInactif] = useState(false);
   const rotationRef = useRef(0);
   const lotEnAttente = useRef<Lot | null>(null);
   const filet = useRef<number | undefined>(undefined);
@@ -199,6 +198,81 @@ const Roue = () => {
     }
   };
 
+  /* Mode présentation : plein écran réel quand le navigateur le permet (ordinateur,
+     tablette). Sur iPhone, qui ne l'offre pas, la page passe quand même en présentation
+     (mise en page agrandie, commandes masquées) sans plein écran réel. */
+  const basculerPresentation = useCallback(async () => {
+    const racine = document.documentElement as HTMLElement & { webkitRequestFullscreen?: () => Promise<void> };
+    if (!presentation) {
+      setPresentation(true);
+      try {
+        await (racine.requestFullscreen?.() ?? racine.webkitRequestFullscreen?.());
+      } catch {
+        /* plein écran refusé : la présentation reste active, en fenêtre */
+      }
+    } else {
+      setPresentation(false);
+      if (document.fullscreenElement) {
+        try {
+          await document.exitFullscreen();
+        } catch {
+          /* déjà sorti */
+        }
+      }
+    }
+  }, [presentation]);
+
+  // Sortie du plein écran par la touche Échap du navigateur : on quitte aussi la présentation.
+  useEffect(() => {
+    const sortie = () => {
+      if (!document.fullscreenElement) setPresentation(false);
+    };
+    document.addEventListener("fullscreenchange", sortie);
+    return () => document.removeEventListener("fullscreenchange", sortie);
+  }, []);
+
+  // En présentation, curseur et commandes disparaissent après 3 s sans mouvement.
+  useEffect(() => {
+    if (!presentation) {
+      setInactif(false);
+      return;
+    }
+    let minuterie = window.setTimeout(() => setInactif(true), 3000);
+    const activite = () => {
+      setInactif(false);
+      window.clearTimeout(minuterie);
+      minuterie = window.setTimeout(() => setInactif(true), 3000);
+    };
+    const evenements = ["mousemove", "keydown", "touchstart"] as const;
+    evenements.forEach((e) => window.addEventListener(e, activite));
+    return () => {
+      window.clearTimeout(minuterie);
+      evenements.forEach((e) => window.removeEventListener(e, activite));
+    };
+  }, [presentation]);
+
+  // Clavier, pour piloter depuis l'ordinateur branché sur l'écran : F = plein écran,
+  // Espace ou Entrée = lancer la roue (ou passer au tour suivant), Échap = quitter.
+  useEffect(() => {
+    const touche = (e: KeyboardEvent) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const cible = e.target as HTMLElement | null;
+      const surCommande = !!cible?.closest("button, a, input, textarea, select");
+      if (e.key === "f" || e.key === "F") {
+        e.preventDefault();
+        void basculerPresentation();
+      } else if (e.key === "Escape" && presentation && !document.fullscreenElement) {
+        setPresentation(false);
+      } else if ((e.key === " " || e.key === "Enter") && !surCommande) {
+        e.preventDefault();
+        if (gagne) setGagne(null);
+        else lancer();
+      }
+    };
+    window.addEventListener("keydown", touche);
+    return () => window.removeEventListener("keydown", touche);
+  }, [basculerPresentation, gagne, lancer, presentation]);
+
   const decompte = useMemo(
     () => LOTS.map((l) => ({ lot: l, n: tirages.filter((t) => t.id === l.id).length })),
     [tirages],
@@ -206,7 +280,11 @@ const Roue = () => {
 
   return (
     <main
-      className="relative min-h-screen overflow-hidden text-primary-foreground"
+      className={cn(
+        "relative min-h-screen overflow-hidden text-primary-foreground",
+        presentation && "h-screen",
+        presentation && inactif && "cursor-none",
+      )}
       style={{ background: "linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)" }}
     >
       <SEOHead
@@ -231,20 +309,52 @@ const Roue = () => {
         }}
       />
 
-      <div className="relative z-10 container mx-auto px-4 py-8 md:py-12">
-        <header className="mb-6 md:mb-10 flex flex-col items-center text-center">
-          <img src={logo} alt="Mare Nostrum" width={176} height={69} className="h-11 w-auto mb-5 brightness-0 invert" />
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => void basculerPresentation()}
+        aria-pressed={presentation}
+        className={cn(
+          "absolute right-4 top-4 z-30 border-primary-foreground/40 text-primary-foreground bg-primary-foreground/10 hover:bg-primary-foreground hover:text-primary transition-opacity",
+          presentation && inactif && "opacity-0 pointer-events-none",
+        )}
+      >
+        {presentation ? <Minimize2 aria-hidden="true" /> : <Maximize2 aria-hidden="true" />}
+        {presentation ? "Quitter la présentation" : "Plein écran"}
+      </Button>
+
+      <div className={cn("relative z-10 container mx-auto px-4", presentation ? "py-5" : "py-8 md:py-12")}>
+        <header className={cn("flex flex-col items-center text-center", presentation ? "mb-3" : "mb-6 md:mb-10")}>
+          <img
+            src={logo}
+            alt="Mare Nostrum"
+            width={176}
+            height={69}
+            className={cn("w-auto brightness-0 invert", presentation ? "h-9 mb-3" : "h-11 mb-5")}
+          />
           <div className="mn-eyebrow-light mn-eyebrow-pill mb-4">Jeu de l'événement</div>
           <h1 className="font-editorial italic font-medium text-primary-foreground" style={{ textWrap: "balance" } as React.CSSProperties}>
             Faites tourner la roue
           </h1>
-          <p className="mn-lead text-primary-foreground/80 mt-3 max-w-xl">Trois lots à gagner avec Mare Nostrum.</p>
+          {!presentation && (
+            <p className="mn-lead text-primary-foreground/80 mt-3 max-w-xl">Trois lots à gagner avec Mare Nostrum.</p>
+          )}
         </header>
 
-        <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] gap-10 lg:gap-14 items-center max-w-6xl mx-auto">
+        <div
+          className={cn(
+            "grid gap-10 lg:gap-14 items-center mx-auto",
+            presentation
+              ? "lg:grid-cols-[minmax(0,1fr)_minmax(0,30rem)] max-w-[110rem]"
+              : "lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] max-w-6xl",
+          )}
+        >
           {/* ── La roue ─────────────────────────────────────────────── */}
           <div className="flex flex-col items-center">
-            <div className="relative" style={{ width: "min(88vw, 34rem)", aspectRatio: "1" }}>
+            <div
+              className="relative"
+              style={{ width: presentation ? "min(66vh, 88vw)" : "min(88vw, 34rem)", aspectRatio: "1" }}
+            >
               {/* Pointeur */}
               <svg
                 aria-hidden="true"
@@ -317,7 +427,7 @@ const Roue = () => {
             <Button
               size="lg"
               variant="secondary"
-              className="mt-8 min-w-64 text-base"
+              className={cn("min-w-64", presentation ? "mt-5" : "mt-8")}
               onClick={lancer}
               disabled={enCours}
             >
@@ -334,16 +444,18 @@ const Roue = () => {
               {LOTS.map((l) => (
                 <li
                   key={l.id}
-                  className="flex items-center gap-4 rounded-[14px] border border-primary-foreground/15 bg-primary-foreground/[0.06] p-4 backdrop-blur-sm"
+                  className={cn(
+                    "flex items-center gap-4 rounded-[14px] border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm",
+                    presentation ? "p-6" : "p-4",
+                  )}
                   style={{ boxShadow: "var(--shadow-glass)" }}
                 >
                   <span aria-hidden="true" className="h-12 w-2 rounded-full shrink-0" style={{ background: l.fond }} />
                   <div className="min-w-0 flex-1">
-                    <p className="text-lg font-semibold leading-tight">{l.titre}</p>
-                    <p className="text-sm text-primary-foreground/70">{l.detail}</p>
-                    <p className="text-sm text-primary-foreground/70 mt-1">{l.calcul}</p>
+                    <p className={cn("font-semibold leading-tight", presentation ? "text-2xl" : "text-lg")}>{l.titre}</p>
+                    <p className={cn("text-primary-foreground/70", presentation ? "text-base" : "text-sm")}>{l.detail}</p>
                   </div>
-                  <p className="font-editorial text-2xl font-semibold shrink-0 tabular-nums">
+                  <p className={cn("font-editorial font-semibold shrink-0 tabular-nums", presentation ? "text-4xl" : "text-2xl")}>
                     {euros(l.valeur)}
                     {l.suffixe && <span className="text-sm font-sans font-medium text-primary-foreground/70">{l.suffixe}</span>}
                   </p>
@@ -351,7 +463,8 @@ const Roue = () => {
               ))}
             </ul>
 
-            {/* Suivi de la session : utile à l'équipe pour savoir ce qui a été remis. */}
+            {/* Suivi de la session : utile à l'équipe, masqué en présentation devant le public. */}
+            {!presentation && (
             <div className="rounded-[14px] border border-primary-foreground/15 p-4">
               <div className="flex items-center justify-between gap-3">
                 <p className="text-sm font-semibold">Tirages de la session : {tirages.length}</p>
@@ -374,6 +487,7 @@ const Roue = () => {
                 ))}
               </ul>
             </div>
+            )}
           </aside>
         </div>
       </div>
@@ -405,7 +519,10 @@ const Roue = () => {
               />
             ))}
           <div
-            className="relative w-full max-w-md rounded-[18px] bg-card text-card-foreground p-8 text-center"
+            className={cn(
+              "relative w-full rounded-[18px] bg-card text-card-foreground text-center",
+              presentation ? "max-w-2xl p-12" : "max-w-md p-8",
+            )}
             style={{ boxShadow: "var(--shadow-lift)" }}
           >
             <p className="mn-eyebrow-turquoise mb-3">Félicitations</p>
@@ -413,11 +530,10 @@ const Roue = () => {
               {gagne.titre}
             </h2>
             <p className="text-muted-foreground">{gagne.detail}</p>
-            <p className="font-editorial text-5xl font-semibold text-primary mt-5 tabular-nums">
+            <p className={cn("font-editorial font-semibold text-primary mt-5 tabular-nums", presentation ? "text-7xl" : "text-5xl")}>
               {euros(gagne.valeur)}
               {gagne.suffixe && <span className="text-xl font-sans font-medium text-muted-foreground">{gagne.suffixe}</span>}
             </p>
-            <p className="text-sm text-muted-foreground mt-2">{gagne.calcul}</p>
             <Button size="lg" className="mt-7 w-full" onClick={() => setGagne(null)} autoFocus>
               Tour suivant
             </Button>

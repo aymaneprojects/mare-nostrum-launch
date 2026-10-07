@@ -115,7 +115,7 @@ function detailFormulaire(c: {
   ${ligne("Profil", esc(PROFILS[String(c.type ?? "")] ?? c.type))}
   ${ligne("Pôles concernés", esc(c.poles.join(", ")))}
   ${ligne("Reçu le", esc(quand))}
-  ${ligne("Origine", "Formulaire de contact — marenostrum.tech/contact")}
+  ${ligne("Origine", "Formulaire de contact, marenostrum.tech/contact")}
 </table>
 <p style="margin:18px 0 6px;color:#8a8fa3;font-size:13px;text-transform:uppercase;letter-spacing:.08em">Message</p>
 <div style="border-left:3px solid #3fd9d9;padding:6px 0 6px 14px;font-size:16px;line-height:1.6;color:#1b2340">${message ? nl2br(message) : "<em style=\"color:#8a8fa3\">aucun message</em>"}</div>`;
@@ -203,7 +203,7 @@ serve(async (req) => {
       cc: copie,
       bcc: copieCachee,
       reply_to: personne,
-      subject: `PRISE DE CONTACT — ${name}`,
+      subject: `PRISE DE CONTACT : ${name}`,
       html: htmlEquipe,
     });
     if (!resEquipe.ok) {
@@ -220,11 +220,11 @@ serve(async (req) => {
 <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.65;color:#1b2340;max-width:560px">
   <p>Bonjour ${esc(prenomDe(name))},</p>
 
-  <p>L'équipe de Mare Nostrum est ravie de cette prise de contact — lors d'un événement, d'une rencontre ou depuis notre site.</p>
+  <p>L'équipe de Mare Nostrum est ravie de cette prise de contact, lors d'un événement, d'une rencontre ou depuis notre site.</p>
 
   <p>Notre équipe revient vers vous.</p>
 
-  <p>Vous pouvez aussi vous inscrire à notre newsletter <a href="https://www.marenostrum.tech/iter" style="color:#1b2340;font-weight:600">Iter</a>.</p>
+  <p>Vous pouvez aussi vous inscrire à notre <a href="https://www.marenostrum.tech/iter" style="color:#1b2340;font-weight:600">lettre de la semaine, Iter</a> : 12 lettres pour avancer sur vos projets, et 97 % des lecteurs en sont satisfaits.</p>
 
   <p>À très bientôt,<br>
   <strong>L'équipe Mare Nostrum</strong></p>
