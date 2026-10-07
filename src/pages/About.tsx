@@ -358,11 +358,11 @@ const About = () => {
 
             <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
               <Avatar className="w-20 h-20 md:w-28 md:h-28 mx-auto mb-3">
-                <AvatarImage src={yasmineArezkiImg} alt="Yasmine Arezki" />
-                <AvatarFallback>YA</AvatarFallback>
+                <AvatarImage src={geraldineLeCaerImg} alt="Géraldine Le Caër" />
+                <AvatarFallback>GL</AvatarFallback>
               </Avatar>
-              <h3 className="text-lg md:text-xl mb-2 text-foreground">Yasmine Arezki</h3>
-              <p className="text-sm md:text-base text-muted-foreground">Directrice du pôle d'expertise · Toulouse (France)</p>
+              <h3 className="text-lg md:text-xl mb-2 text-foreground">Géraldine Le Caër</h3>
+              <p className="text-sm md:text-base text-muted-foreground">Membre du comité de mission</p>
             </div>
 
             <div className="mn-card p-5 text-center hover-lift transition-all duration-200">
