@@ -20,6 +20,11 @@ import toulecoLogo from "@/assets/partners/touleco.png";
 import imaginationsFertilesLogo from "@/assets/partners/imaginations-fertiles.png";
 import emergingBusinessLogo from "@/assets/partners/emerging-business.png";
 import moovjeeLogo from "@/assets/partners/moovjee.png";
+import centreFormationIcon from "@/assets/poles/centre-formation.png";
+import poleExpertiseIcon from "@/assets/poles/pole-expertise.png";
+import veluoIcon from "@/assets/poles/veluo.png";
+import niteoIcon from "@/assets/poles/niteo.png";
+import clubIcon from "@/assets/poles/club.png";
 const DarkLayers = ({ halo, vignette }: { halo: string; vignette: string }) => (
   <>
     <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, hsl(var(--mn-turquoise) / 0.055) 22px 23px)' }}></div>
@@ -463,13 +468,14 @@ const Index = () => {
           <div className="max-w-3xl mx-auto">
             <div className="border-b border-border">
               {([
-                { title: "Centre de formation", description: "Certifié Qualiopi" },
-                { title: "Pôle d’expertise", description: "Conseil et ingénierie pour l’enseignement supérieur" },
-                { title: "Veluo", description: "Agent IA des chefs de projet et entrepreneurs" },
-                { title: "Niteo", description: "Programme de pré-incubation" },
-                { title: "Club", description: "Communauté d’entrepreneurs" },
+                { title: "Centre de formation", description: "Certifié Qualiopi", icon: centreFormationIcon },
+                { title: "Pôle d’expertise", description: "Conseil et ingénierie pour l’enseignement supérieur", icon: poleExpertiseIcon },
+                { title: "Veluo", description: "Agent IA des chefs de projet et entrepreneurs", icon: veluoIcon },
+                { title: "Niteo", description: "Programme de pré-incubation", icon: niteoIcon },
+                { title: "Club", description: "Communauté d’entrepreneurs", icon: clubIcon },
               ]).map(item => (
                 <div key={item.title} className="flex items-start gap-5 md:gap-8 py-6 md:py-8 mn-hairline">
+                  <img src={item.icon} alt="" aria-hidden="true" className="h-12 w-12 shrink-0 object-contain md:h-14 md:w-14" />
                   <div>
                     <h3 className="mb-2 text-foreground">{item.title}</h3>
                     <p className="mn-body text-muted-foreground">{item.description}</p>
