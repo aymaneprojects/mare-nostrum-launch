@@ -347,8 +347,8 @@ const Contact = () => {
                       return (
                         <label
                           key={p.cle}
-                          className={`flex min-h-11 cursor-pointer items-start gap-3 rounded-lg border p-3 transition-colors ${
-                            actif ? "border-accent bg-accent/10" : "border-border hover:border-accent/50"
+                          className={`flex min-h-11 cursor-pointer items-start gap-3 rounded-[10px] border p-3 transition-[border-color,background-color,box-shadow] duration-150 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 ${
+                            actif ? "border-accent bg-accent/10 shadow-soft" : "border-border hover:border-accent/50"
                           }`}
                         >
                           <input

@@ -12,7 +12,7 @@ const AVANCE_PX = 900;
 const SECOURS_MS = 1200;
 
 /**
- * Apparition au défilement : opacité et léger glissement, 400 ms.
+ * Apparition au défilement : opacité et léger glissement, courbe d'entrée --ease-out-expo.
  *
  * Le style est posé **directement sur l'élément**, pas par une classe CSS : une
  * classe ajoutée en JavaScript est effacée au premier rendu de React, qui
@@ -27,7 +27,7 @@ export function useFadeIn(delay = 0) {
 
     el.style.opacity = "0";
     el.style.transform = "translateY(16px)";
-    el.style.transition = "opacity 0.4s var(--ease-mn), transform 0.4s var(--ease-mn)";
+    el.style.transition = "opacity 0.5s var(--ease-out-expo), transform 0.6s var(--ease-out-expo)";
 
     let fait = false;
     const reveler = () => {

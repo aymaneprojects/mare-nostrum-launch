@@ -19,7 +19,7 @@
 9. **Toute animation respecte `prefers-reduced-motion`** — c'est géré globalement, à condition d'utiliser les utilitaires de ce document et non des animations maison.
 10. **Ton de marque : expert, institutionnel, français.** Ne jamais mélanger avec le ton d'une autre marque.
 11. **L'échelle typographique est globale.** Une classe `text-5xl` posée sur un titre casse l'échelle du site : on laisse les variables `--fs-*` faire leur travail (§2.2).
-12. **Une seule courbe d'animation**, `--ease-mn`. Jamais `ease`, `ease-out` ni une courbe écrite en dur (§7).
+12. **Deux courbes d'animation, deux rôles** : `--ease-mn` pour toute interface, `--ease-out-expo` pour les **entrées** seulement. Jamais `ease`, `ease-out` ni une courbe écrite en dur (§7).
 13. **Le texte publié ne se réécrit jamais** sans demande explicite du propriétaire. Deux contrôles automatiques l'appliquent — voir `CLAUDE.md` et la skill `verifier-contenu`.
 
 ---
@@ -455,6 +455,14 @@ Primitives shadcn : `Input`, `Label`, `Textarea`, `Select`. Le `Label` porte tou
 </div>
 ```
 
+Champs (`Input`, `Textarea`) : hauteur 45 px, rayon 10 px, 16 px de texte sur mobile. Les choix multiples (pôles de Contact) sont des puces : rayon 10 px, ombre douce et anneau de focus via `focus-within` quand actives.
+
+Éléments de composition, dans `src/index.css` :
+- `mn-eyebrow-pill` : eyebrow en capsule à ombre douce (déjà appliqué par `PageHero`). Variante automatique sur fond sombre avec `mn-eyebrow-light`.
+- `mn-assurance` : rangée de pastilles de réassurance. Reprendre uniquement des textes déjà présents sur la page.
+- `mn-steps` : étapes numérotées par compteur CSS, aucun texte ajouté. À poser sur une liste d'étapes existante.
+- `--shadow-glass` / `shadow-glass` : carte de verre sur fond sombre.
+
 Icône dans un champ : `absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 pointer-events-none` + `pl-8` sur l'input.
 
 Bouton de soumission : désactivé pendant l'envoi, avec `Loader2 animate-spin`. État de succès rendu **à la place** du formulaire, pas au-dessus.
@@ -481,9 +489,13 @@ Bouton de soumission : désactivé pendant l'envoi, avec `Loader2 animate-spin`.
 
 Le respect de `prefers-reduced-motion` est global : toute transition et animation est neutralisée quand l'utilisateur le demande. **Ceci ne fonctionne que si on n'utilise pas `!important` ni d'animation JS manuelle.**
 
-**Une seule courbe pour tout le site** : `--ease-mn` = `cubic-bezier(0.4, 0, 0.2, 1)`.
-C'est ce qui donne l'impression d'unité — les sites les plus soignés n'en
-utilisent qu'une. Ne jamais écrire `ease`, `ease-out` ou une autre courbe en dur.
+**Deux courbes, deux rôles** (relevé chez Naano, Limova et Delos, 7 octobre 2026) :
+- `--ease-mn` = `cubic-bezier(0.4, 0, 0.2, 1)` : toute transition d'interface (survol, focus, ouverture).
+- `--ease-out-expo` = `cubic-bezier(0.16, 1, 0.3, 1)` : **entrées uniquement** (apparition au défilement dans `useFadeIn`). Départ vif, arrivée douce. Jamais sur un survol ni un appui.
+
+Ne jamais écrire `ease`, `ease-out` ou une autre courbe en dur. Pas de bibliothèque de défilement fluide (Lenis refusé).
+
+Boutons : au survol, l'ombre grandit (`--shadow-btn-hover`) et la flèche finale glisse de 2 px ; à l'appui, retour immédiat (`scale(.97)`).
 
 | Besoin | Solution | Durée |
 |---|---|---|

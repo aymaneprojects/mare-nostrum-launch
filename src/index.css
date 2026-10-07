@@ -83,9 +83,15 @@ All colors MUST be HSL.
     --shadow-elegant: 0 20px 50px -12px hsl(222 44% 25% / 0.18);
     --shadow-cta: 0 12px 32px -10px hsl(var(--mn-turquoise) / 0.5), 0 4px 10px -4px hsl(var(--mn-turquoise) / 0.3);
     --shadow-lift: 0 30px 80px rgba(15,23,51,0.08);
+    /* Carte de verre sur fond sombre : étalement négatif, l'ombre reste sous la carte. */
+    --shadow-glass: 0 18px 40px -20px hsl(228 56% 13% / 0.45), inset 0 1px 0 hsl(0 0% 100% / 0.08);
+    /* Survol d'un bouton : l'ombre grandit sous lui. */
+    --shadow-btn-hover: 0 10px 22px -10px hsl(228 56% 13% / 0.35);
 
-    /* Courbe d'easing unique du site : toute transition l'utilise. */
+    /* Deux courbes, deux rôles. --ease-mn : toute transition d'interface.
+       --ease-out-expo : ENTRÉES uniquement (apparition au défilement), départ vif, arrivée douce. */
     --ease-mn: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     --transition-smooth: all 0.25s var(--ease-mn);
 
     /* Échelle typographique (mesurée chez les concurrents).
@@ -291,6 +297,44 @@ All colors MUST be HSL.
   .mn-hairline { border-top: 1px solid hsl(var(--mn-nuit) / 0.14); }
 
   /* Eyebrow for dark (navy) panel backgrounds */
+  /* Variante pastille : l'étiquette de section dans une capsule à ombre douce
+     (relevé chez Naano et Delos). Se combine avec une variante de couleur. */
+  .mn-eyebrow-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--mn-nuit) / 0.12);
+    box-shadow: var(--shadow-soft);
+  }
+  .mn-eyebrow-light.mn-eyebrow-pill {
+    background: hsl(0 0% 100% / 0.08);
+    border-color: hsl(0 0% 100% / 0.18);
+    box-shadow: var(--shadow-glass);
+  }
+
+  /* Rangée de pastilles de réassurance (sous un héros ou près d'un bouton). */
+  .mn-assurance { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+  .mn-assurance > * {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.35rem 0.8rem; border-radius: 999px;
+    font-size: var(--fs-micro); font-weight: 600;
+    background: hsl(var(--card)); border: 1px solid hsl(var(--mn-nuit) / 0.12);
+    box-shadow: var(--shadow-soft);
+  }
+
+  /* Étapes numérotées : le numéro vient d'un compteur CSS, aucun texte ajouté. */
+  .mn-steps { counter-reset: mn-step; }
+  .mn-steps > * { counter-increment: mn-step; position: relative; }
+  .mn-steps > *::before {
+    content: counter(mn-step, decimal-leading-zero);
+    display: block; margin-bottom: 0.6rem;
+    font-family: 'Fraunces', Georgia, serif; font-size: 1.5rem; line-height: 1;
+    color: hsl(var(--mn-ocre));
+  }
+
   .mn-eyebrow-light {
     font-size: var(--fs-micro);
     letter-spacing: 0.14em;
@@ -347,7 +391,10 @@ All colors MUST be HSL.
       border-color 0.15s var(--ease-mn), box-shadow 0.15s var(--ease-mn), transform 0.15s var(--ease-mn);
   }
   @media (hover: hover) and (pointer: fine) {
-    .mn-btn-lift:not(:disabled):hover { transform: translateY(-1px); }
+    .mn-btn-lift:not(:disabled):hover { transform: translateY(-1px); box-shadow: var(--shadow-btn-hover); }
+    /* Flèche d'un bouton : elle glisse de 2 px, le bouton ne bouge pas de plus. */
+    .mn-btn svg { transition: transform 0.2s var(--ease-mn); }
+    .mn-btn:not(:disabled):hover svg:last-child:not(:first-child) { transform: translateX(2px); }
   }
 
   /* Retour IMMÉDIAT à l'appui, au doigt comme à la souris. Sans lui, un bouton
@@ -666,6 +713,7 @@ All colors MUST be HSL.
     .mn-hero-halo, .mn-scroll-cue, .mn-marquee-track { animation: none !important; }
     .mn-pole-bg, .mn-pole-arrow { transition: none; }
     .mn-btn-lift:hover { transform: none; }
+    .mn-btn:hover svg { transform: none !important; }
     .mn-link-u::after { transition: none; }
     .mn-pole:hover .mn-pole-bg, .mn-pole:hover .mn-pole-arrow { transform: none; }
   }

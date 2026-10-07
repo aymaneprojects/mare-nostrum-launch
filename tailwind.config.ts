@@ -78,6 +78,7 @@ export default {
       boxShadow: {
         lift: "0 30px 80px rgba(15,23,51,0.08)",
         soft: "0 1px 3px rgba(15,23,51,0.06)",
+        glass: "var(--shadow-glass)",
       },
       keyframes: {
         "accordion-down": {

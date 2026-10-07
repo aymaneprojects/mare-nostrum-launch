@@ -49,7 +49,7 @@ const PageHero = ({ eyebrow, title, subtitle, ctas, breadcrumbs, meta, align = "
               {breadcrumbs}
             </div>
           )}
-          {eyebrow && <div className="mn-eyebrow-light mb-5 md:mb-6">{eyebrow}</div>}
+          {eyebrow && <div className="mn-eyebrow-light mn-eyebrow-pill mb-5 md:mb-6">{eyebrow}</div>}
           <h1
             className="font-editorial italic font-medium text-primary-foreground mb-4 md:mb-6 break-words"
             style={{ letterSpacing: "-0.02em", textWrap: "balance" } as React.CSSProperties}
