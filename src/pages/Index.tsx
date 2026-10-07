@@ -235,9 +235,9 @@ const Index = () => {
           <div className="max-w-5xl mx-auto text-center">
             <div className="mn-eyebrow-light mb-6 md:mb-8">depuis Toulouse, dans tout l'espace francophone</div>
             <p className="mn-body font-medium text-primary-foreground/80 mb-4 md:mb-6 max-w-xl mx-auto" style={{ letterSpacing: '0.01em' }}>
-              Vous bâtissez un service ou un produit utile pour demain&nbsp;?
+              L'alliance des traversées entrepreneuriales
             </p>
-            <h1 className="font-editorial italic font-medium text-primary-foreground mb-5 md:mb-8 break-words" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>Nous traçons la voie de votre <span className="text-turquoise">projet</span> vers ses <span className="text-turquoise">sources de revenus</span>.</h1>
+            <h1 className="font-editorial italic font-medium text-primary-foreground mb-5 md:mb-8 break-words" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>Entre les premiers revenus et la traction, il y a une traversée. Nous la sécurisons à vos côtés.</h1>
             <p className="mn-lead text-primary-foreground/75 mb-8 md:mb-12 max-w-2xl mx-auto">
               Mare Nostrum accompagne les écoles et les entrepreneurs francophones.
             </p>
@@ -246,13 +246,13 @@ const Index = () => {
               <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto" style={{ boxShadow: 'var(--shadow-cta)' }}>
                 <Link to="/education">
                   <GraduationCap className="mr-2 h-4 md:h-5 w-4 md:w-5" />
-                  Je suis une école
+                  Je suis un établissement
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="bg-primary-foreground/10 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary w-full sm:w-auto">
                 <Link to="/club">
                   <TrendingUp className="mr-2 h-4 md:h-5 w-4 md:w-5" />
-                  Rejoindre l'équipage
+                  Je suis un entrepreneur
                 </Link>
               </Button>
             </div>
