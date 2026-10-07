@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, Linkedin, MapPin } from "lucide-react";
+import { Mail, Linkedin, MapPin } from "lucide-react";
 import logo from "@/assets/logo.png";
+import qualiopiOfficialLogo from "@/assets/qualiopi-logo-officiel.jpg";
 
 const Footer = () => {
   return (
@@ -15,8 +16,18 @@ const Footer = () => {
               className="h-12 md:h-14 w-auto mb-4 brightness-0 invert"
             />
             <p className="mn-body text-primary-foreground/75 max-w-sm">
-              Cabinet de conseil en entrepreneuriat innovant, inclusif et durable, entre Toulouse, Paris et Casablanca.
+              Du projet à l'entreprise : l'alliance pour les parcours entrepreneuriaux
             </p>
+            <div className="mt-5">
+              <img
+                src={qualiopiOfficialLogo}
+                alt="Qualiopi – processus certifié"
+                className="h-12 md:h-14 w-auto rounded-sm bg-white"
+              />
+              <p className="mt-2 max-w-md text-xs md:text-sm leading-relaxed text-primary-foreground/75">
+                La certification qualité a été délivrée au titre de la catégorie d'action suivante : actions de formation.
+              </p>
+            </div>
           </div>
 
           {/* Navigation */}
@@ -67,7 +78,7 @@ const Footer = () => {
             <ul className="space-y-1 text-[15px]">
               <li className="flex items-center space-x-2.5">
                 <MapPin className="h-4 w-4 text-accent shrink-0" />
-                <span className="text-primary-foreground/75">Toulouse · Paris · Casablanca</span>
+                <span className="text-primary-foreground/75">Dans tout l'espace francophone</span>
               </li>
               <li className="flex items-center space-x-2.5">
                 <Mail className="h-4 w-4 text-accent shrink-0" />
@@ -79,12 +90,14 @@ const Footer = () => {
                 </a>
               </li>
               <li className="flex items-center space-x-2.5">
-                <Phone className="h-4 w-4 text-accent shrink-0" />
+                <Linkedin className="h-4 w-4 text-accent shrink-0" />
                 <a
-                  href="tel:+33617358167"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors"
+                  href="https://www.linkedin.com/company/marenostrumtech"
                 >
-                  +33 6 17 35 81 67
+                  Mare Nostrum
                 </a>
               </li>
               <li className="flex items-center space-x-2.5">
@@ -95,18 +108,7 @@ const Footer = () => {
                   className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors"
                   href="https://www.linkedin.com/company/mare-nostrum-education"
                 >
-                  LinkedIn Éducation
-                </a>
-              </li>
-              <li className="flex items-center space-x-2.5">
-                <Linkedin className="h-4 w-4 text-accent shrink-0" />
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors"
-                  href="https://www.linkedin.com/company/marenostrumtech"
-                >
-                  LinkedIn Croissance
+                  Centre de formation
                 </a>
               </li>
             </ul>
