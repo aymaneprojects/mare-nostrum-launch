@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const MentionsLegales = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-dvh bg-background">
       <SEOHead
         title="Mentions légales - Mare Nostrum"
         description="Mentions légales de Mare Nostrum - SAS au capital de 10 000 € - RCS Toulouse B 948 134 002"

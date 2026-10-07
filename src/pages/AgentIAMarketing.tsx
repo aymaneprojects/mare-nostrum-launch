@@ -18,7 +18,7 @@ const AgentIAMarketing = () => {
   const brochureButton = <Button asChild size="lg" variant="secondary"><a href="/contact">Demander de recevoir la fiche formation détaillée<Download className="ml-2 h-5 w-5" /></a></Button>;
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-dvh flex flex-col bg-background">
       <EnhancedSEOHead
         title="Concevoir son agent IA marketing | Mare Nostrum"
         description="Formation de 44 heures à distance pour concevoir, construire et déployer un agent IA marketing appliqué à son propre cas."

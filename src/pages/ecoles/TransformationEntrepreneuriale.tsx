@@ -50,7 +50,7 @@ const TransformationEntrepreneuriale = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
         title="Programmes d'Entrepreneuriat pour Écoles | Alternative Agile à Pépite - Mare Nostrum"
         description="Intégrez l'entrepreneuriat dans votre établissement avec des programmes sur-mesure. Alternative agile aux dispositifs traditionnels. Diagnostic gratuit en 30 min."

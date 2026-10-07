@@ -182,7 +182,7 @@ const Diagnostic = () => {
   const q = step >= 0 && step < QUESTIONS.length ? QUESTIONS[step] : null;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-dvh bg-background">
       <EnhancedSEOHead
         title="Diagnostic projet gratuit — Club Mare Nostrum"
         description="8 étapes simples pour faire le point sur votre projet en 3 minutes. À la fin, votre rapport personnalisé et l'offre Club faite pour vous."

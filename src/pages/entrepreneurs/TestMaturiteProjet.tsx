@@ -170,7 +170,7 @@ const TestMaturiteProjet = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
         title="Test Maturité Projet Entrepreneurial | Évaluation Gratuite 5 min - Mare Nostrum"
         description="Évaluez la maturité de votre projet entrepreneurial en 5 minutes. Test gratuit pour découvrir le programme d'accompagnement adapté à votre situation."

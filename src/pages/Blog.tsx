@@ -71,7 +71,7 @@ const Blog = () => {
   const categories = Array.from(new Set(articles.map((a: BlogArticle) => a.category)));
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
         title="Blog Entrepreneuriat Etudiant & Impact - Mare Nostrum | Conseils Toulouse Afrique"
         description="Blog Mare Nostrum : guides pratiques entrepreneuriat etudiant, creation entreprise, financement, business plan, pitch. Ressources gratuites pour entrepreneurs a impact Toulouse et Afrique francophone."

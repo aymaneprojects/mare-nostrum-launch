@@ -72,7 +72,7 @@ const OffreIA = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
         title="IA dans ton Projet | Intelligence Artificielle pour Entrepreneurs - Mare Nostrum"
         description="Intégrez l'intelligence artificielle dans votre projet entrepreneurial. Formation IA, ateliers, automatisations, agents IA et études de marché. Expertise Mare Nostrum à Toulouse, Paris, Casablanca."

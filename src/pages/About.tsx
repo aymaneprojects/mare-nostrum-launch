@@ -37,7 +37,7 @@ import neoEntrepreneurEliteImg from "@/assets/neo-entrepreneur-elite.png";
 import francophonieScientiqueImg from "@/assets/francophonie-scientifique.png";
 import DarkSection from "@/components/DarkSection";
 const About = () => {
-  return <div className="min-h-screen flex flex-col">
+  return <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead 
         title="A propos Mare Nostrum - Expert Entrepreneuriat Toulouse & Afrique | Niteo" 
         description="Mare Nostrum, societe a mission fondee en 2023 a Toulouse. Createurs du programme Niteo. 24 entreprises, 17+ projets etudiants accompagnes. 135+ experts, 2000 ans experience. Entrepreneuriat Toulouse, Afrique, francophonie." 

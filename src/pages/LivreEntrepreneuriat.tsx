@@ -129,7 +129,7 @@ const LivreEntrepreneuriat = () => {
       setIsSubmitting(false);
     }
   };
-  return <div className="min-h-screen flex flex-col">
+  return <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead 
         title="Livre Blanc Pedagogie Entrepreneuriale 2025 - Mare Nostrum Toulouse" 
         description="Telechargez le Livre Blanc Mare Nostrum sur la Pedagogie Entrepreneuriale 2025. Meilleures pratiques pour integrer l'entrepreneuriat etudiant dans votre ecole ou universite. Guide gratuit." 

@@ -6,7 +6,7 @@ import PageHero from "@/components/PageHero";
 import impactScoreImage from "@/assets/impact-score-79.png";
 import entreprisesEngagentImage from "@/assets/entreprises-engagent.png";
 const EngagementRSE = () => {
-  return <div className="min-h-screen flex flex-col">
+  return <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead title="Engagement RSE Mare Nostrum - Societe a Mission Toulouse | Impact Score 79/100" description="Mare Nostrum, societe a mission a Toulouse depuis 2025. Impact Score 79/100, top 5% Occitanie. Engagements RSE : environnement, social, gouvernance. Entrepreneuriat responsable et durable." keywords="RSE toulouse, societe a mission toulouse, impact social, developpement durable toulouse, entrepreneuriat responsable, gouvernance, mare nostrum RSE, entreprise a mission occitanie, impact score"  />
       <Header />
 

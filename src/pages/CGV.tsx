@@ -13,7 +13,7 @@ const CGV = () => {
         description="Conditions générales de vente des prestations de services de la SAS Mare Nostrum. Version en vigueur à compter du 01/07/2026."
         noindex={true}
       />
-      <div className="min-h-screen bg-background">
+      <div className="min-h-dvh bg-background">
         <Header />
 
         <main className="container mx-auto px-4 py-24 max-w-4xl">

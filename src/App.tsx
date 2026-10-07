@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-route
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import { usePrefetchBlog } from "@/hooks/usePrefetchBlog";
+import { useSpotlight } from "@/hooks/useSpotlight";
 import { useAnalyticsPageView } from "@/hooks/useAnalyticsPageView";
 import ChatBot from "@/components/ChatBot";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
@@ -77,6 +78,7 @@ const AppContent = () => {
 
   usePrefetchBlog(!isLive);
   useAnalyticsPageView();
+  useSpotlight();
   
   // Pour /healthz, afficher uniquement le JSON sans UI globale
   if (isHealthz) {

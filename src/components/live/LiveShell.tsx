@@ -18,7 +18,7 @@ interface LiveShellProps {
  */
 const LiveShell = ({ title, aside, children, className }: LiveShellProps) => (
   <div
-    className="relative min-h-screen overflow-hidden text-primary-foreground"
+    className="relative min-h-dvh overflow-hidden text-primary-foreground"
     style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}
   >
     <div
@@ -30,7 +30,7 @@ const LiveShell = ({ title, aside, children, className }: LiveShellProps) => (
       style={{ background: "radial-gradient(ellipse at 22% 18%, hsl(181 67% 54% / 0.18) 0%, transparent 52%), radial-gradient(ellipse at 80% 85%, hsl(228 56% 8% / 0.65) 0%, transparent 55%)" }}
     />
 
-    <div className="relative z-10 flex min-h-screen flex-col">
+    <div className="relative z-10 flex min-h-dvh flex-col">
       <header className="flex items-center justify-between gap-4 px-4 py-4 md:px-8 md:py-6">
         <div className="flex min-w-0 items-center gap-3 md:gap-4">
           <img src={logo} alt="Mare Nostrum" className="h-8 w-auto shrink-0 brightness-0 invert opacity-90 md:h-10" />

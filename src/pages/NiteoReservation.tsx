@@ -76,7 +76,7 @@ export default function NiteoReservation() {
   const checkoutOptions   = useMemo(() => ({ fetchClientSecret }), [fetchClientSecret]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <NiteoHeader />
 
       {/* Hero 2 colonnes */}

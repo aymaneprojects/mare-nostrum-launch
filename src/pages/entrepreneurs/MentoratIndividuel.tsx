@@ -68,7 +68,7 @@ const MentoratIndividuel = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
         title="Mentorat Entrepreneur Individuel | Séances 1-to-1 Expert - Mare Nostrum"
         description="Bénéficiez de séances de mentorat individuelles avec des entrepreneurs expérimentés. Accompagnement personnalisé pour débloquer vos challenges et accélérer votre projet."

@@ -43,7 +43,7 @@ const BienvenuClub = () => {
         description="Félicitations, tu fais partie du Club Mare Nostrum."
         noindex={true}
       />
-      <div className="min-h-screen flex flex-col bg-background">
+      <div className="min-h-dvh flex flex-col bg-background">
         <Header />
 
         <main className="flex-1 flex flex-col items-center px-4 py-16 md:py-24">

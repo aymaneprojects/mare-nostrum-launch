@@ -153,7 +153,7 @@ const Expertise = () => {
       answer: "La question est légitime, et nous préférons y répondre franchement. Mare Nostrum est aussi organisme de formation et opérateur de programmes. Le diagnostic est livré et facturé pour lui-même : vous n'êtes jamais tenu de nous confier la suite. Lorsque l'une de nos offres figure parmi les options recommandées, nous le signalons et présentons des alternatives."
     }
   ];
-  return <div className="min-h-screen flex flex-col">
+  return <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead title="Conseil auprès des établissements d'enseignement supérieur francophone | Au service de la coopération internationale" description="Concevoir, auditer et déployer vos projets de transformation avec des experts francophones qui ont exercé ces métiers, en Europe et en Afrique. Echange découverte gratuit." keywords="conseil université, ingénierie de financement, accompagnement d'établissement d'enseignement supérieur, innovation pédagogique université, stratégie d'établissement, appel à projets enseignement supérieur francophone, entrepreneuriat étudiant, conseil universités, campus entrepreneurial, renforcement des capacités des universités, agence universitaire de la francophonie" structuredData={expertiseSchema} faqSchema={expertiseFaqs} disableAutoEnhancement />
       <Header />
 

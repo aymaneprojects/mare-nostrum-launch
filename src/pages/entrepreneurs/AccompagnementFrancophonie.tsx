@@ -51,7 +51,7 @@ const AccompagnementFrancophonie = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
         title="Incubateur Entrepreneurs Toulouse & Afrique | Accompagnement Francophonie - Mare Nostrum"
         description="Incubateur d'entrepreneurs a impact a Toulouse et en Afrique francophone. Programmes Tremplin, Ascension, Elite. Accompagnement personnalise, mentorat, financement. Mare Nostrum, expert entrepreneuriat Toulouse et Afrique."

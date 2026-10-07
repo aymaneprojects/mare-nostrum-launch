@@ -29,7 +29,7 @@ const ImpactMesureStartup = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
         title="Mesurer l'Impact Social de sa Startup : Guide Complet - Mare Nostrum"
         description="Comment mesurer l'impact social de votre startup ? Découvrez les frameworks, KPIs et méthodologies pour quantifier votre contribution au bien commun."

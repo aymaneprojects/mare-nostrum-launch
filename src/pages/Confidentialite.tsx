@@ -13,7 +13,7 @@ const Confidentialite = () => {
         description="Politique de confidentialité et protection des données personnelles Mare Nostrum"
         noindex={true}
       />
-      <div className="min-h-screen bg-background">
+      <div className="min-h-dvh bg-background">
         <Header />
         
         <main className="container mx-auto px-4 py-24 max-w-4xl">

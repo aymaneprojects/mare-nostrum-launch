@@ -31,7 +31,7 @@ const Equipe = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-dvh flex flex-col bg-background">
       <EnhancedSEOHead
         title="L'équipe Mare Nostrum — Contacts et fiches"
         description="Les visages de Mare Nostrum à Toulouse, Paris et Casablanca. Ouvrez une fiche, ajoutez le contact à votre téléphone en un geste."

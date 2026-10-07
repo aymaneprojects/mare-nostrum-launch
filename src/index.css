@@ -178,6 +178,14 @@ All colors MUST be HSL.
     h2 { line-height: 1.2; }
   }
 
+  /* Coupes de lignes (taste-skill) : titres équilibrés, pas de mot seul en fin de paragraphe.
+     Pure typographie CSS, aucun texte modifié. */
+  h1, h2, h3, h4 { text-wrap: balance; }
+  p, li, blockquote, figcaption { text-wrap: pretty; }
+
+  /* Sélection de texte aux couleurs de la marque */
+  ::selection { background: hsl(var(--mn-turquoise) / 0.28); color: hsl(var(--mn-ink)); }
+
   /* Accessibility — visible focus rings (UI/UX checklist) */
   :focus-visible {
     @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-background;
@@ -489,6 +497,10 @@ All colors MUST be HSL.
     .card-interactive:hover {
       border-color: hsl(var(--mn-turquoise) / 0.5);
       box-shadow: var(--shadow-soft);
+      /* Halo qui suit le curseur (taste-skill, « spotlight »). --mx / --my sont posées
+         par src/hooks/useSpotlight.ts ; sans elles, aucun halo. Fond uniquement. */
+      background-image: radial-gradient(260px circle at var(--mx, 50%) var(--my, 0%),
+        hsl(var(--mn-turquoise) / 0.07), transparent 70%);
     }
   }
 

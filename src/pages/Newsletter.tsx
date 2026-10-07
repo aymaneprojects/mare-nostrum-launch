@@ -38,7 +38,7 @@ const Newsletter = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4 py-8">
+    <div className="min-h-dvh bg-background flex flex-col items-center justify-center px-4 py-8">
 
       <div className="mn-card w-full max-w-[520px] overflow-hidden shadow-[var(--shadow-medium)]">
 

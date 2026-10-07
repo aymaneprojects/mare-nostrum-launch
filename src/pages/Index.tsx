@@ -208,7 +208,7 @@ const Index = () => {
     }
   ];
 
-  return <div className="min-h-screen flex flex-col">
+  return <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead 
         title="Mare Nostrum | Entrepreneuriat Toulouse, Afrique & Etudiant | Niteo" 
         description="Mare Nostrum, cabinet expert en entrepreneuriat a Toulouse et en Afrique francophone. Programme Niteo pour etudiants, accompagnement startups a impact, education entrepreneuriale. 135+ experts, 12 pays, +95% satisfaction." 

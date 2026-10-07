@@ -36,7 +36,7 @@ const LiveConducteur = () => {
 
   if (denied) {
     return (
-      <div className="min-h-screen bg-background px-4 py-24 text-center">
+      <div className="min-h-dvh bg-background px-4 py-24 text-center">
         {seo}
         <h1 className="font-editorial text-3xl font-semibold italic text-foreground">Conducteur réservé à l'animateur</h1>
         <p className="mt-3 text-muted-foreground">Ouvrez d'abord la régie avec votre code animateur, puis revenez ici.</p>
@@ -46,11 +46,11 @@ const LiveConducteur = () => {
   }
 
   if (status === "loading" || !notes || !event) {
-    return <div className="flex min-h-screen items-center justify-center bg-background">{seo}<Loader2 className="h-8 w-8 animate-spin text-muted-foreground" /></div>;
+    return <div className="flex min-h-dvh items-center justify-center bg-background">{seo}<Loader2 className="h-8 w-8 animate-spin text-muted-foreground" /></div>;
   }
 
   return (
-    <div className="min-h-screen bg-background print:bg-card">
+    <div className="min-h-dvh bg-background print:bg-card">
       {seo}
       <div className="mx-auto max-w-3xl px-5 py-8 md:py-12 print:max-w-none print:px-0 print:py-0">
         <header className="mb-10 flex items-start justify-between gap-6 border-b border-border pb-6">

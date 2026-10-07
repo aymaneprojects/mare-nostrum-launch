@@ -97,7 +97,7 @@ function LogoGrid({ items }: { items: typeof PARTNERS }) {
 }
 
 const Partenaires = () => (
-  <div className="min-h-screen flex flex-col bg-background">
+  <div className="min-h-dvh flex flex-col bg-background">
     <EnhancedSEOHead
       title="Nos Partenaires — Mare Nostrum"
       description="Découvrez l'écosystème de partenaires institutionnels, financiers et académiques qui accompagnent Mare Nostrum dans sa mission d'entrepreneuriat francophone."

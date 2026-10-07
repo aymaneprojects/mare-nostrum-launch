@@ -139,7 +139,7 @@ const Contact = () => {
       [field]: value
     }));
   };
-  return <div className="min-h-screen flex flex-col">
+  return <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead 
         title="Contact Mare Nostrum - Cabinet Conseil Entrepreneuriat | Toulouse Paris Casablanca" 
         description="Contactez Mare Nostrum pour votre projet entrepreneurial. Bureaux Toulouse, Paris, Casablanca. Rendez-vous gratuit. Réponse sous 48h maximum."

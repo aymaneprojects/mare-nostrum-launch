@@ -52,7 +52,7 @@ const LiveHome = () => {
   const urls = created ? liveUrls(created.event.public_code) : null;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-dvh bg-background">
       <EnhancedSEOHead title="Live conférence — Mare Nostrum" description="Créer un événement interactif Mare Nostrum." noindex />
       <div className="mx-auto max-w-3xl px-4 py-6 md:py-10">
         <img src={logo} alt="Mare Nostrum" className="mb-10 h-9 w-auto" />

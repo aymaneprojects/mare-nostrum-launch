@@ -360,7 +360,7 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
   const screenLabel = pinned.length === 2 ? "Deux activités côte à côte" : pinned.length === 1 ? "Affichage choisi" : screenItems.length ? "Automatique" : "Accueil (QR code)";
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-dvh bg-background">
       {seo}
       {/* Barre de régie */}
       <header className="sticky top-0 z-30 border-b border-border bg-card">
@@ -818,7 +818,7 @@ const ItemDetail = ({ item, note, busy, onEdit, onSaveNote, onHide }: ItemDetail
 };
 
 const Page = ({ children }: { children: React.ReactNode }) => (
-  <div className="min-h-screen bg-background px-4">
+  <div className="min-h-dvh bg-background px-4">
     <div className="mx-auto max-w-7xl py-4"><img src={logo} alt="Mare Nostrum" className="h-8 w-auto" /></div>
     {children}
   </div>

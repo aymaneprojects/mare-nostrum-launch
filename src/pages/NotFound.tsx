@@ -10,7 +10,7 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-dvh items-center justify-center bg-background px-4">
       <SEOHead 
         title="Page non trouvée - Mare Nostrum"
         description="La page que vous recherchez n'existe pas"

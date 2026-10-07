@@ -18,7 +18,7 @@ const InitiationIA = () => {
   const brochureButton = <Button asChild size="lg" variant="secondary"><a href="/contact">Demander de recevoir la fiche formation détaillée<Download className="ml-2 h-5 w-5" /></a></Button>;
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-dvh flex flex-col bg-background">
       <EnhancedSEOHead
         title="Initiation à l'intelligence artificielle | Mare Nostrum"
         description="Formation de 7 heures à distance pour comprendre, utiliser et apprivoiser l'intelligence artificielle générative de façon utile et responsable."

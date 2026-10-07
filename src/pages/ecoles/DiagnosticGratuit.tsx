@@ -102,7 +102,7 @@ const DiagnosticGratuit = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
         title="Diagnostic Entrepreneuriat École Gratuit | Évaluation 30 min - Mare Nostrum"
         description="Demandez votre diagnostic gratuit de 30 minutes. Identifiez les meilleures opportunités pour intégrer l'entrepreneuriat dans votre établissement. Sans engagement."

@@ -170,7 +170,7 @@ const NiteoToulouse = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
         title="Niteo Toulouse 2026 - Programme Entrepreneuriat Etudiant | Mare Nostrum"
         description="Niteo Toulouse 2026 : programme d'acceleration entrepreneuriale de 50h pour etudiants. E-learning, ateliers, coaching individuel, Demo Day devant 30 decideurs. +10 000 EUR de dotations. Par Mare Nostrum, expert entrepreneuriat Toulouse."

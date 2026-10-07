@@ -166,7 +166,7 @@ const Education = () => {
     question: "Le centre de formation Mare Nostrum est-il déclaré en France ?",
     answer: "Oui, Mare Nostrum est un organisme de formation déclaré en France et enregistré sous le numéro 76311216831 : cet enregistrement ne vaut pas agrément de l'Etat."
   }];
-  return <div className="min-h-screen flex flex-col">
+  return <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead title="Du projet à l'entreprise : le groupe de services pour les parcours entrepreneuriaux" description="Organisme de formation certifié Qualiopi à Toulouse. Formations à l'entrepreneuriat, au pilotage d'entreprise et à l'IA. Financements formation mobilisables." keywords="education entrepreneuriale toulouse, entrepreneuriat etudiant, entrepreneuriat etudiant toulouse, formation entrepreneuriat etudiant, programmes ecoles entrepreneuriat, ateliers entrepreneuriat toulouse, hackathon entrepreneuriat etudiant, enseignement superieur toulouse, Niteo, programme Niteo, fresque entrepreneuriat, entrepreneuriat afrique, formation entrepreneur etudiant, entrepreneuriat universite, entrepreneuriat ecole de commerce" structuredData={educationSchema} faqSchema={educationFaqs}  />
       <Header />
 

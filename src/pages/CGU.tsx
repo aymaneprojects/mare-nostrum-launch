@@ -13,7 +13,7 @@ const CGU = () => {
         description="Conditions générales d'utilisation des services Mare Nostrum"
         noindex={true}
       />
-      <div className="min-h-screen bg-background">
+      <div className="min-h-dvh bg-background">
         <Header />
         
         <main className="container mx-auto px-4 py-24 max-w-4xl">

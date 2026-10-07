@@ -29,7 +29,7 @@ const InnovationPedagogiqueEntrepreneuriat = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
         title="Innovation Pédagogique et Entrepreneuriat : Nouvelles Approches - Mare Nostrum"
         description="Découvrez les méthodes pédagogiques innovantes qui révolutionnent l'enseignement de l'entrepreneuriat : design thinking, learning by doing, approches expérientielles."

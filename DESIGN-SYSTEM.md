@@ -441,6 +441,8 @@ Tailles en usage : 52 (cartes de valeurs), 60 (cartes d'offre). Ne pas descendre
 <div className="mn-card p-6">…</div>
 ```
 
+**Finitions typographiques et de surface (taste-skill, 7 octobre 2026)** : `text-wrap: balance` sur les titres et `pretty` sur les paragraphes (global, `src/index.css`) ; sélection de texte turquoise ; halo turquoise qui suit le curseur sur `card-interactive` (souris seulement, `src/hooks/useSpotlight.ts`) ; `min-h-dvh` à la place de `min-h-screen` (barre d'adresse mobile).
+
 ### 5.5 Chips et badges
 
 ```tsx

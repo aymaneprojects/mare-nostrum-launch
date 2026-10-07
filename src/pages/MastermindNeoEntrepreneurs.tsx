@@ -22,7 +22,7 @@ const MastermindNeoEntrepreneurs = () => {
   );
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-dvh flex flex-col bg-background">
       <EnhancedSEOHead
         title="Mastermind néo-entrepreneurs à Toulouse | Mare Nostrum"
         description="Formation de 56 h sur 12 mois à Toulouse pour créateurs d'entreprise : codéveloppement, mentorat individuel et entrepreneur invité à chaque session."

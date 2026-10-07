@@ -74,7 +74,7 @@ const BlogArticle = () => {
   // État de chargement
   if (isLoading) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-dvh flex flex-col">
         <EnhancedSEOHead
           title="Chargement... - Blog Mare Nostrum"
           description="Chargement de l'article"
@@ -93,7 +93,7 @@ const BlogArticle = () => {
   // Si l'article n'existe pas ou erreur
   if (error || !article) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-dvh flex flex-col">
         <EnhancedSEOHead
           title="Article non trouvé - Blog Mare Nostrum"
           description="Cet article n'existe pas sur le blog Mare Nostrum"
@@ -192,7 +192,7 @@ const BlogArticle = () => {
   ].join(", ");
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
         disableAutoEnhancement={true}
         title={`${article.title} | Blog Entrepreneuriat Mare Nostrum`}

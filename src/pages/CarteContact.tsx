@@ -66,7 +66,7 @@ const CarteContact = () => {
   ].filter(Boolean) as { label: string; Icon: typeof Phone; href: string; external?: boolean }[];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-dvh flex flex-col bg-background">
       <EnhancedSEOHead
         title={`${name} — ${member.titre} | Mare Nostrum`}
         description={`Fiche contact de ${name}, ${member.titre} chez Mare Nostrum à ${member.bureau}. Ajoutez ses coordonnées à vos contacts en un geste, sur iPhone comme sur Android.`}

@@ -397,7 +397,7 @@ const Croissance = () => {
   }, [location.search]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
         title="Club Entrepreneur Toulouse & Afrique | Accès gratuit, offres dès 30€/mois - Mare Nostrum"
         description="Rejoignez le Club Entrepreneur Mare Nostrum à Toulouse. 3 offres : Freemium gratuit, Communauté 30€, Groupe 90€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans. Mentorat, réseau, IA. Toulouse, Paris, Casablanca, Afrique francophone."

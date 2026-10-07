@@ -200,7 +200,7 @@ export default function NiteoEvaluation() {
     setComments((p) => ({ ...p, [key]: { ...(p[key] ?? { positif: "", amelio: "" }), [field]: val } }));
 
   return (
-    <div className="min-h-screen bg-background" style={{ paddingBottom: "env(safe-area-inset-bottom, 16px)" }}>
+    <div className="min-h-dvh bg-background" style={{ paddingBottom: "env(safe-area-inset-bottom, 16px)" }}>
 
       {/* ── Navbar style NiteoHeader */}
       {/* ── Navbar style NiteoHeader */}
