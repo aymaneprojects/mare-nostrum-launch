@@ -29,5 +29,5 @@ printf 'RELAY_URL=https://oivxznyzijtoylwfigyq.supabase.co/functions/v1/chatbot-
   "$TOKEN" "$APIKEY" | ssh "$SERVER" 'umask 077; cat > /etc/ines-relay.env; chmod 600 /etc/ines-relay.env'
 
 echo "==> Démarrage"
-ssh "$SERVER" 'systemctl daemon-reload && systemctl enable --now ines-relay && sleep 3 && systemctl is-active ines-relay && journalctl -u ines-relay -n 5 --no-pager | cut -c1-160'
+ssh "$SERVER" 'systemctl daemon-reload && systemctl enable ines-relay && systemctl restart ines-relay && sleep 3 && systemctl is-active ines-relay && journalctl -u ines-relay -n 5 --no-pager | cut -c1-160'
 echo "Terminé. Retour arrière : ssh $SERVER 'systemctl disable --now ines-relay'"

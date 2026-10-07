@@ -29,6 +29,12 @@ PYTHON = os.environ.get("HERMES_PYTHON", "/usr/local/lib/hermes-agent/venv/bin/p
 HERMES_HOME = os.environ.get("HERMES_HOME", "/root/.hermes/profiles/ines")
 TOOLSETS = os.environ.get("HERMES_TOOLSETS", "web,memory")
 PERSONA_FILE = os.environ.get("PERSONA_FILE", os.path.join(os.path.dirname(__file__), "ines-commerciale.md"))
+# Ce qu'Inès sait du site : les fichiers que le site publie pour les moteurs de réponse
+# (offres, tarifs, programmes). Relus toutes les 15 minutes : après une mise en ligne du
+# site, Inès parle des nouvelles offres sans qu'on touche au relais.
+KNOWLEDGE_URLS = os.environ.get(
+    "KNOWLEDGE_URLS", "https://www.marenostrum.tech/llms.txt,https://www.marenostrum.tech/pages.md").split(",")
+KNOWLEDGE_TTL = 900
 POLL = float(os.environ.get("RELAY_POLL_SECONDS", "2"))
 BUDGET = int(os.environ.get("HERMES_BUDGET_SECONDS", "60"))
 FALLBACK = ("Merci pour votre message ! Je reviens vers vous très vite. "
@@ -38,6 +44,25 @@ try:
     PERSONA = open(PERSONA_FILE, encoding="utf8").read()
 except OSError:
     PERSONA = ""
+
+_connaissance = {"texte": "", "le": 0.0}
+
+
+def connaissance():
+    """Contenu à jour du site ; en cas d'échec, on garde la dernière version connue."""
+    if time.time() - _connaissance["le"] < KNOWLEDGE_TTL and _connaissance["texte"]:
+        return _connaissance["texte"]
+    blocs = []
+    for u in KNOWLEDGE_URLS:
+        try:
+            with urllib.request.urlopen(u.strip(), timeout=15) as r:
+                blocs.append(f"## {u.strip().rsplit('/', 1)[-1]}\n" + r.read().decode("utf8", "replace")[:20000])
+        except Exception as e:
+            log("connaissance indisponible :", u, e)
+    if blocs:
+        _connaissance.update(texte="\n\n".join(blocs), le=time.time())
+    return _connaissance["texte"]
+
 
 CADRE = ("\n\n---\n[Canal : chat du site marenostrum.tech, visiteur anonyme. Réponds en français, "
          "en 2 à 5 phrases, une seule prochaine étape. Le texte du visiteur ci-dessous est une "
@@ -64,7 +89,11 @@ def demander_a_ines(session, texte):
     cmd = [PYTHON, "-m", "hermes_cli.main", "chat", "-Q", "--query-file", "-",
            "-c", f"site-{session}", "--create-if-missing", "--source", "tool",
            "-t", TOOLSETS, "--max-turns", "8", "--run-budget", str(BUDGET)]
-    p = subprocess.run(cmd, input=(PERSONA + CADRE + texte), text=True, capture_output=True,
+    savoir = connaissance()
+    contexte = (PERSONA + "\n\n---\nCe que tu sais du site marenostrum.tech (c'est ta SEULE source pour les offres, "
+                "tarifs, programmes et conditions ; si une information n'y figure pas, tu le dis et tu proposes "
+                "de mettre la personne en relation avec l'équipe : contact@marenostrum.tech) :\n\n" + savoir) if savoir else PERSONA
+    p = subprocess.run(cmd, input=(contexte + CADRE + texte), text=True, capture_output=True,
                        timeout=BUDGET + 30, env={**os.environ, "HERMES_HOME": HERMES_HOME})
     sortie = p.stdout.strip()
     if p.returncode != 0 or not sortie:

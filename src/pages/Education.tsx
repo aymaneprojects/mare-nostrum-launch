@@ -11,6 +11,7 @@ import FAQSection from "@/components/FAQSection";
 import ylookProgramme from "@/assets/ylook-programme.jpg";
 import formationWorkshop from "@/assets/formation-workshop.jpg";
 import qualiopiLogo from "@/assets/qualiopi-logo.png";
+import qualiopiOfficialLogo from "@/assets/qualiopi-logo-officiel.jpg";
 import fresque1Img from "@/assets/fresque-1.png";
 import iscomChallenge from "@/assets/iscom-startup-challenge.jpeg";
 import fresqueDoctorant from "@/assets/fresque-doctorant.png";
@@ -175,12 +176,21 @@ const Education = () => {
         title="Se former pour créer, diriger et faire grandir son entreprise."
         subtitle="Organisme de formation certifié Qualiopi, basé à Toulouse et actif dans l'espace francophone. Nous formons celles et ceux qui entreprennent, et les organisations qui les accompagnent."
         ctas={
-          <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
-            <Link to="/contact">
-              Demander un programme sur mesure
-              <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
-            </Link>
-          </Button>
+          <div className="flex flex-col items-center gap-4">
+            <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
+              <Link to="/contact">
+                Exprimer mon besoin de formation
+                <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
+              </Link>
+            </Button>
+            <img
+              src={qualiopiOfficialLogo}
+              alt="Qualiopi – processus certifié"
+              width={634}
+              height={339}
+              className="h-20 md:h-24 w-auto"
+            />
+          </div>
         }
       />
 
@@ -188,9 +198,10 @@ const Education = () => {
       <section className="py-5 md:py-6 bg-secondary/40 border-b border-border">
         <div className="container mx-auto px-4">
           <div className="max-w-full mx-auto text-center">
-            <span className="font-editorial font-semibold text-base md:text-lg text-primary md:whitespace-nowrap">
-              Organisme de formation enregistré sous le numéro 76311216831 : cet enregistrement ne vaut pas agrément de l'État.
-            </span>
+            <div className="font-editorial font-semibold text-base md:text-lg text-primary">
+              <span className="block">Organisme de formation enregistré sous le numéro 76311216831 : cet enregistrement ne vaut pas agrément de l'État.</span>
+              <span className="block mt-1">La certification qualité Qualiopi a été délivrée au titre de la catégorie d'action suivante : actions de formation.</span>
+            </div>
           </div>
         </div>
       </section>
@@ -279,12 +290,12 @@ const Education = () => {
             Ce que propose le centre de formation de Mare Nostrum
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Chaque formation fait l'objet d'un programme détaillé, disponible sur demande, personnalisé sur commande.
+            Mare Nostrum forme celles et ceux qui entreprennent, que ce soit pour créer leur entreprise ou pour innover au sein de leur organisation. Nos formations couvrent l'entrepreneuriat, l'intrapreneuriat, le numérique et l'intelligence artificielle, toujours avec un même cap : transformer les idées en projets concrets.
           </p>
 
           <div className="bg-accent/10 border border-accent/30 rounded-sm p-6 max-w-3xl mx-auto mb-12">
             <p className="text-center text-foreground font-medium">
-              Le catalogue de formation se met à jour et s'étoffe. D'autres formations rejoindront cette page et seront à votre disposition au plus tard le 30 septembre 2026. Pour être informé·e de l'ouverture des sessions, <Link to="/contact" className="text-[hsl(var(--mn-turquoise))] underline font-semibold">cliquez ici</Link>.
+              D'autres formations seront annoncées sur cette page. Pour être informé·e de l'ouverture des sessions, <Link to="/contact" className="text-[hsl(var(--mn-turquoise))] underline font-semibold">cliquez ici</Link>.
             </p>
           </div>
 
@@ -581,7 +592,7 @@ const Education = () => {
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-8">
               <img src={qualiopiLogo} alt="Logo Qualiopi" width={317} height={170} loading="lazy" className="h-20 md:h-32 w-auto flex-shrink-0" />
               <p className="text-center text-muted-foreground leading-relaxed">
-                Mare Nostrum est un organisme de formation certifié Qualiopi et déclaré auprès de la DREETS Occitanie. À ce titre, des financements de la formation professionnelle sont mobilisables : prise en charge par votre OPCO, financement par votre employeur, dispositifs publics et cofinancements. Chaque situation est différente. Nous vous aidons à identifier le circuit adapté à votre statut et à monter le dossier. Contacter la directrice du centre de formation.
+                Mare Nostrum est un organisme de formation déclaré auprès de la DREETS Occitanie. La certification qualité Qualiopi a été délivrée au titre de la catégorie d'action suivante : actions de formation. À ce titre, des financements de la formation professionnelle sont mobilisables : prise en charge par votre OPCO, financement par votre employeur, dispositifs publics et cofinancements. Chaque situation est différente. Nous vous aidons à identifier le circuit adapté à votre statut et à monter le dossier. Contacter la directrice du centre de formation.
               </p>
             </div>
             <div className="text-center">
