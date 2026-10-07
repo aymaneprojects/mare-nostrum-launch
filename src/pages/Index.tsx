@@ -253,10 +253,6 @@ const Index = () => {
             </div>
           </div>
         </div>
-        {/* Indication de défilement, décorative */}
-        <div aria-hidden="true" className="hidden md:block absolute bottom-12 left-1/2 -translate-x-1/2 z-10 h-12 w-px overflow-hidden bg-primary-foreground/15">
-          <span className="mn-scroll-cue block h-full w-full bg-turquoise"></span>
-        </div>
       </section>
 
       {/* Trust Strip */}

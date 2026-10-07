@@ -698,12 +698,6 @@ All colors MUST be HSL.
     mix-blend-mode: overlay;
   }
 
-  @keyframes mn-scroll-cue {
-    0%   { transform: translateY(-100%); }
-    60%  { transform: translateY(0); }
-    100% { transform: translateY(100%); }
-  }
-  .mn-scroll-cue { animation: mn-scroll-cue 2.6s ease-in-out infinite; }
 
   /* ── Cartes de pôles : zoom du fond au survol, texte immobile ────── */
   .mn-pole-bg { transition: transform 0.4s var(--ease-mn); }
@@ -737,7 +731,7 @@ All colors MUST be HSL.
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .mn-hero-halo, .mn-scroll-cue, .mn-marquee-track { animation: none !important; }
+    .mn-hero-halo, .mn-marquee-track { animation: none !important; }
     .mn-pole-bg, .mn-pole-arrow { transition: none; }
     .mn-btn-lift:hover { transform: none; }
     .mn-btn:hover svg { transform: none !important; }
