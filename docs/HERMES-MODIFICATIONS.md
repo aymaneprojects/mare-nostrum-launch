@@ -42,6 +42,8 @@ Décidé le 7 octobre 2026 : **les propositions de Hermes se fusionnent toutes s
 
 **Interdiction absolue de déployer seul** (inscrite le 7 octobre 2026 dans la mémoire de Christophe et dans ses deux compétences de publication) : pas de `rsync`, de `scp`, de copie vers les dossiers web, ni de `deploy-vps.sh`. Son travail s'arrête à `proposer.sh`. S'il reçoit une demande de mise en ligne, il refuse et indique que le propriétaire publie.
 
+**Verrou « dernière version »** (7 octobre 2026) : `proposer.sh` refuse (code 6) toute proposition si le clone n'est pas à jour avec `origin/main`. Hermes ne peut donc proposer qu'à partir de la dernière version de GitHub ; en cas de refus : `git stash && scripts/hermes/sync.sh && git stash pop`. Testé sur un dépôt factice (clone en retard refusé, clone à jour accepté).
+
 ## Les deux scripts
 
 - `scripts/hermes/sync.sh` : récupère GitHub et avance `main` du clone. **N'écrase jamais rien** : s'arrête (code 2) si le clone contient des modifications, ou (code 3) s'il contient des commits qui ne sont pas sur GitHub.
