@@ -214,7 +214,7 @@ const Education = () => {
             Trois portes d'entrée, une même exigence : des formateurs praticiens et un accompagnement individualisé.
           </h2>
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-            <div className="text-center p-6">
+            <div className="mn-card mn-card-top hover-lift text-center p-8">
               <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Lightbulb className="h-8 w-8 text-primary" />
               </div>
@@ -223,7 +223,7 @@ const Education = () => {
                 Demandeurs d'emploi, salariés, personnes en reconversion : Vous voulez acquérir une compétence qui compte sur le marché du travail, ou préparer un changement de trajectoire. Nos formations courtes vous donnent des acquis immédiatement mobilisables.
               </p>
             </div>
-            <div className="text-center p-6">
+            <div className="mn-card mn-card-top hover-lift text-center p-8">
               <div className="bg-accent/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Users className="h-8 w-8 text-accent" />
               </div>
@@ -232,7 +232,7 @@ const Education = () => {
                 Porteurs de projet, créateurs, dirigeants de TPE : Vous portez un projet ou vous dirigez une entreprise, souvent seul·e face aux décisions. Nos formats vous apportent une méthode, un cadre et un collectif de pairs.
               </p>
             </div>
-            <div className="text-center p-6">
+            <div className="mn-card mn-card-top hover-lift text-center p-8">
               <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Trophy className="h-8 w-8 text-primary" />
               </div>
@@ -641,33 +641,33 @@ const Education = () => {
       </section>
 
       {/* Results Section */}
-      <section className="py-6 md:py-8 bg-background">
+      <DarkSection halo="right">
         <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-turquoise text-center mb-3">Ils nous font confiance</div>
-          <h2 className="font-editorial italic text-center mb-12 text-foreground">
+          <div className="mn-eyebrow-light text-center mb-3">Ils nous font confiance</div>
+          <h2 className="font-editorial italic text-center mb-12 text-primary-foreground">
             Résultats & preuve sociale
           </h2>
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-3 gap-8 text-center">
-              <div>
-                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">95+</div>
-                <div className="text-muted-foreground">projets étudiants</div>
-                <div className="text-sm text-muted-foreground">accompagnés</div>
+              <div className="rounded-[var(--radius)] border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm shadow-glass p-6 md:p-8">
+                <div className="text-4xl md:text-5xl font-bold text-accent mb-2">95+</div>
+                <div className="text-primary-foreground/85">projets étudiants</div>
+                <div className="text-sm text-primary-foreground/65">accompagnés</div>
               </div>
-              <div>
+              <div className="rounded-[var(--radius)] border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm shadow-glass p-6 md:p-8">
                 <div className="text-4xl md:text-5xl font-bold text-accent mb-2">544h</div>
-                <div className="text-muted-foreground">de formation</div>
-                <div className="text-sm text-muted-foreground">dispensées</div>
+                <div className="text-primary-foreground/85">de formation</div>
+                <div className="text-sm text-primary-foreground/65">dispensées</div>
               </div>
-              <div>
-                <div className="text-4xl md:text-5xl font-bold text-primary mb-2">55%</div>
-                <div className="text-muted-foreground">des néo-entrepreneurs</div>
-                <div className="text-sm text-muted-foreground">se rémunèrent dans les 2 ans</div>
+              <div className="rounded-[var(--radius)] border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm shadow-glass p-6 md:p-8">
+                <div className="text-4xl md:text-5xl font-bold text-accent mb-2">55%</div>
+                <div className="text-primary-foreground/85">des néo-entrepreneurs</div>
+                <div className="text-sm text-primary-foreground/65">se rémunèrent dans les 2 ans</div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </DarkSection>
 
       {/* Exemples de nos actions Section */}
       <section className="py-16 md:py-24 bg-secondary/30">

@@ -443,6 +443,10 @@ Tailles en usage : 52 (cartes de valeurs), 60 (cartes d'offre). Ne pas descendre
 
 **Finitions typographiques et de surface (taste-skill, 7 octobre 2026)** : `text-wrap: balance` sur les titres et `pretty` sur les paragraphes (global, `src/index.css`) ; sélection de texte turquoise ; halo turquoise qui suit le curseur sur `card-interactive` (souris seulement, `src/hooks/useSpotlight.ts`) ; `min-h-dvh` à la place de `min-h-screen` (barre d'adresse mobile).
 
+**Filets d'accent** : `mn-card mn-card-top` (turquoise en tête, grilles de domaines ou de publics) et `mn-card mn-card-left` (turquoise à gauche, encadré d'information). Ne pas écrire `border-t-*` sur une `mn-card` : sa bordure les écrase. L'ancien encadré vert `bg-accent/10` est remplacé par `mn-card-left`.
+
+**Chiffres et arguments en bande sombre** : un bloc de chiffres ou d'arguments se place dans `DarkSection`, avec des cartes de verre (`border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm shadow-glass`) et des chiffres `text-accent`. Appliqué le 7 octobre 2026 : Expertise (« Pourquoi choisir »), Éducation (résultats), Club (impact mesuré).
+
 ### 5.5 Chips et badges
 
 ```tsx

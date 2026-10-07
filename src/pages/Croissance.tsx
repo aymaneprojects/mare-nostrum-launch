@@ -7,6 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
+import DarkSection from "@/components/DarkSection";
 import TestimonialCard from "@/components/TestimonialCard";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -474,7 +475,7 @@ const Croissance = () => {
               </div>
             </div>
 
-            <div className="text-center bg-gradient-to-r from-primary/5 to-accent/5 border border-border rounded-sm p-6 md:p-8">
+            <div className="text-center mn-card mn-card-left shadow-soft p-6 md:p-8">
               <p className="text-lg md:text-xl text-foreground font-semibold">
                 Bonne nouvelle : tu n'es pas seul.
               </p>
@@ -487,41 +488,41 @@ const Croissance = () => {
         </div>
       </section>
       {/* Section 3 : Résultats Concrets */}
-      <section className="py-16 md:py-24 bg-background" aria-label="Résultats et statistiques d'accompagnement entrepreneur">
+      <DarkSection halo="left">
         <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-turquoise text-center mb-3">Impact mesuré</div>
-          <h2 className="font-editorial italic font-semibold text-center mb-12 text-foreground">
+          <div className="mn-eyebrow-light text-center mb-3">Impact mesuré</div>
+          <h2 className="font-editorial italic font-semibold text-center mb-12 text-primary-foreground">
             Résultats concrets de l'accompagnement entrepreneur Mare Nostrum
           </h2>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            <div className="text-center bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40 transition-all duration-200">
-              <div className="text-4xl md:text-5xl font-bold text-primary mb-3">50%</div>
-              <p className="text-sm text-muted-foreground">
+            <div className="text-center rounded-[var(--radius)] border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm shadow-glass p-6">
+              <div className="text-4xl md:text-5xl font-bold text-accent mb-3">50%</div>
+              <p className="text-sm text-primary-foreground/75">
                 des entrepreneurs accompagnés se rémunèrent correctement dans les 2 ans après la création
               </p>
             </div>
-            <div className="text-center bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40 transition-all duration-200">
+            <div className="text-center rounded-[var(--radius)] border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm shadow-glass p-6">
               <div className="text-4xl md:text-5xl font-bold text-accent mb-3">3</div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-primary-foreground/75">
                 contacts qualifiés en moyenne dès le premier mois d'adhésion
               </p>
             </div>
-            <div className="text-center bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40 transition-all duration-200">
-              <div className="text-4xl md:text-5xl font-bold text-primary mb-3">93%</div>
-              <p className="text-sm text-muted-foreground">
+            <div className="text-center rounded-[var(--radius)] border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm shadow-glass p-6">
+              <div className="text-4xl md:text-5xl font-bold text-accent mb-3">93%</div>
+              <p className="text-sm text-primary-foreground/75">
                 des membres se disent "très satisfaits ou satisfaits" de leur expérience
               </p>
             </div>
-            <div className="text-center bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40 transition-all duration-200">
+            <div className="text-center rounded-[var(--radius)] border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm shadow-glass p-6">
               <div className="text-4xl md:text-5xl font-bold text-accent mb-3">90%</div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-primary-foreground/75">
                 déclarent gagner du temps, de la clarté et de la sérénité après chaque session
               </p>
             </div>
           </div>
         </div>
-      </section>
+      </DarkSection>
       {/* Section 2 : Offres */}
       <section id="offres" className="py-16 md:py-24 bg-secondary/30" aria-label="Tarifs et offres du Club Entrepreneur">
         <div className="container mx-auto px-4">
@@ -813,9 +814,9 @@ const Croissance = () => {
       <FAQSection title="FAQ : Réponses à vos objections les plus courantes" faqs={croissanceFaqs} />
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-accent via-primary to-primary">
+      <DarkSection halo="right">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="mb-6 text-primary-foreground">
+          <h2 className="font-editorial italic mb-6 text-primary-foreground">
             Prêt à accélérer votre entreprise avec un accompagnement sur mesure ?
           </h2>
           <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
@@ -842,7 +843,7 @@ const Croissance = () => {
             </Button>
           </div>
         </div>
-      </section>
+      </DarkSection>
 
       <Footer />
     </div>

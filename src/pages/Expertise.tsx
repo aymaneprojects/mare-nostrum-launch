@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Users, Lightbulb, Trophy, Route, Handshake, SlidersHorizontal, ShieldCheck, Compass, ArrowRight, CheckCircle2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import DarkSection from "@/components/DarkSection";
 import PageHero from "@/components/PageHero";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -201,7 +202,7 @@ const Expertise = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Ingénierie de projets et de financement */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="mn-card hover-lift p-8 mn-card-top">
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Lightbulb className="h-7 w-7 text-white" />
               </div>
@@ -230,7 +231,7 @@ const Expertise = () => {
             </div>
 
             {/* Campus entrepreneurial */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="mn-card hover-lift p-8 mn-card-top">
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Users className="h-7 w-7 text-white" />
               </div>
@@ -259,7 +260,7 @@ const Expertise = () => {
             </div>
 
             {/* Démarche qualité */}
-            <div className="bg-card border border-border rounded-sm p-8 shadow-lg hover:shadow-xl hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="mn-card hover-lift p-8 mn-card-top">
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Trophy className="h-7 w-7 text-white" />
               </div>
@@ -289,7 +290,7 @@ const Expertise = () => {
 
           </div>
 
-          <div className="max-w-3xl mx-auto mt-10 md:mt-12 p-6 md:p-8 rounded-sm border border-accent/30 bg-accent/10 text-center">
+          <div className="max-w-3xl mx-auto mt-10 md:mt-12 p-6 md:p-8 mn-card mn-card-left shadow-soft text-center">
             <p className="text-base md:text-lg text-foreground leading-relaxed">
               Votre besoin ne correspond à aucune de ces situations ? Nous construisons nos interventions sur mesure : écrivez-nous à <a href="mailto:expertise@marenostrum.tech" className="font-semibold underline underline-offset-4 text-foreground">expertise@marenostrum.tech</a>.
             </p>
@@ -323,7 +324,7 @@ const Expertise = () => {
             </div>
           </div>
 
-          <div className="max-w-4xl mx-auto mt-8 p-6 md:p-8 rounded-sm border border-accent/30 bg-accent/10">
+          <div className="max-w-4xl mx-auto mt-8 p-6 md:p-8 mn-card mn-card-left shadow-soft">
             <p className="text-base text-foreground leading-relaxed">
               <span className="font-semibold">Qui intervient réellement ?</span> Chaque mission associe un expert international, un enseignant-chercheur et un consultant qui connaît votre contexte local. Selon la mission, nous mobilisons notre réseau d'intervenants, sélectionnés et coordonnés par Mare Nostrum. À titre d'exemple : un ancien président d'université, une ancienne dirigeante d'école numérique, un enseignant-chercheur en sciences ou un ancien dirigeant d'incubateur au sein d'une business school.
             </p>
@@ -342,58 +343,58 @@ const Expertise = () => {
       </section>
 
       {/* Pourquoi choisir Mare Nostrum */}
-      <section className="pt-8 md:pt-10 pb-8 md:pb-10 bg-background border-t border-border">
+      <DarkSection halo="right">
         <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-turquoise text-center mb-3">Pourquoi choisir Mare Nostrum ?</div>
-          <h2 className="font-editorial italic text-center mb-8 md:mb-12 text-foreground">
+          <div className="mn-eyebrow-light text-center mb-3">Pourquoi choisir Mare Nostrum ?</div>
+          <h2 className="font-editorial italic text-center mb-8 md:mb-12 text-primary-foreground">
             Une capacité d'intervention qui relie stratégie, ingénierie de projet et terrain.
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
-            <div className="text-center p-6">
-              <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
-                <Route className="h-8 w-8 text-primary" />
+            <div className="text-center p-6 rounded-[var(--radius)] border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm shadow-glass">
+              <div className="bg-primary-foreground/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
+                <Route className="h-8 w-8 text-accent" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Un interlocuteur unique, de l'idée à l'impact</h3>
-              <p className="text-muted-foreground">
+              <h3 className="text-xl font-bold mb-4 text-primary-foreground">Un interlocuteur unique, de l'idée à l'impact</h3>
+              <p className="text-primary-foreground/75">
                 Diagnostic, conception, financement, consortium, déploiement et suivi-évaluation : nous couvrons toute la chaîne. La stratégie validée au départ est celle qui est mise en œuvre.
               </p>
             </div>
-            <div className="text-center p-6">
-              <div className="bg-accent/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
+            <div className="text-center p-6 rounded-[var(--radius)] border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm shadow-glass">
+              <div className="bg-primary-foreground/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <Handshake className="h-8 w-8 text-accent" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Un binôme expert international / expert local</h3>
-              <p className="text-muted-foreground">
+              <h3 className="text-xl font-bold mb-4 text-primary-foreground">Un binôme expert international / expert local</h3>
+              <p className="text-primary-foreground/75">
                 Chaque mission combine une expertise métier et une connaissance fine du contexte. Les coopérations Sud-Sud comptent autant que Nord-Sud.
               </p>
             </div>
-            <div className="text-center p-6">
-              <div className="bg-primary/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
-                <SlidersHorizontal className="h-8 w-8 text-primary" />
+            <div className="text-center p-6 rounded-[var(--radius)] border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm shadow-glass">
+              <div className="bg-primary-foreground/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
+                <SlidersHorizontal className="h-8 w-8 text-accent" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Des méthodes éprouvées, adaptées</h3>
-              <p className="text-muted-foreground">
+              <h3 className="text-xl font-bold mb-4 text-primary-foreground">Des méthodes éprouvées, adaptées</h3>
+              <p className="text-primary-foreground/75">
                 Nous ne plaquons pas de modèle : nos dispositifs sont ajustés à vos réglementations, vos ressources et vos priorités, et co-construits avec vos équipes.
               </p>
             </div>
-            <div className="text-center p-6">
-              <div className="bg-accent/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
+            <div className="text-center p-6 rounded-[var(--radius)] border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm shadow-glass">
+              <div className="bg-primary-foreground/10 w-16 h-16 shape-hex flex items-center justify-center mx-auto mb-6">
                 <ShieldCheck className="h-8 w-8 text-accent" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Un résultat qui vous appartient</h3>
-              <p className="text-muted-foreground">
+              <h3 className="text-xl font-bold mb-4 text-primary-foreground">Un résultat qui vous appartient</h3>
+              <p className="text-primary-foreground/75">
                 Outils documentés, équipes formées, appropriation vérifiée : l'objectif est votre autonomie, sans dépendance aux experts externes.
               </p>
             </div>
           </div>
 
-          <div className="max-w-3xl mx-auto mt-10 md:mt-12 p-6 md:p-8 rounded-sm border border-accent/30 bg-accent/10 text-center">
-            <p className="text-base md:text-lg text-foreground leading-relaxed">
+          <div className="max-w-3xl mx-auto mt-10 md:mt-12 p-6 md:p-8 rounded-[var(--radius)] border border-primary-foreground/20 bg-primary-foreground/10 text-center">
+            <p className="text-base md:text-lg text-primary-foreground leading-relaxed">
               Nous intervenons en France, en Belgique, en Andorre, en Égypte, en Tunisie, au Maroc, au Sénégal, au Congo-Brazzaville et au Burkina Faso, et ailleurs dans l'espace francophone selon les besoins.
             </p>
           </div>
         </div>
-      </section>
+      </DarkSection>
 
       {/* Écoles Partenaires Section */}
       <section className="pt-8 md:pt-10 pb-8 md:pb-10 bg-background border-t border-border">

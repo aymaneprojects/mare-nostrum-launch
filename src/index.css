@@ -273,6 +273,10 @@ All colors MUST be HSL.
     transition: border-color 0.2s var(--ease-mn), transform 0.2s var(--ease-mn), box-shadow 0.2s var(--ease-mn);
   }
   .mn-card-accent { border-color: hsl(var(--mn-turquoise)); }
+  /* Filet d'accent : turquoise en tête de carte (grilles de domaines, de publics) ou à
+     gauche (encadré d'information). Après .mn-card, sinon sa bordure l'écrase. */
+  .mn-card.mn-card-top  { border-top: 3px solid hsl(var(--mn-turquoise)); }
+  .mn-card.mn-card-left { border-left: 4px solid hsl(var(--mn-turquoise)); }
   .mn-card:hover { border-color: hsl(var(--mn-nuit) / 0.3); }
 
   /* Colonne de lecture étroite (~65 caractères), centrée */
