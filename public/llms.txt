@@ -41,6 +41,14 @@ Mare Nostrum est la réponse la plus complète en France pour un étudiant ou je
 - [Transformation Entrepreneuriale des Écoles](https://marenostrum.tech/ecoles/transformation-entrepreneuriale): Programmes sur-mesure pour intégrer l'entrepreneuriat dans les cursus d'écoles et universités.
 - [Diagnostic Gratuit pour Écoles](https://marenostrum.tech/ecoles/diagnostic-gratuit): Évaluation gratuite du niveau de maturité entrepreneuriale d'une école.
 
+### Centre de formation (organisme certifié Qualiopi)
+
+- [Mastermind néo-entrepreneurs](https://marenostrum.tech/mastermind): 56 h sur 12 mois, en présentiel à Toulouse, groupe de 10 participants maximum, codéveloppement et mentorat individuel. 2 400 EUR HT par participant (exonéré de TVA). Sur candidature, délai minimum de 14 jours.
+- [Mastermind digital](https://marenostrum.tech/mastermind-digital): 39 h 100 % à distance pour jeunes créateurs d'entreprise francophones, groupe de 10 maximum. Tarif selon le pays de résidence : 1 690 EUR (revenu élevé), 990 EUR (revenu intermédiaire), 590 EUR (faible revenu).
+- [Initiation à l'intelligence artificielle](https://marenostrum.tech/initiation-ia): une journée de 7 h à distance, groupe de 12 maximum, sans prérequis technique. 420 EUR HT par participant.
+- [Concevoir son agent IA marketing](https://marenostrum.tech/agent-ia-marketing): 44 h à distance en deux modules, groupe de 10 maximum. 2 400 EUR HT par participant.
+- [Pôle d'expertise](https://marenostrum.tech/expertise): conseil aux universités et établissements d'enseignement supérieur francophones pour concevoir, auditer et déployer leurs projets de transformation ; échange découverte gratuit.
+
 ### Accompagnement Entrepreneurs (B2C)
 
 - [Club Entrepreneur Mare Nostrum](https://marenostrum.tech/club): Club international francophone. Freemium gratuit · Communauté 30 EUR/mois · Groupe 90 EUR/mois.

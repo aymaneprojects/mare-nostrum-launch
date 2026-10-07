@@ -25,6 +25,23 @@
 **Mots-clés cibles :** éducation entrepreneuriale, formation entrepreneuriat école, programme entrepreneuriat université, hackathon école, enseigner l'entrepreneuriat  
 **Contenu principal :** Catalogue des formats (Fresque de l'Esprit d'Entreprendre, Atelier des Alliés, Hackathon, Programme Neo-Entrepreneurs, Niteo), témoignages directeurs pédagogiques, call-to-action diagnostic gratuit.
 
+### Formations du Centre de formation (Qualiopi)
+
+**Mastermind néo-entrepreneurs** — https://marenostrum.tech/mastermind  
+56 h sur 12 mois, présentiel à Toulouse, 10 participants maximum, codéveloppement et mentorat individuel. 2 400 € HT par participant (exonération de TVA). Sur candidature ; délai minimum de 14 jours.
+
+**Mastermind digital** — https://marenostrum.tech/mastermind-digital  
+39 h 100 % à distance pour jeunes créateurs d'entreprise francophones, 10 participants maximum. Tarif selon le pays de résidence : 1 690 €, 990 € ou 590 €.
+
+**Initiation à l'intelligence artificielle** — https://marenostrum.tech/initiation-ia  
+Une journée de 7 h à distance, 12 participants maximum, sans prérequis technique. 420 € HT par participant.
+
+**Concevoir son agent IA marketing** — https://marenostrum.tech/agent-ia-marketing  
+44 h à distance en deux modules, 10 participants maximum. 2 400 € HT par participant.
+
+**Pôle d'expertise** — https://marenostrum.tech/expertise  
+Conseil aux universités et établissements d'enseignement supérieur francophones : concevoir, auditer et déployer leurs projets de transformation. Échange découverte gratuit.
+
 ### Transformation Entrepreneuriale des Écoles
 
 **URL :** https://marenostrum.tech/ecoles/transformation-entrepreneuriale  
