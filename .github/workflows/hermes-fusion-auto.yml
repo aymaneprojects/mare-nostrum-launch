@@ -5,8 +5,12 @@
 # Ainsi `main` contient toujours le dernier travail, et le clone du serveur (qui se
 # synchronise toutes les 10 minutes) repart toujours de la dernière version.
 #
-# CE QUI RESTE MANUEL : la mise en ligne. Fusionner n'est pas publier : le site ne change
-# qu'avec ./deploy-vps.sh, qui refuse un code plus ancien que celui en ligne.
+# PUBLICATION (décidée le 7 octobre 2026 par le propriétaire ; la relecture se fait ensuite en ligne) :
+# une fois fusionné, le job « publier » met le site en ligne avec ./deploy-vps.sh, le même script
+# gardé que d'habitude (il refuse un code plus ancien que celui en ligne et vérifie les deux
+# domaines). Il construit sur GitHub, jamais sur le serveur, et seulement depuis `main`. Tant que
+# les secrets VPS_SSH_KEY et VPS_KNOWN_HOSTS ne sont pas installés
+# (scripts/installer-publication-auto.sh), la fusion se fait mais la publication est ignorée.
 #
 # Si la construction échoue ou si la fusion est en conflit, rien n'est fusionné : la branche
 # reste telle quelle et l'échec apparaît dans l'onglet « Actions » de GitHub.
@@ -51,3 +55,53 @@ jobs:
           git merge --no-ff "origin/${GITHUB_REF_NAME}" -m "Fusion automatique : ${GITHUB_REF_NAME}"
           git push origin main
           git push origin --delete "${GITHUB_REF_NAME}"
+
+  publier:
+    needs: fusion
+    runs-on: ubuntu-latest
+    # Une seule publication à la fois, jamais interrompue : un transfert coupé laisse le site cassé.
+    concurrency:
+      group: publication-site
+      cancel-in-progress: false
+    env:
+      VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+      VPS_KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
+    steps:
+      - name: Vérifier que la publication automatique est installée
+        id: pret
+        run: |
+          if [ -z "$VPS_SSH_KEY" ] || [ -z "$VPS_KNOWN_HOSTS" ]; then
+            echo "::warning::Publication automatique non installée (secrets VPS_SSH_KEY / VPS_KNOWN_HOSTS absents) : fusion faite, site non publié."
+            echo "pret=non" >> "$GITHUB_OUTPUT"
+          else
+            echo "pret=oui" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.pret.outputs.pret == 'oui'
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        if: steps.pret.outputs.pret == 'oui'
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Accès au serveur
+        if: steps.pret.outputs.pret == 'oui'
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s\n' "$VPS_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Publier (deploy-vps.sh)
+        if: steps.pret.outputs.pret == 'oui'
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: |
+          npm ci
+          ./deploy-vps.sh

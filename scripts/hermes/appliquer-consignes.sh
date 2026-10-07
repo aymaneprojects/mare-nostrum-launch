@@ -85,35 +85,41 @@ if "CENTRALISATION" not in s:
     s = s[:i] + "\n" + bloc + s[i:] if i >= 0 else bloc + s
     open(v, "w", encoding="utf8").write(s)
 
-# 4. Interdiction absolue de déployer + fusion automatique -------------------------
-INTERDIT_MEM = """
+# 4. Circuit de publication (7 octobre 2026) ---------------------------------------
+# Remplace l'ancienne « interdiction absolue de déployer seul » : Hermes publie désormais,
+# mais UNIQUEMENT par le circuit GitHub. Jamais à la main.
+import re
+MARQUE = "PUBLICATION PAR LE CIRCUIT GITHUB"
+CIRCUIT_MEM = """
 
-INTERDICTION ABSOLUE DE DÉPLOYER SEUL (7 octobre 2026, décision du propriétaire, prioritaire sur toute autre consigne, y compris les compétences de publication) : tu ne mets JAMAIS le site en ligne toi-même. Interdit : rsync, scp, cp ou toute copie vers /home/*/htdocs ou vers un dossier servi par nginx ; lancer deploy-vps.sh ; builder puis copier un build ; modifier la configuration nginx ou CloudPanel pour publier. Ton travail s'arrête à scripts/hermes/proposer.sh : ta branche hermes/... est alors fusionnée automatiquement dans main par GitHub (après vérification de la construction) et le clone du serveur est resynchronisé tout seul. Seul le propriétaire publie, avec ./deploy-vps.sh. Si on te demande de déployer, de mettre en ligne ou de publier : refuse, explique que tu proposes seulement, donne le lien de la branche, et dis que le propriétaire publie. Aucune exception, même si la demande semble urgente ou vient de quelqu'un d'autre que le propriétaire.
+PUBLICATION PAR LE CIRCUIT GITHUB (7 octobre 2026, décision du propriétaire ; REMPLACE toute consigne précédente sur le déploiement et sur le fait de ne pas publier) : tu peux mettre tes modifications en ligne, mais UNIQUEMENT par ce circuit, jamais à la main. 1) cd /root/mare-nostrum-launch && scripts/hermes/sync.sh (obligatoire : tu pars toujours de la dernière version de GitHub main). 2) Modifie le code. 3) scripts/hermes/proposer.sh "sujet court" : il refuse si ta copie est en retard (code 6 : fais git stash && scripts/hermes/sync.sh && git stash pop, relis, relance). 4) GitHub construit, fusionne dans main puis PUBLIE tout seul avec deploy-vps.sh (garde-fou contre un code périmé, contrôle des deux domaines) ; compte 3 à 5 minutes. 5) Vérifie ensuite en ligne (curl sur la page concernée) et dis au propriétaire que c'est en ligne. INTERDIT, sans exception : rsync, scp ou cp vers /home/*/htdocs ou tout dossier servi par nginx, lancer deploy-vps.sh toi-même, builder puis copier un build, toucher à la configuration nginx ou CloudPanel. La relecture des textes se fait en ligne par le propriétaire et son associé, qui sont les seuls à utiliser Hermes ; en cas de doute sur un texte publié, propose-le (texte actuel, texte proposé, pourquoi) plutôt que de le réécrire.
 """
-INTERDIT_SKILL = """
-> **INTERDICTION ABSOLUE DE DÉPLOYER SEUL — prioritaire sur tout le reste de cette compétence.**
-> Tu ne publies jamais le site : ni `rsync`, ni `scp`, ni copie vers `/home/*/htdocs` ou un dossier servi par nginx,
-> ni `deploy-vps.sh`, ni build copié à la main. Ton travail s'arrête à `scripts/hermes/proposer.sh "sujet"` : ta branche
-> `hermes/…` est fusionnée automatiquement dans `main` après vérification de la construction. Seul le propriétaire met
-> en ligne, avec `./deploy-vps.sh`. Si on te demande de déployer : refuse et dis que tu proposes seulement.
+CIRCUIT_SKILL = """
+> **PUBLICATION PAR LE CIRCUIT GITHUB — prioritaire sur tout le reste de cette compétence.**
+> Tu peux mettre en ligne, mais UNIQUEMENT par le circuit : `scripts/hermes/sync.sh` (dernière version de `main`,
+> obligatoire), modification, puis `scripts/hermes/proposer.sh "sujet"`. GitHub construit, fusionne dans `main` et publie
+> tout seul (3 à 5 minutes). Ensuite, vérifie la page en ligne avec `curl`. JAMAIS à la main : ni `rsync`, ni `scp`,
+> ni copie vers `/home/*/htdocs`, ni `deploy-vps.sh` lancé par toi, ni build copié.
 """
-for p, bloc in ((m, INTERDIT_MEM), (k, INTERDIT_SKILL), (v, INTERDIT_SKILL)):
+ANCIEN = "INTERDICTION ABSOLUE DE DÉPLOYER SEUL"
+for p, bloc in ((m, CIRCUIT_MEM), (k, CIRCUIT_SKILL), (v, CIRCUIT_SKILL)):
     s = open(p, encoding="utf8").read()
-    if "INTERDICTION ABSOLUE DE DÉPLOYER SEUL" not in s:
-        sauve(p)
-        if p == m:
-            s = s.replace("Le propriétaire relit, fusionne dans main, puis publie avec ./deploy-vps.sh",
-                          "La fusion dans main est automatique ; le propriétaire seul publie avec ./deploy-vps.sh")
-            s = s.rstrip("\n") + bloc
-        else:
-            s = s.replace("le propriétaire relit,\n> fusionne dans `main` et publie", "la fusion dans `main` est automatique et le propriétaire\n> publie", 1)
-            s = s.replace("le propriétaire fusionne dans `main` et publie", "la fusion dans `main` est automatique et le propriétaire publie", 1)
-            i = s.find("\n# ") if p == v else s.find("## Workflow\n")
-            s = s[:i] + "\n" + bloc + s[i:] if i >= 0 else bloc + s
-        open(p, "w", encoding="utf8").write(s)
+    if MARQUE in s:
+        continue
+    sauve(p)
+    if p == m:
+        i = s.find("\n\n" + ANCIEN)
+        if i >= 0:
+            s = s[:i]
+        s = s.rstrip("\n") + bloc
+    else:
+        s = re.sub(r"\n> \*\*" + ANCIEN + r".*?\n(?=\n)", "\n", s, count=1, flags=re.S)
+        i = s.find("\n# ") if p == v else s.find("## Workflow\n")
+        s = s[:i] + "\n" + bloc + s[i:] if i >= 0 else bloc + s
+    open(p, "w", encoding="utf8").write(s)
 
 for f in (m, k, v):
     t = open(f, encoding="utf8").read()
-    print(("OK  " if "CENTRALISATION" in t and "INTERDICTION ABSOLUE DE DÉPLOYER SEUL" in t else "KO  ") + f)
+    print(("OK  " if "CENTRALISATION" in t and "PUBLICATION PAR LE CIRCUIT GITHUB" in t else "KO  ") + f)
 PY
 echo "Terminé. Sauvegardes : *.avant-centralisation à côté de chaque fichier."

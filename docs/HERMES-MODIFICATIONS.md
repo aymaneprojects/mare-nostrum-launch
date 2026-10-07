@@ -22,7 +22,7 @@ Deux fois, du travail en ligne a disparu : le 18 septembre 2026 (onze jours) et 
  ./deploy-vps.sh              ── 5. publication gardée (refuse un code plus ancien que celui en ligne)
 ```
 
-Hermes **ne publie jamais**. Il propose ; une personne valide et publie.
+Depuis le 7 octobre 2026, la publication est automatique (voir « Publication automatique » plus bas). Hermes ne publie JAMAIS à la main : seulement par ce circuit.
 
 ## Règles pour Hermes
 
@@ -37,12 +37,22 @@ Hermes **ne publie jamais**. Il propose ; une personne valide et publie.
 Décidé le 7 octobre 2026 : **les propositions de Hermes se fusionnent toutes seules dans `main`**.
 
 - `.github/workflows/hermes-fusion-auto.yml` : à chaque branche `hermes/…` reçue, GitHub construit le site pour vérifier qu'il n'est pas cassé, fusionne dans `main`, puis supprime la branche. En cas d'échec ou de conflit, rien n'est fusionné et l'échec apparaît dans l'onglet *Actions* de GitHub.
-- **Fusionner n'est pas publier.** Le site en ligne ne change qu'avec `./deploy-vps.sh` (qui refuse un code plus ancien que celui en ligne). Le point de contrôle humain est donc la mise en ligne.
+- **Publication automatique** : voir la section suivante. La relecture des textes se fait en ligne, par le propriétaire et son associé, seuls utilisateurs de Hermes.
 - **Toujours le dernier commit** : `scripts/hermes/sync.sh` remet le clone du serveur sur `main`, sans jamais rien écraser. Un minuteur peut l'exécuter toutes les 10 minutes (`scripts/hermes/installer-minuteur.sh`).
 
 **Interdiction absolue de déployer seul** (inscrite le 7 octobre 2026 dans la mémoire de Christophe et dans ses deux compétences de publication) : pas de `rsync`, de `scp`, de copie vers les dossiers web, ni de `deploy-vps.sh`. Son travail s'arrête à `proposer.sh`. S'il reçoit une demande de mise en ligne, il refuse et indique que le propriétaire publie.
 
 **Verrou « dernière version »** (7 octobre 2026) : `proposer.sh` refuse (code 6) toute proposition si le clone n'est pas à jour avec `origin/main`. Hermes ne peut donc proposer qu'à partir de la dernière version de GitHub ; en cas de refus : `git stash && scripts/hermes/sync.sh && git stash pop`. Testé sur un dépôt factice (clone en retard refusé, clone à jour accepté).
+
+## Publication automatique
+
+Décidée le 7 octobre 2026 par le propriétaire. Le job `publier` de `.github/workflows/hermes-fusion-auto.yml` s'exécute après chaque fusion : il construit **sur GitHub** (jamais sur le serveur) depuis `main` et lance `./deploy-vps.sh`, le même script gardé que d'habitude (refus d'un code plus ancien que celui en ligne, contrôle des deux domaines, contrôle du fichier JavaScript servi). Un transfert est toujours mené à terme (une seule publication à la fois, jamais interrompue).
+
+- **Installation, une seule fois** : `bash scripts/installer-publication-auto.sh` (clé SSH dédiée `github-mn-deploy`, autorisée sur le serveur, rangée dans les secrets GitHub `VPS_SSH_KEY` et `VPS_KNOWN_HOSTS`). Tant que ce n'est pas fait, la fusion se fait mais le site n'est pas publié (avertissement dans l'onglet *Actions*).
+- **Retour arrière** : retirer la ligne `github-mn-deploy` de `/root/.ssh/authorized_keys` et supprimer les deux secrets (commandes en tête du script).
+- **Annuler une publication** : `git revert` du commit fusionné, poussé sur `main` ; publier à nouveau avec `./deploy-vps.sh`.
+- **Risque assumé** : la clé donne un accès `root` au serveur à quiconque peut modifier les workflows du dépôt (public ; seules les personnes avec accès en écriture).
+- **Consignes de l'agent** (`scripts/hermes/appliquer-consignes.sh`) : « publier par le circuit, jamais à la main ». L'ancienne interdiction absolue de déployer est remplacée.
 
 ## Les deux scripts
 
@@ -63,6 +73,6 @@ Ces étapes touchent la configuration du serveur et de l'agent : elles ne sont p
 ## Limites à connaître
 
 - Tant que les consignes de l'agent ne sont pas changées (étape 2), **rien n'empêche Christophe de déployer comme avant** : ces scripts rendent le bon chemin facile, ils ne bloquent pas l'ancien. Seule la protection de `main` côté GitHub et le retrait de ses droits sur les dossiers web le feraient vraiment.
-- Hermes tourne en `root` sur le serveur : il peut techniquement écrire dans les dossiers web. La règle repose donc sur ses consignes.
+- Hermes tourne en `root` sur le serveur : il peut techniquement écrire dans les dossiers web. L'interdiction de publier à la main repose donc sur ses consignes.
 
 _Fusion automatique vérifiée le 7 octobre 2026 : une branche `hermes/…` poussée sur GitHub est fusionnée dans `main` après contrôle de la construction._
