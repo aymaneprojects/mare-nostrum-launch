@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, Users, Award, Zap, MessageSquare, Calendar, FileText, CheckCircle2, ArrowRight, Clock, Brain, Target, Flame, Info } from "lucide-react";
+import { TrendingUp, Users, Award, Zap, MessageSquare, Calendar, FileText, CheckCircle2, ArrowRight, Clock, Brain, Target, Flame, Info, Lock } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
@@ -53,13 +53,14 @@ function ClubCounter() {
 interface OfferFeature {
   label: string;
   tooltip: string;
+  href?: string;
 }
 
 const FeatureWithTooltip = ({ feature }: { feature: OfferFeature }) => (
   <li className="flex items-start space-x-3">
     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
     <span className="text-sm text-muted-foreground flex items-center gap-1.5 flex-wrap">
-      {feature.label}
+      {feature.href ? <Link to={feature.href} className="underline underline-offset-2 hover:text-primary">{feature.label}</Link> : feature.label}
       <Popover>
         <PopoverTrigger asChild>
           <button
@@ -218,6 +219,22 @@ const Croissance = () => {
     },
     {
       label: "Accès à l'Académie en ligne",
+      tooltip: "Développe tes compétences et tes soft skills entrepreneuriales : plus de 30 heures de formation sur les fondamentaux du business"
+    }
+  ];
+
+  const premiumFeatures: OfferFeature[] = [
+    {
+      label: "Tout le pack Freemium +",
+      tooltip: "Retrouve tout ce qui est inclus dans l'offre Freemium : le Club international, la veille mutualisée et la rencontre en ligne"
+    },
+    {
+      label: "Avantages négociés auprès de nos partenaires",
+      tooltip: "Sois informé des tarifs préférentiels aux événements, des opportunités de nos partenaires et des possibilités de collaboration avec Mare Nostrum",
+      href: "/partenaires"
+    },
+    {
+      label: "Accès à l'Académie en ligne de l'incubateur",
       tooltip: "Développe tes compétences et tes soft skills entrepreneuriales : plus de 30 heures de formation sur les fondamentaux du business"
     }
   ];
@@ -579,11 +596,24 @@ const Croissance = () => {
 
               <p className="text-sm font-medium text-foreground mb-4">Pour rejoindre le Club sans payer</p>
 
-              <ul className="space-y-4 mb-8 flex-grow">
+              <ul className="space-y-4 mb-6">
                 {freemiumFeatures.map((feature, idx) => (
                   <FeatureWithTooltip key={idx} feature={feature} />
                 ))}
               </ul>
+
+              {/* Ce que Premium ajoute : lignes grisées, pour voir la différence d'un coup d'œil. */}
+              <div className="mb-8 flex-grow">
+                <p className="text-xs font-medium text-muted-foreground/70 mb-3">Avec Premium</p>
+                <ul className="space-y-3">
+                  {premiumFeatures.slice(1).map((feature) => (
+                    <li key={feature.label} className="flex items-start space-x-3 text-sm text-muted-foreground/60">
+                      <Lock aria-hidden="true" className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                      <span>{feature.label}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               <Button variant="outline" className="w-full mt-auto" onClick={() => openOnboarding("freemium")}>
                 Rejoindre gratuitement
@@ -618,7 +648,7 @@ const Croissance = () => {
               <p className="text-sm font-medium text-foreground mb-4">L'essentiel pour ne plus entreprendre seul</p>
 
               <ul className="space-y-4 mb-8 flex-grow">
-                {communauteFeatures.map((feature, idx) => (
+                {premiumFeatures.map((feature, idx) => (
                   <FeatureWithTooltip key={idx} feature={feature} />
                 ))}
               </ul>
@@ -692,8 +722,8 @@ const Croissance = () => {
                   { feature: "Accès Club International", f: true, c: true, g: true },
                   { feature: "Veille mutualisée mensuelle", f: true, c: true, g: true },
                   { feature: "Rencontre en ligne", f: true, c: true, g: true },
-                  { feature: "Académie en ligne +30h", f: false, c: true, g: true },
-                  { feature: "Opportunités & tarifs partenaires", f: false, c: true, g: true },
+                  { feature: "Académie en ligne de l'incubateur +30h", f: false, c: true, g: true },
+                  { feature: "Avantages négociés auprès de nos partenaires", f: false, c: true, g: true },
                   { feature: "Intégration dans un Cercle", f: false, c: false, g: true },
                   { feature: "Mises en relation partenaires", f: false, c: false, g: true },
                   { feature: "Micro-mentorat mensuel", f: false, c: "1×", g: "1×" },
