@@ -10,7 +10,7 @@ const HeroMap = () => (
       role="img"
       aria-label={`Carte : ${MAP_PAYS.length} pays d'intervention et ${MAP_BUREAUX.length} bureaux (${MAP_BUREAUX.map((b) => b.nom).join(", ")})`}
       viewBox={MAP_VIEWBOX}
-      className="absolute left-1/2 lg:left-[80%] top-1/2 h-[100%] w-auto -translate-x-1/2 -translate-y-1/2 max-w-none opacity-70 lg:opacity-100"
+      className="absolute left-1/2 lg:left-[85%] top-1/2 h-[88%] w-auto -translate-x-1/2 -translate-y-1/2 max-w-none opacity-70 lg:opacity-100"
       style={{ maskImage: "radial-gradient(ellipse 62% 60% at 50% 50%, #000 55%, transparent 100%)", WebkitMaskImage: "radial-gradient(ellipse 62% 60% at 50% 50%, #000 55%, transparent 100%)" }}
     >
       <path d={MAP_FOND} fill="hsl(var(--mn-turquoise) / 0.05)" stroke="hsl(var(--mn-turquoise) / 0.14)" strokeWidth="0.5" strokeLinejoin="round" />
@@ -21,16 +21,16 @@ const HeroMap = () => (
         const gauche = COTE[b.nom] === "l";
         return (
           <g key={b.nom}>
-            <circle cx={b.x} cy={b.y} r="9" fill="hsl(var(--mn-turquoise) / 0.22)" />
-            <circle cx={b.x} cy={b.y} r="3.6" fill="hsl(var(--mn-turquoise))" stroke="hsl(var(--mn-ink))" strokeWidth="1.2" />
+            <circle cx={b.x} cy={b.y} r="11" fill="hsl(var(--mn-turquoise) / 0.22)" />
+            <circle cx={b.x} cy={b.y} r="4.6" fill="hsl(var(--mn-turquoise))" stroke="hsl(var(--mn-ink))" strokeWidth="1.5" />
             <text
-              x={b.x + (gauche ? -12 : 12)}
-              y={b.y + 4}
+              x={b.x + (gauche ? -15 : 15)}
+              y={b.y + 5}
               textAnchor={gauche ? "end" : "start"}
-              fontSize="12"
+              fontSize="15"
               fontWeight="600"
               fill="hsl(var(--primary-foreground) / 0.9)"
-              style={{ paintOrder: "stroke", stroke: "hsl(var(--mn-ink) / 0.85)", strokeWidth: 3 }}
+              style={{ paintOrder: "stroke", stroke: "hsl(var(--mn-ink) / 0.85)", strokeWidth: 3.5 }}
             >
               {b.nom}
             </text>
