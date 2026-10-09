@@ -347,7 +347,7 @@ const Index = () => {
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 md:gap-7">
               {[
                 { title: "Programme Niteo", description: "Programme de pré-incubation", icon: niteoIcon },
-                { title: "Formation professionnelle", description: "Centre spécialisé dans les compétences transversales", icon: centreFormationIcon },
+                { title: "Formation professionnelle", description: "Certifié Qualiopi", icon: centreFormationIcon },
                 { title: "Pôle d’expertise", description: "Conseil et ingénierie pour l’enseignement supérieur", icon: poleExpertiseIcon },
                 { title: "Veluo", description: "Agent IA des chefs de projet et entrepreneurs", icon: veluoIcon },
                 { title: "Club d’entrepreneurs", description: "Communauté d’entrepreneurs", icon: clubIcon },
