@@ -14,7 +14,7 @@ export interface CloudWord {
   messages: LiveMessage[];
 }
 
-export function normalizeWord(input: string): string {
+function normalizeWord(input: string): string {
   return input
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "")

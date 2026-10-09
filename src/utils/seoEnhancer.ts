@@ -24,7 +24,7 @@ const DEFAULT_KEYWORDS = "entrepreneuriat toulouse, entrepreneuriat etudiant, en
 /**
  * Enrichit automatiquement le titre pour SEO
  */
-export const enhanceTitle = (title: string): string => {
+const enhanceTitle = (title: string): string => {
   // Si le titre contient déjà "Mare Nostrum", le garder tel quel
   if (title.toLowerCase().includes('mare nostrum')) {
     return title;
@@ -45,7 +45,7 @@ export const enhanceTitle = (title: string): string => {
 /**
  * Enrichit automatiquement la description pour SEO
  */
-export const enhanceDescription = (description: string): string => {
+const enhanceDescription = (description: string): string => {
   // Si la description contient déjà "Mare Nostrum" au début, la garder
   if (description.toLowerCase().startsWith('mare nostrum') || 
       description.toLowerCase().includes('mare nostrum')) {
@@ -67,7 +67,7 @@ export const enhanceDescription = (description: string): string => {
 /**
  * Enrichit automatiquement les mots-clés pour SEO
  */
-export const enhanceKeywords = (keywords?: string): string => {
+const enhanceKeywords = (keywords?: string): string => {
   const keywordsArray: string[] = [];
   
   // Toujours inclure les mots-clés de marque en premier
@@ -88,7 +88,7 @@ export const enhanceKeywords = (keywords?: string): string => {
 /**
  * Génère automatiquement les breadcrumbs structurés
  */
-export const generateBreadcrumbs = (path: string): object => {
+const generateBreadcrumbs = (path: string): object => {
   const pathSegments = path.split('/').filter(Boolean);
   const breadcrumbs = [
     {
@@ -135,7 +135,7 @@ export const generateBreadcrumbs = (path: string): object => {
 /**
  * Génère le WebSite SearchAction Schema
  */
-export const generateWebsiteSchema = (): object => {
+const generateWebsiteSchema = (): object => {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -178,11 +178,4 @@ export const enhanceSEO = (config: SEOEnhancerConfig): EnhancedSEO => {
     keywords: enhancedKeywords,
     structuredData
   };
-};
-
-/**
- * Hook personnalisé pour enrichissement automatique
- */
-export const useEnhancedSEO = (config: SEOEnhancerConfig): EnhancedSEO => {
-  return enhanceSEO(config);
 };

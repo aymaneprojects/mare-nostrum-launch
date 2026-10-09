@@ -72,7 +72,7 @@ Ce sont eux qu'on utilise dans 90 % des cas. Ils pointent vers la palette de mar
 | Ivoire / blanc / sable | `text-foreground` | `text-muted-foreground` | `mn-eyebrow` ou `mn-eyebrow-turquoise` |
 | Nuit / dégradé hero | `text-primary-foreground` | `text-primary-foreground/75` | `mn-eyebrow-light` |
 | Turquoise | `text-accent-foreground` (nuit) | — | — |
-| Ocre | `#fff` via `mn-chip-ocre` uniquement | — | — |
+| Ocre | Aucun usage en texte courant | — | — |
 
 `text-muted-foreground` sur fond nuit est **interdit** — illisible.
 
@@ -190,7 +190,7 @@ taille, qui figent une valeur et échappent à l'échelle globale.
 | Paragraphe standard | `mn-body text-muted-foreground` |
 | Paragraphe d'intro | `mn-lead text-muted-foreground` |
 | Texte long (CGV, articles) | `prose prose-lg max-w-none text-foreground/80` |
-| Largeur de colonne | 65 caractères maximum (`mn-prose` ou `max-w-prose`) |
+| Largeur de colonne | 65 caractères maximum (`max-w-prose`) |
 
 Une colonne de texte qui court sur toute la largeur fait « page web ». Une
 colonne de 65 caractères fait « publication » : c'est ce que font tous les
@@ -206,8 +206,6 @@ Ce sont des utilitaires CSS, pas des classes Tailwind. Toujours en majuscules au
 | `mn-eyebrow-muted` | 11 px | 0.18em | Muted, 600 | Clair, discret |
 | `mn-eyebrow-turquoise` | 10 px | 0.25em | Turquoise, 700 | Clair ou blanc |
 | `mn-eyebrow-light` | 10 px | 0.28em | Turquoise à 80 %, 600 | **Sombre uniquement** |
-| `mn-section-label` | 11 px | 0.25em | Nuit, centré, filets latéraux | Séparateur de section |
-| `mn-stat-label` | 10 px | 0.20em | Muted, 600 | Sous un chiffre clé |
 
 ```tsx
 // ✅
@@ -266,7 +264,6 @@ Deux systèmes cohabitent. Utiliser l'un ou l'autre, pas les deux sur le même �
 | Classe | Niveau |
 |---|---|
 | `shadow-soft` / `shadow-lift` | Raccourcis Tailwind des tokens ci-dessus |
-| `elevation-1` … `elevation-4` | Échelle à 4 niveaux, teinte encre |
 
 ### 3.4 Dégradés
 
@@ -431,7 +428,6 @@ Tailles en usage : 52 (cartes de valeurs), 60 (cartes d'offre). Ne pas descendre
 | `mn-card mn-card-accent` | Idem avec bordure turquoise |
 | `card-interactive` | Curseur pointeur, bordure turquoise 50 % au survol — **pour les cartes cliquables** |
 | `hover-lift` | Lève de 3 px + ombre au survol — **souris uniquement**, inerte au tactile |
-| `mn-page-shell` | Feuille blanche, 6 px, ombre lift — conteneur de page |
 
 ```tsx
 // ✅ carte cliquable
@@ -449,20 +445,13 @@ Tailles en usage : 52 (cartes de valeurs), 60 (cartes d'offre). Ne pas descendre
 
 ### 5.5 Chips et badges
 
-```tsx
-<span className="mn-chip mn-chip-nuit">Nouveau</span>
-<span className="mn-chip mn-chip-turquoise">Complet</span>
-<span className="mn-chip mn-chip-ocre">Dernières places</span>
-<span className="mn-chip mn-chip-outline">2026</span>
-```
-
-Toujours `mn-chip` + un modificateur. `mn-chip` seul n'a pas de couleur.
+Les classes `mn-chip` (+ `-nuit`, `-turquoise`, `-ocre`, `-outline`) ont été retirées le 9 octobre 2026 : aucune page ne les utilisait. Pour une étiquette, utiliser `mn-eyebrow-pill` ou le composant `Badge`.
 
 ### 5.6 Composants partagés existants
 
 Avant de créer un composant, vérifier qu'il n'existe pas déjà dans `src/components/` :
 
-`Breadcrumbs` · `CountUpNumber` · `FAQSection` · `StatCard` · `StatsSection` · `TestimonialCard` · `NavLink` · `ScrollToTopButton` · `CookieBanner` · `ChatBot` · `ExitIntentPopup`
+`Breadcrumbs` · `FAQSection` · `StatCard` · `TestimonialCard` · `ScrollToTopButton` · `CookieBanner` · `ChatBot` · `ExitIntentPopup`
 
 ### 5.7 Formulaires
 
@@ -479,8 +468,6 @@ Champs (`Input`, `Textarea`) : hauteur 45 px, rayon 10 px, 16 px de texte sur mo
 
 Éléments de composition, dans `src/index.css` :
 - `mn-eyebrow-pill` : eyebrow en capsule à ombre douce (déjà appliqué par `PageHero`). Variante automatique sur fond sombre avec `mn-eyebrow-light`.
-- `mn-assurance` : rangée de pastilles de réassurance. Reprendre uniquement des textes déjà présents sur la page.
-- `mn-steps` : étapes numérotées par compteur CSS, aucun texte ajouté. À poser sur une liste d'étapes existante.
 - `--shadow-glass` / `shadow-glass` : carte de verre sur fond sombre.
 
 Icône dans un champ : `absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 pointer-events-none` + `pl-8` sur l'input.
@@ -589,7 +576,7 @@ C'est l'**unique** cas où `rgba()` est toléré, parce qu'il s'agit de blanc pu
 
 ### `bg-white` sur les cartes
 
-`mn-card` et `mn-page-shell` utilisent `#fff` **dans le CSS**, pas dans le JSX. Dans le JSX on écrit `bg-card` ou `bg-background`, jamais `bg-white`.
+`mn-card` prend son fond du token de carte **dans le CSS**, pas dans le JSX. Dans le JSX on écrit `bg-card` ou `bg-background`, jamais `bg-white`.
 
 ### Fraunces en corps de texte
 
@@ -601,7 +588,7 @@ Un jeu de tokens `.dark` existe dans `index.css` mais **n'est pas activé** sur 
 
 ### Les formes géométriques héritées
 
-`shape-cut`, `shape-fold`, `shape-diagonal`, `shape-hex`, `shape-parallelogram`, `shape-arrow`, `shape-squircle`, `shape-slash-*`, `shape-notch` sont conservées pour les pages qui les utilisent encore. **Ne pas en introduire de nouvelles occurrences** — la forme de marque est la pilule (`shape-pill` / `rounded-full`). Seul `shape-hex` reste en usage actif pour les pastilles d'icône.
+Les formes héritées (`shape-cut`, `shape-fold`, `shape-diagonal`, `shape-parallelogram`, `shape-arrow`, `shape-squircle`, `shape-slash-*`, `shape-notch`, `shape-pill`) ont été retirées le 9 octobre 2026 : aucune page ne les utilisait. Seul `shape-hex` reste, pour les pastilles d'icône. La forme de marque est la pilule (`rounded-full`).
 
 ---
 

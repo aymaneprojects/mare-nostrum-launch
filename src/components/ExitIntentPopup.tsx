@@ -24,7 +24,7 @@ function isDismissed(): boolean {
   } catch { return false; }
 }
 function markDismissed() {
-  try { localStorage.setItem(STORAGE_KEY, String(Date.now())); } catch {}
+  try { localStorage.setItem(STORAGE_KEY, String(Date.now())); } catch { /* stockage indisponible : on ne mémorise pas */ }
 }
 
 export default function ExitIntentPopup() {

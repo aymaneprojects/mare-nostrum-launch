@@ -161,7 +161,7 @@ function zip(entries: ZipEntry[]): Blob {
 
 // ── Classeur ────────────────────────────────────────────────────────────────
 
-export function buildXlsx(sheets: Sheet[]): Blob {
+function buildXlsx(sheets: Sheet[]): Blob {
   const encoder = new TextEncoder();
   const named = sheets.map((s, i) => ({ ...s, name: safeSheetName(s.name, i) }));
 

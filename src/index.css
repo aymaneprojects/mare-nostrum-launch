@@ -203,8 +203,6 @@ All colors MUST be HSL.
 
 /* === Mare Nostrum brand utilities === */
 @layer utilities {
-  /* Pills (full rounded) — primary brand shape */
-  .shape-pill { border-radius: 9999px; }
 
   /* Editorial accent typeface */
   .font-editorial { font-family: 'Fraunces', Georgia, serif; }
@@ -234,35 +232,6 @@ All colors MUST be HSL.
     color: hsl(var(--mn-nuit));
   }
 
-  /* Date / category chips — three brand variants */
-  .mn-chip {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 14px;
-    border-radius: 9999px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  }
-  .mn-chip-nuit { background: hsl(var(--mn-nuit)); color: hsl(var(--mn-ivory)); }
-  .mn-chip-turquoise { background: hsl(var(--mn-turquoise)); color: hsl(var(--mn-nuit)); }
-  .mn-chip-ocre { background: hsl(var(--mn-ocre)); color: hsl(var(--mn-ink)); }
-  .mn-chip-outline {
-    background: transparent;
-    color: hsl(var(--mn-nuit));
-    border: 1.5px solid hsl(var(--mn-nuit));
-  }
-
-  /* Page shell — paper card with soft lift */
-  .mn-page-shell {
-    background: #fff;
-    border-radius: 6px;
-    box-shadow: 0 30px 80px rgba(15,23,51,0.08);
-  }
-
   /* Card with brand border */
   .mn-card {
     /* Le fond vient du token de carte : un blanc brut était écrit ici, en
@@ -278,32 +247,6 @@ All colors MUST be HSL.
   .mn-card.mn-card-top  { border-top: 3px solid hsl(var(--mn-turquoise)); }
   .mn-card.mn-card-left { border-left: 4px solid hsl(var(--mn-turquoise)); }
   .mn-card:hover { border-color: hsl(var(--mn-nuit) / 0.3); }
-
-  /* Colonne de lecture étroite (~65 caractères), centrée */
-  .mn-prose { max-width: 65ch; margin-inline: auto; }
-
-  /* Hairline section divider with side rules */
-  .mn-section-label {
-    position: relative;
-    text-align: center;
-    font-size: var(--fs-micro);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: hsl(var(--mn-nuit));
-    padding: 28px 0 14px;
-  }
-  .mn-section-label::before,
-  .mn-section-label::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 28%;
-    height: 1px;
-    background: hsl(var(--mn-nuit) / 0.14);
-  }
-  .mn-section-label::before { left: 0; }
-  .mn-section-label::after { right: 0; }
 
   /* Plain hairline */
   .mn-hairline { border-top: 1px solid hsl(var(--mn-nuit) / 0.14); }
@@ -354,26 +297,6 @@ All colors MUST be HSL.
     100% { opacity: 0; transform: translateY(105vh) rotate(540deg); }
   }
 
-  /* Rangée de pastilles de réassurance (sous un héros ou près d'un bouton). */
-  .mn-assurance { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
-  .mn-assurance > * {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    padding: 0.35rem 0.8rem; border-radius: 999px;
-    font-size: var(--fs-micro); font-weight: 600;
-    background: hsl(var(--card)); border: 1px solid hsl(var(--mn-nuit) / 0.12);
-    box-shadow: var(--shadow-soft);
-  }
-
-  /* Étapes numérotées : le numéro vient d'un compteur CSS, aucun texte ajouté. */
-  .mn-steps { counter-reset: mn-step; }
-  .mn-steps > * { counter-increment: mn-step; position: relative; }
-  .mn-steps > *::before {
-    content: counter(mn-step, decimal-leading-zero);
-    display: block; margin-bottom: 0.6rem;
-    font-family: 'Fraunces', Georgia, serif; font-size: 1.5rem; line-height: 1;
-    color: hsl(var(--mn-ocre));
-  }
-
   .mn-eyebrow-light {
     font-size: var(--fs-micro);
     letter-spacing: 0.14em;
@@ -381,23 +304,6 @@ All colors MUST be HSL.
     font-weight: 700;
     color: hsl(var(--mn-turquoise));
   }
-
-  /* Mono-style stat sublabel */
-  .mn-stat-label {
-    font-size: var(--fs-micro);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: hsl(var(--mn-muted));
-    margin-top: 0.5rem;
-    display: block;
-  }
-
-  /* ── Elevation system (4 niveaux) ────────────────────────────────── */
-  .elevation-1 { box-shadow: 0 1px 3px rgba(15,23,51,0.08), 0 1px 2px rgba(15,23,51,0.04); }
-  .elevation-2 { box-shadow: 0 4px 8px rgba(15,23,51,0.08), 0 2px 4px rgba(15,23,51,0.04); }
-  .elevation-3 { box-shadow: 0 10px 24px rgba(15,23,51,0.10), 0 4px 8px rgba(15,23,51,0.05); }
-  .elevation-4 { box-shadow: 0 20px 48px rgba(15,23,51,0.14), 0 8px 16px rgba(15,23,51,0.07); }
 
   /* ── Scroll reveal (respect prefers-reduced-motion) ──────────────── */
   /* L'apparition au défilement est pilotée en style direct par
@@ -474,13 +380,6 @@ All colors MUST be HSL.
     .mn-link-u:hover::after { transform: scaleX(1); }
   }
 
-  /* ── Bandeau de preuves : verre dépoli, statique ─────────────────── */
-  .mn-glass {
-    background-color: hsl(var(--mn-ivory) / 0.86);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-  }
-
   /* ── Hover effects uniquement sur devices avec pointeur précis ────── */
   @media (hover: hover) and (pointer: fine) {
     .hover-lift {
@@ -508,29 +407,8 @@ All colors MUST be HSL.
     }
   }
 
-  /* Legacy geometric utilities (kept for retro-compat where used) */
-  .shape-cut {
-    clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
-  }
-  .shape-fold {
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%);
-  }
-  .shape-diagonal { border-radius: 1.5rem 0 1.5rem 0; }
-  .shape-diagonal-alt { border-radius: 0 1.5rem 0 1.5rem; }
   .shape-hex {
     clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-  }
-  .shape-parallelogram {
-    clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
-  }
-  .shape-arrow {
-    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%);
-  }
-  .shape-squircle { border-radius: 30%; }
-  .shape-slash-top { clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%); }
-  .shape-slash-bottom { clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%); }
-  .shape-notch {
-    clip-path: polygon(0 0, calc(50% - 12px) 0, 50% 10px, calc(50% + 12px) 0, 100% 0, 100% 100%, 0 100%);
   }
 }
 
@@ -714,15 +592,6 @@ All colors MUST be HSL.
     mix-blend-mode: overlay;
   }
 
-
-  /* ── Cartes de pôles : zoom du fond au survol, texte immobile ────── */
-  .mn-pole-bg { transition: transform 0.4s var(--ease-mn); }
-  .mn-pole-arrow { transition: transform 0.3s var(--ease-mn), opacity 0.3s var(--ease-mn); opacity: 0.7; }
-  @media (hover: hover) and (pointer: fine) {
-    .mn-pole:hover .mn-pole-bg { transform: scale(1.06); }
-    .mn-pole:hover .mn-pole-arrow { transform: translateX(4px); opacity: 1; }
-  }
-
   /* ── Bandeau de logos continu ────────────────────────────────────── */
   .mn-marquee-track { animation-duration: 55s; }
   .mn-marquee:hover .mn-marquee-track,
@@ -748,11 +617,9 @@ All colors MUST be HSL.
 
   @media (prefers-reduced-motion: reduce) {
     .mn-hero-halo, .mn-marquee-track { animation: none !important; }
-    .mn-pole-bg, .mn-pole-arrow { transition: none; }
     .mn-btn-lift:hover { transform: none; }
     .mn-btn:hover svg { transform: none !important; }
     .mn-link-u::after { transition: none; }
-    .mn-pole:hover .mn-pole-bg, .mn-pole:hover .mn-pole-arrow { transform: none; }
   }
 }
 
@@ -761,17 +628,14 @@ All colors MUST be HSL.
    lisibles pour les personnes qui ont demandé moins de transparence ou plus de
    contraste : fond opaque, plus de flou, bordure franche. */
 @media (prefers-reduced-transparency: reduce) {
-  .mn-glass,
   header,
   [class*="backdrop-blur"] {
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
   }
-  .mn-glass { background-color: hsl(var(--mn-ivory)) !important; }
   header { background-color: hsl(var(--background)) !important; }
 }
 @media (prefers-contrast: more) {
   .mn-card { border-color: hsl(var(--mn-nuit)) !important; }
-  .mn-glass { background-color: hsl(var(--mn-ivory)) !important; border-bottom: 1px solid hsl(var(--mn-nuit)); }
   .mn-btn { box-shadow: inset 0 0 0 1.5px hsl(var(--mn-nuit)); }
 }
