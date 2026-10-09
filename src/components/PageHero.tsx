@@ -15,7 +15,7 @@ interface PageHeroProps {
   size?: "sm" | "md" | "lg";
 }
 
-const PageHero = ({ eyebrow, title, subtitle, ctas, breadcrumbs, meta, align = "center", size = "md" }: PageHeroProps) => {
+const PageHero = ({ title, subtitle, ctas, breadcrumbs, meta, align = "center", size = "md" }: PageHeroProps) => {
   const gauche = align === "left";
   const py = size === "sm" ? "py-10 md:py-20" : size === "lg" ? "py-16 md:py-32" : "py-12 md:py-24";
 
@@ -49,7 +49,6 @@ const PageHero = ({ eyebrow, title, subtitle, ctas, breadcrumbs, meta, align = "
               {breadcrumbs}
             </div>
           )}
-          {eyebrow && <div className="mn-eyebrow-light mn-eyebrow-pill mb-5 md:mb-6">{eyebrow}</div>}
           <h1
             className="font-editorial italic font-medium text-primary-foreground mb-4 md:mb-6 break-words"
             style={{ letterSpacing: "-0.02em", textWrap: "balance" } as React.CSSProperties}

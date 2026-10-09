@@ -568,7 +568,6 @@ const Roue = () => {
             height={69}
             className={cn("w-auto brightness-0 invert", presentation ? "h-8 mb-2" : "h-11 mb-5")}
           />
-          <div className={cn("mn-eyebrow-light mn-eyebrow-pill", presentation ? "mb-2" : "mb-4")}>Jeu de l'événement</div>
           <h1
             className={cn(
               "font-editorial italic font-medium text-primary-foreground",
