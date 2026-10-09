@@ -32,7 +32,7 @@ export type Billing      = "monthly" | "annual";
 
 const OFFER_LABELS: Record<Offer, string> = {
   freemium:   "Freemium",
-  communaute: "Communauté",
+  communaute: "Premium",
   groupe:     "Groupe",
 };
 

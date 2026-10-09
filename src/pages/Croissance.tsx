@@ -224,8 +224,8 @@ const Croissance = () => {
 
   const groupeFeatures: OfferFeature[] = [
     {
-      label: "Tout le pack Communauté +",
-      tooltip: "Découvre tous les avantages dans l'offre Communauté"
+      label: "Tout le pack Premium +",
+      tooltip: "Découvre tous les avantages dans l'offre Premium"
     },
     {
       label: "Intégration dans un Cercle",
@@ -243,7 +243,7 @@ const Croissance = () => {
 
   // Offre freemium : accès au club, veille, rencontre mensuelle (retranscription
   // « Priorités commerciales - Temps Forts »). Libellés et infobulles repris de
-  // l'offre Communauté, sans réécriture.
+  // l'offre Premium, sans réécriture.
   const freemiumFeatures: OfferFeature[] = communauteFeatures.slice(0, 3);
 
   const croissanceSchema = [
@@ -302,17 +302,17 @@ const Croissance = () => {
           },
           {
             "@type": "Offer",
-            "name": "Communauté",
+            "name": "Premium",
             "description": "Accès au club international d'entrepreneurs francophones, veille mutualisée, rencontres mensuelles en ligne, académie en ligne avec plus de 30h de formation.",
             "price": "30",
             "priceCurrency": "EUR",
             "priceSpecification": { "@type": "UnitPriceSpecification", "price": "30.00", "priceCurrency": "EUR", "unitText": "MONTH" },
-            "itemOffered": { "@type": "Service", "name": "Communauté", "category": "Offre d'entrée entrepreneur" }
+            "itemOffered": { "@type": "Service", "name": "Premium", "category": "Offre d'entrée entrepreneur" }
           },
           {
             "@type": "Offer",
             "name": "Groupe",
-            "description": "Tout de Communauté + intégration dans un Cercle d'entrepreneurs, mises en relation partenaires, micro-mentorat mensuel.",
+            "description": "Tout de Premium + intégration dans un Cercle d'entrepreneurs, mises en relation partenaires, micro-mentorat mensuel.",
             "price": "90",
             "priceCurrency": "EUR",
             "priceSpecification": { "@type": "UnitPriceSpecification", "price": "90.00", "priceCurrency": "EUR", "unitText": "MONTH" },
@@ -342,7 +342,7 @@ const Croissance = () => {
     },
     {
       question: "Peut-on essayer avant de s'engager ?",
-      answer: "Oui. L'offre Freemium est gratuite : tu rejoins le Club sans rien payer. L'offre Communauté te permet ensuite de rejoindre le collectif sans engagement long terme. Dès ton inscription, tu reçois ton premier micro-mentorat de 20 minutes offert — pour avancer tout de suite, pas « plus tard »."
+      answer: "Oui. L'offre Freemium est gratuite : tu rejoins le Club sans rien payer. L'offre Premium te permet ensuite de rejoindre le collectif sans engagement long terme. Dès ton inscription, tu reçois ton premier micro-mentorat de 20 minutes offert — pour avancer tout de suite, pas « plus tard »."
     },
     {
       question: "Je n'ai pas le temps de suivre un accompagnement intensif.",
@@ -354,7 +354,7 @@ const Croissance = () => {
     },
     {
       question: "J'ai peur que ce soit trop général, pas adapté à mon projet.",
-      answer: "Chaque membre bénéficie d'un accompagnement selon son niveau et ses besoins. Communauté pour rompre l'isolement et poser les bases solides. Groupe pour structurer la croissance et affiner l'offre. Freemium pour découvrir le Club gratuitement avant de choisir. Nos experts connaissent le quotidien des entrepreneurs — on parle concret, pas théorie."
+      answer: "Chaque membre bénéficie d'un accompagnement selon son niveau et ses besoins. Premium pour rompre l'isolement et poser les bases solides. Groupe pour structurer la croissance et affiner l'offre. Freemium pour découvrir le Club gratuitement avant de choisir. Nos experts connaissent le quotidien des entrepreneurs — on parle concret, pas théorie."
     },
     {
       question: "Je suis déjà accompagné ailleurs.",
@@ -401,7 +401,7 @@ const Croissance = () => {
     <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
         title="Club Entrepreneur Toulouse & Afrique | Accès gratuit, offres dès 30€/mois - Mare Nostrum"
-        description="Rejoignez le Club Entrepreneur Mare Nostrum à Toulouse. 3 offres : Freemium gratuit, Communauté 30€, Groupe 90€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans. Mentorat, réseau, IA. Toulouse, Paris, Casablanca, Afrique francophone."
+        description="Rejoignez le Club Entrepreneur Mare Nostrum à Toulouse. 3 offres : Freemium gratuit, Premium 30€, Groupe 90€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans. Mentorat, réseau, IA. Toulouse, Paris, Casablanca, Afrique francophone."
         keywords="club entrepreneur toulouse, accompagnement entrepreneur toulouse, mentorat startup toulouse, accompagnement entrepreneur afrique, club entrepreneur francophone, incubateur toulouse, croissance entreprise toulouse, réseau entrepreneur toulouse, coaching entrepreneur, accompagnement startup francophonie, entrepreneuriat toulouse, entrepreneuriat afrique"
         structuredData={croissanceSchema}
         faqSchema={croissanceFaqs}
@@ -590,10 +590,10 @@ const Croissance = () => {
               </Button>
             </div>
 
-            {/* Communauté */}
+            {/* Premium */}
             <div className="bg-card border-2 border-border rounded-sm p-6 md:p-8 shadow-[var(--shadow-medium)] hover-lift transition-all hover:-translate-y-1 flex flex-col h-full">
               <div className="text-center mb-6">
-                <h3 className="text-2xl mb-2 text-foreground">Communauté</h3>
+                <h3 className="text-2xl mb-2 text-foreground">Premium</h3>
                 <div className="text-4xl font-bold text-primary mb-1">
                   {getPrice("communaute")}
                   <span className="text-lg font-normal text-muted-foreground"> {getPricePeriod()}</span>
@@ -683,7 +683,7 @@ const Croissance = () => {
                 <tr>
                   <th className="text-left py-2 px-2 md:py-3 md:px-4 text-muted-foreground font-medium" style={{ width: '40%' }}></th>
                   <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Freemium</th>
-                  <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Communauté</th>
+                  <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Premium</th>
                   <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-primary-foreground rounded-t-sm" style={{ background: 'hsl(222 44% 25%)' }}>Groupe</th>
                 </tr>
               </thead>

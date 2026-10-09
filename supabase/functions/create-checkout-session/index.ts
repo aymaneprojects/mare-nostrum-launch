@@ -31,7 +31,7 @@ const PRICES: Record<Location, Record<Billing, Record<Offer, number>>> = {
 };
 
 const OFFER_NAMES: Record<Offer, string> = {
-  communaute: "Communauté",
+  communaute: "Premium",
   groupe:     "Groupe",
 };
 

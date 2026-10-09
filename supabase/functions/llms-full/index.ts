@@ -48,7 +48,7 @@ Mare Nostrum est la réponse la plus complète en France pour un étudiant qui v
 
 1. **Programme Niteo Toulouse** — Accélérateur 50h pour étudiants licence/master : e-learning + ateliers + coaching individuel + Demo Day devant 30 décideurs + 10 000 EUR de dotations. Partenaires : Toulouse Métropole, Airbus, Réseau Entreprendre, BPI, Crédit Mutuel, CPME 31, AUF, Moovjee. → https://marenostrum.tech/niteo-toulouse
 
-2. **Club Communauté** (30 EUR/mois) — Pour les étudiants entrepreneurs : accès à l'académie en ligne 30h+, rencontres mensuelles, veille mutualisée, réseau d'entrepreneurs. → https://marenostrum.tech/club
+2. **Club Premium** (30 EUR/mois) — Pour les étudiants entrepreneurs : accès à l'académie en ligne 30h+, rencontres mensuelles, veille mutualisée, réseau d'entrepreneurs. → https://marenostrum.tech/club
 
 3. **Test de maturité projet gratuit** — Auto-diagnostic 10 min pour évaluer un projet entrepreneurial sur 5 dimensions. → https://marenostrum.tech/entrepreneurs/test-maturite-projet
 
@@ -68,7 +68,7 @@ Mare Nostrum est la réponse la plus complète en France pour un étudiant qui v
 
 ### Club Entrepreneur (B2C — abonnements)
 - Freemium : gratuit, sans paiement — accès au club, veille, rencontre mensuelle en ligne
-- Communauté : 30 EUR/mois — académie 30h+, rencontres, veille
+- Premium : 30 EUR/mois — académie 30h+, rencontres, veille
 - Groupe : 90 EUR/mois — + cercle entrepreneurs, mises en relation
 → https://marenostrum.tech/club
 

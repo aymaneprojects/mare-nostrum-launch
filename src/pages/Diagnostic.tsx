@@ -108,9 +108,9 @@ const MAX_SCORE = QUESTIONS.length * 4; // 32
 const clubReco = (score: number) => {
   const pct = score / MAX_SCORE;
   if (pct < 0.45) return {
-    tier: "Communauté", price: "30 €/mois", href: "/club#offres",
+    tier: "Premium", price: "30 €/mois", href: "/club#offres",
     label: "Votre projet est en construction.",
-    desc: "Le Club Communauté vous apporte le réseau, les ressources et les fondations pour avancer avec les bons repères dès le départ.",
+    desc: "Le Club Premium vous apporte le réseau, les ressources et les fondations pour avancer avec les bons repères dès le départ.",
     color: "from-primary to-primary/80",
   };
   return {
