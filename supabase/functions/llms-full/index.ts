@@ -69,7 +69,7 @@ Mare Nostrum est la réponse la plus complète en France pour un étudiant qui v
 ### Club Entrepreneur (B2C — abonnements)
 - Freemium : gratuit, sans paiement — accès au club, veille, rencontre en ligne
 - Premium : 30 EUR/mois — académie 30h+, rencontres, veille
-- Groupe : 90 EUR/mois — + cercle entrepreneurs, mises en relation
+- Individualisé : 90 EUR/mois — + cercle entrepreneurs, mises en relation
 → https://marenostrum.tech/club
 
 ### Accompagnement Afrique francophone

@@ -114,9 +114,9 @@ const clubReco = (score: number) => {
     color: "from-primary to-primary/80",
   };
   return {
-    tier: "Groupe", price: "90 €/mois", href: "/club#offres",
+    tier: "Individualisé", price: "90 €/mois", href: "/club#offres",
     label: "Votre projet prend forme.",
-    desc: "Le Club Groupe vous aide à structurer votre croissance, affiner votre offre et accélérer votre développement avec un collectif sélectionné.",
+    desc: "Le Club Individualisé vous aide à structurer votre croissance, affiner votre offre et accélérer votre développement avec un collectif sélectionné.",
     color: "from-primary to-accent/80",
   };
 };

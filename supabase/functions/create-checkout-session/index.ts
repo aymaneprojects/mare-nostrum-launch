@@ -32,7 +32,7 @@ const PRICES: Record<Location, Record<Billing, Record<Offer, number>>> = {
 
 const OFFER_NAMES: Record<Offer, string> = {
   communaute: "Premium",
-  groupe:     "Groupe",
+  groupe:     "Individualisé",
 };
 
 const CURRENCIES: Record<Location, string> = {

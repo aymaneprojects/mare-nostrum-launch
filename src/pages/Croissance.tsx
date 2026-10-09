@@ -326,12 +326,12 @@ const Croissance = () => {
           },
           {
             "@type": "Offer",
-            "name": "Groupe",
+            "name": "Individualisé",
             "description": "Tout de Premium + intégration dans un Cercle d'entrepreneurs, mises en relation partenaires, micro-mentorat mensuel.",
             "price": "90",
             "priceCurrency": "EUR",
             "priceSpecification": { "@type": "UnitPriceSpecification", "price": "90.00", "priceCurrency": "EUR", "unitText": "MONTH" },
-            "itemOffered": { "@type": "Service", "name": "Groupe", "category": "Offre recommandée entrepreneur" }
+            "itemOffered": { "@type": "Service", "name": "Individualisé", "category": "Offre recommandée entrepreneur" }
           }
         ]
       }
@@ -369,7 +369,7 @@ const Croissance = () => {
     },
     {
       question: "J'ai peur que ce soit trop général, pas adapté à mon projet.",
-      answer: "Chaque membre bénéficie d'un accompagnement selon son niveau et ses besoins. Premium pour rompre l'isolement et poser les bases solides. Groupe pour structurer la croissance et affiner l'offre. Freemium pour découvrir le Club gratuitement avant de choisir. Nos experts connaissent le quotidien des entrepreneurs — on parle concret, pas théorie."
+      answer: "Chaque membre bénéficie d'un accompagnement selon son niveau et ses besoins. Premium pour rompre l'isolement et poser les bases solides. Individualisé pour structurer la croissance et affiner l'offre. Freemium pour découvrir le Club gratuitement avant de choisir. Nos experts connaissent le quotidien des entrepreneurs — on parle concret, pas théorie."
     },
     {
       question: "Je suis déjà accompagné ailleurs.",
@@ -416,7 +416,7 @@ const Croissance = () => {
     <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
         title="Club Entrepreneur Toulouse & Afrique | Accès gratuit, offres dès 30€/mois - Mare Nostrum"
-        description="Rejoignez le Club Entrepreneur Mare Nostrum à Toulouse. 3 offres : Freemium gratuit, Premium 30€, Groupe 90€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans. Mentorat, réseau, IA. Toulouse, Paris, Casablanca, Afrique francophone."
+        description="Rejoignez le Club Entrepreneur Mare Nostrum à Toulouse. 3 offres : Freemium gratuit, Premium 30€, Individualisé 90€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans. Mentorat, réseau, IA. Toulouse, Paris, Casablanca, Afrique francophone."
         keywords="club entrepreneur toulouse, accompagnement entrepreneur toulouse, mentorat startup toulouse, accompagnement entrepreneur afrique, club entrepreneur francophone, incubateur toulouse, croissance entreprise toulouse, réseau entrepreneur toulouse, coaching entrepreneur, accompagnement startup francophonie, entrepreneuriat toulouse, entrepreneuriat afrique"
         structuredData={croissanceSchema}
         faqSchema={croissanceFaqs}
@@ -651,13 +651,13 @@ const Croissance = () => {
                 ))}
               </ul>
 
-              {/* Contour : une seule offre porte le bouton plein (voir carte Groupe). */}
+              {/* Contour : une seule offre porte le bouton plein (voir carte Individualisé). */}
               <Button variant="outline" className="w-full mt-auto" onClick={() => openOnboarding("communaute")}>
                 Rejoindre l'équipage
               </Button>
             </div>
 
-            {/* Groupe - Highlighted */}
+            {/* Individualisé - Highlighted */}
             <div className="text-primary-foreground border-2 border-accent rounded-sm p-6 md:p-8 shadow-[var(--shadow-elegant)] hover:shadow-2xl transition-all hover:-translate-y-2 relative flex flex-col h-full" style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}>
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <span className="bg-accent text-accent-foreground px-4 py-1 rounded-full text-sm font-semibold">
@@ -666,7 +666,7 @@ const Croissance = () => {
               </div>
 
               <div className="text-center mb-6">
-                <h3 className="text-2xl mb-2 text-primary-foreground">Groupe</h3>
+                <h3 className="text-2xl mb-2 text-primary-foreground">Individualisé</h3>
                 <div className="text-4xl font-bold mb-1">
                   {getPrice("groupe")}
                   <span className="text-lg font-normal opacity-80"> {getPricePeriod()}</span>
@@ -712,7 +712,7 @@ const Croissance = () => {
                   <th className="text-left py-2 px-2 md:py-3 md:px-4 text-muted-foreground font-medium" style={{ width: '40%' }}></th>
                   <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Freemium</th>
                   <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Premium</th>
-                  <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-primary-foreground rounded-t-sm" style={{ background: 'hsl(222 44% 25%)' }}>Groupe</th>
+                  <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-primary-foreground rounded-t-sm" style={{ background: 'hsl(222 44% 25%)' }}>Individualisé</th>
                 </tr>
               </thead>
               <tbody>
