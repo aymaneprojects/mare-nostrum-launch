@@ -8,7 +8,7 @@ import logo from "@/assets/logo.png";
 const desktopLinks = [
   { to: "/expertise",         label: "Conseil",          Icon: Compass        },
   { to: "/education",         label: "Formation professionnelle",        Icon: GraduationCap  },
-  { to: "https://veluo.marenostrum.tech/", label: "Logiciel IA", Icon: Sparkles, external: true },
+  { to: "/logiciel-ia",    label: "Logiciel IA",      Icon: Sparkles       },
   { to: "/club",             label: "Réseau",           Icon: Users         },
   { to: "https://niteo.marenostrum.tech/", label: "Incubation", Icon: Rocket, external: true },
   { to: "/engagement-rse",    label: "RSE",              Icon: Leaf           },

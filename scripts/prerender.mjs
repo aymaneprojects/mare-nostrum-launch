@@ -41,7 +41,7 @@ const TYPES = {
 /** Pages publiques à pré-rendre. Une entrée = un fichier HTML livré. */
 const ROUTES = [
   "/", "/education", "/expertise", "/mastermind", "/mastermind-digital", "/initiation-ia",
-  "/agent-ia-marketing", "/club", "/offre-ia", "/engagement-rse", "/a-propos",
+  "/agent-ia-marketing", "/logiciel-ia", "/club", "/offre-ia", "/engagement-rse", "/a-propos",
   "/a-propos/partenaire", "/contact", "/equipe", "/blog", "/livre-entrepreneuriat",
   "/diagnostic", "/niteo-toulouse", "/iter",
   "/ecoles/transformation-entrepreneuriale", "/ecoles/diagnostic-gratuit",
