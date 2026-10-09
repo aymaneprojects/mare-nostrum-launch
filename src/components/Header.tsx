@@ -9,7 +9,7 @@ const desktopLinks = [
   { to: "/expertise",         label: "Conseil",          Icon: Compass        },
   { to: "/education",         label: "Formation professionnelle",        Icon: GraduationCap  },
   { to: "/club",              label: "Réseau",           Icon: Users         },
-  { to: "https://niteo.marenostrum.tech/", label: "Niteo", Icon: Rocket, external: true },
+  { to: "https://niteo.marenostrum.tech/", label: "Incubation", Icon: Rocket, external: true },
   { to: "/engagement-rse",    label: "RSE",              Icon: Leaf           },
   { to: "/blog",              label: "Blog",             Icon: BookOpen       },
   { to: "/a-propos",          label: "À propos",         Icon: Info           },
