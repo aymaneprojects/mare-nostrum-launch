@@ -79,14 +79,20 @@ serve(async (req) => {
     // Mail de bienvenue : une seule fois par session payante du Club (Premium ou Groupe).
     // Le marqueur est posé AVANT l'envoi (même parade que Niteo contre les doublons du
     // sondage toutes les 3 s) ; si l'envoi échoue, il est retiré pour qu'un nouvel appel réessaie.
+    // Le marqueur est posé sur l'abonnement (la bibliothèque Stripe 14.21 n'a pas
+    // checkout.sessions.update).
     const aPaye = paid || session.payment_status === "no_payment_required";
-    if (aPaye && session.status === "complete" && email && ["communaute", "groupe"].includes(meta.offer ?? "") && meta.bienvenue !== "envoye") {
-      await stripe.checkout.sessions.update(sessionId, { metadata: { ...meta, bienvenue: "envoye" } });
-      try {
-        await envoyerBienvenue(email);
-      } catch (e) {
-        console.error("Mail de bienvenue non envoyé:", (e as Error).message);
-        await stripe.checkout.sessions.update(sessionId, { metadata: { ...meta, bienvenue: "" } });
+    const subId = typeof session.subscription === "string" ? session.subscription : session.subscription?.id;
+    if (aPaye && session.status === "complete" && email && subId && ["communaute", "groupe"].includes(meta.offer ?? "")) {
+      const sub = await stripe.subscriptions.retrieve(subId);
+      if (sub.metadata?.bienvenue !== "envoye") {
+        await stripe.subscriptions.update(subId, { metadata: { bienvenue: "envoye" } });
+        try {
+          await envoyerBienvenue(email);
+        } catch (e) {
+          console.error("Mail de bienvenue non envoyé:", (e as Error).message);
+          await stripe.subscriptions.update(subId, { metadata: { bienvenue: "" } });
+        }
       }
     }
 
