@@ -25,7 +25,8 @@ import poleExpertiseIcon from "@/assets/poles/pole-expertise.png";
 import veluoIcon from "@/assets/poles/veluo.png";
 import niteoIcon from "@/assets/poles/niteo.png";
 import clubIcon from "@/assets/poles/club.png";
-const DarkLayers = ({ halo, vignette }: { halo: string; vignette: string }) => (
+import HeroMap from "@/components/HeroMap";
+const DarkLayers =({ halo, vignette }: { halo: string; vignette: string }) => (
   <>
     <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, hsl(var(--mn-turquoise) / 0.055) 22px 23px)' }}></div>
     <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(ellipse at ${halo}, hsl(var(--mn-turquoise) / 0.18) 0%, transparent 52%), radial-gradient(ellipse at ${vignette}, hsl(var(--mn-ink) / 0.7) 0%, transparent 58%)` }}></div>
@@ -231,6 +232,7 @@ const Index = () => {
         <div aria-hidden="true" className="mn-hero-halo absolute -top-[25%] -left-[20%] h-[75vmax] w-[75vmax] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, hsl(var(--mn-turquoise) / 0.16) 0%, transparent 62%)' }}></div>
         {/* Grain fin en CSS pur */}
         <div aria-hidden="true" className="mn-grain absolute inset-0 pointer-events-none"></div>
+        <HeroMap />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
             <div className="mn-eyebrow-light mb-6 md:mb-8">depuis Toulouse, dans tout l'espace francophone</div>
@@ -276,7 +278,7 @@ const Index = () => {
               { icon: Users, label: "80+ entrepreneurs" },
               { icon: Star, label: "30+ écoles partenaires" },
               { icon: Users, label: "135+ experts actifs" },
-              { icon: MapPin, label: "12 pays d'intervention" },
+              { icon: MapPin, label: "11 pays d'intervention" },
               { icon: Award, label: "Soutenu par la Région Occitanie" },
             ].map(({ icon: Icon, label }) => (
               <div key={label} className="mn-caption flex items-center gap-2 font-medium text-primary-foreground/75">

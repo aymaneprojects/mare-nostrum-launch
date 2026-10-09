@@ -6,7 +6,7 @@ import logo from "@/assets/logo.png";
 
 // Desktop : sans "Accueil" (le logo sert de lien home)
 const desktopLinks = [
-  { to: "/expertise",         label: "Pôle d'expertise",          Icon: Compass         },
+  { to: "/expertise",         label: "Conseil",          Icon: Compass        },
   { to: "/education",         label: "Centre de formation",        Icon: GraduationCap  },
   { to: "/club",              label: "Club",             Icon: Users          },
   { to: "https://niteo.marenostrum.tech/", label: "Niteo", Icon: Rocket, external: true },
