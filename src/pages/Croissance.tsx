@@ -53,14 +53,13 @@ function ClubCounter() {
 interface OfferFeature {
   label: string;
   tooltip: string;
-  href?: string;
 }
 
 const FeatureWithTooltip = ({ feature }: { feature: OfferFeature }) => (
   <li className="flex items-start space-x-3">
     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
     <span className="text-sm text-muted-foreground flex items-center gap-1.5 flex-wrap">
-      {feature.href ? <Link to={feature.href} className="underline underline-offset-2 hover:text-primary">{feature.label}</Link> : feature.label}
+      {feature.label}
       <Popover>
         <PopoverTrigger asChild>
           <button
@@ -230,8 +229,7 @@ const Croissance = () => {
     },
     {
       label: "Avantages négociés auprès de nos partenaires",
-      tooltip: "Sois informé des tarifs préférentiels aux événements, des opportunités de nos partenaires et des possibilités de collaboration avec Mare Nostrum",
-      href: "/partenaires"
+      tooltip: "Sois informé des tarifs préférentiels aux événements, des opportunités de nos partenaires et des possibilités de collaboration avec Mare Nostrum"
     },
     {
       label: "Accès à l'Académie en ligne de l'incubateur",
