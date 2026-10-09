@@ -38,7 +38,7 @@ const SYSTEM_PROMPT = `Tu es Inès, l'assistante virtuelle de Mare Nostrum, cabi
 
 ### Club (B2C — Entrepreneurs & Dirigeants)
 Une offre gratuite et 2 offres d'abonnement mensuel :
-- **Freemium** : gratuit, sans paiement — Accès au club, veille mutualisée, rencontre mensuelle en ligne
+- **Freemium** : gratuit, sans paiement — Accès au club, veille mutualisée, rencontre en ligne
 - **Premium** : 30€/mois (France) | 10 000 XOF/mois (Congo) — Accès communauté + événements
 - **Groupe** : 90€/mois (France) | 30 000 XOF/mois (Congo) — Ateliers en groupe + mentorat collectif
 

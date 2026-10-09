@@ -209,7 +209,7 @@ const Croissance = () => {
       tooltip: "Reçois chaque mois une sélection à jour des meilleures opportunités sur l'entrepreneuriat et l'innovation, parmi des milliers de sources de données spécialisées"
     },
     {
-      label: "1 rencontre mensuelle en ligne",
+      label: "Rencontre en ligne",
       tooltip: "Participe à une session de networking animée pour élargir ton réseau avec humour et bienveillance"
     },
     {
@@ -241,7 +241,7 @@ const Croissance = () => {
     }
   ];
 
-  // Offre freemium : accès au club, veille, rencontre mensuelle (retranscription
+  // Offre freemium : accès au club, veille, rencontre en ligne (retranscription
   // « Priorités commerciales - Temps Forts »). Libellés et infobulles repris de
   // l'offre Premium, sans réécriture.
   const freemiumFeatures: OfferFeature[] = communauteFeatures.slice(0, 3);
@@ -294,7 +294,7 @@ const Croissance = () => {
           {
             "@type": "Offer",
             "name": "Freemium",
-            "description": "Accès gratuit au club international d'entrepreneurs francophones, veille mutualisée et rencontre mensuelle en ligne. Sans paiement.",
+            "description": "Accès gratuit au club international d'entrepreneurs francophones, veille mutualisée et rencontre en ligne. Sans paiement.",
             "price": "0",
             "priceCurrency": "EUR",
             "priceSpecification": { "@type": "UnitPriceSpecification", "price": "0.00", "priceCurrency": "EUR" },
@@ -303,7 +303,7 @@ const Croissance = () => {
           {
             "@type": "Offer",
             "name": "Premium",
-            "description": "Accès au club international d'entrepreneurs francophones, veille mutualisée, rencontres mensuelles en ligne, académie en ligne avec plus de 30h de formation.",
+            "description": "Accès au club international d'entrepreneurs francophones, veille mutualisée, rencontres en ligne, académie en ligne avec plus de 30h de formation.",
             "price": "30",
             "priceCurrency": "EUR",
             "priceSpecification": { "@type": "UnitPriceSpecification", "price": "30.00", "priceCurrency": "EUR", "unitText": "MONTH" },
@@ -346,7 +346,7 @@ const Croissance = () => {
     },
     {
       question: "Je n'ai pas le temps de suivre un accompagnement intensif.",
-      answer: "Justement, le Club Mare Nostrum est fait pour ça. Tu ne rajoutes pas du travail : tu remplaces du temps perdu par du temps utile. Les formats sont légers (rencontres mensuelles, micro-mentorat à la demande, veille mutualisée livrée chaque semaine). En moyenne, nos membres gagnent entre 8 et 12 heures par semaine dès le deuxième mois."
+      answer: "Justement, le Club Mare Nostrum est fait pour ça. Tu ne rajoutes pas du travail : tu remplaces du temps perdu par du temps utile. Les formats sont légers (rencontres en ligne, micro-mentorat à la demande, veille mutualisée livrée chaque semaine). En moyenne, nos membres gagnent entre 8 et 12 heures par semaine dès le deuxième mois."
     },
     {
       question: "Je n'ai pas les moyens pour une dépense fixe chaque mois.",
@@ -691,7 +691,7 @@ const Croissance = () => {
                 {[
                   { feature: "Accès Club International", f: true, c: true, g: true },
                   { feature: "Veille mutualisée mensuelle", f: true, c: true, g: true },
-                  { feature: "Rencontre networking mensuelle", f: true, c: true, g: true },
+                  { feature: "Rencontre en ligne", f: true, c: true, g: true },
                   { feature: "Académie en ligne +30h", f: false, c: true, g: true },
                   { feature: "Opportunités & tarifs partenaires", f: false, c: true, g: true },
                   { feature: "Intégration dans un Cercle", f: false, c: false, g: true },
