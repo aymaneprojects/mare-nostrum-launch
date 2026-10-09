@@ -14,43 +14,46 @@ import ExitIntentPopup from "@/components/ExitIntentPopup";
 import BottomNav from "@/components/BottomNav";
 import CookieBanner from "@/components/CookieBanner";
 import Index from "./pages/Index";
-import Education from "./pages/Education";
-import Croissance from "./pages/Croissance";
-import OffreIA from "./pages/OffreIA";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import MentionsLegales from "./pages/MentionsLegales";
-import LivreEntrepreneuriat from "./pages/LivreEntrepreneuriat";
-import EngagementRSE from "./pages/EngagementRSE";
-import Blog from "./pages/Blog";
-import BlogArticle from "./pages/BlogArticle";
-import CGU from "./pages/CGU";
-import CGV from "./pages/CGV";
-import Confidentialite from "./pages/Confidentialite";
 import NotFound from "./pages/NotFound";
 import Healthz from "./pages/Healthz";
 
 // Silo 1: Écoles
-import TransformationEntrepreneuriale from "./pages/ecoles/TransformationEntrepreneuriale";
-import DiagnosticGratuit from "./pages/ecoles/DiagnosticGratuit";
 
 // Silo 2: Entrepreneurs
-import AccompagnementFrancophonie from "./pages/entrepreneurs/AccompagnementFrancophonie";
-import TestMaturiteProjet from "./pages/entrepreneurs/TestMaturiteProjet";
-import MentoratIndividuel from "./pages/entrepreneurs/MentoratIndividuel";
 
 // Silo 3: Magazine
-import EntrepreneuriatSocialFrancophonie from "./pages/mag/EntrepreneuriatSocialFrancophonie";
-import InnovationPedagogiqueEntrepreneuriat from "./pages/mag/InnovationPedagogiqueEntrepreneuriat";
-import ImpactMesureStartup from "./pages/mag/ImpactMesureStartup";
-import NiteoToulouse from "./pages/NiteoToulouse";
-import Newsletter from "./pages/Newsletter";
-import Unsubscribed from "./pages/Unsubscribed";
-import Diagnostic from "./pages/Diagnostic";
-import Partenaires from "./pages/Partenaires";
-import Equipe from "./pages/Equipe";
-import CarteContact from "./pages/CarteContact";
 import { cn } from "@/lib/utils";
+
+// Toutes les pages sauf l'accueil, la 404 et /healthz sont chargées à la demande : le script
+// principal ne contient plus que l'accueil, le socle et le routeur.
+const Education = lazy(() => import("./pages/Education"));
+const Croissance = lazy(() => import("./pages/Croissance"));
+const OffreIA = lazy(() => import("./pages/OffreIA"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const MentionsLegales = lazy(() => import("./pages/MentionsLegales"));
+const LivreEntrepreneuriat = lazy(() => import("./pages/LivreEntrepreneuriat"));
+const EngagementRSE = lazy(() => import("./pages/EngagementRSE"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogArticle = lazy(() => import("./pages/BlogArticle"));
+const CGU = lazy(() => import("./pages/CGU"));
+const CGV = lazy(() => import("./pages/CGV"));
+const Confidentialite = lazy(() => import("./pages/Confidentialite"));
+const TransformationEntrepreneuriale = lazy(() => import("./pages/ecoles/TransformationEntrepreneuriale"));
+const DiagnosticGratuit = lazy(() => import("./pages/ecoles/DiagnosticGratuit"));
+const AccompagnementFrancophonie = lazy(() => import("./pages/entrepreneurs/AccompagnementFrancophonie"));
+const TestMaturiteProjet = lazy(() => import("./pages/entrepreneurs/TestMaturiteProjet"));
+const MentoratIndividuel = lazy(() => import("./pages/entrepreneurs/MentoratIndividuel"));
+const EntrepreneuriatSocialFrancophonie = lazy(() => import("./pages/mag/EntrepreneuriatSocialFrancophonie"));
+const InnovationPedagogiqueEntrepreneuriat = lazy(() => import("./pages/mag/InnovationPedagogiqueEntrepreneuriat"));
+const ImpactMesureStartup = lazy(() => import("./pages/mag/ImpactMesureStartup"));
+const NiteoToulouse = lazy(() => import("./pages/NiteoToulouse"));
+const Newsletter = lazy(() => import("./pages/Newsletter"));
+const Unsubscribed = lazy(() => import("./pages/Unsubscribed"));
+const Diagnostic = lazy(() => import("./pages/Diagnostic"));
+const Partenaires = lazy(() => import("./pages/Partenaires"));
+const Equipe = lazy(() => import("./pages/Equipe"));
+const CarteContact = lazy(() => import("./pages/CarteContact"));
 
 // Pôle d'expertise et fiches de formation : chargés à la demande pour ne pas
 // peser sur le bundle des pages principales.
@@ -116,6 +119,7 @@ const AppContent = () => {
         key={location.pathname}
         className={cn("mn-page", bare ? undefined : "pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0")}
       >
+      <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/education" element={<Education />} />
@@ -174,6 +178,7 @@ const AppContent = () => {
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+      </Suspense>
       </div>
     </>
   );

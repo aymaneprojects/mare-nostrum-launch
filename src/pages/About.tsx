@@ -33,8 +33,7 @@ import toulecoLogo from "@/assets/partners/touleco.png";
 import imaginationsFertilesLogo from "@/assets/partners/imaginations-fertiles.png";
 import emergingBusinessLogo from "@/assets/partners/emerging-business.png";
 import moovjeeLogo from "@/assets/partners/moovjee.png";
-import neoEntrepreneurEliteImg from "@/assets/neo-entrepreneur-elite.png";
-import francophonieScientiqueImg from "@/assets/francophonie-scientifique.png";
+import francophonieScientiqueImg from "@/assets/francophonie-scientifique.jpg";
 import DarkSection from "@/components/DarkSection";
 const About = () => {
   return <div className="min-h-dvh flex flex-col">

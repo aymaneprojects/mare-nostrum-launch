@@ -14,7 +14,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import ClubOnboarding, { type Offer, type PaidOffer } from "@/components/ClubOnboarding";
 import { supabase } from "@/integrations/supabase/client";
-import atelierRose from "@/assets/atelier-rose.png";
+import atelierRose from "@/assets/atelier-rose.jpg";
 
 type LocationType = "france" | "congo_brazzaville";
 
