@@ -235,13 +235,16 @@ const Index = () => {
         <HeroMap />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
-            <div className="mn-eyebrow-light mb-6 md:mb-8">depuis Toulouse, dans tout l'espace francophone</div>
+            <div className="mn-eyebrow-light mb-6 md:mb-8">Structure d'accompagnement à l'entrepreneuriat</div>
             <p className="mn-body font-medium text-primary-foreground/80 mb-4 md:mb-6 max-w-xl mx-auto" style={{ letterSpacing: '0.01em' }}>
-              L'alliance des traversées entrepreneuriales
+              L'alliance des traversées entrepreneuriales francophones
             </p>
-            <h1 className="font-editorial italic font-medium text-primary-foreground mb-5 md:mb-8 break-words" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>Entre les premiers revenus et la traction, il y a une traversée. Nous la sécurisons à vos côtés.</h1>
+            <h1 className="font-editorial italic font-medium text-primary-foreground mb-5 md:mb-8 break-words" style={{ letterSpacing: '-0.02em', textWrap: 'balance' }}>
+              Entre l’idée et les premiers clients, il y a une traversée.
+              <span className="block">Nous la menons avec vous.</span>
+            </h1>
             <p className="mn-lead text-primary-foreground/75 mb-8 md:mb-12 max-w-2xl mx-auto">
-              Mare Nostrum accompagne les écoles et les entrepreneurs francophones.
+              Mare Nostrum est construit par et pour les chefs de projet et les nouveaux entrepreneurs, ainsi que les institutions et les universités.
             </p>
 
             <div className="mn-cta-row mn-cta-row--center">
