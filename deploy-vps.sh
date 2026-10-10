@@ -10,6 +10,9 @@
 # build fait depuis une copie du dépôt figée au 7 septembre a effacé onze jours
 # de travail en production.
 #
+# Second garde-fou : seul un code DÉJÀ dans main sur GitHub peut partir en ligne,
+# et il doit contenir la version en ligne (voir l'incident du 10/10/2026 plus bas).
+#
 # Usage : ./deploy-vps.sh
 #         FORCE=1 ./deploy-vps.sh   (contourner le garde-fou — à éviter)
 #
@@ -86,6 +89,33 @@ if [ -n "$live_ts" ] && [ "$local_ts" -lt "$live_ts" ] && [ "${FORCE:-0}" != "1"
   echo "Le déployer effacerait des fonctionnalités en production." >&2
   echo "Récupérez d'abord la dernière version (git pull), puis relancez." >&2
   exit 1
+fi
+
+# ── Garde-fou : main est la seule source de ce qui est en ligne ──────────────
+# Le 10/10/2026, une version publiée depuis une branche non fusionnée a été
+# effacée par la publication automatique de Hermes, qui reconstruit depuis main
+# (paiement du Club cassé). La date ne protège pas : un commit Hermes est plus
+# récent même quand son contenu est plus vieux. On compare donc les HISTORIQUES.
+if [ "${FORCE:-0}" != "1" ]; then
+  if ! git fetch -q origin main; then
+    echo "ABANDON : impossible de lire main sur GitHub (réseau ?)." >&2
+    exit 1
+  fi
+  # 1. Ce qu'on publie doit déjà être dans main, sinon Hermes l'effacera.
+  if ! git merge-base --is-ancestor HEAD origin/main; then
+    echo "" >&2
+    echo "ABANDON : ce code ($local_commit) n'est pas dans main sur GitHub." >&2
+    echo "La prochaine publication de Hermes, faite depuis main, l'effacerait." >&2
+    echo "Fusionnez d'abord votre branche dans main (pull request), puis publiez depuis main." >&2
+    exit 1
+  fi
+  # 2. Ce qui est en ligne doit être contenu dans ce qu'on publie, sinon on l'efface.
+  if [ -n "$live_commit" ] && ! git merge-base --is-ancestor "$live_commit" HEAD 2>/dev/null; then
+    echo "" >&2
+    echo "ABANDON : la version en ligne ($live_commit) contient des changements absents de votre code." >&2
+    echo "Publier effacerait ces changements. Faites un git pull de main, puis relancez." >&2
+    exit 1
+  fi
 fi
 
 if ! run true 2>/dev/null; then

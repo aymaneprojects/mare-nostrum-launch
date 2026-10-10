@@ -59,6 +59,8 @@ ouvrir les pages touchées par la modification et regarder le résultat réel.
 |---|---|---|
 | `votre code est PLUS ANCIEN que celui en ligne` | copie périmée du dépôt | récupérer la dernière version, **jamais** forcer |
 | `modifications non commitées` | travail non enregistré | enregistrer et envoyer d'abord |
+| `n'est pas dans main sur GitHub` | publication depuis une branche non fusionnée : Hermes, qui publie depuis main, l'effacerait | fusionner la branche dans main (pull request), puis publier depuis main |
+| `la version en ligne … contient des changements absents` | votre code n'inclut pas ce qui est en ligne | `git pull` de main, puis relancer, **jamais** forcer |
 | `pas d'accès SSH` | clé absente ou verrouillée | demander à l'utilisateur de lancer `ssh-add` |
 | un domaine ne répond pas 200 | configuration du serveur | passer à la skill `incident-prod` |
 

@@ -8,8 +8,9 @@ const stripe = new Stripe(Deno.env.get("STRIPE_API")!, {
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 
-const KIT_URL   = "https://drive.google.com/file/d/1FVsdyMqBs7QG4FpGYzEO4o1yH5MkzUDj/view";
+// Le kit vit sur le site : le bouton et la pièce jointe suivent la dernière version publiée.
 const KIT_PDF   = "https://marenostrum.tech/kit-adherent-club.pdf";
+const KIT_URL   = KIT_PDF;
 const SLACK_URL = "https://join.slack.com/t/clubmarenostrum/shared_invite/zt-3k96xxhx1-UjfT8oy4ISyHKScmuqsleg";
 
 const corsHeaders = {

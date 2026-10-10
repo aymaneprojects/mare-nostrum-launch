@@ -1,3 +1,6 @@
+// ARCHIVÉE le 10/10/2026 : page hors ligne (ni route, ni sitemap, ni pré-rendu, ni navbar).
+// Pour la remettre : route /logiciel-ia dans src/App.tsx, entrée dans scripts/prerender.mjs
+// et public/sitemap.xml, lien dans src/components/Header.tsx.
 import { ArrowRight, Brain, CalendarDays, FileText, Home, Mail, MessageCircle, ShieldCheck, Sparkles, Workflow, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
