@@ -62,7 +62,6 @@ const MastermindNeoEntrepreneurs = lazy(() => import("./pages/MastermindNeoEntre
 const MastermindDigital = lazy(() => import("./pages/MastermindDigital"));
 const InitiationIA = lazy(() => import("./pages/InitiationIA"));
 const AgentIAMarketing = lazy(() => import("./pages/AgentIAMarketing"));
-const LogicielIA = lazy(() => import("./pages/LogicielIA"));
 
 // Live conférence : chargées à la demande (QR code + temps réel), hors du bundle du site vitrine.
 const Roue = lazy(() => import("./pages/Roue"));
@@ -130,7 +129,6 @@ const AppContent = () => {
         <Route path="/mastermind-digital" element={<Suspense fallback={null}><MastermindDigital /></Suspense>} />
         <Route path="/initiation-ia" element={<Suspense fallback={null}><InitiationIA /></Suspense>} />
         <Route path="/agent-ia-marketing" element={<Suspense fallback={null}><AgentIAMarketing /></Suspense>} />
-        <Route path="/logiciel-ia" element={<Suspense fallback={null}><LogicielIA /></Suspense>} />
         <Route path="/roue" element={<Suspense fallback={null}><Roue /></Suspense>} />
         <Route path="/club" element={<Croissance />} />
         <Route path="/offre-ia" element={<OffreIA />} />
