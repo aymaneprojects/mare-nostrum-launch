@@ -249,16 +249,16 @@ const Index = () => {
 
             <div className="mn-cta-row mn-cta-row--center">
               <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto" style={{ boxShadow: 'var(--shadow-cta)' }}>
-                <Link to="/education">
+                <a href="https://www.marenostrum.tech/expertise">
                   <GraduationCap className="mr-2 h-4 md:h-5 w-4 md:w-5" />
-                  Je suis un établissement
-                </Link>
+                  Je suis une institution
+                </a>
               </Button>
               <Button asChild size="lg" variant="outline" className="bg-primary-foreground/10 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary w-full sm:w-auto">
-                <Link to="/club">
+                <a href="https://www.marenostrum.tech/education">
                   <TrendingUp className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                   Je suis un entrepreneur
-                </Link>
+                </a>
               </Button>
             </div>
           </div>
