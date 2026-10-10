@@ -6,10 +6,10 @@ import logo from "@/assets/logo.png";
 
 // Desktop : sans "Accueil" (le logo sert de lien home)
 const desktopLinks = [
-  { to: "/expertise",         label: "Conseil",          Icon: Compass        },
-  { to: "/education",         label: "Formation professionnelle",        Icon: GraduationCap  },
-  { to: "/club",             label: "Réseau",           Icon: Users         },
   { to: "https://niteo.marenostrum.tech/", label: "Incubation", Icon: Rocket, external: true },
+  { to: "/education",         label: "Formation professionnelle", Icon: GraduationCap },
+  { to: "/expertise",         label: "Conseil",          Icon: Compass        },
+  { to: "/club",              label: "Réseau",           Icon: Users          },
   { to: "/engagement-rse",    label: "RSE",              Icon: Leaf           },
   { to: "/blog",              label: "Blog",             Icon: BookOpen       },
   { to: "/a-propos",          label: "À propos",         Icon: Info           },
