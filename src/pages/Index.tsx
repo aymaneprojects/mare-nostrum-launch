@@ -304,12 +304,10 @@ const Index = () => {
             </h2>
             <div className="prose prose-lg mx-auto text-center max-w-[65ch]">
               <p className="mn-body text-primary-foreground/75 mb-5 md:mb-8">
-                Mare Nostrum est une entreprise de services aux entrepreneurs et aux établissements, fondée en 2023 à Toulouse, avec des bureaux à Paris et Casablanca.
+                Mare Nostrum est une structure d'accompagnement à l'entrepreneuriat, fondée en 2023. Plusieurs services sont proposés pour accompagner celles et ceux qui veulent lancer une nouvelle activité, dans la francophonie.
               </p>
               <p className="mn-body text-primary-foreground/75 mb-5 md:mb-8">
-                Société à mission, familiale et interculturelle, notre raison d'être est de 
-                <strong className="text-primary-foreground"> sécuriser la trajectoire des entreprises à impact</strong> et 
-                renforcer leurs capacités à coopérer, protéger le vivant, et inclure les publics vulnérables.
+                Notre raison d'être est de renforcer les capacités des entreprises à devenir des acteurs plus efficaces de la coopération territoriale, de la protection du vivant et de l’inclusion de publics vulnérables.
               </p>
               <div className="flex flex-wrap justify-center gap-2 md:gap-3 mt-10 md:mt-14 pt-8 md:pt-10 border-t border-primary-foreground/15">
                 <div className="flex items-center space-x-2 bg-secondary text-secondary-foreground px-3 py-2 md:px-4 md:py-2 rounded-full text-sm md:text-base">
