@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Home, GraduationCap, Compass, Users, Leaf, BookOpen, Info, Mail, Rocket } from "lucide-react";
+import { Menu, X, Home, GraduationCap, Compass, Users, Leaf, BookOpen, Info, Mail, Rocket, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
 // Desktop : sans "Accueil" (le logo sert de lien home)
 const desktopLinks = [
-  { to: "/expertise",         label: "Pôle d'expertise",          Icon: Compass         },
-  { to: "/education",         label: "Centre de formation",        Icon: GraduationCap  },
-  { to: "/club",              label: "Club",             Icon: Users          },
-  { to: "https://niteo.marenostrum.tech/", label: "Niteo", Icon: Rocket, external: true },
+  { to: "/expertise",         label: "Conseil",          Icon: Compass        },
+  { to: "/education",         label: "Formation professionnelle",        Icon: GraduationCap  },
+  { to: "/logiciel-ia",    label: "Logiciel IA",      Icon: Sparkles       },
+  { to: "/club",             label: "Réseau",           Icon: Users         },
+  { to: "https://niteo.marenostrum.tech/", label: "Incubation", Icon: Rocket, external: true },
   { to: "/engagement-rse",    label: "RSE",              Icon: Leaf           },
   { to: "/blog",              label: "Blog",             Icon: BookOpen       },
   { to: "/a-propos",          label: "À propos",         Icon: Info           },

@@ -10,9 +10,12 @@ js=$(ls dist/assets/index-*.js 2>/dev/null | head -1 || true)
 grep -q "\.supabase\.co" "$js" || {
   echo "BUILD REFUSÉ : l'adresse Supabase est absente du script (variables VITE_SUPABASE_* manquantes) : le site serait en écran blanc." >&2
   exit 1; }
+grep -rlq "pk_live_" dist/assets || {
+  echo "BUILD REFUSÉ : la clé publique Stripe est absente (VITE_STRIPE_PUBLIC_KEY manquante) : le paiement du Club afficherait « Une erreur est survenue »." >&2
+  exit 1; }
 if [ "${SKIP_PRERENDER:-0}" != "1" ]; then
   grep -q "<h1" dist/index.html || {
     echo "BUILD REFUSÉ : la page d'accueil pré-rendue est vide (aucun titre h1)." >&2
     exit 1; }
 fi
-echo "    build contrôlé : Supabase présent, accueil pré-rendu non vide"
+echo "    build contrôlé : Supabase et clé Stripe présents, accueil pré-rendu non vide"

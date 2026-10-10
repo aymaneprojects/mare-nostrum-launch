@@ -24,8 +24,8 @@ const AXES = [
 const SCORE_LABELS = ["", "Insuffisant", "Faible", "Moyen", "Bon", "Excellent"];
 
 function clubReco(score: number) {
-  if (score <= 20) return { tier: "Communauté", price: "30 €/mois", desc: "Votre projet est en phase d'idéation. Le Club Communauté vous apporte le réseau, les ressources et les bases solides pour avancer." };
-  return             { tier: "Groupe",     price: "90 €/mois", desc: "Votre projet est en phase de structuration. Le Club Groupe vous aide à affiner votre offre et valider votre marché." };
+  if (score <= 20) return { tier: "Premium", price: "30 €/mois", desc: "Votre projet est en phase d'idéation. Le Club Premium vous apporte le réseau, les ressources et les bases solides pour avancer." };
+  return             { tier: "Individualisé",     price: "90 €/mois", desc: "Votre projet est en phase de structuration. Le Club Individualisé vous aide à affiner votre offre et valider votre marché." };
 }
 
 function buildResume(scores: Record<string, number>, comments: Record<string, string>, totalScore: number, noteGlobale: number): string {

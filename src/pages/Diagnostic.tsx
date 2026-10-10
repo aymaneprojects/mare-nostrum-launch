@@ -108,15 +108,15 @@ const MAX_SCORE = QUESTIONS.length * 4; // 32
 const clubReco = (score: number) => {
   const pct = score / MAX_SCORE;
   if (pct < 0.45) return {
-    tier: "Communauté", price: "30 €/mois", href: "/club#offres",
+    tier: "Premium", price: "30 €/mois", href: "/club#offres",
     label: "Votre projet est en construction.",
-    desc: "Le Club Communauté vous apporte le réseau, les ressources et les fondations pour avancer avec les bons repères dès le départ.",
+    desc: "Le Club Premium vous apporte le réseau, les ressources et les fondations pour avancer avec les bons repères dès le départ.",
     color: "from-primary to-primary/80",
   };
   return {
-    tier: "Groupe", price: "90 €/mois", href: "/club#offres",
+    tier: "Individualisé", price: "90 €/mois", href: "/club#offres",
     label: "Votre projet prend forme.",
-    desc: "Le Club Groupe vous aide à structurer votre croissance, affiner votre offre et accélérer votre développement avec un collectif sélectionné.",
+    desc: "Le Club Individualisé vous aide à structurer votre croissance, affiner votre offre et accélérer votre développement avec un collectif sélectionné.",
     color: "from-primary to-accent/80",
   };
 };

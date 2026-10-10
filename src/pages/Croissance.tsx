@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, Users, Award, Zap, MessageSquare, Calendar, FileText, CheckCircle2, ArrowRight, Clock, Brain, Target, Flame, Info } from "lucide-react";
+import { TrendingUp, Users, Award, Zap, MessageSquare, Calendar, FileText, CheckCircle2, ArrowRight, Clock, Brain, Target, Flame, Info, Lock } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
@@ -209,7 +209,7 @@ const Croissance = () => {
       tooltip: "Reçois chaque mois une sélection à jour des meilleures opportunités sur l'entrepreneuriat et l'innovation, parmi des milliers de sources de données spécialisées"
     },
     {
-      label: "1 rencontre mensuelle en ligne",
+      label: "Rencontre en ligne",
       tooltip: "Participe à une session de networking animée pour élargir ton réseau avec humour et bienveillance"
     },
     {
@@ -222,10 +222,25 @@ const Croissance = () => {
     }
   ];
 
+  const premiumFeatures: OfferFeature[] = [
+    {
+      label: "Tout le pack Freemium +",
+      tooltip: "Retrouve tout ce qui est inclus dans l'offre Freemium : le Club international, la veille mutualisée et la rencontre en ligne"
+    },
+    {
+      label: "Avantages négociés auprès de nos partenaires",
+      tooltip: "Sois informé des tarifs préférentiels aux événements, des opportunités de nos partenaires et des possibilités de collaboration avec Mare Nostrum"
+    },
+    {
+      label: "Accès à l'Académie en ligne de l'incubateur",
+      tooltip: "Développe tes compétences et tes soft skills entrepreneuriales : plus de 30 heures de formation sur les fondamentaux du business"
+    }
+  ];
+
   const groupeFeatures: OfferFeature[] = [
     {
-      label: "Tout le pack Communauté +",
-      tooltip: "Découvre tous les avantages dans l'offre Communauté"
+      label: "Tout le pack Premium +",
+      tooltip: "Découvre tous les avantages dans l'offre Premium"
     },
     {
       label: "Intégration dans un Cercle",
@@ -241,9 +256,9 @@ const Croissance = () => {
     }
   ];
 
-  // Offre freemium : accès au club, veille, rencontre mensuelle (retranscription
+  // Offre freemium : accès au club, veille, rencontre en ligne (retranscription
   // « Priorités commerciales - Temps Forts »). Libellés et infobulles repris de
-  // l'offre Communauté, sans réécriture.
+  // l'offre Premium, sans réécriture.
   const freemiumFeatures: OfferFeature[] = communauteFeatures.slice(0, 3);
 
   const croissanceSchema = [
@@ -294,7 +309,7 @@ const Croissance = () => {
           {
             "@type": "Offer",
             "name": "Freemium",
-            "description": "Accès gratuit au club international d'entrepreneurs francophones, veille mutualisée et rencontre mensuelle en ligne. Sans paiement.",
+            "description": "Accès gratuit au club international d'entrepreneurs francophones, veille mutualisée et rencontre en ligne. Sans paiement.",
             "price": "0",
             "priceCurrency": "EUR",
             "priceSpecification": { "@type": "UnitPriceSpecification", "price": "0.00", "priceCurrency": "EUR" },
@@ -302,21 +317,21 @@ const Croissance = () => {
           },
           {
             "@type": "Offer",
-            "name": "Communauté",
-            "description": "Accès au club international d'entrepreneurs francophones, veille mutualisée, rencontres mensuelles en ligne, académie en ligne avec plus de 30h de formation.",
+            "name": "Premium",
+            "description": "Accès au club international d'entrepreneurs francophones, veille mutualisée, rencontres en ligne, académie en ligne avec plus de 30h de formation.",
             "price": "30",
             "priceCurrency": "EUR",
             "priceSpecification": { "@type": "UnitPriceSpecification", "price": "30.00", "priceCurrency": "EUR", "unitText": "MONTH" },
-            "itemOffered": { "@type": "Service", "name": "Communauté", "category": "Offre d'entrée entrepreneur" }
+            "itemOffered": { "@type": "Service", "name": "Premium", "category": "Offre d'entrée entrepreneur" }
           },
           {
             "@type": "Offer",
-            "name": "Groupe",
-            "description": "Tout de Communauté + intégration dans un Cercle d'entrepreneurs, mises en relation partenaires, micro-mentorat mensuel.",
+            "name": "Individualisé",
+            "description": "Tout de Premium + intégration dans un Cercle d'entrepreneurs, mises en relation partenaires, micro-mentorat mensuel.",
             "price": "90",
             "priceCurrency": "EUR",
             "priceSpecification": { "@type": "UnitPriceSpecification", "price": "90.00", "priceCurrency": "EUR", "unitText": "MONTH" },
-            "itemOffered": { "@type": "Service", "name": "Groupe", "category": "Offre recommandée entrepreneur" }
+            "itemOffered": { "@type": "Service", "name": "Individualisé", "category": "Offre recommandée entrepreneur" }
           }
         ]
       }
@@ -342,11 +357,11 @@ const Croissance = () => {
     },
     {
       question: "Peut-on essayer avant de s'engager ?",
-      answer: "Oui. L'offre Freemium est gratuite : tu rejoins le Club sans rien payer. L'offre Communauté te permet ensuite de rejoindre le collectif sans engagement long terme. Dès ton inscription, tu reçois ton premier micro-mentorat de 20 minutes offert — pour avancer tout de suite, pas « plus tard »."
+      answer: "Oui. L'offre Freemium est gratuite : tu rejoins le Club sans rien payer. L'offre Premium te permet ensuite de rejoindre le collectif sans engagement long terme. Dès ton inscription, tu reçois ton premier micro-mentorat de 20 minutes offert — pour avancer tout de suite, pas « plus tard »."
     },
     {
       question: "Je n'ai pas le temps de suivre un accompagnement intensif.",
-      answer: "Justement, le Club Mare Nostrum est fait pour ça. Tu ne rajoutes pas du travail : tu remplaces du temps perdu par du temps utile. Les formats sont légers (rencontres mensuelles, micro-mentorat à la demande, veille mutualisée livrée chaque semaine). En moyenne, nos membres gagnent entre 8 et 12 heures par semaine dès le deuxième mois."
+      answer: "Justement, le Club Mare Nostrum est fait pour ça. Tu ne rajoutes pas du travail : tu remplaces du temps perdu par du temps utile. Les formats sont légers (rencontres en ligne, micro-mentorat à la demande, veille mutualisée livrée chaque semaine). En moyenne, nos membres gagnent entre 8 et 12 heures par semaine dès le deuxième mois."
     },
     {
       question: "Je n'ai pas les moyens pour une dépense fixe chaque mois.",
@@ -354,7 +369,7 @@ const Croissance = () => {
     },
     {
       question: "J'ai peur que ce soit trop général, pas adapté à mon projet.",
-      answer: "Chaque membre bénéficie d'un accompagnement selon son niveau et ses besoins. Communauté pour rompre l'isolement et poser les bases solides. Groupe pour structurer la croissance et affiner l'offre. Freemium pour découvrir le Club gratuitement avant de choisir. Nos experts connaissent le quotidien des entrepreneurs — on parle concret, pas théorie."
+      answer: "Chaque membre bénéficie d'un accompagnement selon son niveau et ses besoins. Premium pour rompre l'isolement et poser les bases solides. Individualisé pour structurer la croissance et affiner l'offre. Freemium pour découvrir le Club gratuitement avant de choisir. Nos experts connaissent le quotidien des entrepreneurs — on parle concret, pas théorie."
     },
     {
       question: "Je suis déjà accompagné ailleurs.",
@@ -401,7 +416,7 @@ const Croissance = () => {
     <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
         title="Club Entrepreneur Toulouse & Afrique | Accès gratuit, offres dès 30€/mois - Mare Nostrum"
-        description="Rejoignez le Club Entrepreneur Mare Nostrum à Toulouse. 3 offres : Freemium gratuit, Communauté 30€, Groupe 90€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans. Mentorat, réseau, IA. Toulouse, Paris, Casablanca, Afrique francophone."
+        description="Rejoignez le Club Entrepreneur Mare Nostrum à Toulouse. 3 offres : Freemium gratuit, Premium 30€, Individualisé 90€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans. Mentorat, réseau, IA. Toulouse, Paris, Casablanca, Afrique francophone."
         keywords="club entrepreneur toulouse, accompagnement entrepreneur toulouse, mentorat startup toulouse, accompagnement entrepreneur afrique, club entrepreneur francophone, incubateur toulouse, croissance entreprise toulouse, réseau entrepreneur toulouse, coaching entrepreneur, accompagnement startup francophonie, entrepreneuriat toulouse, entrepreneuriat afrique"
         structuredData={croissanceSchema}
         faqSchema={croissanceFaqs}
@@ -579,21 +594,34 @@ const Croissance = () => {
 
               <p className="text-sm font-medium text-foreground mb-4">Pour rejoindre le Club sans payer</p>
 
-              <ul className="space-y-4 mb-8 flex-grow">
+              <ul className="space-y-4 mb-6">
                 {freemiumFeatures.map((feature, idx) => (
                   <FeatureWithTooltip key={idx} feature={feature} />
                 ))}
               </ul>
+
+              {/* Ce que Premium ajoute : lignes grisées, pour voir la différence d'un coup d'œil. */}
+              <div className="mb-8 flex-grow">
+                <p className="text-xs font-medium text-muted-foreground/70 mb-3">Avec Premium</p>
+                <ul className="space-y-3">
+                  {premiumFeatures.slice(1).map((feature) => (
+                    <li key={feature.label} className="flex items-start space-x-3 text-sm text-muted-foreground/60">
+                      <Lock aria-hidden="true" className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                      <span>{feature.label}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               <Button variant="outline" className="w-full mt-auto" onClick={() => openOnboarding("freemium")}>
                 Rejoindre gratuitement
               </Button>
             </div>
 
-            {/* Communauté */}
+            {/* Premium */}
             <div className="bg-card border-2 border-border rounded-sm p-6 md:p-8 shadow-[var(--shadow-medium)] hover-lift transition-all hover:-translate-y-1 flex flex-col h-full">
               <div className="text-center mb-6">
-                <h3 className="text-2xl mb-2 text-foreground">Communauté</h3>
+                <h3 className="text-2xl mb-2 text-foreground">Premium</h3>
                 <div className="text-4xl font-bold text-primary mb-1">
                   {getPrice("communaute")}
                   <span className="text-lg font-normal text-muted-foreground"> {getPricePeriod()}</span>
@@ -618,18 +646,18 @@ const Croissance = () => {
               <p className="text-sm font-medium text-foreground mb-4">L'essentiel pour ne plus entreprendre seul</p>
 
               <ul className="space-y-4 mb-8 flex-grow">
-                {communauteFeatures.map((feature, idx) => (
+                {premiumFeatures.map((feature, idx) => (
                   <FeatureWithTooltip key={idx} feature={feature} />
                 ))}
               </ul>
 
-              {/* Contour : une seule offre porte le bouton plein (voir carte Groupe). */}
+              {/* Contour : une seule offre porte le bouton plein (voir carte Individualisé). */}
               <Button variant="outline" className="w-full mt-auto" onClick={() => openOnboarding("communaute")}>
                 Rejoindre l'équipage
               </Button>
             </div>
 
-            {/* Groupe - Highlighted */}
+            {/* Individualisé - Highlighted */}
             <div className="text-primary-foreground border-2 border-accent rounded-sm p-6 md:p-8 shadow-[var(--shadow-elegant)] hover:shadow-2xl transition-all hover:-translate-y-2 relative flex flex-col h-full" style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}>
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <span className="bg-accent text-accent-foreground px-4 py-1 rounded-full text-sm font-semibold">
@@ -638,7 +666,7 @@ const Croissance = () => {
               </div>
 
               <div className="text-center mb-6">
-                <h3 className="text-2xl mb-2 text-primary-foreground">Groupe</h3>
+                <h3 className="text-2xl mb-2 text-primary-foreground">Individualisé</h3>
                 <div className="text-4xl font-bold mb-1">
                   {getPrice("groupe")}
                   <span className="text-lg font-normal opacity-80"> {getPricePeriod()}</span>
@@ -683,17 +711,17 @@ const Croissance = () => {
                 <tr>
                   <th className="text-left py-2 px-2 md:py-3 md:px-4 text-muted-foreground font-medium" style={{ width: '40%' }}></th>
                   <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Freemium</th>
-                  <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Communauté</th>
-                  <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-primary-foreground rounded-t-sm" style={{ background: 'hsl(222 44% 25%)' }}>Groupe</th>
+                  <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Premium</th>
+                  <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-primary-foreground rounded-t-sm" style={{ background: 'hsl(222 44% 25%)' }}>Individualisé</th>
                 </tr>
               </thead>
               <tbody>
                 {[
                   { feature: "Accès Club International", f: true, c: true, g: true },
                   { feature: "Veille mutualisée mensuelle", f: true, c: true, g: true },
-                  { feature: "Rencontre networking mensuelle", f: true, c: true, g: true },
-                  { feature: "Académie en ligne +30h", f: false, c: true, g: true },
-                  { feature: "Opportunités & tarifs partenaires", f: false, c: true, g: true },
+                  { feature: "Rencontre en ligne", f: true, c: true, g: true },
+                  { feature: "Académie en ligne de l'incubateur +30h", f: false, c: true, g: true },
+                  { feature: "Avantages négociés auprès de nos partenaires", f: false, c: true, g: true },
                   { feature: "Intégration dans un Cercle", f: false, c: false, g: true },
                   { feature: "Mises en relation partenaires", f: false, c: false, g: true },
                   { feature: "Micro-mentorat mensuel", f: false, c: "1×", g: "1×" },

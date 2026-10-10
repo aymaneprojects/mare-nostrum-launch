@@ -32,8 +32,8 @@ export type Billing      = "monthly" | "annual";
 
 const OFFER_LABELS: Record<Offer, string> = {
   freemium:   "Freemium",
-  communaute: "Communauté",
-  groupe:     "Groupe",
+  communaute: "Premium",
+  groupe:     "Individualisé",
 };
 
 const MONTHLY_PRICES: Record<LocationType, Record<PaidOffer, number>> = {

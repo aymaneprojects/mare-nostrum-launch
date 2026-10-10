@@ -29,7 +29,7 @@ import logo from "@/assets/logo.png";
    supabase/functions/roue-participation/index.ts, puis redéployer la fonction.
    ───────────────────────────────────────────────────────────────────────────── */
 
-/** Tarif mensuel du Club (offre Communauté, France) : lu dans Croissance.tsx, jamais recopié. */
+/** Tarif mensuel du Club (offre Premium, France) : lu dans Croissance.tsx, jamais recopié. */
 const PRIX_MOIS = MONTHLY.france.communaute;
 /** Une session de formation = une demi-journée, valorisée 210 € (Initiation à l'IA : 420 € la journée de 7 h).
  *  Les 6 mois de Club (180 €) valent volontairement moins qu'une session. */
@@ -70,7 +70,7 @@ const LOTS: Lot[] = [
     id: "club6",
     roue: "6 mois",
     titre: "6 mois au Club",
-    detail: "Abonnement Communauté",
+    detail: "Abonnement Premium",
     valeur: 6 * PRIX_MOIS,
     fond: "hsl(var(--mn-ocre))",
     texte: "hsl(var(--mn-ink))",
@@ -79,7 +79,7 @@ const LOTS: Lot[] = [
     id: "club3",
     roue: "3 mois",
     titre: "3 mois au Club",
-    detail: "Abonnement Communauté",
+    detail: "Abonnement Premium",
     valeur: 3 * PRIX_MOIS,
     fond: "hsl(var(--mn-turquoise))",
     texte: "hsl(var(--mn-ink))",
@@ -568,7 +568,6 @@ const Roue = () => {
             height={69}
             className={cn("w-auto brightness-0 invert", presentation ? "h-8 mb-2" : "h-11 mb-5")}
           />
-          <div className={cn("mn-eyebrow-light mn-eyebrow-pill", presentation ? "mb-2" : "mb-4")}>Jeu de l'événement</div>
           <h1
             className={cn(
               "font-editorial italic font-medium text-primary-foreground",
