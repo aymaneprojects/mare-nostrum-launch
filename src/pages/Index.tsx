@@ -244,7 +244,7 @@ const Index = () => {
               <span className="block">Nous la menons avec vous.</span>
             </h1>
             <p className="mn-lead text-primary-foreground/75 mb-8 md:mb-12 max-w-2xl mx-auto">
-              Mare Nostrum est construit par et pour les chefs de projet et les nouveaux entrepreneurs, ainsi que les institutions et les universités.
+              Mare Nostrum se construit pour celles et ceux qui agissent pour un monde meilleur
             </p>
 
             <div className="mn-cta-row mn-cta-row--center">
@@ -278,11 +278,11 @@ const Index = () => {
           <div className="flex flex-wrap justify-center items-center gap-x-6 md:gap-x-10 gap-y-2.5">
             {[
               { icon: ShieldCheck, label: "Société à Mission" },
-              { icon: Users, label: "80+ entrepreneurs" },
+              { icon: Users, label: "100+ entrepreneurs accompagnés" },
               { icon: Star, label: "30+ écoles partenaires" },
               { icon: Users, label: "135+ experts actifs" },
               { icon: MapPin, label: "11 pays d'intervention" },
-              { icon: Award, label: "Soutenu par la Région Occitanie" },
+              { icon: Award, label: "Depuis 2023" },
             ].map(({ icon: Icon, label }) => (
               <div key={label} className="mn-caption flex items-center gap-2 font-medium text-primary-foreground/75">
                 <Icon className="h-4 w-4 flex-shrink-0 text-turquoise" />
