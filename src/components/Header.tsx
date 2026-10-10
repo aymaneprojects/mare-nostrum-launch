@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Home, GraduationCap, Compass, Users, Leaf, BookOpen, Info, Mail, Rocket, Sparkles } from "lucide-react";
+import { Menu, X, Home, GraduationCap, Compass, Users, Leaf, BookOpen, Info, Mail, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
@@ -10,7 +10,6 @@ const desktopLinks = [
   { to: "/education",         label: "Formation professionnelle", Icon: GraduationCap },
   { to: "/expertise",         label: "Conseil",          Icon: Compass        },
   { to: "/club",              label: "Réseau",           Icon: Users          },
-  { to: "/logiciel-ia",       label: "Logiciel IA",      Icon: Sparkles       },
   { to: "/engagement-rse",    label: "RSE",              Icon: Leaf           },
   { to: "/blog",              label: "Blog",             Icon: BookOpen       },
   { to: "/a-propos",          label: "À propos",         Icon: Info           },

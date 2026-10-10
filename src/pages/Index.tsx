@@ -347,11 +347,11 @@ const Index = () => {
 
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 md:gap-7">
               {[
-                { title: "Programme Niteo", description: "Programme de pré-incubation", icon: niteoIcon },
+                { title: "Incubation", description: "Niteo : programme d’accompagnement", icon: niteoIcon },
                 { title: "Formation professionnelle", description: "Certifié Qualiopi", icon: centreFormationIcon },
-                { title: "Pôle d’expertise", description: "Conseil et ingénierie pour l’enseignement supérieur", icon: poleExpertiseIcon },
-                { title: "Veluo", description: "Agent IA des chefs de projet et entrepreneurs", icon: veluoIcon },
-                { title: "Club d’entrepreneurs", description: "Communauté d’entrepreneurs", icon: clubIcon },
+                { title: "Conseil", description: "Pôle d’expertise et d’ingénierie pour l’enseignement supérieur", icon: poleExpertiseIcon },
+                { title: "Logiciel IA", description: "Veluo : agent IA des chefs de projet et des entrepreneurs", icon: veluoIcon },
+                { title: "Réseau", description: "Club Mare Nostrum : communauté d’entrepreneurs dans la francophonie", icon: clubIcon },
               ].map((service) => (
                 <article key={service.title} className="mn-card p-6 md:p-7 text-left hover-lift">
                   <img src={service.icon} alt="" aria-hidden="true" className="h-16 w-16 mb-6 object-contain" />
