@@ -161,7 +161,14 @@ const Expertise = () => {
 
       <PageHero
         eyebrow="Pôle d'expertise de Mare Nostrum"
-        title="Concevoir, auditer et déployer les transformations de l'enseignement supérieur."
+        title={
+          <>
+            <span className="mn-eyebrow-light mb-5 block font-sans not-italic md:mb-6">
+              partenaire stratégique des directions d’établissement
+            </span>
+            <span className="block">Concevoir, auditer et déployer les transformations de l'enseignement supérieur.</span>
+          </>
+        }
         subtitle={
           <>
             <span className="block">Nous accompagnons les universités et les écoles à chaque étape, du diagnostic à l'évaluation.</span>
