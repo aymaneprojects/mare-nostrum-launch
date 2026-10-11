@@ -348,17 +348,34 @@ const Index = () => {
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 md:gap-7">
               {[
                 { title: "Incubation", description: "Niteo : programme d’accompagnement", icon: niteoIcon },
-                { title: "Formation professionnelle", description: "Certifié Qualiopi", icon: centreFormationIcon },
-                { title: "Conseil", description: "Pôle d’expertise et d’ingénierie pour l’enseignement supérieur", icon: poleExpertiseIcon },
-                { title: "Logiciel IA", description: "Veluo : agent IA des chefs de projet et des entrepreneurs", icon: veluoIcon },
+                { title: "Formation professionnelle", description: "Certifié Qualiopi", icon: centreFormationIcon, href: "https://www.marenostrum.tech/education" },
+                { title: "Conseil", description: "Pôle d’expertise et d’ingénierie pour l’enseignement supérieur", icon: poleExpertiseIcon, href: "https://www.marenostrum.tech/expertise" },
+                { title: "Logiciel IA", description: "Veluo : agent IA des chefs de projet et des entrepreneurs", icon: veluoIcon, href: "https://veluo.marenostrum.tech/" },
                 { title: "Réseau", description: "Club Mare Nostrum : communauté d’entrepreneurs dans la francophonie", icon: clubIcon },
-              ].map((service) => (
-                <article key={service.title} className="mn-card p-6 md:p-7 text-left hover-lift">
-                  <img src={service.icon} alt="" aria-hidden="true" className="h-16 w-16 mb-6 object-contain" />
-                  <h3 className="mb-3 text-foreground">{service.title}</h3>
-                  <p className="mn-body text-muted-foreground">{service.description}</p>
-                </article>
-              ))}
+              ].map((service) => {
+                const cardContent = (
+                  <>
+                    <img src={service.icon} alt="" aria-hidden="true" className="h-16 w-16 mb-6 object-contain" />
+                    <h3 className="mb-3 text-foreground">{service.title}</h3>
+                    <p className="mn-body text-muted-foreground">{service.description}</p>
+                  </>
+                );
+
+                return service.href ? (
+                  <a
+                    key={service.title}
+                    href={service.href}
+                    className="mn-card block h-full p-6 text-left hover-lift md:p-7"
+                    aria-label={`Découvrir ${service.title}`}
+                  >
+                    {cardContent}
+                  </a>
+                ) : (
+                  <article key={service.title} className="mn-card p-6 md:p-7 text-left hover-lift">
+                    {cardContent}
+                  </article>
+                );
+              })}
             </div>
           </div>
         </div>
