@@ -166,7 +166,7 @@ const Expertise = () => {
             <span className="mn-eyebrow-light mb-5 block font-sans not-italic md:mb-6">
               partenaire stratégique des directions d’établissement
             </span>
-            <span className="block">Concevoir, auditer et déployer les transformations de l'enseignement supérieur.</span>
+            <span className="block">Accompagner l'enseignement supérieur en concevant et déployant les transformations dans les établissements</span>
           </>
         }
         subtitle={
