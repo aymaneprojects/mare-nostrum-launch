@@ -7,7 +7,6 @@ import DarkSection from "@/components/DarkSection";
 import PageHero from "@/components/PageHero";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import FAQSection from "@/components/FAQSection";
 import formationWorkshop from "@/assets/formation-workshop.jpg";
 import schoolIpstCnam from "@/assets/schools/ipst-cnam.png";
 import schoolIscom from "@/assets/schools/iscom.png";
@@ -132,30 +131,8 @@ const Expertise = () => {
       "availability": "https://schema.org/InStock"
     }]
   }];
-  const expertiseFaqs = [
-    {
-      question: "Qui intervient sur notre mission, et qu'ont-ils déjà fait ?",
-      answer: "Des experts indépendants, sous convention avec Mare Nostrum, choisis parce qu'ils ont exercé le métier sur lequel porte votre besoin. Vous connaissez leur nom et leur parcours avant de signer. La directrice du Pôle d'expertise reste votre interlocutrice unique, du premier échange à la restitution."
-    },
-    {
-      question: "Connaissez-vous notre contexte ?",
-      answer: "C'est notre premier principe. Sur chaque mission internationale, un expert travaille en binôme avec un consultant qui connaît votre pays de l'intérieur : sa réglementation, ses institutions, ses usages. Nous partons de méthodes qui ont fait leurs preuves, puis nous les adaptons à vos ressources et à votre culture d'établissement."
-    },
-    {
-      question: "Combien coûte une mission, et comment la financer ?",
-      answer: "Chaque mission fait l'objet d'un devis établi après un premier échange gratuit. Elle peut être financée sur votre budget propre, comme ligne d'un projet soutenu par un bailleur ou dans le cadre d'un programme de coopération ; nous pouvons vous aider à identifier le bon guichet. Nos missions de conseil ne relèvent pas des financements de la formation professionnelle : seules les actions de notre centre de formation certifié Qualiopi y sont éligibles. Deux leviers permettent d'en réduire le coût : la mutualisation entre plusieurs établissements et la science ouverte (diffusion des livrable sous licence ouverte)."
-    },
-    {
-      question: "Pouvez-vous garantir l'obtention d'une accréditation ?",
-      answer: "Non, et personne ne peut honnêtement le faire : la décision appartient à l'agence ou à l'organisme compétent. Nous garantissons une préparation rigoureuse : un diagnostic d'écart sans complaisance, des preuves solides, des équipes prêtes."
-    },
-    {
-      question: "Vous proposez aussi des formations, des programmes et des outils numériques : comment garantissez-vous votre indépendance ?",
-      answer: "La question est légitime, et nous préférons y répondre franchement. Mare Nostrum est aussi organisme de formation et opérateur de programmes. Le diagnostic est livré et facturé pour lui-même : vous n'êtes jamais tenu de nous confier la suite. Lorsque l'une de nos offres figure parmi les options recommandées, nous le signalons et présentons des alternatives."
-    }
-  ];
   return <div className="min-h-dvh flex flex-col">
-      <EnhancedSEOHead title="Conseil auprès des établissements d'enseignement supérieur francophone | Au service de la coopération internationale" description="Concevoir, auditer et déployer vos projets de transformation avec des experts francophones qui ont exercé ces métiers, en Europe et en Afrique. Echange découverte gratuit." keywords="conseil université, ingénierie de financement, accompagnement d'établissement d'enseignement supérieur, innovation pédagogique université, stratégie d'établissement, appel à projets enseignement supérieur francophone, entrepreneuriat étudiant, conseil universités, campus entrepreneurial, renforcement des capacités des universités, agence universitaire de la francophonie" structuredData={expertiseSchema} faqSchema={expertiseFaqs} disableAutoEnhancement />
+      <EnhancedSEOHead title="Conseil auprès des établissements d'enseignement supérieur francophone | Au service de la coopération internationale" description="Concevoir, auditer et déployer vos projets de transformation avec des experts francophones qui ont exercé ces métiers, en Europe et en Afrique. Echange découverte gratuit." keywords="conseil université, ingénierie de financement, accompagnement d'établissement d'enseignement supérieur, innovation pédagogique université, stratégie d'établissement, appel à projets enseignement supérieur francophone, entrepreneuriat étudiant, conseil universités, campus entrepreneurial, renforcement des capacités des universités, agence universitaire de la francophonie" structuredData={expertiseSchema} disableAutoEnhancement />
       <Header />
 
 
@@ -171,40 +148,29 @@ const Expertise = () => {
         }
         subtitle={
           <>
-            <span className="block">Nous accompagnons les universités et les écoles à chaque étape, du diagnostic à l'évaluation.</span>
-            <span className="block mt-4">Monter un programme, le faire financer, structurer l'entrepreneuriat sur votre campus, préparer une accréditation.</span>
+            <span className="block">Nous sommes le partenaire à 360° des établissements.</span>
+            <span className="block mt-4">A titre d'exemple, nous pouvons vous accompagner à monter un nouveau programme, structurer l'entrepreneuriat sur votre campus, intégrer l'IA dans vos cursus ou préparer une nouvelle accréditation.</span>
           </>
         }
         ctas={
           <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
             <Link to="/contact">
-              Présenter mon projet à la directrice de Mare Nostrum
+              Présenter mon projet au pôle Expertise de Mare Nostrum
               <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
             </Link>
           </Button>
         }
       />
 
-      {/* Trust Strip */}
-      <section className="py-5 md:py-6 bg-secondary/40 border-b border-border">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto text-center">
-            <span className="font-editorial font-semibold text-sm md:text-base text-primary">
-              Nous travaillons aussi avec les bailleurs internationaux, les agences de coopération et les collectivités territoriales qui financent ou portent des projets de transformation. Nos méthodes s’appliquent aussi à vos projets. Parlons-en.
-            </span>
-          </div>
-        </div>
-      </section>
-
       {/* Offers Section */}
       <section className="pt-16 md:pt-24 pb-8 md:pb-10 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-turquoise text-center mb-3">Trois expertises, un même collectif.</div>
+          <div className="mn-eyebrow-turquoise text-center mb-3">Une expertise transversal, un réseau mobilisable</div>
           <h2 className="font-editorial italic text-center mb-4 text-foreground">
-            Nos domaines d’intervention dans l’enseignement supérieur
+            Notre intervention est transversale dans l'enseignement supérieur.
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Nous n'intervenons que là où nos experts ont exercé.
+            A titre d'exemple, voici des missions que nous avons réalisées.
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -323,7 +289,7 @@ const Expertise = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-foreground">Le pôle d'expertise</h3>
                 <p className="text-muted-foreground mb-4">
-                  Mon rôle est simple : faire en sorte que votre besoin rencontre la bonne personne. Je qualifie votre demande avec vous, je choisis l'expert adéquat, et je veille à la qualité de la mission jusqu'à son terme. Vous avez une seule interlocutrice, du premier échange à la restitution.
+                  Au sein du réseau de Mare Nostrum, j'ai un rôle de facilitatrice : faire en sorte que votre besoin rencontre la bonne personne. Je qualifie votre demande avec vous, je choisis l'expert adéquat, et je veille à la qualité de la mission jusqu'à son terme. Vous avez une seule interlocutrice, du premier échange à la restitution.
                 </p>
                 <p className="text-sm font-semibold text-primary">Yasmine AREZKI</p>
                 <p className="text-sm text-muted-foreground">Directrice du Pôle d'expertise de Mare Nostrum</p>
@@ -442,10 +408,13 @@ const Expertise = () => {
               </div>
             ))}
           </div>
+          <div className="max-w-5xl mx-auto mt-10 md:mt-12 py-5 md:py-6 border-t border-border text-center">
+            <span className="font-editorial font-semibold text-sm md:text-base text-primary">
+              Nous travaillons aussi avec les bailleurs internationaux, les agences de coopération et les collectivités territoriales qui financent ou portent des projets de transformation. Nos méthodes s’appliquent aussi à vos projets. Parlons-en.
+            </span>
+          </div>
         </div>
       </section>
-
-      <FAQSection title="Questions fréquentes" faqs={expertiseFaqs} className="!py-8 md:!py-10 border-t border-border" />
 
       <Footer />
     </div>;
