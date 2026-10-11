@@ -347,11 +347,11 @@ const Index = () => {
 
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 md:gap-7">
               {[
-                { title: "Incubation", description: "Niteo : programme d’accompagnement", icon: niteoIcon },
+                { title: "Incubation", description: "Niteo : programme d’accompagnement", icon: niteoIcon, href: "https://niteo.marenostrum.tech/" },
                 { title: "Formation professionnelle", description: "Certifié Qualiopi", icon: centreFormationIcon, href: "https://www.marenostrum.tech/education" },
                 { title: "Conseil", description: "Pôle d’expertise et d’ingénierie pour l’enseignement supérieur", icon: poleExpertiseIcon, href: "https://www.marenostrum.tech/expertise" },
                 { title: "Logiciel IA", description: "Veluo : agent IA des chefs de projet et des entrepreneurs", icon: veluoIcon, href: "https://veluo.marenostrum.tech/" },
-                { title: "Réseau", description: "Club Mare Nostrum : communauté d’entrepreneurs dans la francophonie", icon: clubIcon },
+                { title: "Réseau", description: "Club Mare Nostrum : communauté d’entrepreneurs dans la francophonie", icon: clubIcon, href: "https://www.marenostrum.tech/club" },
               ].map((service) => {
                 const cardContent = (
                   <>
