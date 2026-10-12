@@ -99,7 +99,7 @@ const WallFeed = ({ item, identity, messages, onChanged }: WallFeedProps) => {
                     aria-pressed={isLiked}
                     aria-label={isLiked ? `Vous aimez cette question, ${count} like${count > 1 ? "s" : ""}` : `Aimer cette question, ${count} like${count > 1 ? "s" : ""}`}
                     className={cn(
-                      "inline-flex h-11 min-w-[4.5rem] items-center justify-center gap-1.5 rounded-full px-4 text-sm font-semibold tabular-nums transition-all duration-150",
+                      "inline-flex h-11 min-w-[4.5rem] items-center justify-center gap-1.5 rounded-[10px] px-4 text-sm font-semibold tabular-nums transition-all duration-150",
                       isLiked
                         ? "bg-accent/20 text-primary-foreground"
                         : "bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/15 active:scale-95",

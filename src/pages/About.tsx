@@ -545,18 +545,18 @@ const About = () => {
           <div className="text-center">
             <p className="text-sm text-muted-foreground mb-2 font-medium">Nos pays d'intervention</p>
             <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
-              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇫🇷 France</span>
-              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇲🇦 Maroc</span>
-              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇹🇳 Tunisie</span>
-              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇩🇿 Algérie</span>
-              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇸🇳 Sénégal</span>
-              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇨🇮 Côte d'Ivoire</span>
-              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇧🇯 Bénin</span>
-              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇨🇲 Cameroun</span>
-              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇧🇫 Burkina Faso</span>
-              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇨🇩 RD Congo</span>
-              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇪🇬 Égypte</span>
-              <span className="px-3 py-1 bg-secondary rounded-full text-sm">🇨🇦 Canada</span>
+              <span className="px-3 py-1 bg-secondary rounded-lg text-sm">🇫🇷 France</span>
+              <span className="px-3 py-1 bg-secondary rounded-lg text-sm">🇲🇦 Maroc</span>
+              <span className="px-3 py-1 bg-secondary rounded-lg text-sm">🇹🇳 Tunisie</span>
+              <span className="px-3 py-1 bg-secondary rounded-lg text-sm">🇩🇿 Algérie</span>
+              <span className="px-3 py-1 bg-secondary rounded-lg text-sm">🇸🇳 Sénégal</span>
+              <span className="px-3 py-1 bg-secondary rounded-lg text-sm">🇨🇮 Côte d'Ivoire</span>
+              <span className="px-3 py-1 bg-secondary rounded-lg text-sm">🇧🇯 Bénin</span>
+              <span className="px-3 py-1 bg-secondary rounded-lg text-sm">🇨🇲 Cameroun</span>
+              <span className="px-3 py-1 bg-secondary rounded-lg text-sm">🇧🇫 Burkina Faso</span>
+              <span className="px-3 py-1 bg-secondary rounded-lg text-sm">🇨🇩 RD Congo</span>
+              <span className="px-3 py-1 bg-secondary rounded-lg text-sm">🇪🇬 Égypte</span>
+              <span className="px-3 py-1 bg-secondary rounded-lg text-sm">🇨🇦 Canada</span>
             </div>
           </div>
         </div>

@@ -106,7 +106,7 @@ const LivePublic = () => {
 
   const identityBadge = identity ? (
     <div className="flex items-center gap-2">
-      <AuthorChip name={identity.firstName} emoji={identity.emoji} className="rounded-full bg-primary-foreground/10 px-3 py-1.5" />
+      <AuthorChip name={identity.firstName} emoji={identity.emoji} className="rounded-lg bg-primary-foreground/10 px-3 py-1.5" />
       <button type="button" onClick={forgetIdentity} className="px-3 py-2 text-sm text-primary-foreground/50 underline-offset-2 hover:underline">
         Changer
       </button>
@@ -208,7 +208,7 @@ const LivePublic = () => {
                 onClick={() => setTab(value)}
                 aria-current={tab === value ? "page" : undefined}
                 className={cn(
-                  "flex h-12 items-center justify-center gap-2 rounded-full text-sm font-medium transition-colors",
+                  "flex h-12 items-center justify-center gap-2 rounded-[10px] text-sm font-medium transition-colors",
                   tab === value ? "bg-accent text-accent-foreground" : "bg-primary-foreground/10 text-primary-foreground",
                 )}
               >

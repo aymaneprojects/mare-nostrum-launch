@@ -395,7 +395,7 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
                 {participants ?? "…"} participant{(participants ?? 0) > 1 ? "s" : ""}
               </button>
               {activeWall && <span className="inline-flex items-center gap-1 text-foreground"><MessagesSquare className="h-3.5 w-3.5" />Mur ouvert</span>}
-              {event.status === "closed" && <span className="rounded-full bg-muted px-2 py-0.5">Événement clôturé</span>}
+              {event.status === "closed" && <span className="rounded-lg bg-muted px-2 py-0.5">Événement clôturé</span>}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -422,7 +422,7 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
             <span className="font-medium text-foreground">Écran de salle :</span>
             <span className="text-muted-foreground">{screenLabel}</span>
             {screenItems.map((i) => (
-              <span key={i.id} className="max-w-[16rem] truncate rounded-full bg-card px-3 py-0.5 text-xs text-foreground ring-1 ring-border">
+              <span key={i.id} className="max-w-[16rem] truncate rounded-lg bg-card px-3 py-0.5 text-xs text-foreground ring-1 ring-border">
                 {KIND_LABEL[i.kind as LiveKind]} · {i.prompt}
               </span>
             ))}
@@ -475,7 +475,7 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
                         {displayed && <span className="inline-flex items-center gap-0.5 text-primary" title="Affiché à l'écran"><Monitor className="h-3 w-3" aria-label="Affiché à l'écran" /></span>}
                         <span
                           className={cn(
-                            "ml-auto rounded-full px-2 py-0.5 text-[11px] font-medium",
+                            "ml-auto rounded-lg px-2 py-0.5 text-[11px] font-medium",
                             item.status === "active" ? "bg-accent text-accent-foreground" : item.status === "closed" ? "bg-muted text-muted-foreground" : "bg-secondary text-secondary-foreground",
                           )}
                         >

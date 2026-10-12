@@ -10,7 +10,7 @@
 
 1. **Aucune couleur brute.** Ni `text-white`, ni `bg-blue-500`, ni `#24335D`, ni `rgb()`. Uniquement les tokens de ce document.
 2. **HSL partout.** Les tokens sont des triplets HSL sans `hsl()` ; on les consomme via `hsl(var(--token))` ou via la classe Tailwind correspondante.
-3. **Les boutons sont des pilules.** `rounded-full`, casse normale, graisse 500. Jamais `uppercase`, jamais `tracking-[…]` sur un bouton. Hauteur 48 px pour une action principale.
+3. **Coins arrondis modérés, pas de pilule** (règle du propriétaire, 12 octobre 2026 : « évite les bordures rondes, ça donne trop l'air IA »). Boutons et champs `rounded-[10px]`, puces et étiquettes `rounded-lg`, cartes et menus ~14 px, panneaux `rounded-2xl`. `rounded-full` est réservé aux avatars, points sans texte, cercles d'icône décoratifs, pastilles numérotées d'étapes, spinner, Switch. Boutons : casse normale, graisse 500. Jamais `uppercase`, jamais `tracking-[…]` sur un bouton. Hauteur 48 px pour une action principale.
 4. **Sections sombres = le pattern hero** (dégradé + rayures + halo). Pas de fond uni nuit.
 5. **Fraunces italique pour les titres d'impact, DM Sans pour tout le reste.** Fraunces ne s'utilise jamais en corps de texte.
 6. **`src/components/ui/` est généré par shadcn — on ne l'édite pas.** Seule exception documentée : `button.tsx`.
@@ -237,12 +237,14 @@ Ce sont des utilitaires CSS, pas des classes Tailwind. Toujours en majuscules au
 
 | Classe | Valeur | Usage |
 |---|---|---|
-| `rounded-full` | pilule | **Boutons, chips, avatars, badges** — la forme de marque |
-| `rounded-lg` | 14 px | Cartes, modales |
-| `rounded-md` | 12 px | Champs |
-| `rounded-sm` | 10 px | Blocs de code, encarts |
-| `rounded-2xl` | 16 px | Popups plein écran |
-| `rounded-xl` | 12 px | Items de menu mobile |
+| `rounded-[10px]` | 10 px | **Boutons** (toutes tailles, icône seule comprise) et **champs de saisie** |
+| `rounded-lg` | 8 px | **Puces, étiquettes, badges, filtres, onglets**, liens actifs du header, `mn-eyebrow-pill` |
+| `rounded-xl` | 12 px | Volets déroulants, popovers, bulles de chat |
+| `rounded-2xl` | 16 px | Barre du header, panneaux, popups, fenêtres |
+| `mn-card` | 14 px | Cartes |
+| `rounded-full` | cercle | **Uniquement** avatars et photos, points sans texte, cercles d'icône décoratifs, pastilles numérotées, barres de progression, spinner, Switch |
+
+**Pas de pilule** sur un élément qui contient du texte (règle du 12 octobre 2026, référence : la zone de saisie de Claude).
 
 Pas de `rounded-none` sur un élément interactif.
 
@@ -311,7 +313,7 @@ Les positions du halo (`22% 18%` / `80% 85%`) peuvent varier d'une section à l'
 
 ### 5.1 `Button` — `src/components/ui/button.tsx`
 
-Base : `rounded-full text-sm font-medium` + `gap-2`, transitions 200 ms, focus ring turquoise, icônes SVG à `size-4`.
+Base : `rounded-[10px] text-sm font-medium` + `gap-2`, transitions 200 ms, focus ring turquoise, icônes SVG à `size-4`.
 
 | `variant` | Rendu | Quand |
 |---|---|---|
@@ -331,8 +333,7 @@ Base : `rounded-full text-sm font-medium` + `gap-2`, transitions 200 ms, focus r
 
 Gabarit aligné sur Delos à la demande du propriétaire (12 octobre 2026) :
 boutons plus fins, texte en **500**, jamais sous 15 px. Le libellé peut passer
-sur deux lignes dans une colonne étroite plutôt que de déborder. La forme pilule est une marque
-de fabrique : on la garde, même si le marché utilise plutôt un rayon de 8 px.
+sur deux lignes dans une colonne étroite plutôt que de déborder. Depuis le 12 octobre 2026 la forme pilule est abandonnée : rayon de 10 px.
 
 Sur mobile, un bouton principal passe en pleine largeur et conserve sa hauteur.
 **Deux appels à l'action au maximum** au-dessus de la ligne de flottaison : un
@@ -468,7 +469,7 @@ Primitives shadcn : `Input`, `Label`, `Textarea`, `Select`. Le `Label` porte tou
 Champs (`Input`, `Textarea`) : hauteur 45 px, rayon 10 px, 16 px de texte sur mobile. Les choix multiples (pôles de Contact) sont des puces : rayon 10 px, ombre douce et anneau de focus via `focus-within` quand actives.
 
 Éléments de composition, dans `src/index.css` :
-- `mn-eyebrow-pill` : eyebrow en capsule à ombre douce (déjà appliqué par `PageHero`). Variante automatique sur fond sombre avec `mn-eyebrow-light`.
+- `mn-eyebrow-pill` : eyebrow en étiquette (`rounded-lg`) à ombre douce (déjà appliqué par `PageHero`). Variante automatique sur fond sombre avec `mn-eyebrow-light`.
 - `--shadow-glass` / `shadow-glass` : carte de verre sur fond sombre.
 
 Icône dans un champ : `absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 pointer-events-none` + `pl-8` sur l'input.
@@ -486,7 +487,7 @@ Bouton de soumission : désactivé pendant l'envoi, avec `Loader2 animate-spin`.
 
 ```tsx
 // ✅ bouton icône seule
-<button aria-label="Fermer le menu" className="w-9 h-9 rounded-full …">
+<button aria-label="Fermer le menu" className="w-9 h-9 rounded-[10px] …">
   <X className="h-4 w-4" />
 </button>
 ```
@@ -589,7 +590,7 @@ Un jeu de tokens `.dark` existe dans `index.css` mais **n'est pas activé** sur 
 
 ### Les formes géométriques héritées
 
-Les formes héritées (`shape-cut`, `shape-fold`, `shape-diagonal`, `shape-parallelogram`, `shape-arrow`, `shape-squircle`, `shape-slash-*`, `shape-notch`, `shape-pill`) ont été retirées le 9 octobre 2026 : aucune page ne les utilisait. Seul `shape-hex` reste, pour les pastilles d'icône. La forme de marque est la pilule (`rounded-full`).
+Les formes héritées (`shape-cut`, `shape-fold`, `shape-diagonal`, `shape-parallelogram`, `shape-arrow`, `shape-squircle`, `shape-slash-*`, `shape-notch`, `shape-pill`) ont été retirées le 9 octobre 2026 : aucune page ne les utilisait. Seul `shape-hex` reste, pour les pastilles d'icône. La forme de marque n'est plus la pilule (voir § 3.2).
 
 ---
 

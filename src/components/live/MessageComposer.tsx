@@ -80,7 +80,7 @@ const MessageComposer = ({ itemId, identity, placeholder, submitLabel, allowAnon
       />
 
       {allowAnonymous && (
-        <div role="radiogroup" aria-label="Signature" className="grid grid-cols-2 gap-2 rounded-full bg-primary-foreground/[0.07] p-1">
+        <div role="radiogroup" aria-label="Signature" className="grid grid-cols-2 gap-2 rounded-xl bg-primary-foreground/[0.07] p-1">
           {[
             { value: false, label: `${identity.emoji} ${identity.firstName}` },
             { value: true, label: "🕶️ Anonyme" },
@@ -92,7 +92,7 @@ const MessageComposer = ({ itemId, identity, placeholder, submitLabel, allowAnon
               aria-checked={anonymous === opt.value}
               onClick={() => setAnonymous(opt.value)}
               className={cn(
-                "h-10 truncate rounded-full px-3 text-sm transition-colors",
+                "h-10 truncate rounded-lg px-3 text-sm transition-colors",
                 anonymous === opt.value ? "bg-primary-foreground text-foreground" : "text-primary-foreground/70",
               )}
             >

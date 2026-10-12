@@ -35,7 +35,7 @@ const FeatureWithTooltip = ({ feature }: { feature: OfferFeature }) => (
         <PopoverTrigger asChild>
           <button
             type="button"
-            className="relative inline-flex items-center justify-center w-4 h-4 rounded-full text-foreground hover:text-primary active:scale-90 transition-all flex-shrink-0 after:absolute after:-inset-3.5 after:content-['']"
+            className="relative inline-flex items-center justify-center w-4 h-4 rounded-[10px] text-foreground hover:text-primary active:scale-90 transition-all flex-shrink-0 after:absolute after:-inset-3.5 after:content-['']"
             aria-label={`En savoir plus : ${feature.label}`}
           >
             <Info className="h-3.5 w-3.5" />
@@ -58,7 +58,7 @@ const FeatureWithTooltipLight = ({ feature }: { feature: OfferFeature }) => (
         <PopoverTrigger asChild>
           <button
             type="button"
-            className="relative inline-flex items-center justify-center w-4 h-4 rounded-full opacity-80 hover:opacity-100 active:scale-90 transition-all flex-shrink-0 after:absolute after:-inset-3.5 after:content-['']"
+            className="relative inline-flex items-center justify-center w-4 h-4 rounded-[10px] opacity-80 hover:opacity-100 active:scale-90 transition-all flex-shrink-0 after:absolute after:-inset-3.5 after:content-['']"
             aria-label={`En savoir plus : ${feature.label}`}
           >
             <Info className="h-3.5 w-3.5 text-primary-foreground" />
@@ -430,21 +430,21 @@ const Croissance = () => {
 
           {/* Selector: billing only - location auto-detected */}
           <div className="flex flex-col items-center gap-5 mb-12">
-            <div className="flex items-center gap-1 bg-background border border-border rounded-full p-1 shadow-sm">
+            <div className="flex items-center gap-1 bg-background border border-border rounded-xl p-1 shadow-sm">
               <button
                 onClick={() => setSelectedBilling("monthly")}
                 aria-pressed={selectedBilling === "monthly"}
-                className={`min-h-11 px-5 py-2 rounded-full text-sm font-semibold transition-all ${selectedBilling === "monthly" ? "bg-primary text-primary-foreground shadow-sm" : "text-foreground hover:text-foreground"}`}
+                className={`min-h-11 px-5 py-2 rounded-lg text-sm font-semibold transition-all ${selectedBilling === "monthly" ? "bg-primary text-primary-foreground shadow-sm" : "text-foreground hover:text-foreground"}`}
               >
                 Mensuel
               </button>
               <button
                 onClick={() => setSelectedBilling("annual")}
                 aria-pressed={selectedBilling === "annual"}
-                className={`min-h-11 px-5 py-2 rounded-full text-sm font-semibold transition-all flex items-center gap-2 ${selectedBilling === "annual" ? "bg-primary text-primary-foreground shadow-sm" : "text-foreground hover:text-foreground"}`}
+                className={`min-h-11 px-5 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-2 ${selectedBilling === "annual" ? "bg-primary text-primary-foreground shadow-sm" : "text-foreground hover:text-foreground"}`}
               >
                 Annuel
-                <span className={`text-sm font-bold px-1.5 py-0.5 rounded-full bg-accent/20 ${selectedBilling === "annual" ? "text-accent" : "text-primary"}`}>
+                <span className={`text-sm font-bold px-1.5 py-0.5 rounded-lg bg-accent/20 ${selectedBilling === "annual" ? "text-accent" : "text-primary"}`}>
                   {selectedLocation === "france" ? "-20%" : "2 mois offerts"}
                 </span>
               </button>
@@ -504,7 +504,7 @@ const Croissance = () => {
                 </div>
                 {getPriceDetail("communaute") && (
                   <div className="mb-2">
-                    <span className="inline-block bg-accent/15 text-primary text-sm font-bold px-2 py-0.5 rounded-full mr-2">{getPriceDetail("communaute")!.badge}</span>
+                    <span className="inline-block bg-accent/15 text-primary text-sm font-bold px-2 py-0.5 rounded-lg mr-2">{getPriceDetail("communaute")!.badge}</span>
                     <span className="text-sm text-foreground">{getPriceDetail("communaute")!.equiv}</span>
                     {getPriceDetail("communaute")!.saving && <p className="text-sm text-primary font-medium mt-0.5">{getPriceDetail("communaute")!.saving}</p>}
                   </div>
@@ -536,7 +536,7 @@ const Croissance = () => {
             {/* Individualisé - Highlighted */}
             <div className="text-primary-foreground border-2 border-accent rounded-sm p-6 md:p-8 shadow-[var(--shadow-elegant)] hover:shadow-2xl transition-all hover:-translate-y-2 relative flex flex-col h-full" style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}>
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <span className="bg-accent text-accent-foreground px-4 py-1 rounded-full text-sm font-semibold">
+                <span className="bg-accent text-accent-foreground px-4 py-1 rounded-lg text-sm font-semibold">
                   Recommandé
                 </span>
               </div>
@@ -549,7 +549,7 @@ const Croissance = () => {
                 </div>
                 {getPriceDetail("groupe") && (
                   <div className="mb-2">
-                    <span className="inline-block bg-primary-foreground/20 text-primary-foreground text-sm font-bold px-2 py-0.5 rounded-full mr-2">{getPriceDetail("groupe")!.badge}</span>
+                    <span className="inline-block bg-primary-foreground/20 text-primary-foreground text-sm font-bold px-2 py-0.5 rounded-lg mr-2">{getPriceDetail("groupe")!.badge}</span>
                     <span className="text-sm opacity-90">{getPriceDetail("groupe")!.equiv}</span>
                     {getPriceDetail("groupe")!.saving && <p className="text-sm font-semibold opacity-90 mt-0.5">{getPriceDetail("groupe")!.saving}</p>}
                   </div>

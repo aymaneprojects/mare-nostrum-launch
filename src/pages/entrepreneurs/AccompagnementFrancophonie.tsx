@@ -168,7 +168,7 @@ const AccompagnementFrancophonie = () => {
 
             {/* Ascension */}
             <div className="mn-card p-8 hover-lift transition-shadow relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-sm font-medium px-4 py-1 rounded-full">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-sm font-medium px-4 py-1 rounded-lg">
                 Populaire
               </div>
               <div className="bg-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">

@@ -18,7 +18,7 @@ const ParticipantCount = ({ count, variant = "chip", className }: ParticipantCou
     <div
       aria-live="polite"
       className={cn(
-        "inline-flex items-center rounded-full bg-primary-foreground/10 backdrop-blur",
+        "inline-flex items-center rounded-lg bg-primary-foreground/10 backdrop-blur",
         hero ? "gap-3 px-6 py-3" : "gap-2 px-3 py-1.5",
         className,
       )}
