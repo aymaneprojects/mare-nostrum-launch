@@ -165,9 +165,9 @@ const Expertise = () => {
       {/* Offers Section */}
       <section className="pt-16 md:pt-24 pb-8 md:pb-10 bg-secondary/30">
         <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-turquoise text-center mb-3">Une expertise transversal, un réseau mobilisable</div>
+          <div className="mn-eyebrow-turquoise text-center mb-3">Une expertise transversale, un réseau mobilisable</div>
           <h2 className="font-editorial italic text-center mb-4 text-foreground">
-            Notre intervention est transversale dans l'enseignement supérieur.
+            Notre intervention est à un niveau stratégique
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
             A titre d'exemple, voici des missions que nous avons réalisées.
