@@ -13,7 +13,7 @@
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-const SITE_URL        = "https://marenostrum.tech";
+const SITE_URL        = "https://www.marenostrum.tech";
 const INDEXNOW_KEY    = "mn7f3a2b1c4d5e6f789012345678abcd";  // doit correspondre à /mn7f3a2b1c4d5e6f789012345678abcd.txt
 const CRON_SECRET     = Deno.env.get("CRON_SECRET") ?? "";
 const MISTRAL_API_KEY = Deno.env.get("MISTRAL_API_KEY") ?? "";
@@ -498,7 +498,12 @@ CONSIGNES SEO STRICTES :
 - Introduction en 3 paragraphes max qui pose l'enjeu
 - Conclusion de 2 paragraphes avec synthèse + ouverture
 
-FORMAT : HTML pur UNIQUEMENT (h2, h3, p, ul, li, ol, strong, em, blockquote).
+STRUCTURE ET STYLE :
+- Commence par un encadré <aside class="en-bref"><p><strong>En bref</strong> : ...</p></aside> de 2 à 3 phrases qui répond directement et simplement à l'intention de recherche, AVANT l'introduction
+- Privilégie les tableaux, listes et étapes numérotées plutôt que les pavés de texte
+- N'utilise JAMAIS de tiret cadratin (le caractère "—") : utilise une virgule, deux-points ou un tiret court "-"
+
+FORMAT : HTML pur UNIQUEMENT (aside, h2, h3, p, ul, li, ol, strong, em, blockquote, table, thead, tbody, tr, th, td).
 JAMAIS de markdown, JAMAIS de balises \`\`\`, JAMAIS de H1.
 NE mentionne AUCUNE entreprise, marque ou service commercial.
 Contenu 100% éducatif, objectif et actionnable.

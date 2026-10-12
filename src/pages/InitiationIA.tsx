@@ -20,10 +20,10 @@ const InitiationIA = () => {
   return (
     <div className="min-h-dvh flex flex-col bg-background">
       <EnhancedSEOHead
-        title="Initiation à l'intelligence artificielle | Mare Nostrum"
+        title="Formation initiation IA, Toulouse et distance | Mare Nostrum"
         description="Formation de 7 heures à distance pour comprendre, utiliser et apprivoiser l'intelligence artificielle générative de façon utile et responsable."
-        keywords="formation initiation IA, intelligence artificielle générative, ChatGPT, usage responsable IA, formation IA à distance"
-        structuredData={{ "@context": "https://schema.org", "@type": "Course", name: "Initiation à l'intelligence artificielle", description: "Une journée d'initiation à l'intelligence artificielle générative, à distance.", provider: { "@type": "Organization", name: "Mare Nostrum", url: "https://www.marenostrum.tech" }, timeRequired: "PT7H", courseMode: "online" }}
+        keywords="formation IA toulouse, formation intelligence artificielle toulouse, formation initiation IA, intelligence artificielle générative, ChatGPT, usage responsable IA, formation IA à distance"
+        structuredData={{ "@context": "https://schema.org", "@type": "Course", name: "Initiation à l'intelligence artificielle", description: "Une journée d'initiation à l'intelligence artificielle générative, à distance.", provider: { "@type": "Organization", name: "Mare Nostrum", url: "https://www.marenostrum.tech", address: { "@type": "PostalAddress", addressLocality: "Toulouse", addressCountry: "FR" } }, timeRequired: "PT7H", courseMode: "online" }}
       />
       <Header />
       <PageHero eyebrow="100 % à distance · 7 heures" title="Initiation à l'intelligence artificielle" subtitle="Comprendre et apprivoiser l'intelligence artificielle : une journée d'initiation pour démarrer sereinement." ctas={brochureButton} />

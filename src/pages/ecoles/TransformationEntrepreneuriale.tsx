@@ -19,7 +19,7 @@ const TransformationEntrepreneuriale = () => {
       "provider": {
         "@type": "Organization",
         "name": "Mare Nostrum",
-        "sameAs": "https://marenostrum.tech"
+        "sameAs": "https://www.marenostrum.tech"
       },
       "serviceType": "Formation Entrepreneuriale Établissements",
       "areaServed": ["France", "Maroc"],

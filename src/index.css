@@ -209,23 +209,26 @@ All colors MUST be HSL.
 
   /* Micro labels (KIND / DATE / EYEBROW) */
   .mn-eyebrow {
-    font-size: var(--fs-micro);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    /* Casse normale : les surtitres en capitales espacées font « généré par IA »
+       (retour d'audit, oct. 2026), et 14px minimum pour rester lisibles. */
+    font-size: max(var(--fs-micro), 0.875rem);
+    letter-spacing: 0.01em;
     font-weight: 700;
     color: hsl(var(--mn-nuit));
   }
   .mn-eyebrow-muted {
-    font-size: var(--fs-micro);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    /* Casse normale : les surtitres en capitales espacées font « généré par IA »
+       (retour d'audit, oct. 2026), et 14px minimum pour rester lisibles. */
+    font-size: max(var(--fs-micro), 0.875rem);
+    letter-spacing: 0.01em;
     font-weight: 600;
     color: hsl(var(--mn-muted));
   }
   .mn-eyebrow-turquoise {
-    font-size: var(--fs-micro);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    /* Casse normale : les surtitres en capitales espacées font « généré par IA »
+       (retour d'audit, oct. 2026), et 14px minimum pour rester lisibles. */
+    font-size: max(var(--fs-micro), 0.875rem);
+    letter-spacing: 0.01em;
     font-weight: 700;
     /* Nuit sur fond clair (le turquoise n'y atteint que 1,6:1). Sur fond sombre,
        ajouter text-[hsl(var(--mn-turquoise))] ou utiliser mn-eyebrow-light. */
@@ -298,9 +301,10 @@ All colors MUST be HSL.
   }
 
   .mn-eyebrow-light {
-    font-size: var(--fs-micro);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    /* Casse normale : les surtitres en capitales espacées font « généré par IA »
+       (retour d'audit, oct. 2026), et 14px minimum pour rester lisibles. */
+    font-size: max(var(--fs-micro), 0.875rem);
+    letter-spacing: 0.01em;
     font-weight: 700;
     color: hsl(var(--mn-turquoise));
   }
@@ -594,7 +598,8 @@ All colors MUST be HSL.
 
   /* ── Bandeau de logos continu ────────────────────────────────────── */
   .mn-marquee-track { animation-duration: 55s; }
-  .mn-marquee:hover .mn-marquee-track,
+  /* Pas de pause au survol (retour d'audit) ; la pause au focus clavier reste
+     pour l'accessibilité. */
   .mn-marquee:focus-within .mn-marquee-track { animation-play-state: paused; }
   .mn-marquee-mask {
     -webkit-mask-image: linear-gradient(to right, transparent, hsl(var(--mn-ink)) 8%, hsl(var(--mn-ink)) 92%, transparent);
@@ -639,3 +644,10 @@ All colors MUST be HSL.
   .mn-card { border-color: hsl(var(--mn-nuit)) !important; }
   .mn-btn { box-shadow: inset 0 0 0 1.5px hsl(var(--mn-nuit)); }
 }
+
+/* Barre de défilement aux couleurs de la marque (retour d'audit, oct. 2026). */
+html { scrollbar-color: hsl(var(--mn-nuit)) hsl(var(--mn-ivory)); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: hsl(var(--mn-ivory)); }
+::-webkit-scrollbar-thumb { background: hsl(var(--mn-nuit)); border-radius: 999px; border: 2px solid hsl(var(--mn-ivory)); }
+::-webkit-scrollbar-thumb:hover { background: hsl(var(--mn-turquoise)); }

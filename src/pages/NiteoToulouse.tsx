@@ -50,7 +50,7 @@ const NiteoToulouse = () => {
     "provider": {
       "@type": "Organization",
       "name": "Mare Nostrum",
-      "sameAs": "https://marenostrum.tech",
+      "sameAs": "https://www.marenostrum.tech",
       "alternateName": ["Niteo", "Niteo Toulouse"]
     },
     "educationalLevel": "Higher Education",
@@ -75,11 +75,11 @@ const NiteoToulouse = () => {
     "startDate": "2026-06-16",
     "endDate": "2026-06-16",
     "eventStatus": "https://schema.org/EventScheduled",
-    "image": "https://marenostrum.tech/favicon.png",
-    "performer": { "@type": "Organization", "name": "Mare Nostrum", "url": "https://marenostrum.tech" },
+    "image": "https://www.marenostrum.tech/favicon.png",
+    "performer": { "@type": "Organization", "name": "Mare Nostrum", "url": "https://www.marenostrum.tech" },
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "url": "https://niteo.marenostrum.tech", "availability": "https://schema.org/InStock", "validFrom": "2026-01-01" },
     "location": { "@type": "Place", "name": "Toulouse", "address": { "@type": "PostalAddress", "addressLocality": "Toulouse", "addressCountry": "FR" } },
-    "organizer": { "@type": "Organization", "name": "Mare Nostrum", "url": "https://marenostrum.tech" },
+    "organizer": { "@type": "Organization", "name": "Mare Nostrum", "url": "https://www.marenostrum.tech" },
     "description": "Journee finale du programme Niteo Toulouse : pitch devant 30 decideurs et +10 000 EUR de dotations. Le programme d'acceleration entrepreneuriale etudiants de reference a Toulouse."
   }, {
     "@context": "https://schema.org",
@@ -87,9 +87,9 @@ const NiteoToulouse = () => {
     "name": "Niteo Toulouse - Mare Nostrum",
     "alternateName": ["Niteo", "Programme Niteo", "Niteo Toulouse"],
     "description": "Programme d'acceleration entrepreneuriale pour etudiants a Toulouse. 50h de formation, coaching individuel, Demo Day. Par Mare Nostrum.",
-    "url": "https://marenostrum.tech/niteo-toulouse",
+    "url": "https://www.marenostrum.tech/niteo-toulouse",
     "address": { "@type": "PostalAddress", "addressLocality": "Toulouse", "addressRegion": "Occitanie", "addressCountry": "FR" },
-    "parentOrganization": { "@type": "Organization", "name": "Mare Nostrum", "url": "https://marenostrum.tech" }
+    "parentOrganization": { "@type": "Organization", "name": "Mare Nostrum", "url": "https://www.marenostrum.tech" }
   }];
 
   const niteoFaqs = [
@@ -172,9 +172,9 @@ const NiteoToulouse = () => {
   return (
     <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
-        title="Niteo Toulouse 2026 - Programme Entrepreneuriat Etudiant | Mare Nostrum"
-        description="Niteo Toulouse 2026 : programme d'acceleration entrepreneuriale de 50h pour etudiants. E-learning, ateliers, coaching individuel, Demo Day devant 30 decideurs. +10 000 EUR de dotations. Par Mare Nostrum, expert entrepreneuriat Toulouse."
-        keywords="Niteo, Niteo Toulouse, programme Niteo, Niteo 2026, entrepreneuriat toulouse, programme entrepreneuriat etudiant toulouse, acceleration startup etudiant toulouse, mare nostrum toulouse, demo day toulouse, incubateur etudiant toulouse, entrepreneuriat etudiant toulouse, creation entreprise etudiant, startup etudiante toulouse, mare nostrum niteo"
+        title="Incubateur Toulouse étudiants : Niteo 2026 | Mare Nostrum"
+        description="Incubateur et accompagnement entrepreneur à Toulouse : Niteo 2026, programme d'accélération de 50h pour étudiants. E-learning, ateliers, coaching individuel, Demo Day devant 30 decideurs. +10 000 EUR de dotations. Par Mare Nostrum, expert entrepreneuriat Toulouse."
+        keywords="incubateur toulouse, accompagnement entrepreneur toulouse, Niteo, Niteo Toulouse, programme Niteo, Niteo 2026, entrepreneuriat toulouse, programme entrepreneuriat etudiant toulouse, acceleration startup etudiant toulouse, mare nostrum toulouse, demo day toulouse, incubateur etudiant toulouse, entrepreneuriat etudiant toulouse, creation entreprise etudiant, startup etudiante toulouse, mare nostrum niteo"
         structuredData={niteoSchema}
         faqSchema={niteoFaqs}
         

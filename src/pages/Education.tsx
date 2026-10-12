@@ -39,7 +39,7 @@ const Education = () => {
     "provider": {
       "@type": "Organization",
       "name": "Mare Nostrum",
-      "sameAs": "https://marenostrum.tech",
+      "sameAs": "https://www.marenostrum.tech",
       "address": [{
         "@type": "PostalAddress",
         "addressLocality": "Toulouse",
@@ -167,7 +167,7 @@ const Education = () => {
     answer: "Oui, Mare Nostrum est un organisme de formation déclaré en France et enregistré sous le numéro 76311216831 : cet enregistrement ne vaut pas agrément de l'Etat."
   }];
   return <div className="min-h-dvh flex flex-col">
-      <EnhancedSEOHead title="Du projet à l'entreprise : le groupe de services pour les parcours entrepreneuriaux" description="Organisme de formation certifié Qualiopi à Toulouse. Formations à l'entrepreneuriat, au pilotage d'entreprise et à l'IA. Financements formation mobilisables." keywords="education entrepreneuriale toulouse, entrepreneuriat etudiant, entrepreneuriat etudiant toulouse, formation entrepreneuriat etudiant, programmes ecoles entrepreneuriat, ateliers entrepreneuriat toulouse, hackathon entrepreneuriat etudiant, enseignement superieur toulouse, Niteo, programme Niteo, fresque entrepreneuriat, entrepreneuriat afrique, formation entrepreneur etudiant, entrepreneuriat universite, entrepreneuriat ecole de commerce" structuredData={educationSchema} faqSchema={educationFaqs}  />
+      <EnhancedSEOHead title="Formation entrepreneuriat Toulouse, Qualiopi | Mare Nostrum" description="Organisme de formation certifié Qualiopi à Toulouse. Formations à l'entrepreneuriat, au pilotage d'entreprise et à l'IA. Financements formation mobilisables." keywords="formation entrepreneuriat toulouse, formation création entreprise toulouse, formation IA toulouse, education entrepreneuriale toulouse, entrepreneuriat etudiant, entrepreneuriat etudiant toulouse, formation entrepreneuriat etudiant, programmes ecoles entrepreneuriat, ateliers entrepreneuriat toulouse, hackathon entrepreneuriat etudiant, enseignement superieur toulouse, Niteo, programme Niteo, fresque entrepreneuriat, entrepreneuriat afrique, formation entrepreneur etudiant, entrepreneuriat universite, entrepreneuriat ecole de commerce" structuredData={educationSchema} faqSchema={educationFaqs}  />
       <Header />
 
 

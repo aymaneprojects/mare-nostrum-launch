@@ -38,7 +38,7 @@ const Expertise = () => {
     "provider": {
       "@type": "Organization",
       "name": "Mare Nostrum",
-      "sameAs": "https://marenostrum.tech",
+      "sameAs": "https://www.marenostrum.tech",
       "address": [{
         "@type": "PostalAddress",
         "addressLocality": "Toulouse",
@@ -132,7 +132,7 @@ const Expertise = () => {
     }]
   }];
   return <div className="min-h-dvh flex flex-col">
-      <EnhancedSEOHead title="Conseil auprès des établissements d'enseignement supérieur francophone | Au service de la coopération internationale" description="Concevoir, auditer et déployer vos projets de transformation avec des experts francophones qui ont exercé ces métiers, en Europe et en Afrique. Echange découverte gratuit." keywords="conseil université, ingénierie de financement, accompagnement d'établissement d'enseignement supérieur, innovation pédagogique université, stratégie d'établissement, appel à projets enseignement supérieur francophone, entrepreneuriat étudiant, conseil universités, campus entrepreneurial, renforcement des capacités des universités, agence universitaire de la francophonie" structuredData={expertiseSchema} disableAutoEnhancement />
+      <EnhancedSEOHead title="Conseil en stratégie Toulouse et francophonie | Mare Nostrum" description="Cabinet de conseil en stratégie à Toulouse : concevoir, auditer et déployer vos projets de transformation avec des experts francophones qui ont exercé ces métiers, en Europe et en Afrique. Echange découverte gratuit." keywords="conseil en stratégie toulouse, cabinet conseil toulouse, conseil université, ingénierie de financement, accompagnement d'établissement d'enseignement supérieur, innovation pédagogique université, stratégie d'établissement, appel à projets enseignement supérieur francophone, entrepreneuriat étudiant, conseil universités, campus entrepreneurial, renforcement des capacités des universités, agence universitaire de la francophonie" structuredData={expertiseSchema} disableAutoEnhancement />
       <Header />
 
 

@@ -21,7 +21,7 @@ const InnovationPedagogiqueEntrepreneuriat = () => {
       "name": "Mare Nostrum",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://marenostrum.tech/favicon.png"
+        "url": "https://www.marenostrum.tech/favicon.png"
       }
     },
     "datePublished": "2025-01-10",

@@ -1,13 +1,13 @@
 # Mare Nostrum — Catalogue des pages du site
 
-> Source canonique de la structure du site web https://marenostrum.tech  
+> Source canonique de la structure du site web https://www.marenostrum.tech  
 > Maintenu par Mare Nostrum | contact@marenostrum.tech | Mis à jour : 2026-04-27
 
 ---
 
 ## Page d'accueil
 
-**URL :** https://marenostrum.tech/  
+**URL :** https://www.marenostrum.tech/  
 **Titre SEO :** Mare Nostrum — Cabinet Expert Conseil Entrepreneuriat à Impact | Toulouse · Paris · Casablanca  
 **Description :** Cabinet de conseil en entrepreneuriat à impact. Nous accompagnons les écoles et les entrepreneurs francophones depuis Toulouse, Paris et Casablanca. 135+ experts, 12 pays, +95% de satisfaction.  
 **Mots-clés cibles :** entrepreneuriat Toulouse, conseil entrepreneuriat impact, cabinet entrepreneuriat francophonie, accompagnement startup Toulouse  
@@ -19,7 +19,7 @@
 
 ### Mare Nostrum Education
 
-**URL :** https://marenostrum.tech/education  
+**URL :** https://www.marenostrum.tech/education  
 **Titre SEO :** Éducation Entrepreneuriale pour Écoles et Universités — Mare Nostrum  
 **Description :** Programmes d'entrepreneuriat clés en main pour écoles supérieures et universités. Ateliers, hackathons, formations longues et programme Niteo. Résultats mesurables, méthodes actives.  
 **Mots-clés cibles :** éducation entrepreneuriale, formation entrepreneuriat école, programme entrepreneuriat université, hackathon école, enseigner l'entrepreneuriat  
@@ -27,24 +27,24 @@
 
 ### Formations du Centre de formation (Qualiopi)
 
-**Mastermind néo-entrepreneurs** — https://marenostrum.tech/mastermind  
+**Mastermind néo-entrepreneurs** — https://www.marenostrum.tech/mastermind  
 56 h sur 12 mois, présentiel à Toulouse, 10 participants maximum, codéveloppement et mentorat individuel. 2 400 € HT par participant (exonération de TVA). Sur candidature ; délai minimum de 14 jours.
 
-**Mastermind digital** — https://marenostrum.tech/mastermind-digital  
+**Mastermind digital** — https://www.marenostrum.tech/mastermind-digital  
 39 h 100 % à distance pour jeunes créateurs d'entreprise francophones, 10 participants maximum. Tarif selon le pays de résidence : 1 690 €, 990 € ou 590 €.
 
-**Initiation à l'intelligence artificielle** — https://marenostrum.tech/initiation-ia  
+**Initiation à l'intelligence artificielle** — https://www.marenostrum.tech/initiation-ia  
 Une journée de 7 h à distance, 12 participants maximum, sans prérequis technique. 420 € HT par participant.
 
-**Concevoir son agent IA marketing** — https://marenostrum.tech/agent-ia-marketing  
+**Concevoir son agent IA marketing** — https://www.marenostrum.tech/agent-ia-marketing  
 44 h à distance en deux modules, 10 participants maximum. 2 400 € HT par participant.
 
-**Pôle d'expertise** — https://marenostrum.tech/expertise  
+**Pôle d'expertise** — https://www.marenostrum.tech/expertise  
 Conseil aux universités et établissements d'enseignement supérieur francophones : concevoir, auditer et déployer leurs projets de transformation. Échange découverte gratuit.
 
 ### Transformation Entrepreneuriale des Écoles
 
-**URL :** https://marenostrum.tech/ecoles/transformation-entrepreneuriale  
+**URL :** https://www.marenostrum.tech/ecoles/transformation-entrepreneuriale  
 **Titre SEO :** Transformer votre École par l'Entrepreneuriat — Programmes Mare Nostrum  
 **Description :** Intégrez l'entrepreneuriat à impact dans vos cursus avec des programmes actifs et mesurables. De l'atelier 3h au programme de plusieurs mois, Mare Nostrum adapte chaque intervention à votre école.  
 **Mots-clés cibles :** transformation entrepreneuriale école, programme entrepreneuriat grande école, intégrer entrepreneuriat cursus, innovation pédagogique école de commerce  
@@ -52,7 +52,7 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 ### Diagnostic Gratuit pour Écoles
 
-**URL :** https://marenostrum.tech/ecoles/diagnostic-gratuit  
+**URL :** https://www.marenostrum.tech/ecoles/diagnostic-gratuit  
 **Titre SEO :** Diagnostic Gratuit Entrepreneuriat — Évaluez votre École | Mare Nostrum  
 **Description :** Évaluez gratuitement le niveau de maturité entrepreneuriale de votre école en 5 minutes. Recevez un rapport personnalisé et nos recommandations.  
 **Mots-clés cibles :** diagnostic entrepreneuriat école gratuit, maturité entrepreneuriale école, évaluation programme entrepreneuriat  
@@ -64,8 +64,8 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 ### Club Entrepreneur Mare Nostrum
 
-**URL :** https://marenostrum.tech/club  
-**Ancienne URL (redirige 301) :** https://marenostrum.tech/croissance  
+**URL :** https://www.marenostrum.tech/club  
+**Ancienne URL (redirige 301) :** https://www.marenostrum.tech/croissance  
 **Titre SEO :** Club Entrepreneur Francophone — Croissance & Accompagnement | Mare Nostrum  
 **Description :** Rejoignez le club international d'entrepreneurs francophones. Communauté et mentorat. Accès gratuit, offres payantes dès 30 EUR/mois.  
 **Mots-clés cibles :** club entrepreneur Toulouse, club entrepreneur francophone, accompagnement entrepreneur Toulouse, mentorat entrepreneur, réseau entrepreneur francophone  
@@ -73,7 +73,7 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 ### Accompagnement Francophonie & Afrique
 
-**URL :** https://marenostrum.tech/entrepreneurs/accompagnement-francophonie-afrique  
+**URL :** https://www.marenostrum.tech/entrepreneurs/accompagnement-francophonie-afrique  
 **Titre SEO :** Accompagnement Entrepreneur Afrique Francophone — Incubateur & Mentorat | Mare Nostrum  
 **Description :** Programmes d'incubation et de mentorat pour entrepreneurs à impact en Afrique francophone. Maroc, Tunisie, Algérie, Sénégal, Côte d'Ivoire et 8 autres pays. Programmes Tremplin, Ascension, Elite.  
 **Mots-clés cibles :** accompagnement entrepreneur Afrique, incubateur Afrique francophone, startup Afrique, mentorat entrepreneur Maroc, programme entrepreneuriat Afrique  
@@ -81,7 +81,7 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 ### Test de Maturité Projet
 
-**URL :** https://marenostrum.tech/entrepreneurs/test-maturite-projet  
+**URL :** https://www.marenostrum.tech/entrepreneurs/test-maturite-projet  
 **Titre SEO :** Test Maturité Projet Entrepreneurial Gratuit — Mare Nostrum  
 **Description :** Évaluez gratuitement la maturité de votre projet entrepreneurial en 10 minutes. Résultat immédiat sur 5 dimensions : marché, modèle économique, équipe, impact, financement.  
 **Mots-clés cibles :** test maturité projet entrepreneurial, diagnostic startup gratuit, évaluer son projet de création d'entreprise, auto-diagnostic entrepreneur  
@@ -89,7 +89,7 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 ### Mentorat Individuel
 
-**URL :** https://marenostrum.tech/entrepreneurs/mentorat-individuel  
+**URL :** https://www.marenostrum.tech/entrepreneurs/mentorat-individuel  
 **Titre SEO :** Mentorat Individuel Entrepreneur — Experts Mare Nostrum  
 **Description :** Sessions de mentorat 1-to-1 avec des experts du réseau Mare Nostrum. Pour entrepreneurs et dirigeants cherchant un regard stratégique extérieur.  
 **Mots-clés cibles :** mentorat entrepreneur individuel, mentor startup Toulouse, accompagnement dirigeant TPE PME, coach entrepreneur  
@@ -99,7 +99,7 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 ## Programme Phare — Niteo Toulouse
 
-**URL :** https://marenostrum.tech/niteo-toulouse  
+**URL :** https://www.marenostrum.tech/niteo-toulouse  
 **Titre SEO :** Programme Niteo Toulouse 2026 — Accélérateur Entrepreneuriat Étudiant  
 **Description :** Niteo : 50h d'accélération entrepreneuriale pour étudiants en licence et master. E-learning, ateliers, coaching, Demo Day devant 30 décideurs et +10 000 EUR de dotations. Édition avril-juin 2026.  
 **Mots-clés cibles :** Niteo Toulouse, programme entrepreneuriat étudiant Toulouse, accélérateur étudiant Toulouse, startup étudiant Toulouse, concours entrepreneuriat étudiant, bourse entrepreneuriat étudiant  
@@ -110,7 +110,7 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 ## Offre IA
 
-**URL :** https://marenostrum.tech/offre-ia  
+**URL :** https://www.marenostrum.tech/offre-ia  
 **Titre SEO :** Intelligence Artificielle & Entrepreneuriat — Offre IA Mare Nostrum  
 **Description :** Intégrez l'IA dans votre développement entrepreneurial. Analyse de marché augmentée, génération de contenu, optimisation business model, coaching IA. Par Mare Nostrum.  
 **Mots-clés cibles :** IA entrepreneuriat, intelligence artificielle startup, accompagnement entrepreneur IA, outils IA entrepreneur, coaching IA entrepreneur  
@@ -122,7 +122,7 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 ### Blog
 
-**URL :** https://marenostrum.tech/blog  
+**URL :** https://www.marenostrum.tech/blog  
 **Titre SEO :** Blog Entrepreneuriat à Impact — Mare Nostrum  
 **Description :** Articles de fond sur l'entrepreneuriat à impact, l'innovation pédagogique, les startups africaines et l'écosystème entrepreneurial francophone.  
 **Mots-clés cibles :** blog entrepreneuriat, articles entrepreneuriat impact, actualités startup Toulouse, entrepreneuriat Afrique actualités  
@@ -130,7 +130,7 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 ### Entrepreneuriat Social en Francophonie
 
-**URL :** https://marenostrum.tech/mag/entrepreneuriat-social-francophonie  
+**URL :** https://www.marenostrum.tech/mag/entrepreneuriat-social-francophonie  
 **Titre SEO :** Entrepreneuriat Social en Francophonie — Tendances & Enjeux | Mare Nostrum  
 **Description :** Analyse des tendances de l'entrepreneuriat social dans l'espace francophone. Portraits d'entrepreneurs, études de cas, ressources pratiques pour créer une entreprise à impact.  
 **Mots-clés cibles :** entrepreneuriat social francophonie, entreprise à impact social francophone, startup sociale Afrique, ESS francophone  
@@ -138,7 +138,7 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 ### Innovation Pédagogique en Entrepreneuriat
 
-**URL :** https://marenostrum.tech/mag/innovation-pedagogique-entrepreneuriat  
+**URL :** https://www.marenostrum.tech/mag/innovation-pedagogique-entrepreneuriat  
 **Titre SEO :** Innovation Pédagogique & Entrepreneuriat — Nouvelles Méthodes d'Enseignement  
 **Description :** Comment les écoles innovent pour enseigner l'entrepreneuriat. Learning by doing, hackathons, fresques collaboratives, programmes intensifs. Retours d'expérience et bonnes pratiques.  
 **Mots-clés cibles :** innovation pédagogique entrepreneuriat, enseigner entrepreneuriat école, méthodes actives entrepreneuriat, pédagogie par le faire  
@@ -146,7 +146,7 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 ### Impact et Mesure pour les Startups
 
-**URL :** https://marenostrum.tech/mag/impact-mesure-startup  
+**URL :** https://www.marenostrum.tech/mag/impact-mesure-startup  
 **Titre SEO :** Mesurer l'Impact Social de votre Startup — Guide Pratique | Mare Nostrum  
 **Description :** Comment mesurer et communiquer l'impact social et environnemental de votre startup. B-Corp, labels, indicateurs ESG adaptés aux TPE/PME et startups.  
 **Mots-clés cibles :** mesure impact startup, indicateurs impact social entreprise, B-Corp France, ESG startup, entreprise à mission  
@@ -154,7 +154,7 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 ### Livre Blanc Entrepreneuriat
 
-**URL :** https://marenostrum.tech/livre-entrepreneuriat  
+**URL :** https://www.marenostrum.tech/livre-entrepreneuriat  
 **Titre SEO :** Livre Blanc Entrepreneuriat à Impact en Francophonie — Téléchargement Gratuit  
 **Description :** Téléchargez gratuitement le livre blanc de Mare Nostrum sur l'entrepreneuriat à impact en francophonie. Guide pratique, études de cas et ressources pour créer une entreprise à mission.  
 **Mots-clés cibles :** livre blanc entrepreneuriat, guide entrepreneuriat impact, ebook entrepreneuriat francophonie, ressources entrepreneur gratuit  
@@ -166,7 +166,7 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 ### À Propos
 
-**URL :** https://marenostrum.tech/a-propos  
+**URL :** https://www.marenostrum.tech/a-propos  
 **Titre SEO :** À Propos de Mare Nostrum — Notre Histoire, Notre Équipe, Notre Mission  
 **Description :** Découvrez l'histoire de Mare Nostrum, cabinet fondé en 2023 à Toulouse. Notre équipe, notre réseau de 135+ experts, nos partenaires et notre mission sociétale.  
 **Mots-clés cibles :** qui est Mare Nostrum, équipe Mare Nostrum, cabinet conseil entrepreneuriat Toulouse, Alexis Janicot, Aymane Abdennour  
@@ -174,7 +174,7 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 ### Contact
 
-**URL :** https://marenostrum.tech/contact  
+**URL :** https://www.marenostrum.tech/contact  
 **Titre SEO :** Contactez Mare Nostrum — Toulouse, Paris, Casablanca  
 **Description :** Prenez contact avec Mare Nostrum. Formulaire en ligne, email contact@marenostrum.tech. Bureaux à Toulouse (31000), Paris et Casablanca.  
 **Mots-clés cibles :** contact Mare Nostrum, bureau entrepreneuriat Toulouse, cabinet conseil Toulouse contact  
@@ -182,7 +182,7 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 ### Engagement RSE
 
-**URL :** https://marenostrum.tech/engagement-rse  
+**URL :** https://www.marenostrum.tech/engagement-rse  
 **Titre SEO :** Engagement RSE & Mission Sociétale — Mare Nostrum Société à Mission  
 **Description :** Mare Nostrum est une société à mission. Découvrez nos engagements RSE, notre raison d'être et notre impact social mesuré auprès des entrepreneurs et des écoles.  
 **Mots-clés cibles :** société à mission entrepreneuriat, RSE cabinet conseil, entreprise à mission Toulouse, impact social Mare Nostrum  
@@ -194,9 +194,9 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 | Page | URL | Description |
 |------|-----|-------------|
-| Mentions légales | https://marenostrum.tech/mentions-legales | Informations légales de l'éditeur, hébergeur, directeur de publication |
-| Politique de confidentialité | https://marenostrum.tech/confidentialite | Traitement des données personnelles, cookies, droits RGPD |
-| CGU | https://marenostrum.tech/cgu | Conditions générales d'utilisation du site et des services |
+| Mentions légales | https://www.marenostrum.tech/mentions-legales | Informations légales de l'éditeur, hébergeur, directeur de publication |
+| Politique de confidentialité | https://www.marenostrum.tech/confidentialite | Traitement des données personnelles, cookies, droits RGPD |
+| CGU | https://www.marenostrum.tech/cgu | Conditions générales d'utilisation du site et des services |
 
 ---
 
@@ -204,7 +204,7 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 | Propriété | Valeur |
 |-----------|--------|
-| Domaine canonique | https://marenostrum.tech |
+| Domaine canonique | https://www.marenostrum.tech |
 | Langue | Français (fr-FR) |
 | Technologie | Vite + React + TypeScript + Tailwind CSS |
 | Backend | Supabase (PostgreSQL + Edge Functions) |
@@ -212,8 +212,8 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 | Créé en | 2023 |
 | Siège social | Toulouse, France (31000) |
 | Email | contact@marenostrum.tech |
-| Sitemap statique | https://marenostrum.tech/sitemap.xml |
+| Sitemap statique | https://www.marenostrum.tech/sitemap.xml |
 | Sitemap dynamique (blog) | https://oivxznyzijtoylwfigyq.supabase.co/functions/v1/sitemap |
 | LLMs complet (blog inclus) | https://oivxznyzijtoylwfigyq.supabase.co/functions/v1/llms-full |
-| Robots | https://marenostrum.tech/robots.txt |
-| LLMs | https://marenostrum.tech/llms.txt |
+| Robots | https://www.marenostrum.tech/robots.txt |
+| LLMs | https://www.marenostrum.tech/llms.txt |

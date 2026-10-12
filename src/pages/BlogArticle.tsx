@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Calendar, User, Clock, Share2, Loader2 } from "lucide-react";
+import { ArrowLeft, Calendar, User, Clock, Share2, Loader2, UserCheck, RefreshCw } from "lucide-react";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -44,6 +45,27 @@ const cleanArticleContent = (content: string, title: string): string => {
   
   return cleaned.trim();
 };
+
+// Pas de tiret cadratin affiché : " — " devient " - " (au rendu seulement, la base n'est pas modifiée)
+const noEmDash = (t: string): string => t.replace(/\s*—\s*/g, " - ");
+
+// Ajoute des ancres aux h2/h3 et renvoie le sommaire correspondant
+const addAnchors = (html: string): { html: string; toc: { id: string; text: string; level: number }[] } => {
+  const toc: { id: string; text: string; level: number }[] = [];
+  const out = html.replace(/<h([23])([^>]*)>([\s\S]*?)<\/h\1>/gi, (_m, lvl, attrs, inner) => {
+    const text = inner.replace(/<[^>]*>/g, "").trim();
+    const id = `section-${toc.length + 1}`;
+    toc.push({ id, text, level: Number(lvl) });
+    return `<h${lvl}${attrs.replace(/\sid="[^"]*"/i, "")} id="${id}">${inner}</h${lvl}>`;
+  });
+  return { html: out, toc };
+};
+
+const AI_TARGETS = [
+  { name: "ChatGPT", url: "https://chatgpt.com/?q=" },
+  { name: "Claude", url: "https://claude.ai/new?q=" },
+  { name: "Perplexity", url: "https://www.perplexity.ai/search?q=" },
+];
 
 const BlogArticle = () => {
   const { toast } = useToast();
@@ -122,7 +144,13 @@ const BlogArticle = () => {
   const wordCount = article.content.split(/\s+/).length;
   const readingTime = Math.ceil(wordCount / wordsPerMinute);
 
-  const articleUrl = `https://marenostrum.tech/blog/${article.slug}`;
+  const { html: contentHtml, toc } = addAnchors(noEmDash(cleanArticleContent(article.content, article.title)));
+  const reviewedBy = (article as { reviewed_by?: string | null }).reviewed_by;
+  const showUpdated = article.updated_at && article.updated_at.slice(0, 10) !== article.published_at.slice(0, 10);
+  const fmtDate = (d: string) => new Date(d).toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" });
+  const aiPrompt = encodeURIComponent(`Résume cet article : https://www.marenostrum.tech/blog/${article.slug}`);
+
+  const articleUrl = `https://www.marenostrum.tech/blog/${article.slug}`;
   const cleanExcerpt = article.excerpt.replace(/<[^>]*>/g, "").substring(0, 155);
 
   const articleSchema = {
@@ -144,15 +172,15 @@ const BlogArticle = () => {
     "author": {
       "@type": "Person",
       "name": article.author,
-      "url": "https://marenostrum.tech/a-propos"
+      "url": "https://www.marenostrum.tech/a-propos"
     },
     "publisher": {
       "@type": "Organization",
       "name": "Mare Nostrum",
-      "@id": "https://marenostrum.tech/#organization",
+      "@id": "https://www.marenostrum.tech/#organization",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://marenostrum.tech/logo.png",
+        "url": "https://www.marenostrum.tech/logo.png",
         "width": 512,
         "height": 512
       }
@@ -167,19 +195,9 @@ const BlogArticle = () => {
     "keywords": `${article.category}, entrepreneuriat francophone, ${article.title.split(" ").slice(0, 6).join(", ")}`,
     "isPartOf": {
       "@type": "Blog",
-      "@id": "https://marenostrum.tech/blog",
+      "@id": "https://www.marenostrum.tech/blog",
       "name": "Blog Mare Nostrum"
     }
-  };
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://marenostrum.tech" },
-      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://marenostrum.tech/blog" },
-      { "@type": "ListItem", "position": 3, "name": article.title, "item": articleUrl }
-    ]
   };
 
   // Mots-clés spécifiques à l'article
@@ -200,9 +218,10 @@ const BlogArticle = () => {
         keywords={articleKeywords}
         image={article.image}
         type="article"
-        structuredData={[articleSchema, breadcrumbSchema]}
+        structuredData={[articleSchema]}
       />
       <Header />
+      <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: article.title, href: `/blog/${article.slug}` }]} />
 
       {/* Hero avec image */}
       <section className="relative h-[40vh] md:h-[50vh] overflow-hidden">
@@ -217,23 +236,31 @@ const BlogArticle = () => {
           <div className="container mx-auto max-w-4xl">
             <Badge className="mb-4">{article.category}</Badge>
             <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
-              {article.title}
+              {noEmDash(article.title)}
             </h1>
             <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-1">
-                <Calendar className="h-4 w-4" />
-                <span>{new Date(article.published_at).toLocaleDateString('fr-FR', { 
-                  year: 'numeric', 
-                  month: 'long', 
-                  day: 'numeric' 
-                })}</span>
+                <Calendar className="h-4 w-4" aria-hidden="true" />
+                <span>Publié le <time dateTime={article.published_at}>{fmtDate(article.published_at)}</time></span>
               </div>
+              {showUpdated && (
+                <div className="flex items-center gap-1">
+                  <RefreshCw className="h-4 w-4" aria-hidden="true" />
+                  <span>Mis à jour le <time dateTime={article.updated_at}>{fmtDate(article.updated_at)}</time></span>
+                </div>
+              )}
               <div className="flex items-center gap-1">
-                <User className="h-4 w-4" />
-                <span>{article.author}</span>
+                <User className="h-4 w-4" aria-hidden="true" />
+                <span>Par {article.author}</span>
               </div>
+              {reviewedBy && (
+                <div className="flex items-center gap-1">
+                  <UserCheck className="h-4 w-4" aria-hidden="true" />
+                  <span>Relu par {reviewedBy}</span>
+                </div>
+              )}
               <div className="flex items-center gap-1">
-                <Clock className="h-4 w-4" />
+                <Clock className="h-4 w-4" aria-hidden="true" />
                 <span>{readingTime} min de lecture</span>
               </div>
             </div>
@@ -244,7 +271,21 @@ const BlogArticle = () => {
       {/* Contenu de l'article */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
+          <div className="lg:grid lg:grid-cols-[14rem_minmax(0,48rem)_14rem] lg:gap-10 lg:justify-center">
+            {/* Sommaire desktop */}
+            {toc.length > 0 && (
+              <nav aria-label="Sommaire" className="hidden lg:block sticky top-24 self-start max-h-[calc(100dvh-8rem)] overflow-y-auto text-sm">
+                <p className="font-semibold text-foreground mb-3">Sommaire</p>
+                <ol className="space-y-2">
+                  {toc.map((t) => (
+                    <li key={t.id} className={t.level === 3 ? "pl-3" : ""}>
+                      <a href={`#${t.id}`} className="text-muted-foreground hover:text-primary transition-colors">{t.text}</a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            )}
+          <div className="max-w-3xl mx-auto w-full lg:col-start-2 lg:row-start-1">
             {/* Navigation */}
             <div className="flex items-center justify-between mb-8">
               <Button variant="ghost" asChild>
@@ -289,15 +330,39 @@ const BlogArticle = () => {
               </Button>
             </div>
 
+            {/* Sommaire mobile */}
+            {toc.length > 0 && (
+              <details className="lg:hidden mb-6 rounded-sm border border-border p-4">
+                <summary className="cursor-pointer font-semibold text-foreground">Sommaire</summary>
+                <ol className="mt-3 space-y-2 text-sm">
+                  {toc.map((t) => (
+                    <li key={t.id} className={t.level === 3 ? "pl-3" : ""}>
+                      <a href={`#${t.id}`} className="text-muted-foreground hover:text-primary transition-colors">{t.text}</a>
+                    </li>
+                  ))}
+                </ol>
+              </details>
+            )}
+
+            {/* Résumer avec une IA */}
+            <div className="mb-8 flex flex-wrap items-center gap-2">
+              <span className="text-sm text-muted-foreground">Résumer cet article avec</span>
+              {AI_TARGETS.map((a) => (
+                <Button key={a.name} variant="outline" size="sm" asChild>
+                  <a href={a.url + aiPrompt} target="_blank" rel="noopener noreferrer">{a.name}</a>
+                </Button>
+              ))}
+            </div>
+
             {/* Extrait */}
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed border-l-4 border-primary pl-4">
-              {cleanMarkdown(article.excerpt)}
+              {noEmDash(cleanMarkdown(article.excerpt))}
             </p>
 
             {/* Contenu HTML stylisé */}
             <article 
-              className="blog-article-content"
-              dangerouslySetInnerHTML={{ __html: cleanArticleContent(article.content, article.title) }}
+              className="blog-article-content [&_.en-bref]:mb-8 [&_.en-bref]:rounded-sm [&_.en-bref]:border [&_.en-bref]:border-border [&_.en-bref]:bg-secondary/30 [&_.en-bref]:p-4 [&_h2]:scroll-mt-24 [&_h3]:scroll-mt-24 [&_table]:block [&_table]:overflow-x-auto"
+              dangerouslySetInnerHTML={{ __html: contentHtml }}
             />
 
             {/* CTA */}
@@ -312,6 +377,12 @@ const BlogArticle = () => {
                 <Link to="/contact">Nous contacter</Link>
               </Button>
             </div>
+          </div>
+            {/* CTA collant desktop */}
+            <aside className="hidden lg:block sticky top-24 self-start lg:col-start-3 lg:row-start-1 rounded-sm border border-border p-4">
+              <p className="font-semibold text-foreground mb-3">Besoin d'accompagnement pour votre projet ?</p>
+              <Button asChild className="w-full"><Link to="/club#offres">Rejoindre le Club</Link></Button>
+            </aside>
           </div>
         </div>
       </section>

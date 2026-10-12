@@ -30,7 +30,7 @@ const FAQSection = ({ title = "Questions fréquentes", faqs, className = "" }: F
                 <AccordionTrigger className="text-left text-base md:text-lg font-medium py-5 md:py-6">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground max-w-prose leading-relaxed">
+                <AccordionContent className="text-muted-foreground max-w-prose text-base leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

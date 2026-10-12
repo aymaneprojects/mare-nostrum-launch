@@ -79,14 +79,14 @@ const Blog = () => {
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Blog",
-          "@id": "https://marenostrum.tech/blog",
+          "@id": "https://www.marenostrum.tech/blog",
           "name": "Blog Entrepreneuriat Mare Nostrum",
           "description": "Guides pratiques et ressources pour entrepreneurs en France et en Afrique francophone",
-          "url": "https://marenostrum.tech/blog",
+          "url": "https://www.marenostrum.tech/blog",
           "inLanguage": "fr-FR",
           "publisher": {
             "@type": "Organization",
-            "@id": "https://marenostrum.tech/#organization",
+            "@id": "https://www.marenostrum.tech/#organization",
             "name": "Mare Nostrum"
           }
         }}

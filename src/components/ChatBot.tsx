@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { X, Send, User, MessageCircle, RotateCcw } from "lucide-react";
+import { X, Send, User, MessageCircle, RotateCcw, CalendarDays, Phone, Mail, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 interface Message {
   id: string;
   role: "user" | "assistant";
@@ -46,6 +46,9 @@ const ChatBot = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [notificationCount, setNotificationCount] = useState(0);
   const [sessionId, setSessionId] = useState<string>("");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useRef<HTMLButtonElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -151,7 +154,33 @@ const ChatBot = () => {
     }
   }, [showNotification]);
 
+  // Menu « Parler à quelqu'un » : Échap ferme (focus rendu au bouton), clic extérieur ferme.
+  useEffect(() => {
+    if (!menuOpen && !isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setMenuOpen(false);
+      setIsOpen(false);
+      ctaRef.current?.focus();
+    };
+    const onDown = (e: MouseEvent) => {
+      const n = e.target as Node;
+      if (!menuRef.current?.contains(n) && !ctaRef.current?.contains(n)) setMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onDown);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onDown);
+    };
+  }, [menuOpen, isOpen]);
+
+  useEffect(() => {
+    if (menuOpen) menuRef.current?.querySelector<HTMLElement>("a,button")?.focus();
+  }, [menuOpen]);
+
   const handleOpenChat = () => {
+    setMenuOpen(false);
     setIsOpen(true);
     setShowNotification(false);
   };
@@ -324,22 +353,59 @@ const ChatBot = () => {
       )}
 
       {/* Chat Toggle Button - Inès */}
-      <button
-        onClick={() => isOpen ? setIsOpen(false) : handleOpenChat()}
-        className={`fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-full shadow-[var(--shadow-medium)]
-          flex items-center justify-center transition-all duration-200
-          ${isOpen
-            ? "bg-muted-foreground"
-            : "bg-primary hover:bg-primary/90"
-          }`}
-        aria-label={isOpen ? "Fermer le chat" : "Discuter avec Inès"}
-      >
-        {isOpen ? (
+      {/* Appel à l'action permanent « Parler à quelqu'un » ; bottom-20 mobile pour rester au-dessus de la BottomNav. */}
+      {isOpen ? (
+        <button
+          ref={ctaRef}
+          onClick={() => setIsOpen(false)}
+          className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-full shadow-[var(--shadow-medium)] flex items-center justify-center bg-muted-foreground transition-all duration-200"
+          aria-label="Fermer le chat"
+        >
           <X className="h-6 w-6 text-primary-foreground" />
-        ) : (
-          <MessageCircle className="h-6 w-6 text-primary-foreground" />
-        )}
-      </button>
+        </button>
+      ) : (
+        <button
+          ref={ctaRef}
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-haspopup="menu"
+          aria-expanded={menuOpen}
+          className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 min-h-12 px-5 rounded-full shadow-[var(--shadow-medium)] flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-medium text-base transition-all duration-200"
+        >
+          <MessageCircle className="h-5 w-5" aria-hidden="true" />
+          Parler à quelqu'un
+        </button>
+      )}
+
+      {menuOpen && !isOpen && (
+        <div
+          ref={menuRef}
+          role="menu"
+          aria-label="Parler à quelqu'un"
+          className="fixed bottom-36 right-4 sm:bottom-24 sm:right-6 z-50 w-[min(18rem,calc(100vw-2rem))] mn-card shadow-[var(--shadow-lift)] p-2 animate-in fade-in slide-in-from-bottom-2 duration-200"
+        >
+          {[
+            { Icon: CalendarDays, label: "Prendre rendez-vous", to: "/contact" },
+            { Icon: Phone, label: "Appeler", href: "tel:+33617358167" },
+            { Icon: Mail, label: "Envoyer un message", to: "/contact" },
+          ].map(({ Icon, label, to, href }) => {
+            const cls = "flex w-full items-center gap-3 rounded-sm px-3 min-h-12 text-base text-foreground text-left hover:bg-secondary focus-visible:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+            const inner = (<><Icon className="h-5 w-5 text-primary" aria-hidden="true" />{label}</>);
+            return href ? (
+              <a key={label} role="menuitem" href={href} className={cls} onClick={() => setMenuOpen(false)}>{inner}</a>
+            ) : (
+              <Link key={label} role="menuitem" to={to!} className={cls} onClick={() => setMenuOpen(false)}>{inner}</Link>
+            );
+          })}
+          <button
+            role="menuitem"
+            onClick={handleOpenChat}
+            className="flex w-full items-center gap-3 rounded-sm px-3 min-h-12 text-base text-foreground text-left hover:bg-secondary focus-visible:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <Bot className="h-5 w-5 text-primary" aria-hidden="true" />
+            Assistant virtuel
+          </button>
+        </div>
+      )}
 
       {/* Chat Window */}
       <div

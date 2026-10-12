@@ -70,7 +70,12 @@ CONSIGNES SEO IMPORTANTES :
 - Ajoute des statistiques ou données chiffrées quand pertinent
 - Termine par une conclusion avec un résumé des points clés
 
-FORMAT : HTML pur uniquement (h2, h3, p, ul, li, ol, strong, em, blockquote). 
+STYLE :
+- Commence par un encadré <aside class="en-bref"><p><strong>En bref</strong> : ...</p></aside> de 2 à 3 phrases qui répond directement à l'intention de recherche, AVANT l'introduction
+- Privilégie les tableaux, listes et étapes plutôt que les pavés de texte
+- N'utilise JAMAIS de tiret cadratin (le caractère "—") : virgule, deux-points ou tiret court "-"
+
+FORMAT : HTML pur uniquement (aside, h2, h3, p, ul, li, ol, strong, em, blockquote, table, thead, tbody, tr, th, td). 
 PAS de markdown, PAS de balises code, PAS de titre H1 (il sera ajouté automatiquement).
 
 STRUCTURE REQUISE :

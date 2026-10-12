@@ -20,13 +20,13 @@ const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
       "@type": "ListItem",
       "position": 1,
       "name": "Accueil",
-      "item": "https://marenostrum.tech/"
+      "item": "https://www.marenostrum.tech/"
     },
     ...items.map((item, index) => ({
       "@type": "ListItem",
       "position": index + 2,
       "name": item.label,
-      "item": `https://marenostrum.tech${item.href}`
+      "item": `https://www.marenostrum.tech${item.href}`
     }))
     ]
   };
