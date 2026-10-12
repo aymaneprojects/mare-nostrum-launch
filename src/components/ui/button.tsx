@@ -8,6 +8,9 @@ import { cn } from "@/lib/utils";
  * Mare Nostrum Button — pill shapes only, brand palette aligned.
  * Texte 600, 15 px (16 px en lg) ; survol 150 ms (fond + lever de 1 px) via .mn-btn.
  * Tailles : sm 44 px mobile / 40 px dès md, default 44, lg 52.
+ * Le libellé peut passer sur deux lignes (interligne serré, tient dans 44 px) :
+ * avec whitespace-nowrap, un bouton dans une colonne étroite débordait sur ses
+ * propres marges (carte collante des articles, oct. 2026).
  * - default  : filled Nuit  (CTA principal)
  * - outline  : ghost outline Nuit (CTA secondaire)
  * - ghost    : transparent, hover turquoise
@@ -16,7 +19,7 @@ import { cn } from "@/lib/utils";
  * - link     : underline editorial
  */
 const buttonVariants = cva(
-  "mn-btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-[15px] font-semibold ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "mn-btn inline-flex items-center justify-center gap-2 text-center leading-tight rounded-full text-[15px] font-semibold ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
