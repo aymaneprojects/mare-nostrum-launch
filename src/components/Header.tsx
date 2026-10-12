@@ -95,7 +95,7 @@ const Header = () => {
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-0.5 lg:gap-1">
             {desktopNav.map((item) => {
-              const linkClass = (active: boolean) => `mn-link-u [--mn-u-inset:0.75rem] [--mn-u-bottom:0.3rem] px-3 py-1.5 text-sm font-medium rounded-full transition-colors duration-200 ${
+              const linkClass = (active: boolean) => `mn-link-u [--mn-u-inset:0.75rem] [--mn-u-bottom:0.3rem] px-3 py-1.5 text-[15px] font-normal rounded-full transition-colors duration-200 ${
                 active ? "bg-primary/10 text-primary" : "text-foreground/70 hover:text-foreground"
               }`;
 

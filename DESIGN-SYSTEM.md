@@ -10,7 +10,7 @@
 
 1. **Aucune couleur brute.** Ni `text-white`, ni `bg-blue-500`, ni `#24335D`, ni `rgb()`. Uniquement les tokens de ce document.
 2. **HSL partout.** Les tokens sont des triplets HSL sans `hsl()` ; on les consomme via `hsl(var(--token))` ou via la classe Tailwind correspondante.
-3. **Les boutons sont des pilules.** `rounded-full`, casse normale, graisse 600. Jamais `uppercase`, jamais `tracking-[…]` sur un bouton. Hauteur 52 px pour une action principale.
+3. **Les boutons sont des pilules.** `rounded-full`, casse normale, graisse 500. Jamais `uppercase`, jamais `tracking-[…]` sur un bouton. Hauteur 48 px pour une action principale.
 4. **Sections sombres = le pattern hero** (dégradé + rayures + halo). Pas de fond uni nuit.
 5. **Fraunces italique pour les titres d'impact, DM Sans pour tout le reste.** Fraunces ne s'utilise jamais en corps de texte.
 6. **`src/components/ui/` est généré par shadcn — on ne l'édite pas.** Seule exception documentée : `button.tsx`.
@@ -326,11 +326,12 @@ Base : `rounded-full text-sm font-medium` + `gap-2`, transitions 200 ms, focus r
 |---|---|---|---|
 | `sm` | 44 px mobile, 40 px dès `md` | 20 px | 15 px |
 | `default` | 44 px | 24 px | 15 px |
-| `lg` | **52 px** | 28 px | 16 px |
+| `lg` | **48 px** | 24 px | 15 px |
 | `icon` | 40 × 40 | — | — |
 
-La hauteur de 52 px est la médiane mesurée chez les concurrents (50, 54, 49,
-44). Le texte est en **600**, jamais sous 15 px. La forme pilule est une marque
+Gabarit aligné sur Delos à la demande du propriétaire (12 octobre 2026) :
+boutons plus fins, texte en **500**, jamais sous 15 px. Le libellé peut passer
+sur deux lignes dans une colonne étroite plutôt que de déborder. La forme pilule est une marque
 de fabrique : on la garde, même si le marché utilise plutôt un rayon de 8 px.
 
 Sur mobile, un bouton principal passe en pleine largeur et conserve sa hauteur.
@@ -359,13 +360,13 @@ plein, un en contour. Les sites qui en empilent huit n'en font choisir aucun.
 
 Cible tactile minimale 44 px : sur mobile, préférer `size="lg"` ou `h-11` pour les CTA.
 
-### 5.1 bis — Gabarits de boutons (alignés le 7 octobre 2026)
+### 5.1 bis — Gabarits de boutons (alignés le 12 octobre 2026)
 
-Mesuré chez Naano : CTA principal 52 px, marges 28 px, texte 16 px à 600 ; CTA d'en-tête 35 px. Notre `Button` est déjà à ce gabarit, donc **aucune page ne le surcharge**.
+Référence retenue par le propriétaire : Delos (CTA de héros 44 px, texte 15 px à 500 ; CTA d'en-tête 36 px). L'ancien gabarit Naano (52 px, 16 px à 600) est abandonné. Notre `Button` porte ce gabarit, donc **aucune page ne le surcharge**.
 
 | Taille | Hauteur | Usage |
 |---|---|---|
-| `lg` | 52 px | CTA principal d'une section, héros, clôture, soumission d'un formulaire |
+| `lg` | 48 px | CTA principal d'une section, héros, clôture, soumission d'un formulaire |
 | `default` | 44 px | bouton dans une carte ou un bloc |
 | `sm` | 44 px mobile, 40 px dès md | en-tête, actions secondaires denses |
 
