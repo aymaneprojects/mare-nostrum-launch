@@ -210,7 +210,7 @@ export default function NiteoEvaluation() {
           <img src={logoNiteo} alt="Niteo" className="h-12" />
 
           <div className="absolute left-1/2 -translate-x-1/2">
-            <span className="text-primary-foreground/80 text-xs font-semibold tracking-[0.3em] uppercase">Jury</span>
+            <span className="text-primary-foreground/80 text-sm font-semibold">Jury</span>
           </div>
 
           {nomJure ? (

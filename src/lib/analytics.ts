@@ -43,6 +43,12 @@ export const EVT = {
   clubFreemiumSignup: "sign_up",
   /** Un formulaire de contact, diagnostic, livre blanc ou newsletter est envoyé. */
   generateLead: "generate_lead",
+  /** Clic sur n'importe quel bouton ou lien : libellé + destination (retour d'audit : savoir quel bouton convertit). */
+  ctaClick: "cta_click",
+  /** Une section de page est vue (à moitié visible) : jusqu'où le visiteur descend avant de cliquer. */
+  sectionView: "section_view",
+  /** Étape atteinte dans la fenêtre d'adhésion au Club : repère l'étape où l'on abandonne. */
+  clubOnboardingStep: "club_onboarding_step",
 } as const;
 
 const gtag = (...args: unknown[]): void => {

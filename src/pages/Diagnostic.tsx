@@ -242,10 +242,10 @@ const Diagnostic = () => {
 
                 {/* header */}
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">
+                  <span className="text-sm font-semibold text-muted-foreground">
                     Étape {step + 1} / {QUESTIONS.length}
                   </span>
-                  <span className="text-xs font-semibold text-accent tracking-wider uppercase">{q.eyebrow}</span>
+                  <span className="text-sm font-semibold text-accent">{q.eyebrow}</span>
                 </div>
                 <ProgressBar current={step + 1} total={QUESTIONS.length} />
 
@@ -318,15 +318,15 @@ const Diagnostic = () => {
 
                   <div className="space-y-4">
                     <div>
-                      <Label htmlFor="nom" className="text-xs font-semibold tracking-wider uppercase text-muted-foreground">Prénom et nom *</Label>
+                      <Label htmlFor="nom" className="text-sm font-semibold text-muted-foreground">Prénom et nom *</Label>
                       <Input id="nom" value={nom} onChange={e => setNom(e.target.value)} placeholder="Votre nom complet" className="mt-1.5" autoFocus />
                     </div>
                     <div>
-                      <Label htmlFor="email" className="text-xs font-semibold tracking-wider uppercase text-muted-foreground">Email *</Label>
+                      <Label htmlFor="email" className="text-sm font-semibold text-muted-foreground">Email *</Label>
                       <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="votre@email.com" className="mt-1.5" />
                     </div>
                     <div>
-                      <Label htmlFor="projet" className="text-xs font-semibold tracking-wider uppercase text-muted-foreground">Votre projet <span className="normal-case font-normal">(optionnel)</span></Label>
+                      <Label htmlFor="projet" className="text-sm font-semibold text-muted-foreground">Votre projet <span className="normal-case font-normal">(optionnel)</span></Label>
                       <Input id="projet" value={projet} onChange={e => setProjet(e.target.value)} placeholder="Nom de votre entreprise / projet" className="mt-1.5" />
                     </div>
                   </div>
@@ -364,7 +364,7 @@ const Diagnostic = () => {
 
                 {/* score header */}
                 <div className={`bg-gradient-to-br ${reco.color} rounded-sm p-6 md:p-8 text-center text-primary-foreground mb-6`}>
-                  <div className="text-primary-foreground/70 text-xs font-semibold tracking-widest uppercase mb-3">Votre score</div>
+                  <div className="text-primary-foreground/70 text-sm font-semibold mb-3">Votre score</div>
                   <div className="font-editorial italic text-6xl font-semibold mb-1">
                     {totalScore}<span className="text-3xl font-normal text-primary-foreground/60">/{MAX_SCORE}</span>
                   </div>
@@ -379,7 +379,7 @@ const Diagnostic = () => {
                     return (
                       <div key={q.key} className={`flex items-center gap-4 px-5 py-3.5 ${i < QUESTIONS.length - 1 ? "border-b border-border" : ""}`}>
                         <div className="flex-1 min-w-0">
-                          <div className="text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-0.5">{q.eyebrow}</div>
+                          <div className="text-sm font-semibold text-muted-foreground mb-0.5">{q.eyebrow}</div>
                           <div className="text-sm text-foreground line-clamp-2">{choice?.label ?? "-"}</div>
                         </div>
                         <div className="flex gap-1 flex-shrink-0">

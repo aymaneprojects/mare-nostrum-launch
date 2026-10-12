@@ -50,6 +50,8 @@ export type Database = {
           image: string
           is_published: boolean
           published_at: string
+          reviewed_by: string | null
+          reviewed_by_title: string | null
           slug: string
           title: string
           updated_at: string
@@ -64,6 +66,8 @@ export type Database = {
           image: string
           is_published?: boolean
           published_at?: string
+          reviewed_by?: string | null
+          reviewed_by_title?: string | null
           slug: string
           title: string
           updated_at?: string
@@ -78,6 +82,8 @@ export type Database = {
           image?: string
           is_published?: boolean
           published_at?: string
+          reviewed_by?: string | null
+          reviewed_by_title?: string | null
           slug?: string
           title?: string
           updated_at?: string

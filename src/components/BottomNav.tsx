@@ -39,7 +39,7 @@ const BottomNav = () => {
                 ${active ? "bg-primary/10" : ""}`}>
                 <Icon className={`h-5 w-5 transition-all duration-200 ${active ? "stroke-[2.2]" : "stroke-[1.6]"}`} />
               </div>
-              <span className={`text-[10px] font-medium transition-all duration-200 ${active ? "font-semibold" : ""}`}>
+              <span className={`text-[13px] font-medium transition-all duration-200 ${active ? "font-semibold" : ""}`}>
                 {label}
               </span>
             </Link>

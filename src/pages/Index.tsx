@@ -26,6 +26,7 @@ import veluoIcon from "@/assets/poles/veluo.png";
 import niteoIcon from "@/assets/poles/niteo.png";
 import clubIcon from "@/assets/poles/club.png";
 import HeroMap from "@/components/HeroMap";
+import PainPoints from "@/components/PainPoints";
 import ImpactStats from "@/components/ImpactStats";
 const DarkLayers =({ halo, vignette }: { halo: string; vignette: string }) => (
   <>
@@ -294,6 +295,7 @@ const Index = () => {
         </div>
       </section>
 
+      <PainPoints />
       <ImpactStats />
 
       {/* Who We Are */}
@@ -392,9 +394,9 @@ const Index = () => {
             Ils nous font confiance
           </h2>
           <div className="grid lg:grid-cols-2 lg:[&>:last-child]:col-span-2 gap-5 md:gap-8 max-w-6xl mx-auto">
-            <TestimonialCard text="Quelque chose qui était présent à chaque instant (du Programme) c'est l'échange d'expérience et d'opinion. Ce qui permettait un retour permanent, constructif et pointilleux tout ça dans la bienveillance et la bonne humeur" author="Annabel" role="Etudiante et néo-entrepreneure accompagnée par Mare Nostrum" roleCase="normal" />
-            <TestimonialCard text="Un acteur efficace, engagé et authentique, qui accompagne réellement les établissements dans leur transformation." author="Géraldine" role="Directrice d'établissement d'enseignement partenaire" roleCase="normal" />
-            <TestimonialCard text="Être ici aux côtés de l'ensemble des porteurs de projet, pour moi, c'était important. Parce que ce sont des jeunes audacieux, persévérants, et parce qu'on a besoin d'un entrepreneuriat qui est en capacité de pouvoir changer le monde. Ils mettent leurs convictions au service de solutions. Ce sont des solutions concrètes et performantes. Faites leur confiance, aidez-les, accompagnez-les !" author="Nadia Pellefigue" role="Vice-présidente de la région Occitanie (France)" roleCase="normal" />
+            <TestimonialCard text="Quelque chose qui était présent à chaque instant (du Programme) c'est l'échange d'expérience et d'opinion. Ce qui permettait un retour permanent, constructif et pointilleux tout ça dans la bienveillance et la bonne humeur" author="Annabel" role="Etudiante et néo-entrepreneure accompagnée par Mare Nostrum" />
+            <TestimonialCard text="Un acteur efficace, engagé et authentique, qui accompagne réellement les établissements dans leur transformation." author="Géraldine" role="Directrice d'établissement d'enseignement partenaire" />
+            <TestimonialCard text="Être ici aux côtés de l'ensemble des porteurs de projet, pour moi, c'était important. Parce que ce sont des jeunes audacieux, persévérants, et parce qu'on a besoin d'un entrepreneuriat qui est en capacité de pouvoir changer le monde. Ils mettent leurs convictions au service de solutions. Ce sont des solutions concrètes et performantes. Faites leur confiance, aidez-les, accompagnez-les !" author="Nadia Pellefigue" role="Vice-présidente de la région Occitanie (France)" />
           </div>
         </div>
       </section>
