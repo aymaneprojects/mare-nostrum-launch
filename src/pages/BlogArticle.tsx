@@ -297,7 +297,7 @@ const BlogArticle = () => {
       {/* Contenu de l'article */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <div className="lg:grid lg:grid-cols-[14rem_minmax(0,48rem)_14rem] lg:gap-10 lg:justify-center">
+          <div className="lg:grid lg:grid-cols-[13rem_minmax(0,48rem)_16rem] lg:gap-10 lg:justify-center">
             {/* Sommaire desktop */}
             {toc.length > 0 && (
               <nav aria-label="Sommaire" className="hidden lg:block sticky top-24 self-start max-h-[calc(100dvh-8rem)] overflow-y-auto text-sm">
@@ -450,7 +450,7 @@ const BlogArticle = () => {
             {/* CTA collant desktop */}
             <aside className="hidden lg:block sticky top-24 self-start lg:col-start-3 lg:row-start-1 rounded-sm border border-border p-4">
               <p className="font-semibold text-foreground mb-3">Besoin d'accompagnement pour votre projet ?</p>
-              <Button asChild className="w-full"><Link to="/diagnostic">Démarrer mon diagnostic</Link></Button>
+              <Button asChild className="w-full px-4"><Link to="/diagnostic">Démarrer mon diagnostic</Link></Button>
             </aside>
           </div>
         </div>
