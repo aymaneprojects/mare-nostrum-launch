@@ -141,7 +141,7 @@ export default function NiteoReservation() {
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-1 h-6 rounded-full" style={{ background: "hsl(var(--mn-turquoise))" }} />
-                <span className="text-primary-foreground font-semibold text-sm tracking-widest uppercase">Programme de la journée</span>
+                <span className="text-primary-foreground font-semibold text-sm">Programme de la journée</span>
               </div>
 
               {/* Timeline */}

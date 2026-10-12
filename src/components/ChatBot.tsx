@@ -342,7 +342,7 @@ const ChatBot = () => {
               </div>
               <div>
                 <p className="font-medium text-sm text-foreground">Besoin d'aide ?</p>
-                <p className="text-xs text-muted-foreground mt-1">
+                <p className="text-sm text-muted-foreground mt-1">
                   Je suis Inès, votre assistante. Posez-moi vos questions !
                 </p>
               </div>
@@ -428,7 +428,7 @@ const ChatBot = () => {
               </div>
               <div>
                 <h3 className="font-semibold text-primary-foreground">Inès</h3>
-                <p className="text-xs text-primary-foreground/70">Assistante virtuelle</p>
+                <p className="text-sm text-primary-foreground/70">Assistante virtuelle</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -440,7 +440,7 @@ const ChatBot = () => {
                 title="Réinitialiser la conversation"
               >
                 <RotateCcw className="h-4 w-4" />
-                <span className="text-xs hidden sm:inline">Réinitialiser</span>
+                <span className="text-sm hidden sm:inline">Réinitialiser</span>
               </Button>
             </div>
           </div>
@@ -477,7 +477,7 @@ const ChatBot = () => {
                   <div className="text-sm leading-relaxed">
                     {formatContent(message.content)}
                   </div>
-                  <span className="text-[10px] opacity-50 mt-1 block">
+                  <span className="text-sm opacity-50 mt-1 block">
                     {message.timestamp.toLocaleTimeString("fr-FR", {
                       hour: "2-digit",
                       minute: "2-digit",

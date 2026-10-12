@@ -98,10 +98,19 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   const steps       = isFree ? FREE_STEPS : ALL_STEPS;
 
   // Mesure du tunnel d'adhésion. Quatre points, tous dans ce fichier : ouverture,
-  // étape 1 validée, paiement affiché, paiement abouti. Voir src/lib/analytics.ts.
+  // étape 1 validée, paiement affiché, paiement abouti ; plus chaque étape atteinte.
+  // Voir src/lib/analytics.ts.
   useEffect(() => {
     if (open) track(EVT.clubModalOpen, { offer, location, billing });
   }, [open, offer, location, billing]);
+
+  // Chaque étape atteinte : l'étape où le compte chute est celle à simplifier.
+  // offer et location sont lus sans être des dépendances, pour ne compter que
+  // les changements d'étape.
+  useEffect(() => {
+    if (open && phase !== "loading") track(EVT.clubOnboardingStep, { phase, offer, location });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, phase]);
   const period      = billing === "monthly" ? "/mois" : "/an";
   const currentStep = (isFree ? freePhaseToStep : phaseToStep)[phase];
   const navigate    = useNavigate();
@@ -231,10 +240,10 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
           max-sm:w-full max-sm:h-[100dvh] max-sm:max-w-none max-sm:max-h-none max-sm:rounded-none
           sm:mx-auto sm:max-h-[92dvh] overflow-hidden
           [&>button:last-child]:hidden
-          ${phase === "payment" ? "sm:max-w-2xl" : "sm:max-w-lg"}`}
+          sm:max-w-2xl`}
       >
         {/* ── Header ────────────────────────────────────────── */}
-        <div className="bg-primary px-6 py-5 shrink-0 transition-colors duration-500 relative">
+        <div className="bg-primary px-6 sm:px-10 py-5 shrink-0 transition-colors duration-500 relative">
           <DialogTitle className="sr-only">{headerTitle}</DialogTitle>
           <p className="text-sm text-primary-foreground/80 mb-1">{headerSub}</p>
           <h2 className="font-editorial italic text-xl text-primary-foreground pr-10">{headerTitle}</h2>
@@ -285,7 +294,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
         )}
 
         {/* ── Body scrollable ───────────────────────────────── */}
-        <div ref={bodyRef} className="flex-1 overflow-y-auto px-6 pb-8 pt-4">
+        <div ref={bodyRef} className="flex-1 overflow-y-auto px-6 sm:px-10 pb-8 pt-4">
 
           {/* Étape 1 : Prénom + email */}
           {phase === "step1" && (

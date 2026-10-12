@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Calendar, User, Clock, Share2, Loader2, UserCheck, RefreshCw } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Share2, Loader2, RefreshCw, Linkedin, Facebook, Twitter, Mail, MessageCircle, Link2 } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -65,7 +65,13 @@ const AI_TARGETS = [
   { name: "ChatGPT", url: "https://chatgpt.com/?q=" },
   { name: "Claude", url: "https://claude.ai/new?q=" },
   { name: "Perplexity", url: "https://www.perplexity.ai/search?q=" },
+  { name: "Google AI", url: "https://www.google.com/search?udm=50&q=" },
 ];
+
+const plainText = (html: string): string =>
+  html.replace(/<[^>]*>/g, " ").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
+const normalize = (t: string): string =>
+  plainText(t).toLowerCase().replace(/[…]|\.{3}/g, "").replace(/[^a-z0-9à-ÿ]+/g, " ").trim();
 
 const BlogArticle = () => {
   const { toast } = useToast();
@@ -145,12 +151,54 @@ const BlogArticle = () => {
   const readingTime = Math.ceil(wordCount / wordsPerMinute);
 
   const { html: contentHtml, toc } = addAnchors(noEmDash(cleanArticleContent(article.content, article.title)));
-  const reviewedBy = (article as { reviewed_by?: string | null }).reviewed_by;
+  const reviewedBy = article.reviewed_by;
+  const reviewedByTitle = article.reviewed_by_title;
+
+  // Le chapô n'est affiché que s'il ne répète pas le début du contenu
+  const excerptNorm = normalize(article.excerpt).slice(0, 80);
+  const showExcerpt = excerptNorm.length > 0 && !normalize(contentHtml).startsWith(excerptNorm);
+
+  // Découpe du corps : [jusqu'à l'encadré En bref] [suite jusqu'avant le 3e h2] [reste]
+  const enBrefEnd = (() => {
+    const m = /<aside[^>]*class="[^"]*en-bref[^"]*"[^>]*>[\s\S]*?<\/aside>/i.exec(contentHtml);
+    return m ? m.index + m[0].length : 0;
+  })();
+  const h2Starts = [...contentHtml.matchAll(/<h2[\s>]/gi)].map((m) => m.index as number);
+  const hasCta = h2Starts.length >= 2;
+  const ctaAt = hasCta ? (h2Starts[2] ?? contentHtml.length) : contentHtml.length;
+  const partA = contentHtml.slice(0, enBrefEnd);
+  const partB = contentHtml.slice(enBrefEnd, Math.max(ctaAt, enBrefEnd));
+  const partC = contentHtml.slice(Math.max(ctaAt, enBrefEnd));
+  const articleClass = "blog-article-content [&_.en-bref]:mb-8 [&_.en-bref]:rounded-sm [&_.en-bref]:border [&_.en-bref]:border-border [&_.en-bref]:bg-secondary/30 [&_.en-bref]:p-4 [&_h2]:scroll-mt-24 [&_h3]:scroll-mt-24 [&_table]:block [&_table]:overflow-x-auto";
+
   const showUpdated = article.updated_at && article.updated_at.slice(0, 10) !== article.published_at.slice(0, 10);
   const fmtDate = (d: string) => new Date(d).toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" });
   const aiPrompt = encodeURIComponent(`Résume cet article : https://www.marenostrum.tech/blog/${article.slug}`);
 
   const articleUrl = `https://www.marenostrum.tech/blog/${article.slug}`;
+  const u = encodeURIComponent(articleUrl);
+  const t = encodeURIComponent(article.title);
+  const shareLinks = [
+    { name: "LinkedIn", Icon: Linkedin, href: `https://www.linkedin.com/sharing/share-offsite/?url=${u}` },
+    { name: "WhatsApp", Icon: MessageCircle, href: `https://wa.me/?text=${t}%20${u}` },
+    { name: "X", Icon: Twitter, href: `https://twitter.com/intent/tweet?url=${u}&text=${t}` },
+    { name: "Facebook", Icon: Facebook, href: `https://www.facebook.com/sharer/sharer.php?u=${u}` },
+    { name: "E-mail", Icon: Mail, href: `mailto:?subject=${t}&body=${u}` },
+  ];
+  const copyLink = async () => {
+    await navigator.clipboard.writeText(articleUrl);
+    toast({ title: "Lien copié", description: "Le lien de l'article a été copié dans le presse-papier." });
+  };
+  const aiRow = (
+    <div className="my-8 flex flex-wrap items-center gap-2">
+      <span className="text-sm text-muted-foreground">Résumer cet article avec</span>
+      {AI_TARGETS.map((a) => (
+        <Button key={a.name} variant="outline" size="sm" asChild>
+          <a href={a.url + aiPrompt} target="_blank" rel="noopener noreferrer">{a.name}</a>
+        </Button>
+      ))}
+    </div>
+  );
   const cleanExcerpt = article.excerpt.replace(/<[^>]*>/g, "").substring(0, 155);
 
   const articleSchema = {
@@ -238,32 +286,6 @@ const BlogArticle = () => {
             <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
               {noEmDash(article.title)}
             </h1>
-            <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-1">
-                <Calendar className="h-4 w-4" aria-hidden="true" />
-                <span>Publié le <time dateTime={article.published_at}>{fmtDate(article.published_at)}</time></span>
-              </div>
-              {showUpdated && (
-                <div className="flex items-center gap-1">
-                  <RefreshCw className="h-4 w-4" aria-hidden="true" />
-                  <span>Mis à jour le <time dateTime={article.updated_at}>{fmtDate(article.updated_at)}</time></span>
-                </div>
-              )}
-              <div className="flex items-center gap-1">
-                <User className="h-4 w-4" aria-hidden="true" />
-                <span>Par {article.author}</span>
-              </div>
-              {reviewedBy && (
-                <div className="flex items-center gap-1">
-                  <UserCheck className="h-4 w-4" aria-hidden="true" />
-                  <span>Relu par {reviewedBy}</span>
-                </div>
-              )}
-              <div className="flex items-center gap-1">
-                <Clock className="h-4 w-4" aria-hidden="true" />
-                <span>{readingTime} min de lecture</span>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -330,6 +352,49 @@ const BlogArticle = () => {
               </Button>
             </div>
 
+            {/* Auteur, relecture, date */}
+            <div className="flex items-center gap-4 mb-4">
+              <div aria-hidden="true" className="h-12 w-12 shrink-0 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-semibold">
+                {article.author.trim().charAt(0).toUpperCase()}
+              </div>
+              <div className="text-sm text-muted-foreground">
+                <p className="text-foreground font-semibold">Écrit par {article.author}</p>
+                {reviewedBy && (
+                  <p>Relu par {reviewedBy}{reviewedByTitle ? `, ${reviewedByTitle}` : ""}</p>
+                )}
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1">
+                  <span className="flex items-center gap-1">
+                    <Calendar className="h-4 w-4" aria-hidden="true" />
+                    <span>Publié le <time dateTime={article.published_at}>{fmtDate(article.published_at)}</time></span>
+                  </span>
+                  {showUpdated && (
+                    <span className="flex items-center gap-1">
+                      <RefreshCw className="h-4 w-4" aria-hidden="true" />
+                      <span>Mis à jour le <time dateTime={article.updated_at}>{fmtDate(article.updated_at)}</time></span>
+                    </span>
+                  )}
+                  <span className="flex items-center gap-1">
+                    <Clock className="h-4 w-4" aria-hidden="true" />
+                    <span>{readingTime} min de lecture</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Partage par réseau */}
+            <div className="mb-8 flex flex-wrap items-center gap-2">
+              {shareLinks.map(({ name, Icon, href }) => (
+                <Button key={name} variant="outline" size="icon" asChild>
+                  <a href={href} target="_blank" rel="noopener noreferrer" aria-label={`Partager sur ${name}`}>
+                    <Icon className="h-4 w-4" aria-hidden="true" />
+                  </a>
+                </Button>
+              ))}
+              <Button variant="outline" size="icon" onClick={copyLink} aria-label="Copier le lien">
+                <Link2 className="h-4 w-4" aria-hidden="true" />
+              </Button>
+            </div>
+
             {/* Sommaire mobile */}
             {toc.length > 0 && (
               <details className="lg:hidden mb-6 rounded-sm border border-border p-4">
@@ -344,26 +409,26 @@ const BlogArticle = () => {
               </details>
             )}
 
-            {/* Résumer avec une IA */}
-            <div className="mb-8 flex flex-wrap items-center gap-2">
-              <span className="text-sm text-muted-foreground">Résumer cet article avec</span>
-              {AI_TARGETS.map((a) => (
-                <Button key={a.name} variant="outline" size="sm" asChild>
-                  <a href={a.url + aiPrompt} target="_blank" rel="noopener noreferrer">{a.name}</a>
+            {/* Extrait (seulement s'il n'est pas répété dans le contenu) */}
+            {showExcerpt && (
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed border-l-4 border-primary pl-4">
+                {noEmDash(cleanMarkdown(article.excerpt))}
+              </p>
+            )}
+
+            {/* Contenu HTML stylisé, découpé : En bref, résumé IA, corps, encart, suite */}
+            {partA && <article className={articleClass} dangerouslySetInnerHTML={{ __html: partA }} />}
+            {aiRow}
+            <article className={articleClass} dangerouslySetInnerHTML={{ __html: partB }} />
+            {hasCta && (
+              <div className="my-10 p-6 bg-secondary/40 rounded-sm border border-border">
+                <p className="text-lg font-semibold text-foreground mb-4">Où en est vraiment votre projet ?</p>
+                <Button asChild>
+                  <Link to="/diagnostic">Démarrer mon diagnostic</Link>
                 </Button>
-              ))}
-            </div>
-
-            {/* Extrait */}
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed border-l-4 border-primary pl-4">
-              {noEmDash(cleanMarkdown(article.excerpt))}
-            </p>
-
-            {/* Contenu HTML stylisé */}
-            <article 
-              className="blog-article-content [&_.en-bref]:mb-8 [&_.en-bref]:rounded-sm [&_.en-bref]:border [&_.en-bref]:border-border [&_.en-bref]:bg-secondary/30 [&_.en-bref]:p-4 [&_h2]:scroll-mt-24 [&_h3]:scroll-mt-24 [&_table]:block [&_table]:overflow-x-auto"
-              dangerouslySetInnerHTML={{ __html: contentHtml }}
-            />
+              </div>
+            )}
+            {partC && <article className={articleClass} dangerouslySetInnerHTML={{ __html: partC }} />}
 
             {/* CTA */}
             <div className="mt-12 p-8 bg-gradient-to-br from-primary/10 to-accent/10 rounded-sm border border-border">
@@ -381,7 +446,7 @@ const BlogArticle = () => {
             {/* CTA collant desktop */}
             <aside className="hidden lg:block sticky top-24 self-start lg:col-start-3 lg:row-start-1 rounded-sm border border-border p-4">
               <p className="font-semibold text-foreground mb-3">Besoin d'accompagnement pour votre projet ?</p>
-              <Button asChild className="w-full"><Link to="/club#offres">Rejoindre le Club</Link></Button>
+              <Button asChild className="w-full"><Link to="/diagnostic">Démarrer mon diagnostic</Link></Button>
             </aside>
           </div>
         </div>

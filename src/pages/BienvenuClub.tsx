@@ -65,7 +65,7 @@ const BienvenuClub = () => {
             </div>
 
             {!isFree && (
-              <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
+              <p className="text-sm font-semibold text-primary mb-3">
                 Paiement confirmé
               </p>
             )}
@@ -93,7 +93,7 @@ const BienvenuClub = () => {
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <h2 className="text-center text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-6">
+            <h2 className="text-center text-sm font-semibold text-muted-foreground mb-6">
               Par où commencer
             </h2>
 

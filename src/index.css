@@ -465,13 +465,13 @@ All colors MUST be HSL.
     list-style: none;
   }
 
-  .blog-article-content ul li {
+  .blog-article-content ul > li {
     @apply text-muted-foreground pl-7 relative;
     font-size: 1.05rem;
     line-height: 1.75;
   }
 
-  .blog-article-content ul li::before {
+  .blog-article-content ul > li::before {
     content: '';
     position: absolute;
     left: 0;
@@ -488,14 +488,14 @@ All colors MUST be HSL.
     counter-reset: item;
   }
 
-  .blog-article-content ol li {
+  .blog-article-content ol > li {
     @apply text-muted-foreground pl-10 relative;
     font-size: 1.05rem;
     line-height: 1.75;
     counter-increment: item;
   }
 
-  .blog-article-content ol li::before {
+  .blog-article-content ol > li::before {
     content: counter(item);
     position: absolute;
     left: 0;

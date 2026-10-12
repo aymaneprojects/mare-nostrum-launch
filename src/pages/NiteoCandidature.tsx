@@ -73,7 +73,7 @@ function NiteoNotify() {
       <div className="container mx-auto px-4 relative z-10 text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-turquoise/30 bg-turquoise/10 mb-6">
           <span className="w-1.5 h-1.5 rounded-full bg-turquoise animate-pulse" style={{ color: "hsl(var(--mn-turquoise))" }} />
-          <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "hsl(var(--mn-turquoise))" }}>
+          <span className="text-sm font-semibold" style={{ color: "hsl(var(--mn-turquoise))" }}>
             4ème édition · Coming Soon
           </span>
         </div>

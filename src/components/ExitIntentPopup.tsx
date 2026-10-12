@@ -119,7 +119,7 @@ export default function ExitIntentPopup() {
             Attendez !<br />
             <span className="text-[hsl(var(--mn-turquoise))]">–50%</span> le premier mois
           </h2>
-          <p className="text-sm text-primary-foreground/60 leading-relaxed">
+          <p className="text-sm text-primary-foreground/85 leading-relaxed">
             Remplis le formulaire - ton code promo personnalisé t'est envoyé par email instantanément.
           </p>
         </div>
@@ -217,7 +217,7 @@ export default function ExitIntentPopup() {
                   required
                 />
                 <span className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
-                  <Shield className="inline h-3 w-3 mr-1 text-[hsl(var(--mn-turquoise))]" />
+                  <Shield className="inline h-4 w-4 mr-1 text-[hsl(var(--mn-turquoise))]" />
                   J'accepte d'être contacté par Mare Nostrum pour activer mon offre. <span className="font-medium text-foreground">Requis *</span>
                 </span>
               </label>

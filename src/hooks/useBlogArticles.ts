@@ -14,6 +14,8 @@ export interface BlogArticle {
   is_published: boolean;
   created_at: string;
   updated_at: string;
+  reviewed_by?: string | null;
+  reviewed_by_title?: string | null;
 }
 
 // Récupérer tous les articles publiés

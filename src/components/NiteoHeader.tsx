@@ -13,9 +13,9 @@ export default function NiteoHeader() {
           <img src={logoNiteo} alt="Niteo" className="h-14" />
         </Link>
         <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-3">
-          <span className="text-primary-foreground/90 text-sm font-semibold tracking-[0.3em] uppercase">Toulouse</span>
+          <span className="text-primary-foreground/90 text-sm font-semibold tracking-[0.3em]">Toulouse</span>
           <span className="text-primary-foreground/40">|</span>
-          <span className="text-accent text-xs font-semibold hidden sm:inline">4ème édition · Coming Soon</span>
+          <span className="text-accent text-sm font-semibold hidden sm:inline">4ème édition · Coming Soon</span>
         </div>
         <Link to="/reservation">
           <Button size="sm" variant="secondary" className="shadow-[var(--shadow-medium)] hover:shadow-[var(--shadow-medium)] transition-shadow">
