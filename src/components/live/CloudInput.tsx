@@ -103,7 +103,7 @@ const CloudInput = ({ item, identity }: CloudInputProps) => {
       {mine.length > 0 && (
         <ul className="flex flex-wrap gap-2" aria-label="Vos mots">
           {mine.map((w, i) => (
-            <li key={`${w}-${i}`} className="animate-in fade-in zoom-in-95 rounded-full bg-accent/20 px-3 py-1.5 text-sm text-primary-foreground">
+            <li key={`${w}-${i}`} className="animate-in fade-in zoom-in-95 rounded-lg bg-accent/20 px-3 py-1.5 text-sm text-primary-foreground">
               {w}
             </li>
           ))}

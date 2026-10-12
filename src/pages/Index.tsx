@@ -315,23 +315,23 @@ const Index = () => {
                 Notre raison d'être est de renforcer les capacités des entreprises à devenir des acteurs plus efficaces de la coopération territoriale, de la protection du vivant et de l’inclusion de publics vulnérables.
               </p>
               <div className="flex flex-wrap justify-center gap-2 md:gap-3 mt-10 md:mt-14 pt-8 md:pt-10 border-t border-primary-foreground/15">
-                <div className="flex items-center space-x-2 bg-secondary text-secondary-foreground px-3 py-2 md:px-4 md:py-2 rounded-full text-sm md:text-base">
+                <div className="flex items-center space-x-2 bg-secondary text-secondary-foreground px-3 py-2 md:px-4 md:py-2 rounded-lg text-sm md:text-base">
                   <Target className="h-5 w-5 text-primary" />
                   <span className="font-medium">Respect</span>
                 </div>
-                <div className="flex items-center space-x-2 bg-secondary text-secondary-foreground px-4 py-2 rounded-full">
+                <div className="flex items-center space-x-2 bg-secondary text-secondary-foreground px-4 py-2 rounded-lg">
                   <Lightbulb className="h-5 w-5 text-accent" />
                   <span className="font-medium">Enthousiasme</span>
                 </div>
-                <div className="flex items-center space-x-2 bg-secondary text-secondary-foreground px-4 py-2 rounded-full">
+                <div className="flex items-center space-x-2 bg-secondary text-secondary-foreground px-4 py-2 rounded-lg">
                   <Users className="h-5 w-5 text-primary" />
                   <span className="font-medium">Fiabilité</span>
                 </div>
-                <div className="flex items-center space-x-2 bg-secondary text-secondary-foreground px-4 py-2 rounded-full">
+                <div className="flex items-center space-x-2 bg-secondary text-secondary-foreground px-4 py-2 rounded-lg">
                   <TrendingUp className="h-5 w-5 text-accent" />
                   <span className="font-medium">Impact</span>
                 </div>
-                <div className="flex items-center space-x-2 bg-secondary text-secondary-foreground px-4 py-2 rounded-full">
+                <div className="flex items-center space-x-2 bg-secondary text-secondary-foreground px-4 py-2 rounded-lg">
                   <Globe className="h-5 w-5 text-primary" />
                   <span className="font-medium">Co-apprentissage</span>
                 </div>

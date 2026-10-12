@@ -88,7 +88,7 @@ const LiveQrCode = ({ value, size = 200, className, alt = "QR code pour rejoindr
             type="button"
             onClick={() => setExpanded(false)}
             aria-label="Fermer"
-            className="absolute right-6 top-6 flex h-11 w-11 items-center justify-center rounded-full bg-primary-foreground/10 text-primary-foreground transition-colors hover:bg-primary-foreground/20"
+            className="absolute right-6 top-6 flex h-11 w-11 items-center justify-center rounded-[10px] bg-primary-foreground/10 text-primary-foreground transition-colors hover:bg-primary-foreground/20"
           >
             <X className="h-5 w-5" />
           </button>

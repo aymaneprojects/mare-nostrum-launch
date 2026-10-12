@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { Link, useLocation } from "react-router-dom";
+import { getMember, telHref } from "@/data/team";
 interface Message {
   id: string;
   role: "user" | "assistant";
@@ -358,7 +359,7 @@ const ChatBot = () => {
         <button
           ref={ctaRef}
           onClick={() => setIsOpen(false)}
-          className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-full shadow-[var(--shadow-medium)] flex items-center justify-center bg-muted-foreground transition-all duration-200"
+          className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-[10px] shadow-[var(--shadow-medium)] flex items-center justify-center bg-muted-foreground transition-all duration-200"
           aria-label="Fermer le chat"
         >
           <X className="h-6 w-6 text-primary-foreground" />
@@ -369,7 +370,7 @@ const ChatBot = () => {
           onClick={() => setMenuOpen((v) => !v)}
           aria-haspopup="menu"
           aria-expanded={menuOpen}
-          className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 min-h-12 px-5 rounded-full shadow-[var(--shadow-medium)] flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-medium text-base transition-all duration-200"
+          className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 min-h-12 px-5 rounded-[10px] shadow-[var(--shadow-medium)] flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-medium text-base transition-all duration-200"
         >
           <MessageCircle className="h-5 w-5" aria-hidden="true" />
           Parler à quelqu'un
@@ -384,14 +385,17 @@ const ChatBot = () => {
           className="fixed bottom-36 right-4 sm:bottom-24 sm:right-6 z-50 w-[min(18rem,calc(100vw-2rem))] mn-card shadow-[var(--shadow-lift)] p-2 animate-in fade-in slide-in-from-bottom-2 duration-200"
         >
           {[
-            { Icon: CalendarDays, label: "Prendre rendez-vous", to: "/contact" },
-            { Icon: Phone, label: "Appeler", href: "tel:+33617358167" },
+            // Rendez-vous : le Meet de l'équipe (même lien que /contact). Appel : la ligne d'Alexis,
+            // lue dans sa fiche d'équipe pour suivre un changement de numéro.
+            { Icon: CalendarDays, label: "Prendre rendez-vous", href: "https://meet.marenostrum.tech/rdv-equipe", external: true },
+            { Icon: Phone, label: "Appeler", href: telHref(getMember("alexis")?.telephone ?? "+33617358167") },
             { Icon: Mail, label: "Envoyer un message", to: "/contact" },
-          ].map(({ Icon, label, to, href }) => {
-            const cls = "flex w-full items-center gap-3 rounded-sm px-3 min-h-12 text-base text-foreground text-left hover:bg-secondary focus-visible:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+          ].map(({ Icon, label, to, href, external }) => {
+            const cls = "flex w-full items-center gap-3 rounded-lg px-3 min-h-12 text-base text-foreground text-left hover:bg-secondary focus-visible:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
             const inner = (<><Icon className="h-5 w-5 text-primary" aria-hidden="true" />{label}</>);
             return href ? (
-              <a key={label} role="menuitem" href={href} className={cls} onClick={() => setMenuOpen(false)}>{inner}</a>
+              <a key={label} role="menuitem" href={href} className={cls} onClick={() => setMenuOpen(false)}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>{inner}</a>
             ) : (
               <Link key={label} role="menuitem" to={to!} className={cls} onClick={() => setMenuOpen(false)}>{inner}</Link>
             );
@@ -399,7 +403,7 @@ const ChatBot = () => {
           <button
             role="menuitem"
             onClick={handleOpenChat}
-            className="flex w-full items-center gap-3 rounded-sm px-3 min-h-12 text-base text-foreground text-left hover:bg-secondary focus-visible:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="flex w-full items-center gap-3 rounded-lg px-3 min-h-12 text-base text-foreground text-left hover:bg-secondary focus-visible:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <Bot className="h-5 w-5 text-primary" aria-hidden="true" />
             Assistant virtuel
@@ -419,7 +423,7 @@ const ChatBot = () => {
           /* Desktop: fixed width */
           sm:bottom-24 sm:right-6 sm:w-[360px] sm:max-w-[calc(100vw-3rem)]`}
       >
-        <div className="mn-card shadow-[var(--shadow-lift)] overflow-hidden flex flex-col h-[60vh] sm:h-[480px] max-h-[600px]">
+        <div className="mn-card rounded-2xl shadow-[var(--shadow-lift)] overflow-hidden flex flex-col h-[60vh] sm:h-[480px] max-h-[600px]">
           {/* Header */}
           <div className="bg-primary p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -468,7 +472,7 @@ const ChatBot = () => {
                   )}
                 </div>
                 <div
-                  className={`max-w-[80%] rounded-sm px-3 py-2 ${
+                  className={`max-w-[80%] rounded-xl px-3 py-2 ${
                     message.role === "user"
                       ? "bg-accent text-accent-foreground rounded-tr-sm"
                       : "bg-card border border-border text-foreground rounded-tl-sm"
@@ -492,7 +496,7 @@ const ChatBot = () => {
                 <div className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
                   <MessageCircle className="h-3.5 w-3.5" />
                 </div>
-                <div className="bg-card border border-border rounded-sm rounded-tl-sm px-3 py-3">
+                <div className="bg-card border border-border rounded-xl rounded-tl-sm px-3 py-3">
                   <TypingIndicator />
                 </div>
               </div>
@@ -510,14 +514,14 @@ const ChatBot = () => {
                 onKeyPress={handleKeyPress}
                 aria-label="Votre message"
                 placeholder="Posez votre question..."
-                className="flex-1 rounded-full border-border text-sm"
+                className="flex-1 rounded-[10px] border-border text-sm"
                 disabled={isLoading}
               />
               <Button
                 onClick={sendMessage}
                 disabled={!input.trim() || isLoading}
                 size="icon"
-                className="rounded-full bg-primary hover:bg-primary/90 h-11 w-11"
+                className="rounded-[10px] bg-primary hover:bg-primary/90 h-11 w-11"
                 aria-label="Envoyer le message"
               >
                 <Send className="h-4 w-4" />

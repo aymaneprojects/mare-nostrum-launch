@@ -38,12 +38,12 @@ const ActivityDisplay = ({ item, variant = "full", showHeader = true }: Activity
           <div className="mb-3 flex flex-wrap items-center gap-3">
             <span className="mn-eyebrow-light">{KIND_LABEL[kind]}</span>
             {live ? (
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/20 px-3 py-1 text-xs text-primary-foreground">
+              <span className="inline-flex items-center gap-1.5 rounded-lg bg-accent/20 px-3 py-1 text-xs text-primary-foreground">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-accent" aria-hidden />
                 En direct
               </span>
             ) : (
-              <span className="rounded-full bg-primary-foreground/10 px-3 py-1 text-xs text-primary-foreground/70">Terminé</span>
+              <span className="rounded-lg bg-primary-foreground/10 px-3 py-1 text-xs text-primary-foreground/70">Terminé</span>
             )}
             <Countdown
               activatedAt={item.activated_at}

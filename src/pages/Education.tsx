@@ -302,7 +302,7 @@ const Education = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Initiation à l'intelligence artificielle */}
             <div className="relative order-[1] bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
-              <span className="absolute top-6 right-6 rounded-full bg-primary/15 px-3 py-1 text-xs font-bold tracking-wide text-primary">
+              <span className="absolute top-6 right-6 rounded-lg bg-primary/15 px-3 py-1 text-xs font-bold tracking-wide text-primary">
                 NUMÉRIQUE / IA
               </span>
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
@@ -325,7 +325,7 @@ const Education = () => {
 
             {/* Agent IA pour le marketing */}
             <div className="relative order-[2] bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
-              <span className="absolute top-6 right-6 rounded-full bg-primary/15 px-3 py-1 text-xs font-bold tracking-wide text-primary">
+              <span className="absolute top-6 right-6 rounded-lg bg-primary/15 px-3 py-1 text-xs font-bold tracking-wide text-primary">
                 NUMÉRIQUE / IA
               </span>
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
@@ -347,7 +347,7 @@ const Education = () => {
             </div>
 
             <div className="relative order-4 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
-              <span className="absolute top-6 right-6 rounded-full bg-[hsl(var(--mn-turquoise))]/20 px-3 py-1 text-xs font-bold tracking-wide text-primary">
+              <span className="absolute top-6 right-6 rounded-lg bg-[hsl(var(--mn-turquoise))]/20 px-3 py-1 text-xs font-bold tracking-wide text-primary">
                 ENTREPRENEURIAT
               </span>
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
@@ -381,7 +381,7 @@ const Education = () => {
 
             {/* Mastermind digital néo-entrepreneurs */}
             <div className="relative order-5 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
-              <span className="absolute top-6 right-6 rounded-full bg-[hsl(var(--mn-turquoise))]/20 px-3 py-1 text-xs font-bold tracking-wide text-primary">
+              <span className="absolute top-6 right-6 rounded-lg bg-[hsl(var(--mn-turquoise))]/20 px-3 py-1 text-xs font-bold tracking-wide text-primary">
                 ENTREPRENEURIAT
               </span>
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
@@ -416,7 +416,7 @@ const Education = () => {
 
             {/* Fresque */}
             <div className="relative order-7 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
-              <span className="absolute top-6 right-6 rounded-full bg-[hsl(var(--mn-ivory))] px-3 py-1 text-xs font-bold tracking-wide text-primary ring-1 ring-primary/15">
+              <span className="absolute top-6 right-6 rounded-lg bg-[hsl(var(--mn-ivory))] px-3 py-1 text-xs font-bold tracking-wide text-primary ring-1 ring-primary/15">
                 PÉDAGOGIE
               </span>
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
@@ -444,7 +444,7 @@ const Education = () => {
 
             {/* Atelier des Alliés */}
             <div className="relative order-6 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
-              <span className="absolute top-6 right-6 rounded-full bg-[hsl(var(--mn-ocre))]/20 px-3 py-1 text-xs font-bold tracking-wide text-[hsl(var(--mn-ocre))]">
+              <span className="absolute top-6 right-6 rounded-lg bg-[hsl(var(--mn-ocre))]/20 px-3 py-1 text-xs font-bold tracking-wide text-[hsl(var(--mn-ocre))]">
                 GESTION DE PROJET
               </span>
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
@@ -472,7 +472,7 @@ const Education = () => {
 
             {/* Hackathons */}
             <div className="relative order-9 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
-              <span className="absolute top-6 right-6 rounded-full bg-primary/15 px-3 py-1 text-xs font-bold tracking-wide text-primary">
+              <span className="absolute top-6 right-6 rounded-lg bg-primary/15 px-3 py-1 text-xs font-bold tracking-wide text-primary">
                 INNOVATION
               </span>
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
@@ -498,7 +498,7 @@ const Education = () => {
 
             {/* Programme Premium */}
             <div className="relative order-6 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
-              <span className="absolute top-6 right-6 rounded-full bg-[hsl(var(--mn-turquoise))]/20 px-3 py-1 text-xs font-bold tracking-wide text-primary">
+              <span className="absolute top-6 right-6 rounded-lg bg-[hsl(var(--mn-turquoise))]/20 px-3 py-1 text-xs font-bold tracking-wide text-primary">
                 ENTREPRENEURIAT
               </span>
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
@@ -524,7 +524,7 @@ const Education = () => {
 
             {/* Cours */}
             <div className="relative order-10 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
-              <span className="absolute top-6 right-6 rounded-full bg-[hsl(var(--mn-muted))]/15 px-3 py-1 text-xs font-bold tracking-wide text-[hsl(var(--mn-muted))]">
+              <span className="absolute top-6 right-6 rounded-lg bg-[hsl(var(--mn-muted))]/15 px-3 py-1 text-xs font-bold tracking-wide text-[hsl(var(--mn-muted))]">
                 TOUTES DISCIPLINES
               </span>
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
@@ -550,7 +550,7 @@ const Education = () => {
 
             {/* Réseau */}
             <div className="relative order-8 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
-              <span className="absolute top-6 right-6 rounded-full bg-[hsl(var(--mn-ivory))] px-3 py-1 text-xs font-bold tracking-wide text-primary ring-1 ring-primary/15">
+              <span className="absolute top-6 right-6 rounded-lg bg-[hsl(var(--mn-ivory))] px-3 py-1 text-xs font-bold tracking-wide text-primary ring-1 ring-primary/15">
                 PEDAGOGIE
               </span>
               <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">

@@ -72,7 +72,7 @@ const Header = () => {
       {/* Wrapper sticky - transparent, laisse passer les clics sur les zones vides */}
       <header className={`sticky top-0 z-50 w-full h-[5.5rem] md:h-24 px-4 md:px-6 pb-2 pointer-events-none transition-[padding] duration-200 ${scrolled ? "pt-2" : "pt-4"}`}>
         <nav
-          className={`pointer-events-auto mx-auto flex max-w-7xl items-center justify-between px-3 md:px-5 rounded-full transition-all duration-200 ${scrolled ? "h-11 md:h-12" : "h-14 md:h-16"}`}
+          className={`pointer-events-auto mx-auto flex max-w-7xl items-center justify-between px-3 md:px-5 rounded-2xl transition-all duration-200 ${scrolled ? "h-11 md:h-12" : "h-14 md:h-16"}`}
           style={{
             backgroundColor: scrolled ? "rgba(255,255,255,0.82)" : "rgba(255,255,255,0.96)",
             backdropFilter: "blur(20px)",
@@ -95,7 +95,7 @@ const Header = () => {
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-0.5 lg:gap-1">
             {desktopNav.map((item) => {
-              const linkClass = (active: boolean) => `mn-link-u [--mn-u-inset:0.75rem] [--mn-u-bottom:0.3rem] px-3 py-1.5 text-[15px] font-normal rounded-full transition-colors duration-200 ${
+              const linkClass = (active: boolean) => `mn-link-u [--mn-u-inset:0.75rem] [--mn-u-bottom:0.3rem] px-3 py-1.5 text-[15px] font-normal rounded-lg transition-colors duration-200 ${
                 active ? "bg-primary/10 text-primary" : "text-foreground/70 hover:text-foreground"
               }`;
 
@@ -165,7 +165,7 @@ const Header = () => {
 
           {/* Mobile - hamburger */}
           <button
-            className="md:hidden w-11 h-11 flex items-center justify-center rounded-full bg-muted/60 active:scale-90 transition-transform duration-150 text-primary"
+            className="md:hidden w-11 h-11 flex items-center justify-center rounded-[10px] bg-muted/60 active:scale-90 transition-transform duration-150 text-primary"
             onClick={() => setIsMenuOpen(true)}
             aria-label="Ouvrir le menu"
             aria-expanded={isMenuOpen}
@@ -200,7 +200,7 @@ const Header = () => {
           <img src={logo} alt="Mare Nostrum" className="h-9 w-auto" />
           <button
             onClick={() => setIsMenuOpen(false)}
-            className="w-11 h-11 flex items-center justify-center rounded-full bg-muted active:scale-90 transition-transform duration-150"
+            className="w-11 h-11 flex items-center justify-center rounded-[10px] bg-muted active:scale-90 transition-transform duration-150"
             aria-label="Fermer le menu"
           >
             <X className="h-4.5 w-4.5 text-foreground/70" />

@@ -249,7 +249,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
           <h2 className="font-editorial italic text-xl text-primary-foreground pr-10">{headerTitle}</h2>
           <button
             onClick={handleClose}
-            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 active:bg-primary-foreground/30 transition-colors"
+            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-[10px] bg-primary-foreground/10 hover:bg-primary-foreground/20 active:bg-primary-foreground/30 transition-colors"
             aria-label="Fermer"
           >
             <X className="h-4 w-4 text-primary-foreground" />

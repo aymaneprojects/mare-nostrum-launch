@@ -35,7 +35,7 @@ const BottomNav = () => {
                 ${active ? "text-primary" : "text-muted-foreground"}`}
               aria-current={active ? "page" : undefined}
             >
-              <div className={`relative flex items-center justify-center w-10 h-6 rounded-full transition-all duration-200
+              <div className={`relative flex items-center justify-center w-10 h-6 rounded-lg transition-all duration-200
                 ${active ? "bg-primary/10" : ""}`}>
                 <Icon className={`h-5 w-5 transition-all duration-200 ${active ? "stroke-[2.2]" : "stroke-[1.6]"}`} />
               </div>

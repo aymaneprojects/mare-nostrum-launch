@@ -47,7 +47,7 @@ const WallBoard = ({ messages, limit = 12 }: WallBoardProps) => {
 const LikeCount = ({ count, large }: { count: number; large?: boolean }) => (
   <span
     className={cn(
-      "inline-flex shrink-0 items-center gap-1.5 rounded-full bg-primary-foreground/10 font-semibold tabular-nums text-primary-foreground",
+      "inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-primary-foreground/10 font-semibold tabular-nums text-primary-foreground",
       large ? "px-4 py-2 text-xl md:text-2xl" : "px-3 py-1 text-base",
     )}
     aria-label={`${count} like${count > 1 ? "s" : ""}`}

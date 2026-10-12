@@ -25,7 +25,7 @@ const FullscreenButton = ({ className }: { className?: string }) => {
       onClick={toggle}
       aria-label={active ? "Quitter le plein écran" : "Passer en plein écran"}
       className={cn(
-        "inline-flex h-11 items-center gap-2 rounded-full bg-primary-foreground/10 px-4 text-sm text-primary-foreground backdrop-blur transition-opacity hover:bg-primary-foreground/20",
+        "inline-flex h-11 items-center gap-2 rounded-[10px] bg-primary-foreground/10 px-4 text-sm text-primary-foreground backdrop-blur transition-opacity hover:bg-primary-foreground/20",
         active ? "opacity-0 hover:opacity-100 focus-visible:opacity-100" : "opacity-80 hover:opacity-100",
         className,
       )}

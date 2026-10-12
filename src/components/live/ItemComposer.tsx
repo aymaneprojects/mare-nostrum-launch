@@ -169,7 +169,7 @@ const ItemComposer = ({ open, onOpenChange, initial, onSubmit }: ItemComposerPro
                       onClick={() => set("duration_seconds", d.value)}
                       aria-pressed={draft.duration_seconds === d.value}
                       className={cn(
-                        "h-9 rounded-full border px-4 text-sm transition-colors",
+                        "h-9 rounded-lg border px-4 text-sm transition-colors",
                         draft.duration_seconds === d.value ? "border-accent bg-accent/10 text-foreground" : "border-border text-muted-foreground hover:border-primary/40",
                       )}
                     >

@@ -38,7 +38,7 @@ const Countdown = ({ activatedAt, durationSeconds, active, size = "small", class
       role="timer"
       aria-live="off"
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full font-semibold tabular-nums",
+        "inline-flex items-center gap-1.5 rounded-lg font-semibold tabular-nums",
         size === "large" ? "px-4 py-2 text-2xl md:text-3xl" : "px-3 py-1 text-sm",
         done ? "bg-primary-foreground/10 text-primary-foreground/60" : remaining <= 10 ? "bg-accent text-accent-foreground" : "bg-accent/20 text-primary-foreground",
         className,
