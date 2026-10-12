@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
-import { usePrefetchBlog } from "@/hooks/usePrefetchBlog";
 import { useSpotlight } from "@/hooks/useSpotlight";
 import { useAnalyticsPageView } from "@/hooks/useAnalyticsPageView";
 import ChatBot from "@/components/ChatBot";
@@ -74,13 +73,12 @@ const LiveConducteur = lazy(() => import("./pages/live/LiveConducteur"));
 
 const queryClient = new QueryClient();
 
-// Composant qui gère le prefetch des données
+// Composant racine : mesure d'audience et effets globaux
 const AppContent = () => {
   const location = useLocation();
   const isHealthz = location.pathname === "/healthz";
   const isLive = location.pathname === "/live" || location.pathname.startsWith("/live/");
 
-  usePrefetchBlog(!isLive);
   useAnalyticsPageView();
   useSpotlight();
   
