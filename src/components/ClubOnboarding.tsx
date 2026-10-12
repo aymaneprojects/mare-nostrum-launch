@@ -519,7 +519,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                 <p className="font-semibold text-lg text-foreground">Ton kit de bienvenue</p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Il présente l'espace d'échanges entre pairs, la veille d'opportunités et la prise de rendez-vous « visio galère ».
-                  Prends quelques minutes pour le parcourir — il te guide pas à pas dans tes premiers échanges avec la communauté.
+                  Prends quelques minutes pour le parcourir - il te guide pas à pas dans tes premiers échanges avec la communauté.
                 </p>
               </div>
 

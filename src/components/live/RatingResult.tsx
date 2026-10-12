@@ -19,7 +19,7 @@ const RatingResult = ({ results, total, average, variant = "screen" }: RatingRes
     <div className={cn("grid items-center gap-8", !compact && "md:grid-cols-[auto_1fr] md:gap-16")}>
       <div className="text-center">
         <p className={cn("font-editorial font-semibold italic leading-none text-primary-foreground", big ? "text-8xl md:text-9xl" : compact ? "text-5xl" : "text-7xl")}>
-          {total ? rounded.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) : "—"}
+          {total ? rounded.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) : "-"}
           <span className={cn("ml-2 font-sans not-italic text-primary-foreground/50", big ? "text-4xl" : "text-2xl")}>/ 5</span>
         </p>
         <div className="mt-4 flex justify-center gap-1" aria-hidden>

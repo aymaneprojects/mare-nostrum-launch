@@ -53,7 +53,7 @@ const Header = () => {
 
   return (
     <>
-      {/* Wrapper sticky — transparent, laisse passer les clics sur les zones vides */}
+      {/* Wrapper sticky - transparent, laisse passer les clics sur les zones vides */}
       <header className={`sticky top-0 z-50 w-full h-[5.5rem] md:h-24 px-4 md:px-6 pb-2 pointer-events-none transition-[padding] duration-200 ${scrolled ? "pt-2" : "pt-4"}`}>
         <nav
           className={`pointer-events-auto mx-auto flex max-w-7xl items-center justify-between px-3 md:px-5 rounded-full transition-all duration-200 ${scrolled ? "h-11 md:h-12" : "h-14 md:h-16"}`}
@@ -105,7 +105,7 @@ const Header = () => {
             )}
           </div>
 
-          {/* Mobile — hamburger */}
+          {/* Mobile - hamburger */}
           <button
             className="md:hidden w-11 h-11 flex items-center justify-center rounded-full bg-muted/60 active:scale-90 transition-transform duration-150 text-primary"
             onClick={() => setIsMenuOpen(true)}

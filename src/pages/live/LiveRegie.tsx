@@ -60,7 +60,7 @@ const LiveRegie = () => {
     if (stored) void verify(stored, true);
   }, [publicCode, verify]);
 
-  const seo = <EnhancedSEOHead title="Régie live — Mare Nostrum" description="Régie de l'animateur Mare Nostrum Live." noindex />;
+  const seo = <EnhancedSEOHead title="Régie live - Mare Nostrum" description="Régie de l'animateur Mare Nostrum Live." noindex />;
 
   if (status === "loading" || status === "error") {
     return <Page>{seo}<div className="flex justify-center py-24"><Loader2 className="h-8 w-8 animate-spin text-muted-foreground" /></div></Page>;

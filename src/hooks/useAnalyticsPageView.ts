@@ -7,7 +7,7 @@ import { trackPageView } from "@/lib/analytics";
  *
  * Le site est une application à page unique : le navigateur ne recharge rien
  * quand on navigue, donc sans cet appel seule la toute première page d'une
- * visite serait comptée — ce qui était le cas jusqu'ici.
+ * visite serait comptée - ce qui était le cas jusqu'ici.
  *
  * Exclus : /healthz (sonde technique) et /live (écrans projetés en salle, qui
  * resteraient ouverts des heures et fausseraient toutes les moyennes).

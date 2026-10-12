@@ -23,7 +23,7 @@ const LiveScreen = () => {
   const participants = useParticipantCount(event?.id);
 
   const urls = liveUrls(publicCode);
-  const seo = <EnhancedSEOHead title="Écran live — Mare Nostrum" description="Écran de salle Mare Nostrum Live." noindex />;
+  const seo = <EnhancedSEOHead title="Écran live - Mare Nostrum" description="Écran de salle Mare Nostrum Live." noindex />;
 
   if (status === "loading" || status === "error") {
     return <LiveShell>{seo}<div className="flex flex-1 flex-col items-center justify-center"><Loader2 className="h-10 w-10 animate-spin text-primary-foreground/60" role="status" aria-label="Chargement" />{status === "error" && <p className="mt-6 text-2xl text-primary-foreground/70">Connexion en cours… nouvel essai automatique.</p>}</div></LiveShell>;

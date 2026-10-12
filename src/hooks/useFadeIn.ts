@@ -8,7 +8,7 @@ const reducedMotion =
  *  défilement rapide laisse un blanc le temps du fondu. */
 const AVANCE_PX = 900;
 /** Filet de sécurité : au-delà, on révèle quoi qu'il arrive. Rien ne doit pouvoir
- *  rester invisible — c'est pire que pas d'animation du tout. */
+ *  rester invisible - c'est pire que pas d'animation du tout. */
 const SECOURS_MS = 1200;
 
 /**
@@ -42,8 +42,8 @@ export function useFadeIn(delay = 0) {
     const obs = new IntersectionObserver(
       ([entry]) => {
         // On révèle aussi une section déjà dépassée (bord supérieur au-dessus de
-        // l'écran) : en sautant directement en bas de page — lien d'ancre, retour
-        // arrière — elle n'entre jamais à l'écran et resterait invisible.
+        // l'écran) : en sautant directement en bas de page - lien d'ancre, retour
+        // arrière - elle n'entre jamais à l'écran et resterait invisible.
         if (entry.isIntersecting || entry.boundingClientRect.top < 0) {
           reveler();
           obs.disconnect();

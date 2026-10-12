@@ -184,7 +184,7 @@ const Diagnostic = () => {
   return (
     <div className="min-h-dvh bg-background">
       <EnhancedSEOHead
-        title="Diagnostic projet gratuit — Club Mare Nostrum"
+        title="Diagnostic projet gratuit - Club Mare Nostrum"
         description="8 étapes simples pour faire le point sur votre projet en 3 minutes. À la fin, votre rapport personnalisé et l'offre Club faite pour vous."
       />
       <Header />
@@ -380,7 +380,7 @@ const Diagnostic = () => {
                       <div key={q.key} className={`flex items-center gap-4 px-5 py-3.5 ${i < QUESTIONS.length - 1 ? "border-b border-border" : ""}`}>
                         <div className="flex-1 min-w-0">
                           <div className="text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-0.5">{q.eyebrow}</div>
-                          <div className="text-sm text-foreground line-clamp-2">{choice?.label ?? "—"}</div>
+                          <div className="text-sm text-foreground line-clamp-2">{choice?.label ?? "-"}</div>
                         </div>
                         <div className="flex gap-1 flex-shrink-0">
                           {[1,2,3,4].map(v => (

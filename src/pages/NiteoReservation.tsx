@@ -128,7 +128,7 @@ export default function NiteoReservation() {
               </div>
             </div>
 
-            {/* ── Colonne droite — Programme (glassmorphism) ── */}
+            {/* ── Colonne droite - Programme (glassmorphism) ── */}
             <div
               className="rounded-xl p-6 md:p-8"
               style={{
@@ -298,7 +298,7 @@ export default function NiteoReservation() {
                     className="w-full"
                     style={{ background: "hsl(var(--mn-turquoise))", color: "hsl(var(--mn-ink))" }}
                   >
-                    Réserver ma place — 25 € TTC
+                    Réserver ma place - 25 € TTC
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                   <p className="text-xs text-center text-muted-foreground">

@@ -357,7 +357,7 @@ const Croissance = () => {
     },
     {
       question: "Peut-on essayer avant de s'engager ?",
-      answer: "Oui. L'offre Freemium est gratuite : tu rejoins le Club sans rien payer. L'offre Premium te permet ensuite de rejoindre le collectif sans engagement long terme. Dès ton inscription, tu reçois ton premier micro-mentorat de 20 minutes offert — pour avancer tout de suite, pas « plus tard »."
+      answer: "Oui. L'offre Freemium est gratuite : tu rejoins le Club sans rien payer. L'offre Premium te permet ensuite de rejoindre le collectif sans engagement long terme. Dès ton inscription, tu reçois ton premier micro-mentorat de 20 minutes offert - pour avancer tout de suite, pas « plus tard »."
     },
     {
       question: "Je n'ai pas le temps de suivre un accompagnement intensif.",
@@ -365,11 +365,11 @@ const Croissance = () => {
     },
     {
       question: "Je n'ai pas les moyens pour une dépense fixe chaque mois.",
-      answer: "L'offre Freemium est gratuite pour découvrir le Club. Ensuite, 30 € ou 90 € par mois — c'est le coût de 1 à 3 heures perdues à hésiter seul. Nos membres disent souvent : « Le jour où j'ai eu mon premier contrat grâce au Club, l'abonnement s'est remboursé dix fois. » Le retour sur investissement est concret : nouveaux clients, mises en relation, temps gagné, décisions plus rentables. C'est une dépense qui rapporte."
+      answer: "L'offre Freemium est gratuite pour découvrir le Club. Ensuite, 30 € ou 90 € par mois - c'est le coût de 1 à 3 heures perdues à hésiter seul. Nos membres disent souvent : « Le jour où j'ai eu mon premier contrat grâce au Club, l'abonnement s'est remboursé dix fois. » Le retour sur investissement est concret : nouveaux clients, mises en relation, temps gagné, décisions plus rentables. C'est une dépense qui rapporte."
     },
     {
       question: "J'ai peur que ce soit trop général, pas adapté à mon projet.",
-      answer: "Chaque membre bénéficie d'un accompagnement selon son niveau et ses besoins. Premium pour rompre l'isolement et poser les bases solides. Individualisé pour structurer la croissance et affiner l'offre. Freemium pour découvrir le Club gratuitement avant de choisir. Nos experts connaissent le quotidien des entrepreneurs — on parle concret, pas théorie."
+      answer: "Chaque membre bénéficie d'un accompagnement selon son niveau et ses besoins. Premium pour rompre l'isolement et poser les bases solides. Individualisé pour structurer la croissance et affiner l'offre. Freemium pour découvrir le Club gratuitement avant de choisir. Nos experts connaissent le quotidien des entrepreneurs - on parle concret, pas théorie."
     },
     {
       question: "Je suis déjà accompagné ailleurs.",
@@ -385,7 +385,7 @@ const Croissance = () => {
     },
     {
       question: "Comment savoir si ça marche vraiment ?",
-      answer: "Plus de 80 % des membres déclarent gagner du temps utile dès les trois premiers mois. 50 % se rémunèrent correctement dans les deux ans. 90 % affirment avoir une vision claire de leurs priorités au bout de 90 jours. Et surtout, chaque avancée est partagée au sein du collectif — tu progresses avec et grâce aux autres."
+      answer: "Plus de 80 % des membres déclarent gagner du temps utile dès les trois premiers mois. 50 % se rémunèrent correctement dans les deux ans. 90 % affirment avoir une vision claire de leurs priorités au bout de 90 jours. Et surtout, chaque avancée est partagée au sein du collectif - tu progresses avec et grâce aux autres."
     },
     {
       question: "30 euros pour une communauté en ligne, j'en ai déjà des gratuites.",
@@ -552,7 +552,7 @@ const Croissance = () => {
             Survole chaque avantage pour en savoir plus
           </p>
 
-          {/* Selector: billing only — location auto-detected */}
+          {/* Selector: billing only - location auto-detected */}
           <div className="flex flex-col items-center gap-5 mb-12">
             <div className="flex items-center gap-1 bg-background border border-border rounded-full p-1 shadow-sm">
               <button
@@ -678,7 +678,7 @@ const Croissance = () => {
                     {getPriceDetail("groupe")!.saving && <p className="text-xs font-semibold opacity-90 mt-0.5">{getPriceDetail("groupe")!.saving}</p>}
                   </div>
                 )}
-                <p className="text-xs font-semibold opacity-95">Pré-diagnostic offert — valeur 300€</p>
+                <p className="text-xs font-semibold opacity-95">Pré-diagnostic offert - valeur 300€</p>
                 <p className="text-xs opacity-70 mt-1">Pas de frais d'entrée · Sans engagement</p>
               </div>
 
@@ -730,7 +730,7 @@ const Croissance = () => {
                   const Cell = ({ val }: { val: boolean | string }) => (
                     <td className="py-2 px-2 md:py-3 md:px-4 text-center" style={{ background: val !== false && val !== true ? 'hsl(222 44% 25% / 0.04)' : undefined }}>
                       {val === true ? <><CheckCircle2 aria-hidden="true" className="h-4 w-4 mx-auto" style={{ color: 'hsl(181 67% 40%)' }} /><span className="sr-only">Inclus</span></> :
-                       val === false ? <><span aria-hidden="true" className="text-muted-foreground/30 font-bold text-lg leading-none">—</span><span className="sr-only">Non inclus</span></> :
+                       val === false ? <><span aria-hidden="true" className="text-muted-foreground/30 font-bold text-lg leading-none">-</span><span className="sr-only">Non inclus</span></> :
                        <span className="font-semibold text-primary">{val}</span>}
                     </td>
                   );
@@ -741,7 +741,7 @@ const Croissance = () => {
                       <Cell val={c} />
                       <td className="py-2 px-2 md:py-3 md:px-4 text-center" style={{ background: 'hsl(222 44% 25% / 0.04)' }}>
                         {g === true ? <><CheckCircle2 aria-hidden="true" className="h-4 w-4 mx-auto" style={{ color: 'hsl(181 67% 40%)' }} /><span className="sr-only">Inclus</span></> :
-                         g === false ? <><span aria-hidden="true" className="text-muted-foreground/30 font-bold text-lg leading-none">—</span><span className="sr-only">Non inclus</span></> :
+                         g === false ? <><span aria-hidden="true" className="text-muted-foreground/30 font-bold text-lg leading-none">-</span><span className="sr-only">Non inclus</span></> :
                          <span className="font-semibold text-primary">{g}</span>}
                       </td>
                     </tr>
@@ -851,7 +851,7 @@ const Croissance = () => {
             Clarifie ta vision, structure ta stratégie et accélère ta croissance avec le Club Entrepreneur Mare Nostrum à Toulouse
           </p>
           {/* Le bouton d'adhésion ramène aux offres : c'est ici que l'objection vient
-              de tomber (FAQ juste au-dessus), et c'était jusqu'ici une impasse —
+              de tomber (FAQ juste au-dessus), et c'était jusqu'ici une impasse -
               les deux boutons menaient au formulaire de contact. */}
           <div className="mn-cta-row mn-cta-row--center">
             <Button

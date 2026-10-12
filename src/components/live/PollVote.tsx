@@ -90,7 +90,7 @@ const PollVote = ({ item, identity, onIdentityLost }: PollVoteProps) => {
       </ul>
       {locked && (
         <p role="status" className="pt-2 text-center text-sm text-primary-foreground/70">
-          Vote enregistré ✓ — les résultats s'affichent sur l'écran.
+          Vote enregistré ✓ - les résultats s'affichent sur l'écran.
         </p>
       )}
       {error && <p role="alert" className="text-center text-sm text-accent">{error}</p>}

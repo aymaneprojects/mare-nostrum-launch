@@ -24,7 +24,7 @@ const steps = [
   {
     icon: Calendar,
     title: "Première session collective",
-    desc: "Tu recevras le lien pour la prochaine session. Prépare tes questions — c'est là que tout commence.",
+    desc: "Tu recevras le lien pour la prochaine session. Prépare tes questions - c'est là que tout commence.",
   },
 ];
 
@@ -80,7 +80,7 @@ const BienvenuClub = () => {
               <p className="font-editorial italic text-xl text-primary leading-snug">
                 "L'entrepreneuriat est un sport d'équipe. Tu viens de choisir la bonne équipe."
               </p>
-              <p className="text-xs text-muted-foreground mt-2">— L'équipe Mare Nostrum</p>
+              <p className="text-xs text-muted-foreground mt-2">- L'équipe Mare Nostrum</p>
             </div>
           </div>
 
@@ -121,7 +121,7 @@ const BienvenuClub = () => {
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            {/* Slack — CTA principal */}
+            {/* Slack - CTA principal */}
             <a
               href={SLACK_URL}
               target="_blank"
@@ -180,7 +180,7 @@ const BienvenuClub = () => {
           >
             <p className="text-xs text-muted-foreground leading-relaxed">
               N'hésitez pas à nous solliciter via la messagerie interne pour toute question.<br />
-              Au plaisir de vous retrouver très bientôt — <strong>L'équipe Mare Nostrum</strong>
+              Au plaisir de vous retrouver très bientôt - <strong>L'équipe Mare Nostrum</strong>
             </p>
           </div>
 

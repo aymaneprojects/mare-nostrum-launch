@@ -1,5 +1,5 @@
 /**
- * Équipe Mare Nostrum — source unique pour les pages /equipe, /equipe/:slug
+ * Équipe Mare Nostrum - source unique pour les pages /equipe, /equipe/:slug
  * et le script scripts/generate-cards.mjs (vCards + QR codes).
  *
  * Les données vivent dans team.json. Ce fichier n'ajoute que les types et
@@ -16,7 +16,7 @@ export interface TeamMember {
   nom: string;
   titre: string;
   bureau: Bureau;
-  /** Vide si inconnu — le champ est alors masqué. */
+  /** Vide si inconnu - le champ est alors masqué. */
   email: string;
   /** Format international sans espaces, ex. "+33612345678". Vide si inconnu. */
   telephone: string;
@@ -34,7 +34,7 @@ export const SITE_URL = "https://www.marenostrum.tech";
 
 export const team: TeamMember[] = teamJson as TeamMember[];
 
-// Portraits résolus par Vite (hashés, optimisés) — pas de duplication dans public/.
+// Portraits résolus par Vite (hashés, optimisés) - pas de duplication dans public/.
 const portraits = import.meta.glob<string>("@/assets/team/*.png", { eager: true, import: "default" });
 
 export function getPortrait(photo: string): string | undefined {
@@ -50,7 +50,7 @@ export const fullName = (m: TeamMember) => `${m.prenom} ${m.nom}`;
 
 export const initials = (m: TeamMember) => `${m.prenom.charAt(0)}${m.nom.charAt(0)}`.toUpperCase();
 
-/** Adresse de la fiche — partagée, encodée dans le QR, utilisée dans les schémas. */
+/** Adresse de la fiche - partagée, encodée dans le QR, utilisée dans les schémas. */
 export const cardUrl = (m: TeamMember) => `${SITE_URL}/equipe/${m.slug}`;
 export const vcardPath = (m: TeamMember) => `/vcards/${m.slug}.vcf`;
 export const qrPath = (m: TeamMember, ext: "png" | "svg" = "png") => `/qr/${m.slug}.${ext}`;

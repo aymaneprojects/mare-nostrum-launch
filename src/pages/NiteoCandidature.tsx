@@ -88,7 +88,7 @@ function NiteoNotify() {
         {status === "done" ? (
           <div role="status" aria-live="polite" className="flex items-center justify-center gap-2 text-sm font-medium" style={{ color: "hsl(var(--mn-turquoise))" }}>
             <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
-            C'est noté — on vous prévient en premier !
+            C'est noté - on vous prévient en premier !
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
@@ -406,12 +406,12 @@ const NiteoCandidature = () => {
                 </Button>
               </Link>
             </div>
-            <p className="text-primary-foreground/60 text-sm mt-4">4ème édition — coming soon</p>
+            <p className="text-primary-foreground/60 text-sm mt-4">4ème édition - coming soon</p>
           </div>
         </div>
       </section>
 
-      {/* ===== NOTIFY — 4ème édition ===== */}
+      {/* ===== NOTIFY - 4ème édition ===== */}
       <NiteoNotify />
 
       {/* ===== POUR QUI ===== */}
@@ -635,7 +635,7 @@ const NiteoCandidature = () => {
         </div>
       </section>
 
-      {/* ===== DEMO DAY — COACHS & PARTENAIRES ===== */}
+      {/* ===== DEMO DAY - COACHS & PARTENAIRES ===== */}
       <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto rounded-sm border border-border overflow-hidden shadow-sm">
@@ -645,12 +645,12 @@ const NiteoCandidature = () => {
                 Venez assister au Demo Day en tant qu'invité
               </h2>
               <p className="text-primary-foreground/75 mb-6 text-sm leading-relaxed">
-                Décideurs, professionnels, curieux — assistez aux pitchs des étudiants entrepreneurs.<br />
+                Décideurs, professionnels, curieux - assistez aux pitchs des étudiants entrepreneurs.<br />
                 Accueil café · Pitchs · Remise des prix · Cocktail · Résidence Baragnon, 14h – 19h30
               </p>
               <Link to="/reservation">
                 <Button variant="secondary">
-                  Réserver ma présence — 25 €
+                  Réserver ma présence - 25 €
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
@@ -692,7 +692,7 @@ const NiteoCandidature = () => {
           </p>
           <Link to="/reservation">
             <Button size="lg" variant="secondary" className="shadow-[var(--shadow-medium)] hover:shadow-[var(--shadow-lift)] transition-shadow">
-              Réserver ma place au Demo Day — 25 €
+              Réserver ma place au Demo Day - 25 €
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>

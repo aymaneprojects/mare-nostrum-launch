@@ -29,11 +29,11 @@ const CGV = () => {
             <section>
               <h2 className="text-xl font-semibold text-foreground mt-8 mb-3">Identification du Prestataire</h2>
               <p>
-                MARE NOSTRUM — Société par actions simplifiée à mission au capital de 10 000 €<br />
+                MARE NOSTRUM - Société par actions simplifiée à mission au capital de 10 000 €<br />
                 Siège social : 22 rue Maurice Fonvieille, 31000 Toulouse (France)<br />
-                SIRET : 948 134 002 00013 — RCS Toulouse B 948 134 002 — NAF : 70.22Z<br />
+                SIRET : 948 134 002 00013 - RCS Toulouse B 948 134 002 - NAF : 70.22Z<br />
                 TVA intracommunautaire : FR14948134002<br />
-                Organisme de formation enregistré sous le n° 76311216831 auprès du préfet de région Occitanie — cet enregistrement ne vaut pas agrément de l'État<br />
+                Organisme de formation enregistré sous le n° 76311216831 auprès du préfet de région Occitanie - cet enregistrement ne vaut pas agrément de l'État<br />
                 Référent handicap : <a href="mailto:handicap@marenostrum.tech">handicap@marenostrum.tech</a><br />
                 Référent RGPD : <a href="mailto:rgpd@marenostrum.tech">rgpd@marenostrum.tech</a><br />
                 Les présentes conditions générales de vente sont accessibles en ligne à l'adresse <a href="https://www.marenostrum.tech/cgv">www.marenostrum.tech/cgv</a>.
@@ -59,14 +59,14 @@ const CGV = () => {
 
             {/* TITRE I */}
             <section>
-              <h2 className="text-2xl font-bold text-foreground mt-10 mb-4">TITRE I — DISPOSITIONS COMMUNES</h2>
+              <h2 className="text-2xl font-bold text-foreground mt-10 mb-4">TITRE I - DISPOSITIONS COMMUNES</h2>
 
               <h3 className="text-lg font-semibold text-foreground mt-6 mb-2">Clause n° 1 : Objet</h3>
               <p>
                 Les présentes conditions générales de vente (CGV) définissent les droits et obligations de la SAS MARE NOSTRUM et de ses clients dans le cadre de ses prestations de services. Toute commande implique l'adhésion sans réserve du client aux présentes conditions générales.
               </p>
               <p className="mt-2">
-                Elles se composent d'un Titre I — Dispositions communes, applicable à toutes les Prestations, et d'un Titre II — Dispositions spécifiques, propres à chaque catégorie de Prestation.
+                Elles se composent d'un Titre I - Dispositions communes, applicable à toutes les Prestations, et d'un Titre II - Dispositions spécifiques, propres à chaque catégorie de Prestation.
               </p>
 
               <h3 className="text-lg font-semibold text-foreground mt-6 mb-2">Clause n° 2 : Qualité du Client</h3>
@@ -115,7 +115,7 @@ const CGV = () => {
 
               <h3 className="text-lg font-semibold text-foreground mt-6 mb-2">Clause n° 8 : Régime de TVA</h3>
               <p>
-                Le taux de TVA applicable est celui en vigueur à la date d'émission de la facture, sauf pour les actions de formation professionnelle continue (voir dispositions spécifiques). Pour les Prestations rendues à un Client assujetti établi dans un autre État membre de l'UE, la TVA française n'est pas applicable et est autoliquidée par le preneur (article 259-1 du CGI). Pour les Prestations rendues à un Client assujetti établi hors UE, la TVA française n'est pas applicable (article 259-1 du CGI) ; la facture porte alors la mention « TVA non applicable — article 259-1 du CGI ». Le Client reste, le cas échéant, redevable de la taxe applicable dans son propre pays.
+                Le taux de TVA applicable est celui en vigueur à la date d'émission de la facture, sauf pour les actions de formation professionnelle continue (voir dispositions spécifiques). Pour les Prestations rendues à un Client assujetti établi dans un autre État membre de l'UE, la TVA française n'est pas applicable et est autoliquidée par le preneur (article 259-1 du CGI). Pour les Prestations rendues à un Client assujetti établi hors UE, la TVA française n'est pas applicable (article 259-1 du CGI) ; la facture porte alors la mention « TVA non applicable - article 259-1 du CGI ». Le Client reste, le cas échéant, redevable de la taxe applicable dans son propre pays.
               </p>
 
               <h3 className="text-lg font-semibold text-foreground mt-6 mb-2">Clause n° 9 : Impôts</h3>
@@ -194,8 +194,8 @@ const CGV = () => {
                 Toute réclamation est adressée par écrit au siège social de la SAS MARE NOSTRUM, qui s'engage à rechercher une solution amiable. Lorsque le Client a la qualité de consommateur au sens du Code de la consommation, il peut recourir gratuitement, après réclamation écrite préalable, au médiateur de la consommation désigné, conformément aux articles L.612-1 et suivants du Code de la consommation :
               </p>
               <p className="mt-2">
-                CM2C — Centre de la Médiation de la Consommation de Conciliateurs de Justice<br />
-                49 rue de Ponthieu, 75008 Paris — <a href="https://www.cm2c.net" target="_blank" rel="noopener noreferrer">cm2c.net</a><br />
+                CM2C - Centre de la Médiation de la Consommation de Conciliateurs de Justice<br />
+                49 rue de Ponthieu, 75008 Paris - <a href="https://www.cm2c.net" target="_blank" rel="noopener noreferrer">cm2c.net</a><br />
                 Saisine en ligne : <a href="mailto:declarer-un-litige@cm2c.net">declarer-un-litige@cm2c.net</a>
               </p>
 
@@ -207,9 +207,9 @@ const CGV = () => {
 
             {/* TITRE II */}
             <section>
-              <h2 className="text-2xl font-bold text-foreground mt-10 mb-4">TITRE II — DISPOSITIONS SPÉCIFIQUES</h2>
+              <h2 className="text-2xl font-bold text-foreground mt-10 mb-4">TITRE II - DISPOSITIONS SPÉCIFIQUES</h2>
 
-              <h3 className="text-xl font-semibold text-foreground mt-8 mb-3">Chapitre A — Abonnements logiciels</h3>
+              <h3 className="text-xl font-semibold text-foreground mt-8 mb-3">Chapitre A - Abonnements logiciels</h3>
 
               <p><strong>A.1 : Droit d'usage</strong><br />La SAS MARE NOSTRUM concède au Client, pour la durée de l'Abonnement, un droit d'usage personnel, non exclusif, non cessible et non sous-licenciable de la Plateforme, limité à ses besoins professionnels propres et au nombre d'utilisateurs prévu au Devis. Toute exploitation commerciale, revente, mise à disposition de tiers ou extraction automatisée des contenus est interdite.</p>
               <p className="mt-3"><strong>A.2 : Disponibilité et maintenance</strong><br />Le Prestataire met en œuvre les moyens raisonnables pour assurer l'accès et le bon fonctionnement de la Plateforme. Aucune disponibilité continue n'est garantie en l'absence d'un niveau de service (SLA) expressément prévu au Devis. Les opérations de maintenance planifiée sont annoncées dans un délai raisonnable.</p>
@@ -221,7 +221,7 @@ const CGV = () => {
               <p className="mt-3"><strong>A.8 : Résiliation</strong><br />L'Abonnement peut être résilié par le Client à l'issue de la période d'engagement initiale, sous réserve d'un préavis proportionné à la période d'engagement : un (1) mois pour un engagement ≤ 3 mois ; deux (2) mois pour 6 mois ; trois (3) mois pour 12 mois ou plus. En cas de résiliation anticipée, les dispositions de la clause 14.1 s'appliquent.</p>
               <p className="mt-3"><strong>A.9 : Réversibilité</strong><br />À l'expiration ou à la résiliation de l'Abonnement, le Client dispose d'un délai de cinq (5) jours pour exporter ses données dans un format structuré. À l'issue de ce délai, le Prestataire procède à leur suppression, sous réserve des obligations légales de conservation.</p>
 
-              <h3 className="text-xl font-semibold text-foreground mt-8 mb-3">Chapitre B — Actions de formation professionnelle continue</h3>
+              <h3 className="text-xl font-semibold text-foreground mt-8 mb-3">Chapitre B - Actions de formation professionnelle continue</h3>
 
               <p><strong>B.1 : Information préalable</strong><br />Préalablement à toute inscription, le Prestataire communique les objectifs et prérequis, le public visé, la durée et les modalités d'organisation, les tarifs, les méthodes mobilisées, les modalités d'évaluation, les modalités et délais d'accès (minimum 14 jours entre inscription et entrée en formation), les indicateurs de résultats disponibles, ainsi que les conditions d'accessibilité aux personnes en situation de handicap.</p>
               <p className="mt-3"><strong>B.2 : Accessibilité</strong><br />Les formations sont accessibles aux personnes en situation de handicap. Lors de l'inscription, le Prestataire étudie avec le candidat les aménagements mobilisables. Référent handicap : <a href="mailto:handicap@marenostrum.tech">handicap@marenostrum.tech</a>.</p>
@@ -233,7 +233,7 @@ const CGV = () => {
               <p className="mt-3"><strong>B.8 : Durée, absence et abandon</strong><br />L'absence d'un Participant à une ou plusieurs séances ne donne lieu à aucun remboursement ni report, les séances manquées étant réputées mises à disposition. En cas d'abandon en cours de parcours du fait du Participant, les dispositions de la clause 14.1 s'appliquent.</p>
               <p className="mt-3"><strong>B.9 : Annulation, report et exclusion</strong><br />Toute demande d'annulation ou de report doit être formulée par écrit. Le Prestataire se réserve la faculté d'annuler ou de reporter une session dont l'effectif serait insuffisant, au plus tard sept (7) jours avant son démarrage ; dans ce cas, le Client se voit proposer une session ultérieure ou est remboursé intégralement. La place au sein d'un groupe étant nominative, l'exclusion d'un Participant prononcée pour manquement caractérisé à la Charte produit les effets d'une résiliation anticipée du fait du Client.</p>
 
-              <h3 className="text-xl font-semibold text-foreground mt-8 mb-3">Chapitre C — Prestations ponctuelles</h3>
+              <h3 className="text-xl font-semibold text-foreground mt-8 mb-3">Chapitre C - Prestations ponctuelles</h3>
 
               <p><strong>C.1 : Périmètre et Livrables</strong><br />Le périmètre, les Livrables, le calendrier et le prix sont définis au Devis. Toute prestation non prévue au Devis fait l'objet d'un devis complémentaire. Le Prestataire est tenu d'une obligation de moyens.</p>
               <p className="mt-3"><strong>C.2 : Modalités de paiement</strong><br />Le Devis précise les conditions particulières du versement du ou des acompte(s), le solde étant payable à la réception finale de la Prestation. Le paiement de l'acompte, ou de la première échéance, entraîne le démarrage de la Prestation. Les paiements s'effectuent en euros, au plus tard dans un délai de trente (30) jours fin de mois après réception de la facture.</p>

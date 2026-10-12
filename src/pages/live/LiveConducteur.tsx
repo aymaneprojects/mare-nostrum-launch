@@ -32,7 +32,7 @@ const LiveConducteur = () => {
   }, [publicCode]);
 
   const urls = liveUrls(publicCode);
-  const seo = <EnhancedSEOHead title="Conducteur live — Mare Nostrum" description="Conducteur de l'animateur." noindex />;
+  const seo = <EnhancedSEOHead title="Conducteur live - Mare Nostrum" description="Conducteur de l'animateur." noindex />;
 
   if (denied) {
     return (
