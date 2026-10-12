@@ -98,6 +98,50 @@ const ChatBot = () => {
     }
   }, []);
 
+  // Le serveur fait foi. Quand le relais d'Inès est lent (septembre 2026 : réponses
+  // arrivées après plusieurs minutes, voire jours), la réponse finissait en base sans
+  // jamais s'afficher : le visiteur ne voyait que le message d'attente. On recharge donc
+  // la conversation du serveur dès que son dernier message est une réponse d'Inès.
+  const [enAttente, setEnAttente] = useState(false);
+  const syncFromServer = useCallback(async (): Promise<"repondu" | "en_attente" | "vide"> => {
+    if (!sessionId) return "vide";
+    try {
+      const { data } = await supabase.functions.invoke(
+        `chatbot-webhook?action=history&sessionId=${sessionId}`,
+        { method: "GET" }
+      );
+      const server = (data?.messages ?? []) as { role: "user" | "assistant"; content: string; created_at: string }[];
+      if (!server.length) return "vide";
+      if (server[server.length - 1].role !== "assistant") return "en_attente";
+      const synced: Message[] = [
+        welcomeMessage,
+        ...server.map((m, i) => ({ id: `srv_${i}`, role: m.role, content: m.content, timestamp: new Date(m.created_at) })),
+      ];
+      setMessages(synced);
+      saveHistory(synced);
+      return "repondu";
+    } catch {
+      return "vide";
+    }
+  }, [sessionId, saveHistory]);
+
+  // À l'ouverture : rattrape une réponse arrivée pendant l'absence du visiteur.
+  useEffect(() => {
+    if (!isOpen || !sessionId) return;
+    void syncFromServer().then((etat) => setEnAttente(etat === "en_attente"));
+  }, [isOpen, sessionId, syncFromServer]);
+
+  // Question restée sans réponse : on continue d'écouter, fenêtre ouverte, jusqu'à 10 min.
+  useEffect(() => {
+    if (!isOpen || !enAttente) return;
+    const debut = Date.now();
+    const id = window.setInterval(async () => {
+      const etat = await syncFromServer();
+      if (etat !== "en_attente" || Date.now() - debut > 10 * 60_000) setEnAttente(false);
+    }, 5000);
+    return () => window.clearInterval(id);
+  }, [isOpen, enAttente, syncFromServer]);
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -266,6 +310,7 @@ const ChatBot = () => {
 
       if (!assistantContent) {
         assistantContent = "Merci pour ton message ! Inès va te répondre dès que possible. 💬";
+        setEnAttente(true); // la vraie réponse remplacera ce message dès qu'elle arrive
       }
 
       const assistantMessage: Message = {
