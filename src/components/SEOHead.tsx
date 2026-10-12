@@ -18,7 +18,7 @@ const SEOHead = ({
   title, 
   description, 
   keywords = "entrepreneuriat, conseil, formation, impact, Toulouse, Paris, Casablanca",
-  image = "https://marenostrum.tech/favicon.png",
+  image = "https://www.marenostrum.tech/favicon.png",
   type = "website",
   noindex = false,
   structuredData,
@@ -26,7 +26,10 @@ const SEOHead = ({
   breadcrumbSchema
 }: SEOHeadProps) => {
   const location = useLocation();
-  const currentUrl = `https://marenostrum.tech${location.pathname}`;
+  // Hôte canonique = www (l apex redirige en 301 vers www) ; pas de slash final ni de paramètres.
+  const host = window.location.hostname === "niteo.marenostrum.tech" ? "niteo.marenostrum.tech" : "www.marenostrum.tech";
+  const path = location.pathname.replace(/\/+$/, "");
+  const currentUrl = `https://${host}${path}` + (path === "" ? "/" : "");
 
   useEffect(() => {
     // Update title

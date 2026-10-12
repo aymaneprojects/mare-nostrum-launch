@@ -84,44 +84,46 @@ const CookieBanner = () => {
   return (
     <>
       {/* Bannière principale */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6 animate-in slide-in-from-bottom duration-300">
+      <div className="fixed bottom-0 left-0 right-0 z-50 p-2 sm:p-4 md:p-6 animate-in slide-in-from-bottom duration-300">
         <div className="max-w-4xl mx-auto mn-card shadow-[var(--shadow-lift)]">
-          <div className="p-4 md:p-6">
+          <div className="p-3 sm:p-4 md:p-6">
             <div className="flex items-start gap-4">
               <div className="hidden sm:flex w-12 h-12 bg-primary/10 rounded-full items-center justify-center flex-shrink-0">
                 <Cookie className="h-6 w-6 text-primary" />
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold text-foreground text-lg mb-2">
+                <h3 className="font-semibold text-foreground text-base sm:text-lg mb-2">
                   Gestion des cookies
                 </h3>
-                <p className="text-sm text-muted-foreground mb-4">
+                {/* Masqué sur mobile : la bannière y mangeait ~40 % de l'écran (retour d'audit).
+                    Le lien vers la politique de confidentialité, dessous, reste visible. */}
+                <p className="hidden sm:block text-sm text-muted-foreground mb-4">
                   Nous utilisons des cookies pour améliorer votre expérience sur notre site. 
                   Les cookies nécessaires sont essentiels au fonctionnement du site. 
                   Vous pouvez personnaliser vos préférences ou accepter tous les cookies.
                 </p>
                 
-                <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:gap-3">
+                <div className="grid grid-cols-3 gap-2 sm:flex sm:flex-row sm:gap-3">
                   <Button 
                     onClick={acceptAll}
-                    className="col-span-2 w-full sm:w-auto"
+                    className="w-full sm:w-auto px-2 sm:px-6"
                   >
-                    <Check className="mr-2 h-4 w-4" />
+                    <Check className="hidden sm:inline mr-2 h-4 w-4" />
                     Tout accepter
                   </Button>
                   <Button 
                     variant="outline" 
                     onClick={rejectAll}
-                    className="w-full sm:w-auto"
+                    className="w-full sm:w-auto px-2 sm:px-6"
                   >
                     Refuser
                   </Button>
                   <Button 
                     variant="ghost" 
                     onClick={() => setShowSettings(true)}
-                    className="w-full sm:w-auto"
+                    className="w-full sm:w-auto px-2 sm:px-6"
                   >
-                    <Settings className="mr-2 h-4 w-4" />
+                    <Settings className="hidden sm:inline mr-2 h-4 w-4" />
                     Personnaliser
                   </Button>
                 </div>
@@ -137,8 +139,8 @@ const CookieBanner = () => {
           </div>
           
           {/* Lien vers politique de confidentialité */}
-          <div className="border-t border-border px-4 md:px-6 py-3 bg-secondary/30 rounded-b-sm">
-            <p className="text-xs text-muted-foreground">
+          <div className="border-t border-border px-3 sm:px-4 md:px-6 py-2 sm:py-3 bg-secondary/30 rounded-b-sm">
+            <p className="text-sm text-muted-foreground">
               En savoir plus sur notre{" "}
               <a href="/confidentialite" className="text-primary underline hover:text-primary/80">
                 politique de confidentialité

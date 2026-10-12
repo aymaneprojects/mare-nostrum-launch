@@ -110,7 +110,7 @@ export default function ExitIntentPopup() {
 
           <div className="flex items-center gap-2 mb-3">
             <Sparkles className="h-4 w-4 text-[hsl(var(--mn-turquoise))]" />
-            <span className="text-xs font-bold uppercase tracking-widest text-[hsl(var(--mn-turquoise))]">
+            <span className="text-sm font-bold text-[hsl(var(--mn-turquoise))]">
               Offre exclusive · places limitées
             </span>
           </div>
@@ -141,7 +141,7 @@ export default function ExitIntentPopup() {
             <form onSubmit={handleSubmit} className="space-y-3" noValidate>
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <Label htmlFor="ep-prenom" className="text-xs text-muted-foreground">Prénom *</Label>
+                  <Label htmlFor="ep-prenom" className="text-sm text-muted-foreground">Prénom *</Label>
                   <div className="relative">
                     <User className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 pointer-events-none" />
                     <Input
@@ -157,7 +157,7 @@ export default function ExitIntentPopup() {
                 </div>
 
                 <div className="space-y-1">
-                  <Label htmlFor="ep-phone" className="text-xs text-muted-foreground">Téléphone</Label>
+                  <Label htmlFor="ep-phone" className="text-sm text-muted-foreground">Téléphone</Label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 pointer-events-none" />
                     <Input
@@ -174,7 +174,7 @@ export default function ExitIntentPopup() {
               </div>
 
               <div className="space-y-1">
-                <Label htmlFor="ep-email" className="text-xs text-muted-foreground">Email *</Label>
+                <Label htmlFor="ep-email" className="text-sm text-muted-foreground">Email *</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 pointer-events-none" />
                   <Input
@@ -190,7 +190,7 @@ export default function ExitIntentPopup() {
               </div>
 
               <div className="space-y-1">
-                <Label htmlFor="ep-zone" className="text-xs text-muted-foreground">Zone *</Label>
+                <Label htmlFor="ep-zone" className="text-sm text-muted-foreground">Zone *</Label>
                 <div className="relative">
                   <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 z-10 pointer-events-none" />
                   <Select onValueChange={setZone} value={zone}>
@@ -206,7 +206,7 @@ export default function ExitIntentPopup() {
                 </div>
               </div>
 
-              {error && <p className="text-xs text-destructive">{error}</p>}
+              {error && <p className="text-sm text-destructive">{error}</p>}
 
               <label className="flex items-start gap-2.5 cursor-pointer group">
                 <input
@@ -216,7 +216,7 @@ export default function ExitIntentPopup() {
                   className="mt-0.5 h-4 w-4 shrink-0 rounded border border-border accent-[hsl(var(--mn-turquoise))] cursor-pointer"
                   required
                 />
-                <span className="text-[11px] text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
+                <span className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
                   <Shield className="inline h-3 w-3 mr-1 text-[hsl(var(--mn-turquoise))]" />
                   J'accepte d'être contacté par Mare Nostrum pour activer mon offre. <span className="font-medium text-foreground">Requis *</span>
                 </span>
@@ -233,7 +233,7 @@ export default function ExitIntentPopup() {
                 }
               </Button>
 
-              <p className="text-[10px] text-muted-foreground text-center">
+              <p className="text-sm text-muted-foreground text-center">
                 Pas de spam. Ton code arrive immédiatement dans ta boîte mail.
               </p>
             </form>

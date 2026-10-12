@@ -28,6 +28,7 @@ import { cn } from "@/lib/utils";
 // principal ne contient plus que l'accueil, le socle et le routeur.
 const Education = lazy(() => import("./pages/Education"));
 const Croissance = lazy(() => import("./pages/Croissance"));
+const BienvenuClub = lazy(() => import("./pages/BienvenuClub"));
 const OffreIA = lazy(() => import("./pages/OffreIA"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
@@ -131,6 +132,7 @@ const AppContent = () => {
         <Route path="/agent-ia-marketing" element={<Suspense fallback={null}><AgentIAMarketing /></Suspense>} />
         <Route path="/roue" element={<Suspense fallback={null}><Roue /></Suspense>} />
         <Route path="/club" element={<Croissance />} />
+        <Route path="/bienvenue-club" element={<BienvenuClub />} />
         <Route path="/offre-ia" element={<OffreIA />} />
         <Route path="/engagement-rse" element={<EngagementRSE />} />
         <Route path="/a-propos" element={<About />} />

@@ -1,30 +1,39 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Home, GraduationCap, Compass, Users, Leaf, BookOpen, Info, Mail, Rocket } from "lucide-react";
+import { Menu, X, ChevronDown, Home, GraduationCap, Compass, Users, Leaf, BookOpen, Info, Mail, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
-// Desktop : sans "Accueil" (le logo sert de lien home)
-const desktopLinks = [
-  { to: "https://niteo.marenostrum.tech/", label: "Incubation", Icon: Rocket, external: true },
-  { to: "/education",         label: "Formation professionnelle", Icon: GraduationCap },
-  { to: "/expertise",         label: "Conseil",          Icon: Compass        },
+type NavItem = { to: string; label: string; Icon: typeof Home; external?: boolean };
+type NavGroup = { label: string; children: NavItem[] };
+
+// Desktop : 5 entrées maximum (retour d'audit, oct. 2026) - les offres sont
+// regroupées sous « Services », la RSE sous « À propos ». Le logo sert de lien home.
+const desktopNav: (NavItem | NavGroup)[] = [
+  { label: "Services", children: [
+    { to: "https://niteo.marenostrum.tech/", label: "Incubation", Icon: Rocket, external: true },
+    { to: "/education",         label: "Formation professionnelle", Icon: GraduationCap },
+    { to: "/expertise",         label: "Conseil",          Icon: Compass        },
+  ] },
   { to: "/club",              label: "Réseau",           Icon: Users          },
-  { to: "/engagement-rse",    label: "RSE",              Icon: Leaf           },
   { to: "/blog",              label: "Blog",             Icon: BookOpen       },
-  { to: "/a-propos",          label: "À propos",         Icon: Info           },
+  { label: "À propos", children: [
+    { to: "/a-propos",          label: "À propos",         Icon: Info           },
+    { to: "/engagement-rse",    label: "RSE",              Icon: Leaf           },
+  ] },
   { to: "/contact",           label: "Contact",          Icon: Mail           },
 ];
 
-// Mobile : avec "Accueil"
-const navLinks = [
+// Mobile : liste à plat, avec "Accueil"
+const navLinks: NavItem[] = [
   { to: "/",                  label: "Accueil",          Icon: Home           },
-  ...desktopLinks,
+  ...desktopNav.flatMap((g) => ("children" in g ? g.children : [g])),
 ];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled]     = useState(false);
+  const [openGroup, setOpenGroup]   = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -38,7 +47,14 @@ const Header = () => {
     return () => { document.body.style.overflow = ""; };
   }, [isMenuOpen]);
 
-  useEffect(() => { setIsMenuOpen(false); }, [location.pathname]);
+  useEffect(() => { setIsMenuOpen(false); setOpenGroup(null); }, [location.pathname]);
+
+  useEffect(() => {
+    if (!openGroup) return;
+    const onKeyDown = (e: KeyboardEvent) => { if (e.key === "Escape") setOpenGroup(null); };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [openGroup]);
 
   useEffect(() => {
     if (!isMenuOpen) return;
@@ -78,16 +94,58 @@ const Header = () => {
 
           {/* Desktop nav links */}
           <div className="hidden md:flex items-center gap-0.5 lg:gap-1">
-            {desktopLinks.map((link) => {
-              const active = !link.external && isActive(link.to);
-              const className = `mn-link-u [--mn-u-inset:0.75rem] [--mn-u-bottom:0.3rem] px-3 py-1.5 text-[13px] font-medium rounded-full transition-colors duration-200 ${
+            {desktopNav.map((item) => {
+              const linkClass = (active: boolean) => `mn-link-u [--mn-u-inset:0.75rem] [--mn-u-bottom:0.3rem] px-3 py-1.5 text-sm font-medium rounded-full transition-colors duration-200 ${
                 active ? "bg-primary/10 text-primary" : "text-foreground/70 hover:text-foreground"
               }`;
 
-              return link.external ? (
-                <a key={link.to} href={link.to} className={className}>{link.label}</a>
+              if ("children" in item) {
+                const open = openGroup === item.label;
+                const active = item.children.some((c) => !c.external && isActive(c.to));
+                return (
+                  <div
+                    key={item.label}
+                    className="relative"
+                    onMouseEnter={() => setOpenGroup(item.label)}
+                    onMouseLeave={() => setOpenGroup(null)}
+                  >
+                    <button
+                      type="button"
+                      className={`${linkClass(active)} inline-flex items-center gap-1`}
+                      aria-expanded={open}
+                      aria-haspopup="true"
+                      onClick={() => setOpenGroup(open ? null : item.label)}
+                    >
+                      {item.label}
+                      <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} aria-hidden="true" />
+                    </button>
+                    {/* pt-2 : pont invisible entre le bouton et le panneau, le survol ne se coupe pas */}
+                    <div className={`absolute left-0 top-full pt-2 transition-opacity duration-150 ${open ? "visible opacity-100" : "invisible opacity-0"}`}>
+                      <ul className="min-w-[240px] mn-card shadow-[var(--shadow-medium)] p-2">
+                        {item.children.map(({ to, label, Icon, external }) => {
+                          const cls = `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                            !external && isActive(to) ? "bg-primary/10 text-primary" : "text-foreground/80 hover:bg-muted hover:text-foreground"
+                          }`;
+                          const content = <><Icon className="h-4 w-4 shrink-0 text-primary/70" aria-hidden="true" />{label}</>;
+                          return (
+                            <li key={to}>
+                              {external
+                                ? <a href={to} className={cls} onClick={() => setOpenGroup(null)}>{content}</a>
+                                : <Link to={to} className={cls} onClick={() => setOpenGroup(null)}>{content}</Link>}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  </div>
+                );
+              }
+
+              const active = !item.external && isActive(item.to);
+              return item.external ? (
+                <a key={item.to} href={item.to} className={linkClass(active)}>{item.label}</a>
               ) : (
-                <Link key={link.to} to={link.to} className={className}>{link.label}</Link>
+                <Link key={item.to} to={item.to} className={linkClass(active)}>{item.label}</Link>
               );
             })}
           </div>
@@ -95,11 +153,11 @@ const Header = () => {
           {/* CTA desktop */}
           <div className="hidden md:flex items-center shrink-0">
             {["/education", "/niteo-toulouse"].includes(location.pathname) ? (
-              <Button asChild size="sm">
+              <Button asChild size="sm" className="md:h-9 md:px-4">
                 <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
               </Button>
             ) : (
-              <Button asChild size="sm" style={{ background: "hsl(222 44% 25%)", color: "hsl(40 38% 94%)" }}>
+              <Button asChild size="sm" className="md:h-9 md:px-4" style={{ background: "hsl(222 44% 25%)", color: "hsl(40 38% 94%)" }}>
                 <Link to="/club#offres">Rejoindre le Club</Link>
               </Button>
             )}

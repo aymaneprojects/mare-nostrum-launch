@@ -26,6 +26,7 @@ import veluoIcon from "@/assets/poles/veluo.png";
 import niteoIcon from "@/assets/poles/niteo.png";
 import clubIcon from "@/assets/poles/club.png";
 import HeroMap from "@/components/HeroMap";
+import ImpactStats from "@/components/ImpactStats";
 const DarkLayers =({ halo, vignette }: { halo: string; vignette: string }) => (
   <>
     <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(135deg, transparent 0 22px, hsl(var(--mn-turquoise) / 0.055) 22px 23px)' }}></div>
@@ -46,8 +47,8 @@ const Index = () => {
       "@type": "Organization",
       "name": "Mare Nostrum",
       "alternateName": "Mare Nostrum - Conseil en Entrepreneuriat à Impact",
-      "url": "https://marenostrum.tech",
-      "logo": "https://marenostrum.tech/logo.png",
+      "url": "https://www.marenostrum.tech",
+      "logo": "https://www.marenostrum.tech/logo.png",
       "description": "Cabinet de conseil en entrepreneuriat à impact accompagnant les écoles et entrepreneurs à Toulouse, Paris et Casablanca",
       "foundingDate": "2023",
       "founders": [
@@ -104,7 +105,7 @@ const Index = () => {
         }
       ],
       "priceRange": "€€",
-      "image": "https://marenostrum.tech/logo.png",
+      "image": "https://www.marenostrum.tech/logo.png",
       "contactPoint": [
         {
           "@type": "ContactPoint",
@@ -179,12 +180,12 @@ const Index = () => {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Mare Nostrum",
-      "url": "https://marenostrum.tech",
+      "url": "https://www.marenostrum.tech",
       "potentialAction": {
         "@type": "SearchAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": "https://marenostrum.tech/blog?search={search_term_string}"
+          "urlTemplate": "https://www.marenostrum.tech/blog?search={search_term_string}"
         },
         "query-input": "required name=search_term_string"
       }
@@ -292,6 +293,8 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      <ImpactStats />
 
       {/* Who We Are */}
       <section ref={fadeServices as React.RefObject<HTMLElement>} className="relative overflow-hidden py-12 md:py-24" style={{ background: 'linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)' }}>

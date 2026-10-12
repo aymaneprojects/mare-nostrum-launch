@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
+import { useNavigate } from "react-router-dom";
 import {
   ArrowRight, ArrowLeft, Loader2, CheckCircle2, X,
-  User, Briefcase, CreditCard, Download, MessageSquare, Sparkles, PartyPopper,
+  User, Briefcase, CreditCard,
 } from "lucide-react";
 import { EVT, track, trackOnce } from "@/lib/analytics";
 
@@ -21,9 +22,6 @@ const getStripePromise = () => {
   if (!stripePromiseCache) stripePromiseCache = loadStripe(stripeKey);
   return stripePromiseCache;
 };
-
-const KIT_URL   = "/kit-adherent-club.pdf";
-const SLACK_URL = "https://join.slack.com/t/clubmarenostrum/shared_invite/zt-3k96xxhx1-UjfT8oy4ISyHKScmuqsleg";
 
 export type PaidOffer    = "communaute" | "groupe";
 export type Offer        = "freemium" | PaidOffer;
@@ -51,7 +49,8 @@ function formatPrice(amount: number, location: LocationType): string {
   return `${amount.toLocaleString("fr-FR")} XOF`;
 }
 
-type Phase = "step1" | "step2" | "loading" | "payment" | "success" | "kit" | "slack";
+// "success" est transitoire : le membre est envoyé sur la page Bienvenue (kit + Slack).
+type Phase = "step1" | "step2" | "loading" | "payment" | "success";
 
 interface Props {
   open: boolean;
@@ -65,30 +64,23 @@ interface Props {
 }
 
 const ALL_STEPS = [
-  { icon: User,          label: "Toi"       },
-  { icon: Briefcase,     label: "Projet"    },
-  { icon: CreditCard,    label: "Paiement"  },
-  { icon: PartyPopper,   label: "Bienvenue" },
-  { icon: Download,      label: "Kit"       },
-  { icon: MessageSquare, label: "Slack"     },
+  { icon: User,       label: "Toi"      },
+  { icon: Briefcase,  label: "Projet"   },
+  { icon: CreditCard, label: "Paiement" },
 ];
 
 const phaseToStep: Record<Phase, number> = {
-  step1: 0, step2: 1, loading: 2, payment: 2,
-  success: 3, kit: 4, slack: 5,
+  step1: 0, step2: 1, loading: 2, payment: 2, success: 2,
 };
 
-// Parcours gratuit : pas de paiement, pas de kit, on passe directement à Slack.
+// Parcours gratuit : pas de paiement.
 const FREE_STEPS = [
-  { icon: User,          label: "Toi"       },
-  { icon: Briefcase,     label: "Projet"    },
-  { icon: PartyPopper,   label: "Bienvenue" },
-  { icon: MessageSquare, label: "Slack"     },
+  { icon: User,      label: "Toi"    },
+  { icon: Briefcase, label: "Projet" },
 ];
 
 const freePhaseToStep: Record<Phase, number> = {
-  step1: 0, step2: 1, loading: 1, payment: 1,
-  success: 2, kit: 3, slack: 3,
+  step1: 0, step2: 1, loading: 1, payment: 1, success: 1,
 };
 
 export default function ClubOnboarding({ open, onClose, offer, location, billing, initialPhase, initialPrenom, initialEmail }: Props) {
@@ -99,7 +91,6 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   const [error, setError]               = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [cgvAccepted, setCgvAccepted]   = useState(false);
-  const [kitClicked, setKitClicked]     = useState(false);
   const [emailTouched, setEmailTouched] = useState(false);
 
   const isFree      = offer === "freemium";
@@ -113,30 +104,12 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   }, [open, offer, location, billing]);
   const period      = billing === "monthly" ? "/mois" : "/an";
   const currentStep = (isFree ? freePhaseToStep : phaseToStep)[phase];
-  const isPostPayment = ["success", "kit", "slack"].includes(phase);
-
-  const handleKitDownload = async () => {
-    setKitClicked(true);
-    try {
-      const res = await fetch(KIT_URL);
-      const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "Kit Adhérent Club Mare Nostrum.pdf";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    } catch {
-      window.open(KIT_URL, "_blank");
-    }
-  };
+  const navigate    = useNavigate();
 
   const handleClose = () => {
     setPhase("step1");
     setPrenom(""); setEmail(""); setEntreprise("");
-    setError(""); setClientSecret(""); setCgvAccepted(false); setKitClicked(false);
+    setError(""); setClientSecret(""); setCgvAccepted(false);
     setEmailTouched(false);
     onClose();
   };
@@ -189,7 +162,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
       });
       if (fnError || !data?.ok) throw new Error(fnError?.message ?? "Réponse invalide du serveur.");
       trackOnce(`freemium:${email}`, EVT.clubFreemiumSignup, { method: "club_freemium", offer, location });
-      setPhase("slack");
+      navigate("/bienvenue-club?offre=freemium");
     } catch (e: any) {
       console.error("club-freemium-signup failed:", e);
       setError("Une erreur est survenue. Réessaie.");
@@ -241,26 +214,14 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
     }
   }, [phase]);
 
-  /* ─── Header dynamique selon phase ─────────────────────── */
-  const headerBg =
-    phase === "slack"   ? "bg-accent" :
-    isPostPayment       ? "bg-primary" :
-                          "bg-primary";
+  /* ─── Header ─────────────────────────────────────────── */
+  const headerSub = "Club Mare Nostrum";
+  const headerTitle = `Rejoindre l'offre ${OFFER_LABELS[offer]}`;
 
-  const headerText = phase === "slack" ? "text-accent-foreground" : "text-primary-foreground";
-  const headerTextMuted = phase === "slack" ? "text-accent-foreground/70" : "text-primary-foreground/60";
-
-  const headerSub =
-    phase === "success" ? "Paiement confirmé ✓" :
-    phase === "kit"     ? "Étape 1 sur 2" :
-    phase === "slack"   ? (isFree ? "Inscription confirmée ✓" : "Étape 2 sur 2 · Dernière étape !") :
-                          "Club Mare Nostrum";
-
-  const headerTitle =
-    phase === "success" ? `Félicitations, ${prenom} !` :
-    phase === "kit"     ? "Télécharge ton kit de bienvenue" :
-    phase === "slack"   ? (isFree ? `Bienvenue dans le Club, ${prenom} !` : "Rejoins la communauté") :
-                          `Rejoindre l'offre ${OFFER_LABELS[offer]}`;
+  // Paiement abouti (rappel Stripe, sondage ou retour de session) : page Bienvenue.
+  useEffect(() => {
+    if (phase === "success") navigate("/bienvenue-club");
+  }, [phase, navigate]);
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
@@ -273,54 +234,53 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
           ${phase === "payment" ? "sm:max-w-2xl" : "sm:max-w-lg"}`}
       >
         {/* ── Header ────────────────────────────────────────── */}
-        <div className={`${headerBg} px-6 py-5 shrink-0 transition-colors duration-500 relative`}>
+        <div className="bg-primary px-6 py-5 shrink-0 transition-colors duration-500 relative">
           <DialogTitle className="sr-only">{headerTitle}</DialogTitle>
-          <p className={`text-xs ${headerTextMuted} uppercase tracking-widest mb-1`}>{headerSub}</p>
-          <h2 className={`font-editorial italic text-xl ${headerText} pr-10`}>{headerTitle}</h2>
+          <p className="text-sm text-primary-foreground/80 mb-1">{headerSub}</p>
+          <h2 className="font-editorial italic text-xl text-primary-foreground pr-10">{headerTitle}</h2>
           <button
             onClick={handleClose}
             className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 active:bg-primary-foreground/30 transition-colors"
             aria-label="Fermer"
           >
-            <X className={`h-4 w-4 ${headerText}`} />
+            <X className="h-4 w-4 text-primary-foreground" />
           </button>
         </div>
 
-        {/* ── Stepper unifié 6 étapes ───────────────────────── */}
+        {/* ── Stepper ───────────────────────────────────────── */}
         {phase !== "loading" && (
-          <div
-            role="group"
-            aria-label={`Étape ${currentStep + 1} sur ${steps.length}`}
-            className="flex items-center justify-center px-2 sm:px-4 pt-4 pb-1 shrink-0"
-          >
-            {steps.map((s, i) => {
-              const Icon   = s.icon;
-              const active = currentStep === i;
-              const done   = currentStep > i;
-              return (
-                <div key={i} className="flex items-center">
-                  <div className="flex flex-col items-center gap-0.5">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-                      done   ? "bg-accent text-accent-foreground" :
-                      active ? "bg-primary text-primary-foreground" :
-                               "bg-muted text-muted-foreground"
-                    }`}>
-                      {done ? <CheckCircle2 className="h-3.5 w-3.5" /> : <Icon className="h-3.5 w-3.5" />}
+          <div className="px-4 pt-4 pb-1 shrink-0">
+            <p className="text-center text-base font-semibold text-primary mb-3">
+              Étape {currentStep + 1} sur {steps.length}
+            </p>
+            <ol className="flex items-center justify-center">
+              {steps.map((s, i) => {
+                const Icon   = s.icon;
+                const active = currentStep === i;
+                const done   = currentStep > i;
+                return (
+                  <li key={i} className="flex items-center" aria-current={active ? "step" : undefined}>
+                    <div className="flex flex-col items-center gap-1">
+                      <div className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        done   ? "bg-accent text-accent-foreground" :
+                        active ? "bg-primary text-primary-foreground" :
+                                 "bg-muted text-foreground"
+                      }`}>
+                        {done ? <CheckCircle2 className="h-5 w-5" /> : <Icon className="h-5 w-5" />}
+                      </div>
+                      <span className={`text-sm font-medium leading-tight ${active ? "text-primary" : "text-foreground"}`}>
+                        {s.label}
+                      </span>
                     </div>
-                    <span className={`hidden sm:block text-[9px] font-medium leading-tight ${
-                      active ? "text-primary" : "text-muted-foreground"
-                    }`}>
-                      {s.label}
-                    </span>
-                  </div>
-                  {i < steps.length - 1 && (
-                    <div className={`w-3 sm:w-6 md:w-8 h-0.5 mx-0.5 sm:mx-1 rounded-full transition-all duration-300 ${
-                      currentStep > i ? "bg-accent" : "bg-border"
-                    }`} />
-                  )}
-                </div>
-              );
-            })}
+                    {i < steps.length - 1 && (
+                      <div className={`w-8 sm:w-14 h-0.5 mx-2 mb-6 rounded-full transition-all duration-300 ${
+                        currentStep > i ? "bg-accent" : "bg-border"
+                      }`} />
+                    )}
+                  </li>
+                );
+              })}
+            </ol>
           </div>
         )}
 
@@ -373,29 +333,29 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
 
               {isFree ? (
                 <div className="bg-muted/40 border border-border rounded-sm p-4 flex items-center justify-between">
-                  <p className="text-xs text-muted-foreground">{OFFER_LABELS[offer]}</p>
+                  <p className="text-sm text-muted-foreground">{OFFER_LABELS[offer]}</p>
                   <span className="text-xl font-bold text-primary">Gratuit</span>
                 </div>
               ) : (
                 <div className="bg-muted/40 border border-border rounded-sm p-4 flex items-center justify-between">
                   <div>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-sm text-muted-foreground">
                       {OFFER_LABELS[offer]} · {location === "france" ? "France" : "Rép. du Congo"} · {billing === "monthly" ? "Mensuel" : "Annuel"}
                     </p>
                     {billing === "annual" && (
-                      <p className="text-xs text-accent font-semibold mt-0.5">
+                      <p className="text-sm text-accent font-semibold mt-0.5">
                         {location === "france" ? "-20% vs mensuel" : "2 mois offerts"}
                       </p>
                     )}
                   </div>
                   <span className="text-xl font-bold text-primary">
-                    {formatPrice(price, location)}<span className="text-xs font-normal text-muted-foreground">{period}</span>
+                    {formatPrice(price, location)}<span className="text-sm font-normal text-muted-foreground">{period}</span>
                   </span>
                 </div>
               )}
 
               {isFree ? (
-                <p className="text-xs text-muted-foreground leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   Aucun paiement, aucune carte bancaire. Tes coordonnées servent à t'ouvrir l'accès au Club et à te tenir informé(e) de ses activités, conformément à notre{" "}
                   <a href="/confidentialite" target="_blank" rel="noopener noreferrer"
                     className="text-primary underline underline-offset-2 hover:text-primary/80">
@@ -404,14 +364,14 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                 </p>
               ) : (
                 <>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-sm text-muted-foreground">
                     Abonnement reconductible tacitement. Un préavis de <strong>3 mois</strong> est requis pour résilier.
                   </p>
 
               <label className="flex items-start gap-2.5 cursor-pointer">
                 <input type="checkbox" checked={cgvAccepted} onChange={e => setCgvAccepted(e.target.checked)}
                   className="mt-0.5 h-4 w-4 shrink-0 rounded border border-border accent-primary cursor-pointer" />
-                <span className="text-xs text-muted-foreground leading-relaxed">
+                <span className="text-sm text-muted-foreground leading-relaxed">
                   J'ai lu et j'accepte les{" "}
                   <a href="/cgv" target="_blank" rel="noopener noreferrer"
                     className="text-primary underline underline-offset-2 hover:text-primary/80"
@@ -468,129 +428,6 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
             <p className="text-sm text-destructive py-4 text-center">
               Une erreur est survenue. Réessaie.
             </p>
-          )}
-
-          {/* ── POST-PAIEMENT : Succès ────────────────────────── */}
-          {phase === "success" && (
-            <div className="flex flex-col items-center text-center gap-6 py-4">
-              <div className="relative">
-                <div className="w-20 h-20 rounded-full bg-accent/15 flex items-center justify-center">
-                  <PartyPopper className="h-10 w-10 text-accent" strokeWidth={1.5} />
-                </div>
-                <Sparkles className="absolute -top-1 -right-1 h-5 w-5 text-accent animate-pulse" />
-              </div>
-
-              <div className="space-y-2 max-w-xs">
-                <p className="font-editorial italic text-2xl text-primary leading-snug">
-                  Tu fais partie du Club,<br />{prenom} !
-                </p>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Ton abonnement <strong className="text-foreground">{OFFER_LABELS[offer] ?? "Club"}</strong> est actif.
-                  On va maintenant te guider pour intégrer la communauté en 2 étapes rapides.
-                </p>
-              </div>
-
-              <div className="bg-muted/40 rounded-sm px-5 py-4 w-full max-w-xs text-left space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Ce qui t'attend</p>
-                <div className="flex items-center gap-3 text-sm">
-                  <span className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs shrink-0">1</span>
-                  <span>Télécharger ton kit de bienvenue</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                  <span className="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-muted-foreground font-bold text-xs shrink-0">2</span>
-                  <span>Rejoindre l'espace digital du Club</span>
-                </div>
-              </div>
-
-              <Button className="w-full max-w-xs" size="lg" onClick={() => setPhase("kit")}>
-                C'est parti <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-          )}
-
-          {/* ── POST-PAIEMENT : Kit ───────────────────────────── */}
-          {phase === "kit" && (
-            <div className="flex flex-col items-center text-center gap-6 py-4">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                <Download className="h-8 w-8 text-primary" strokeWidth={1.5} />
-              </div>
-
-              <div className="space-y-2 max-w-xs">
-                <p className="font-semibold text-lg text-foreground">Ton kit de bienvenue</p>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Il présente l'espace d'échanges entre pairs, la veille d'opportunités et la prise de rendez-vous « visio galère ».
-                  Prends quelques minutes pour le parcourir - il te guide pas à pas dans tes premiers échanges avec la communauté.
-                </p>
-              </div>
-
-              <button
-                onClick={handleKitDownload}
-                className="flex items-center justify-center gap-2 w-full max-w-xs bg-primary text-primary-foreground rounded-sm px-5 py-3.5 font-semibold text-sm hover:bg-primary/90 transition-colors cursor-pointer"
-              >
-                <Download className="h-4 w-4" />
-                Télécharger le kit
-              </button>
-
-              <Button
-                className="w-full max-w-xs"
-                variant={kitClicked ? "default" : "outline"}
-                disabled={!kitClicked}
-                onClick={() => setPhase("slack")}
-              >
-                {kitClicked ? (
-                  <>Continuer <ArrowRight className="ml-2 h-4 w-4" /></>
-                ) : (
-                  "Télécharge le kit pour continuer"
-                )}
-              </Button>
-
-              {!kitClicked && (
-                <p className="text-xs text-muted-foreground -mt-2">
-                  Clique sur "Télécharger le kit" pour activer ce bouton
-                </p>
-              )}
-            </div>
-          )}
-
-          {/* ── POST-PAIEMENT : Slack ─────────────────────────── */}
-          {phase === "slack" && (
-            <div className="flex flex-col items-center text-center gap-6 py-4">
-              <div className="w-16 h-16 rounded-full bg-accent/15 flex items-center justify-center">
-                <MessageSquare className="h-8 w-8 text-accent" strokeWidth={1.5} />
-              </div>
-
-              <div className="space-y-2 max-w-xs">
-                <p className="font-semibold text-lg text-foreground">L'espace digital du Club</p>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  Inscris-toi sur notre espace privé pour commencer à échanger avec la communauté,
-                  accéder à la veille et participer aux sessions.
-                </p>
-              </div>
-
-              <a
-                href={SLACK_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full max-w-xs bg-accent text-accent-foreground rounded-sm px-5 py-3.5 font-semibold text-sm hover:bg-accent/90 transition-colors"
-              >
-                <MessageSquare className="h-4 w-4" />
-                Rejoindre la communauté
-              </a>
-
-              <div className="w-full max-w-xs space-y-2">
-                <div className="border-t border-border pt-4 text-xs text-muted-foreground text-center leading-relaxed">
-                  {isFree ? (
-                    <>Ton inscription gratuite est enregistrée pour <strong>{email}</strong>.</>
-                  ) : (
-                    <>Un email de confirmation a été envoyé à <strong>{email}</strong>.</>
-                  )}<br />
-                  N'hésite pas à nous contacter pour toute question.
-                </div>
-                <Button variant="ghost" className="w-full text-muted-foreground text-sm" onClick={onClose}>
-                  Fermer
-                </Button>
-              </div>
-            </div>
           )}
 
         </div>

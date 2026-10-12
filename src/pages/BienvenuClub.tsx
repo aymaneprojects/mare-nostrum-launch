@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { CheckCircle2, ArrowRight, Mail, Users, Calendar, BookOpen, Sparkles, Download, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SEOHead from "@/components/SEOHead";
@@ -30,6 +30,7 @@ const steps = [
 
 const BienvenuClub = () => {
   const [visible, setVisible] = useState(false);
+  const isFree = useSearchParams()[0].get("offre") === "freemium";
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 80);
@@ -63,9 +64,11 @@ const BienvenuClub = () => {
               </div>
             </div>
 
-            <p className="text-xs font-semibold uppercase tracking-widest text-accent mb-3">
-              Paiement confirmé
-            </p>
+            {!isFree && (
+              <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">
+                Paiement confirmé
+              </p>
+            )}
 
             <h1 className="font-editorial italic text-4xl md:text-5xl text-primary mb-4 leading-tight">
               Bienvenue au Club<br />Mare Nostrum
@@ -80,7 +83,7 @@ const BienvenuClub = () => {
               <p className="font-editorial italic text-xl text-primary leading-snug">
                 "L'entrepreneuriat est un sport d'équipe. Tu viens de choisir la bonne équipe."
               </p>
-              <p className="text-xs text-muted-foreground mt-2">- L'équipe Mare Nostrum</p>
+              <p className="text-sm text-muted-foreground mt-2">- L'équipe Mare Nostrum</p>
             </div>
           </div>
 
@@ -108,7 +111,7 @@ const BienvenuClub = () => {
                       <span className="text-muted-foreground mr-1.5">0{i + 1}.</span>
                       {title}
                     </p>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
                   </div>
                 </div>
               ))}
@@ -133,7 +136,7 @@ const BienvenuClub = () => {
               </div>
               <div className="flex-1 text-left">
                 <p className="font-semibold text-base">Rejoindre l'espace digital du Club</p>
-                <p className="text-xs text-primary-foreground/70 mt-0.5">Commence à échanger avec la communauté sur Slack</p>
+                <p className="text-sm text-primary-foreground/70 mt-0.5">Commence à échanger avec la communauté sur Slack</p>
               </div>
               <ArrowRight className="h-5 w-5 opacity-70 group-hover:translate-x-1 transition-transform" />
             </a>
@@ -150,7 +153,7 @@ const BienvenuClub = () => {
               </div>
               <div className="flex-1 text-left">
                 <p className="font-semibold text-base text-foreground">Télécharger le kit de bienvenue</p>
-                <p className="text-xs text-muted-foreground mt-0.5">Guide pratique : fonctionnement du Club, espace digital, rendez-vous</p>
+                <p className="text-sm text-muted-foreground mt-0.5">Guide pratique : fonctionnement du Club, espace digital, rendez-vous</p>
               </div>
               <ArrowRight className="h-5 w-5 text-muted-foreground opacity-70 group-hover:translate-x-1 transition-transform" />
             </a>
@@ -178,7 +181,7 @@ const BienvenuClub = () => {
               visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            <p className="text-xs text-muted-foreground leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               N'hésitez pas à nous solliciter via la messagerie interne pour toute question.<br />
               Au plaisir de vous retrouver très bientôt - <strong>L'équipe Mare Nostrum</strong>
             </p>

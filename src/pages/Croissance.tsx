@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import DarkSection from "@/components/DarkSection";
+import ImpactStats from "@/components/ImpactStats";
 import TestimonialCard from "@/components/TestimonialCard";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -57,14 +58,14 @@ interface OfferFeature {
 
 const FeatureWithTooltip = ({ feature }: { feature: OfferFeature }) => (
   <li className="flex items-start space-x-3">
-    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-    <span className="text-sm text-muted-foreground flex items-center gap-1.5 flex-wrap">
+    <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+    <span className="text-sm text-foreground flex items-center gap-1.5 flex-wrap">
       {feature.label}
       <Popover>
         <PopoverTrigger asChild>
           <button
             type="button"
-            className="relative inline-flex items-center justify-center w-4 h-4 rounded-full text-muted-foreground hover:text-primary active:scale-90 transition-all flex-shrink-0 after:absolute after:-inset-3.5 after:content-['']"
+            className="relative inline-flex items-center justify-center w-4 h-4 rounded-full text-foreground hover:text-primary active:scale-90 transition-all flex-shrink-0 after:absolute after:-inset-3.5 after:content-['']"
             aria-label={`En savoir plus : ${feature.label}`}
           >
             <Info className="h-3.5 w-3.5" />
@@ -266,15 +267,15 @@ const Croissance = () => {
       "@context": "https://schema.org",
       "@type": "Service",
       "name": "Club Entrepreneur Mare Nostrum - Accompagnement Startup Toulouse & Afrique",
-      "url": "https://marenostrum.tech/club",
+      "url": "https://www.marenostrum.tech/club",
       "description": "Club d'accompagnement pour entrepreneurs francophones à impact. Mentorat, réseau, IA, formation. Accès gratuit (freemium) et 2 offres payantes dès 30€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans.",
       "provider": {
         "@type": "Organization",
         "name": "Mare Nostrum",
-        "url": "https://marenostrum.tech",
-        "logo": "https://marenostrum.tech/favicon.png",
+        "url": "https://www.marenostrum.tech",
+        "logo": "https://www.marenostrum.tech/favicon.png",
         "sameAs": [
-          "https://marenostrum.tech",
+          "https://www.marenostrum.tech",
           "https://www.linkedin.com/company/mare-nostrum-entrepreneuriat"
         ],
         "address": [
@@ -340,9 +341,9 @@ const Croissance = () => {
       "@context": "https://schema.org",
       "@type": "WebPage",
       "name": "Club Entrepreneur Toulouse & Afrique - Mare Nostrum",
-      "url": "https://marenostrum.tech/club",
+      "url": "https://www.marenostrum.tech/club",
       "description": "Club d'accompagnement entrepreneur à Toulouse et en Afrique francophone. Mentorat, réseau, IA : accès gratuit, offres payantes dès 30€/mois.",
-      "isPartOf": { "@type": "WebSite", "name": "Mare Nostrum", "url": "https://marenostrum.tech" },
+      "isPartOf": { "@type": "WebSite", "name": "Mare Nostrum", "url": "https://www.marenostrum.tech" },
       "speakable": {
         "@type": "SpeakableSpecification",
         "cssSelector": ["h1", ".hero-description"]
@@ -503,41 +504,7 @@ const Croissance = () => {
         </div>
       </section>
       {/* Section 3 : Résultats Concrets */}
-      <DarkSection halo="left">
-        <div className="container mx-auto px-4">
-          <div className="mn-eyebrow-light text-center mb-3">Impact mesuré</div>
-          <h2 className="font-editorial italic font-semibold text-center mb-12 text-primary-foreground">
-            Résultats concrets de l'accompagnement entrepreneur Mare Nostrum
-          </h2>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            <div className="text-center rounded-[var(--radius)] border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm shadow-glass p-6">
-              <div className="text-4xl md:text-5xl font-bold text-accent mb-3">50%</div>
-              <p className="text-sm text-primary-foreground/75">
-                des entrepreneurs accompagnés se rémunèrent correctement dans les 2 ans après la création
-              </p>
-            </div>
-            <div className="text-center rounded-[var(--radius)] border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm shadow-glass p-6">
-              <div className="text-4xl md:text-5xl font-bold text-accent mb-3">3</div>
-              <p className="text-sm text-primary-foreground/75">
-                contacts qualifiés en moyenne dès le premier mois d'adhésion
-              </p>
-            </div>
-            <div className="text-center rounded-[var(--radius)] border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm shadow-glass p-6">
-              <div className="text-4xl md:text-5xl font-bold text-accent mb-3">93%</div>
-              <p className="text-sm text-primary-foreground/75">
-                des membres se disent "très satisfaits ou satisfaits" de leur expérience
-              </p>
-            </div>
-            <div className="text-center rounded-[var(--radius)] border border-primary-foreground/15 bg-primary-foreground/[0.06] backdrop-blur-sm shadow-glass p-6">
-              <div className="text-4xl md:text-5xl font-bold text-accent mb-3">90%</div>
-              <p className="text-sm text-primary-foreground/75">
-                déclarent gagner du temps, de la clarté et de la sérénité après chaque session
-              </p>
-            </div>
-          </div>
-        </div>
-      </DarkSection>
+      <ImpactStats />
       {/* Section 2 : Offres */}
       <section id="offres" className="py-16 md:py-24 bg-secondary/30" aria-label="Tarifs et offres du Club Entrepreneur">
         <div className="container mx-auto px-4">
@@ -545,10 +512,10 @@ const Croissance = () => {
           <h2 className="font-editorial italic font-semibold text-center mb-4 text-foreground">
             Nos offres d'accompagnement entrepreneur, Toulouse et Afrique
           </h2>
-          <p className="text-center text-muted-foreground mb-4 max-w-3xl mx-auto">
+          <p className="text-center text-foreground mb-4 max-w-3xl mx-auto">
             Choisis le niveau d'accompagnement qui te correspond
           </p>
-          <p className="text-center text-xs text-muted-foreground/70 mb-8">
+          <p className="text-center text-sm text-foreground mb-8">
             Survole chaque avantage pour en savoir plus
           </p>
 
@@ -558,17 +525,17 @@ const Croissance = () => {
               <button
                 onClick={() => setSelectedBilling("monthly")}
                 aria-pressed={selectedBilling === "monthly"}
-                className={`min-h-11 px-5 py-2 rounded-full text-sm font-semibold transition-all ${selectedBilling === "monthly" ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
+                className={`min-h-11 px-5 py-2 rounded-full text-sm font-semibold transition-all ${selectedBilling === "monthly" ? "bg-primary text-primary-foreground shadow-sm" : "text-foreground hover:text-foreground"}`}
               >
                 Mensuel
               </button>
               <button
                 onClick={() => setSelectedBilling("annual")}
                 aria-pressed={selectedBilling === "annual"}
-                className={`min-h-11 px-5 py-2 rounded-full text-sm font-semibold transition-all flex items-center gap-2 ${selectedBilling === "annual" ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
+                className={`min-h-11 px-5 py-2 rounded-full text-sm font-semibold transition-all flex items-center gap-2 ${selectedBilling === "annual" ? "bg-primary text-primary-foreground shadow-sm" : "text-foreground hover:text-foreground"}`}
               >
                 Annuel
-                <span className={`text-xs font-bold px-1.5 py-0.5 rounded-full bg-accent/20 ${selectedBilling === "annual" ? "text-accent" : "text-primary"}`}>
+                <span className={`text-sm font-bold px-1.5 py-0.5 rounded-full bg-accent/20 ${selectedBilling === "annual" ? "text-accent" : "text-primary"}`}>
                   {selectedLocation === "france" ? "-20%" : "2 mois offerts"}
                 </span>
               </button>
@@ -583,11 +550,11 @@ const Croissance = () => {
                 <div className="text-4xl font-bold text-primary mb-1">
                   Gratuit
                 </div>
-                <p className="text-xs text-muted-foreground mt-1">Sans paiement · Sans engagement</p>
+                <p className="text-sm text-foreground mt-1">Sans paiement · Sans engagement</p>
               </div>
 
               <div className="bg-muted/50 rounded-sm p-3 mb-6">
-                <p className="text-xs text-muted-foreground text-center">
+                <p className="text-sm text-foreground text-center">
                   Tu découvres le Club et son réseau
                 </p>
               </div>
@@ -602,10 +569,10 @@ const Croissance = () => {
 
               {/* Ce que Premium ajoute : lignes grisées, pour voir la différence d'un coup d'œil. */}
               <div className="mb-8 flex-grow">
-                <p className="text-xs font-medium text-muted-foreground/70 mb-3">Avec Premium</p>
+                <p className="text-sm font-medium text-foreground mb-3">Avec Premium</p>
                 <ul className="space-y-3">
                   {premiumFeatures.slice(1).map((feature) => (
-                    <li key={feature.label} className="flex items-start space-x-3 text-sm text-muted-foreground/60">
+                    <li key={feature.label} className="flex items-start space-x-3 text-sm text-foreground">
                       <Lock aria-hidden="true" className="h-4 w-4 flex-shrink-0 mt-0.5" />
                       <span>{feature.label}</span>
                     </li>
@@ -624,21 +591,21 @@ const Croissance = () => {
                 <h3 className="text-2xl mb-2 text-foreground">Premium</h3>
                 <div className="text-4xl font-bold text-primary mb-1">
                   {getPrice("communaute")}
-                  <span className="text-lg font-normal text-muted-foreground"> {getPricePeriod()}</span>
+                  <span className="text-lg font-normal text-foreground"> {getPricePeriod()}</span>
                 </div>
                 {getPriceDetail("communaute") && (
                   <div className="mb-2">
-                    <span className="inline-block bg-accent/15 text-primary text-xs font-bold px-2 py-0.5 rounded-full mr-2">{getPriceDetail("communaute")!.badge}</span>
-                    <span className="text-xs text-muted-foreground">{getPriceDetail("communaute")!.equiv}</span>
-                    {getPriceDetail("communaute")!.saving && <p className="text-xs text-primary font-medium mt-0.5">{getPriceDetail("communaute")!.saving}</p>}
+                    <span className="inline-block bg-accent/15 text-primary text-sm font-bold px-2 py-0.5 rounded-full mr-2">{getPriceDetail("communaute")!.badge}</span>
+                    <span className="text-sm text-foreground">{getPriceDetail("communaute")!.equiv}</span>
+                    {getPriceDetail("communaute")!.saving && <p className="text-sm text-primary font-medium mt-0.5">{getPriceDetail("communaute")!.saving}</p>}
                   </div>
                 )}
-                <p className="text-xs text-accent font-semibold">1 micro-mentorat offert dès votre arrivée</p>
-                <p className="text-xs text-muted-foreground mt-1">Pas de frais d'entrée · Sans engagement</p>
+                <p className="text-sm text-primary font-semibold">1 micro-mentorat offert dès votre arrivée</p>
+                <p className="text-sm text-foreground mt-1">Pas de frais d'entrée · Sans engagement</p>
               </div>
 
               <div className="bg-muted/50 rounded-sm p-3 mb-6">
-                <p className="text-xs text-muted-foreground text-center">
+                <p className="text-sm text-foreground text-center">
                   Tu lances ton activité et sors de l'isolement (0-12 mois, pré-revenu)
                 </p>
               </div>
@@ -673,17 +640,17 @@ const Croissance = () => {
                 </div>
                 {getPriceDetail("groupe") && (
                   <div className="mb-2">
-                    <span className="inline-block bg-primary-foreground/20 text-primary-foreground text-xs font-bold px-2 py-0.5 rounded-full mr-2">{getPriceDetail("groupe")!.badge}</span>
-                    <span className="text-xs opacity-80">{getPriceDetail("groupe")!.equiv}</span>
-                    {getPriceDetail("groupe")!.saving && <p className="text-xs font-semibold opacity-90 mt-0.5">{getPriceDetail("groupe")!.saving}</p>}
+                    <span className="inline-block bg-primary-foreground/20 text-primary-foreground text-sm font-bold px-2 py-0.5 rounded-full mr-2">{getPriceDetail("groupe")!.badge}</span>
+                    <span className="text-sm opacity-90">{getPriceDetail("groupe")!.equiv}</span>
+                    {getPriceDetail("groupe")!.saving && <p className="text-sm font-semibold opacity-90 mt-0.5">{getPriceDetail("groupe")!.saving}</p>}
                   </div>
                 )}
-                <p className="text-xs font-semibold opacity-95">Pré-diagnostic offert - valeur 300€</p>
-                <p className="text-xs opacity-70 mt-1">Pas de frais d'entrée · Sans engagement</p>
+                <p className="text-sm font-semibold opacity-95">Pré-diagnostic offert - valeur 300€</p>
+                <p className="text-sm opacity-90 mt-1">Pas de frais d'entrée · Sans engagement</p>
               </div>
 
               <div className="bg-primary-foreground/10 backdrop-blur-sm rounded-sm p-3 mb-6">
-                <p className="text-xs text-center opacity-90">
+                <p className="text-sm text-center opacity-90">
                   Tu as tes premiers clients et veux accélérer (1K-10K€ MRR)
                 </p>
               </div>
@@ -705,11 +672,11 @@ const Croissance = () => {
 
           {/* Feature Comparison Table */}
           <div className="max-w-5xl mx-auto mt-16 overflow-x-auto">
-            <p className="text-center text-sm font-semibold text-muted-foreground uppercase tracking-widest mb-6" style={{ letterSpacing: '0.18em' }}>Comparaison détaillée</p>
-            <table className="w-full text-xs md:text-sm border-collapse">
+            <p className="text-center text-sm font-semibold text-foreground uppercase tracking-widest mb-6" style={{ letterSpacing: '0.18em' }}>Comparaison détaillée</p>
+            <table className="w-full text-sm md:text-sm border-collapse">
               <thead>
                 <tr>
-                  <th className="text-left py-2 px-2 md:py-3 md:px-4 text-muted-foreground font-medium" style={{ width: '40%' }}></th>
+                  <th className="text-left py-2 px-2 md:py-3 md:px-4 text-foreground font-medium" style={{ width: '40%' }}></th>
                   <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Freemium</th>
                   <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-foreground">Premium</th>
                   <th className="py-2 px-2 md:py-3 md:px-4 text-center font-bold text-primary-foreground rounded-t-sm" style={{ background: 'hsl(222 44% 25%)' }}>Individualisé</th>

@@ -19,7 +19,7 @@ const AccompagnementFrancophonie = () => {
       "provider": {
         "@type": "Organization",
         "name": "Mare Nostrum",
-        "sameAs": "https://marenostrum.tech"
+        "sameAs": "https://www.marenostrum.tech"
       },
       "areaServed": [
         { "@type": "Country", "name": "France" },

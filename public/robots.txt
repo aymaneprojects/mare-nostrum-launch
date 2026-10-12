@@ -1,6 +1,6 @@
 # Mare Nostrum - Cabinet Expert Conseil Entrepreneuriat à Impact
 # Robots.txt optimisé SEO - Toulouse, Paris, Casablanca
-# https://marenostrum.tech
+# https://www.marenostrum.tech
 
 # Googlebot (Google Search) - Priorité maximale
 User-agent: Googlebot
@@ -99,13 +99,13 @@ Disallow: /_
 Disallow: /node_modules/
 
 # Ressources pour crawlers IA et LLM
-# LLMs (résumé) : https://marenostrum.tech/llms.txt
+# LLMs (résumé) : https://www.marenostrum.tech/llms.txt
 # LLMs (complet + articles) : https://oivxznyzijtoylwfigyq.supabase.co/functions/v1/llms-full
-# Pages : https://marenostrum.tech/pages.md
+# Pages : https://www.marenostrum.tech/pages.md
 
 # Sitemaps
-Sitemap: https://marenostrum.tech/sitemap.xml
+Sitemap: https://www.marenostrum.tech/sitemap.xml
 Sitemap: https://oivxznyzijtoylwfigyq.supabase.co/functions/v1/sitemap
 
 # Host canonique
-Host: https://marenostrum.tech
+Host: https://www.marenostrum.tech

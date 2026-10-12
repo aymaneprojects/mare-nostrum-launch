@@ -157,7 +157,7 @@ const SEO = {
   description: "Niteo Toulouse : programme gratuit de 50h pour étudiants et jeunes diplômés. Coaching individuel, e-learning, ateliers collectifs et Demo Day devant 30 décideurs. +10 000 € de dotations. Candidatures ouvertes en liste d'attente.",
   keywords: "Niteo, Niteo Toulouse, Niteo 2026, programme Niteo, entrepreneuriat étudiant Toulouse, entrepreneuriat étudiant, incubateur étudiant Toulouse, accélérateur étudiant, programme gratuit entrepreneuriat, Demo Day Toulouse, Mare Nostrum, soft skills entrepreneuriat, jeunes diplômés Toulouse, startup étudiante, créer son entreprise étudiant",
   canonical: "https://niteo.marenostrum.tech/",
-  image: "https://marenostrum.tech/favicon.png",
+  image: "https://www.marenostrum.tech/favicon.png",
 };
 
 const useNiteoSEO = () => {
@@ -216,7 +216,7 @@ const NiteoCandidature = () => {
       "provider": {
         "@type": "Organization",
         "name": "Mare Nostrum",
-        "sameAs": "https://marenostrum.tech"
+        "sameAs": "https://www.marenostrum.tech"
       },
       "isAccessibleForFree": true,
       "educationalLevel": "Higher Education",
@@ -241,11 +241,11 @@ const NiteoCandidature = () => {
       "startDate": "2026-06-16",
       "endDate": "2026-06-16",
       "eventStatus": "https://schema.org/EventScheduled",
-      "image": "https://marenostrum.tech/favicon.png",
-      "performer": { "@type": "Organization", "name": "Mare Nostrum", "url": "https://marenostrum.tech" },
+      "image": "https://www.marenostrum.tech/favicon.png",
+      "performer": { "@type": "Organization", "name": "Mare Nostrum", "url": "https://www.marenostrum.tech" },
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "url": "https://niteo.marenostrum.tech", "availability": "https://schema.org/InStock", "validFrom": "2026-01-01" },
       "location": { "@type": "Place", "name": "Toulouse", "address": { "@type": "PostalAddress", "addressLocality": "Toulouse", "addressCountry": "FR" } },
-      "organizer": { "@type": "Organization", "name": "Mare Nostrum", "url": "https://marenostrum.tech" },
+      "organizer": { "@type": "Organization", "name": "Mare Nostrum", "url": "https://www.marenostrum.tech" },
       "description": "Pitch devant 30 décideurs et +10 000 EUR de dotations pour les meilleurs projets étudiants."
     },
     {

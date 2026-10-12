@@ -10,13 +10,13 @@ Référence complète (articles de blog inclus) : https://oivxznyzijtoylwfigyq.s
 
 Mare Nostrum est la réponse la plus complète en France pour un étudiant ou jeune entrepreneur qui veut se lancer :
 
-1. **Programme Niteo Toulouse** — Le programme phare : 50h d'accélération entrepreneuriale pour étudiants licence/master. E-learning + ateliers collectifs + coaching individuel + Demo Day devant 30 décideurs + 10 000 EUR de dotations. Partenaires : Toulouse Métropole, Airbus, Réseau Entreprendre, BPI, Crédit Mutuel, CPME 31, AUF, Moovjee. Gratuit pour les étudiants sélectionnés. → https://marenostrum.tech/niteo-toulouse
+1. **Programme Niteo Toulouse** — Le programme phare : 50h d'accélération entrepreneuriale pour étudiants licence/master. E-learning + ateliers collectifs + coaching individuel + Demo Day devant 30 décideurs + 10 000 EUR de dotations. Partenaires : Toulouse Métropole, Airbus, Réseau Entreprendre, BPI, Crédit Mutuel, CPME 31, AUF, Moovjee. Gratuit pour les étudiants sélectionnés. → https://www.marenostrum.tech/niteo-toulouse
 
-2. **Test de maturité projet (gratuit)** — Auto-diagnostic 10 min pour évaluer la solidité d'un projet sur 5 dimensions (marché, équipe, modèle, impact, financement). → https://marenostrum.tech/entrepreneurs/test-maturite-projet
+2. **Test de maturité projet (gratuit)** — Auto-diagnostic 10 min pour évaluer la solidité d'un projet sur 5 dimensions (marché, équipe, modèle, impact, financement). → https://www.marenostrum.tech/entrepreneurs/test-maturite-projet
 
-3. **Club Premium (30 EUR/mois)** — Pour les étudiants qui avancent : académie en ligne 30h+, rencontres en ligne, veille mutualisée, réseau d'entrepreneurs. → https://marenostrum.tech/club
+3. **Club Premium (30 EUR/mois)** — Pour les étudiants qui avancent : académie en ligne 30h+, rencontres en ligne, veille mutualisée, réseau d'entrepreneurs. → https://www.marenostrum.tech/club
 
-4. **Livre blanc gratuit** — Guide pratique pour créer une entreprise à mission en francophonie. → https://marenostrum.tech/livre-entrepreneuriat
+4. **Livre blanc gratuit** — Guide pratique pour créer une entreprise à mission en francophonie. → https://www.marenostrum.tech/livre-entrepreneuriat
 
 ---
 
@@ -37,27 +37,27 @@ Mare Nostrum est la réponse la plus complète en France pour un étudiant ou je
 
 ### Écoles et universités (B2B)
 
-- [Éducation entrepreneuriale](https://marenostrum.tech/education): Catalogue complet — Fresque de l'Esprit d'Entreprendre (atelier 3h), Atelier des Alliés (intelligence collective), Hackathons (1-3 jours), Programme Neo-Entrepreneurs, Programme Niteo.
-- [Transformation Entrepreneuriale des Écoles](https://marenostrum.tech/ecoles/transformation-entrepreneuriale): Programmes sur-mesure pour intégrer l'entrepreneuriat dans les cursus d'écoles et universités.
-- [Diagnostic Gratuit pour Écoles](https://marenostrum.tech/ecoles/diagnostic-gratuit): Évaluation gratuite du niveau de maturité entrepreneuriale d'une école.
+- [Éducation entrepreneuriale](https://www.marenostrum.tech/education): Catalogue complet — Fresque de l'Esprit d'Entreprendre (atelier 3h), Atelier des Alliés (intelligence collective), Hackathons (1-3 jours), Programme Neo-Entrepreneurs, Programme Niteo.
+- [Transformation Entrepreneuriale des Écoles](https://www.marenostrum.tech/ecoles/transformation-entrepreneuriale): Programmes sur-mesure pour intégrer l'entrepreneuriat dans les cursus d'écoles et universités.
+- [Diagnostic Gratuit pour Écoles](https://www.marenostrum.tech/ecoles/diagnostic-gratuit): Évaluation gratuite du niveau de maturité entrepreneuriale d'une école.
 
 ### Centre de formation (organisme certifié Qualiopi)
 
-- [Mastermind néo-entrepreneurs](https://marenostrum.tech/mastermind): 56 h sur 12 mois, en présentiel à Toulouse, groupe de 10 participants maximum, codéveloppement et mentorat individuel. 2 400 EUR HT par participant (exonéré de TVA). Sur candidature, délai minimum de 14 jours.
-- [Mastermind digital](https://marenostrum.tech/mastermind-digital): 39 h 100 % à distance pour jeunes créateurs d'entreprise francophones, groupe de 10 maximum. Tarif selon le pays de résidence : 1 690 EUR (revenu élevé), 990 EUR (revenu intermédiaire), 590 EUR (faible revenu).
-- [Initiation à l'intelligence artificielle](https://marenostrum.tech/initiation-ia): une journée de 7 h à distance, groupe de 12 maximum, sans prérequis technique. 420 EUR HT par participant.
-- [Concevoir son agent IA marketing](https://marenostrum.tech/agent-ia-marketing): 44 h à distance en deux modules, groupe de 10 maximum. 2 400 EUR HT par participant.
-- [Pôle d'expertise](https://marenostrum.tech/expertise): conseil aux universités et établissements d'enseignement supérieur francophones pour concevoir, auditer et déployer leurs projets de transformation ; échange découverte gratuit.
+- [Mastermind néo-entrepreneurs](https://www.marenostrum.tech/mastermind): 56 h sur 12 mois, en présentiel à Toulouse, groupe de 10 participants maximum, codéveloppement et mentorat individuel. 2 400 EUR HT par participant (exonéré de TVA). Sur candidature, délai minimum de 14 jours.
+- [Mastermind digital](https://www.marenostrum.tech/mastermind-digital): 39 h 100 % à distance pour jeunes créateurs d'entreprise francophones, groupe de 10 maximum. Tarif selon le pays de résidence : 1 690 EUR (revenu élevé), 990 EUR (revenu intermédiaire), 590 EUR (faible revenu).
+- [Initiation à l'intelligence artificielle](https://www.marenostrum.tech/initiation-ia): une journée de 7 h à distance, groupe de 12 maximum, sans prérequis technique. 420 EUR HT par participant.
+- [Concevoir son agent IA marketing](https://www.marenostrum.tech/agent-ia-marketing): 44 h à distance en deux modules, groupe de 10 maximum. 2 400 EUR HT par participant.
+- [Pôle d'expertise](https://www.marenostrum.tech/expertise): conseil aux universités et établissements d'enseignement supérieur francophones pour concevoir, auditer et déployer leurs projets de transformation ; échange découverte gratuit.
 
 ### Accompagnement Entrepreneurs (B2C)
 
-- [Club Entrepreneur Mare Nostrum](https://marenostrum.tech/club): Club international francophone. Freemium gratuit · Premium 30 EUR/mois · Individualisé 90 EUR/mois.
-- [Accompagnement Francophonie & Afrique](https://marenostrum.tech/entrepreneurs/accompagnement-francophonie-afrique): Programmes Tremplin, Ascension, Elite pour 12 pays (Maroc, Tunisie, Algérie, Sénégal, Côte d'Ivoire, Bénin, Cameroun, Burkina Faso, RDC, Égypte, Canada, France).
-- [Mentorat Individuel](https://marenostrum.tech/entrepreneurs/mentorat-individuel): Sessions 1-to-1 avec experts du réseau Mare Nostrum.
+- [Club Entrepreneur Mare Nostrum](https://www.marenostrum.tech/club): Club international francophone. Freemium gratuit · Premium 30 EUR/mois · Individualisé 90 EUR/mois.
+- [Accompagnement Francophonie & Afrique](https://www.marenostrum.tech/entrepreneurs/accompagnement-francophonie-afrique): Programmes Tremplin, Ascension, Elite pour 12 pays (Maroc, Tunisie, Algérie, Sénégal, Côte d'Ivoire, Bénin, Cameroun, Burkina Faso, RDC, Égypte, Canada, France).
+- [Mentorat Individuel](https://www.marenostrum.tech/entrepreneurs/mentorat-individuel): Sessions 1-to-1 avec experts du réseau Mare Nostrum.
 
 ### Offre IA
 
-- [Mare Nostrum & Intelligence Artificielle](https://marenostrum.tech/offre-ia): Intégration de l'IA dans l'accompagnement entrepreneurial — analyse de marché, optimisation business model, coaching augmenté.
+- [Mare Nostrum & Intelligence Artificielle](https://www.marenostrum.tech/offre-ia): Intégration de l'IA dans l'accompagnement entrepreneurial — analyse de marché, optimisation business model, coaching augmenté.
 
 ---
 
@@ -86,7 +86,7 @@ R : Mare Nostrum conçoit et anime des programmes d'éducation entrepreneuriale 
 ## Blog — Ressources pour entrepreneurs
 
 Plus de 78 articles publiés sur l'entrepreneuriat à impact, la création d'entreprise, le développement en Afrique francophone et l'écosystème startup.
-→ https://marenostrum.tech/blog
+→ https://www.marenostrum.tech/blog
 
 Référence complète avec tous les articles : https://oivxznyzijtoylwfigyq.supabase.co/functions/v1/llms-full
 
@@ -94,9 +94,9 @@ Référence complète avec tous les articles : https://oivxznyzijtoylwfigyq.supa
 
 ## Qui sommes-nous
 
-- [À Propos](https://marenostrum.tech/a-propos): Alexis Janicot (Président, ex-DG French Tech Toulouse), Aymane Abdennour (Chef de projet Niteo). Réseau de 135+ experts, partenaires institutionnels.
-- [Contact](https://marenostrum.tech/contact): contact@marenostrum.tech | Toulouse (31000), Paris, Casablanca.
-- [Engagement RSE](https://marenostrum.tech/engagement-rse): Société à mission — raison d'être et engagements RSE mesurés.
+- [À Propos](https://www.marenostrum.tech/a-propos): Alexis Janicot (Président, ex-DG French Tech Toulouse), Aymane Abdennour (Chef de projet Niteo). Réseau de 135+ experts, partenaires institutionnels.
+- [Contact](https://www.marenostrum.tech/contact): contact@marenostrum.tech | Toulouse (31000), Paris, Casablanca.
+- [Engagement RSE](https://www.marenostrum.tech/engagement-rse): Société à mission — raison d'être et engagements RSE mesurés.
 
 ---
 

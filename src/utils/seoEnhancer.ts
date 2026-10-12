@@ -93,7 +93,7 @@ const generateBreadcrumbs = (path: string): object => {
   const breadcrumbs = [
     {
       name: "Accueil",
-      url: "https://marenostrum.tech"
+      url: "https://www.marenostrum.tech"
     }
   ];
   
@@ -116,7 +116,7 @@ const generateBreadcrumbs = (path: string): object => {
     currentPath += `/${segment}`;
     breadcrumbs.push({
       name: pathNames[segment] || segment,
-      url: `https://marenostrum.tech${currentPath}`
+      url: `https://www.marenostrum.tech${currentPath}`
     });
   });
   
@@ -141,12 +141,12 @@ const generateWebsiteSchema = (): object => {
     "@type": "WebSite",
     "name": BRAND_NAME,
     "alternateName": "Cabinet Mare Nostrum",
-    "url": "https://marenostrum.tech",
+    "url": "https://www.marenostrum.tech",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": "https://marenostrum.tech/blog?search={search_term_string}"
+        "urlTemplate": "https://www.marenostrum.tech/blog?search={search_term_string}"
       },
       "query-input": "required name=search_term_string"
     }

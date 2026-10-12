@@ -20,10 +20,10 @@ const AgentIAMarketing = () => {
   return (
     <div className="min-h-dvh flex flex-col bg-background">
       <EnhancedSEOHead
-        title="Concevoir son agent IA marketing | Mare Nostrum"
+        title="Formation agent IA marketing, Toulouse et distance | Mare Nostrum"
         description="Formation de 44 heures à distance pour concevoir, construire et déployer un agent IA marketing appliqué à son propre cas."
-        keywords="formation agent IA marketing, IA générative, automatisation marketing, n8n, prompt engineering, formation IA à distance"
-        structuredData={{ "@context": "https://schema.org", "@type": "Course", name: "Concevoir son agent IA marketing", description: "Formation pour concevoir, construire et déployer son propre agent IA marketing.", provider: { "@type": "Organization", name: "Mare Nostrum", url: "https://www.marenostrum.tech" }, timeRequired: "PT44H", courseMode: "online" }}
+        keywords="formation agent IA marketing toulouse, formation agent IA marketing, IA générative, automatisation marketing, n8n, prompt engineering, formation IA à distance"
+        structuredData={{ "@context": "https://schema.org", "@type": "Course", name: "Concevoir son agent IA marketing", description: "Formation pour concevoir, construire et déployer son propre agent IA marketing.", provider: { "@type": "Organization", name: "Mare Nostrum", url: "https://www.marenostrum.tech", address: { "@type": "PostalAddress", addressLocality: "Toulouse", addressCountry: "FR" } }, timeRequired: "PT44H", courseMode: "online" }}
       />
       <Header />
       <PageHero eyebrow="100 % à distance · 44 heures" title="Concevoir son agent IA marketing" subtitle="De l'IA générative à l'automatisation de ses campagnes : repartez avec un agent fonctionnel, appliqué à votre cas." ctas={brochureButton} />
