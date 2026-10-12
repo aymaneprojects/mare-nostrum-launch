@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { ChatGPTLogo, ClaudeLogo, PerplexityLogo, GoogleLogo } from "@/components/AiLogos";
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, Calendar, Clock, Share2, Loader2, RefreshCw, Linkedin, Facebook, Twitter, Mail, MessageCircle, Link2 } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -62,10 +63,10 @@ const addAnchors = (html: string): { html: string; toc: { id: string; text: stri
 };
 
 const AI_TARGETS = [
-  { name: "ChatGPT", url: "https://chatgpt.com/?q=" },
-  { name: "Claude", url: "https://claude.ai/new?q=" },
-  { name: "Perplexity", url: "https://www.perplexity.ai/search?q=" },
-  { name: "Google AI", url: "https://www.google.com/search?udm=50&q=" },
+  { name: "ChatGPT", url: "https://chatgpt.com/?q=", Logo: ChatGPTLogo },
+  { name: "Claude", url: "https://claude.ai/new?q=", Logo: ClaudeLogo },
+  { name: "Perplexity", url: "https://www.perplexity.ai/search?q=", Logo: PerplexityLogo },
+  { name: "Google AI", url: "https://www.google.com/search?udm=50&q=", Logo: GoogleLogo },
 ];
 
 const plainText = (html: string): string =>
@@ -194,7 +195,10 @@ const BlogArticle = () => {
       <span className="text-sm text-muted-foreground">Résumer cet article avec</span>
       {AI_TARGETS.map((a) => (
         <Button key={a.name} variant="outline" size="sm" asChild>
-          <a href={a.url + aiPrompt} target="_blank" rel="noopener noreferrer">{a.name}</a>
+          <a href={a.url + aiPrompt} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+            <a.Logo className="h-4 w-4 shrink-0" />
+            {a.name}
+          </a>
         </Button>
       ))}
     </div>
