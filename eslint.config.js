@@ -23,4 +23,16 @@ export default tseslint.config(
       "@typescript-eslint/no-unused-vars": "off",
     },
   },
+  {
+    // Aucun tiret cadratin dans un texte du site (demande du propriétaire, oct. 2026).
+    // Les commentaires restent libres ; écrire \u2014 si le caractère est vraiment nécessaire.
+    files: ["src/**/*.{ts,tsx}"],
+    rules: {
+      "no-restricted-syntax": ["error",
+        { selector: "JSXText[value=/\u2014/]", message: "Pas de tiret cadratin « — » sur le site : utiliser « - », une virgule ou deux-points." },
+        { selector: "Literal[value=/\u2014/]", message: "Pas de tiret cadratin « — » sur le site : utiliser « - », une virgule ou deux-points." },
+        { selector: "TemplateElement[value.raw=/\u2014/]", message: "Pas de tiret cadratin « — » sur le site : utiliser « - », une virgule ou deux-points." },
+      ],
+    },
+  },
 );

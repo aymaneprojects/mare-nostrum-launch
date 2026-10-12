@@ -40,10 +40,10 @@ const CURRENCIES: Record<Location, string> = {
   congo_brazzaville: "xof",
 };
 
-// Taux TVA — affichés sur facture et checkout
-const TAX_RATE_FR_FORMATION = "txr_1TZv2WRtzJviITg0a9uhLZHZ"; // 0%  — Exonération formation art. 261-4-4a CGI
-const TAX_RATE_FR_20        = "txr_1TZv7YRtzJviITg0BxVVs14X"; // 20% — TVA services digitaux France
-const TAX_RATE_EXPORT       = "txr_1TZv2WRtzJviITg0Dd3ZXPaZ"; // 0%  — TVA à l'export art. 262 I CGI
+// Taux TVA - affichés sur facture et checkout
+const TAX_RATE_FR_FORMATION = "txr_1TZv2WRtzJviITg0a9uhLZHZ"; // 0% - Exonération formation art. 261-4-4a CGI
+const TAX_RATE_FR_20        = "txr_1TZv7YRtzJviITg0BxVVs14X"; // 20% - TVA services digitaux France
+const TAX_RATE_EXPORT       = "txr_1TZv2WRtzJviITg0Dd3ZXPaZ"; // 0% - TVA à l'export art. 262 I CGI
 
 // Modèles de facture (Invoice Rendering Templates)
 const INVOICE_TPL_FR: Record<Offer, string> = {
@@ -109,8 +109,8 @@ serve(async (req) => {
         price_data: {
           currency,
           product_data: {
-            name:        `Club Mare Nostrum — ${OFFER_NAMES[offer]}`,
-            description: `Abonnement ${billingLabel} — Club Entrepreneur Mare Nostrum`,
+            name:        `Club Mare Nostrum - ${OFFER_NAMES[offer]}`,
+            description: `Abonnement ${billingLabel} - Club Entrepreneur Mare Nostrum`,
           },
           unit_amount:  amount,
           tax_behavior: "exclusive",

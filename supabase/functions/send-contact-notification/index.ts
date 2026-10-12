@@ -86,7 +86,7 @@ const handler = async (req: Request): Promise<Response> => {
     for (const [map, key, label] of checks) {
       const last = map.get(key);
       if (last && now - last < RATE_WINDOW_MS) {
-        console.warn(`[RATE LIMIT] ${label}=${key} — soumission trop rapprochée`);
+        console.warn(`[RATE LIMIT] ${label}=${key} - soumission trop rapprochée`);
         return new Response(JSON.stringify({ success: true }), {
           status: 200,
           headers: { "Content-Type": "application/json", ...corsHeaders },
@@ -135,18 +135,18 @@ const handler = async (req: Request): Promise<Response> => {
         from: "Mare Nostrum <no-reply@marenostrum.tech>",
         to:   ["contact@marenostrum.tech"],
         cc:   ["alexis@marenostrum.tech"],
-        subject: `Nouveau message de ${name} — ${SEGMENT_MAP[type] ?? type}`,
+        subject: `Nouveau message de ${name} - ${SEGMENT_MAP[type] ?? type}`,
         html: `
           <h2>Nouveau message de contact</h2>
           <p><strong>Nom :</strong> ${name}</p>
           <p><strong>Email :</strong> ${email}</p>
           ${phone ? `<p><strong>Téléphone :</strong> ${phone}</p>` : ""}
-          <p><strong>Pays :</strong> ${country ?? "—"}</p>
+          <p><strong>Pays :</strong> ${country ?? "-"}</p>
           <p><strong>Profil :</strong> ${SEGMENT_MAP[type] ?? type}</p>
           <p><strong>Message :</strong></p>
           <p>${message}</p>
           <hr>
-          <p><small>Formulaire de contact — marenostrum.tech</small></p>
+          <p><small>Formulaire de contact - marenostrum.tech</small></p>
         `,
       }),
     });

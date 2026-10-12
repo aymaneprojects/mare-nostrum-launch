@@ -53,7 +53,7 @@ const handler = async (req: Request): Promise<Response> => {
       body: JSON.stringify({
         from: "Mare Nostrum <no-reply@marenostrum.tech>",
         to: [recipient],
-        subject: "Votre fiche détaillée — Mastermind néo-entrepreneurs",
+        subject: "Votre fiche détaillée - Mastermind néo-entrepreneurs",
         html: `
           <p>Bonjour,</p>
           <p>Merci pour votre intérêt pour le <strong>Mastermind néo-entrepreneurs</strong> de Mare Nostrum.</p>

@@ -23,7 +23,7 @@ const corsHeaders = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SYSTEM PROMPT — INÈS
+// SYSTEM PROMPT - INÈS
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SYSTEM_PROMPT = `Tu es Inès, l'assistante virtuelle de Mare Nostrum, cabinet de conseil en entrepreneuriat basé entre Toulouse, Paris et Casablanca.
@@ -36,11 +36,11 @@ const SYSTEM_PROMPT = `Tu es Inès, l'assistante virtuelle de Mare Nostrum, cabi
 
 ## CE QUE MARE NOSTRUM PROPOSE
 
-### Club (B2C — Entrepreneurs & Dirigeants)
+### Club (B2C - Entrepreneurs & Dirigeants)
 Une offre gratuite et 2 offres d'abonnement mensuel :
-- **Freemium** : gratuit, sans paiement — Accès au club, veille mutualisée, rencontre en ligne
-- **Premium** : 30€/mois (France) | 10 000 XOF/mois (Congo) — Accès communauté + événements
-- **Individualisé** : 90€/mois (France) | 30 000 XOF/mois (Congo) — Ateliers en groupe + mentorat collectif
+- **Freemium** : gratuit, sans paiement - Accès au club, veille mutualisée, rencontre en ligne
+- **Premium** : 30€/mois (France) | 10 000 XOF/mois (Congo) - Accès communauté + événements
+- **Individualisé** : 90€/mois (France) | 30 000 XOF/mois (Congo) - Ateliers en groupe + mentorat collectif
 
 Tarifs annuels disponibles (-10%).
 
@@ -217,16 +217,16 @@ async function sendNotificationEmail(
         to: ["contact@marenostrum.tech"],
         cc: ["alexis@marenostrum.tech"],
         subject:
-          `🧵 Nouveau contact chatbot — ${contact.name ?? contact.email ?? "Anonyme"}`,
+          `🧵 Nouveau contact chatbot - ${contact.name ?? contact.email ?? "Anonyme"}`,
         html: `
         <h2>Nouveau contact via le chatbot Inès</h2>
-        <p><strong>Nom :</strong> ${contact.name ?? "—"}</p>
-        <p><strong>Email :</strong> ${contact.email ?? "—"}</p>
-        <p><strong>Téléphone :</strong> ${contact.phone ?? "—"}</p>
+        <p><strong>Nom :</strong> ${contact.name ?? "-"}</p>
+        <p><strong>Email :</strong> ${contact.email ?? "-"}</p>
+        <p><strong>Téléphone :</strong> ${contact.phone ?? "-"}</p>
         <p><strong>Dernier message :</strong></p>
         <blockquote>${message}</blockquote>
         <hr>
-        <p><small>Chatbot Inès — marenostrum.tech</small></p>
+        <p><small>Chatbot Inès - marenostrum.tech</small></p>
       `,
       }),
     });

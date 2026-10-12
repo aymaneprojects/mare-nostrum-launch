@@ -1,5 +1,5 @@
 /**
- * live-admin — actions de l'animateur pour le module Live conférence.
+ * live-admin - actions de l'animateur pour le module Live conférence.
  *
  * Toutes les écritures privilégiées passent ici (service role). Chaque action
  * autre que create_event vérifie le code animateur contre son empreinte
@@ -7,7 +7,7 @@
  *
  * Secrets :
  *   LIVE_CREATE_KEY    clé de l'équipe, obligatoire pour créer un événement
- *   LIVE_ADMIN_PEPPER  concaténé au code avant hachage — ne jamais le changer
+ *   LIVE_ADMIN_PEPPER  concaténé au code avant hachage - ne jamais le changer
  */
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
