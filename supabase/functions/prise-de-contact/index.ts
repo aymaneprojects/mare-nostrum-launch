@@ -1,4 +1,4 @@
-// Prise de contact — remplace l'ancien couple « confirmation + notification ».
+// Prise de contact - remplace l'ancien couple « confirmation + notification ».
 //
 // Un contact arrive de trois façons : un visiteur du site, une rencontre lors
 // d'un événement, ou une recommandation. Dans tous les cas, on enregistre la
@@ -234,8 +234,8 @@ serve(async (req) => {
 
     // ── 2. Mot de bienvenue à la PERSONNE (contact@ en copie visible) ────────
     // Texte validé par le propriétaire le 7 octobre 2026. On ne dit JAMAIS qu'on a
-    // saisi ses coordonnées quelque part : on acte que le contact a eu lieu —
-    // événement, rencontre ou site — et on annonce un retour.
+    // saisi ses coordonnées quelque part : on acte que le contact a eu lieu - 
+    // événement, rencontre ou site - et on annonce un retour.
     const gris = "#8a8fa3";
     const htmlPersonne = `
 <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.65;color:#1b2340;max-width:560px">

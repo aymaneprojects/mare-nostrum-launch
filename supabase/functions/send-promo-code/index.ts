@@ -41,7 +41,7 @@ const handler = async (req: Request): Promise<Response> => {
     const { prenom, email, phone, zone } = await req.json();
 
     // Validation AVANT toute création chez Stripe. Sans elle, n'importe qui
-    // appelant cette adresse directement — sans passer par le site — faisait
+    // appelant cette adresse directement - sans passer par le site - faisait
     // créer un coupon de −50 % (audit du 2 octobre 2026).
     const estTexte = (v: unknown, max: number) =>
       typeof v === "string" && v.trim().length > 0 && v.trim().length <= max;
@@ -62,7 +62,7 @@ const handler = async (req: Request): Promise<Response> => {
       percent_off: 50,
       duration: "once",
       max_redemptions: 1,
-      name: `–50% premier mois — ${prenom}`,
+      name: `–50% premier mois - ${prenom}`,
     });
 
     await stripe.promotionCodes.create({
@@ -75,7 +75,7 @@ const handler = async (req: Request): Promise<Response> => {
     // ── Email au visiteur ──────────────────────────────────────────────────────
     await sendEmail(
       email,
-      `Ton code promo –50% — Club Mare Nostrum`,
+      `Ton code promo –50% - Club Mare Nostrum`,
       `
         <p>Bonjour ${prenom},</p>
 
@@ -129,7 +129,7 @@ const handler = async (req: Request): Promise<Response> => {
     // ── Notification interne ───────────────────────────────────────────────────
     await sendEmail(
       "contact@marenostrum.tech",
-      `Nouveau lead popup — ${prenom} — Code : ${promoCode}`,
+      `Nouveau lead popup - ${prenom} - Code : ${promoCode}`,
       `
 <h2>Nouveau lead via popup exit-intent</h2>
 <p><strong>Prénom :</strong> ${prenom}</p>

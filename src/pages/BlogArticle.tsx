@@ -48,7 +48,7 @@ const cleanArticleContent = (content: string, title: string): string => {
 };
 
 // Pas de tiret cadratin affiché : " — " devient " - " (au rendu seulement, la base n'est pas modifiée)
-const noEmDash = (t: string): string => t.replace(/\s*—\s*/g, " - ");
+const noEmDash = (t: string): string => t.replace(/\s*\u2014\s*/g, " - ");
 
 // Ajoute des ancres aux h2/h3 et renvoie le sommaire correspondant
 const addAnchors = (html: string): { html: string; toc: { id: string; text: string; level: number }[] } => {

@@ -39,7 +39,7 @@ serve(async (req) => {
     const email    = session.customer_details?.email ?? "";
     const fullName = `${prenom ?? ""} ${nom ?? ""}`.trim();
 
-    // Marquer la session comme traitée (idempotence) — avant l'email pour éviter toute race condition
+    // Marquer la session comme traitée (idempotence) - avant l'email pour éviter toute race condition
     await stripe.checkout.sessions.update(session_id, {
       metadata: { ...session.metadata, confirmed: "true" },
     });
@@ -55,7 +55,7 @@ serve(async (req) => {
         from: "Niteo Toulouse <no-reply@marenostrum.tech>",
         to:   [email],
         bcc:  ["aymane@marenostrum.tech"],
-        subject: "Votre invitation — Demo Day Niteo Toulouse 2026",
+        subject: "Votre invitation - Demo Day Niteo Toulouse 2026",
         html: `
 <p>Bonjour${fullName ? ` ${fullName}` : ""},</p>
 
@@ -76,7 +76,7 @@ serve(async (req) => {
 
 <p>Cette invitation est envoyée à titre individuel et personnel.</p>
 
-<p>Un immense merci — l'esprit d'entreprendre va briller grâce à vous à Toulouse !</p>
+<p>Un immense merci - l'esprit d'entreprendre va briller grâce à vous à Toulouse !</p>
 
 <p>À très vite,</p>
 

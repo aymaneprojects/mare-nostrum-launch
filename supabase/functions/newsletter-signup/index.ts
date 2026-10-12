@@ -5,7 +5,7 @@ const BASE_ID  = "appZ8ykNuUOv89ou0";
 const TABLE_ID = "tblocqquF4OXgXveO";
 const AIRTABLE_URL = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE_ID)}`;
 
-// Automatisation n8n « ITER — Newsletter inscription site web » : envoie les 12
+// Automatisation n8n « ITER - Newsletter inscription site web » : envoie les 12
 // e-mails ITER. Appelée APRÈS l'enregistrement Airtable ; si n8n est en panne,
 // l'inscription reste valide et le prospect est quand même dans Airtable.
 const N8N_ITER_WEBHOOK =

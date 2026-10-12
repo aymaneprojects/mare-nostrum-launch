@@ -31,8 +31,8 @@ function clubReco(score: number) {
 function buildResume(scores: Record<string, number>, comments: Record<string, string>, totalScore: number, noteGlobale: number): string {
   const lines = AXES.map(a => {
     const s = scores[a.key] ?? 0;
-    const c = comments[a.key] ? ` — ${comments[a.key]}` : "";
-    return `${a.label} : ${s}/5 (${SCORE_LABELS[s] || "—"})${c}`;
+    const c = comments[a.key] ? ` - ${comments[a.key]}` : "";
+    return `${a.label} : ${s}/5 (${SCORE_LABELS[s] || "-"})${c}`;
   });
   lines.push(`\nScore total : ${totalScore}/40`);
   lines.push(`Note globale : ${noteGlobale}/20`);
@@ -169,7 +169,7 @@ serve(async (req) => {
       body: JSON.stringify({
         from: "Mare Nostrum <no-reply@marenostrum.tech>",
         to: [email],
-        subject: `Votre diagnostic projet — Club ${reco.tier} recommandé`,
+        subject: `Votre diagnostic projet - Club ${reco.tier} recommandé`,
         html: buildEmailHtml(nom, projet, scores, comments, totalScore, noteGlobale, remarques),
       }),
     });
@@ -181,7 +181,7 @@ serve(async (req) => {
       body: JSON.stringify({
         from: "Mare Nostrum <no-reply@marenostrum.tech>",
         to: ["aymane@marenostrum.tech"],
-        subject: `Nouveau diagnostic : ${nom} — ${projet} (${totalScore}/40)`,
+        subject: `Nouveau diagnostic : ${nom} - ${projet} (${totalScore}/40)`,
         html: buildEmailHtml(nom, projet, scores, comments, totalScore, noteGlobale, remarques),
       }),
     });

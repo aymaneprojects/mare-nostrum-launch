@@ -1,11 +1,11 @@
-# ai.txt — conditions d'utilisation du contenu de marenostrum.tech par les IA
-# Mare Nostrum SAS — Toulouse, Paris, Casablanca
+# ai.txt - conditions d'utilisation du contenu de marenostrum.tech par les IA
+# Mare Nostrum SAS - Toulouse, Paris, Casablanca
 
 User-agent: *
 Allow: /
 
 # Citation demandée
-Attribution: Mare Nostrum — https://www.marenostrum.tech
+Attribution: Mare Nostrum - https://www.marenostrum.tech
 Contact: contact@marenostrum.tech
 
 # Entraînement de modèles sur nos contenus : nous demandons un accord préalable.

@@ -1,5 +1,5 @@
 /**
- * SEO CRON — Mare Nostrum
+ * SEO CRON - Mare Nostrum
  * Runs every 4h via pg_cron → net.http_post
  *
  * Each run:
@@ -41,7 +41,7 @@ interface Cluster {
 }
 
 const KEYWORD_BANK: Cluster[] = [
-  // ── PILIER A — Francophonie ───────────────────────────────────────────────
+  // ── PILIER A - Francophonie ───────────────────────────────────────────────
   {
     pillar: "A", category: "Entrepreneuriat",
     title:    "Entrepreneuriat francophone : état des lieux et opportunités en 2025",
@@ -91,7 +91,7 @@ const KEYWORD_BANK: Cluster[] = [
     image:    "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1200",
   },
 
-  // ── PILIER B — Création entreprise France ────────────────────────────────
+  // ── PILIER B - Création entreprise France ────────────────────────────────
   {
     pillar: "B", category: "Création d'entreprise",
     title:    "Comment créer une entreprise en France en 2025 : guide complet étape par étape",
@@ -147,7 +147,7 @@ const KEYWORD_BANK: Cluster[] = [
     image:    "https://images.unsplash.com/photo-1523287562758-66c7fc58967f?w=1200",
   },
 
-  // ── PILIER C — Accompagnement & Club ────────────────────────────────────
+  // ── PILIER C - Accompagnement & Club ────────────────────────────────────
   {
     pillar: "C", category: "Accompagnement",
     title:    "Pourquoi rejoindre un club d'entrepreneurs change vraiment la trajectoire de votre projet",
@@ -197,7 +197,7 @@ const KEYWORD_BANK: Cluster[] = [
     image:    "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200",
   },
 
-  // ── PILIER D — Afrique / Congo / Maroc ──────────────────────────────────
+  // ── PILIER D - Afrique / Congo / Maroc ──────────────────────────────────
   {
     pillar: "D", category: "Entrepreneuriat Afrique",
     title:    "Entrepreneuriat en Afrique francophone : les secteurs qui explosent en 2025",
@@ -259,7 +259,7 @@ const KEYWORD_BANK: Cluster[] = [
     image:    "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200",
   },
 
-  // ── PILIER E — Formation ─────────────────────────────────────────────────
+  // ── PILIER E - Formation ─────────────────────────────────────────────────
   {
     pillar: "E", category: "Formation",
     title:    "Formation entrepreneuriat : les programmes qui font vraiment la différence en 2025",
@@ -315,7 +315,7 @@ const KEYWORD_BANK: Cluster[] = [
     image:    "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=1200",
   },
 
-  // ── PILIER F — Financement ───────────────────────────────────────────────
+  // ── PILIER F - Financement ───────────────────────────────────────────────
   {
     pillar: "F", category: "Financement",
     title:    "Financer sa startup en France en 2025 : toutes les options disponibles",
