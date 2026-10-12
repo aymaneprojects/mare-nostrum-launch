@@ -342,7 +342,7 @@ const Index = () => {
           <div className="max-w-6xl mx-auto text-center">
             <div className="mn-eyebrow-turquoise text-center mb-5">Nos services</div>
             <h2 className="font-editorial italic mb-8 md:mb-14 text-foreground">
-              Nous vous accompagnons à passer passer de l'idée à l'action.
+              Nous vous accompagnons à passer de l'idée à l'action.
             </h2>
 
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 md:gap-7">
