@@ -342,7 +342,7 @@ const Index = () => {
           <div className="max-w-6xl mx-auto text-center">
             <div className="mn-eyebrow-turquoise text-center mb-5">Nos services</div>
             <h2 className="font-editorial italic mb-8 md:mb-14 text-foreground">
-              Les services Mare Nostrum
+              Nous vous accompagnons à passer passer de l'idée à l'action.
             </h2>
 
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 md:gap-7">
@@ -389,9 +389,9 @@ const Index = () => {
             Ils nous font confiance
           </h2>
           <div className="grid lg:grid-cols-2 lg:[&>:last-child]:col-span-2 gap-5 md:gap-8 max-w-6xl mx-auto">
-            <TestimonialCard text="Quelque chose qui était présent à chaque instant (du Programme) c'est l'échange d'expérience et d'opinion. Ce qui permettait un retour permanent, constructif et pointilleux tout ça dans la bienveillance et la bonne humeur" author="Annabel" role="Étudiante et néo-entrepreneure accompagnée" organization="2024" />
-            <TestimonialCard text="Un acteur efficace, engagé et authentique, qui accompagne réellement les établissements dans leur transformation." author="Géraldine Le Caer" role="Directrice d'établissement partenaire" />
-            <TestimonialCard text="Être ici aux côtés de l'ensemble des porteurs de projet, pour moi, c'était important. Parce que ce sont des jeunes audacieux, persévérants, et parce qu'on a besoin d'un entrepreneuriat qui est en capacité de pouvoir changer le monde. Ils mettent leurs convictions au service de solutions. Ce sont des solutions concrètes et performantes. Faites leur confiance, aidez-les, accompagnez-les !" author="Nadia Pellefigue" role="Vice-présidente de la Région Occitanie" />
+            <TestimonialCard text="Quelque chose qui était présent à chaque instant (du Programme) c'est l'échange d'expérience et d'opinion. Ce qui permettait un retour permanent, constructif et pointilleux tout ça dans la bienveillance et la bonne humeur" author="Annabel" role="Etudiante et néo-entrepreneure accompagnée par Mare Nostrum" roleCase="normal" />
+            <TestimonialCard text="Un acteur efficace, engagé et authentique, qui accompagne réellement les établissements dans leur transformation." author="Géraldine" role="Directrice d'établissement d'enseignement partenaire" roleCase="normal" />
+            <TestimonialCard text="Être ici aux côtés de l'ensemble des porteurs de projet, pour moi, c'était important. Parce que ce sont des jeunes audacieux, persévérants, et parce qu'on a besoin d'un entrepreneuriat qui est en capacité de pouvoir changer le monde. Ils mettent leurs convictions au service de solutions. Ce sont des solutions concrètes et performantes. Faites leur confiance, aidez-les, accompagnez-les !" author="Nadia Pellefigue" role="Vice-présidente de la région Occitanie (France)" roleCase="normal" />
           </div>
         </div>
       </section>
