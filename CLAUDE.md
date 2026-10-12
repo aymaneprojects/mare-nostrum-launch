@@ -74,7 +74,7 @@ No test suite is configured. Lint is the only automated check.
 - **`src/pages/`** — one file per route. Sub-folders `ecoles/`, `entrepreneurs/`, `mag/` group the three SEO content silos (B2B schools, B2C entrepreneurs, thought-leadership magazine).
 - **`src/components/`** — shared UI: `Header`, `Footer`, `ChatBot` (Brandy assistant), `EnhancedSEOHead`, `StructuredData`, `CookieBanner`, `ScrollToTop*`.
 - **`src/components/ui/`** — shadcn/ui primitives (auto-generated, do not hand-edit).
-- **`src/hooks/`** — `useBlogArticles`, `useBlogArticle`, `useRelatedArticles` (TanStack Query wrappers over Supabase), `usePrefetchBlog` (prefetches blog list on app mount).
+- **`src/hooks/`** — `useBlogArticles`, `useBlogArticle`, `useRelatedArticles` (TanStack Query wrappers over Supabase). Never preload blog content globally: the old `usePrefetchBlog` downloaded 3 MB of articles on every visit and blew the Supabase egress quota.
 - **`src/integrations/supabase/`** — auto-generated client and types. Import via `import { supabase } from "@/integrations/supabase/client"`.
 - **`src/utils/seoEnhancer.ts`** — auto-enriches page titles/descriptions/keywords with the "Mare Nostrum" brand before passing to `<SEOHead>`.
 
