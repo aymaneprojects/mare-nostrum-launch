@@ -21,23 +21,25 @@ const InnovationPedagogiqueEntrepreneuriat = () => {
       "name": "Mare Nostrum",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.marenostrum.tech/favicon.png"
+        "url": "https://www.marenostrum.tech/logo-mare-nostrum.png"
       }
     },
     "datePublished": "2025-01-10",
+    "image": "https://www.marenostrum.tech/favicon.png",
     "dateModified": "2025-01-10"
   };
 
   return (
     <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
-        title="Innovation Pédagogique et Entrepreneuriat : Nouvelles Approches - Mare Nostrum"
-        description="Découvrez les méthodes pédagogiques innovantes qui révolutionnent l'enseignement de l'entrepreneuriat : design thinking, learning by doing, approches expérientielles."
+        title="Innovation pédagogique et entrepreneuriat | Mare Nostrum"
+        description="Méthodes pédagogiques innovantes pour enseigner l'entrepreneuriat : design thinking, learning by doing, approches expérientielles."
         keywords="innovation pédagogique, enseignement entrepreneuriat, design thinking éducation, learning by doing, pédagogie active, formation entrepreneur"
         structuredData={articleSchema}
         
       />
       <Header />
+      <main id="contenu" className="flex-1">
 
       {/* Hero Article */}
       <PageHero
@@ -300,6 +302,7 @@ const InnovationPedagogiqueEntrepreneuriat = () => {
         </div>
       </article>
 
+      </main>
       <Footer />
     </div>
   );

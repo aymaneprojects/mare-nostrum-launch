@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Download, Mail } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -17,7 +18,7 @@ const InfoCard = ({ title, children }: InfoCardProps) => (
 const MastermindNeoEntrepreneurs = () => {
   const brochureButton = (
     <Button asChild size="lg" variant="secondary">
-      <a href="/contact">Demander de recevoir la fiche formation détaillée<Download className="ml-2 h-5 w-5" /></a>
+      <Link to="/contact">Demander de recevoir la fiche formation détaillée<Download className="ml-2 h-5 w-5" /></Link>
     </Button>
   );
 
@@ -33,7 +34,7 @@ const MastermindNeoEntrepreneurs = () => {
       <PageHero eyebrow="Présentiel · Toulouse" title="Mastermind néo-entrepreneurs" subtitle="Parcours de 12 mois en petit groupe pour résoudre ses problématiques de jeune dirigeant par le codéveloppement, avec un entrepreneur invité à chaque session." ctas={brochureButton} />
       <Breadcrumbs items={[{ label: "Centre de formation", href: "/education" }, { label: "Mastermind néo-entrepreneurs", href: "/mastermind" }]} />
 
-      <main className="flex-1">
+      <main id="contenu" className="flex-1">
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
@@ -53,7 +54,7 @@ const MastermindNeoEntrepreneurs = () => {
                 <InfoCard title="Évaluation"><p>Diagnostic initial, objectifs à 6 et 12 mois, suivi des engagements, bilan de fin de parcours, évaluations de satisfaction et attestation de fin de formation.</p></InfoCard>
                 <InfoCard title="Accès et délai"><p>Sur candidature, après entretien et diagnostic individuel. Délai minimum de 14 jours entre l'inscription et l'entrée en formation.</p></InfoCard>
                 <InfoCard title="Tarif"><p>2 400 € HT par participant. Exonération de TVA (art. 261-4-4° a du CGI). Prise en charge au titre de la formation professionnelle : devis à la demande.</p></InfoCard>
-                <InfoCard title="Handicap"><p>Formation accessible aux personnes en situation de handicap ; les aménagements sont étudiés au cas par cas.</p><a href="mailto:handicap@marenostrum.tech" className="inline-flex text-[hsl(var(--mn-turquoise))] underline font-semibold hover:opacity-80">Référent handicap : handicap@marenostrum.tech</a></InfoCard>
+                <InfoCard title="Handicap"><p>Formation accessible aux personnes en situation de handicap ; les aménagements sont étudiés au cas par cas.</p><a href="mailto:handicap@marenostrum.tech" className="inline-flex text-turquoise-texte underline underline-offset-4 font-semibold hover:opacity-80">Référent handicap : handicap@marenostrum.tech</a></InfoCard>
               </div>
             </div>
           </div>
@@ -63,7 +64,7 @@ const MastermindNeoEntrepreneurs = () => {
             <div className="mn-eyebrow-turquoise mb-3">Contact</div>
             <h2 className="font-editorial italic text-foreground mb-4">Demander la fiche formation détaillée</h2>
             <p className="text-muted-foreground text-lg mb-2">Julienne MUKABUCYANA, directrice du centre de formation</p>
-            <a href="mailto:education@marenostrum.tech" className="inline-flex items-center gap-2 text-[hsl(var(--mn-turquoise))] underline font-semibold mb-7 hover:opacity-80"><Mail className="h-5 w-5" />education@marenostrum.tech · réponse sous 48 h</a>
+            <a href="mailto:education@marenostrum.tech" className="inline-flex items-center gap-2 text-turquoise-texte underline underline-offset-4 font-semibold mb-7 hover:opacity-80"><Mail className="h-5 w-5" />education@marenostrum.tech · réponse sous 48 h</a>
             <div>{brochureButton}</div>
           </div>
         </section>

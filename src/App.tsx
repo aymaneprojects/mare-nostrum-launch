@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,10 +8,12 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { ScrollToTopButton } from "@/components/ScrollToTopButton";
 import { useSpotlight } from "@/hooks/useSpotlight";
 import { useAnalyticsPageView } from "@/hooks/useAnalyticsPageView";
-import ChatBot from "@/components/ChatBot";
-import ExitIntentPopup from "@/components/ExitIntentPopup";
-import BottomNav from "@/components/BottomNav";
-import CookieBanner from "@/components/CookieBanner";
+// Éléments flottants : chargés à la demande, hors du script d'entrée (le client Supabase
+// du chat n'est plus préchargé sur toutes les pages).
+const ChatBot = lazy(() => import("@/components/ChatBot"));
+const ExitIntentPopup = lazy(() => import("@/components/ExitIntentPopup"));
+const BottomNav = lazy(() => import("@/components/BottomNav"));
+const CookieBanner = lazy(() => import("@/components/CookieBanner"));
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Healthz from "./pages/Healthz";
@@ -67,11 +69,60 @@ const AgentIAMarketing = lazy(() => import("./pages/AgentIAMarketing"));
 const Roue = lazy(() => import("./pages/Roue"));
 const LiveHome = lazy(() => import("./pages/live/LiveHome"));
 const LivePublic = lazy(() => import("./pages/live/LivePublic"));
+import ErrorBoundary from "@/components/ErrorBoundary";
 const LiveScreen = lazy(() => import("./pages/live/LiveScreen"));
 const LiveRegie = lazy(() => import("./pages/live/LiveRegie"));
 const LiveConducteur = lazy(() => import("./pages/live/LiveConducteur"));
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { staleTime: 5 * 60 * 1000, refetchOnWindowFocus: false, retry: 1 } },
+});
+
+// Pages principales préchargées quand le navigateur est au repos : la 1re navigation
+// ne montre plus de squelette.
+const prechargerPages = () => {
+  import("./pages/Education");
+  import("./pages/Contact");
+  import("./pages/Blog");
+  import("./pages/Expertise");
+};
+
+// Vrai une fois le navigateur au repos (ou après 2,5 s) : le chat et le popup n'ont pas
+// à concurrencer le premier affichage.
+const useAuRepos = () => {
+  const [pret, setPret] = useState(false);
+  useEffect(() => {
+    const ric = window.requestIdleCallback as undefined | ((cb: () => void, o?: { timeout: number }) => number);
+    const go = () => { setPret(true); prechargerPages(); };
+    if (ric) { const id = ric(go, { timeout: 2500 }); return () => window.cancelIdleCallback?.(id); }
+    const t = window.setTimeout(go, 2500);
+    return () => window.clearTimeout(t);
+  }, []);
+  return pret;
+};
+
+// Lien d'évitement : place le focus sur le contenu principal de la page courante.
+const allerAuContenu = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const main = document.getElementById("contenu") ?? document.querySelector("main");
+  if (!main) return;
+  e.preventDefault();
+  main.setAttribute("tabindex", "-1");
+  (main as HTMLElement).focus();
+  main.scrollIntoView();
+};
+
+// Squelette sans texte affiché pendant le chargement d'une page : barre de menu + bloc de contenu.
+const SqueletteChargement = () => (
+  <div className="min-h-dvh bg-background" aria-hidden="true">
+    <div className="px-4 pt-4"><div className="mx-auto h-14 max-w-7xl rounded-2xl bg-muted/70 md:h-16" /></div>
+    <div className="mx-auto mt-10 max-w-4xl space-y-4 px-4">
+      <div className="h-10 w-2/3 animate-pulse rounded bg-muted motion-reduce:animate-none" />
+      <div className="h-4 w-full animate-pulse rounded bg-muted motion-reduce:animate-none" />
+      <div className="h-4 w-5/6 animate-pulse rounded bg-muted motion-reduce:animate-none" />
+      <div className="h-48 w-full animate-pulse rounded-2xl bg-muted/70 motion-reduce:animate-none" />
+    </div>
+  </div>
+);
 
 // Composant racine : mesure d'audience et effets globaux
 const AppContent = () => {
@@ -81,6 +132,7 @@ const AppContent = () => {
 
   useAnalyticsPageView();
   useSpotlight();
+  const auRepos = useAuRepos();
   
   // Pour /healthz, afficher uniquement le JSON sans UI globale
   if (isHealthz) {
@@ -104,12 +156,23 @@ const AppContent = () => {
 
   return (
     <>
+      {!bare && (
+        <a
+          href="#contenu"
+          onClick={allerAuContenu}
+          className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-3 focus:text-primary-foreground focus:shadow-lift focus:outline-none focus:ring-2 focus:ring-ring"
+        >
+          Aller au contenu
+        </a>
+      )}
       <ScrollToTop />
       {!bare && <ScrollToTopButton />}
-      {!quiet && <ChatBot />}
-      {!bare && <BottomNav />}
-      {!bare && <CookieBanner />}
-      {!quiet && <ExitIntentPopup />}
+      <Suspense fallback={null}>
+        {!quiet && auRepos && <ErrorBoundary fallback={null}><ChatBot /></ErrorBoundary>}
+        {!bare && <ErrorBoundary fallback={null}><BottomNav /></ErrorBoundary>}
+        {!bare && <ErrorBoundary fallback={null}><CookieBanner /></ErrorBoundary>}
+        {!quiet && auRepos && <ErrorBoundary fallback={null}><ExitIntentPopup /></ErrorBoundary>}
+      </Suspense>
 
       {/* Compense la barre de navigation mobile fixe (BottomNav) en bas de page.
           La clé sur le chemin déclenche le fondu d'entrée à chaque changement de
@@ -118,17 +181,18 @@ const AppContent = () => {
         key={location.pathname}
         className={cn("mn-page", bare ? undefined : "pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0")}
       >
-      <Suspense fallback={null}>
+      <ErrorBoundary key={location.pathname}>
+      <Suspense fallback={<SqueletteChargement />}>
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/education" element={<Education />} />
         <Route path="/formation" element={<Navigate to="/education" replace />} />
-        <Route path="/expertise" element={<Suspense fallback={null}><Expertise /></Suspense>} />
-        <Route path="/mastermind" element={<Suspense fallback={null}><MastermindNeoEntrepreneurs /></Suspense>} />
-        <Route path="/mastermind-digital" element={<Suspense fallback={null}><MastermindDigital /></Suspense>} />
-        <Route path="/initiation-ia" element={<Suspense fallback={null}><InitiationIA /></Suspense>} />
-        <Route path="/agent-ia-marketing" element={<Suspense fallback={null}><AgentIAMarketing /></Suspense>} />
-        <Route path="/roue" element={<Suspense fallback={null}><Roue /></Suspense>} />
+        <Route path="/expertise" element={<Expertise />} />
+        <Route path="/mastermind" element={<MastermindNeoEntrepreneurs />} />
+        <Route path="/mastermind-digital" element={<MastermindDigital />} />
+        <Route path="/initiation-ia" element={<InitiationIA />} />
+        <Route path="/agent-ia-marketing" element={<AgentIAMarketing />} />
+        <Route path="/roue" element={<Roue />} />
         <Route path="/club" element={<Croissance />} />
         <Route path="/bienvenue-club" element={<BienvenuClub />} />
         <Route path="/offre-ia" element={<OffreIA />} />
@@ -169,16 +233,17 @@ const AppContent = () => {
         <Route path="/equipe/:slug" element={<CarteContact />} />
 
         {/* Live conférence */}
-        <Route path="/live" element={<Suspense fallback={null}><LiveHome /></Suspense>} />
-        <Route path="/live/:code" element={<Suspense fallback={null}><LivePublic /></Suspense>} />
-        <Route path="/live/:code/ecran" element={<Suspense fallback={null}><LiveScreen /></Suspense>} />
-        <Route path="/live/:code/regie" element={<Suspense fallback={null}><LiveRegie /></Suspense>} />
-        <Route path="/live/:code/conducteur" element={<Suspense fallback={null}><LiveConducteur /></Suspense>} />
+        <Route path="/live" element={<LiveHome />} />
+        <Route path="/live/:code" element={<LivePublic />} />
+        <Route path="/live/:code/ecran" element={<LiveScreen />} />
+        <Route path="/live/:code/regie" element={<LiveRegie />} />
+        <Route path="/live/:code/conducteur" element={<LiveConducteur />} />
 
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>
       </Suspense>
+      </ErrorBoundary>
       </div>
     </>
   );

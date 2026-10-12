@@ -5,6 +5,7 @@ import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { emailValide } from "@/lib/safe";
 
 const Unsubscribed = () => {
   const [email, setEmail]   = useState("");
@@ -12,7 +13,7 @@ const Unsubscribed = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
+    if (status === "loading" || !emailValide(email)) return;
 
     setStatus("loading");
 

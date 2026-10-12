@@ -53,14 +53,15 @@ const AccompagnementFrancophonie = () => {
   return (
     <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
-        title="Incubateur Entrepreneurs Toulouse & Afrique | Accompagnement Francophonie - Mare Nostrum"
-        description="Incubateur d'entrepreneurs a impact a Toulouse et en Afrique francophone. Programmes Tremplin, Ascension, Elite. Accompagnement personnalise, mentorat, financement. Mare Nostrum, expert entrepreneuriat Toulouse et Afrique."
+        title="Entrepreneur Toulouse et Afrique | Mare Nostrum"
+        description="Accompagnement d'entrepreneurs à impact à Toulouse et en Afrique francophone : programmes Tremplin, Ascension et Elite, mentorat, financement."
         keywords="incubateur toulouse, entrepreneuriat toulouse, entrepreneuriat afrique, accompagnement entrepreneur toulouse, startup impact toulouse, incubateur afrique, entrepreneur afrique francophone, mentorat entrepreneur toulouse, accompagnement startup afrique, incubateur casablanca, creation entreprise toulouse, accelerateur toulouse"
         structuredData={pageSchema}
         faqSchema={faqs}
         
       />
       <Header />
+      <main id="contenu" className="flex-1">
 
       <PageHero
         size="lg"
@@ -299,6 +300,7 @@ const AccompagnementFrancophonie = () => {
         faqs={faqs}
       />
 
+      </main>
       <Footer />
     </div>
   );

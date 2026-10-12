@@ -1,10 +1,4 @@
-# API redirects
-/healthz  https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/healthz  200
-/api/healthz  https://fpdxpvkgzrddemldvemg.supabase.co/functions/v1/healthz  200
-
-# Legacy URLs - canonical names
-/croissance  /club  301!
-/newsletter  /iter  301!
-
-# SPA fallback
+# Fichier hérité de l'ancien hébergeur (Render). Le site est servi par nginx (CloudPanel),
+# qui IGNORE ce fichier : redirections, /healthz et 404 se règlent côté serveur.
+# Voir docs/SEO-NGINX.md (configuration à appliquer, non appliquée).
 /*  /index.html  200

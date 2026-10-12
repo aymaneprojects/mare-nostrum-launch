@@ -21,23 +21,25 @@ const EntrepreneuriatSocialFrancophonie = () => {
       "name": "Mare Nostrum",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.marenostrum.tech/favicon.png"
+        "url": "https://www.marenostrum.tech/logo-mare-nostrum.png"
       }
     },
     "datePublished": "2025-01-15",
+    "image": "https://www.marenostrum.tech/favicon.png",
     "dateModified": "2025-01-15"
   };
 
   return (
     <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
-        title="L'Entrepreneuriat Social en Francophonie : Vision et Perspectives 2025 - Mare Nostrum"
-        description="Analyse approfondie de l'entrepreneuriat social dans l'espace francophone. Tendances, acteurs clés et opportunités pour les entrepreneurs à impact en Afrique et Europe."
+        title="Entrepreneuriat social en francophonie | Mare Nostrum"
+        description="Analyse de l'entrepreneuriat social dans l'espace francophone : tendances, acteurs clés et opportunités pour les entrepreneurs à impact."
         keywords="entrepreneuriat social francophonie, startup impact afrique, économie sociale solidaire, entrepreneur social, innovation sociale francophone"
         structuredData={articleSchema}
         
       />
       <Header />
+      <main id="contenu" className="flex-1">
 
       {/* Hero Article */}
       <PageHero
@@ -270,6 +272,7 @@ const EntrepreneuriatSocialFrancophonie = () => {
         </div>
       </article>
 
+      </main>
       <Footer />
     </div>
   );

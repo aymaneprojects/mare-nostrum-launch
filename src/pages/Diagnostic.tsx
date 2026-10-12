@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { emailValide } from "@/lib/safe";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -148,16 +149,19 @@ const Diagnostic = () => {
   const totalScore = Object.values(answers).reduce((s, v) => s + v, 0);
   const reco = clubReco(totalScore);
 
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const selectAnswer = (key: string, score: number) => {
     setAnswers(a => ({ ...a, [key]: score }));
-    // auto-advance après 400ms
-    setTimeout(() => {
+    // auto-advance après 350 ms ; un 2e clic dans l'intervalle annule le 1er (pas de question sautée)
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
       setStep(s => Math.min(s + 1, 8));
     }, 350);
   };
+  useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
 
   const submit = async () => {
-    if (!nom.trim() || !email.trim()) return;
+    if (submitting || !nom.trim() || !emailValide(email)) return;
     setSubmitting(true);
     setErrMsg("");
     try {
@@ -188,6 +192,7 @@ const Diagnostic = () => {
         description="8 étapes simples pour faire le point sur votre projet en 3 minutes. À la fin, votre rapport personnalisé et l'offre Club faite pour vous."
       />
       <Header />
+      <main id="contenu" className="flex-1">
 
       <div className="min-h-[calc(100vh-80px)] flex flex-col">
 
@@ -416,6 +421,7 @@ const Diagnostic = () => {
         )}
       </div>
 
+      </main>
       <Footer />
     </div>
   );

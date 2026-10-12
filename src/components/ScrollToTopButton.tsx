@@ -6,15 +6,10 @@ export function ScrollToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.scrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
+    // setState seulement au franchissement du seuil (React ignore une valeur identique).
+    const toggleVisibility = () => setIsVisible(window.scrollY > 300);
 
-    window.addEventListener("scroll", toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility, { passive: true });
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
@@ -31,7 +26,7 @@ export function ScrollToTopButton() {
     <Button
       onClick={scrollToTop}
       size="icon"
-      className="fixed bottom-20 md:bottom-6 right-24 z-40 rounded-[10px] shadow-[var(--shadow-medium)] hover:scale-110 transition-transform"
+      className="mn-flottant max-md:hidden fixed bottom-6 right-24 z-40 rounded-[10px] shadow-[var(--shadow-medium)] hover:scale-110 transition-transform motion-reduce:transition-none"
       aria-label="Retour en haut"
     >
       <ArrowUp className="h-5 w-5" />

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { X, Cookie, Settings, Check } from "lucide-react";
@@ -10,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import { lireStockage, ecrireStockage, lireJson } from "@/lib/safe";
 import { setConsent } from "@/lib/analytics";
 
 interface CookiePreferences {
@@ -34,23 +36,23 @@ const CookieBanner = () => {
 
   useEffect(() => {
     // Vérifier si l'utilisateur a déjà donné son consentement
-    const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
+    const consent = lireStockage(COOKIE_CONSENT_KEY);
     if (!consent) {
       // Afficher la bannière après un court délai
       const timer = setTimeout(() => setShowBanner(true), 1500);
       return () => clearTimeout(timer);
     } else {
       // Charger les préférences sauvegardées
-      const savedPrefs = localStorage.getItem(COOKIE_PREFERENCES_KEY);
-      if (savedPrefs) {
-        setPreferences(JSON.parse(savedPrefs));
+      const savedPrefs = lireJson<CookiePreferences>(COOKIE_PREFERENCES_KEY);
+      if (savedPrefs && typeof savedPrefs === "object") {
+        setPreferences({ ...defaultPreferences, ...savedPrefs, necessary: true });
       }
     }
   }, []);
 
   const saveConsent = (prefs: CookiePreferences) => {
-    localStorage.setItem(COOKIE_CONSENT_KEY, "true");
-    localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(prefs));
+    ecrireStockage(COOKIE_CONSENT_KEY, "true");
+    ecrireStockage(COOKIE_PREFERENCES_KEY, JSON.stringify(prefs));
     // Seul endroit qui lève (ou maintient) le refus par défaut posé dans index.html.
     // Sans cet appel, la bannière n'aurait aucun effet réel sur la mesure.
     setConsent(prefs);
@@ -79,12 +81,20 @@ const CookieBanner = () => {
     saveConsent(preferences);
   };
 
+  // Signale la bannière au CSS : le bouton de chat et le bouton « retour en haut » s'effacent
+  // sur mobile tant qu'elle est ouverte (voir .mn-flottant dans index.css).
+  useEffect(() => {
+    if (!showBanner) return;
+    document.documentElement.dataset.cookies = "ouvert";
+    return () => { delete document.documentElement.dataset.cookies; };
+  }, [showBanner]);
+
   if (!showBanner) return null;
 
   return (
     <>
       {/* Bannière principale */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 p-2 sm:p-4 md:p-6 animate-in slide-in-from-bottom duration-300">
+      <div role="region" aria-label="Gestion des cookies" className="fixed bottom-[calc(56px+env(safe-area-inset-bottom))] md:bottom-0 left-0 right-0 z-50 p-2 sm:p-4 md:p-6 animate-in slide-in-from-bottom duration-300 motion-reduce:animate-none">
         <div className="max-w-4xl mx-auto mn-card shadow-[var(--shadow-lift)]">
           <div className="p-3 sm:p-4 md:p-6">
             <div className="flex items-start gap-4">
@@ -130,7 +140,7 @@ const CookieBanner = () => {
               </div>
               <button 
                 onClick={rejectAll}
-                className="hidden md:flex text-muted-foreground hover:text-foreground p-1"
+                className="hidden md:flex items-center justify-center w-11 h-11 -m-2 shrink-0 text-muted-foreground hover:text-foreground"
                 aria-label="Fermer"
               >
                 <X className="h-5 w-5" />
@@ -142,13 +152,13 @@ const CookieBanner = () => {
           <div className="border-t border-border px-3 sm:px-4 md:px-6 py-2 sm:py-3 bg-secondary/30 rounded-b-sm">
             <p className="text-sm text-muted-foreground">
               En savoir plus sur notre{" "}
-              <a href="/confidentialite" className="text-primary underline hover:text-primary/80">
+              <Link to="/confidentialite" className="text-primary underline hover:text-primary/80">
                 politique de confidentialité
-              </a>{" "}
+              </Link>{" "}
               et notre{" "}
-              <a href="/cgu" className="text-primary underline hover:text-primary/80">
+              <Link to="/cgu" className="text-primary underline hover:text-primary/80">
                 politique d'utilisation des cookies
-              </a>.
+              </Link>.
             </p>
           </div>
         </div>

@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Home, GraduationCap, Compass, Users, Leaf, BookOpen, Info, Mail, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
+import { lienActif } from "@/lib/nav";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 
 type NavItem = { to: string; label: string; Icon: typeof Home; external?: boolean };
 type NavGroup = { label: string; children: NavItem[] };
@@ -35,6 +37,8 @@ const Header = () => {
   const [scrolled, setScrolled]     = useState(false);
   const [openGroup, setOpenGroup]   = useState<string | null>(null);
   const location = useLocation();
+  const panneauRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(isMenuOpen, panneauRef);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80);
@@ -65,30 +69,26 @@ const Header = () => {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [isMenuOpen]);
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => lienActif(location.pathname, path);
 
   return (
     <>
       {/* Wrapper sticky - transparent, laisse passer les clics sur les zones vides */}
       <header className={`sticky top-0 z-50 w-full h-[5.5rem] md:h-24 px-4 md:px-6 pb-2 pointer-events-none transition-[padding] duration-200 ${scrolled ? "pt-2" : "pt-4"}`}>
         <nav
-          className={`pointer-events-auto mx-auto flex max-w-7xl items-center justify-between px-3 md:px-5 rounded-2xl transition-all duration-200 ${scrolled ? "h-11 md:h-12" : "h-14 md:h-16"}`}
-          style={{
-            backgroundColor: scrolled ? "rgba(255,255,255,0.82)" : "rgba(255,255,255,0.96)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-            border: "1px solid hsl(222 44% 25% / 0.12)",
-            boxShadow: scrolled
-              ? "0 4px 16px hsl(228 56% 13% / 0.08)"
-              : "var(--shadow-soft)",
-          }}
+          aria-label="Navigation principale"
+          data-scrolled={scrolled}
+          className={`mn-header-surface pointer-events-auto mx-auto flex max-w-7xl items-center justify-between px-3 md:px-5 rounded-2xl ${scrolled ? "h-11 md:h-12" : "h-14 md:h-16"}`}
         >
           {/* Logo */}
           <Link to="/" className="flex items-center group shrink-0">
             <img
               src={logo}
               alt="Mare Nostrum"
-              className={`w-auto transition-all duration-200 group-hover:scale-105 ${scrolled ? "h-8 md:h-8" : "h-9 md:h-11"}`}
+              width={400}
+              height={156}
+              decoding="async"
+              className={`w-auto transition-transform duration-200 motion-reduce:transition-none group-hover:scale-105 ${scrolled ? "h-8 md:h-8" : "h-9 md:h-11"}`}
             />
           </Link>
 
@@ -131,7 +131,7 @@ const Header = () => {
                             <li key={to}>
                               {external
                                 ? <a href={to} className={cls} onClick={() => setOpenGroup(null)}>{content}</a>
-                                : <Link to={to} className={cls} onClick={() => setOpenGroup(null)}>{content}</Link>}
+                                : <Link to={to} className={cls} aria-current={isActive(to) ? "page" : undefined} onClick={() => setOpenGroup(null)}>{content}</Link>}
                             </li>
                           );
                         })}
@@ -145,7 +145,7 @@ const Header = () => {
               return item.external ? (
                 <a key={item.to} href={item.to} className={linkClass(active)}>{item.label}</a>
               ) : (
-                <Link key={item.to} to={item.to} className={linkClass(active)}>{item.label}</Link>
+                <Link key={item.to} to={item.to} className={linkClass(active)} aria-current={active ? "page" : undefined}>{item.label}</Link>
               );
             })}
           </div>
@@ -157,7 +157,7 @@ const Header = () => {
                 <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
               </Button>
             ) : (
-              <Button asChild size="sm" className="md:h-9 md:px-4" style={{ background: "hsl(222 44% 25%)", color: "hsl(40 38% 94%)" }}>
+              <Button asChild size="sm" className="md:h-9 md:px-4 bg-primary text-primary-foreground hover:bg-primary/90">
                 <Link to="/club#offres">Rejoindre le Club</Link>
               </Button>
             )}
@@ -171,7 +171,7 @@ const Header = () => {
             aria-expanded={isMenuOpen}
             aria-controls="menu-mobile"
           >
-            <Menu className="h-5 w-5" />
+            <Menu className="h-5 w-5" aria-hidden="true" />
           </button>
         </nav>
       </header>
@@ -187,9 +187,11 @@ const Header = () => {
 
       <div
         id="menu-mobile"
+        ref={panneauRef}
+        tabIndex={-1}
         className={`fixed top-0 right-0 bottom-0 z-[70] md:hidden w-[82vw] max-w-[340px]
           bg-background flex flex-col shadow-lift
-          transition-[transform,visibility] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]
+          transition-[transform,visibility] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none
           ${isMenuOpen ? "translate-x-0 visible" : "translate-x-full invisible pointer-events-none"}`}
         aria-modal="true"
         role="dialog"
@@ -197,7 +199,7 @@ const Header = () => {
       >
         {/* Panel header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-border shrink-0">
-          <img src={logo} alt="Mare Nostrum" className="h-9 w-auto" />
+          <img src={logo} alt="Mare Nostrum" width={400} height={156} className="h-9 w-auto" />
           <button
             onClick={() => setIsMenuOpen(false)}
             className="w-11 h-11 flex items-center justify-center rounded-[10px] bg-muted active:scale-90 transition-transform duration-150"
@@ -208,10 +210,10 @@ const Header = () => {
         </div>
 
         {/* Nav links */}
-        <nav className="flex-1 overflow-y-auto px-3 py-3">
+        <nav aria-label="Pages du site" className="flex-1 overflow-y-auto px-3 py-3">
           {navLinks.map(({ to, label, Icon, external }) => {
             const active = !external && isActive(to);
-            const className = `flex items-center gap-3.5 px-4 py-3.5 rounded-xl mb-1 transition-all duration-200 active:scale-[0.98] ${
+            const className = `flex items-center gap-3.5 px-4 py-3.5 rounded-xl mb-1 transition-colors duration-200 active:scale-[0.98] motion-reduce:active:scale-100 ${
               active ? "bg-primary text-primary-foreground font-semibold" : "text-foreground/75 hover:bg-muted hover:text-foreground"
             }`;
             const content = <>
@@ -223,7 +225,7 @@ const Header = () => {
             return external ? (
               <a key={to} href={to} className={className}>{content}</a>
             ) : (
-              <Link key={to} to={to} className={className}>{content}</Link>
+              <Link key={to} to={to} className={className} aria-current={active ? "page" : undefined}>{content}</Link>
             );
           })}
         </nav>
@@ -235,7 +237,7 @@ const Header = () => {
               <Link to="/livre-entrepreneuriat">Livre Entrepreneuriat</Link>
             </Button>
           ) : (
-            <Button asChild size="lg" className="w-full" style={{ background: "hsl(222 44% 25%)", color: "hsl(40 38% 94%)" }}>
+            <Button asChild size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
               <Link to="/club#offres">Rejoindre le Club</Link>
             </Button>
           )}

@@ -40,7 +40,7 @@ const Equipe = () => {
       <StructuredData data={listSchema} />
       <Header />
 
-      <main className="flex-1">
+      <main id="contenu" className="flex-1">
         <PageHero
           eyebrow="Les visages de Mare Nostrum"
           title="Notre équipe"

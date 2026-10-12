@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -41,8 +41,12 @@ const Contact = () => {
   const [poles, setPoles] = useState<string[]>([]);
   const basculerPole = (cle: string) =>
     setPoles(p => (p.includes(cle) ? p.filter(x => x !== cle) : [...p, cle]));
+  // Signature de la dernière ligne déjà enregistrée : un nouvel essai après échec
+  // de l'envoi ne réinsère pas le même message en base.
+  const dejaInsere = useRef<string | null>(null);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting || poles.length === 0) return;
     setIsSubmitting(true);
     try {
       const {
@@ -66,9 +70,11 @@ const Contact = () => {
       }
 
       // Save to database
+      const signature = JSON.stringify(donnees);
       const {
         error: dbError
-      } = await supabase.from('contact_submissions').insert([donnees]);
+      } = dejaInsere.current === signature ? { error: null } : await supabase.from('contact_submissions').insert([donnees]);
+      if (!dbError) dejaInsere.current = signature;
       if (dbError) {
         console.error("Error saving to database:", dbError);
         toast({
@@ -105,6 +111,7 @@ const Contact = () => {
       }
 
       track(EVT.generateLead, { form: "contact" });
+      dejaInsere.current = null;
       setIsSuccess(true);
       toast({
         title: "Message envoyé !",
@@ -141,12 +148,13 @@ const Contact = () => {
   };
   return <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead 
-        title="Contact Mare Nostrum - Cabinet Conseil Entrepreneuriat | Toulouse Paris Casablanca" 
+        title="Contact Mare Nostrum : Toulouse, Paris, Casablanca" 
         description="Contactez Mare Nostrum pour votre projet entrepreneurial. Bureaux Toulouse, Paris, Casablanca. Rendez-vous gratuit. Réponse sous 48h maximum."
         keywords="contact mare nostrum, rendez-vous conseil, toulouse, paris, casablanca, accompagnement entrepreneuriat, conseil gratuit"
         
       />
       <Header />
+      <main id="contenu" className="flex-1">
 
       {/* Hero Section */}
       <PageHero
@@ -402,6 +410,7 @@ const Contact = () => {
         </div>
       </section>
 
+      </main>
       <Footer />
     </div>;
 };

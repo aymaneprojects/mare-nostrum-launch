@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { emailValide } from "@/lib/safe";
+import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 
 const Newsletter = () => {
   const [nom, setNom]             = useState("");
@@ -19,7 +21,7 @@ const Newsletter = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!nom.trim() || !email.trim() || !rgpd) return;
+    if (status === "loading" || !nom.trim() || !emailValide(email) || !rgpd) return;
 
     setStatus("loading");
     setErrorMsg("");
@@ -39,6 +41,10 @@ const Newsletter = () => {
 
   return (
     <div className="min-h-dvh bg-background flex flex-col items-center justify-center px-4 py-8">
+      <EnhancedSEOHead
+        title="ITER, la lettre Mare Nostrum"
+        description="ITER, la lettre de Mare Nostrum pour les entrepreneurs : inscrivez-vous pour recevoir chaque édition par e-mail."
+      />
 
       <div className="mn-card w-full max-w-[520px] overflow-hidden shadow-[var(--shadow-medium)]">
 

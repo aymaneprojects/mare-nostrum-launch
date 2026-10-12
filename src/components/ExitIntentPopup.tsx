@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { X, Phone, Mail, User, MapPin, Loader2, CheckCircle2, Sparkles, Shield } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -7,14 +7,15 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
 import { EVT, track } from "@/lib/analytics";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 
 const STORAGE_KEY   = "mn_exit_popup_dismissed";
-const DELAY_MS      = 2 * 60 * 1000;
+const SESSION_KEY   = "mn_exit_popup_shown";
 const COOLDOWN_DAYS = 7;
 
 // Pages où le popup ne doit PAS s'afficher
 // /club : ne jamais interrompre une décision de paiement par une autre offre.
-const EXCLUDED_PATHS = ["/education", "/club"];
+const EXCLUDED_PATHS = ["/education", "/club", "/contact", "/diagnostic", "/iter", "/bienvenue-club", "/unsubscribed", "/niteo-toulouse"];
 
 function isDismissed(): boolean {
   try {
@@ -42,13 +43,28 @@ export default function ExitIntentPopup() {
   // Ne pas afficher sur les pages exclues
   const isExcludedPage = EXCLUDED_PATHS.some(path => location.pathname === path || location.pathname.startsWith(path + "/"));
 
+  // Vraie intention de sortie : la souris quitte la fenêtre par le haut (ordinateur).
+  // Une seule fois par session, jamais pendant la saisie dans un champ.
   useEffect(() => {
     if (isDismissed() || isExcludedPage) return;
-    const id = window.setTimeout(() => setVisible(true), DELAY_MS);
-    return () => clearTimeout(id);
+    const dejaMontre = () => { try { return sessionStorage.getItem(SESSION_KEY) === "1"; } catch { return false; } };
+    const onLeave = (e: MouseEvent) => {
+      if (e.relatedTarget !== null || e.clientY > 0 || dejaMontre()) return;
+      const a = document.activeElement;
+      if (a instanceof HTMLElement && (a.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))) return;
+      try { sessionStorage.setItem(SESSION_KEY, "1"); } catch { /* stockage indisponible */ }
+      setVisible(true);
+    };
+    document.addEventListener("mouseout", onLeave);
+    return () => document.removeEventListener("mouseout", onLeave);
   }, [isExcludedPage]);
 
+  // Changement de page : la fenêtre se ferme (sans mémoriser un refus).
+  useEffect(() => { setVisible(false); }, [location.pathname]);
+
   const handleClose = () => { setVisible(false); markDismissed(); };
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(visible, dialogRef);
 
   useEffect(() => {
     if (!visible) return;
@@ -63,7 +79,7 @@ export default function ExitIntentPopup() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!valid) return;
+    if (!valid || loading) return;
     setLoading(true);
     setError("");
     try {
@@ -85,6 +101,8 @@ export default function ExitIntentPopup() {
 
   return (
     <div
+      ref={dialogRef}
+      tabIndex={-1}
       role="dialog"
       aria-modal="true"
       aria-labelledby="ep-title"
@@ -96,9 +114,9 @@ export default function ExitIntentPopup() {
         onClick={e => e.stopPropagation()}
       >
         {/* ── Header ── */}
-        <div className="relative bg-[hsl(var(--mn-nuit))] px-7 py-7 overflow-hidden">
-          <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full bg-[hsl(var(--mn-turquoise))]/20 blur-2xl pointer-events-none" />
-          <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-full bg-[hsl(var(--mn-ocre))]/15 blur-2xl pointer-events-none" />
+        <div className="relative bg-primary px-7 py-7 overflow-hidden">
+          <div className="absolute -top-8 -right-8 w-40 h-40 rounded-full bg-turquoise/20 blur-2xl pointer-events-none" />
+          <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-full bg-ocre/15 blur-2xl pointer-events-none" />
 
           <button
             onClick={handleClose}
@@ -109,15 +127,15 @@ export default function ExitIntentPopup() {
           </button>
 
           <div className="flex items-center gap-2 mb-3">
-            <Sparkles className="h-4 w-4 text-[hsl(var(--mn-turquoise))]" />
-            <span className="text-sm font-bold text-[hsl(var(--mn-turquoise))]">
+            <Sparkles className="h-4 w-4 text-turquoise" />
+            <span className="text-sm font-bold text-turquoise">
               Offre exclusive · places limitées
             </span>
           </div>
 
           <h2 id="ep-title" className="font-editorial italic text-3xl text-primary-foreground leading-tight mb-2">
             Attendez !<br />
-            <span className="text-[hsl(var(--mn-turquoise))]">–50%</span> le premier mois
+            <span className="text-turquoise">–50%</span> le premier mois
           </h2>
           <p className="text-sm text-primary-foreground/85 leading-relaxed">
             Remplis le formulaire - ton code promo personnalisé t'est envoyé par email instantanément.
@@ -128,7 +146,7 @@ export default function ExitIntentPopup() {
         <div className="px-7 py-6">
           {sent ? (
             <div className="flex flex-col items-center text-center gap-4 py-4">
-              <CheckCircle2 className="h-12 w-12 text-[hsl(var(--mn-turquoise))]" strokeWidth={1.5} />
+              <CheckCircle2 className="h-12 w-12 text-turquoise" strokeWidth={1.5} />
               <div>
                 <p className="font-semibold text-xl text-foreground mb-1">Vérifie ta boîte mail !</p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -217,7 +235,7 @@ export default function ExitIntentPopup() {
                   required
                 />
                 <span className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
-                  <Shield className="inline h-4 w-4 mr-1 text-[hsl(var(--mn-turquoise))]" />
+                  <Shield className="inline h-4 w-4 mr-1 text-turquoise" />
                   J'accepte d'être contacté par Mare Nostrum pour activer mon offre. <span className="font-medium text-foreground">Requis *</span>
                 </span>
               </label>

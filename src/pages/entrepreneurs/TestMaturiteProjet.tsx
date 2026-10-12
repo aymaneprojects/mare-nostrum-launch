@@ -172,13 +172,14 @@ const TestMaturiteProjet = () => {
   return (
     <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
-        title="Test Maturité Projet Entrepreneurial | Évaluation Gratuite 5 min - Mare Nostrum"
+        title="Test de maturité de projet entrepreneurial | Mare Nostrum"
         description="Évaluez la maturité de votre projet entrepreneurial en 5 minutes. Test gratuit pour découvrir le programme d'accompagnement adapté à votre situation."
         keywords="test projet entrepreneurial, évaluation startup, maturité projet, diagnostic entrepreneur, quiz entrepreneuriat"
         structuredData={pageSchema}
         
       />
       <Header />
+      <main id="contenu" className="flex-1">
 
       {/* Hero Section */}
       <PageHero
@@ -301,6 +302,7 @@ const TestMaturiteProjet = () => {
         </div>
       </section>
 
+      </main>
       <Footer />
     </div>
   );

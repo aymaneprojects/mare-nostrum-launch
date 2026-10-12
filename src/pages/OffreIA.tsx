@@ -74,12 +74,13 @@ const OffreIA = () => {
   return (
     <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
-        title="IA dans ton Projet | Intelligence Artificielle pour Entrepreneurs - Mare Nostrum"
-        description="Intégrez l'intelligence artificielle dans votre projet entrepreneurial. Formation IA, ateliers, automatisations, agents IA et études de marché. Expertise Mare Nostrum à Toulouse, Paris, Casablanca."
+        title="IA pour entrepreneurs : formation et agents | Mare Nostrum"
+        description="Intégrez l'IA dans votre projet : formation, ateliers, automatisations, agents IA et études de marché. Mare Nostrum, Toulouse, Paris, Casablanca."
         keywords="intelligence artificielle entrepreneur, formation IA, machine learning business, automatisation IA, agents IA, étude de marché IA, statistiques ML, toulouse, paris, casablanca"
         faqSchema={iaFaqs}
       />
       <Header />
+      <main id="contenu" className="flex-1">
 
       <PageHero
         size="lg"
@@ -273,6 +274,7 @@ const OffreIA = () => {
         </div>
       </DarkSection>
 
+      </main>
       <Footer />
     </div>
   );

@@ -38,8 +38,8 @@ import DarkSection from "@/components/DarkSection";
 const About = () => {
   return <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead 
-        title="A propos Mare Nostrum - Expert Entrepreneuriat Toulouse & Afrique | Niteo" 
-        description="Mare Nostrum, societe a mission fondee en 2023 a Toulouse. Createurs du programme Niteo. 24 entreprises, 17+ projets etudiants accompagnes. 135+ experts, 2000 ans experience. Entrepreneuriat Toulouse, Afrique, francophonie." 
+        title="À propos de Mare Nostrum, société à mission à Toulouse" 
+        description="Mare Nostrum, société à mission fondée en 2023 à Toulouse, créatrice du programme Niteo. Une équipe d'experts au service des entrepreneurs." 
         keywords="mare nostrum, a propos, equipe, entrepreneuriat toulouse, niteo toulouse, programme niteo, entrepreneuriat afrique, societe a mission, toulouse, cabinet conseil, entrepreneuriat impact, francophonie, afrique, maghreb, incubateur toulouse" 
         
         structuredData={{
@@ -49,7 +49,7 @@ const About = () => {
           "foundingDate": "2023",
           "description": "Société à mission, cabinet conseil entrepreneuriat à impact. 24 entreprises accompagnées, 135+ experts dans 12 pays francophonie.",
           "url": "https://www.marenostrum.tech",
-          "logo": "https://www.marenostrum.tech/logo.png",
+          "logo": "https://www.marenostrum.tech/logo-mare-nostrum.png",
           "address": [
             {
               "@type": "PostalAddress",
@@ -162,6 +162,7 @@ const About = () => {
         }}
       />
       <Header />
+      <main id="contenu" className="flex-1">
 
       {/* Hero Section */}
       <PageHero
@@ -407,7 +408,7 @@ const About = () => {
               Présents sur la scène internationale pour porter notre vision de l'entrepreneuriat à impact
             </p>
             <div className="rounded-sm overflow-hidden shadow-[var(--shadow-medium)] max-w-[50%] mx-auto">
-              <img src={francophonieScientiqueImg} alt="Alexis Janicot présent à la 5e Semaine mondiale de la Francophonie scientifique organisée par l'AUF" className="w-full h-auto object-cover" />
+              <img loading="lazy" decoding="async" src={francophonieScientiqueImg} alt="Alexis Janicot présent à la 5e Semaine mondiale de la Francophonie scientifique organisée par l'AUF" className="w-full h-auto object-cover" />
               <div className="bg-card p-4 border-t border-border">
                 <p className="text-sm text-muted-foreground text-center">
                   5e Semaine mondiale de la Francophonie scientifique organisée par l'AUF
@@ -697,64 +698,64 @@ const About = () => {
               <CarouselContent className="-ml-4">
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
-                    <img src={hufLogo} alt="HUF - Partenaire Mare Nostrum accompagnement entrepreneuriat Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img loading="lazy" decoding="async" src={hufLogo} alt="HUF - Partenaire Mare Nostrum accompagnement entrepreneuriat Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
-                    <img src={bidayaLogo} alt="Bidaya - Partenaire Mare Nostrum entrepreneuriat Maroc Casablanca" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img loading="lazy" decoding="async" src={bidayaLogo} alt="Bidaya - Partenaire Mare Nostrum entrepreneuriat Maroc Casablanca" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
-                    <img src={toulouseWayLogo} alt="Toulouse Way - Partenaire écosystème entrepreneurial Toulouse Occitanie" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img loading="lazy" decoding="async" src={toulouseWayLogo} alt="Toulouse Way - Partenaire écosystème entrepreneurial Toulouse Occitanie" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
-                    <img src={airbusLogo} alt="Airbus Développement - Partenaire innovation entreprises Toulouse Aerospace" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img loading="lazy" decoding="async" src={airbusLogo} alt="Airbus Développement - Partenaire innovation entreprises Toulouse Aerospace" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
-                    <img src={roseLabLogo} alt="Rose Lab - Partenaire incubateur startups entreprises à impact" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img loading="lazy" decoding="async" src={roseLabLogo} alt="Rose Lab - Partenaire incubateur startups entreprises à impact" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
-                    <img src={cpme31Logo} alt="CPME 31 Haute-Garonne - Confédération PME entrepreneurs Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img loading="lazy" decoding="async" src={cpme31Logo} alt="CPME 31 Haute-Garonne - Confédération PME entrepreneurs Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
-                    <img src={creditMutuelLogo} alt="Crédit Mutuel - Partenaire financement entrepreneurs PME" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                    <img loading="lazy" decoding="async" src={creditMutuelLogo} alt="Crédit Mutuel - Partenaire financement entrepreneurs PME" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                   </div>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.touleco.fr/" target="_blank" rel="noopener noreferrer" className="block">
                     <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
-                      <img src={toulecoLogo} alt="Touleco - Média économique Toulouse Occitanie partenaire Mare Nostrum" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                      <img loading="lazy" decoding="async" src={toulecoLogo} alt="Touleco - Média économique Toulouse Occitanie partenaire Mare Nostrum" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.imaginationsfertiles.fr/" target="_blank" rel="noopener noreferrer" className="block">
                     <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
-                      <img src={imaginationsFertilesLogo} alt="Imaginations Fertiles - Partenaire créativité innovation entrepreneuriale" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                      <img loading="lazy" decoding="async" src={imaginationsFertilesLogo} alt="Imaginations Fertiles - Partenaire créativité innovation entrepreneuriale" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://emergingbusinessfactory.com/" target="_blank" rel="noopener noreferrer" className="block">
                     <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
-                      <img src={emergingBusinessLogo} alt="Emerging Business Factory - Accélérateur startups scale-ups Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                      <img loading="lazy" decoding="async" src={emergingBusinessLogo} alt="Emerging Business Factory - Accélérateur startups scale-ups Toulouse" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
                 <CarouselItem className="pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <a href="https://www.moovjee.fr/" target="_blank" rel="noopener noreferrer" className="block">
                     <div className="flex items-center justify-center p-6 mn-card hover-lift transition-all duration-300">
-                      <img src={moovjeeLogo} alt="Moovjee - Mouvement jeunes entrepreneurs France accompagnement création" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
+                      <img loading="lazy" decoding="async" src={moovjeeLogo} alt="Moovjee - Mouvement jeunes entrepreneurs France accompagnement création" className="max-w-full h-16 object-contain filter grayscale hover:grayscale-0 transition-all" />
                     </div>
                   </a>
                 </CarouselItem>
@@ -783,6 +784,7 @@ const About = () => {
         </div>
       </DarkSection>
 
+      </main>
       <Footer />
     </div>;
 };

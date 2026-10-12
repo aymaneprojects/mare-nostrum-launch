@@ -70,14 +70,15 @@ const MentoratIndividuel = () => {
   return (
     <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
-        title="Mentorat Entrepreneur Individuel | Séances 1-to-1 Expert - Mare Nostrum"
-        description="Bénéficiez de séances de mentorat individuelles avec des entrepreneurs expérimentés. Accompagnement personnalisé pour débloquer vos challenges et accélérer votre projet."
+        title="Mentorat entrepreneur individuel | Mare Nostrum"
+        description="Séances de mentorat individuelles avec des entrepreneurs expérimentés pour débloquer vos blocages et accélérer votre projet."
         keywords="mentorat entrepreneur, coaching startup, accompagnement individuel, mentor business, conseil entrepreneur"
         structuredData={pageSchema}
         faqSchema={faqs}
         
       />
       <Header />
+      <main id="contenu" className="flex-1">
 
       {/* Hero Section */}
       <PageHero
@@ -228,7 +229,7 @@ const MentoratIndividuel = () => {
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {mentors.map((mentor, index) => (
               <div key={index} className="mn-card p-6 text-center">
-                <img
+                <img loading="lazy" decoding="async" width={96} height={96}
                   src={mentor.image}
                   alt={mentor.name}
                   className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
@@ -286,6 +287,7 @@ const MentoratIndividuel = () => {
         faqs={faqs}
       />
 
+      </main>
       <Footer />
     </div>
   );

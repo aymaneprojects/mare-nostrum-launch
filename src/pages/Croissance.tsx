@@ -266,13 +266,6 @@ const Croissance = () => {
         { "@type": "City", "name": "Paris" },
         { "@type": "City", "name": "Casablanca" }
       ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "bestRating": "5",
-        "ratingCount": "24",
-        "reviewCount": "24"
-      },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Offres Club Entrepreneur Mare Nostrum",
@@ -386,8 +379,8 @@ const Croissance = () => {
   return (
     <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
-        title="Club Entrepreneur Toulouse & Afrique | Accès gratuit, offres dès 30€/mois - Mare Nostrum"
-        description="Rejoignez le Club Entrepreneur Mare Nostrum à Toulouse. 3 offres : Freemium gratuit, Premium 30€, Individualisé 90€/mois. 93% de satisfaction, 50% se rémunèrent en 2 ans. Mentorat, réseau, IA. Toulouse, Paris, Casablanca, Afrique francophone."
+        title="Club entrepreneur Toulouse : mentorat, réseau | Mare Nostrum"
+        description="Club Mare Nostrum à Toulouse pour entrepreneurs : offre gratuite, Premium 30 €/mois, Individualisé 90 €/mois. Mentorat, réseau et outils IA."
         keywords="club entrepreneur toulouse, accompagnement entrepreneur toulouse, mentorat startup toulouse, accompagnement entrepreneur afrique, club entrepreneur francophone, incubateur toulouse, croissance entreprise toulouse, réseau entrepreneur toulouse, coaching entrepreneur, accompagnement startup francophonie, entrepreneuriat toulouse, entrepreneuriat afrique"
         structuredData={croissanceSchema}
         faqSchema={croissanceFaqs}
@@ -395,6 +388,7 @@ const Croissance = () => {
       />
 
       <Header />
+      <main id="contenu" className="flex-1">
 
       {/* Hero Section */}
       <PageHero
@@ -749,6 +743,7 @@ const Croissance = () => {
         </div>
       </DarkSection>
 
+      </main>
       <Footer />
     </div>
   );

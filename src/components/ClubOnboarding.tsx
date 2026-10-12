@@ -204,14 +204,29 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   useEffect(() => {
     if (phase !== "payment" || !clientSecret) return;
     const sessionId = clientSecret.split("_secret_")[0];
+    let actif = true;      // faux après démontage ou fin du sondage
+    let enCours = false;   // pas de chevauchement si une réponse dépasse 3 s
+    let erreurs = 0;
     const id = window.setInterval(async () => {
-      const { data } = await supabase.functions.invoke("get-checkout-session", { body: { sessionId } });
-      if (data?.paid) {
-        clearInterval(id);
-        setPhase("success");
+      if (enCours || !actif) return;
+      enCours = true;
+      try {
+        const { data, error } = await supabase.functions.invoke("get-checkout-session", { body: { sessionId } });
+        if (error) throw error;
+        erreurs = 0;
+        if (actif && data?.paid) {
+          actif = false;
+          clearInterval(id);
+          setPhase("success");
+        }
+      } catch {
+        // 5 échecs de suite : on arrête, le rappel Stripe (onComplete) reste le chemin principal
+        if (++erreurs >= 5) { actif = false; clearInterval(id); }
+      } finally {
+        enCours = false;
       }
     }, 3000);
-    return () => clearInterval(id);
+    return () => { actif = false; clearInterval(id); };
   }, [phase, clientSecret]);
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const step1Valid = prenom.trim() !== "" && emailValid;
@@ -235,7 +250,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent
-        className={`p-0 flex flex-col transition-all duration-300
+        className={`p-0 flex flex-col
           max-sm:left-0 max-sm:top-0 max-sm:translate-x-0 max-sm:translate-y-0
           max-sm:w-full max-sm:h-[100dvh] max-sm:max-w-none max-sm:max-h-none max-sm:rounded-none
           sm:mx-auto sm:max-h-[92dvh] overflow-hidden
@@ -249,7 +264,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
           <h2 className="font-editorial italic text-xl text-primary-foreground pr-10">{headerTitle}</h2>
           <button
             onClick={handleClose}
-            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-[10px] bg-primary-foreground/10 hover:bg-primary-foreground/20 active:bg-primary-foreground/30 transition-colors"
+            className="absolute top-3 right-3 w-11 h-11 flex items-center justify-center rounded-[10px] bg-primary-foreground/10 hover:bg-primary-foreground/20 active:bg-primary-foreground/30 transition-colors"
             aria-label="Fermer"
           >
             <X className="h-4 w-4 text-primary-foreground" />
@@ -270,7 +285,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                 return (
                   <li key={i} className="flex items-center" aria-current={active ? "step" : undefined}>
                     <div className="flex flex-col items-center gap-1">
-                      <div className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 ${
+                      <div className={`w-11 h-11 rounded-full flex items-center justify-center transition-colors duration-300 ${
                         done   ? "bg-accent text-accent-foreground" :
                         active ? "bg-primary text-primary-foreground" :
                                  "bg-muted text-foreground"
@@ -282,7 +297,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                       </span>
                     </div>
                     {i < steps.length - 1 && (
-                      <div className={`w-8 sm:w-14 h-0.5 mx-2 mb-6 rounded-full transition-all duration-300 ${
+                      <div className={`w-8 sm:w-14 h-0.5 mx-2 mb-6 rounded-full transition-colors duration-300 ${
                         currentStep > i ? "bg-accent" : "bg-border"
                       }`} />
                     )}

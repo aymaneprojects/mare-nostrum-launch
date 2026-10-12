@@ -47,7 +47,7 @@ const BienvenuClub = () => {
       <div className="min-h-dvh flex flex-col bg-background">
         <Header />
 
-        <main className="flex-1 flex flex-col items-center px-4 py-16 md:py-24">
+        <main id="contenu" className="flex-1 flex flex-col items-center px-4 py-16 md:py-24">
 
           {/* ── Hero ─────────────────────────────────────────── */}
           <div

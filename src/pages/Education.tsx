@@ -167,8 +167,9 @@ const Education = () => {
     answer: "Oui, Mare Nostrum est un organisme de formation déclaré en France et enregistré sous le numéro 76311216831 : cet enregistrement ne vaut pas agrément de l'Etat."
   }];
   return <div className="min-h-dvh flex flex-col">
-      <EnhancedSEOHead title="Formation entrepreneuriat Toulouse, Qualiopi | Mare Nostrum" description="Organisme de formation certifié Qualiopi à Toulouse. Formations à l'entrepreneuriat, au pilotage d'entreprise et à l'IA. Financements formation mobilisables." keywords="formation entrepreneuriat toulouse, formation création entreprise toulouse, formation IA toulouse, education entrepreneuriale toulouse, entrepreneuriat etudiant, entrepreneuriat etudiant toulouse, formation entrepreneuriat etudiant, programmes ecoles entrepreneuriat, ateliers entrepreneuriat toulouse, hackathon entrepreneuriat etudiant, enseignement superieur toulouse, Niteo, programme Niteo, fresque entrepreneuriat, entrepreneuriat afrique, formation entrepreneur etudiant, entrepreneuriat universite, entrepreneuriat ecole de commerce" structuredData={educationSchema} faqSchema={educationFaqs}  />
+      <EnhancedSEOHead title="Formation entrepreneuriat Toulouse, Qualiopi | Mare Nostrum" description="Organisme de formation certifié Qualiopi à Toulouse : entrepreneuriat, pilotage d'entreprise et IA. Financements de formation mobilisables." keywords="formation entrepreneuriat toulouse, formation création entreprise toulouse, formation IA toulouse, education entrepreneuriale toulouse, entrepreneuriat etudiant, entrepreneuriat etudiant toulouse, formation entrepreneuriat etudiant, programmes ecoles entrepreneuriat, ateliers entrepreneuriat toulouse, hackathon entrepreneuriat etudiant, enseignement superieur toulouse, Niteo, programme Niteo, fresque entrepreneuriat, entrepreneuriat afrique, formation entrepreneur etudiant, entrepreneuriat universite, entrepreneuriat ecole de commerce" structuredData={educationSchema} faqSchema={educationFaqs}  />
       <Header />
+      <main id="contenu" className="flex-1">
 
 
       <PageHero
@@ -257,7 +258,7 @@ const Education = () => {
                 className="w-full h-full object-cover rounded-sm shadow-[var(--shadow-medium)]"
               />
               <div className="bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)]">
-                <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <div className="bg-gradient-to-br from-primary to-ink w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                   <Users className="h-7 w-7 text-primary-foreground" />
                 </div>
                 <h3 className="text-xl mb-4 text-foreground">L'équipe pédagogique</h3>
@@ -272,7 +273,7 @@ const Education = () => {
 
           {/* CTA Pré-inscription */}
           <div className="mt-12 text-center">
-            <Button asChild size="lg" className="bg-[hsl(var(--mn-turquoise))] hover:bg-[hsl(var(--mn-turquoise))]/90 text-accent-foreground">
+            <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
               <Link to="/contact">
                 Se pré-inscrire à une formation
                 <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
@@ -295,7 +296,7 @@ const Education = () => {
 
           <div className="bg-accent/10 border border-accent/30 rounded-sm p-6 max-w-3xl mx-auto mb-12">
             <p className="text-center text-foreground font-medium">
-              D'autres formations seront annoncées sur cette page. Pour être informé·e de l'ouverture des sessions, <Link to="/contact" className="text-[hsl(var(--mn-turquoise))] underline font-semibold">cliquez ici</Link>.
+              D'autres formations seront annoncées sur cette page. Pour être informé·e de l'ouverture des sessions, <Link to="/contact" className="text-turquoise-texte underline underline-offset-4 font-semibold hover:text-primary">cliquez ici</Link>.
             </p>
           </div>
 
@@ -305,8 +306,8 @@ const Education = () => {
               <span className="absolute top-6 right-6 rounded-lg bg-primary/15 px-3 py-1 text-xs font-bold tracking-wide text-primary">
                 NUMÉRIQUE / IA
               </span>
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <BrainCircuit className="h-7 w-7 text-white" />
+              <div className="bg-gradient-to-br from-primary to-ink w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <BrainCircuit className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Initiation à l'intelligence artificielle</h3>
               <p className="text-muted-foreground mb-6">Une journée d'initiation pour comprendre l'IA, démêler le vrai du faux et apprendre à l'utiliser utilement, prudemment et sans jargon technique.</p>
@@ -328,8 +329,8 @@ const Education = () => {
               <span className="absolute top-6 right-6 rounded-lg bg-primary/15 px-3 py-1 text-xs font-bold tracking-wide text-primary">
                 NUMÉRIQUE / IA
               </span>
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Bot className="h-7 w-7 text-white" />
+              <div className="bg-gradient-to-br from-primary to-ink w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <Bot className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Concevoir son agent IA marketing</h3>
               <p className="text-muted-foreground mb-6">En deux modules, concevez, construisez et mettez en service un agent IA pour votre marketing, appliqué à votre propre cas.</p>
@@ -350,8 +351,8 @@ const Education = () => {
               <span className="absolute top-6 right-6 rounded-lg bg-[hsl(var(--mn-turquoise))]/20 px-3 py-1 text-xs font-bold tracking-wide text-primary">
                 ENTREPRENEURIAT
               </span>
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Users className="h-7 w-7 text-white" />
+              <div className="bg-gradient-to-br from-primary to-ink w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <Users className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Mastermind néo-entrepreneurs</h3>
               <p className="text-muted-foreground mb-6">
@@ -384,8 +385,8 @@ const Education = () => {
               <span className="absolute top-6 right-6 rounded-lg bg-[hsl(var(--mn-turquoise))]/20 px-3 py-1 text-xs font-bold tracking-wide text-primary">
                 ENTREPRENEURIAT
               </span>
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Monitor className="h-7 w-7 text-white" />
+              <div className="bg-gradient-to-br from-primary to-ink w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <Monitor className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Mastermind digital</h3>
               <p className="text-muted-foreground mb-6">
@@ -419,7 +420,7 @@ const Education = () => {
               <span className="absolute top-6 right-6 rounded-lg bg-[hsl(var(--mn-ivory))] px-3 py-1 text-xs font-bold tracking-wide text-primary ring-1 ring-primary/15">
                 PÉDAGOGIE
               </span>
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+              <div className="bg-gradient-to-br from-primary to-ink w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Lightbulb className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl mb-4 text-foreground">La Fresque de l'esprit d'entreprendre</h3>
@@ -447,7 +448,7 @@ const Education = () => {
               <span className="absolute top-6 right-6 rounded-lg bg-[hsl(var(--mn-ocre))]/20 px-3 py-1 text-xs font-bold tracking-wide text-[hsl(var(--mn-ocre))]">
                 GESTION DE PROJET
               </span>
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+              <div className="bg-gradient-to-br from-primary to-ink w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Users className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl mb-4 text-foreground">L'Atelier des Alliés</h3>
@@ -475,7 +476,7 @@ const Education = () => {
               <span className="absolute top-6 right-6 rounded-lg bg-primary/15 px-3 py-1 text-xs font-bold tracking-wide text-primary">
                 INNOVATION
               </span>
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+              <div className="bg-gradient-to-br from-primary to-ink w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Trophy className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl mb-4 text-foreground">Hackathons & Challenges</h3>
@@ -501,7 +502,7 @@ const Education = () => {
               <span className="absolute top-6 right-6 rounded-lg bg-[hsl(var(--mn-turquoise))]/20 px-3 py-1 text-xs font-bold tracking-wide text-primary">
                 ENTREPRENEURIAT
               </span>
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+              <div className="bg-gradient-to-br from-primary to-ink w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <GraduationCap className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl mb-4 text-foreground">Programme Niteo</h3>
@@ -527,7 +528,7 @@ const Education = () => {
               <span className="absolute top-6 right-6 rounded-lg bg-[hsl(var(--mn-muted))]/15 px-3 py-1 text-xs font-bold tracking-wide text-[hsl(var(--mn-muted))]">
                 TOUTES DISCIPLINES
               </span>
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+              <div className="bg-gradient-to-br from-primary to-ink w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <BookOpen className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl mb-4 text-foreground">Cours professionnalisants</h3>
@@ -553,7 +554,7 @@ const Education = () => {
               <span className="absolute top-6 right-6 rounded-lg bg-[hsl(var(--mn-ivory))] px-3 py-1 text-xs font-bold tracking-wide text-primary ring-1 ring-primary/15">
                 PEDAGOGIE
               </span>
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+              <div className="bg-gradient-to-br from-primary to-ink w-14 h-14 rounded-sm flex items-center justify-center mb-6">
                 <Network className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl mb-4 text-foreground">Matinale de la pédagogie entrepreneuriale</h3>
@@ -596,7 +597,7 @@ const Education = () => {
               </p>
             </div>
             <div className="text-center">
-              <Button asChild size="lg" className="bg-[hsl(var(--mn-turquoise))] hover:bg-[hsl(var(--mn-turquoise))]/90 text-accent-foreground">
+              <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
                 <Link to="/contact">
                   Nous consulter sur le financement
                   <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
@@ -830,6 +831,7 @@ const Education = () => {
         </div>
       </DarkSection>
 
+      </main>
       <Footer />
     </div>;
 };

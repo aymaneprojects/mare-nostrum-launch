@@ -69,7 +69,7 @@ const SEOHead = ({
     updateMetaTag('twitter:title', title);
     updateMetaTag('twitter:description', description);
     updateMetaTag('twitter:image', image);
-    updateMetaTag('twitter:card', 'summary_large_image');
+    updateMetaTag('twitter:card', 'summary'); // image par défaut = logo carré
 
     // Canonical URL
     let canonical = document.querySelector('link[rel="canonical"]');

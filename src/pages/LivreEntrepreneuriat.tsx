@@ -131,14 +131,14 @@ const LivreEntrepreneuriat = () => {
   };
   return <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead 
-        title="Livre Blanc Pedagogie Entrepreneuriale 2025 - Mare Nostrum Toulouse" 
-        description="Telechargez le Livre Blanc Mare Nostrum sur la Pedagogie Entrepreneuriale 2025. Meilleures pratiques pour integrer l'entrepreneuriat etudiant dans votre ecole ou universite. Guide gratuit." 
+        title="Livre blanc pédagogie entrepreneuriale | Mare Nostrum" 
+        description="Téléchargez le livre blanc Mare Nostrum sur la pédagogie entrepreneuriale : bonnes pratiques pour intégrer l'entrepreneuriat dans votre école. Gratuit." 
         keywords="livre blanc entrepreneuriat, pedagogie entrepreneuriale, education entrepreneuriale, formation entrepreneuriat ecole, entrepreneuriat etudiant, innovation pedagogique, mare nostrum livre blanc"
         
       />
       <Header />
       
-      <main className="flex-1">
+      <main id="contenu" className="flex-1">
         {/* Hero Section with Form */}
         <section className="relative py-12 md:py-20 bg-gradient-to-br from-primary/10 via-background to-background">
           <div className="container mx-auto px-4">
@@ -156,7 +156,7 @@ const LivreEntrepreneuriat = () => {
                   </p>
                   <div className="lg:text-left text-center mb-8">
                     <div className="inline-block perspective-1000">
-                      <img 
+                      <img fetchPriority="high" decoding="async" width={794} height={1106} 
                         src={livreBlancCover} 
                         alt="Couverture du Livre Blanc - Former à l'entrepreneuriat responsable" 
                         className="rounded-sm w-full max-w-[18rem] transform transition-transform duration-300"

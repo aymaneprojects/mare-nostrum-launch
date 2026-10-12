@@ -77,8 +77,7 @@ const NiteoToulouse = () => {
     "eventStatus": "https://schema.org/EventScheduled",
     "image": "https://www.marenostrum.tech/favicon.png",
     "performer": { "@type": "Organization", "name": "Mare Nostrum", "url": "https://www.marenostrum.tech" },
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "url": "https://niteo.marenostrum.tech", "availability": "https://schema.org/InStock", "validFrom": "2026-01-01" },
-    "location": { "@type": "Place", "name": "Toulouse", "address": { "@type": "PostalAddress", "addressLocality": "Toulouse", "addressCountry": "FR" } },
+       "location": { "@type": "Place", "name": "Toulouse", "address": { "@type": "PostalAddress", "addressLocality": "Toulouse", "addressCountry": "FR" } },
     "organizer": { "@type": "Organization", "name": "Mare Nostrum", "url": "https://www.marenostrum.tech" },
     "description": "Journee finale du programme Niteo Toulouse : pitch devant 30 decideurs et +10 000 EUR de dotations. Le programme d'acceleration entrepreneuriale etudiants de reference a Toulouse."
   }, {
@@ -172,20 +171,21 @@ const NiteoToulouse = () => {
   return (
     <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
-        title="Incubateur Toulouse étudiants : Niteo 2026 | Mare Nostrum"
-        description="Incubateur et accompagnement entrepreneur à Toulouse : Niteo 2026, programme d'accélération de 50h pour étudiants. E-learning, ateliers, coaching individuel, Demo Day devant 30 decideurs. +10 000 EUR de dotations. Par Mare Nostrum, expert entrepreneuriat Toulouse."
+        title="Incubation Toulouse étudiants : Niteo 2026 | Mare Nostrum"
+        description="Incubation à Toulouse pour étudiants entrepreneurs : Niteo, programme de 50 h avec e-learning, ateliers, coaching et Demo Day. Par Mare Nostrum."
         keywords="incubateur toulouse, accompagnement entrepreneur toulouse, Niteo, Niteo Toulouse, programme Niteo, Niteo 2026, entrepreneuriat toulouse, programme entrepreneuriat etudiant toulouse, acceleration startup etudiant toulouse, mare nostrum toulouse, demo day toulouse, incubateur etudiant toulouse, entrepreneuriat etudiant toulouse, creation entreprise etudiant, startup etudiante toulouse, mare nostrum niteo"
         structuredData={niteoSchema}
         faqSchema={niteoFaqs}
         
       />
       <Header />
+      <main id="contenu" className="flex-1">
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-primary to-accent py-16 md:py-32">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <img src={logoNiteo} alt="Logo Niteo 2026" className="h-24 md:h-36 mx-auto mb-6 md:mb-8" />
+            <img src={logoNiteo} alt="Logo Niteo 2026" fetchPriority="high" decoding="async" className="h-24 md:h-36 mx-auto mb-6 md:mb-8" />
             <div className="mn-eyebrow-light mb-4 md:mb-6">Édition Toulouse 2026</div>
             <h1 className="text-3xl md:text-6xl font-bold text-primary-foreground mb-4 md:mb-6">
               50h pour passer de l'idée à l'entreprise
@@ -382,7 +382,7 @@ const NiteoToulouse = () => {
                 <div className="grid grid-cols-2 gap-6">
                   {teamMareNostrum.map((member) => (
                     <div key={member.name} className="text-center">
-                      <img src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-sm object-cover mx-auto mb-3" />
+                      <img loading="lazy" decoding="async" width={96} height={96} src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-sm object-cover mx-auto mb-3" />
                       <div className="font-bold text-sm text-foreground">{member.name.split(' ')[0]} <span className="uppercase">{member.name.split(' ').slice(1).join(' ')}</span></div>
                       <div className="text-xs text-muted-foreground whitespace-pre-line mt-1">{member.role}</div>
                     </div>
@@ -396,7 +396,7 @@ const NiteoToulouse = () => {
                 <div className="flex justify-center gap-8">
                   {teamEntrepreneursConseil.map((member) => (
                     <div key={member.name} className="text-center max-w-[160px]">
-                      <img src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-sm object-cover mx-auto mb-3" />
+                      <img loading="lazy" decoding="async" width={96} height={96} src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-sm object-cover mx-auto mb-3" />
                       <div className="font-bold text-sm text-foreground">{member.name.split(' ')[0]} <span className="uppercase">{member.name.split(' ').slice(1).join(' ')}</span></div>
                       <div className="text-xs text-muted-foreground whitespace-pre-line mt-1">{member.role}</div>
                     </div>
@@ -406,7 +406,7 @@ const NiteoToulouse = () => {
 
               {/* Parrain */}
               <div className="lg:col-span-2 mn-card mn-card-accent !bg-accent/10 p-6 flex flex-col items-center justify-center">
-                <img src={bertrandSerp} alt="Bertrand SERP" className="w-20 h-20 md:w-24 md:h-24 rounded-sm object-cover mb-3" />
+                <img loading="lazy" decoding="async" width={96} height={96} src={bertrandSerp} alt="Bertrand SERP" className="w-20 h-20 md:w-24 md:h-24 rounded-sm object-cover mb-3" />
                 <div className="font-bold text-sm text-foreground">Bertrand <span className="uppercase">SERP</span></div>
                 <div className="text-xs text-muted-foreground text-center mt-1">Parrain<br />Vice-Président de<br />Toulouse Métropole</div>
               </div>
@@ -421,7 +421,7 @@ const NiteoToulouse = () => {
                   {teamCoachs.map((member) => (
                     <div key={member.name} className="text-center">
                       {'photo' in member && member.photo ? (
-                        <img src={member.photo as string} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-sm object-cover mx-auto mb-3" />
+                        <img loading="lazy" decoding="async" width={96} height={96} src={member.photo as string} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-sm object-cover mx-auto mb-3" />
                       ) : (
                         <div className="w-20 h-20 md:w-24 md:h-24 rounded-sm bg-muted flex items-center justify-center mx-auto mb-3">
                           <span className="text-2xl font-bold text-muted-foreground">{member.name.charAt(0)}</span>
@@ -440,7 +440,7 @@ const NiteoToulouse = () => {
                 <div className="grid grid-cols-2 gap-6">
                   {teamExperts.map((member) => (
                     <div key={member.name} className="text-center">
-                      <img src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-sm object-cover mx-auto mb-3" />
+                      <img loading="lazy" decoding="async" width={96} height={96} src={member.photo} alt={member.name} className="w-20 h-20 md:w-24 md:h-24 rounded-sm object-cover mx-auto mb-3" />
                       <div className="font-bold text-sm text-foreground">{member.name.split(' ')[0]} <span className="uppercase">{member.name.split(' ').slice(1).join(' ')}</span></div>
                       <div className="text-xs text-muted-foreground whitespace-pre-line mt-1">{member.role}</div>
                     </div>
@@ -477,7 +477,7 @@ const NiteoToulouse = () => {
                 title={partner.alt}
                 className="flex items-center justify-center h-16 md:h-20 cursor-pointer grayscale hover:grayscale-0 transition-all duration-300"
               >
-                <img src={partner.src} alt={partner.alt} className="max-h-full max-w-[140px] md:max-w-[160px] object-contain" />
+                <img loading="lazy" decoding="async" src={partner.src} alt={partner.alt} className="max-h-full max-w-[140px] md:max-w-[160px] object-contain" />
               </a>
             ))}
           </div>
@@ -510,6 +510,7 @@ const NiteoToulouse = () => {
         </div>
       </DarkSection>
 
+      </main>
       <Footer />
     </div>
   );

@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { Link, useLocation } from "react-router-dom";
 import { getMember, telHref } from "@/data/team";
+import { lireStockage, ecrireStockage, urlSure } from "@/lib/safe";
 interface Message {
   id: string;
   role: "user" | "assistant";
@@ -57,15 +58,15 @@ const ChatBot = () => {
   useEffect(() => {
     try {
       // Charger ou créer le session ID
-      let storedSessionId = localStorage.getItem(CHAT_SESSION_KEY);
+      let storedSessionId = lireStockage(CHAT_SESSION_KEY);
       if (!storedSessionId) {
         storedSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-        localStorage.setItem(CHAT_SESSION_KEY, storedSessionId);
+        ecrireStockage(CHAT_SESSION_KEY, storedSessionId);
       }
       setSessionId(storedSessionId);
 
       // Charger l'historique des messages
-      const storedHistory = localStorage.getItem(CHAT_HISTORY_KEY);
+      const storedHistory = lireStockage(CHAT_HISTORY_KEY);
       if (storedHistory) {
         const parsedHistory: StoredMessage[] = JSON.parse(storedHistory);
         // Convertir les timestamps string en Date
@@ -92,7 +93,7 @@ const ChatBot = () => {
         ...msg,
         timestamp: msg.timestamp.toISOString(),
       }));
-      localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(toStore));
+      ecrireStockage(CHAT_HISTORY_KEY, JSON.stringify(toStore));
     } catch (error) {
       console.error("Error saving chat history:", error);
     }
@@ -103,6 +104,8 @@ const ChatBot = () => {
   // jamais s'afficher : le visiteur ne voyait que le message d'attente. On recharge donc
   // la conversation du serveur dès que son dernier message est une réponse d'Inès.
   const [enAttente, setEnAttente] = useState(false);
+  const monte = useRef(true);
+  useEffect(() => { monte.current = true; return () => { monte.current = false; }; }, []);
   const syncFromServer = useCallback(async (): Promise<"repondu" | "en_attente" | "vide"> => {
     if (!sessionId) return "vide";
     try {
@@ -159,7 +162,7 @@ const ChatBot = () => {
 
   // Vérifier si l'utilisateur a déjà utilisé le chat
   useEffect(() => {
-    const hasUsed = localStorage.getItem("brandy_chat_used") === "true";
+    const hasUsed = lireStockage("brandy_chat_used") === "true";
     setHasUsedChat(hasUsed);
   }, []);
 
@@ -172,10 +175,13 @@ const ChatBot = () => {
 
     const showNotificationWithDelay = () => {
       // Première notification après 8 secondes, puis toutes les 60 secondes
-      const delay = notificationCount === 0 ? 8000 : 60000;
+      // Une seule bulle par session, après 30 s, jamais pendant la saisie dans un champ.
+      const delay = 30000;
       
       const timer = setTimeout(() => {
-        if (notificationCount < 3 && !hasUsedChat && !isOpen) {
+        const a = document.activeElement;
+        const saisie = a instanceof HTMLElement && (a.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName));
+        if (notificationCount < 1 && !hasUsedChat && !isOpen && !saisie) {
           setShowNotification(true);
           setNotificationCount(prev => prev + 1);
         }
@@ -237,16 +243,16 @@ const ChatBot = () => {
 
   const markChatAsUsed = () => {
     setHasUsedChat(true);
-    localStorage.setItem("brandy_chat_used", "true");
+    ecrireStockage("brandy_chat_used", "true");
   };
 
   // Réinitialiser le chat
   const resetChat = () => {
     const newSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
     setSessionId(newSessionId);
-    localStorage.setItem(CHAT_SESSION_KEY, newSessionId);
+    ecrireStockage(CHAT_SESSION_KEY, newSessionId);
     setMessages([welcomeMessage]);
-    localStorage.removeItem(CHAT_HISTORY_KEY);
+    try { localStorage.removeItem(CHAT_HISTORY_KEY); } catch { /* stockage indisponible */ }
   };
 
   const sendMessage = async () => {
@@ -274,10 +280,11 @@ const ChatBot = () => {
       // Réponses d'Inès déjà présentes : on attend une réponse POSTÉRIEURE à cette
       // question, sinon le deuxième message afficherait la réponse du premier.
       const lireHistorique = async () => {
-        const { data } = await supabase.functions.invoke(
+        const { data, error: histError } = await supabase.functions.invoke(
           `chatbot-webhook?action=history&sessionId=${sessionId}`,
           { method: "GET" }
         );
+        if (histError) throw histError;
         return ((data?.messages ?? []) as { role: string; content: string }[]).filter(m => m.role === "assistant");
       };
       const dejaRepondu = (await lireHistorique()).length;
@@ -297,17 +304,28 @@ const ChatBot = () => {
       let attempts = 0;
       const maxAttempts = 50;
 
-      while (attempts < maxAttempts) {
-        await new Promise(resolve => setTimeout(resolve, 1500));
+      let erreursDeSuite = 0;
+      while (attempts < maxAttempts && monte.current && erreursDeSuite < 5) {
+        // Délai progressif : 1,5 s puis jusqu'à 4 s
+        await new Promise(resolve => setTimeout(resolve, Math.min(1500 + attempts * 100, 4000)));
         attempts++;
+        if (!monte.current) return;
 
-        const reponses = await lireHistorique();
+        let reponses: { role: string; content: string }[];
+        try {
+          reponses = await lireHistorique();
+          erreursDeSuite = 0;
+        } catch {
+          erreursDeSuite++;
+          continue;
+        }
         if (reponses.length > dejaRepondu) {
           assistantContent = reponses[reponses.length - 1].content;
           break;
         }
       }
 
+      if (!monte.current) return;
       if (!assistantContent) {
         assistantContent = "Merci pour ton message ! Inès va te répondre dès que possible. 💬";
         setEnAttente(true); // la vraie réponse remplacera ce message dès qu'elle arrive
@@ -325,6 +343,7 @@ const ChatBot = () => {
       saveHistory(updatedMessages);
     } catch (error) {
       console.error("Error sending message:", error);
+      if (!monte.current) return;
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
@@ -335,7 +354,7 @@ const ChatBot = () => {
       setMessages(updatedMessages);
       saveHistory(updatedMessages);
     } finally {
-      setIsLoading(false);
+      if (monte.current) setIsLoading(false);
     }
   };
 
@@ -351,12 +370,18 @@ const ChatBot = () => {
     return content
       .split("\n")
       .map((line, index) => {
+        // Le texte est échappé AVANT les balises de mise en forme : aucun HTML brut ne passe.
+        line = line.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
         // Bold text
         line = line.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
         // Italic text
         line = line.replace(/\*(.*?)\*/g, "<em>$1</em>");
         // Links
-        line = line.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" class="text-primary underline">$1</a>');
+        line = line.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_m, texte: string, url: string) =>
+          urlSure(url.replace(/&quot;/g, '"').replace(/&amp;/g, "&"))
+            ? `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-primary underline">${texte}</a>`
+            : texte
+        );
         
         return (
           <span key={index} dangerouslySetInnerHTML={{ __html: line }} className="block" />
@@ -369,7 +394,7 @@ const ChatBot = () => {
       {/* Notification Bubble */}
       {showNotification && !isOpen && (
         <div 
-          className="fixed bottom-36 right-4 sm:bottom-24 sm:right-6 z-50 max-w-[280px] animate-in slide-in-from-right-5 fade-in duration-300"
+          className="mn-flottant fixed bottom-[calc(9rem+env(safe-area-inset-bottom))] right-4 sm:bottom-24 sm:right-6 z-50 max-w-[280px] animate-in slide-in-from-right-5 fade-in duration-300"
           onClick={handleOpenChat}
         >
           <div className="mn-card hover-lift p-4 cursor-pointer relative">
@@ -378,8 +403,8 @@ const ChatBot = () => {
               className="absolute -top-5 -right-5 w-11 h-11 flex items-center justify-center group"
               aria-label="Fermer"
             >
-              <span className="w-6 h-6 bg-muted rounded-full flex items-center justify-center group-hover:bg-muted-foreground/20 transition-colors">
-                <X className="h-3 w-3 text-muted-foreground" />
+              <span className="w-8 h-8 bg-muted border border-border rounded-full flex items-center justify-center group-hover:bg-muted-foreground/20 transition-colors">
+                <X className="h-4 w-4 text-muted-foreground" />
               </span>
             </button>
             <div className="flex items-start gap-3">
@@ -404,7 +429,7 @@ const ChatBot = () => {
         <button
           ref={ctaRef}
           onClick={() => setIsOpen(false)}
-          className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-[10px] shadow-[var(--shadow-medium)] flex items-center justify-center bg-muted-foreground transition-all duration-200"
+          className="mn-flottant fixed bottom-[calc(5rem+env(safe-area-inset-bottom))] right-4 sm:bottom-6 sm:right-6 z-50 w-14 h-14 rounded-[10px] shadow-[var(--shadow-medium)] flex items-center justify-center bg-muted-foreground transition-colors duration-200"
           aria-label="Fermer le chat"
         >
           <X className="h-6 w-6 text-primary-foreground" />
@@ -415,7 +440,7 @@ const ChatBot = () => {
           onClick={() => setMenuOpen((v) => !v)}
           aria-haspopup="menu"
           aria-expanded={menuOpen}
-          className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-50 min-h-12 px-5 rounded-[10px] shadow-[var(--shadow-medium)] flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-medium text-base transition-all duration-200"
+          className="mn-flottant fixed bottom-[calc(5rem+env(safe-area-inset-bottom))] right-4 sm:bottom-6 sm:right-6 z-50 min-h-12 px-5 rounded-[10px] shadow-[var(--shadow-medium)] flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-medium text-base transition-colors duration-200"
         >
           <MessageCircle className="h-5 w-5" aria-hidden="true" />
           Parler à quelqu'un
@@ -427,7 +452,7 @@ const ChatBot = () => {
           ref={menuRef}
           role="menu"
           aria-label="Parler à quelqu'un"
-          className="fixed bottom-36 right-4 sm:bottom-24 sm:right-6 z-50 w-[min(18rem,calc(100vw-2rem))] mn-card shadow-[var(--shadow-lift)] p-2 animate-in fade-in slide-in-from-bottom-2 duration-200"
+          className="mn-flottant fixed bottom-[calc(9rem+env(safe-area-inset-bottom))] right-4 sm:bottom-24 sm:right-6 z-50 w-[min(18rem,calc(100vw-2rem))] mn-card shadow-[var(--shadow-lift)] p-2 animate-in fade-in slide-in-from-bottom-2 duration-200"
         >
           {[
             // Rendez-vous : le Meet de l'équipe (même lien que /contact). Appel : la ligne d'Alexis,
@@ -458,13 +483,13 @@ const ChatBot = () => {
 
       {/* Chat Window */}
       <div
-        className={`fixed z-50 transition-all duration-200 transform origin-bottom-right
+        className={`fixed z-50 transition-[transform,opacity,visibility] duration-200 transform origin-bottom-right motion-reduce:transition-none
           ${isOpen 
             ? "scale-100 opacity-100 visible pointer-events-auto" 
             : "scale-95 opacity-0 invisible pointer-events-none"
           }
           /* Mobile: full width minus margins */
-          bottom-36 right-2 left-2 sm:left-auto
+          bottom-[calc(9rem+env(safe-area-inset-bottom))] right-2 left-2 sm:left-auto
           /* Desktop: fixed width */
           sm:bottom-24 sm:right-6 sm:w-[360px] sm:max-w-[calc(100vw-3rem)]`}
       >

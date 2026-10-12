@@ -13,6 +13,10 @@ const Footer = () => {
             <img
               src={logo}
               alt="Mare Nostrum"
+              width={400}
+              height={156}
+              loading="lazy"
+              decoding="async"
               className="h-12 md:h-14 w-auto mb-4 brightness-0 invert"
             />
             <p className="mn-body text-primary-foreground/75 max-w-sm">
@@ -22,7 +26,11 @@ const Footer = () => {
               <img
                 src={qualiopiOfficialLogo}
                 alt="Qualiopi – processus certifié"
-                className="h-12 md:h-14 w-auto rounded-sm bg-white"
+                width={400}
+                height={214}
+                loading="lazy"
+                decoding="async"
+                className="h-12 md:h-14 w-auto rounded-sm bg-card"
               />
               <p className="mt-2 max-w-md text-xs md:text-sm leading-relaxed text-primary-foreground/75">
                 La certification qualité a été délivrée au titre de la catégorie d'action suivante : actions de formation.
@@ -31,50 +39,55 @@ const Footer = () => {
           </div>
 
           {/* Navigation */}
-          <div>
-            <h3 className="mn-eyebrow-turquoise text-[hsl(var(--mn-turquoise))] mb-5">Navigation</h3>
+          <nav aria-label="Pied de page">
+            <h3 className="mn-eyebrow-turquoise text-turquoise mb-5">Navigation</h3>
             <ul className="space-y-1 text-[15px]">
               <li>
-                <Link to="/" className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors">
+                <Link to="/" className="mn-link-u [--mn-u-bottom:0.4rem] inline-flex min-h-11 items-center text-primary-foreground/75 hover:text-accent transition-colors">
                   Accueil
                 </Link>
               </li>
               <li>
-                <Link to="/expertise" className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors">
+                <Link to="/niteo-toulouse" className="mn-link-u [--mn-u-bottom:0.4rem] inline-flex min-h-11 items-center text-primary-foreground/75 hover:text-accent transition-colors">
+                  Incubation
+                </Link>
+              </li>
+              <li>
+                <Link to="/expertise" className="mn-link-u [--mn-u-bottom:0.4rem] inline-flex min-h-11 items-center text-primary-foreground/75 hover:text-accent transition-colors">
                   Pôle d'expertise
                 </Link>
               </li>
               <li>
-                <Link to="/education" className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors">
+                <Link to="/education" className="mn-link-u [--mn-u-bottom:0.4rem] inline-flex min-h-11 items-center text-primary-foreground/75 hover:text-accent transition-colors">
                   Centre de formation
                 </Link>
               </li>
               <li>
-                <Link to="/club" className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors">
+                <Link to="/club" className="mn-link-u [--mn-u-bottom:0.4rem] inline-flex min-h-11 items-center text-primary-foreground/75 hover:text-accent transition-colors">
                   Club d'entrepreneurs
                 </Link>
               </li>
               <li>
-                <Link to="/a-propos" className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors">
+                <Link to="/a-propos" className="mn-link-u [--mn-u-bottom:0.4rem] inline-flex min-h-11 items-center text-primary-foreground/75 hover:text-accent transition-colors">
                   À propos
                 </Link>
               </li>
               <li>
-                <Link to="/equipe" className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors">
+                <Link to="/equipe" className="mn-link-u [--mn-u-bottom:0.4rem] inline-flex min-h-11 items-center text-primary-foreground/75 hover:text-accent transition-colors">
                   Équipe
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors">
+                <Link to="/contact" className="mn-link-u [--mn-u-bottom:0.4rem] inline-flex min-h-11 items-center text-primary-foreground/75 hover:text-accent transition-colors">
                   Contact
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
 
           {/* Contact Info */}
           <div>
-            <h3 className="mn-eyebrow-turquoise text-[hsl(var(--mn-turquoise))] mb-5">Contact</h3>
+            <h3 className="mn-eyebrow-turquoise text-turquoise mb-5">Contact</h3>
             <ul className="space-y-1 text-[15px]">
               <li className="flex items-center space-x-2.5">
                 <MapPin className="h-4 w-4 text-accent shrink-0" />
@@ -84,7 +97,7 @@ const Footer = () => {
                 <Mail className="h-4 w-4 text-accent shrink-0" />
                 <a
                   href="mailto:contact@marenostrum.tech"
-                  className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors"
+                  className="mn-link-u [--mn-u-bottom:0.4rem] inline-flex min-h-11 items-center text-primary-foreground/75 hover:text-accent transition-colors"
                 >
                   contact@marenostrum.tech
                 </a>
@@ -94,7 +107,7 @@ const Footer = () => {
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors"
+                  className="mn-link-u [--mn-u-bottom:0.4rem] inline-flex min-h-11 items-center text-primary-foreground/75 hover:text-accent transition-colors"
                   href="https://www.linkedin.com/company/marenostrumtech"
                 >
                   Mare Nostrum
@@ -105,7 +118,7 @@ const Footer = () => {
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 text-primary-foreground/75 hover:text-accent transition-colors"
+                  className="mn-link-u [--mn-u-bottom:0.4rem] inline-flex min-h-11 items-center text-primary-foreground/75 hover:text-accent transition-colors"
                   href="https://www.linkedin.com/company/mare-nostrum-education"
                 >
                   Centre de formation
@@ -119,16 +132,16 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center text-[13px] xl:text-sm text-primary-foreground/70 gap-3 md:gap-0">
             <p>© 2023-2026 Mare Nostrum SAS. Tous droits réservés. Développé par l'équipe avec 💙.</p>
             <div className="flex flex-wrap gap-x-4 gap-y-2">
-              <Link to="/mentions-legales" className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 hover:text-accent transition-colors">
+              <Link to="/mentions-legales" className="mn-link-u [--mn-u-bottom:0.4rem] inline-flex min-h-11 items-center hover:text-accent transition-colors">
                 Mentions légales
               </Link>
-              <Link to="/cgu" className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 hover:text-accent transition-colors">
+              <Link to="/cgu" className="mn-link-u [--mn-u-bottom:0.4rem] inline-flex min-h-11 items-center hover:text-accent transition-colors">
                 CGU
               </Link>
-              <Link to="/confidentialite" className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 hover:text-accent transition-colors">
+              <Link to="/confidentialite" className="mn-link-u [--mn-u-bottom:0.4rem] inline-flex min-h-11 items-center hover:text-accent transition-colors">
                 Politique de confidentialité
               </Link>
-              <a href="/sitemap.xml" className="mn-link-u [--mn-u-bottom:0.4rem] inline-block py-2 hover:text-accent transition-colors">
+              <a href="/sitemap.xml" className="mn-link-u [--mn-u-bottom:0.4rem] inline-flex min-h-11 items-center hover:text-accent transition-colors">
                 Sitemap
               </a>
             </div>

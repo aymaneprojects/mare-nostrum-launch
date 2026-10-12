@@ -25,43 +25,19 @@ const DEFAULT_KEYWORDS = "entrepreneuriat toulouse, entrepreneuriat etudiant, en
  * Enrichit automatiquement le titre pour SEO
  */
 const enhanceTitle = (title: string): string => {
-  // Si le titre contient déjà "Mare Nostrum", le garder tel quel
-  if (title.toLowerCase().includes('mare nostrum')) {
-    return title;
-  }
-  
-  // Sinon, ajouter "Mare Nostrum" de manière naturelle
-  // Éviter les titres trop longs (max 60 caractères recommandés)
-  const brandSuffix = ` - ${BRAND_NAME}`;
-  
-  if (title.length + brandSuffix.length <= 60) {
-    return `${title}${brandSuffix}`;
-  }
-  
-  // Si trop long, raccourcir intelligemment
-  return `${BRAND_NAME} | ${title.substring(0, 50)}...`;
+  if (title.toLowerCase().includes('mare nostrum')) return title;
+  const withBrand = `${title} | ${BRAND_NAME}`;
+  // Jamais de troncature : un titre coupé par "..." est pire qu'un titre sans marque.
+  return withBrand.length <= 60 ? withBrand : title;
 };
 
 /**
- * Enrichit automatiquement la description pour SEO
+ * Enrichit la description : préfixe de marque seulement si elle reste sous 155 caractères.
  */
 const enhanceDescription = (description: string): string => {
-  // Si la description contient déjà "Mare Nostrum" au début, la garder
-  if (description.toLowerCase().startsWith('mare nostrum') || 
-      description.toLowerCase().includes('mare nostrum')) {
-    return description;
-  }
-  
-  // Ajouter "Mare Nostrum" au début de manière naturelle
-  // Max 160 caractères recommandés
-  const prefix = `${BRAND_NAME} - `;
-  
-  if (description.length + prefix.length <= 160) {
-    return `${prefix}${description}`;
-  }
-  
-  // Si trop long, optimiser
-  return `${BRAND_NAME}: ${description.substring(0, 140)}...`;
+  if (description.toLowerCase().includes('mare nostrum')) return description;
+  const withBrand = `${BRAND_NAME} - ${description}`;
+  return withBrand.length <= 155 ? withBrand : description;
 };
 
 /**
@@ -100,22 +76,49 @@ const generateBreadcrumbs = (path: string): object => {
   // Mapping des segments de chemin vers des noms lisibles
   const pathNames: Record<string, string> = {
     'education': 'Éducation',
-    'croissance': 'Croissance',
+    'club': 'Club',
+    'expertise': 'Expertise',
+    'mastermind': 'Mastermind néo-entrepreneurs',
+    'mastermind-digital': 'Mastermind digital',
+    'initiation-ia': 'Initiation à l\'IA',
+    'agent-ia-marketing': 'Agent IA marketing',
+    'offre-ia': 'Offre IA',
+    'niteo-toulouse': 'Niteo Toulouse',
+    'iter': 'Newsletter ITER',
+    'diagnostic': 'Diagnostic',
+    'equipe': 'Équipe',
+    'partenaire': 'Partenaires',
     'blog': 'Blog',
-    'a-propos': 'À Propos',
+    'a-propos': 'À propos',
     'contact': 'Contact',
     'engagement-rse': 'Engagement RSE',
-    'livre-entrepreneuriat': 'Livre Blanc',
-    'mentions-legales': 'Mentions Légales',
+    'livre-entrepreneuriat': 'Livre blanc',
+    'mentions-legales': 'Mentions légales',
     'cgu': 'CGU',
-    'confidentialite': 'Confidentialité'
+    'cgv': 'CGV',
+    'confidentialite': 'Confidentialité',
+    'transformation-entrepreneuriale': 'Transformation entrepreneuriale',
+    'diagnostic-gratuit': 'Diagnostic gratuit',
+    'accompagnement-francophonie-afrique': 'Accompagnement Francophonie et Afrique',
+    'test-maturite-projet': 'Test de maturité du projet',
+    'mentorat-individuel': 'Mentorat individuel',
+    'entrepreneuriat-social-francophonie': 'Entrepreneuriat social en francophonie',
+    'innovation-pedagogique-entrepreneuriat': 'Innovation pédagogique et entrepreneuriat',
+    'impact-mesure-startup': 'Mesurer l\'impact de sa startup'
+  };
+  // Segments sans page propre : pas d'élément de fil d'Ariane vers une URL qui n'existe pas.
+  const sansPage = new Set(['ecoles', 'entrepreneurs', 'mag']);
+  const humaniser = (seg: string) => {
+    const t = decodeURIComponent(seg).replace(/-/g, ' ');
+    return t.charAt(0).toUpperCase() + t.slice(1);
   };
   
   let currentPath = '';
   pathSegments.forEach((segment) => {
     currentPath += `/${segment}`;
+    if (sansPage.has(segment)) return;
     breadcrumbs.push({
-      name: pathNames[segment] || segment,
+      name: pathNames[segment] || humaniser(segment),
       url: `https://www.marenostrum.tech${currentPath}`
     });
   });
@@ -133,27 +136,6 @@ const generateBreadcrumbs = (path: string): object => {
 };
 
 /**
- * Génère le WebSite SearchAction Schema
- */
-const generateWebsiteSchema = (): object => {
-  return {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": BRAND_NAME,
-    "alternateName": "Cabinet Mare Nostrum",
-    "url": "https://www.marenostrum.tech",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://www.marenostrum.tech/blog?search={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    }
-  };
-};
-
-/**
  * Fonction principale d'enrichissement SEO
  */
 export const enhanceSEO = (config: SEOEnhancerConfig): EnhancedSEO => {
@@ -164,9 +146,7 @@ export const enhanceSEO = (config: SEOEnhancerConfig): EnhancedSEO => {
   // Générer les structured data automatiques
   const structuredData: object[] = [];
   
-  // Toujours inclure le WebSite Schema
-  structuredData.push(generateWebsiteSchema());
-  
+  // Le WebSite et l'Organization globaux vivent dans index.html (une seule fois).
   // Ajouter les breadcrumbs si on n'est pas sur la page d'accueil
   if (config.path !== '/' && config.path !== '') {
     structuredData.push(generateBreadcrumbs(config.path));

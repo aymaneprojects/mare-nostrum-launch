@@ -57,6 +57,7 @@ export default {
         /* Mare Nostrum brand tokens */
         nuit: "hsl(var(--mn-nuit))",
         turquoise: "hsl(var(--mn-turquoise))",
+        "turquoise-texte": "hsl(var(--mn-turquoise-texte))",
         ivory: "hsl(var(--mn-ivory))",
         ocre: "hsl(var(--mn-ocre))",
         ink: "hsl(var(--mn-ink))",

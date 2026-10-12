@@ -85,7 +85,7 @@ function LogoGrid({ items }: { items: typeof PARTNERS }) {
           title={p.alt}
           className="flex items-center justify-center h-14 md:h-18 cursor-pointer grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
         >
-          <img
+          <img loading="lazy" decoding="async"
             src={p.src}
             alt={p.alt}
             className="max-h-14 md:max-h-16 max-w-[130px] md:max-w-[160px] object-contain"
@@ -99,11 +99,12 @@ function LogoGrid({ items }: { items: typeof PARTNERS }) {
 const Partenaires = () => (
   <div className="min-h-dvh flex flex-col bg-background">
     <EnhancedSEOHead
-      title="Nos Partenaires - Mare Nostrum"
-      description="Découvrez l'écosystème de partenaires institutionnels, financiers et académiques qui accompagnent Mare Nostrum dans sa mission d'entrepreneuriat francophone."
+      title="Nos partenaires | Mare Nostrum"
+      description="Les partenaires institutionnels, financiers et académiques qui accompagnent Mare Nostrum dans sa mission d'entrepreneuriat francophone."
       keywords="partenaires mare nostrum, toulouse métropole, AUF, airbus développement, écoles partenaires, entrepreneuriat toulouse"
     />
     <Header />
+    <main id="contenu" className="flex-1">
 
     <PageHero
       eyebrow="Écosystème Mare Nostrum"
@@ -167,6 +168,7 @@ const Partenaires = () => (
       </div>
     </section>
 
+    </main>
     <Footer />
   </div>
 );

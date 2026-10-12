@@ -52,14 +52,15 @@ const TransformationEntrepreneuriale = () => {
   return (
     <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
-        title="Programmes d'Entrepreneuriat pour Écoles | Alternative Agile à Pépite - Mare Nostrum"
-        description="Intégrez l'entrepreneuriat dans votre établissement avec des programmes sur-mesure. Alternative agile aux dispositifs traditionnels. Diagnostic gratuit en 30 min."
+        title="Entrepreneuriat en école : programmes | Mare Nostrum"
+        description="Intégrez l'entrepreneuriat dans votre école ou université avec des programmes sur mesure. Diagnostic gratuit de 30 minutes."
         keywords="programme entrepreneuriat école, formation entrepreneuriale université, alternative pépite, accompagnement étudiant entrepreneur, sensibilisation entrepreneuriat"
         structuredData={pageSchema}
         faqSchema={faqs}
         
       />
       <Header />
+      <main id="contenu" className="flex-1">
 
       <PageHero
         size="lg"
@@ -257,6 +258,7 @@ const TransformationEntrepreneuriale = () => {
         faqs={faqs}
       />
 
+      </main>
       <Footer />
     </div>
   );

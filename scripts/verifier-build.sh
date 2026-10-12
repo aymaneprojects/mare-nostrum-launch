@@ -7,7 +7,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 js=$(ls dist/assets/index-*.js 2>/dev/null | head -1 || true)
 [ -n "$js" ] || { echo "BUILD REFUSÉ : aucun script principal dans dist/assets." >&2; exit 1; }
-grep -q "\.supabase\.co" "$js" || {
+grep -rlq "\.supabase\.co" dist/assets || {
   echo "BUILD REFUSÉ : l'adresse Supabase est absente du script (variables VITE_SUPABASE_* manquantes) : le site serait en écran blanc." >&2
   exit 1; }
 grep -rlq "pk_live_" dist/assets || {

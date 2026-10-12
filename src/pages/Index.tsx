@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, GraduationCap, TrendingUp, Users, Target, Lightbulb, Globe, ShieldCheck, Star, Award, MapPin } from "lucide-react";
@@ -25,7 +26,8 @@ import poleExpertiseIcon from "@/assets/poles/pole-expertise.png";
 import veluoIcon from "@/assets/poles/veluo.png";
 import niteoIcon from "@/assets/poles/niteo.png";
 import clubIcon from "@/assets/poles/club.png";
-import HeroMap from "@/components/HeroMap";
+// Carte du héros : 119 Ko de données, chargée après le premier affichage.
+const HeroMap = lazy(() => import("@/components/HeroMap"));
 import PainPoints from "@/components/PainPoints";
 import ImpactStats from "@/components/ImpactStats";
 const DarkLayers =({ halo, vignette }: { halo: string; vignette: string }) => (
@@ -45,101 +47,9 @@ const Index = () => {
   const homePageSchema = [
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Mare Nostrum",
-      "alternateName": "Mare Nostrum - Conseil en Entrepreneuriat à Impact",
-      "url": "https://www.marenostrum.tech",
-      "logo": "https://www.marenostrum.tech/logo.png",
-      "description": "Cabinet de conseil en entrepreneuriat à impact accompagnant les écoles et entrepreneurs à Toulouse, Paris et Casablanca",
-      "foundingDate": "2023",
-      "founders": [
-        {
-          "@type": "Person",
-          "name": "Aymane"
-        },
-        {
-          "@type": "Person",
-          "name": "Alexis"
-        }
-      ],
-      "address": [
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Toulouse",
-          "addressRegion": "Occitanie",
-          "postalCode": "31000",
-          "addressCountry": "FR",
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "43.604652",
-            "longitude": "1.444209"
-          }
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Paris",
-          "addressRegion": "Île-de-France",
-          "addressCountry": "FR",
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "48.856614",
-            "longitude": "2.3522219"
-          }
-        },
-        {
-          "@type": "PostalAddress",
-          "addressLocality": "Casablanca",
-          "addressCountry": "MA",
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "33.5731104",
-            "longitude": "-7.5898434"
-          }
-        }
-      ],
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-          "opens": "09:00",
-          "closes": "18:00"
-        }
-      ],
-      "priceRange": "€€",
-      "image": "https://www.marenostrum.tech/logo.png",
-      "contactPoint": [
-        {
-          "@type": "ContactPoint",
-          "telephone": "+33-contact",
-          "contactType": "Customer Service",
-          "email": "contact@marenostrum.tech",
-          "areaServed": ["FR", "MA", "TN", "DZ", "SN", "CI", "BJ", "CM", "BF", "CD", "EG", "CA"],
-          "availableLanguage": ["French", "Arabic", "English"]
-        }
-      ],
-      "sameAs": [
-        "https://www.linkedin.com/company/marenostrum"
-      ],
-      "slogan": "Sécurisons la trajectoire et l'impact des néo-entrepreneurs",
-      "knowsAbout": [
-        "Entrepreneuriat à impact",
-        "Éducation entrepreneuriale",
-        "Conseil en croissance",
-        "Innovation sociale",
-        "Entreprise à mission",
-        "Accompagnement francophonie",
-        "Développement Afrique",
-        "Formation entrepreneurs"
-      ]
-    },
-    {
-      "@context": "https://schema.org",
       "@type": "Service",
       "serviceType": "Conseil en Entrepreneuriat",
-      "provider": {
-        "@type": "Organization",
-        "name": "Mare Nostrum"
-      },
+      "provider": { "@id": "https://www.marenostrum.tech/#organization" },
       "areaServed": [
         {
           "@type": "City",
@@ -176,20 +86,6 @@ const Index = () => {
           }
         ]
       }
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Mare Nostrum",
-      "url": "https://www.marenostrum.tech",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://www.marenostrum.tech/blog?search={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      }
     }
   ];
 
@@ -218,14 +114,15 @@ const Index = () => {
 
   return <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead 
-        title="Mare Nostrum | Structure d'accompagnement à l'entrepreneuriat" 
-        description="Mare Nostrum, cabinet expert en entrepreneuriat a Toulouse et en Afrique francophone. Programme Niteo pour etudiants, accompagnement startups a impact, education entrepreneuriale. 135+ experts, 12 pays, +95% satisfaction." 
+        title="Incubation et création d'entreprise Toulouse | Mare Nostrum" 
+        description="Mare Nostrum accompagne entrepreneurs et étudiants à Toulouse : incubation, programme Niteo, club, mentorat. Création d'entreprise, Afrique francophone." 
         keywords="entrepreneuriat toulouse, entrepreneuriat etudiant, entrepreneuriat afrique, entrepreneuriat etudiant toulouse, Niteo, Niteo Toulouse, programme Niteo, mare nostrum, conseil entrepreneuriat toulouse, accompagnement entrepreneur toulouse, incubateur toulouse, startup toulouse, creation entreprise toulouse, entrepreneuriat afrique francophone, entrepreneuriat francophonie, startup afrique, club entrepreneur, education entrepreneuriale, entrepreneuriat jeune, entrepreneuriat universite, entrepreneuriat ecole, Casablanca, Senegal, Cote d'Ivoire, entreprise a mission"
         structuredData={homePageSchema}
         faqSchema={faqs}
         
       />
       <Header />
+      <main id="contenu" className="flex-1">
 
 
       <section className="relative overflow-hidden flex flex-col justify-center min-h-[80svh] md:min-h-[80vh] py-14 md:py-28" style={{ background: 'linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)' }}>
@@ -234,7 +131,7 @@ const Index = () => {
         <div aria-hidden="true" className="mn-hero-halo absolute -top-[25%] -left-[20%] h-[75vmax] w-[75vmax] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, hsl(var(--mn-turquoise) / 0.16) 0%, transparent 62%)' }}></div>
         {/* Grain fin en CSS pur */}
         <div aria-hidden="true" className="mn-grain absolute inset-0 pointer-events-none"></div>
-        <HeroMap />
+        <Suspense fallback={null}><HeroMap /></Suspense>
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
             <div className="mn-eyebrow-light mb-6 md:mb-8">Structure d'accompagnement à l'entrepreneuriat</div>
@@ -251,16 +148,16 @@ const Index = () => {
 
             <div className="mn-cta-row mn-cta-row--center">
               <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto" style={{ boxShadow: 'var(--shadow-cta)' }}>
-                <a href="https://www.marenostrum.tech/expertise">
+                <Link to="/expertise">
                   <GraduationCap className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                   Je suis une institution
-                </a>
+                </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="bg-primary-foreground/10 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary w-full sm:w-auto">
-                <a href="https://www.marenostrum.tech/education">
+                <Link to="/education">
                   <TrendingUp className="mr-2 h-4 md:h-5 w-4 md:w-5" />
                   Je suis un entrepreneur
-                </a>
+                </Link>
               </Button>
             </div>
           </div>
@@ -353,26 +250,27 @@ const Index = () => {
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 md:gap-7">
               {[
                 { title: "Incubation", description: "Niteo : programme d’accompagnement", icon: niteoIcon, href: "https://niteo.marenostrum.tech/" },
-                { title: "Formation professionnelle", description: "Certifié Qualiopi", icon: centreFormationIcon, href: "https://www.marenostrum.tech/education" },
-                { title: "Conseil", description: "Pôle d’expertise et d’ingénierie pour l’enseignement supérieur", icon: poleExpertiseIcon, href: "https://www.marenostrum.tech/expertise" },
+                { title: "Formation professionnelle", description: "Certifié Qualiopi", icon: centreFormationIcon, href: "/education" },
+                { title: "Conseil", description: "Pôle d’expertise et d’ingénierie pour l’enseignement supérieur", icon: poleExpertiseIcon, href: "/expertise" },
                 { title: "Logiciel IA", description: "Veluo : agent IA des chefs de projet et des entrepreneurs", icon: veluoIcon, href: "https://veluo.marenostrum.tech/" },
-                { title: "Réseau", description: "Club Mare Nostrum : communauté d’entrepreneurs dans la francophonie", icon: clubIcon, href: "https://www.marenostrum.tech/club" },
+                { title: "Réseau", description: "Club Mare Nostrum : communauté d’entrepreneurs dans la francophonie", icon: clubIcon, href: "/club" },
               ].map((service) => {
                 const cardContent = (
                   <>
-                    <img src={service.icon} alt="" aria-hidden="true" className="h-16 w-16 mb-6 object-contain" />
+                    <img src={service.icon} alt="" aria-hidden="true" width={64} height={64} loading="lazy" decoding="async" className="h-16 w-16 mb-6 object-contain" />
                     <h3 className="mb-3 text-foreground">{service.title}</h3>
                     <p className="mn-body text-muted-foreground">{service.description}</p>
                   </>
                 );
 
-                return service.href ? (
-                  <a
-                    key={service.title}
-                    href={service.href}
-                    className="mn-card block h-full p-6 text-left hover-lift md:p-7"
-                    aria-label={`Découvrir ${service.title}`}
-                  >
+                const carteClass = "mn-card block h-full p-6 text-left hover-lift md:p-7";
+                const carteLabel = `Découvrir ${service.title}`;
+                return service.href?.startsWith("/") ? (
+                  <Link key={service.title} to={service.href} className={carteClass} aria-label={carteLabel}>
+                    {cardContent}
+                  </Link>
+                ) : service.href ? (
+                  <a key={service.title} href={service.href} className={carteClass} aria-label={carteLabel}>
                     {cardContent}
                   </a>
                 ) : (
@@ -416,30 +314,30 @@ const Index = () => {
           <div className="mn-marquee mn-marquee-mask overflow-hidden motion-reduce:overflow-x-auto">
             <div className="mn-marquee-track flex w-max animate-scroll motion-reduce:animate-none">
                 <div className="flex shrink-0 gap-4 md:gap-6 pr-4 md:pr-6">
-                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={hufLogo} alt="HUF - Partenaire Mare Nostrum accompagnement entrepreneuriat Toulouse" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
-                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={bidayaLogo} alt="Bidaya - Partenaire Mare Nostrum entrepreneuriat Maroc Casablanca" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
-                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={toulouseWayLogo} alt="Toulouse Way - Partenaire écosystème entrepreneurial Toulouse Occitanie" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
-                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={airbusLogo} alt="Airbus Développement - Partenaire innovation entreprises Toulouse Aerospace" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
-                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={roseLabLogo} alt="Rose Lab - Partenaire incubateur startups entreprises à impact" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
-                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={cpme31Logo} alt="CPME 31 Haute-Garonne - Confédération PME entrepreneurs Toulouse" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
-                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={creditMutuelLogo} alt="Crédit Mutuel - Partenaire financement entrepreneurs PME" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
-                  <a href="https://www.touleco.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg"><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={toulecoLogo} alt="Touleco - Média économique Toulouse Occitanie partenaire Mare Nostrum" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
-                  <a href="https://www.imaginationsfertiles.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg"><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={imaginationsFertilesLogo} alt="Imaginations Fertiles - Partenaire créativité innovation entrepreneuriale" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
-                  <a href="https://emergingbusinessfactory.com/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg"><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={emergingBusinessLogo} alt="Emerging Business Factory - Accélérateur startups scale-ups Toulouse" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
-                  <a href="https://www.moovjee.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg"><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={moovjeeLogo} alt="Moovjee - Mouvement jeunes entrepreneurs France accompagnement création" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={hufLogo} alt="HUF - Partenaire Mare Nostrum accompagnement entrepreneuriat Toulouse" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={bidayaLogo} alt="Bidaya - Partenaire Mare Nostrum entrepreneuriat Maroc Casablanca" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={toulouseWayLogo} alt="Toulouse Way - Partenaire écosystème entrepreneurial Toulouse Occitanie" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={airbusLogo} alt="Airbus Développement - Partenaire innovation entreprises Toulouse Aerospace" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={roseLabLogo} alt="Rose Lab - Partenaire incubateur startups entreprises à impact" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={cpme31Logo} alt="CPME 31 Haute-Garonne - Confédération PME entrepreneurs Toulouse" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={creditMutuelLogo} alt="Crédit Mutuel - Partenaire financement entrepreneurs PME" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <a href="https://www.touleco.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg"><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={toulecoLogo} alt="Touleco - Média économique Toulouse Occitanie partenaire Mare Nostrum" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
+                  <a href="https://www.imaginationsfertiles.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg"><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={imaginationsFertilesLogo} alt="Imaginations Fertiles - Partenaire créativité innovation entrepreneuriale" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
+                  <a href="https://emergingbusinessfactory.com/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg"><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={emergingBusinessLogo} alt="Emerging Business Factory - Accélérateur startups scale-ups Toulouse" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
+                  <a href="https://www.moovjee.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg"><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={moovjeeLogo} alt="Moovjee - Mouvement jeunes entrepreneurs France accompagnement création" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
                 </div>
                 <div className="flex shrink-0 gap-4 md:gap-6 pr-4 md:pr-6" aria-hidden="true">
-                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={hufLogo} alt="Hub France IA, partenaire de Mare Nostrum" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
-                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={bidayaLogo} alt="Bidaya, partenaire de Mare Nostrum" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
-                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={toulouseWayLogo} alt="Toulouse Way, partenaire de Mare Nostrum" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
-                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={airbusLogo} alt="Airbus Developpement, partenaire de Mare Nostrum" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
-                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={roseLabLogo} alt="Rose Lab, partenaire de Mare Nostrum" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
-                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={cpme31Logo} alt="CPME 31, partenaire de Mare Nostrum" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
-                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={creditMutuelLogo} alt="Crédit Mutuel, partenaire de Mare Nostrum" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
-                  <a href="https://www.touleco.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg" tabIndex={-1}><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={toulecoLogo} alt="ToulÉco, partenaire de Mare Nostrum" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
-                  <a href="https://www.imaginationsfertiles.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg" tabIndex={-1}><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={imaginationsFertilesLogo} alt="Les Imaginations Fertiles, partenaire de Mare Nostrum" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
-                  <a href="https://emergingbusinessfactory.com/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg" tabIndex={-1}><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={emergingBusinessLogo} alt="Emerging Business Factory, partenaire de Mare Nostrum" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
-                  <a href="https://www.moovjee.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg" tabIndex={-1}><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={moovjeeLogo} alt="Moovjee, partenaire de Mare Nostrum" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={hufLogo} alt="Hub France IA, partenaire de Mare Nostrum" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={bidayaLogo} alt="Bidaya, partenaire de Mare Nostrum" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={toulouseWayLogo} alt="Toulouse Way, partenaire de Mare Nostrum" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={airbusLogo} alt="Airbus Developpement, partenaire de Mare Nostrum" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={roseLabLogo} alt="Rose Lab, partenaire de Mare Nostrum" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={cpme31Logo} alt="CPME 31, partenaire de Mare Nostrum" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <div className="group flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={creditMutuelLogo} alt="Crédit Mutuel, partenaire de Mare Nostrum" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div>
+                  <a href="https://www.touleco.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg" tabIndex={-1}><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={toulecoLogo} alt="ToulÉco, partenaire de Mare Nostrum" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
+                  <a href="https://www.imaginationsfertiles.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg" tabIndex={-1}><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={imaginationsFertilesLogo} alt="Les Imaginations Fertiles, partenaire de Mare Nostrum" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
+                  <a href="https://emergingbusinessfactory.com/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg" tabIndex={-1}><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={emergingBusinessLogo} alt="Emerging Business Factory, partenaire de Mare Nostrum" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
+                  <a href="https://www.moovjee.fr/" target="_blank" rel="noopener noreferrer" className="group block shrink-0 rounded-lg" tabIndex={-1}><div className="flex h-24 w-44 md:w-52 shrink-0 items-center justify-center rounded-lg bg-card p-5"><img src={moovjeeLogo} alt="Moovjee, partenaire de Mare Nostrum" loading="lazy" decoding="async" className="max-h-14 max-w-full object-contain grayscale transition-[filter] duration-300 group-hover:grayscale-0 group-focus-visible:grayscale-0" /></div></a>
                 </div>
             </div>
           </div>
@@ -471,6 +369,7 @@ const Index = () => {
         </div>
       </section>
 
+      </main>
       <Footer />
     </div>;
 };

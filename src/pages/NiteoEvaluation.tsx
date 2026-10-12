@@ -218,7 +218,7 @@ export default function NiteoEvaluation() {
               <p className="text-xs font-semibold text-primary-foreground/90 truncate max-w-[110px]">
                 {nomJure.split(" ")[0]}
               </p>
-              <p className="text-[11px] text-primary-foreground/50">
+              <p className="mn-caption text-primary-foreground/70">
                 {projetsEvalues.length}/{projets.length || "?"} évalué{projetsEvalues.length !== 1 ? "s" : ""}
               </p>
             </div>
@@ -481,7 +481,7 @@ export default function NiteoEvaluation() {
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-0.5">
-                        <span className="text-[10px] font-bold rounded-lg px-1.5 py-0.5 tabular-nums"
+                        <span className="mn-caption font-bold rounded-lg px-1.5 py-0.5 tabular-nums"
                           style={{ background: "hsl(181 67% 54% / 0.15)", color: TURQUOISE }}>
                           {String(i + 1).padStart(2, "0")}
                         </span>

@@ -25,6 +25,9 @@ export function useFadeIn(delay = 0) {
     const el = ref.current;
     if (!el || reducedMotion) return;
 
+    // Déjà visible au premier rendu : rien à révéler, donc pas de clignotement.
+    if (el.getBoundingClientRect().top < window.innerHeight) return;
+
     el.style.opacity = "0";
     el.style.transform = "translateY(16px)";
     el.style.transition = "opacity 0.5s var(--ease-out-expo), transform 0.6s var(--ease-out-expo)";

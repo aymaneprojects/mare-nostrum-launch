@@ -21,23 +21,25 @@ const ImpactMesureStartup = () => {
       "name": "Mare Nostrum",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.marenostrum.tech/favicon.png"
+        "url": "https://www.marenostrum.tech/logo-mare-nostrum.png"
       }
     },
     "datePublished": "2025-01-05",
+    "image": "https://www.marenostrum.tech/favicon.png",
     "dateModified": "2025-01-05"
   };
 
   return (
     <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
-        title="Mesurer l'Impact Social de sa Startup : Guide Complet - Mare Nostrum"
+        title="Mesurer l'impact social de sa startup | Mare Nostrum"
         description="Comment mesurer l'impact social de votre startup ? Découvrez les frameworks, KPIs et méthodologies pour quantifier votre contribution au bien commun."
         keywords="mesure impact social, KPIs startup impact, théorie du changement, SROI, indicateurs impact, reporting ESG, entreprise à mission"
         structuredData={articleSchema}
         
       />
       <Header />
+      <main id="contenu" className="flex-1">
 
       {/* Hero Article */}
       <PageHero
@@ -375,6 +377,7 @@ const ImpactMesureStartup = () => {
         </div>
       </article>
 
+      </main>
       <Footer />
     </div>
   );

@@ -37,7 +37,8 @@ Six couleurs. Définies dans `src/index.css` sous `:root`, exposées à Tailwind
 | Ivoire | `--mn-ivory` | `40 38% 94%` | `#F6F2EA` | `bg-ivory` `text-ivory` | Fond de page, texte sur nuit |
 | Ocre | `--mn-ocre` | `36 78% 45%` | `#C88A1C` | `bg-ocre` `text-ocre` | Touche chaude, chips, rare |
 | Encre | `--mn-ink` | `228 56% 13%` | `#0F1733` | `bg-ink` `text-ink` | Texte profond, fin des dégradés sombres |
-| Muted | `--mn-muted` | `224 14% 50%` | `#6C7591` | *(pas de classe brand — voir `text-muted-foreground`)* | Texte secondaire |
+| Muted | `--mn-muted` | `224 14% 42%` | `#5C6480` | *(pas de classe brand — voir `text-muted-foreground`)* | Texte secondaire (5,26:1 sur ivoire ; l'ancienne valeur à 50 % ne donnait que 3,97:1) |
+| Turquoise texte | `--mn-turquoise-texte` | `181 90% 22%` | `#055A5C` | `text-turquoise-texte` | **Texte et liens turquoise sur fond clair** (5,8:1 sur ivoire). Jamais en fond. |
 
 Les hex sont donnés pour reconnaître une couleur dans une maquette. **Ils n'apparaissent jamais dans le code.**
 
@@ -58,7 +59,7 @@ Ce sont eux qu'on utilise dans 90 % des cas. Ils pointent vers la palette de mar
 | `--accent` | Turquoise | `bg-accent` `text-accent` | Accent, focus ring |
 | `--accent-foreground` | Nuit | `text-accent-foreground` | Texte **sur** turquoise |
 | `--muted` | `40 25% 92%` | `bg-muted` | Fonds discrets, boutons fantômes |
-| `--muted-foreground` | Muted | `text-muted-foreground` | Texte secondaire, légendes |
+| `--muted-foreground` | Muted (`224 14% 42%`) | `text-muted-foreground` | Texte secondaire, légendes (≥ 4,8:1 sur ivoire, sable et blanc) |
 | `--card` | Blanc | `bg-card` | Cartes |
 | `--border` | Nuit à 14 % | `border-border` (défaut sur `*`) | Toutes les bordures |
 | `--input` | `222 30% 88%` | `border-input` | Champs de formulaire |
@@ -67,14 +68,40 @@ Ce sont eux qu'on utilise dans 90 % des cas. Ils pointent vers la palette de mar
 
 ### 1.3 Contraste — les paires autorisées
 
-| Fond | Texte principal | Texte secondaire | Eyebrow |
-|---|---|---|---|
-| Ivoire / blanc / sable | `text-foreground` | `text-muted-foreground` | `mn-eyebrow` ou `mn-eyebrow-turquoise` |
-| Nuit / dégradé hero | `text-primary-foreground` | `text-primary-foreground/75` | `mn-eyebrow-light` |
-| Turquoise | `text-accent-foreground` (nuit) | — | — |
-| Ocre | Aucun usage en texte courant | — | — |
+| Fond | Texte principal | Texte secondaire | Lien | Eyebrow |
+|---|---|---|---|---|
+| Ivoire / blanc / sable | `text-foreground` | `text-muted-foreground` | `text-primary` souligné, ou `text-turquoise-texte` souligné | `mn-eyebrow` ou `mn-eyebrow-turquoise` |
+| Nuit / dégradé hero | `text-primary-foreground` | `text-primary-foreground/75` | `text-turquoise` souligné | `mn-eyebrow-light` |
+| Turquoise | `text-accent-foreground` (nuit) | — | — | — |
+| Ocre | Aucun usage en texte courant | — | — | — |
 
 `text-muted-foreground` sur fond nuit est **interdit** — illisible.
+
+**Ratios mesurés (WCAG, minimum 4,5:1 pour le texte courant) :**
+
+| Paire | Ratio | Verdict |
+|---|---|---|
+| Nuit sur ivoire | 10,8:1 | OK |
+| Nuit sur turquoise | 6,81:1 | OK (`text-accent-foreground` sur `bg-accent`) |
+| Turquoise sur nuit / encre | 9,9:1 | OK (fonds sombres uniquement) |
+| `text-muted-foreground` (`224 14% 42%`) sur ivoire / sable / blanc | 5,26 / 4,83 / 5,89:1 | OK |
+| `text-turquoise-texte` sur ivoire / sable / blanc | 5,8 / 5,3 / 6,5:1 | OK |
+| Turquoise sur ivoire | 1,59:1 | **Interdit** en texte et en lien sur fond clair |
+| Turquoise sur blanc | 1,78:1 | **Interdit** |
+| Blanc (`text-white`) sur turquoise | 1,78:1 | **Interdit** : texte nuit sur turquoise |
+| Ivoire sur une fin de dégradé turquoise (`to-accent`) | < 2:1 | **Interdit** : les pastilles d'icônes vont de `from-primary` à `to-ink`, icône `text-primary-foreground` |
+
+Règle liens : sur fond clair, un lien est **nuit souligné** (`text-primary underline underline-offset-4`) ou, s'il doit rester dans la famille turquoise, `text-turquoise-texte underline underline-offset-4 hover:text-primary`. Le turquoise de marque (`text-turquoise`) est réservé aux fonds sombres.
+
+### 1.3b Accessibilité de structure (acquis à conserver)
+
+- **Lien d'évitement** « Aller au contenu » dans `App.tsx` (visible au focus) ; chaque page a **un seul** `<main id="contenu">` entre `<Header />` et `<Footer />`.
+- Deux navigations nommées : `aria-label="Navigation principale"` (en-tête), `"Navigation mobile"` (barre du bas), `"Pied de page"` (footer). Le lien courant porte `aria-current="page"` ; la logique (sous-pages, pages sans onglet) est dans `src/lib/nav.ts`.
+- Fenêtres modales (menu mobile, popup de sortie) : `useFocusTrap` (`src/hooks/useFocusTrap.ts`) piège le focus et le rend à la fermeture ; Échap ferme. Les boîtes Radix (`Dialog`) le font déjà.
+- Cibles tactiles ≥ 44 px (`min-h-11`, `w-11 h-11`) ; un filtre cliquable est un `<button aria-pressed>`, jamais un `Badge` (div).
+- Pas de `transition-all` : nommer les propriétés (`transition-colors`, `transition-[transform,box-shadow]`). `prefers-reduced-motion` coupe déjà toutes les animations (`index.css`) ; ajouter `motion-reduce:` sur les `active:scale-*` et animations Tailwind.
+- Surface translucide de l'en-tête : classe `.mn-header-surface` (jamais de style inline), qui devient opaque sous `prefers-reduced-transparency` et `prefers-contrast: more`.
+- Boutons flottants (chat, retour en haut) : classe `.mn-flottant`, masquée tant que la bannière cookies est ouverte (`html[data-cookies="ouvert"]`) ; positionnés au-dessus de la barre mobile avec `env(safe-area-inset-bottom)`.
 
 ### 1.4 Opacités
 
@@ -93,7 +120,7 @@ Valeurs en usage : `/5` `/10` (fonds légers), `/14` `/18` (bordures), `/40` (bo
 
 // ✅ token en valeur arbitraire (quand la classe n'existe pas)
 <div className="bg-[hsl(var(--mn-nuit))]" />
-<div className="text-[hsl(var(--mn-turquoise))]/80" />
+<div className="text-turquoise/80" />   // sur fond sombre seulement
 
 // ✅ token en CSS-in-JS, uniquement pour les dégradés et les cas de cascade (voir §9)
 <div style={{ background: "hsl(222 44% 25%)" }} />

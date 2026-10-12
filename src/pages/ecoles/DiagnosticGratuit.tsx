@@ -104,14 +104,15 @@ const DiagnosticGratuit = () => {
   return (
     <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
-        title="Diagnostic Entrepreneuriat École Gratuit | Évaluation 30 min - Mare Nostrum"
-        description="Demandez votre diagnostic gratuit de 30 minutes. Identifiez les meilleures opportunités pour intégrer l'entrepreneuriat dans votre établissement. Sans engagement."
+        title="Diagnostic gratuit entrepreneuriat école | Mare Nostrum"
+        description="Demandez votre diagnostic gratuit de 30 minutes pour intégrer l'entrepreneuriat dans votre établissement. Sans engagement."
         keywords="diagnostic entrepreneuriat école, évaluation programme entrepreneurial, audit pédagogique gratuit, conseil formation entrepreneuriale"
         structuredData={pageSchema}
         faqSchema={faqs}
         
       />
       <Header />
+      <main id="contenu" className="flex-1">
 
       {/* Hero Section */}
       <PageHero
@@ -338,6 +339,7 @@ const DiagnosticGratuit = () => {
         faqs={faqs}
       />
 
+      </main>
       <Footer />
     </div>
   );

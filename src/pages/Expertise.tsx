@@ -132,8 +132,9 @@ const Expertise = () => {
     }]
   }];
   return <div className="min-h-dvh flex flex-col">
-      <EnhancedSEOHead title="Conseil en stratégie Toulouse et francophonie | Mare Nostrum" description="Cabinet de conseil en stratégie à Toulouse : concevoir, auditer et déployer vos projets de transformation avec des experts francophones qui ont exercé ces métiers, en Europe et en Afrique. Echange découverte gratuit." keywords="conseil en stratégie toulouse, cabinet conseil toulouse, conseil université, ingénierie de financement, accompagnement d'établissement d'enseignement supérieur, innovation pédagogique université, stratégie d'établissement, appel à projets enseignement supérieur francophone, entrepreneuriat étudiant, conseil universités, campus entrepreneurial, renforcement des capacités des universités, agence universitaire de la francophonie" structuredData={expertiseSchema} disableAutoEnhancement />
+      <EnhancedSEOHead title="Conseil en stratégie Toulouse et francophonie | Mare Nostrum" description="Cabinet de conseil en stratégie à Toulouse : concevoir, auditer et déployer vos projets de transformation avec des experts francophones." keywords="conseil en stratégie toulouse, cabinet conseil toulouse, conseil université, ingénierie de financement, accompagnement d'établissement d'enseignement supérieur, innovation pédagogique université, stratégie d'établissement, appel à projets enseignement supérieur francophone, entrepreneuriat étudiant, conseil universités, campus entrepreneurial, renforcement des capacités des universités, agence universitaire de la francophonie" structuredData={expertiseSchema} disableAutoEnhancement />
       <Header />
+      <main id="contenu" className="flex-1">
 
 
       <PageHero
@@ -176,8 +177,8 @@ const Expertise = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Ingénierie de projets et de financement */}
             <div className="mn-card hover-lift p-8 mn-card-top">
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Lightbulb className="h-7 w-7 text-white" />
+              <div className="bg-gradient-to-br from-primary to-ink w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <Lightbulb className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Du projet au programme : ingénierie de projets et de financement</h3>
               <p className="text-muted-foreground mb-5">
@@ -205,8 +206,8 @@ const Expertise = () => {
 
             {/* Campus entrepreneurial */}
             <div className="mn-card hover-lift p-8 mn-card-top">
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Users className="h-7 w-7 text-white" />
+              <div className="bg-gradient-to-br from-primary to-ink w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <Users className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Campus entrepreneurial : entrepreneuriat étudiant et écosystème d'innovation</h3>
               <p className="text-muted-foreground mb-5">
@@ -234,8 +235,8 @@ const Expertise = () => {
 
             {/* Démarche qualité */}
             <div className="mn-card hover-lift p-8 mn-card-top">
-              <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                <Trophy className="h-7 w-7 text-white" />
+              <div className="bg-gradient-to-br from-primary to-ink w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <Trophy className="h-7 w-7 text-primary-foreground" />
               </div>
               <h3 className="text-xl font-bold mb-4 text-foreground">Démarche qualité : accréditation et reconnaissance des formations</h3>
               <p className="text-muted-foreground mb-5">
@@ -278,14 +279,14 @@ const Expertise = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-8 items-stretch">
-              <img 
+              <img loading="lazy" decoding="async" width={628} height={363} 
                 src={formationWorkshop} 
                 alt="Formation en salle avec formateur et participants" 
                 className="w-full h-full object-cover rounded-sm shadow-lg"
               />
               <div className="bg-card border border-border rounded-sm p-8 shadow-lg">
-                <div className="bg-gradient-to-br from-primary to-accent w-14 h-14 rounded-sm flex items-center justify-center mb-6">
-                  <Compass className="h-7 w-7 text-white" />
+                <div className="bg-gradient-to-br from-primary to-ink w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                  <Compass className="h-7 w-7 text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-bold mb-4 text-foreground">Le pôle d'expertise</h3>
                 <p className="text-muted-foreground mb-4">
@@ -305,7 +306,7 @@ const Expertise = () => {
 
           {/* CTA Pré-inscription */}
           <div className="mt-12 text-center">
-            <Button asChild size="lg" className="h-auto max-w-full whitespace-normal text-center leading-snug bg-[hsl(var(--mn-turquoise))] hover:bg-[hsl(var(--mn-turquoise))]/90 text-white py-3">
+            <Button asChild size="lg" className="h-auto max-w-full whitespace-normal text-center leading-snug bg-accent hover:bg-accent/90 text-accent-foreground py-3">
               <Link to="/contact">
                 Réserver mon échange : 30 minutes pour faire le point sur mon projet et repartir avec une première orientation.
                 <ArrowRight className="ml-2 h-4 md:h-5 w-4 md:w-5" />
@@ -404,7 +405,7 @@ const Expertise = () => {
               { src: schoolSenghor, alt: "Université Senghor" },
             ].map((school) => (
               <div key={school.alt} className="flex items-center justify-center h-16 md:h-20 grayscale hover:grayscale-0 transition-all duration-300">
-                <img src={school.src} alt={school.alt} className="max-h-full max-w-[140px] md:max-w-[160px] object-contain" />
+                <img loading="lazy" decoding="async" src={school.src} alt={school.alt} className="max-h-full max-w-[140px] md:max-w-[160px] object-contain" />
               </div>
             ))}
           </div>
@@ -416,6 +417,7 @@ const Expertise = () => {
         </div>
       </section>
 
+      </main>
       <Footer />
     </div>;
 };

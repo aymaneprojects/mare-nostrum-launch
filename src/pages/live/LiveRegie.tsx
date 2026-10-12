@@ -475,7 +475,7 @@ const RegieBoard = ({ seo, adminCode, event, items, activeItem, activeWall, scre
                         {displayed && <span className="inline-flex items-center gap-0.5 text-primary" title="Affiché à l'écran"><Monitor className="h-3 w-3" aria-label="Affiché à l'écran" /></span>}
                         <span
                           className={cn(
-                            "ml-auto rounded-lg px-2 py-0.5 text-[11px] font-medium",
+                            "ml-auto rounded-lg px-2 py-0.5 mn-caption font-medium",
                             item.status === "active" ? "bg-accent text-accent-foreground" : item.status === "closed" ? "bg-muted text-muted-foreground" : "bg-secondary text-secondary-foreground",
                           )}
                         >

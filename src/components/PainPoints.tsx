@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Clock, Brain, Target, Flame } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 
 function ClubCounter() {
   const [count, setCount]         = useState<number | null>(null);
   const [displayed, setDisplayed] = useState(0);
 
   useEffect(() => {
-    supabase.functions.invoke("get-club-count")
+    // Import à la demande : le client Supabase (177 Ko) ne pèse plus sur le script d'entrée.
+    import("@/integrations/supabase/client")
+      .then(({ supabase }) => supabase.functions.invoke("get-club-count"))
       .then(({ data }) => { if (data?.count != null) setCount(data.count); })
       .catch(() => {});
   }, []);
@@ -45,7 +46,7 @@ const PainPoints = () => (
             </h2>
 
             <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-10">
-              <div className="bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40 transition-all duration-200">
+              <div className="bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40">
                 <div className="bg-destructive/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                   <Clock className="h-6 w-6 text-destructive" />
                 </div>
@@ -55,7 +56,7 @@ const PainPoints = () => (
                 </p>
               </div>
 
-              <div className="bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40 transition-all duration-200">
+              <div className="bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40">
                 <div className="bg-destructive/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                   <Brain className="h-6 w-6 text-destructive" />
                 </div>
@@ -65,7 +66,7 @@ const PainPoints = () => (
                 </p>
               </div>
 
-              <div className="bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40 transition-all duration-200">
+              <div className="bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40">
                 <div className="bg-destructive/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                   <Target className="h-6 w-6 text-destructive" />
                 </div>
@@ -75,7 +76,7 @@ const PainPoints = () => (
                 </p>
               </div>
 
-              <div className="bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40 transition-all duration-200">
+              <div className="bg-card border border-border rounded-sm p-6 hover-lift hover:border-accent/40">
                 <div className="bg-destructive/10 w-12 h-12 shape-hex flex items-center justify-center mb-4">
                   <Flame className="h-6 w-6 text-destructive" />
                 </div>

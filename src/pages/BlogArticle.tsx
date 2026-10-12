@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { ChatGPTLogo, ClaudeLogo, PerplexityLogo, GoogleLogo } from "@/components/AiLogos";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Calendar, Clock, Share2, Loader2, RefreshCw, Linkedin, Facebook, Twitter, Mail, MessageCircle, Link2 } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Share2, RefreshCw, Linkedin, Facebook, Twitter, Mail, MessageCircle, Link2 } from "lucide-react";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import { useBlogArticle, useRelatedArticles } from "@/hooks/useBlogArticles";
 import { useToast } from "@/hooks/use-toast";
+import { assainirHtml } from "@/lib/safe";
 
 // Optimiser les URLs d'images Unsplash
 const optimizeImageUrl = (url: string, width = 800): string => {
@@ -110,10 +111,16 @@ const BlogArticle = () => {
           noindex={true}
         />
         <Header />
-        <section className="flex-1 flex items-center justify-center py-16 md:py-24">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
-          <span className="ml-3 text-muted-foreground">Chargement de l'article...</span>
-        </section>
+        <main id="contenu" className="flex-1" aria-busy="true">
+          <div className="h-[40vh] md:h-[50vh] bg-muted animate-pulse motion-reduce:animate-none" aria-hidden="true" />
+          <div className="container mx-auto px-4 max-w-4xl py-10 space-y-4" aria-hidden="true">
+            <div className="h-10 w-3/4 rounded bg-muted animate-pulse motion-reduce:animate-none" />
+            {[0, 1, 2, 3, 4, 5].map((i) => (
+              <div key={i} className={`h-4 rounded bg-muted animate-pulse motion-reduce:animate-none ${i === 5 ? "w-2/3" : "w-full"}`} />
+            ))}
+          </div>
+          <p className="container mx-auto px-4 max-w-4xl pb-16 text-muted-foreground" role="status">Chargement de l'article...</p>
+        </main>
         <Footer />
       </div>
     );
@@ -129,6 +136,7 @@ const BlogArticle = () => {
           noindex={true}
         />
         <Header />
+        <main id="contenu" className="flex-1 flex flex-col">
         <section className="flex-1 flex items-center justify-center py-16 md:py-24 bg-gradient-to-br from-secondary/30 via-background to-secondary/20">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-4xl font-bold text-foreground mb-4">Article non trouvé</h1>
@@ -141,6 +149,7 @@ const BlogArticle = () => {
             </Button>
           </div>
         </section>
+        </main>
         <Footer />
       </div>
     );
@@ -167,9 +176,9 @@ const BlogArticle = () => {
   const h2Starts = [...contentHtml.matchAll(/<h2[\s>]/gi)].map((m) => m.index as number);
   const hasCta = h2Starts.length >= 2;
   const ctaAt = hasCta ? (h2Starts[2] ?? contentHtml.length) : contentHtml.length;
-  const partA = contentHtml.slice(0, enBrefEnd);
-  const partB = contentHtml.slice(enBrefEnd, Math.max(ctaAt, enBrefEnd));
-  const partC = contentHtml.slice(Math.max(ctaAt, enBrefEnd));
+  const partA = assainirHtml(contentHtml.slice(0, enBrefEnd));
+  const partB = assainirHtml(contentHtml.slice(enBrefEnd, Math.max(ctaAt, enBrefEnd)));
+  const partC = assainirHtml(contentHtml.slice(Math.max(ctaAt, enBrefEnd)));
   const articleClass = "blog-article-content [&_.en-bref]:mb-8 [&_.en-bref]:rounded-sm [&_.en-bref]:border [&_.en-bref]:border-border [&_.en-bref]:bg-secondary/30 [&_.en-bref]:p-4 [&_h2]:scroll-mt-24 [&_h3]:scroll-mt-24 [&_table]:block [&_table]:overflow-x-auto";
 
   const showUpdated = article.updated_at && article.updated_at.slice(0, 10) !== article.published_at.slice(0, 10);
@@ -232,9 +241,9 @@ const BlogArticle = () => {
       "@id": "https://www.marenostrum.tech/#organization",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.marenostrum.tech/logo.png",
-        "width": 512,
-        "height": 512
+        "url": "https://www.marenostrum.tech/logo-mare-nostrum.png",
+        "width": 1936,
+        "height": 758
       }
     },
     "mainEntityOfPage": {
@@ -273,6 +282,7 @@ const BlogArticle = () => {
         structuredData={[articleSchema]}
       />
       <Header />
+      <main id="contenu" className="flex-1">
       <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: article.title, href: `/blog/${article.slug}` }]} />
 
       {/* Hero avec image */}
@@ -280,7 +290,12 @@ const BlogArticle = () => {
         <img
           src={optimizeImageUrl(article.image, 1200)}
           alt={article.title}
+          width={1200}
+          height={630}
+          loading="eager"
           decoding="async"
+          fetchPriority="high"
+          sizes="100vw"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent"></div>
@@ -501,6 +516,7 @@ const BlogArticle = () => {
           </div>
         </section>
       )}
+      </main>
 
       <Footer />
     </div>

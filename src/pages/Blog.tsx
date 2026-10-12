@@ -6,7 +6,8 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
+import { Badge, badgeVariants } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import { useBlogArticles, BlogArticle } from "@/hooks/useBlogArticles";
@@ -73,8 +74,8 @@ const Blog = () => {
   return (
     <div className="min-h-dvh flex flex-col">
       <EnhancedSEOHead
-        title="Blog Entrepreneuriat Etudiant & Impact - Mare Nostrum | Conseils Toulouse Afrique"
-        description="Blog Mare Nostrum : guides pratiques entrepreneuriat etudiant, creation entreprise, financement, business plan, pitch. Ressources gratuites pour entrepreneurs a impact Toulouse et Afrique francophone."
+        title="Blog création d'entreprise et entrepreneuriat | Mare Nostrum"
+        description="Guides pratiques sur la création d'entreprise, le financement, le business plan et le pitch. Ressources pour entrepreneurs à Toulouse et en Afrique."
         keywords="blog entrepreneuriat, entrepreneuriat etudiant, creer entreprise etudiant, statut juridique entrepreneur, financement projet etudiant, business plan, conseils entrepreneur, entrepreneuriat toulouse, entrepreneuriat afrique, mare nostrum blog"
         structuredData={{
           "@context": "https://schema.org",
@@ -92,6 +93,7 @@ const Blog = () => {
         }}
       />
       <Header />
+      <main id="contenu" className="flex-1">
 
       <PageHero
         title="Blog Entrepreneuriat"
@@ -113,22 +115,24 @@ const Blog = () => {
             />
           </div>
           <div className="flex flex-wrap gap-3 justify-center">
-            <Badge
-              variant={selectedCategory === null ? "default" : "outline"}
-              className="cursor-pointer px-4 py-2"
+            <button
+              type="button"
+              aria-pressed={selectedCategory === null}
+              className={cn(badgeVariants({ variant: selectedCategory === null ? "default" : "outline" }), "cursor-pointer px-4 py-2 min-h-11")}
               onClick={() => handleCategoryChange(null)}
             >
               Tous les articles
-            </Badge>
+            </button>
             {categories.map((category) => (
-              <Badge
+              <button
+                type="button"
                 key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
-                className="cursor-pointer px-4 py-2"
+                aria-pressed={selectedCategory === category}
+                className={cn(badgeVariants({ variant: selectedCategory === category ? "default" : "outline" }), "cursor-pointer px-4 py-2 min-h-11")}
                 onClick={() => handleCategoryChange(category)}
               >
                 {category}
-              </Badge>
+              </button>
             ))}
           </div>
         </div>
@@ -268,6 +272,7 @@ const Blog = () => {
         </div>
       </section>
 
+      </main>
       <Footer />
     </div>
   );

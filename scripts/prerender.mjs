@@ -38,20 +38,42 @@ const TYPES = {
   ".vcf": "text/vcard", ".txt": "text/plain", ".xml": "text/xml",
 };
 
-/** Pages publiques à pré-rendre. Une entrée = un fichier HTML livré. */
-const ROUTES = [
-  "/", "/education", "/expertise", "/mastermind", "/mastermind-digital", "/initiation-ia",
-  "/agent-ia-marketing", "/club", "/offre-ia", "/engagement-rse", "/a-propos",
-  "/a-propos/partenaire", "/contact", "/equipe", "/blog", "/livre-entrepreneuriat",
-  "/diagnostic", "/niteo-toulouse", "/iter",
-  "/ecoles/transformation-entrepreneuriale", "/ecoles/diagnostic-gratuit",
-  "/entrepreneurs/accompagnement-francophonie-afrique",
-  "/entrepreneurs/test-maturite-projet", "/entrepreneurs/mentorat-individuel",
-  "/mag/entrepreneuriat-social-francophonie",
-  "/mag/innovation-pedagogique-entrepreneuriat",
-  "/mag/impact-mesure-startup",
-  "/mentions-legales", "/cgu", "/cgv", "/confidentialite",
-];
+/** Routes qui ne sont pas des pages publiques à livrer en HTML (écrans, jeux, sondes, redirections). */
+const EXCLUES = [/^\/live/, /^\/bienvenue-club$/, /^\/roue$/, /^\/unsubscribed$/, /^\/formation$/, /^\/healthz/];
+
+/** Pages publiques à pré-rendre, tirées de src/App.tsx (une seule source de vérité). */
+async function routesApp() {
+  const app = await readFile(join(RACINE, "src/App.tsx"), "utf8");
+  const routes = [...app.matchAll(/<Route\s+path="([^"]+)"/g)]
+    .map((m) => m[1])
+    .filter((r) => r !== "*" && !r.includes(":") && !EXCLUES.some((x) => x.test(r)));
+  if (routes.length < 20) throw new Error(`seulement ${routes.length} routes lues dans App.tsx`);
+  return routes;
+}
+
+/** Articles de blog publiés (Supabase). Échec non bloquant : le blog reste rendu côté navigateur. */
+async function routesBlog() {
+  try {
+    const env = {};
+    for (const f of [".env", ".env.production"]) {
+      if (!existsSync(join(RACINE, f))) continue;
+      for (const l of (await readFile(join(RACINE, f), "utf8")).split("\n")) {
+        const m = l.match(/^(\w+)="?([^"]*)"?$/);
+        if (m) env[m[1]] = m[2];
+      }
+    }
+    const url = process.env.VITE_SUPABASE_URL ?? env.VITE_SUPABASE_URL;
+    const cle = process.env.VITE_SUPABASE_PUBLISHABLE_KEY ?? env.VITE_SUPABASE_PUBLISHABLE_KEY;
+    const r = await fetch(`${url}/rest/v1/blog_articles?select=slug&is_published=eq.true`, {
+      headers: { apikey: cle, Authorization: `Bearer ${cle}` },
+    });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    return (await r.json()).map((a) => `/blog/${a.slug}`);
+  } catch (e) {
+    console.warn(`pré-rendu : articles de blog ignorés (${e.message})`);
+    return [];
+  }
+}
 
 /** Les fiches de visite, une par membre de l'équipe. */
 async function routesEquipe() {
@@ -96,9 +118,10 @@ async function main() {
     args: ["--no-sandbox", "--disable-dev-shm-usage"],
   });
 
-  const routes = [...ROUTES, ...(await routesEquipe())];
+  const routes = [...(await routesApp()), ...(await routesEquipe()), ...(await routesBlog())];
   let ok = 0;
-  let vides = [];
+  const vides = [];
+  const echecs = [];
 
   for (const route of routes) {
     const page = await navigateur.newPage();
@@ -119,6 +142,24 @@ async function main() {
         });
       });
 
+      // Garde-fou : une page sans titre, description ou canonical www ne doit pas partir en ligne.
+      const meta = await page.evaluate(() => ({
+        titre: document.title.trim(),
+        description: document.querySelector('meta[name="description"]')?.content?.trim() ?? "",
+        canonical: document.querySelector('link[rel="canonical"]')?.href ?? "",
+        robots: document.querySelector('meta[name="robots"]')?.content ?? "",
+      }));
+      const attendu = `https://www.marenostrum.tech${route === "/" ? "/" : route}`;
+      const manques = [];
+      if (!meta.titre) manques.push("titre");
+      if (!meta.description) manques.push("meta description");
+      if (meta.canonical !== attendu) manques.push(`canonical (${meta.canonical || "absent"} au lieu de ${attendu})`);
+      if (route.startsWith("/blog/") && /noindex/.test(meta.robots)) manques.push("noindex sur un article");
+      if (manques.length) {
+        echecs.push(`${route} : ${manques.join(", ")}`);
+        continue;
+      }
+
       const html = await page.content();
       const mots = await page.evaluate(() => (document.body.innerText || "").trim().split(/\s+/).length);
 
@@ -130,6 +171,7 @@ async function main() {
       ok += 1;
     } catch (e) {
       console.warn(`pré-rendu : ${route} a échoué — ${e.message}`);
+      echecs.push(`${route} : ${e.message}`);
     } finally {
       await page.close();
     }
@@ -140,11 +182,14 @@ async function main() {
 
   console.log(`pré-rendu : ${ok}/${routes.length} pages écrites`);
   if (vides.length) console.warn(`pré-rendu : pages presque vides — ${vides.join(", ")}`);
+  if (echecs.length) {
+    // Échec bruyant : mieux vaut une construction qui s'arrête qu'un site publié sans titre ni canonical.
+    console.error(`pré-rendu : ${echecs.length} page(s) refusée(s)\n  ${echecs.join("\n  ")}`);
+    process.exit(1);
+  }
 }
 
 main().catch((e) => {
-  // Le pré-rendu ne doit jamais faire échouer une mise en ligne : sans lui, le
-  // site fonctionne comme avant, il est seulement moins lisible par les robots.
   console.error("pré-rendu : abandonné —", e.message);
-  process.exit(0);
+  process.exit(1);
 });
