@@ -33,7 +33,7 @@ const Equipe = () => {
   return (
     <div className="min-h-dvh flex flex-col bg-background">
       <EnhancedSEOHead
-        title="L'équipe Mare Nostrum — Contacts et fiches"
+        title="L'équipe Mare Nostrum - Contacts et fiches"
         description="Les visages de Mare Nostrum à Toulouse, Paris et Casablanca. Ouvrez une fiche, ajoutez le contact à votre téléphone en un geste."
         keywords="équipe Mare Nostrum, contacts, Alexis Janicot, Aymane Abdennour, carte de visite digitale"
       />
@@ -44,7 +44,7 @@ const Equipe = () => {
         <PageHero
           eyebrow="Les visages de Mare Nostrum"
           title="Notre équipe"
-          subtitle="Une fiche par personne, un contact enregistré en un geste — sur iPhone comme sur Android."
+          subtitle="Une fiche par personne, un contact enregistré en un geste - sur iPhone comme sur Android."
           size="sm"
           ctas={
             <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">

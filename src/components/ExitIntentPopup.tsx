@@ -120,7 +120,7 @@ export default function ExitIntentPopup() {
             <span className="text-[hsl(var(--mn-turquoise))]">–50%</span> le premier mois
           </h2>
           <p className="text-sm text-primary-foreground/60 leading-relaxed">
-            Remplis le formulaire — ton code promo personnalisé t'est envoyé par email instantanément.
+            Remplis le formulaire - ton code promo personnalisé t'est envoyé par email instantanément.
           </p>
         </div>
 

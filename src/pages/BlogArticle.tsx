@@ -52,7 +52,7 @@ const BlogArticle = () => {
   const { data: article, isLoading, error } = useBlogArticle(slug);
   const { data: relatedArticles = [] } = useRelatedArticles(article?.category, article?.id);
 
-  // OG article tags — doit être avant tout return conditionnel (Rules of Hooks)
+  // OG article tags - doit être avant tout return conditionnel (Rules of Hooks)
   useEffect(() => {
     if (!article) return;
     const setMeta = (property: string, content: string) => {

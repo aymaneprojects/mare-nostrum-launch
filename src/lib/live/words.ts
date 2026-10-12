@@ -27,7 +27,7 @@ function normalizeWord(input: string): string {
 
 /**
  * Graphie affichée : on nettoie les espaces et la ponctuation finale, mais on
- * garde la casse d'origine — sinon « l'IA » deviendrait « l'ia ».
+ * garde la casse d'origine - sinon « l'IA » deviendrait « l'ia ».
  */
 const displayForm = (input: string) =>
   input.trim().replace(/\s+/g, " ").replace(/[.!?;:,]+$/g, "");

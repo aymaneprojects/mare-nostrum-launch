@@ -93,7 +93,7 @@ const AppContent = () => {
   }
   
   // Fiche de visite (/equipe/<prénom>) : page nue. On la scanne en rendez-vous,
-  // elle ne doit montrer que la carte — ni navigation, ni pied de page, ni bandeau.
+  // elle ne doit montrer que la carte - ni navigation, ni pied de page, ni bandeau.
   // Live conférence (/live…) : écrans plein cadre projetés ou tenus en main pendant
   // un événement. Aucun élément global ne doit s'y superposer.
   const isCard = /^\/equipe\/[^/]+$/.test(location.pathname);
@@ -114,7 +114,7 @@ const AppContent = () => {
 
       {/* Compense la barre de navigation mobile fixe (BottomNav) en bas de page.
           La clé sur le chemin déclenche le fondu d'entrée à chaque changement de
-          page (classe mn-page, opacité seule, 160 ms — voir src/index.css). */}
+          page (classe mn-page, opacité seule, 160 ms - voir src/index.css). */}
       <div
         key={location.pathname}
         className={cn("mn-page", bare ? undefined : "pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0")}

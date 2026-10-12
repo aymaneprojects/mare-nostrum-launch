@@ -9,7 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/logo.png";
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Roue de l'événement — marenostrum.tech/roue
+   Roue de l'événement - marenostrum.tech/roue
    Page de jeu pour un événement : aucune navigation, aucun chatbot, aucune
    sollicitation (voir `quiet` et `bare` dans App.tsx), non indexée.
 

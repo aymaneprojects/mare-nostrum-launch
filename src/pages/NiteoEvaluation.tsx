@@ -373,7 +373,7 @@ export default function NiteoEvaluation() {
             <div className="bg-card border border-border rounded-2xl p-6 shadow-sm">
               <h1 className="text-2xl font-bold mb-1" style={{ color: INK }}>Vos informations</h1>
               <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
-                Renseignez vos coordonnées — le code <strong className="font-mono">{juryCode}</strong> vous sera attribué.
+                Renseignez vos coordonnées - le code <strong className="font-mono">{juryCode}</strong> vous sera attribué.
               </p>
               <form onSubmit={handleRegister} className="space-y-4">
                 <div className="grid grid-cols-2 gap-3">

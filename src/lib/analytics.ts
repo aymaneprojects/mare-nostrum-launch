@@ -1,5 +1,5 @@
 /**
- * Mesure d'audience — point de passage unique.
+ * Mesure d'audience - point de passage unique.
  *
  * Aucun composant n'appelle `gtag` directement : tout passe par ici. Sans cette
  * règle, les noms d'évènements divergent et les rapports deviennent illisibles.

@@ -79,7 +79,7 @@ const LivePublic = () => {
     setIdentity(null);
   }, [eventId]);
 
-  const seo = <EnhancedSEOHead title="Live — Mare Nostrum" description="Participez en direct à l'événement Mare Nostrum." noindex />;
+  const seo = <EnhancedSEOHead title="Live - Mare Nostrum" description="Participez en direct à l'événement Mare Nostrum." noindex />;
 
   if (status === "loading" || status === "error") {
     return (

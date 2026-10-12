@@ -29,7 +29,7 @@ const CarteContact = () => {
   const portrait = getPortrait(member.photo);
 
   const share = async () => {
-    const payload = { title: `${name} — Mare Nostrum`, text: `${name}, ${member.titre} chez Mare Nostrum`, url };
+    const payload = { title: `${name} - Mare Nostrum`, text: `${name}, ${member.titre} chez Mare Nostrum`, url };
     if (typeof navigator !== "undefined" && navigator.share) {
       try { await navigator.share(payload); } catch { /* annulé par l'utilisateur */ }
       return;
@@ -68,7 +68,7 @@ const CarteContact = () => {
   return (
     <div className="min-h-dvh flex flex-col bg-background">
       <EnhancedSEOHead
-        title={`${name} — ${member.titre} | Mare Nostrum`}
+        title={`${name} - ${member.titre} | Mare Nostrum`}
         description={`Fiche contact de ${name}, ${member.titre} chez Mare Nostrum à ${member.bureau}. Ajoutez ses coordonnées à vos contacts en un geste, sur iPhone comme sur Android.`}
         keywords={`${name}, Mare Nostrum, ${member.titre}, contact, carte de visite`}
       />
@@ -78,7 +78,7 @@ const CarteContact = () => {
           ni bandeau cookies, ni popup promo (voir App.tsx). La personne qui scanne
           le QR code doit voir la carte de visite, rien d'autre. */}
       <main className="flex-1">
-        {/* Bandeau sombre — pattern hero du design system */}
+        {/* Bandeau sombre - pattern hero du design system */}
         <section
           className="relative overflow-hidden pt-10 pb-24 md:pt-14 md:pb-28"
           style={{ background: "linear-gradient(135deg, hsl(222 44% 25%) 0%, hsl(228 56% 13%) 100%)" }}
@@ -112,7 +112,7 @@ const CarteContact = () => {
           </div>
         </section>
 
-        {/* Carte — chevauche le bandeau */}
+        {/* Carte - chevauche le bandeau */}
         <section className="container mx-auto px-4 -mt-14 md:-mt-16 relative z-10 pb-16 md:pb-24">
           <div className="max-w-lg mx-auto bg-card border border-border rounded-lg shadow-[var(--shadow-medium)] p-5 md:p-7 space-y-6">
             <div>
@@ -124,7 +124,7 @@ const CarteContact = () => {
                 </a>
               </Button>
               <p className="text-xs text-muted-foreground text-center mt-2">
-                iPhone, Android, Outlook — la fiche s'ouvre dans votre application Contacts.
+                iPhone, Android, Outlook - la fiche s'ouvre dans votre application Contacts.
               </p>
             </div>
 
@@ -178,7 +178,7 @@ const CarteContact = () => {
             </Button>
           </div>
 
-          {/* QR — à montrer sur son propre écran ou à imprimer */}
+          {/* QR - à montrer sur son propre écran ou à imprimer */}
           <div className="max-w-lg mx-auto mt-6 bg-card border border-border rounded-lg p-5 md:p-7 text-center">
             <div className="mn-eyebrow mb-4">Mon QR code</div>
             <img

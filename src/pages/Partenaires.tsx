@@ -99,7 +99,7 @@ function LogoGrid({ items }: { items: typeof PARTNERS }) {
 const Partenaires = () => (
   <div className="min-h-dvh flex flex-col bg-background">
     <EnhancedSEOHead
-      title="Nos Partenaires — Mare Nostrum"
+      title="Nos Partenaires - Mare Nostrum"
       description="Découvrez l'écosystème de partenaires institutionnels, financiers et académiques qui accompagnent Mare Nostrum dans sa mission d'entrepreneuriat francophone."
       keywords="partenaires mare nostrum, toulouse métropole, AUF, airbus développement, écoles partenaires, entrepreneuriat toulouse"
     />
@@ -111,7 +111,7 @@ const Partenaires = () => (
       subtitle="Des institutions, des entreprises et des établissements d'enseignement engagés à nos côtés pour faire grandir l'entrepreneuriat dans la francophonie."
     />
 
-    {/* Section 1 — Partenaires institutionnels & économiques */}
+    {/* Section 1 - Partenaires institutionnels & économiques */}
     <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
@@ -130,7 +130,7 @@ const Partenaires = () => (
     {/* Divider */}
     <div className="border-t border-border mx-auto w-full max-w-5xl px-4" />
 
-    {/* Section 2 — Établissements d'enseignement */}
+    {/* Section 2 - Établissements d'enseignement */}
     <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">

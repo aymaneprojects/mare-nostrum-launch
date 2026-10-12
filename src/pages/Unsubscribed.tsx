@@ -77,7 +77,7 @@ const Unsubscribed = () => {
                 C'est noté.
               </div>
               <p className="mb-7 text-[15px] leading-[1.7] text-muted-foreground">
-                Tu ne recevras plus nos emails. Si l'envie revient — la porte est toujours ouverte.
+                Tu ne recevras plus nos emails. Si l'envie revient - la porte est toujours ouverte.
               </p>
 
               {/* proof strip */}

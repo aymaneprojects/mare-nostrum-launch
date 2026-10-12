@@ -53,7 +53,7 @@ const LiveHome = () => {
 
   return (
     <div className="min-h-dvh bg-background">
-      <EnhancedSEOHead title="Live conférence — Mare Nostrum" description="Créer un événement interactif Mare Nostrum." noindex />
+      <EnhancedSEOHead title="Live conférence - Mare Nostrum" description="Créer un événement interactif Mare Nostrum." noindex />
       <div className="mx-auto max-w-3xl px-4 py-6 md:py-10">
         <img src={logo} alt="Mare Nostrum" className="mb-10 h-9 w-auto" />
 
@@ -73,7 +73,7 @@ const LiveHome = () => {
               <h2 className="text-lg font-semibold text-foreground">Nouvel événement</h2>
               <div className="space-y-2">
                 <Label htmlFor="live-title">Titre affiché au public</Label>
-                <Input id="live-title" value={title} onChange={(e) => setTitle(e.target.value.slice(0, 120))} placeholder="Conférence entrepreneuriat — Toulouse" />
+                <Input id="live-title" value={title} onChange={(e) => setTitle(e.target.value.slice(0, 120))} placeholder="Conférence entrepreneuriat - Toulouse" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="live-key">Clé Mare Nostrum</Label>
@@ -127,7 +127,7 @@ const LiveHome = () => {
                   {[
                     { Icon: Radio, label: "Régie (vous)", url: urls.regie, primary: true },
                     { Icon: Monitor, label: "Écran de salle (vidéoprojecteur)", url: urls.screen },
-                    { Icon: Smartphone, label: `Public — code ${created.event.public_code}`, url: urls.public },
+                    { Icon: Smartphone, label: `Public - code ${created.event.public_code}`, url: urls.public },
                   ].map(({ Icon, label, url, primary }) => (
                     <li key={url}>
                       <p className="mb-1 flex items-center gap-1.5 text-sm text-muted-foreground"><Icon className="h-4 w-4" />{label}</p>

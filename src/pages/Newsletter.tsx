@@ -75,7 +75,7 @@ const Newsletter = () => {
               «&nbsp;Le meilleur moment pour planter un arbre était il y a vingt ans. Le deuxième meilleur moment, c'est maintenant.&nbsp;»
             </div>
             <div className="mt-3.5 text-[13px] font-medium text-primary-foreground/75">
-              — Proverbe chinois
+              - Proverbe chinois
             </div>
           </div>
         </div>

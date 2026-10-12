@@ -268,7 +268,7 @@ const Index = () => {
       {/* Trust Strip */}
       {/* Bande de preuves. Elle était en ivoire translucide et chevauchait le héros :
           entre deux sections sombres, cela donnait une barre grise à l'arête dure.
-          Elle est désormais sombre, séparée par deux filets fins — la continuité
+          Elle est désormais sombre, séparée par deux filets fins - la continuité
           du héros, pas une rupture. */}
       <section
         className="relative z-10 border-y border-primary-foreground/10 py-4 md:py-5"
@@ -396,7 +396,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Partners — bandeau continu */}
+      {/* Partners - bandeau continu */}
       <section className="relative overflow-hidden py-12 md:py-24" style={{ background: 'linear-gradient(135deg, hsl(var(--mn-nuit)) 0%, hsl(var(--mn-ink)) 100%)' }}>
         <DarkLayers halo="50% 0%" vignette="50% 100%" />
         <div className="relative z-10">

@@ -34,7 +34,7 @@ const Contact = () => {
     country: "",
     type: "",
     message: "",
-    website: "", // honeypot — doit rester vide
+    website: "", // honeypot - doit rester vide
   });
   // Pôles Mare Nostrum qui intéressent la personne. Au moins un est exigé :
   // c'est lui qui décide à qui part la prise de contact.
@@ -281,7 +281,7 @@ const Contact = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Honeypot anti-bot — ne pas modifier */}
+                {/* Honeypot anti-bot - ne pas modifier */}
                 <div style={{ position: "absolute", left: "-9999px", top: "-9999px", width: "1px", height: "1px", overflow: "hidden" }} aria-hidden="true">
                   <label htmlFor="website">Ne pas remplir</label>
                   <input id="website" name="website" type="text" value={formData.website} onChange={e => handleChange("website", e.target.value)} tabIndex={-1} autoComplete="off" />
