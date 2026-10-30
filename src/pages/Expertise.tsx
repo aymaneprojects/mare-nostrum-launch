@@ -171,7 +171,7 @@ const Expertise = () => {
             Notre intervention est à un niveau stratégique
           </h2>
           <p className="text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            A titre d'exemple, voici des missions que nous avons réalisées.
+            Votre partenaire à 360° : Plongée au cœur des projets qui nous ont été confiés
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
