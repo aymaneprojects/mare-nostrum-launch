@@ -100,7 +100,7 @@ const Index = () => {
     },
     {
       question: "Dans quelles villes êtes-vous présents ?",
-      answer: "Mare Nostrum est implanté à Toulouse, Paris et Casablanca, avec un réseau de 135+ experts dans 12 pays : France, Maroc, Tunisie, Algérie, Sénégal, Côte d'Ivoire, Bénin, Cameroun, Burkina Faso, RD Congo, Égypte et Canada. Nous intervenons dans toute la francophonie."
+      answer: "Mare Nostrum est implanté à Toulouse, Paris et Casablanca, avec un réseau de 135+ experts dans 11 pays : Tunisie, Sénégal, Maroc, Grèce, France, Égypte, Côte d'Ivoire, Congo, Burkina Faso, Belgique et Andorre. Nous intervenons dans toute la francophonie."
     },
     {
       question: "Comment puis-je travailler avec Mare Nostrum ?",
@@ -108,7 +108,7 @@ const Index = () => {
     },
     {
       question: "Quels résultats obtenez-vous avec vos clients ?",
-      answer: "Nous avons accompagné 80+ entrepreneurs et 30+ écoles partenaires (70% de projets à impact). Plus de 95% de satisfaction clients, 210+ mises en relation professionnelles, 32 projets collaboratifs initiés. Notre réseau mobilise 135+ experts avec 2000 années d'expérience cumulées dans 12 pays."
+      answer: "Nous avons accompagné 80+ entrepreneurs et 30+ écoles partenaires (70% de projets à impact). Plus de 95% de satisfaction clients, 210+ mises en relation professionnelles, 32 projets collaboratifs initiés. Notre réseau mobilise 135+ experts avec 2000 années d'expérience cumulées dans 11 pays."
     }
   ];
 

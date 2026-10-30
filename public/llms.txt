@@ -26,7 +26,7 @@ Mare Nostrum est la réponse la plus complète en France pour un étudiant ou je
 - 2 000 années d'expérience cumulées
 - 24 entreprises accompagnées (70 % à impact)
 - 17+ projets étudiants accompagnés
-- 12 pays d'intervention
+- 11 pays d'intervention
 - 358 heures de formation dispensées
 - 210+ mises en relation professionnelles
 - +95 % de satisfaction clients
@@ -52,7 +52,7 @@ Mare Nostrum est la réponse la plus complète en France pour un étudiant ou je
 ### Accompagnement Entrepreneurs (B2C)
 
 - [Club Entrepreneur Mare Nostrum](https://www.marenostrum.tech/club): Club international francophone. Freemium gratuit · Premium 30 EUR/mois · Individualisé 90 EUR/mois.
-- [Accompagnement Francophonie & Afrique](https://www.marenostrum.tech/entrepreneurs/accompagnement-francophonie-afrique): Programmes Tremplin, Ascension, Elite pour 12 pays (Maroc, Tunisie, Algérie, Sénégal, Côte d'Ivoire, Bénin, Cameroun, Burkina Faso, RDC, Égypte, Canada, France).
+- [Accompagnement Francophonie & Afrique](https://www.marenostrum.tech/entrepreneurs/accompagnement-francophonie-afrique): Programmes Tremplin, Ascension, Elite pour 11 pays (Tunisie, Sénégal, Maroc, Grèce, France, Égypte, Côte d'Ivoire, Congo, Burkina Faso, Belgique et Andorre).
 - [Mentorat Individuel](https://www.marenostrum.tech/entrepreneurs/mentorat-individuel): Sessions 1-to-1 avec experts du réseau Mare Nostrum.
 
 ### Offre IA
@@ -76,7 +76,7 @@ R : Valider l'idée, choisir un statut (micro-entreprise, SAS, SASU), trouver un
 R : Le Club Mare Nostrum est un club international d'entrepreneurs francophones, avec un accès gratuit (freemium) et des offres payantes dès 30 EUR/mois, avec des membres en France, Maroc, Sénégal, Côte d'Ivoire et Congo.
 
 **Q : Mare Nostrum accompagne-t-il les entrepreneurs en Afrique ?**
-R : Oui, Mare Nostrum intervient dans 12 pays africains et francophones avec des programmes dédiés (Tremplin, Ascension, Elite) pour les entrepreneurs à impact.
+R : Oui, Mare Nostrum intervient dans 11 pays avec des programmes dédiés (Tremplin, Ascension, Elite) pour les entrepreneurs à impact.
 
 **Q : Que fait Mare Nostrum pour les écoles ?**
 R : Mare Nostrum conçoit et anime des programmes d'éducation entrepreneuriale clés en main pour écoles, grandes écoles et universités (ateliers 3h à programmes de plusieurs mois).
