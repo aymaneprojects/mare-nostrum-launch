@@ -15,7 +15,7 @@ const desktopNav: (NavItem | NavGroup)[] = [
   { label: "Services", children: [
     { to: "https://niteo.marenostrum.tech/", label: "Incubation", Icon: Rocket, external: true },
     { to: "/education",         label: "Formation professionnelle", Icon: GraduationCap },
-    { to: "/expertise",         label: "Conseil",          Icon: Compass        },
+    { to: "/expertise",         label: "Expertise",        Icon: Compass        },
   ] },
   { to: "/club",              label: "Réseau",           Icon: Users          },
   { to: "/blog",              label: "Blog",             Icon: BookOpen       },

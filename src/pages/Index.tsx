@@ -251,7 +251,7 @@ const Index = () => {
               {[
                 { title: "Incubation", description: "Niteo : programme d’accompagnement", icon: niteoIcon, href: "https://niteo.marenostrum.tech/" },
                 { title: "Formation professionnelle", description: "Certifié Qualiopi", icon: centreFormationIcon, href: "/education" },
-                { title: "Conseil", description: "Pôle d’expertise et d’ingénierie pour l’enseignement supérieur", icon: poleExpertiseIcon, href: "/expertise" },
+                { title: "Expertise", description: "Pôle d’expertise et d’ingénierie pour l’enseignement supérieur", icon: poleExpertiseIcon, href: "/expertise" },
                 { title: "Logiciel IA", description: "Veluo : agent IA des chefs de projet et des entrepreneurs", icon: veluoIcon, href: "https://veluo.marenostrum.tech/" },
                 { title: "Réseau", description: "Club Mare Nostrum : communauté d’entrepreneurs dans la francophonie", icon: clubIcon, href: "/club" },
               ].map((service) => {
