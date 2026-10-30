@@ -300,7 +300,7 @@ const Expertise = () => {
 
           <div className="max-w-4xl mx-auto mt-8 p-6 md:p-8 mn-card mn-card-left shadow-soft">
             <p className="text-base text-foreground leading-relaxed">
-              <span className="font-semibold">Qui intervient réellement ?</span> Chaque mission associe un expert international, un enseignant-chercheur et un consultant qui connaît votre contexte local. Selon la mission, nous mobilisons notre réseau d'intervenants, sélectionnés et coordonnés par Mare Nostrum. À titre d'exemple : un ancien président d'université, une ancienne dirigeante d'école numérique, un enseignant-chercheur en sciences ou un ancien dirigeant d'incubateur au sein d'une business school.
+              <span className="font-semibold">Qui intervient réellement ? Une équipe sur-mesure pour chaque mission</span> Nous mobilisons notre réseau d'intervenants sélectionnés, coordonnés par Mare Nostrum pour répondre à vos enjeux. Dans notre réseau, nous avons un ancien président d'université, une ancienne dirigeante d'école numérique, un enseignant-chercheur en sciences et en gestion ou un ancien dirigeant d'incubateur au sein d'une business school.
             </p>
           </div>
 
