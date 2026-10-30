@@ -150,7 +150,7 @@ const Contact = () => {
       <EnhancedSEOHead 
         title="Contact Mare Nostrum : Toulouse, Paris, Casablanca" 
         description="Contactez Mare Nostrum pour votre projet entrepreneurial. Bureaux Toulouse, Paris, Casablanca. Rendez-vous gratuit. Réponse sous 48h maximum."
-        keywords="contact mare nostrum, rendez-vous conseil, toulouse, paris, casablanca, accompagnement entrepreneuriat, conseil gratuit"
+        keywords="contact mare nostrum, rendez-vous expertise, toulouse, paris, casablanca, accompagnement entrepreneuriat, expertise professionnelle"
         
       />
       <Header />
