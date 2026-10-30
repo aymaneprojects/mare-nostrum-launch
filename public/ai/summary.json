@@ -2,7 +2,7 @@
   "name": "Mare Nostrum",
   "legalName": "Mare Nostrum SAS",
   "url": "https://www.marenostrum.tech",
-  "description": "Cabinet de conseil, de formation et d'incubation en entrepreneuriat, entre Toulouse, Paris et Casablanca. Société à mission.",
+  "description": "Cabinet d'expertise, de formation et d'incubation en entrepreneuriat, entre Toulouse, Paris et Casablanca. Société à mission.",
   "locations": [
     "Toulouse, France",
     "Paris, France",
@@ -19,7 +19,7 @@
     {
       "name": "Expertise",
       "url": "https://www.marenostrum.tech/offre-ia",
-      "summary": "Conseil et accompagnement sur mesure des organisations."
+      "summary": "Accompagnement sur mesure des organisations."
     },
     {
       "name": "Agent IA",
