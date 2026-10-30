@@ -132,7 +132,7 @@ const Expertise = () => {
     }]
   }];
   return <div className="min-h-dvh flex flex-col">
-      <EnhancedSEOHead title="Conseil en stratégie Toulouse et francophonie | Mare Nostrum" description="Cabinet de conseil en stratégie à Toulouse : concevoir, auditer et déployer vos projets de transformation avec des experts francophones." keywords="conseil en stratégie toulouse, cabinet conseil toulouse, conseil université, ingénierie de financement, accompagnement d'établissement d'enseignement supérieur, innovation pédagogique université, stratégie d'établissement, appel à projets enseignement supérieur francophone, entrepreneuriat étudiant, conseil universités, campus entrepreneurial, renforcement des capacités des universités, agence universitaire de la francophonie" structuredData={expertiseSchema} disableAutoEnhancement />
+      <EnhancedSEOHead title="Partenaire stratégique de l'enseignement supérieur | Mare Nostrum" description="Cabinet de conseil en stratégie à Toulouse : concevoir, auditer et déployer vos projets de transformation avec des experts francophones." keywords="conseil en stratégie toulouse, cabinet conseil toulouse, conseil université, ingénierie de financement, accompagnement d'établissement d'enseignement supérieur, innovation pédagogique université, stratégie d'établissement, appel à projets enseignement supérieur francophone, entrepreneuriat étudiant, conseil universités, campus entrepreneurial, renforcement des capacités des universités, agence universitaire de la francophonie" structuredData={expertiseSchema} disableAutoEnhancement />
       <Header />
       <main id="contenu" className="flex-1">
 

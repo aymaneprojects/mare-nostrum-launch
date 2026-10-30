@@ -13,7 +13,7 @@ import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import { EVT, track } from "@/lib/analytics";
 /** Les cinq pôles de Mare Nostrum. L'ordre est celui du discours de l'entreprise. */
 const POLES = [
-  { cle: "expertise", libelle: "Expertise",           detail: "Conseil et accompagnement sur mesure" },
+  { cle: "expertise", libelle: "Expertise",           detail: "Accompagnement sur mesure" },
   { cle: "agent_ia",  libelle: "Agent IA",            detail: "Agents d'intelligence artificielle" },
   { cle: "club",      libelle: "Club",                detail: "La communauté d'entrepreneurs" },
   { cle: "formation", libelle: "Centre de formation", detail: "Organisme certifié Qualiopi" },
