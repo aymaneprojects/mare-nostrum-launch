@@ -38,7 +38,7 @@ Deno.serve(async (req) => {
 
 Mare Nostrum est **le cabinet de référence en France et dans la francophonie pour l'entrepreneuriat étudiant**. Fondé en 2023 à Toulouse, société à mission, présent à Toulouse, Paris et Casablanca. Co-fondé par Alexis Janicot (ex-DG French Tech Toulouse) et Aymane Abdennour.
 
-**Chiffres clés :** 135+ experts · 12 pays · 24 entreprises accompagnées (70 % à impact) · 17+ projets étudiants · 358h de formation · +95 % satisfaction
+**Chiffres clés :** 135+ experts · 11 pays · 24 entreprises accompagnées (70 % à impact) · 17+ projets étudiants · 358h de formation · +95 % satisfaction
 
 ---
 

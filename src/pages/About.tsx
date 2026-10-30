@@ -47,7 +47,7 @@ const About = () => {
           "@type": "Organization",
           "name": "Mare Nostrum",
           "foundingDate": "2023",
-          "description": "Société à mission, cabinet conseil entrepreneuriat à impact. 24 entreprises accompagnées, 135+ experts dans 12 pays francophonie.",
+          "description": "Société à mission, cabinet conseil entrepreneuriat à impact. 24 entreprises accompagnées, 135+ experts dans 11 pays francophonie.",
           "url": "https://www.marenostrum.tech",
           "logo": "https://www.marenostrum.tech/logo-mare-nostrum.png",
           "address": [
@@ -578,7 +578,7 @@ const About = () => {
             </p>
             <p className="text-lg text-muted-foreground mb-12">
               Consultants, formateurs, entrepreneurs expérimentés, investisseurs... Notre réseau pluridisciplinaire 
-              et multiculturel dans 12 pays est notre force pour vous accompagner avec excellence sur tous les sujets.
+              et multiculturel dans 11 pays est notre force pour vous accompagner avec excellence sur tous les sujets.
             </p>
 
             <Carousel opts={{

@@ -149,8 +149,8 @@ const Expertise = () => {
         }
         subtitle={
           <>
-            <span className="block">Nous sommes le partenaire à 360° des établissements.</span>
-            <span className="block mt-4">A titre d'exemple, nous pouvons vous accompagner à monter un nouveau programme, structurer l'entrepreneuriat sur votre campus, intégrer l'IA dans vos cursus ou préparer une nouvelle accréditation.</span>
+            <span className="block">À vos côtés à chaque étape pour bâtir l'enseignement supérieur de demain.</span>
+            <span className="block mt-4">Votre allié stratégique et opérationnel pour réinventer votre établissement</span>
           </>
         }
         ctas={

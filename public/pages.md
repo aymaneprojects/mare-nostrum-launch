@@ -9,7 +9,7 @@
 
 **URL :** https://www.marenostrum.tech/  
 **Titre SEO :** Mare Nostrum - Cabinet Expert Conseil Entrepreneuriat à Impact | Toulouse · Paris · Casablanca  
-**Description :** Cabinet de conseil en entrepreneuriat à impact. Nous accompagnons les écoles et les entrepreneurs francophones depuis Toulouse, Paris et Casablanca. 135+ experts, 12 pays, +95% de satisfaction.  
+**Description :** Cabinet de conseil en entrepreneuriat à impact. Nous accompagnons les écoles et les entrepreneurs francophones depuis Toulouse, Paris et Casablanca. 135+ experts, 11 pays, +95% de satisfaction.
 **Mots-clés cibles :** entrepreneuriat Toulouse, conseil entrepreneuriat impact, cabinet entrepreneuriat francophonie, accompagnement startup Toulouse  
 **Contenu principal :** Présentation générale du cabinet, chiffres clés, trois piliers d'activité (Éducation / Club / Niteo), témoignages clients, partenaires institutionnels, FAQ.
 
@@ -75,9 +75,9 @@ Conseil aux universités et établissements d'enseignement supérieur francophon
 
 **URL :** https://www.marenostrum.tech/entrepreneurs/accompagnement-francophonie-afrique  
 **Titre SEO :** Accompagnement Entrepreneur Afrique Francophone - Incubateur & Mentorat | Mare Nostrum  
-**Description :** Programmes d'incubation et de mentorat pour entrepreneurs à impact en Afrique francophone. Maroc, Tunisie, Algérie, Sénégal, Côte d'Ivoire et 8 autres pays. Programmes Tremplin, Ascension, Elite.  
+**Description :** Programmes d'incubation et de mentorat pour entrepreneurs à impact en Afrique francophone. Maroc, Tunisie, Algérie, Sénégal, Côte d'Ivoire et 7 autres pays. Programmes Tremplin, Ascension, Elite.
 **Mots-clés cibles :** accompagnement entrepreneur Afrique, incubateur Afrique francophone, startup Afrique, mentorat entrepreneur Maroc, programme entrepreneuriat Afrique  
-**Contenu principal :** Carte des 12 pays couverts, présentation des 3 programmes (Tremplin, Ascension, Elite), experts locaux, résultats, processus de candidature.
+**Contenu principal :** Carte des 11 pays couverts, présentation des 3 programmes (Tremplin, Ascension, Elite), experts locaux, résultats, processus de candidature.
 
 ### Test de Maturité Projet
 

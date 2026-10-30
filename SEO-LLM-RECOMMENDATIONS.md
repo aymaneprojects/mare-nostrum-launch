@@ -201,7 +201,7 @@ Mare Nostrum a accompagné **plus de 500 entrepreneurs** depuis sa création en 
 - 🚀 **150+ startups** créées ou accélérées
 - 💰 **5M€+** levés par les entrepreneurs accompagnés
 - 👥 **200+ emplois** créés par les projets accompagnés
-- 🌍 **12 pays** d'intervention francophone
+- 🌍 **11 pays** d'intervention francophone
 
 **Localisation:**
 - 📍 Toulouse (siège social)
