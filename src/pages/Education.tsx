@@ -347,6 +347,29 @@ const Education = () => {
               </Button>
             </div>
 
+            {/* Les enjeux de l'intelligence artificielle pour les dirigeants */}
+            <div className="relative order-[3] bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+              <span className="absolute top-6 right-6 rounded-lg bg-primary/15 px-3 py-1 text-xs font-bold tracking-wide text-primary">
+                NUMÉRIQUE / IA
+              </span>
+              <div className="bg-gradient-to-br from-primary to-ink w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <BrainCircuit className="h-7 w-7 text-primary-foreground" />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-foreground">Les enjeux de l'intelligence artificielle pour les dirigeants</h3>
+              <p className="text-muted-foreground mb-6">Une formation pour comprendre ce que l'IA change pour votre organisation, en peser les opportunités et les risques, et poser les bases d'une charte IA responsable.</p>
+              <ul className="space-y-2 mb-6">
+                <li className="flex items-start space-x-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-sm text-muted-foreground">Dirigeants, COMEX, CODIR · 12 participants maximum</span></li>
+                <li className="flex items-start space-x-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-sm text-muted-foreground">10 h · 1 journée + ½ journée, avec intersession</span></li>
+                <li className="flex items-start space-x-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-sm text-muted-foreground">Gouvernance, cadre réglementaire et charte IA co-construite</span></li>
+              </ul>
+              <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <Link to="/enjeux-ia">
+                  Accéder à la fiche détaillée
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+
             <div className="relative order-4 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
               <span className="absolute top-6 right-6 rounded-lg bg-[hsl(var(--mn-turquoise))]/20 px-3 py-1 text-xs font-bold tracking-wide text-primary">
                 ENTREPRENEURIAT
