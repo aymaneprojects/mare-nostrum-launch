@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Download, Mail, Briefcase, Users, Clock, MapPin, Target } from "lucide-react";
+import { Download, Mail, Clock, MapPin, Target, BrainCircuit } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
@@ -19,7 +19,7 @@ const UtiliserIAAIProjects = () => {
   const brochureButton = (
     <Button asChild size="lg" variant="secondary">
       <Link to="/contact">
-        Accéder à la fiche détaillée
+        Demander la fiche formation détaillée
         <Download className="ml-2 h-5 w-5" />
       </Link>
     </Button>
@@ -29,8 +29,8 @@ const UtiliserIAAIProjects = () => {
     <div className="min-h-dvh flex flex-col bg-background">
       <EnhancedSEOHead
         title="Utiliser l'IA dans la conduite de projets | Mare Nostrum"
-        description="Formation en situation de travail de 35 heures pour les chefs de projet. Intégrer l'IA dans vos projets réels : produire vos livrables, les vérifier et capitaliser vos usages, de façon fiable et responsable. Format AFEST sur 3 à 5 semaines."
-        keywords="formation chef de projet IA, formation utilisié l IA dans les projets, formation AFEST, formation en situation de travail, IA pour chefs de projet, formation projets réels, utiliser l IA dans les projets, chef de projet IA, formation 35 heures AFEST"
+        description="Formation en situation de travail de 35 heures pour les chefs de projet. Intégrer l'IA dans vos projets réels : produire vos livrables, les vérifier et capitaliser vos usages, de façon fiable et responsable."
+        keywords="formation chef de projet IA, formation utilsié l IA dans les projets, formation AFEST, formation en situation de travail, IA pour chefs de projet, formation projets réels, utiliser l IA dans les projets, chef de projet IA, formation 35 heures AFEST, formation individuelle projet"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "Course",
@@ -64,24 +64,25 @@ const UtiliserIAAIProjects = () => {
             </div>
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-start">
               <div className="bg-card border border-border rounded-sm p-7 md:p-9 space-y-7">
-                <InfoCard title="Publics">
-                  <p>Chefs de projet, animateurs de projet, chefs de file, coordinatrices de projet, chefs de ressources. Public individuel, accessible à tous les niveaux d'expérience.</p>
+                <InfoCard title="Les publics">
+                  <p>Chefs de projet, chargés de mission, coordinateurs et toute personne qui pilote des projets dans une entreprise, une association ou une structure publique. La formation s'adresse aux personnes qui utilisent déjà un outil d'IA, même ponctuellement, et qui veulent l'intégrer de façon fiable dans leur travail quotidien. C'est une formation individuelle : un apprenant, accompagné par un formateur.</p>
                 </InfoCard>
                 <InfoCard title="Objectifs">
                   <p>À l'issue du parcours, le participant sera capable de :</p>
                   <ul className="list-disc pl-5 space-y-1.5">
-                    <li>identifier les opportunités d'IA pour la conduite de ses projets ;</li>
-                    <li>générer et valider des livrables produits avec l'IA (notes de synthèse, plans, mises à jour, comptes-rendus, supports) ;</li>
-                    <li>vérifier la fiabilité des productions générées (hallucinations, données, normes, RGPD) ;</li>
-                    <li>capitaliser ses usages dans une démarche éthique et sécurisée ;</li>
-                    <li>intégrer l'IA dans sa méthode de projet et ses outils professionnels.</li>
+                    <li>repérer et qualifier les cas d'usage de l'IA dans son projet, avec le gain attendu et le niveau de risque de chacun ;</li>
+                    <li>rédiger, tester et améliorer des prompts pour produire ses livrables de projet (compte rendu, note de cadrage, planning, suivi des risques) ;</li>
+                    <li>vérifier, corriger et sourcer toute production de l'IA avant diffusion, à l'aide d'une check-list ;</li>
+                    <li>protéger les données de son organisation en appliquant les règles de confidentialité, du RGPD et de l'AI Act ;</li>
+                    <li>choisir et utiliser la solution d'IA la plus adaptée parmi celles déjà disponibles dans sa structure (IA générative, automatisation ou agent IA) ;</li>
+                    <li>capitaliser ses usages dans une bibliothèque de prompts et les partager avec son équipe.</li>
                   </ul>
                 </InfoCard>
                 <InfoCard title="Prérequis">
-                  <p>Aucun niveau technique requis. Possibilité de s'appuyer sur l'outil d'IA qui sera utilisé en formation.</p>
+                  <p>Conduire un projet réel pendant toute la durée de la formation. Avoir accès à au moins un outil d'IA autorisé par son organisation. Avoir l'accord de sa hiérarchie pour consacrer à la formation des temps de mise en situation sur son poste de travail. Aucune compétence technique requise. Pour les personnes qui n'ont jamais utilisé l'IA, nous recommandons de suivre d'abord l'Initiation à l'intelligence artificielle.</p>
                 </InfoCard>
                 <InfoCard title="Formateur">
-                  <p>Aymane ABDENNOUR, consultant-formateur spécialiste de la stratégie numérique et de l'IA en entreprise, accompagne des dirigeants et des équipes de direction dans l'intégration de l'IA à leur modèle d'affaires. Ingénieur en informatique, il met l'IA en regard des enjeux de création de valeur, d'organisation du travail, de gouvernance des données et de conformité réglementaire (AI Act, RGPD).</p>
+                  <p>Aymane ABDENNOUR – chargé de développement de l'IA, diplômé d'Économie appliquée à Toulouse School of Economics, certifié IBM Data Science Professional et ambassadeur officiel n8n pour Toulouse.</p>
                 </InfoCard>
                 <InfoCard title="Résultats">
                   <p>93 % de nos clients confirment qu'ils recommandent nos solutions. 95 % de réussite constatée trois ans après la formation et l'utilisation de nos méthodes.</p>
@@ -89,23 +90,31 @@ const UtiliserIAAIProjects = () => {
               </div>
               <div className="bg-card border border-border rounded-sm p-7 md:p-9 space-y-7">
                 <InfoCard title="Durée et format">
-                  <p>35 heures, sur 3 à 5 semaines, en situation de travail (AFEST). Le participant travaille sur son propre projet réel, avec ses outils d'IA, et apporte les livrables produits en situation.</p>
+                  <p>35 heures réparties sur 3 à 5 semaines, en action de formation en situation de travail (AFEST), sur le poste et le projet réel du participant. Les mises en situation, réalisées en autonomie, alternent avec des débriefs individuels avec le formateur à distance. Le parcours comprend six étapes :</p>
+                  <ul className="list-disc pl-5 space-y-1.5 mt-2">
+                    <li>positionnement et état des lieux de ses usages de l'IA (2 h) ;</li>
+                    <li>repérage des tâches de son projet à confier à l'IA (3 h) ;</li>
+                    <li>production de trois livrables réels avec l'IA (7 h) ;</li>
+                    <li>vérification des résultats et usage responsable (4 h) ;</li>
+                    <li>mise en œuvre d'une solution d'IA sur d'autres cas d'usage (14 h) ;</li>
+                    <li>capitalisation, présentation à l'équipe et bilan réflexif final (5 h).</li>
+                  </ul>
                 </InfoCard>
                 <InfoCard title="Méthodes">
-                  <p>Pédagogie en situation de travail : le consultant-formateur accompagne le participant dans la conduite de son projet réel, en utilisant des outils d'IA spécifiques à son activité. Chaque session est dédiée à la réalisation d'un livrable, à sa vérification et à sa validation.</p>
-                  <p>Le participant conserve l'intégralité de ses productions et son protocole d'usage pour poursuivre l'utilisation de l'IA dans ses projets.</p>
+                  <p>Une formation qui part du travail réel, sans cours magistral : chaque étape commence par une consigne du formateur, se poursuit par une mise en situation sur un vrai livrable du projet, puis se termine par un débrief réflexif (méthode FAST) pour analyser ce qui a été fait et l'ajuster. Le participant a le droit à l'erreur : les premiers essais portent sur des documents non sensibles ou anonymisés, et toute production de l'IA est relue avant diffusion. Aucun outil n'est imposé : le participant apprend avec les solutions déjà disponibles dans sa structure.</p>
+                  <p>À l'issue de la formation, le participant conserve ses productions : bibliothèque de prompts, check-list de vérification, fiche d'utilisation de la solution retenue et retour d'expérience.</p>
                 </InfoCard>
                 <InfoCard title="Évaluation">
-                  <p>Évaluation basée sur le projet réel : livrables produits, vérification de la fiabilité et de la conformité, rapport d'usages et recommandations, attestation de fin de formation.</p>
+                  <p>Analyse préalable des missions du participant et de ses situations de travail, puis grille de positionnement initial. Les indicateurs de chaque étape sont vérifiés à chaque débrief et notés dans une grille de suivi. La formation se termine par un entretien réflexif et une évaluation des acquis à partir des productions réalisées. Évaluation de satisfaction à chaud et à froid, puis certificat de réalisation.</p>
                 </InfoCard>
                 <InfoCard title="Accès et délai">
-                  <p>Un délai minimum et incompressible de 30 jours est appliqué entre l'inscription et le lancement de la formation, permettant de s'assurer que le projet réel est stable et prêt pour l'intégration de l'IA.</p>
+                  <p>Un délai minimum et incompressible de 14 jours est appliqué entre l'inscription et l'accès à la formation. Le démarrage suppose qu'un entretien préalable ait eu lieu pour identifier le projet support et les outils disponibles.</p>
                 </InfoCard>
                 <InfoCard title="Tarif">
-                  <p>2 800 € HT la formation par participant, prise en charge possible via la formation professionnelle ou un contrat de professionnalisation. Devis sur mesure selon le montant global et le nombre de participants.</p>
+                  <p>1400 €. Exonération de TVA (art. 261-4-4° a du CGI). L'AFEST est une modalité de formation reconnue par le Code du travail. Elle peut être prise en charge par votre OPCO, selon les règles de votre branche et la taille de votre entreprise.</p>
                 </InfoCard>
                 <InfoCard title="Handicap">
-                  <p>La formation est accessible aux personnes en situation de handicap. Les aménagements sont étudiés avec le participant lors de l'inscription afin de favoriser son apprentissage.</p>
+                  <p>La formation est accessible aux personnes en situation de handicap. Les aménagements sont étudiés avec le candidat lors de l'inscription afin de favoriser son apprentissage.</p>
                   <a href="mailto:handicap@marenostrum.tech" className="inline-flex text-turquoise-texte underline underline-offset-4 font-semibold hover:opacity-80">
                     Référent handicap : handicap@marenostrum.tech
                   </a>
@@ -122,7 +131,14 @@ const UtiliserIAAIProjects = () => {
             <a href="mailto:education@marenostrum.tech" className="inline-flex items-center gap-2 text-turquoise-texte underline underline-offset-4 font-semibold mb-7 hover:opacity-80">
               <Mail className="h-5 w-5" />education@marenostrum.tech · réponse sous 48 h
             </a>
-            <div>{brochureButton}</div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" variant="secondary" className="w-full sm:w-auto">
+                <Link to="/contact">
+                  Demander la fiche formation détaillée
+                  <Download className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
           </div>
         </section>
       </main>
