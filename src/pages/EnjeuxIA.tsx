@@ -78,7 +78,7 @@ const EnjeuxIA = () => {
                   <p>Dirigeants (président, directeur général, directeur), membres du CODIR, membres du comité d'entreprise, responsables de projets innovants, délégués à la conformité et à la protection des données.</p>
                 </InfoCard>
                 <InfoCard title="Formateur">
-                  <p>Aymane ABDENNOUR, chargé de développement des usages de l'IA : économiste de l'action publique, diplômé d'Économie appliquée à Toulouse School of Economics, certifié IBM Data Science Professional, formateur certifié et ambassadeur officiel n8n pour Toulouse.</p>
+                  <p>Consultant-formateur spécialiste de la stratégie numérique et de l'IA en entreprise, il accompagne des dirigeants et des équipes de direction dans l'intégration de l'IA à leur modèle d'affaires. Ingénieur en informatique, il met l'IA en regard des enjeux de création de valeur, d'organisation du travail, de gouvernance des données et de conformité réglementaire (AI Act, RGPD).</p>
                 </InfoCard>
               </div>
               <div className="bg-card border border-border rounded-sm p-7 md:p-9 space-y-7">
