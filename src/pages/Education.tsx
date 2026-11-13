@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { GraduationCap, Users, Lightbulb, Trophy, BookOpen, Network, Monitor, BrainCircuit, Bot, ArrowRight, CheckCircle2 } from "lucide-react";
+import { GraduationCap, Users, Lightbulb, Trophy, BookOpen, Network, Monitor, BrainCircuit, Bot, Target, ArrowRight, CheckCircle2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
@@ -370,7 +370,29 @@ const Education = () => {
               </Button>
             </div>
 
-            <div className="relative order-4 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+            <div className="relative order-[4] bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
+              <span className="absolute top-6 right-6 rounded-lg bg-primary/15 px-3 py-1 text-xs font-bold tracking-wide text-primary">
+                NUMÉRIQUE / IA
+              </span>
+              <div className="bg-gradient-to-br from-primary to-ink w-14 h-14 rounded-sm flex items-center justify-center mb-6">
+                <Target className="h-7 w-7 text-primary-foreground" />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-foreground">Utiliser l'IA dans la conduite de projets</h3>
+              <p className="text-muted-foreground mb-6">Une formation en situation de travail pour intégrer l'IA dans vos projets réels : produire vos livrables, les vérifier et capitaliser vos usages, de façon fiable et responsable.</p>
+              <ul className="space-y-2 mb-6">
+                <li className="flex items-start space-x-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-sm text-muted-foreground">Chefs de projet · formation individuelle</span></li>
+                <li className="flex items-start space-x-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-sm text-muted-foreground">35 h · en situation de travail (AFEST) sur 3 à 5 semaines</span></li>
+                <li className="flex items-start space-x-2"><CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" /><span className="text-sm text-muted-foreground">Sur votre projet réel, avec vos outils d'IA</span></li>
+              </ul>
+              <Button asChild variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <Link to="/utiliser-ia-conduite-projets">
+                  Accéder à la fiche détaillée
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+
+            <div className="relative order-5 bg-card border border-border rounded-sm p-8 shadow-[var(--shadow-medium)] hover-lift hover:border-accent/40 transition-all duration-200 cursor-pointer">
               <span className="absolute top-6 right-6 rounded-lg bg-[hsl(var(--mn-turquoise))]/20 px-3 py-1 text-xs font-bold tracking-wide text-primary">
                 ENTREPRENEURIAT
               </span>
