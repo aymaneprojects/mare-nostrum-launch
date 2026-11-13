@@ -1,0 +1,54 @@
+name: Publication automatique sur Vercel
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+concurrency:
+  group: publication-vercel
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Vérifier la clé Vercel
+        run: test -n "$VERCEL_TOKEN"
+
+      - name: Installer Chrome pour le référencement
+        id: chrome
+        uses: browser-actions/setup-chrome@v2
+
+      - name: Construire et vérifier le site
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: |
+          npm ci
+          npm run build
+          ./scripts/verifier-build.sh
+
+      - name: Publier sur Vercel
+        run: |
+          npx vercel@65.15.0 deploy dist \
+            --prod \
+            --verify \
+            --yes \
+            --project mare-nostrum \
+            --scope team_fu0J2HEN3iAKgWaOyqkMdPTP \
+            --archive=tgz \
+            --token "$VERCEL_TOKEN"

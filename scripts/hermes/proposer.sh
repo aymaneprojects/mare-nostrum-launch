@@ -2,7 +2,8 @@
 # Envoie les modifications faites dans le clone sur GitHub, dans une BRANCHE de
 # proposition, et UNIQUEMENT depuis la dernière version de main (sinon : refus, code 6).
 # GitHub fusionne ensuite dans main après vérification de la construction. Rien n'est
-# publié ici : la mise en ligne passe par ./deploy-vps.sh. Ainsi GitHub contient toujours
+# publié ici : une fois fusionnée dans main, la modification est mise en ligne
+# automatiquement par GitHub Actions sur Vercel. Ainsi GitHub contient toujours
 # tout ce qui est en ligne.
 #
 # Usage : scripts/hermes/proposer.sh "sujet court de la modification"
