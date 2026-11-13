@@ -48,3 +48,8 @@ jobs:
           git merge --no-ff "origin/${GITHUB_REF_NAME}" -m "Fusion automatique : ${GITHUB_REF_NAME}"
           git push origin main
           git push origin --delete "${GITHUB_REF_NAME}"
+
+  publier:
+    needs: fusion
+    uses: ./.github/workflows/vercel-publication.yml
+    secrets: inherit
