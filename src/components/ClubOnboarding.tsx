@@ -12,6 +12,7 @@ import {
   User, Briefcase, CreditCard,
 } from "lucide-react";
 import { EVT, track, trackOnce } from "@/lib/analytics";
+import { detailErreurFonction, messageVisiteur } from "@/lib/functionError";
 
 const stripeKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY as string | undefined;
 // Chargé à la première ouverture du paiement seulement. Au niveau du module, le
@@ -149,12 +150,17 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
       const { data, error: fnError } = await supabase.functions.invoke("create-checkout-session", {
         body: { offer, location, billing, prenom, email, entreprise },
       });
-      if (fnError) throw new Error(fnError.message);
-      if (!data?.clientSecret) throw new Error("Réponse invalide du serveur.");
+      if (fnError || !data?.clientSecret) {
+        const info = await detailErreurFonction(fnError ?? data);
+        console.error("create-checkout-session failed:", info.status, info.detail);
+        setError(messageVisiteur(info, "Une erreur est survenue. Réessaie."));
+        setPhase("step2");
+        return;
+      }
       setClientSecret(data.clientSecret);
       track(EVT.checkoutShown, { offer, location, billing });
       setPhase("payment");
-    } catch (e: any) {
+    } catch (e) {
       console.error("create-checkout-session failed:", e);
       setError("Une erreur est survenue. Réessaie.");
       setPhase("step2");
@@ -169,10 +175,16 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
       const { data, error: fnError } = await supabase.functions.invoke("club-freemium-signup", {
         body: { prenom, email, entreprise, location },
       });
-      if (fnError || !data?.ok) throw new Error(fnError?.message ?? "Réponse invalide du serveur.");
+      if (fnError || !data?.ok) {
+        const info = await detailErreurFonction(fnError ?? data);
+        console.error("club-freemium-signup failed:", info.status, info.detail);
+        setError(messageVisiteur(info, "Une erreur est survenue. Réessaie."));
+        setPhase("step2");
+        return;
+      }
       trackOnce(`freemium:${email}`, EVT.clubFreemiumSignup, { method: "club_freemium", offer, location });
       navigate("/bienvenue-club?offre=freemium");
-    } catch (e: any) {
+    } catch (e) {
       console.error("club-freemium-signup failed:", e);
       setError("Une erreur est survenue. Réessaie.");
       setPhase("step2");
@@ -407,7 +419,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                 </>
               )}
 
-              {error && <p className="text-sm text-destructive">{error}</p>}
+              {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
 
               <div className="flex gap-3">
                 <Button variant="outline" onClick={() => setPhase("step1")} className="flex-none">

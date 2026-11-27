@@ -1,16 +1,38 @@
 import { useEffect, useState } from "react";
 import { Clock, Brain, Target, Flame } from "lucide-react";
 
+// Une visite de l'accueil et de /club ne doit pas rappeler la fonction à chaque
+// navigation : get-club-count compte dans le quota d'invocations Supabase.
+const COMPTEUR_OK_MS = 60 * 60 * 1000;
+const COMPTEUR_ECHEC_MS = 10 * 60 * 1000;
+let compteurMemoire: { count: number; at: number } | { echec: true; at: number } | null = null;
+
 function ClubCounter() {
   const [count, setCount]         = useState<number | null>(null);
   const [displayed, setDisplayed] = useState(0);
 
   useEffect(() => {
+    const maintenant = Date.now();
+    if (compteurMemoire && "count" in compteurMemoire && maintenant - compteurMemoire.at < COMPTEUR_OK_MS) {
+      setCount(compteurMemoire.count);
+      return;
+    }
+    if (compteurMemoire && "echec" in compteurMemoire && maintenant - compteurMemoire.at < COMPTEUR_ECHEC_MS) return;
+
+    let actif = true;
     // Import à la demande : le client Supabase (177 Ko) ne pèse plus sur le script d'entrée.
     import("@/integrations/supabase/client")
       .then(({ supabase }) => supabase.functions.invoke("get-club-count"))
-      .then(({ data }) => { if (data?.count != null) setCount(data.count); })
-      .catch(() => {});
+      .then(({ data, error }) => {
+        if (error || data?.count == null) {
+          compteurMemoire = { echec: true, at: Date.now() };
+          return;
+        }
+        compteurMemoire = { count: data.count, at: Date.now() };
+        if (actif) setCount(data.count);
+      })
+      .catch(() => { compteurMemoire = { echec: true, at: Date.now() }; });
+    return () => { actif = false; };
   }, []);
 
   useEffect(() => {

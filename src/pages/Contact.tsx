@@ -11,6 +11,7 @@ import PageHero from "@/components/PageHero";
 import { useToast } from "@/hooks/use-toast";
 import EnhancedSEOHead from "@/components/EnhancedSEOHead";
 import { EVT, track } from "@/lib/analytics";
+import { detailErreurFonction, messageVisiteur } from "@/lib/functionError";
 /** Les cinq pôles de Mare Nostrum. L'ordre est celui du discours de l'entreprise. */
 const POLES = [
   { cle: "expertise", libelle: "Expertise",           detail: "Accompagnement sur mesure" },
@@ -76,10 +77,11 @@ const Contact = () => {
       } = dejaInsere.current === signature ? { error: null } : await supabase.from('contact_submissions').insert([donnees]);
       if (!dbError) dejaInsere.current = signature;
       if (dbError) {
-        console.error("Error saving to database:", dbError);
+        const info = await detailErreurFonction(dbError);
+        console.error("Error saving to database:", info.status, info.detail);
         toast({
           title: "Erreur",
-          description: "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.",
+          description: messageVisiteur(info, "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.", "vous"),
           variant: "destructive"
         });
         return;
@@ -92,10 +94,11 @@ const Contact = () => {
         body: { ...donnees, poles },
       });
       if (error) {
-        console.error("prise-de-contact:", error);
+        const info = await detailErreurFonction(error);
+        console.error("prise-de-contact:", info.status, info.detail);
         toast({
           title: "Erreur",
-          description: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
+          description: messageVisiteur(info, "Une erreur est survenue lors de l'envoi. Veuillez réessayer.", "vous"),
           variant: "destructive"
         });
         return;

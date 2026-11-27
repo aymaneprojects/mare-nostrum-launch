@@ -16,6 +16,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import ClubOnboarding, { type Offer, type PaidOffer } from "@/components/ClubOnboarding";
 import { supabase } from "@/integrations/supabase/client";
+import { detailErreurFonction } from "@/lib/functionError";
 import atelierRose from "@/assets/atelier-rose.jpg";
 
 type LocationType = "france" | "congo_brazzaville";
@@ -114,8 +115,12 @@ const Croissance = () => {
     window.history.replaceState({}, "", window.location.pathname);
 
     supabase.functions.invoke("get-checkout-session", { body: { sessionId } })
-      .then(({ data, error }) => {
+      .then(async ({ data, error }) => {
         if (error || !data?.paid) {
+          if (error) {
+            const info = await detailErreurFonction(error);
+            console.error("get-checkout-session:", info.status, info.detail);
+          }
           toast({
             variant: "destructive",
             title: "Paiement non confirmé",

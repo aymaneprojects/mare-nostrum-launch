@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
 import { EVT, track } from "@/lib/analytics";
+import { detailErreurFonction, messageVisiteur } from "@/lib/functionError";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 
 const STORAGE_KEY   = "mn_exit_popup_dismissed";
@@ -86,7 +87,12 @@ export default function ExitIntentPopup() {
       const { error: fnError } = await supabase.functions.invoke("send-promo-code", {
         body: { prenom, email, phone: phone || undefined, zone },
       });
-      if (fnError) throw new Error(fnError.message);
+      if (fnError) {
+        const info = await detailErreurFonction(fnError);
+        console.error("send-promo-code failed:", info.status, info.detail);
+        setError(messageVisiteur(info, "Une erreur est survenue. Réessaie dans quelques secondes."));
+        return;
+      }
       track(EVT.generateLead, { form: "code-promo" });
       setSent(true);
       markDismissed();
