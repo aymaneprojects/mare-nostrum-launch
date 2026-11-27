@@ -1,0 +1,207 @@
+#!/usr/bin/env node
+/**
+ * Inscription Club Freemium : le navigateur n'appelle jamais Airtable.
+ * Cet endpoint valide le formulaire, puis crée la ligne avec l'API REST
+ * officielle (POST https://api.airtable.com/v0/{base}/{table}).
+ *
+ * Variables (fichier /etc/club-freemium.env sur le VPS, chmod 600) :
+ *   AIRTABLE_API_KEY      jeton personnel Airtable (secret, jamais dans le front)
+ *   AIRTABLE_BASE_ID      identifiant de la base, ex. appXXXXXXXXXXXXXX
+ *   AIRTABLE_TABLE_NAME   nom exact de la table, ex. Club Freemium
+ *   PORT                  défaut 8787, écoute seulement en local
+ *   AIRTABLE_API_URL      défaut https://api.airtable.com/v0 (réservé aux essais)
+ *
+ * Colonnes Airtable, noms exacts, type « ligne de texte » :
+ *   Email, Prenom, Projet, Localisation, Offre
+ * Offre est toujours « Freemium ». Localisation vaut « france » ou
+ * « congo_brazzaville ». Un e-mail déjà présent ne crée pas de seconde ligne.
+ *
+ * Lancement :
+ *   node server/club-freemium.mjs
+ * Nginx : voir server/README.md
+ */
+
+import { createServer } from "node:http";
+
+const PORT = Number(process.env.PORT || 8787);
+const CLE = process.env.AIRTABLE_API_KEY || "";
+const BASE = process.env.AIRTABLE_BASE_ID || "";
+const TABLE = process.env.AIRTABLE_TABLE_NAME || "";
+const API = (process.env.AIRTABLE_API_URL || "https://api.airtable.com/v0").replace(/\/$/, "");
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const LIEUX = new Set(["france", "congo_brazzaville"]);
+const ORIGINES = new Set([
+  "https://www.marenostrum.tech",
+  "https://marenostrum.tech",
+  "https://niteo.marenostrum.tech",
+  "http://127.0.0.1:8080",
+  "http://localhost:8080",
+]);
+
+const fenetre = new Map();
+
+function json(res, status, body, origine) {
+  const headers = { "Content-Type": "application/json; charset=utf-8" };
+  if (origine && ORIGINES.has(origine)) {
+    headers["Access-Control-Allow-Origin"] = origine;
+    headers["Vary"] = "Origin";
+    headers["Access-Control-Allow-Headers"] = "content-type";
+    headers["Access-Control-Allow-Methods"] = "POST, OPTIONS";
+  }
+  res.writeHead(status, headers);
+  res.end(JSON.stringify(body));
+}
+
+function lireCorps(req) {
+  return new Promise((resolve, reject) => {
+    const morceaux = [];
+    let taille = 0;
+    req.on("data", (b) => {
+      taille += b.length;
+      if (taille > 4096) {
+        reject(Object.assign(new Error("trop gros"), { status: 413 }));
+        req.destroy();
+        return;
+      }
+      morceaux.push(b);
+    });
+    req.on("end", () => resolve(Buffer.concat(morceaux).toString("utf8")));
+    req.on("error", reject);
+  });
+}
+
+function tropSouvent(ip) {
+  const maintenant = Date.now();
+  const hits = (fenetre.get(ip) || []).filter((t) => maintenant - t < 10 * 60_000);
+  if (hits.length >= 8) {
+    fenetre.set(ip, hits);
+    return true;
+  }
+  hits.push(maintenant);
+  fenetre.set(ip, hits);
+  return false;
+}
+
+function urlTable() {
+  return `${API}/${encodeURIComponent(BASE)}/${encodeURIComponent(TABLE)}`;
+}
+
+async function airtable(method, url, body) {
+  const res = await fetch(url, {
+    method,
+    headers: {
+      Authorization: `Bearer ${CLE}`,
+      "Content-Type": "application/json",
+    },
+    body: body ? JSON.stringify(body) : undefined,
+    signal: AbortSignal.timeout(12_000),
+  });
+  const texte = await res.text();
+  let data = null;
+  try { data = texte ? JSON.parse(texte) : null; } catch { data = { brut: texte.slice(0, 300) }; }
+  return { ok: res.ok, status: res.status, data };
+}
+
+async function dejaInscrit(email) {
+  const formule = `LOWER({Email})='${email.replace(/'/g, "''")}'`;
+  const url = `${urlTable()}?maxRecords=1&filterByFormula=${encodeURIComponent(formule)}`;
+  const res = await airtable("GET", url);
+  if (!res.ok) {
+    const err = new Error(`Airtable lecture ${res.status}`);
+    err.detail = res.data;
+    throw err;
+  }
+  return Array.isArray(res.data?.records) && res.data.records.length > 0;
+}
+
+async function creer(champs) {
+  const res = await airtable("POST", urlTable(), {
+    records: [{ fields: champs }],
+    typecast: true,
+  });
+  if (!res.ok) {
+    const err = new Error(`Airtable écriture ${res.status}`);
+    err.detail = res.data;
+    throw err;
+  }
+  return res.data?.records?.[0]?.id || null;
+}
+
+const server = createServer(async (req, res) => {
+  const origine = req.headers.origin || "";
+  const url = new URL(req.url || "/", "http://127.0.0.1");
+
+  if (req.method === "OPTIONS") {
+    json(res, 204, {}, origine);
+    return;
+  }
+
+  if (req.method === "GET" && (url.pathname === "/healthz" || url.pathname === "/api/club-freemium/healthz")) {
+    const pret = Boolean(CLE && BASE && TABLE);
+    json(res, pret ? 200 : 503, { ok: pret }, origine);
+    return;
+  }
+
+  const estInscription = req.method === "POST" && (url.pathname === "/api/club-freemium" || url.pathname === "/");
+  if (!estInscription) {
+    json(res, 404, { error: "Introuvable." }, origine);
+    return;
+  }
+
+  if (!CLE || !BASE || !TABLE) {
+    console.error("club-freemium: AIRTABLE_API_KEY, AIRTABLE_BASE_ID ou AIRTABLE_TABLE_NAME manquant");
+    json(res, 503, { error: "Service indisponible." }, origine);
+    return;
+  }
+
+  const ip = String(req.headers["x-forwarded-for"] || req.socket.remoteAddress || "").split(",")[0].trim();
+  if (tropSouvent(ip)) {
+    json(res, 429, { error: "Trop d'essais. Réessaie dans quelques minutes." }, origine);
+    return;
+  }
+
+  try {
+    const brut = await lireCorps(req);
+    const body = brut ? JSON.parse(brut) : {};
+    const prenom = String(body?.prenom ?? "").trim().slice(0, 100);
+    const email = String(body?.email ?? "").trim().toLowerCase().slice(0, 254);
+    const projet = String(body?.entreprise ?? "").trim().slice(0, 200);
+    const lieu = LIEUX.has(body?.location) ? body.location : "";
+
+    if (!prenom || !EMAIL_RE.test(email) || !lieu) {
+      json(res, 400, { error: "Champs invalides." }, origine);
+      return;
+    }
+
+    if (await dejaInscrit(email)) {
+      json(res, 200, { ok: true }, origine);
+      return;
+    }
+
+    const id = await creer({
+      Email: email,
+      Prenom: prenom,
+      Projet: projet,
+      Localisation: lieu,
+      Offre: "Freemium",
+    });
+    console.log("club-freemium: ligne créée", id || "(sans id)");
+    json(res, 200, { ok: true }, origine);
+  } catch (e) {
+    if (e?.status === 413) {
+      json(res, 413, { error: "Requête trop volumineuse." }, origine);
+      return;
+    }
+    if (e instanceof SyntaxError) {
+      json(res, 400, { error: "Requête invalide." }, origine);
+      return;
+    }
+    console.error("club-freemium:", e?.message || e, e?.detail ? JSON.stringify(e.detail).slice(0, 400) : "");
+    json(res, 502, { error: "Erreur temporaire." }, origine);
+  }
+});
+
+server.listen(PORT, "127.0.0.1", () => {
+  console.log(`club-freemium écoute sur 127.0.0.1:${PORT}`);
+});

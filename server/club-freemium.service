@@ -1,0 +1,15 @@
+[Unit]
+Description=Inscription Club Freemium vers Airtable
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/club-freemium.env
+ExecStart=/usr/bin/node /opt/club-freemium/club-freemium.mjs
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

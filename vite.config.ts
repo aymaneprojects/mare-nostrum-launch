@@ -8,6 +8,13 @@ export default defineConfig(() => ({
     host: true,
     port: 8080,
     strictPort: false,
+    // Même chemin qu'en production : Nginx y proxy le serveur server/club-freemium.mjs.
+    proxy: {
+      "/api/club-freemium": {
+        target: process.env.CLUB_FREEMIUM_PROXY || "http://127.0.0.1:8787",
+        changeOrigin: true,
+      },
+    },
   },
   preview: {
     host: true,

@@ -15,6 +15,8 @@ import { EVT, track, trackOnce } from "@/lib/analytics";
 import { detailErreurFonction, messageVisiteur } from "@/lib/functionError";
 
 const stripeKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY as string | undefined;
+// Vide en production : Nginx proxifie /api/club-freemium vers server/club-freemium.mjs.
+const FREEMIUM_API = (import.meta.env.VITE_CLUB_FREEMIUM_API_URL as string | undefined)?.trim() || "/api/club-freemium";
 // Chargé à la première ouverture du paiement seulement. Au niveau du module, le
 // script de Stripe était téléchargé sur CHAQUE page du site, y compris l'accueil.
 let stripePromiseCache: ReturnType<typeof loadStripe> | null = null;
@@ -50,8 +52,9 @@ function formatPrice(amount: number, location: LocationType): string {
   return `${amount.toLocaleString("fr-FR")} XOF`;
 }
 
-// "success" est transitoire : le membre est envoyé sur la page Bienvenue (kit + Slack).
-type Phase = "step1" | "step2" | "loading" | "payment" | "success";
+// "success" est transitoire : le membre payant est envoyé sur la page Bienvenue.
+// "enregistre" reste dans la modale : confirmation de l'offre gratuite.
+type Phase = "step1" | "step2" | "loading" | "payment" | "success" | "enregistre";
 
 interface Props {
   open: boolean;
@@ -71,7 +74,7 @@ const ALL_STEPS = [
 ];
 
 const phaseToStep: Record<Phase, number> = {
-  step1: 0, step2: 1, loading: 2, payment: 2, success: 2,
+  step1: 0, step2: 1, loading: 2, payment: 2, success: 2, enregistre: 2,
 };
 
 // Parcours gratuit : pas de paiement.
@@ -81,7 +84,7 @@ const FREE_STEPS = [
 ];
 
 const freePhaseToStep: Record<Phase, number> = {
-  step1: 0, step2: 1, loading: 1, payment: 1, success: 1,
+  step1: 0, step2: 1, loading: 1, payment: 1, success: 1, enregistre: 1,
 };
 
 export default function ClubOnboarding({ open, onClose, offer, location, billing, initialPhase, initialPrenom, initialEmail }: Props) {
@@ -167,26 +170,33 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
     }
   };
 
-  /** Offre freemium : enregistrement du membre, sans paiement. */
+  /** Offre freemium : enregistrement Airtable, sans paiement ni jeton dans le navigateur. */
   const handleFreeSignup = async () => {
     setPhase("loading");
     setError("");
     try {
-      const { data, error: fnError } = await supabase.functions.invoke("club-freemium-signup", {
-        body: { prenom, email, entreprise, location },
+      const res = await fetch(FREEMIUM_API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ prenom, email, entreprise, location }),
       });
-      if (fnError || !data?.ok) {
-        const info = await detailErreurFonction(fnError ?? data);
-        console.error("club-freemium-signup failed:", info.status, info.detail);
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.ok) {
+        const info = await detailErreurFonction(
+          { message: typeof data?.error === "string" ? data.error : "" },
+          res.status,
+        );
+        console.error("club-freemium failed:", info.status, info.detail);
         setError(messageVisiteur(info, "Une erreur est survenue. Réessaie."));
         setPhase("step2");
         return;
       }
       trackOnce(`freemium:${email}`, EVT.clubFreemiumSignup, { method: "club_freemium", offer, location });
-      navigate("/bienvenue-club?offre=freemium");
+      setPhase("enregistre");
     } catch (e) {
-      console.error("club-freemium-signup failed:", e);
-      setError("Une erreur est survenue. Réessaie.");
+      const info = await detailErreurFonction(e);
+      console.error("club-freemium failed:", info.status, info.detail);
+      setError(messageVisiteur(info, "Une erreur est survenue. Réessaie."));
       setPhase("step2");
     }
   };
@@ -284,7 +294,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
         </div>
 
         {/* ── Stepper ───────────────────────────────────────── */}
-        {phase !== "loading" && (
+        {phase !== "loading" && phase !== "enregistre" && (
           <div className="px-4 pt-4 pb-1 shrink-0">
             <p className="text-center text-base font-semibold text-primary mb-3">
               Étape {currentStep + 1} sur {steps.length}
@@ -437,6 +447,19 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
                   </Button>
                 )}
               </div>
+            </div>
+          )}
+
+          {phase === "enregistre" && (
+            <div className="flex flex-col items-center text-center gap-4 py-8" role="status">
+              <CheckCircle2 className="h-12 w-12 text-accent" />
+              <div>
+                <p className="font-semibold text-lg text-primary">Inscription enregistrée</p>
+                <p className="text-sm text-muted-foreground mt-2">Tu fais partie du Club.</p>
+              </div>
+              <Button className="w-full" onClick={() => navigate("/bienvenue-club?offre=freemium")}>
+                Continuer
+              </Button>
             </div>
           )}
 
