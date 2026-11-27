@@ -7,14 +7,17 @@
  * Variables (fichier /etc/club-freemium.env sur le VPS, chmod 600) :
  *   AIRTABLE_API_KEY      jeton personnel Airtable (secret, jamais dans le front)
  *   AIRTABLE_BASE_ID      identifiant de la base, ex. appXXXXXXXXXXXXXX
- *   AIRTABLE_TABLE_NAME   nom exact de la table, ex. Club Freemium
+ *   AIRTABLE_TABLE_NAME   nom exact de la table, défaut club_freemium
+ *   RESEND_API_KEY        clé Resend (si absente, l'inscription reste valide)
+ *   SLACK_INVITE_URL      lien du bouton Slack dans le mail (défaut : invitation du Club)
  *   PORT                  défaut 8787, écoute seulement en local
  *   AIRTABLE_API_URL      défaut https://api.airtable.com/v0 (réservé aux essais)
+ *   RESEND_API_URL        défaut https://api.resend.com/emails (réservé aux essais)
  *
  * Colonnes Airtable, noms exacts, type « ligne de texte » :
- *   Email, Prenom, Projet, Localisation, Offre
- * Offre est toujours « Freemium ». Localisation vaut « france » ou
- * « congo_brazzaville ». Un e-mail déjà présent ne crée pas de seconde ligne.
+ *   email, first_name, company, location
+ * location vaut « france » ou « congo_brazzaville ».
+ * Un e-mail déjà présent ne crée pas de seconde ligne et ne renvoie pas le mail.
  *
  * Lancement :
  *   node server/club-freemium.mjs
@@ -26,8 +29,24 @@ import { createServer } from "node:http";
 const PORT = Number(process.env.PORT || 8787);
 const CLE = process.env.AIRTABLE_API_KEY || "";
 const BASE = process.env.AIRTABLE_BASE_ID || "";
-const TABLE = process.env.AIRTABLE_TABLE_NAME || "";
+const TABLE = process.env.AIRTABLE_TABLE_NAME || "club_freemium";
 const API = (process.env.AIRTABLE_API_URL || "https://api.airtable.com/v0").replace(/\/$/, "");
+const RESEND_KEY = process.env.RESEND_API_KEY || "";
+const RESEND_URL = process.env.RESEND_API_URL || "https://api.resend.com/emails";
+const SLACK_URL = process.env.SLACK_INVITE_URL
+  || "https://join.slack.com/t/clubmarenostrum/shared_invite/zt-3k96xxhx1-UjfT8oy4ISyHKScmuqsleg";
+
+// Même courrier que supabase/functions/club-freemium-signup (sans le kit).
+const MAIL_BIENVENUE = `
+<div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.6;color:#1a2238;max-width:560px">
+  <p>Bonjour,</p>
+  <p>Nous sommes ravis de vous compter parmi les membres du Club Mare Nostrum.</p>
+  <p>Pour rejoindre l’espace digital du Club et commencer à échanger avec la communauté, merci de vous inscrire en cliquant sur le lien ci-dessous :</p>
+  <p style="margin:0 0 24px"><a href="${SLACK_URL}" style="display:inline-block;background:#3fd0d4;color:#101a3a;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:999px">Rejoindre l’espace digital du Club Mare Nostrum</a></p>
+  <p>N’hésitez pas à nous solliciter via la messagerie interne pour toute question.</p>
+  <p>Au plaisir de vous retrouver très bientôt,</p>
+  <p>L’équipe Mare Nostrum</p>
+</div>`.trim();
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const LIEUX = new Set(["france", "congo_brazzaville"]);
@@ -103,8 +122,28 @@ async function airtable(method, url, body) {
   return { ok: res.ok, status: res.status, data };
 }
 
+async function envoyerBienvenue(to) {
+  if (!RESEND_KEY) {
+    console.error("Mail de bienvenue freemium non envoyé: RESEND_API_KEY absente");
+    return;
+  }
+  const res = await fetch(RESEND_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${RESEND_KEY}` },
+    body: JSON.stringify({
+      from: "Club Mare Nostrum <no-reply@marenostrum.tech>",
+      reply_to: "contact@marenostrum.tech",
+      to: [to],
+      subject: "Bienvenue au sein du Club Mare Nostrum !",
+      html: MAIL_BIENVENUE,
+    }),
+    signal: AbortSignal.timeout(12_000),
+  });
+  if (!res.ok) throw new Error(`Resend: ${res.status} ${await res.text()}`);
+}
+
 async function dejaInscrit(email) {
-  const formule = `LOWER({Email})='${email.replace(/'/g, "''")}'`;
+  const formule = `LOWER({email})='${email.replace(/'/g, "''")}'`;
   const url = `${urlTable()}?maxRecords=1&filterByFormula=${encodeURIComponent(formule)}`;
   const res = await airtable("GET", url);
   if (!res.ok) {
@@ -180,13 +219,17 @@ const server = createServer(async (req, res) => {
     }
 
     const id = await creer({
-      Email: email,
-      Prenom: prenom,
-      Projet: projet,
-      Localisation: lieu,
-      Offre: "Freemium",
+      email,
+      first_name: prenom,
+      company: projet,
+      location: lieu,
     });
     console.log("club-freemium: ligne créée", id || "(sans id)");
+    try {
+      await envoyerBienvenue(email);
+    } catch (e) {
+      console.error("Mail de bienvenue freemium non envoyé:", e?.message || e);
+    }
     json(res, 200, { ok: true }, origine);
   } catch (e) {
     if (e?.status === 413) {

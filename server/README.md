@@ -13,24 +13,31 @@ toutes les adresses vers `index.html` : une fonction Vercel n'est pas utilisée.
 |---|---|---|
 | `AIRTABLE_API_KEY` | serveur uniquement | jeton Airtable |
 | `AIRTABLE_BASE_ID` | serveur uniquement | identifiant de la base (`app…`) |
-| `AIRTABLE_TABLE_NAME` | serveur uniquement | nom exact de la table |
+| `AIRTABLE_TABLE_NAME` | serveur uniquement | nom exact de la table, défaut `club_freemium` |
+| `RESEND_API_KEY` | serveur uniquement | clé Resend du mail de bienvenue |
+| `SLACK_INVITE_URL` | serveur uniquement, optionnel | lien du bouton Slack. Défaut : l'invitation déjà utilisée par l'ancienne fonction |
 | `PORT` | serveur, défaut `8787` | port local |
 | `VITE_CLUB_FREEMIUM_API_URL` | build du site, optionnel | si vide, le site appelle `/api/club-freemium` |
 
 ## Colonnes Airtable à créer
 
-Table suggérée : `Club Freemium`. Les cinq noms ci-dessous sont exacts
-(majuscules, sans accent). Type : ligne de texte.
+Table par défaut : `club_freemium`. Les quatre noms ci-dessous sont exacts.
+Type : ligne de texte.
 
 | Colonne | Contenu |
 |---|---|
-| `Email` | e-mail en minuscules |
-| `Prenom` | prénom |
-| `Projet` | nom du projet ou de l'entreprise, peut être vide |
-| `Localisation` | `france` ou `congo_brazzaville` |
-| `Offre` | toujours `Freemium` |
+| `email` | e-mail en minuscules |
+| `first_name` | prénom |
+| `company` | nom du projet ou de l'entreprise, peut être vide |
+| `location` | `france` ou `congo_brazzaville` |
 
-Un même e-mail n'est pas écrit une seconde fois.
+Un e-mail déjà présent ne crée pas de seconde ligne et ne reçoit pas un second mail.
+
+Chaque nouvelle ligne déclenche le même courrier que l'ancienne fonction
+`club-freemium-signup` : expéditeur `Club Mare Nostrum <no-reply@marenostrum.tech>`,
+réponse à `contact@marenostrum.tech`, sujet `Bienvenue au sein du Club Mare Nostrum !`,
+bouton vers l'invitation Slack. Si Resend est en panne ou si `RESEND_API_KEY`
+est absente, l'erreur est écrite dans le journal et l'inscription reste acceptée.
 
 ## Lancement sur le VPS
 
@@ -39,14 +46,14 @@ sudo mkdir -p /opt/club-freemium
 sudo cp server/club-freemium.mjs /opt/club-freemium/club-freemium.mjs
 sudo cp server/club-freemium.env.example /etc/club-freemium.env
 sudo chmod 600 /etc/club-freemium.env
-# renseigner les trois variables Airtable dans /etc/club-freemium.env
+# renseigner Airtable et RESEND_API_KEY dans /etc/club-freemium.env
 sudo cp server/club-freemium.service /etc/systemd/system/club-freemium.service
 sudo systemctl daemon-reload
 sudo systemctl enable --now club-freemium
 curl -sS http://127.0.0.1:8787/healthz
 ```
 
-`{"ok":true}` signifie que les trois variables sont présentes. Cela ne crée pas de ligne.
+`{"ok":true}` signifie que les variables Airtable sont présentes. Cela ne crée pas de ligne.
 
 ## Bloc Nginx
 
