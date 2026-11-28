@@ -29,14 +29,12 @@ export const useBlogArticles = () => {
         .eq("is_published", true)
         .order("published_at", { ascending: false });
 
-      if (error) {
-        console.error("Error fetching blog articles:", error);
-        throw error;
-      }
+      if (error) throw error;
 
       return data as BlogArticle[];
     },
     staleTime: 5 * 60 * 1000,
+    retry: false,
   });
 };
 
@@ -54,14 +52,12 @@ export const useBlogArticle = (slug: string | undefined) => {
         .eq("is_published", true)
         .maybeSingle();
 
-      if (error) {
-        console.error("Error fetching blog article:", error);
-        throw error;
-      }
+      if (error) throw error;
 
       return data as BlogArticle | null;
     },
     enabled: !!slug,
+    retry: false,
   });
 };
 
@@ -99,5 +95,6 @@ export const useRelatedArticles = (category: string | undefined, excludeId: stri
       return [...results, ...(others ?? [])] as BlogArticle[];
     },
     enabled: !!category,
+    retry: false,
   });
 };

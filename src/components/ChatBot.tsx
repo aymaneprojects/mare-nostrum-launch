@@ -341,8 +341,7 @@ const ChatBot = () => {
       const updatedMessages = [...newMessages, assistantMessage];
       setMessages(updatedMessages);
       saveHistory(updatedMessages);
-    } catch (error) {
-      console.error("Error sending message:", error);
+    } catch {
       if (!monte.current) return;
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),

@@ -1,6 +1,10 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
+// Ancien enregistrement Supabase. La modale du site appelle désormais
+// server/club-freemium.mjs, qui écrit dans Airtable. Cette fonction reste
+// déployée mais n'est plus le chemin d'inscription.
+//
 // Inscription gratuite au Club (offre freemium) : aucun paiement, aucun appel
 // Stripe. Enregistre le membre dans club_freemium (service role uniquement).
 

@@ -41,3 +41,47 @@ verify_jwt = false
 
 [functions.roue-participation]
 verify_jwt = false
+
+# Appelées par le navigateur avec la clé publiable (sb_publishable_…), qui n'est
+# pas un JWT. verify_jwt = true les rejette avant même d'entrer dans la fonction.
+# Chacune valide ses propres entrées. seo-cron et send-mastermind-brochure restent
+# hors de cette liste : elles ne sont pas appelées par le site public.
+
+[functions.get-checkout-session]
+verify_jwt = false
+
+[functions.get-club-count]
+verify_jwt = false
+
+[functions.send-promo-code]
+verify_jwt = false
+
+[functions.send-diagnostic]
+verify_jwt = false
+
+[functions.newsletter-signup]
+verify_jwt = false
+
+[functions.newsletter-unsubscribe]
+verify_jwt = false
+
+[functions.chatbot-webhook]
+verify_jwt = false
+
+[functions.get-niteo-projects]
+verify_jwt = false
+
+[functions.submit-niteo-evaluation]
+verify_jwt = false
+
+[functions.verify-jury-code]
+verify_jwt = false
+
+[functions.confirm-niteo-reservation]
+verify_jwt = false
+
+[functions.create-niteo-checkout]
+verify_jwt = false
+
+[functions.llms-full]
+verify_jwt = false

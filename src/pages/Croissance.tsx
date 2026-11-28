@@ -114,7 +114,7 @@ const Croissance = () => {
     window.history.replaceState({}, "", window.location.pathname);
 
     supabase.functions.invoke("get-checkout-session", { body: { sessionId } })
-      .then(({ data, error }) => {
+      .then(async ({ data, error }) => {
         if (error || !data?.paid) {
           toast({
             variant: "destructive",

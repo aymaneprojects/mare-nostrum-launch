@@ -35,7 +35,14 @@ PERSONA_FILE = os.environ.get("PERSONA_FILE", os.path.join(os.path.dirname(__fil
 KNOWLEDGE_URLS = os.environ.get(
     "KNOWLEDGE_URLS", "https://www.marenostrum.tech/llms.txt,https://www.marenostrum.tech/pages.md").split(",")
 KNOWLEDGE_TTL = 900
-POLL = float(os.environ.get("RELAY_POLL_SECONDS", "2"))
+# Repos entre deux lectures quand la file est vide. 2 secondes faisaient environ
+# 1,3 million d'appels par mois vers chatbot-webhook, assez pour dépasser le quota
+# d'invocations Supabase (500 000 en gratuit, 2 millions inclus en Pro) et couper
+# tout le projet, y compris l'inscription au Club. 15 secondes reste sous le quota.
+_POLL_DEMANDE = float(os.environ.get("RELAY_POLL_SECONDS", "15"))
+POLL_IDLE = _POLL_DEMANDE if _POLL_DEMANDE >= 15 else 15.0
+POLL_BUSY = float(os.environ.get("RELAY_POLL_BUSY_SECONDS", "1"))
+BACKOFF = float(os.environ.get("RELAY_BACKOFF_SECONDS", "900"))
 BUDGET = int(os.environ.get("HERMES_BUDGET_SECONDS", "60"))
 FALLBACK = ("Merci pour votre message ! Je reviens vers vous très vite. "
             "Vous pouvez aussi écrire à contact@marenostrum.tech.")
@@ -102,10 +109,16 @@ def demander_a_ines(session, texte):
 
 
 def main():
-    log("relais Inès démarré —", URL, "| outils :", TOOLSETS, "| persona :", len(PERSONA), "car.")
+    if _POLL_DEMANDE < 15:
+        log("RELAY_POLL_SECONDS", _POLL_DEMANDE, "relevé à", POLL_IDLE,
+            "s : un intervalle plus court dépasse le quota d'invocations Supabase.")
+    log("relais Inès démarré :", URL, "| outils :", TOOLSETS, "| persona :", len(PERSONA), "car.",
+        "| repos :", POLL_IDLE, "s")
     while True:
+        attente = POLL_IDLE
         try:
-            for m in appel("GET", {"action": "pending"}).get("messages", []):
+            messages = appel("GET", {"action": "pending"}).get("messages", [])
+            for m in messages:
                 session, texte = m["session_id"], m["content"]
                 log("message", session, f"({len(texte)} car.)")
                 try:
@@ -115,13 +128,18 @@ def main():
                     reponse = FALLBACK
                 appel("POST", {"action": "reply"}, {"sessionId": session, "reply": reponse})
                 log("réponse postée", session)
+            if messages:
+                attente = POLL_BUSY
         except urllib.error.HTTPError as e:
-            log("webhook :", e.code, e.read().decode()[:200])
-            time.sleep(10)
+            corps = e.read().decode()[:300]
+            log("webhook :", e.code, corps)
+            # 402 : quota dépassé, le projet entier est coupé. Continuer toutes les
+            # quelques secondes empêche le quota de se rétablir.
+            attente = BACKOFF if e.code in (402, 429, 503) else 60
         except Exception as e:
             log("erreur :", e)
-            time.sleep(10)
-        time.sleep(POLL)
+            attente = 60
+        time.sleep(attente)
 
 
 if __name__ == "__main__":

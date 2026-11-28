@@ -47,12 +47,16 @@ export default function NiteoReservation() {
     supabase.functions.invoke("confirm-niteo-reservation", { body: { session_id: sessionId } })
       .then(({ data, error: fnErr }) => {
         if (fnErr || !data?.success) {
-          setError(fnErr?.message ?? "Erreur lors de la confirmation du paiement.");
+          setError("Erreur lors de la confirmation du paiement.");
           setPhase("error");
         } else {
           setSuccess(data.name ?? "");
           setPhase("success");
         }
+      })
+      .catch(() => {
+        setError("Erreur lors de la confirmation du paiement.");
+        setPhase("error");
       });
   }, [sessionId]);
 
@@ -64,7 +68,7 @@ export default function NiteoReservation() {
       body: { nom, prenom, email, organisation, role },
     });
     if (fnErr || !data?.clientSecret) {
-      setError(fnErr?.message ?? "Erreur serveur. Réessayez.");
+      setError("Erreur serveur. Réessayez.");
       setPhase("form");
       return;
     }
