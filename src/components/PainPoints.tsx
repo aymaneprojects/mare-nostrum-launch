@@ -1,37 +1,53 @@
 import { useEffect, useState } from "react";
 import { Clock, Brain, Target, Flame } from "lucide-react";
 
-// Une visite de l'accueil et de /club ne doit pas rappeler la fonction à chaque
-// navigation : get-club-count compte dans le quota d'invocations Supabase.
-const COMPTEUR_OK_MS = 60 * 60 * 1000;
-const COMPTEUR_ECHEC_MS = 10 * 60 * 1000;
-let compteurMemoire: { count: number; at: number } | { echec: true; at: number } | null = null;
+// Un seul appel par onglet. Un échec (quota Supabase, réseau) cache le compteur
+// et n'est pas rejoué : la page reste intacte, sans nouvelle erreur console.
+const COMPTEUR_CLE = "mn-club-count";
+
+function lireCompteur(): { count: number } | { echec: true } | null {
+  try {
+    const brut = sessionStorage.getItem(COMPTEUR_CLE);
+    if (!brut) return null;
+    const valeur = JSON.parse(brut) as { count?: unknown; echec?: unknown };
+    if (typeof valeur.count === "number") return { count: valeur.count };
+    if (valeur.echec) return { echec: true };
+  } catch {
+    /* stockage indisponible */
+  }
+  return null;
+}
+
+function ecrireCompteur(valeur: { count: number } | { echec: true }) {
+  try { sessionStorage.setItem(COMPTEUR_CLE, JSON.stringify(valeur)); } catch { /* ignore */ }
+}
 
 function ClubCounter() {
   const [count, setCount]         = useState<number | null>(null);
   const [displayed, setDisplayed] = useState(0);
 
   useEffect(() => {
-    const maintenant = Date.now();
-    if (compteurMemoire && "count" in compteurMemoire && maintenant - compteurMemoire.at < COMPTEUR_OK_MS) {
-      setCount(compteurMemoire.count);
+    const memoire = lireCompteur();
+    if (memoire && "count" in memoire) {
+      setCount(memoire.count);
       return;
     }
-    if (compteurMemoire && "echec" in compteurMemoire && maintenant - compteurMemoire.at < COMPTEUR_ECHEC_MS) return;
+    if (memoire && "echec" in memoire) return;
 
     let actif = true;
     // Import à la demande : le client Supabase (177 Ko) ne pèse plus sur le script d'entrée.
     import("@/integrations/supabase/client")
       .then(({ supabase }) => supabase.functions.invoke("get-club-count"))
       .then(({ data, error }) => {
-        if (error || data?.count == null) {
-          compteurMemoire = { echec: true, at: Date.now() };
+        if (!actif) return;
+        if (error || typeof data?.count !== "number") {
+          ecrireCompteur({ echec: true });
           return;
         }
-        compteurMemoire = { count: data.count, at: Date.now() };
-        if (actif) setCount(data.count);
+        ecrireCompteur({ count: data.count });
+        setCount(data.count);
       })
-      .catch(() => { compteurMemoire = { echec: true, at: Date.now() }; });
+      .catch(() => { if (actif) ecrireCompteur({ echec: true }); });
     return () => { actif = false; };
   }, []);
 

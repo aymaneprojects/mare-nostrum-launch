@@ -78,7 +78,6 @@ const Contact = () => {
       if (!dbError) dejaInsere.current = signature;
       if (dbError) {
         const info = await detailErreurFonction(dbError);
-        console.error("Error saving to database:", info.status, info.detail);
         toast({
           title: "Erreur",
           description: messageVisiteur(info, "Une erreur est survenue lors de la sauvegarde. Veuillez réessayer.", "vous"),
@@ -95,7 +94,6 @@ const Contact = () => {
       });
       if (error) {
         const info = await detailErreurFonction(error);
-        console.error("prise-de-contact:", info.status, info.detail);
         toast({
           title: "Erreur",
           description: messageVisiteur(info, "Une erreur est survenue lors de l'envoi. Veuillez réessayer.", "vous"),
@@ -109,8 +107,8 @@ const Contact = () => {
         await supabase.functions.invoke('webhook-proxy', {
           body: { type: 'contact', data: { ...donnees, poles } }
         });
-      } catch (webhookError) {
-        console.error("Webhook error:", webhookError);
+      } catch {
+        /* le message au visiteur est déjà parti : le relais n8n ne bloque pas */
       }
 
       track(EVT.generateLead, { form: "contact" });
@@ -132,8 +130,7 @@ const Contact = () => {
         message: "",
         website: "",
       });
-    } catch (error) {
-      console.error("Error:", error);
+    } catch {
       toast({
         title: "Erreur",
         description: "Une erreur est survenue. Veuillez réessayer.",

@@ -108,8 +108,8 @@ const LivreEntrepreneuriat = () => {
             }
           }
         });
-      } catch (webhookError) {
-        console.error("Webhook error:", webhookError);
+      } catch {
+        /* le livre est déjà envoyé : le relais n8n ne bloque pas */
       }
       track(EVT.generateLead, { form: "livre-blanc" });
       setIsSuccess(true);
@@ -118,8 +118,7 @@ const LivreEntrepreneuriat = () => {
         description: "Consultez votre boîte mail pour télécharger le Livre Blanc."
       });
       form.reset();
-    } catch (error: any) {
-      console.error('Error:', error);
+    } catch {
       toast({
         variant: "destructive",
         title: "Erreur",

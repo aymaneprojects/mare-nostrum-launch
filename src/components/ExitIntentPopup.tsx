@@ -89,7 +89,6 @@ export default function ExitIntentPopup() {
       });
       if (fnError) {
         const info = await detailErreurFonction(fnError);
-        console.error("send-promo-code failed:", info.status, info.detail);
         setError(messageVisiteur(info, "Une erreur est survenue. Réessaie dans quelques secondes."));
         return;
       }

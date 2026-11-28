@@ -115,7 +115,8 @@ export default function NiteoEvaluation() {
 
   useEffect(() => {
     supabase.functions.invoke("get-niteo-projects")
-      .then(({ data }) => { if (data?.projets) setProjets(data.projets); });
+      .then(({ data }) => { if (data?.projets) setProjets(data.projets); })
+      .catch(() => {});
   }, []);
 
   const projetsRestants = projets.filter((p) => !projetsEvalues.includes(p));

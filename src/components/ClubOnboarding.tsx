@@ -155,7 +155,6 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
       });
       if (fnError || !data?.clientSecret) {
         const info = await detailErreurFonction(fnError ?? data);
-        console.error("create-checkout-session failed:", info.status, info.detail);
         setError(messageVisiteur(info, "Une erreur est survenue. Réessaie."));
         setPhase("step2");
         return;
@@ -163,8 +162,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
       setClientSecret(data.clientSecret);
       track(EVT.checkoutShown, { offer, location, billing });
       setPhase("payment");
-    } catch (e) {
-      console.error("create-checkout-session failed:", e);
+    } catch {
       setError("Une erreur est survenue. Réessaie.");
       setPhase("step2");
     }
@@ -186,7 +184,6 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
           { message: typeof data?.error === "string" ? data.error : "" },
           res.status,
         );
-        console.error("club-freemium failed:", info.status, info.detail);
         setError(messageVisiteur(info, "Une erreur est survenue. Réessaie."));
         setPhase("step2");
         return;
@@ -195,7 +192,6 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
       setPhase("enregistre");
     } catch (e) {
       const info = await detailErreurFonction(e);
-      console.error("club-freemium failed:", info.status, info.detail);
       setError(messageVisiteur(info, "Une erreur est survenue. Réessaie."));
       setPhase("step2");
     }
@@ -272,6 +268,7 @@ export default function ClubOnboarding({ open, onClose, offer, location, billing
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent
+        aria-describedby={undefined}
         className={`p-0 flex flex-col
           max-sm:left-0 max-sm:top-0 max-sm:translate-x-0 max-sm:translate-y-0
           max-sm:w-full max-sm:h-[100dvh] max-sm:max-w-none max-sm:max-h-none max-sm:rounded-none

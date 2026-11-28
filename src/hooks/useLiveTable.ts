@@ -99,10 +99,7 @@ export function useLiveTable<T extends LiveTableName>({ table, column, value, po
     if (mine !== generation.current) return;
     fetching.current = false;
 
-    if (error) {
-      console.error(`[live] chargement ${table} impossible :`, error.message);
-      return;
-    }
+    if (error) return;
     const next = new Map<string, Row>();
     for (const row of data) next.set((row as unknown as WithId).id, row);
     for (const row of buffer.current) next.set((row as unknown as WithId).id, row);

@@ -13,18 +13,26 @@ toutes les adresses vers `index.html` : une fonction Vercel n'est pas utilisée.
 |---|---|---|
 | `AIRTABLE_API_KEY` | serveur uniquement | jeton Airtable |
 | `AIRTABLE_BASE_ID` | serveur uniquement | identifiant de la base (`app…`) |
-| `AIRTABLE_TABLE_NAME` | serveur uniquement | nom exact de la table, défaut `club_freemium` |
+| `AIRTABLE_TABLE_NAME` | serveur uniquement, obligatoire | nom exact de la table déjà existante. Aucune table n'est créée |
+| `AIRTABLE_FIELD_EMAIL` | serveur, défaut `email` | nom de la colonne e-mail |
+| `AIRTABLE_FIELD_FIRST_NAME` | serveur, défaut `first_name` | nom de la colonne prénom |
+| `AIRTABLE_FIELD_COMPANY` | serveur, défaut `company` | nom de la colonne projet |
+| `AIRTABLE_FIELD_LOCATION` | serveur, défaut `location` | nom de la colonne lieu |
 | `RESEND_API_KEY` | serveur uniquement | clé Resend du mail de bienvenue |
 | `SLACK_INVITE_URL` | serveur uniquement, optionnel | lien du bouton Slack. Défaut : l'invitation déjà utilisée par l'ancienne fonction |
 | `PORT` | serveur, défaut `8787` | port local |
 | `VITE_CLUB_FREEMIUM_API_URL` | build du site, optionnel | si vide, le site appelle `/api/club-freemium` |
 
-## Colonnes Airtable à créer
+## Table Airtable existante
 
-Table par défaut : `club_freemium`. Les quatre noms ci-dessous sont exacts.
-Type : ligne de texte.
+Ne pas créer de table. `AIRTABLE_TABLE_NAME` doit nommer une table déjà dans
+la base. Le serveur n'a pas de nom par défaut : sans cette variable il refuse
+l'inscription.
 
-| Colonne | Contenu |
+Colonnes attendues par défaut (type ligne de texte). Si la table utilise
+d'autres noms, les régler avec `AIRTABLE_FIELD_*`.
+
+| Colonne par défaut | Contenu |
 |---|---|
 | `email` | e-mail en minuscules |
 | `first_name` | prénom |
@@ -53,7 +61,7 @@ sudo systemctl enable --now club-freemium
 curl -sS http://127.0.0.1:8787/healthz
 ```
 
-`{"ok":true}` signifie que les variables Airtable sont présentes. Cela ne crée pas de ligne.
+`{"ok":true}` signifie que la clé, la base et le nom de table sont présents. Cela ne crée ni table ni ligne.
 
 ## Bloc Nginx
 

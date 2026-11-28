@@ -7,16 +7,20 @@
  * Variables (fichier /etc/club-freemium.env sur le VPS, chmod 600) :
  *   AIRTABLE_API_KEY      jeton personnel Airtable (secret, jamais dans le front)
  *   AIRTABLE_BASE_ID      identifiant de la base, ex. appXXXXXXXXXXXXXX
- *   AIRTABLE_TABLE_NAME   nom exact de la table, défaut club_freemium
+ *   AIRTABLE_TABLE_NAME   nom exact d'une table DÉJÀ existante (obligatoire, aucun défaut)
+ *   AIRTABLE_FIELD_EMAIL       colonne e-mail, défaut email
+ *   AIRTABLE_FIELD_FIRST_NAME  colonne prénom, défaut first_name
+ *   AIRTABLE_FIELD_COMPANY     colonne projet, défaut company
+ *   AIRTABLE_FIELD_LOCATION    colonne lieu, défaut location
  *   RESEND_API_KEY        clé Resend (si absente, l'inscription reste valide)
  *   SLACK_INVITE_URL      lien du bouton Slack dans le mail (défaut : invitation du Club)
  *   PORT                  défaut 8787, écoute seulement en local
  *   AIRTABLE_API_URL      défaut https://api.airtable.com/v0 (réservé aux essais)
  *   RESEND_API_URL        défaut https://api.resend.com/emails (réservé aux essais)
  *
- * Colonnes Airtable, noms exacts, type « ligne de texte » :
- *   email, first_name, company, location
- * location vaut « france » ou « congo_brazzaville ».
+ * Ne crée pas de table. Les colonnes par défaut, type « ligne de texte », sont
+ * email, first_name, company, location. location vaut « france » ou
+ * « congo_brazzaville ». On peut les renommer avec AIRTABLE_FIELD_*.
  * Un e-mail déjà présent ne crée pas de seconde ligne et ne renvoie pas le mail.
  *
  * Lancement :
@@ -29,7 +33,11 @@ import { createServer } from "node:http";
 const PORT = Number(process.env.PORT || 8787);
 const CLE = process.env.AIRTABLE_API_KEY || "";
 const BASE = process.env.AIRTABLE_BASE_ID || "";
-const TABLE = process.env.AIRTABLE_TABLE_NAME || "club_freemium";
+const TABLE = process.env.AIRTABLE_TABLE_NAME || "";
+const FIELD_EMAIL = process.env.AIRTABLE_FIELD_EMAIL || "email";
+const FIELD_FIRST = process.env.AIRTABLE_FIELD_FIRST_NAME || "first_name";
+const FIELD_COMPANY = process.env.AIRTABLE_FIELD_COMPANY || "company";
+const FIELD_LOCATION = process.env.AIRTABLE_FIELD_LOCATION || "location";
 const API = (process.env.AIRTABLE_API_URL || "https://api.airtable.com/v0").replace(/\/$/, "");
 const RESEND_KEY = process.env.RESEND_API_KEY || "";
 const RESEND_URL = process.env.RESEND_API_URL || "https://api.resend.com/emails";
@@ -143,7 +151,7 @@ async function envoyerBienvenue(to) {
 }
 
 async function dejaInscrit(email) {
-  const formule = `LOWER({email})='${email.replace(/'/g, "''")}'`;
+  const formule = `LOWER({${FIELD_EMAIL}})='${email.replace(/'/g, "''")}'`;
   const url = `${urlTable()}?maxRecords=1&filterByFormula=${encodeURIComponent(formule)}`;
   const res = await airtable("GET", url);
   if (!res.ok) {
@@ -219,10 +227,10 @@ const server = createServer(async (req, res) => {
     }
 
     const id = await creer({
-      email,
-      first_name: prenom,
-      company: projet,
-      location: lieu,
+      [FIELD_EMAIL]: email,
+      [FIELD_FIRST]: prenom,
+      [FIELD_COMPANY]: projet,
+      [FIELD_LOCATION]: lieu,
     });
     console.log("club-freemium: ligne créée", id || "(sans id)");
     try {
